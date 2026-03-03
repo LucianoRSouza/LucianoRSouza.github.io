@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luciano Rodrigues | Strategic Procurement Leader</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #1e293b;
+            --accent: #3b82f6;
+            --accent-light: #60a5fa;
+            --gold: #f59e0b;
+            --text: #334155;
+            --text-light: #64748b;
+            --bg: #ffffff;
+            --bg-alt: #f8fafc;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; color: var(--text); line-height: 1.6; overflow-x: hidden; }
+        nav { position: fixed; top: 0; width: 100%; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); z-index: 1000; padding: 1rem 0; box-shadow: 0 2px 20px rgba(0,0,0,0.05); transition: all 0.3s ease; }
+        nav.scrolled { padding: 0.5rem 0; box-shadow: 0 4px 30px rgba(0,0,0,0.1); }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--primary); text-decoration: none; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--text); font-weight: 500; transition: color 0.3s ease; position: relative; }
+        .nav-links a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: var(--accent); transition: width 0.3s ease; }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-links a:hover { color: var(--accent); }
+        .hero { min-height: 100vh; display: flex; align-items: center; background: var(--bg-alt); position: relative; overflow: hidden; padding-top: 80px; }
+        .hero::before { content: ''; position: absolute; top: -50%; right: -20%; width: 800px; height: 800px; background: var(--gradient-1); border-radius: 50%; opacity: 0.1; animation: float 20s infinite ease-in-out; }
+        .hero::after { content: ''; position: absolute; bottom: -30%; left: -10%; width: 600px; height: 600px; background: var(--gradient-2); border-radius: 50%; opacity: 0.1; animation: float 25s infinite ease-in-out reverse; }
+        @keyframes float { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(30px, -30px) scale(1.1); } }
+        .hero-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; position: relative; z-index: 1; }
+        .hero-content h1 { font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 700; color: var(--primary); margin-bottom: 1rem; line-height: 1.2; }
+        .hero-content .subtitle { font-size: 1.5rem; color: var(--accent); font-weight: 600; margin-bottom: 1.5rem; }
+        .hero-content .tagline { font-size: 1.1rem; color: var(--text-light); margin-bottom: 2rem; max-width: 500px; }
+        .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .btn { padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 0.5rem; }
+        .btn-primary { background: var(--gradient-1); color: white; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4); }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(59, 130, 246, 0.5); }
+        .btn-secondary { background: transparent; color: var(--primary); border: 2px solid var(--primary); }
+        .btn-secondary:hover { background: var(--primary); color: white; transform: translateY(-3px); }
+        .hero-image { position: relative; }
+        .hero-image img { width: 100%; max-width: 400px; border-radius: 30px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); position: relative; z-index: 2; }
+        .hero-image::before { content: ''; position: absolute; top: -20px; right: -20px; width: 100%; height: 100%; border: 3px solid var(--accent); border-radius: 30px; z-index: 1; }
+        .floating-card { position: absolute; background: white; padding: 1rem 1.5rem; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); z-index: 3; animation: float-card 6s ease-in-out infinite; }
+        .floating-card.ai { top: 20%; right: -20px; border-left: 4px solid var(--accent); }
+        .floating-card.years { bottom: 20%; left: -30px; border-left: 4px solid var(--gold); animation-delay: 1s; }
+        @keyframes float-card { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        section { padding: 5rem 0; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        .section-header { text-align: center; margin-bottom: 4rem; }
+        .section-header h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--primary); margin-bottom: 1rem; }
+        .section-header p { color: var(--text-light); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+        .about { background: white; }
+        .about-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; align-items: start; }
+        .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+        .stat-card { background: var(--bg-alt); padding: 2rem; border-radius: 20px; text-align: center; transition: transform 0.3s ease; }
+        .stat-card:hover { transform: translateY(-5px); }
+        .stat-number { font-size: 2.5rem; font-weight: 800; background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .stat-label { color: var(--text-light); font-size: 0.9rem; margin-top: 0.5rem; }
+        .about-content h3 { font-size: 2rem; color: var(--primary); margin-bottom: 1.5rem; }
+        .about-content p { margin-bottom: 1.5rem; font-size: 1.1rem; line-height: 1.8; }
+        .competencies { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 2rem; }
+        .competency-tag { background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%); color: var(--primary); padding: 0.5rem 1rem; border-radius: 50px; font-size: 0.9rem; font-weight: 500; transition: all 0.3s ease; }
+        .competency-tag:hover { transform: scale(1.05); box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3); }
+        .experience { background: var(--bg-alt); position: relative; }
+        .timeline { position: relative; max-width: 800px; margin: 0 auto; }
+        .timeline::before { content: ''; position: absolute; left: 50%; transform: translateX(-50%); width: 2px; height: 100%; background: linear-gradient(to bottom, var(--accent), var(--gold)); }
+        .timeline-item { margin-bottom: 3rem; position: relative; width: 50%; padding: 0 2rem; }
+        .timeline-item:nth-child(odd) { left: 0; text-align: right; }
+        .timeline-item:nth-child(even) { left: 50%; }
+        .timeline-content { background: white; padding: 2rem; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); position: relative; transition: transform 0.3s ease; }
+        .timeline-content:hover { transform: translateY(-5px); }
+        .timeline-content::before { content: ''; position: absolute; width: 20px; height: 20px; background: var(--accent); border-radius: 50%; top: 50%; transform: translateY(-50%); border: 4px solid white; box-shadow: 0 0 0 4px var(--accent); }
+        .timeline-item:nth-child(odd) .timeline-content::before { right: -42px; }
+        .timeline-item:nth-child(even) .timeline-content::before { left: -42px; }
+        .timeline-date { display: inline-block; background: var(--gradient-1); color: white; padding: 0.3rem 1rem; border-radius: 50px; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .timeline-title { font-size: 1.3rem; color: var(--primary); margin-bottom: 0.5rem; font-weight: 700; }
+        .timeline-company { color: var(--accent); font-weight: 600; margin-bottom: 1rem; }
+        .timeline-desc { color: var(--text-light); font-size: 0.95rem; line-height: 1.6; }
+        .achievements { margin-top: 1rem; list-style: none; }
+        .achievements li { padding: 0.3rem 0; color: var(--text); font-size: 0.9rem; position: relative; padding-left: 1.2rem; }
+        .achievements li::before { content: '▸'; position: absolute; left: 0; color: var(--gold); font-weight: bold; }
+        .skills { background: white; }
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .skill-category { background: var(--bg-alt); padding: 2rem; border-radius: 20px; transition: transform 0.3s ease; }
+        .skill-category:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .skill-category h3 { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1.5rem; color: var(--primary); font-size: 1.2rem; }
+        .skill-category i { font-size: 1.5rem; color: var(--accent); }
+        .skill-list { list-style: none; }
+        .skill-list li { padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem; }
+        .skill-list li::before { content: '•'; color: var(--accent); font-weight: bold; font-size: 1.2rem; }
+        .languages { background: var(--gradient-1); color: white; padding: 4rem 0; }
+        .languages-grid { display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+        .language-card { text-align: center; padding: 2rem; background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border-radius: 20px; min-width: 150px; border: 1px solid rgba(255,255,255,0.2); }
+        .language-card i { font-size: 2.5rem; margin-bottom: 1rem; opacity: 0.9; }
+        .language-name { font-size: 1.3rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .language-level { font-size: 0.9rem; opacity: 0.9; }
+        .contact { background: var(--primary); color: white; position: relative; overflow: hidden; }
+        .contact::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="0.5"/></svg>'); background-size: 100px 100px; opacity: 0.5; }
+        .contact-container { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .contact-info h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 1rem; }
+        .contact-info p { opacity: 0.9; margin-bottom: 2rem; font-size: 1.1rem; }
+        .contact-details { display: flex; flex-direction: column; gap: 1.5rem; }
+        .contact-item { display: flex; align-items: center; gap: 1rem; }
+        .contact-item i { width: 50px; height: 50px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+        .contact-item a { color: white; text-decoration: none; font-size: 1.1rem; transition: opacity 0.3s ease; }
+        .contact-item a:hover { opacity: 0.8; text-decoration: underline; }
+        .contact-form { background: white; padding: 3rem; border-radius: 20px; color: var(--text); }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary); }
+        .form-group input, .form-group textarea { width: 100%; padding: 1rem; border: 2px solid #e2e8f0; border-radius: 10px; font-family: inherit; transition: border-color 0.3s ease; }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--accent); }
+        .form-group textarea { resize: vertical; min-height: 120px; }
+        .submit-btn { width: 100%; padding: 1rem; background: var(--gradient-1); color: white; border: none; border-radius: 10px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: transform 0.3s ease; }
+        .submit-btn:hover { transform: translateY(-2px); }
+        footer { background: #0f172a; color: white; text-align: center; padding: 2rem 0; }
+        footer p { opacity: 0.7; }
+        .social-links { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1.5rem; }
+        .social-links a { width: 45px; height: 45px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: all 0.3s ease; }
+        .social-links a:hover { background: var(--accent); transform: translateY(-3px); }
+        @media (max-width: 968px) {
+            .hero-container { grid-template-columns: 1fr; text-align: center; }
+            .hero-content h1 { font-size: 2.5rem; }
+            .hero-image { order: -1; }
+            .hero-image img { max-width: 300px; }
+            .floating-card { display: none; }
+            .about-grid { grid-template-columns: 1fr; }
+            .timeline::before { left: 30px; }
+            .timeline-item { width: 100%; left: 0 !important; padding-left: 80px; text-align: left !important; }
+            .timeline-content::before { left: -52px !important; right: auto !important; }
+            .contact-container { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+        }
+        .fade-in { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">LR.</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Luciano Rodrigues de Souza</h1>
+                <div class="subtitle">Strategic Procurement & Operations Leader</div>
+                <p class="tagline">Transforming procurement into an AI-enabled, data-driven function across Europe, LATAM, and Asia. 15+ years driving financial performance, supplier governance, and operational excellence.</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Get In Touch</a>
+                    <a href="#experience" class="btn btn-secondary"><i class="fas fa-briefcase"></i> View Experience</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=500&fit=crop&crop=face" alt="Luciano Rodrigues">
+                <div class="floating-card ai"><i class="fas fa-robot" style="color: var(--accent);"></i><div style="font-weight: 600; font-size: 0.9rem;">AI-Driven</div><div style="font-size: 0.8rem; color: var(--text-light);">Sourcing Expert</div></div>
+                <div class="floating-card years"><div style="font-weight: 800; font-size: 1.5rem; color: var(--gold);">15+</div><div style="font-size: 0.8rem; color: var(--text-light);">Years Experience</div></div>
+            </div>
+        </div>
+    </section>
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-stats">
+                    <div class="stat-card"><div class="stat-number">15+</div><div class="stat-label">Years Experience</div></div>
+                    <div class="stat-card"><div class="stat-number">3</div><div class="stat-label">Continents</div></div>
+                    <div class="stat-card"><div class="stat-number">AI</div><div class="stat-label">Powered Tools</div></div>
+                    <div class="stat-card"><div class="stat-number">5</div><div class="stat-label">Key Roles</div></div>
+                </div>
+                <div class="about-content">
+                    <h3>Executive Summary</h3>
+                    <p>Strategic procurement and operations leader with 15+ years of experience spanning Europe, LATAM, and Asia. I specialize in transforming procurement functions into AI-enabled, data-driven powerhouses focused on financial performance, supplier governance, and operational efficiency.</p>
+                    <p>My expertise spans strategic sourcing, complex negotiations, KPI development, dashboard creation, ERP integration, and AI-based contract analysis. Currently leading procurement initiatives across hospitality and leisure sectors while driving digital transformation.</p>
+                    <div class="competencies">
+                        <span class="competency-tag">Strategic Procurement</span>
+                        <span class="competency-tag">Global Sourcing</span>
+                        <span class="competency-tag">Contract Optimization</span>
+                        <span class="competency-tag">Supplier Governance</span>
+                        <span class="competency-tag">Operations Strategy</span>
+                        <span class="competency-tag">AI-Enhanced Decision Making</span>
+                        <span class="competency-tag">Power BI</span>
+                        <span class="competency-tag">Python</span>
+                        <span class="competency-tag">ERP Systems</span>
+                        <span class="competency-tag">International Expansion</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="experience" id="experience">
+        <div class="container">
+            <div class="section-header">
+                <h2>Professional Journey</h2>
+                <p>A track record of leadership across international markets and industries</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">2025 - Present</span>
+                        <h3 class="timeline-title">Senior Buyer – Strategic Procurement & Operations</h3>
+                        <div class="timeline-company">Details – Hospitality, Sports & Leisure</div>
+                        <p class="timeline-desc">Leading strategic procurement across hotel and leisure assets, managing tendering, supplier governance, and contract negotiation while implementing AI tools for operational excellence.</p>
+                        <ul class="achievements">
+                            <li>Managed full tender cycles (maintenance, F&B, branding, outsourced services)</li>
+                            <li>Built real-time dashboards improving visibility and decision speed</li>
+                            <li>Developed cost-benefit analyses for strategic initiatives</li>
+                            <li>Led ERP/workflow alignment between Details and Dom Pedro</li>
+                            <li>Strengthened negotiations through AI-enhanced contract analysis</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">2022 - 2025</span>
+                        <h3 class="timeline-title">Director of International Expansion</h3>
+                        <div class="timeline-company">SKN Global</div>
+                        <p class="timeline-desc">Led expansion and premium product development across EU and Asia, coordinating engineering, suppliers, compliance, and licensing strategies.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">2018 - 2022</span>
+                        <h3 class="timeline-title">International Product & Licensing Manager</h3>
+                        <div class="timeline-company">SKN Global</div>
+                        <p class="timeline-desc">Launched licensed portfolios and built comprehensive dashboards, automated workflows, and analytics forecasting systems. Managed suppliers, compliance, and full product lifecycle.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">2015 - 2018</span>
+                        <h3 class="timeline-title">Product & Import Manager</h3>
+                        <div class="timeline-company">SKN do Brasil</div>
+                        <p class="timeline-desc">Managed global sourcing, product development, and compliance; successfully transitioned product lines to international standards.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">2011 - 2015</span>
+                        <h3 class="timeline-title">LATAM Area Manager</h3>
+                        <div class="timeline-company">SKN do Brasil</div>
+                        <p class="timeline-desc">Led LATAM expansion for Ford Lighting; coordinated distributors, suppliers, and international trade operations across the region.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="skills" id="skills">
+        <div class="container">
+            <div class="section-header">
+                <h2>Expertise & Tools</h2>
+                <p>Technical capabilities and professional competencies</p>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3><i class="fas fa-brain"></i> AI & Analytics</h3>
+                    <ul class="skill-list">
+                        <li>AI-Enhanced Decision Making</li>
+                        <li>Copilot, ChatGPT, Gemini</li>
+                        <li>Contract Review Automation</li>
+                        <li>Supplier Benchmarking</li>
+                        <li>Risk Analysis & Automation</li>
+                        <li>Power BI Dashboards</li>
+                        <li>Python for Data Analysis</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-cogs"></i> Procurement & Operations</h3>
+                    <ul class="skill-list">
+                        <li>Strategic Sourcing</li>
+                        <li>Contract Negotiation</li>
+                        <li>Supplier Governance</li>
+                        <li>Tender Management</li>
+                        <li>Cost Optimization</li>
+                        <li>KPI Development</li>
+                        <li>Cross-Functional Leadership</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-laptop-code"></i> Systems & ERP</h3>
+                    <ul class="skill-list">
+                        <li>SAP</li>
+                        <li>TOTVS</li>
+                        <li>Primavera</li>
+                        <li>ERP Integration</li>
+                        <li>Workflow Automation</li>
+                        <li>Data Visualization</li>
+                        <li>Process Optimization</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-globe"></i> Global Markets</h3>
+                    <ul class="skill-list">
+                        <li>International Expansion</li>
+                        <li>EU Market Operations</li>
+                        <li>LATAM Market Expertise</li>
+                        <li>Asia-Pacific Coordination</li>
+                        <li>Import/Export Compliance</li>
+                        <li>Multi-cultural Team Leadership</li>
+                        <li>Global Supply Chain</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="languages">
+        <div class="container">
+            <div class="section-header" style="color: white;">
+                <h2 style="color: white;">Languages</h2>
+                <p>Communicating across borders</p>
+            </div>
+            <div class="languages-grid">
+                <div class="language-card"><i class="fas fa-flag-usa"></i><div class="language-name">English</div><div class="language-level">Professional</div></div>
+                <div class="language-card"><i class="fas fa-flag"></i><div class="language-name">Portuguese</div><div class="language-level">Native</div></div>
+                <div class="language-card"><i class="fas fa-globe-europe"></i><div class="language-name">Spanish</div><div class="language-level">Professional</div></div>
+            </div>
+        </div>
+    </section>
+    <section class="skills" style="background: var(--bg-alt);">
+        <div class="container">
+            <div class="section-header">
+                <h2>Education & Certifications</h2>
+                <p>Continuous learning and professional development</p>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-category" style="background: white;">
+                    <h3><i class="fas fa-graduation-cap"></i> Education</h3>
+                    <ul class="skill-list">
+                        <li><strong>Bachelor in Business Management & International Trade</strong><br><small>UPIS (2000-2005)</small></li>
+                        <li><strong>ESL Program</strong><br><small>Gadsden State Community College (1999-2000)</small></li>
+                    </ul>
+                </div>
+                <div class="skill-category" style="background: white;">
+                    <h3><i class="fas fa-certificate"></i> Certifications</h3>
+                    <ul class="skill-list">
+                        <li><strong>AI & Career Empowerment</strong><br><small>University of Maryland (2026)</small></li>
+                        <li><strong>Supply Chain Analytics</strong><br><small>MIT (2025)</small></li>
+                        <li><strong>Digital Transformation</strong><br><small>MIT (2024)</small></li>
+                        <li><strong>Data Science Certificate</strong><br><small>IBM</small></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h2>Let's Work Together</h2>
+                    <p>Interested in discussing strategic procurement, operational excellence, or AI-driven transformation? I'm always open to new opportunities and collaborations.</p>
+                    <div class="contact-details">
+                        <div class="contact-item"><i class="fas fa-envelope"></i><a href="mailto:luciano.vlap@gmail.com">luciano.vlap@gmail.com</a></div>
+                        <div class="contact-item"><i class="fas fa-phone"></i><a href="tel:+351939879114">+351 939 879 114</a></div>
+                        <div class="contact-item"><i class="fas fa-map-marker-alt"></i><span>Lisbon, Portugal</span></div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                        <div class="form-group"><label for="name">Your Name</label><input type="text" id="name" name="name" required placeholder="John Doe"></div>
+                        <div class="form-group"><label for="email">Your Email</label><input type="email" id="email" name="email" required placeholder="john@example.com"></div>
+                        <div class="form-group"><label for="subject">Subject</label><input type="text" id="subject" name="subject" required placeholder="Job Opportunity / Collaboration"></div>
+                        <div class="form-group"><label for="message">Message</label><textarea id="message" name="message" required placeholder="Tell me about your project or opportunity..."></textarea></div>
+                        <button type="submit" class="submit-btn"><i class="fas fa-paper-plane"></i> Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="mailto:luciano.vlap@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                <a href="tel:+351939879114" title="Phone"><i class="fas fa-phone"></i></a>
+            </div>
+            <p>&copy; 2025 Luciano Rodrigues de Souza. All rights reserved.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem;">Strategic Procurement & Operations Leader</p>
+        </div>
+    </footer>
+    <script>
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) { navbar.classList.add('scrolled'); } else { navbar.classList.remove('scrolled'); }
+        });
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+            });
+        });
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); } });
+        }, observerOptions);
+        document.querySelectorAll('.timeline-item, .skill-category, .stat-card').forEach(el => {
+            el.classList.add('fade-in');
+            observer.observe(el);
+        });
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! I will get back to you soon.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
