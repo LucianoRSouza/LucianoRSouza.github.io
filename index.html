@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luciano Rodrigues | AI-Driven Procurement Leader</title>
+    <title>Luciano Rodrigues | AI-Driven Procurement Leader & Strategic Operations</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -30,7 +30,6 @@
             overflow-x: hidden;
         }
         
-        /* Advanced Animations */
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(40px); }
             to { opacity: 1; transform: translateY(0); }
@@ -66,11 +65,6 @@
             50% { transform: translateY(-10px); }
         }
         
-        @keyframes slide-in-right {
-            from { opacity: 0; transform: translateX(100px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-        
         @keyframes morph {
             0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
             50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
@@ -91,9 +85,7 @@
         .delay-2 { transition-delay: 0.2s; }
         .delay-3 { transition-delay: 0.3s; }
         .delay-4 { transition-delay: 0.4s; }
-        .delay-5 { transition-delay: 0.5s; }
         
-        /* Loading Screen */
         .loading {
             position: fixed;
             top: 0;
@@ -142,7 +134,6 @@
             to { width: 100%; }
         }
         
-        /* Language Switcher - Fixed Position */
         .lang-switcher {
             position: fixed; 
             top: 100px; 
@@ -202,7 +193,6 @@
             transform: translateX(-5px);
         }
         
-        /* Navigation */
         nav { 
             position: fixed; 
             top: 0; 
@@ -275,7 +265,6 @@
             width: 100%;
         }
         
-        /* Hero Section - Interactive */
         .hero { 
             min-height: 100vh; 
             display: flex; 
@@ -330,7 +319,7 @@
         
         .hero-content h1 { 
             font-family: 'Playfair Display', serif; 
-            font-size: 4rem; 
+            font-size: 3.5rem; 
             line-height: 1.1; 
             margin-bottom: 1rem;
             background: linear-gradient(135deg, var(--white) 0%, var(--gold-light) 100%);
@@ -340,7 +329,7 @@
         }
         
         .hero-content .subtitle { 
-            font-size: 1.5rem; 
+            font-size: 1.3rem; 
             color: var(--gold); 
             margin-bottom: 1.5rem;
             animation: fadeInUp 1s ease 0.2s both;
@@ -356,12 +345,12 @@
             line-height: 1.8;
         }
         
-        /* Interactive Stats Cards */
         .hero-stats { 
             display: flex; 
             gap: 1.5rem; 
             margin-bottom: 2.5rem;
             animation: fadeInUp 1s ease 0.6s both;
+            flex-wrap: wrap;
         }
         
         .stat-box { 
@@ -374,7 +363,8 @@
             cursor: pointer;
             position: relative;
             overflow: hidden;
-            min-width: 120px;
+            min-width: 140px;
+            flex: 1;
         }
         
         .stat-box::before {
@@ -435,6 +425,7 @@
             animation: fadeInUp 1s ease 0.8s both;
             display: flex;
             gap: 1rem;
+            flex-wrap: wrap;
         }
         
         .btn { 
@@ -528,7 +519,6 @@
             box-shadow: 0 40px 80px rgba(0,0,0,0.5);
         }
         
-        /* Floating Badges */
         .floating-badge {
             position: absolute;
             background: rgba(255,255,255,0.1);
@@ -552,7 +542,6 @@
         .badge-2 { bottom: 30%; right: 5%; animation-delay: 1s; }
         .badge-3 { top: 60%; right: 15%; animation-delay: 2s; }
         
-        /* Sections General */
         section { 
             padding: 6rem 5%; 
             position: relative;
@@ -594,9 +583,11 @@
             color: var(--text-light);
             font-size: 1.1rem;
             margin-top: 1.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
-        /* About Section */
         .about { 
             background: var(--white); 
         }
@@ -650,7 +641,7 @@
         
         .about-content h3 { 
             font-family: 'Playfair Display', serif; 
-            font-size: 2.5rem; 
+            font-size: 2.2rem; 
             color: var(--navy); 
             margin-bottom: 1.5rem;
             line-height: 1.2;
@@ -660,6 +651,19 @@
             margin-bottom: 1.5rem;
             color: var(--text);
             line-height: 1.8;
+            font-size: 1.05rem;
+        }
+        
+        .leadership-philosophy {
+            background: linear-gradient(135deg, rgba(212,175,55,0.1), rgba(212,175,55,0.05));
+            border-left: 4px solid var(--gold);
+            padding: 1.5rem;
+            border-radius: 0 15px 15px 0;
+            margin: 2rem 0;
+            font-style: italic;
+            color: var(--navy);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
         }
         
         .languages-grid { 
@@ -688,16 +692,6 @@
             box-shadow: 0 10px 25px rgba(212,175,55,0.2);
         }
         
-        .lang-item i {
-            color: var(--gold);
-            transition: transform 0.3s ease;
-        }
-        
-        .lang-item:hover i {
-            transform: scale(1.3) rotate(360deg);
-        }
-        
-        /* Timeline Section - Enhanced */
         .timeline { 
             background: linear-gradient(180deg, var(--cream) 0%, var(--white) 100%);
         }
@@ -842,6 +836,16 @@
             font-size: 1.1rem;
         }
         
+        .achievement-box ul {
+            margin-left: 1.2rem;
+            margin-top: 0.5rem;
+        }
+        
+        .achievement-box li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+        
         .skills-tags {
             display: flex;
             flex-wrap: wrap;
@@ -864,16 +868,15 @@
             transform: scale(1.1);
         }
         
-        /* Projects Section - Enhanced */
         .projects { 
             background: var(--white); 
         }
         
         .projects-grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
             gap: 2.5rem; 
-            max-width: 1300px; 
+            max-width: 1400px; 
             margin: 0 auto; 
         }
         
@@ -893,7 +896,7 @@
         }
         
         .project-image { 
-            height: 220px; 
+            height: 250px; 
             background: linear-gradient(135deg, var(--navy), var(--navy-light)); 
             display: flex; 
             align-items: center; 
@@ -963,6 +966,15 @@
         .project-content p {
             color: var(--text-light);
             line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .project-highlights {
+            font-size: 0.9rem;
+            color: var(--text);
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(0,0,0,0.1);
         }
         
         .project-tags { 
@@ -989,7 +1001,6 @@
             box-shadow: 0 5px 15px rgba(212,175,55,0.3);
         }
         
-        /* Trade Shows Gallery - Enhanced */
         .trade-shows {
             background: linear-gradient(180deg, var(--cream) 0%, var(--white) 100%);
         }
@@ -1112,7 +1123,6 @@
             transform: translateY(0);
         }
         
-        /* Certifications Section - Enhanced */
         .certs { 
             background: var(--navy); 
             color: var(--white); 
@@ -1275,7 +1285,6 @@
             transform: translateX(5px);
         }
         
-        /* GitHub Section */
         .github { 
             background: var(--cream); 
         }
@@ -1284,7 +1293,7 @@
             background: var(--white); 
             padding: 4rem; 
             border-radius: 30px; 
-            max-width: 900px; 
+            max-width: 1000px; 
             margin: 0 auto; 
             text-align: center;
             box-shadow: 0 20px 60px rgba(0,0,0,0.1);
@@ -1387,7 +1396,34 @@
             font-size: 0.9rem;
         }
         
-        /* Contact Section */
+        .ml-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .metric-box {
+            background: linear-gradient(135deg, var(--navy), var(--navy-light));
+            color: var(--white);
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+        }
+        
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gold);
+            display: block;
+        }
+        
+        .metric-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+        
         .contact { 
             background: var(--white); 
             position: relative;
@@ -1488,7 +1524,6 @@
             transform: scale(1.3) rotate(15deg);
         }
         
-        /* Footer */
         footer { 
             background: var(--navy); 
             color: var(--white); 
@@ -1530,7 +1565,6 @@
             border-color: var(--gold);
         }
         
-        /* Lightbox */
         .lightbox {
             display: none;
             position: fixed;
@@ -1582,7 +1616,6 @@
             background: rgba(255,255,255,0.1);
         }
         
-        /* Scroll to top button */
         .scroll-top {
             position: fixed;
             bottom: 40px;
@@ -1616,7 +1649,6 @@
             box-shadow: 0 20px 40px rgba(212,175,55,0.5);
         }
         
-        /* Responsive */
         @media (max-width: 968px) {
             .hero-container { 
                 grid-template-columns: 1fr; 
@@ -1624,12 +1656,11 @@
             }
             
             .hero-content h1 { 
-                font-size: 2.8rem; 
+                font-size: 2.5rem; 
             }
             
             .hero-stats {
                 justify-content: center;
-                flex-wrap: wrap;
             }
             
             .floating-badge {
@@ -1683,9 +1714,16 @@
                 padding: 6px 10px;
                 font-size: 0.8rem;
             }
+            
+            .ml-metrics {
+                grid-template-columns: 1fr;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
         }
         
-        /* Custom cursor */
         .cursor {
             width: 20px;
             height: 20px;
@@ -1710,7 +1748,6 @@
             transform: translate(-50%, -50%);
         }
         
-        /* Toast notification */
         .toast {
             position: fixed;
             bottom: 120px;
@@ -1735,11 +1772,9 @@
     </style>
 </head>
 <body>
-    <!-- Custom Cursor -->
     <div class="cursor" id="cursor"></div>
     <div class="cursor-follower" id="cursorFollower"></div>
 
-    <!-- Loading Screen -->
     <div class="loading" id="loading">
         <div class="loading-logo">LR.</div>
         <div class="loading-bar">
@@ -1747,7 +1782,6 @@
         </div>
     </div>
 
-    <!-- Language Switcher -->
     <div class="lang-switcher">
         <button class="lang-btn active" onclick="changeLang('en')">EN</button>
         <button class="lang-btn" onclick="changeLang('es')">ES</button>
@@ -1755,7 +1789,6 @@
         <button class="lang-btn" onclick="changeLang('pt')">PT</button>
     </div>
 
-    <!-- Navigation -->
     <nav id="navbar">
         <a href="#" class="logo"><i class="fas fa-crown"></i> LR.</a>
         <ul class="nav-links">
@@ -1768,14 +1801,13 @@
         </ul>
     </nav>
 
-    <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-particles" id="particles"></div>
         <div class="hero-container">
             <div class="hero-content">
                 <h1>Luciano Rodrigues de Souza</h1>
-                <p class="subtitle">AI-Driven Procurement & Operations Leader</p>
-                <p class="hero-description">Transforming procurement through artificial intelligence and data analytics. 15+ years delivering measurable results across Europe, LATAM, and Asia.</p>
+                <p class="subtitle">AI-Driven Procurement & Operations Leader | Strategic Transformation</p>
+                <p class="hero-description">I believe exceptional procurement isn't about perfecting processes—it's about empowering people with data-driven insights. Over 15 years, I've led teams through complex transformations across Europe, LATAM, and Asia, delivering €1M+ in savings through AI-powered strategies while building cross-functional coalitions that outlast any single project.</p>
                 
                 <div class="hero-stats">
                     <div class="stat-box" onclick="showStatDetail('savings')">
@@ -1802,7 +1834,7 @@
                 
                 <div class="hero-buttons">
                     <a href="#contact" class="btn btn-primary">
-                        <i class="fas fa-paper-plane"></i> Get In Touch
+                        <i class="fas fa-paper-plane"></i> Let's Connect
                     </a>
                     <a href="#timeline" class="btn btn-secondary">
                         <i class="fas fa-road"></i> View Journey
@@ -1829,20 +1861,27 @@
         </div>
     </section>
 
-    <!-- About Section -->
     <section class="about" id="about">
         <div class="section-header animate-on-scroll">
-            <h2>About Me</h2>
-            <p>Strategic procurement leader with a passion for data-driven decision making</p>
+            <h2>Leadership Philosophy</h2>
+            <p>From LATAM operations to global procurement strategy—building bridges between data, people, and results</p>
         </div>
         <div class="about-grid">
             <div class="about-image animate-on-scroll delay-1">
                 <img src="https://raw.githubusercontent.com/LucianoRSouza/LucianoRSouza.github.io/main/HonkKong.jpg" alt="Luciano in Hong Kong">
             </div>
             <div class="about-content animate-on-scroll delay-2">
-                <h3>From LATAM to Global Leadership</h3>
-                <p>I started my career managing import operations in Rio de Janeiro, rapidly progressing to lead LATAM expansion for Ford Lighting. My journey took me from coordinating distributors across Latin America to developing premium products for world-renowned brands like Pininfarina, Blaupunkt, and Black+Decker in Europe and Asia.</p>
-                <p>Today, I combine 15+ years of procurement expertise with cutting-edge AI and data science skills to deliver transformational results. At Details Hospitality, I achieved €1M+ in cost savings within just 6 months through AI-driven sourcing strategies.</p>
+                <h3>Transformation Through Collaboration</h3>
+                <p>My career began in Rio de Janeiro managing import operations, where I learned that procurement success depends on relationships built on trust, not just transactions. This philosophy carried me through LATAM expansion for Ford Lighting, where I coordinated distributors across 12 countries, and eventually to leading premium product development for world-renowned brands like Pininfarina, Blaupunkt, and Black+Decker across Europe and Asia.</p>
+                
+                <div class="leadership-philosophy">
+                    "I don't just optimize supply chains—I build cross-functional coalitions that transform how organizations think about procurement. My approach: trust-first, data-informed, results-focused."
+                </div>
+                
+                <p>Today, I combine deep procurement expertise with cutting-edge AI and data science to deliver transformational results. At Details Hospitality, I didn't just achieve €1M+ in cost savings within 6 months—I rebuilt the entire procurement framework from the ground up, creating systems that empower teams to make better decisions faster. I developed proprietary BidMap templates, enhanced RFP/RFQ processes, aligned technical specifications with operational needs, and implemented exhaustive project follow-up protocols that ensure complete transparency across all stakeholders.</p>
+                
+                <p>My work extends beyond procurement—I'm currently leading a transversal initiative with Marketing, Technical, and Operations teams that's being hailed as a major success, demonstrating that procurement can be a strategic partner rather than just a cost center.</p>
+                
                 <div class="languages-grid">
                     <div class="lang-item"><i class="fas fa-check-circle"></i> Portuguese (Native)</div>
                     <div class="lang-item"><i class="fas fa-check-circle"></i> English (Native)</div>
@@ -1853,11 +1892,10 @@
         </div>
     </section>
 
-    <!-- Timeline Section -->
     <section class="timeline" id="timeline">
         <div class="section-header animate-on-scroll">
             <h2>Professional Journey</h2>
-            <p>15+ years of growth from import analyst to AI-driven procurement leader</p>
+            <p>15+ years of progressive leadership—from import analyst to AI-driven procurement strategist</p>
         </div>
         <div class="timeline-container">
             <div class="timeline-item animate-on-scroll delay-1">
@@ -1866,18 +1904,27 @@
                     <span>Senior Level</span>
                 </div>
                 <div class="timeline-content">
-                    <h3 class="timeline-title">Senior Buyer – Strategic Procurement & Operations</h3>
+                    <h3 class="timeline-title">Senior Buyer – Strategic Procurement & Operations Transformation</h3>
                     <div class="timeline-company"><i class="fas fa-building"></i> Details Hospitality, Portugal</div>
-                    <p class="timeline-description">Leading AI-driven procurement transformation across hotel and leisure assets. Full ownership of critical Procurement & Operations processes, bridging strategy, execution, and compliance. Managing end-to-end procurement cycle across technical maintenance, hospitality operations, and marketing services.</p>
+                    <p class="timeline-description">Leading comprehensive procurement transformation across hotel and leisure assets. Rather than inheriting existing processes, I rebuilt the procurement framework from zero to ensure full audit compliance and operational excellence. Full ownership of critical Procurement & Operations processes, bridging strategy, execution, and compliance across technical maintenance, hospitality operations, and marketing services.</p>
                     <div class="achievement-box">
-                        <strong><i class="fas fa-trophy"></i> Key Achievement:</strong>
-                        <p>Delivered €1M+ in cost savings (35% reduction) within 6 months through strategic sourcing and AI-powered contract analysis. Designed structured RFP/RFQ frameworks for critical service areas including SCIE, Legionella control, and Elevator Maintenance. Automated decision processes through BidMaps and dashboards integrating technical and financial KPIs.</p>
+                        <strong><i class="fas fa-trophy"></i> Key Achievements & Leadership Impact:</strong>
+                        <ul>
+                            <li>Delivered <strong>€1M+ in cost savings (35% reduction)</strong> within 6 months through AI-powered contract analysis and strategic sourcing</li>
+                            <li>Created proprietary <strong>BidMap framework</strong> from scratch, establishing standardized evaluation criteria that eliminated subjective decision-making</li>
+                            <li>Redesigned <strong>RFP/RFQ processes</strong> with exhaustive technical alignment, ensuring cadernos de encargos perfectly match operational requirements</li>
+                            <li>Implemented <strong>comprehensive follow-up protocols</strong> with detailed project tracking visible to all stakeholders via ASANA integration</li>
+                            <li>Negotiated <strong>bulletproof contractual clauses</strong> including SLA definitions, exit clauses without penalties for non-conformities, and balanced protection for both parties</li>
+                            <li>Leading <strong>transversal collaboration initiative</strong> with Marketing, Technical, and Operations teams—recognized as a major organizational success</li>
+                            <li>Established structured frameworks for critical services: SCIE compliance, Legionella control, Elevator Maintenance with integrated technical and financial KPIs</li>
+                        </ul>
                     </div>
                     <div class="skills-tags">
                         <span class="skill-tag">AI Strategy</span>
-                        <span class="skill-tag">Cost Optimization</span>
-                        <span class="skill-tag">Compliance</span>
-                        <span class="skill-tag">Team Leadership</span>
+                        <span class="skill-tag">Process Architecture</span>
+                        <span class="skill-tag">Contract Negotiation</span>
+                        <span class="skill-tag">Cross-Functional Leadership</span>
+                        <span class="skill-tag">Compliance Frameworks</span>
                     </div>
                 </div>
             </div>
@@ -1888,18 +1935,26 @@
                     <span>Director Level</span>
                 </div>
                 <div class="timeline-content">
-                    <h3 class="timeline-title">Director of International Expansion</h3>
+                    <h3 class="timeline-title">Director of International Expansion & Product Development</h3>
                     <div class="timeline-company"><i class="fas fa-globe-europe"></i> SKN Global | EU & Asia</div>
-                    <p class="timeline-description">Led global expansion and premium product development across European and Asian markets. Coordinated cross-functional teams across multiple countries, managing full product lifecycle from concept to market launch for luxury brands.</p>
+                    <p class="timeline-description">Led global expansion and premium product development across European and Asian markets. Managed full product lifecycle from concept to market launch for luxury brands, coordinating cross-functional teams across multiple countries and cultures. Established new distribution networks and adapted products to diverse regulatory environments.</p>
                     <div class="achievement-box">
-                        <strong><i class="fas fa-trophy"></i> Key Achievement:</strong>
-                        <p>Managed $10M+ project portfolio coordinating engineering teams in Italy and China. Developed Pininfarina Essenza outdoor cooking collection and led complete creation of licensed product portfolios for premium European brands.</p>
+                        <strong><i class="fas fa-trophy"></i> Key Achievements & Leadership Impact:</strong>
+                        <ul>
+                            <li>Managed <strong>$10M+ project portfolio</strong> coordinating engineering teams in Italy and China, delivering Pininfarina Essenza outdoor cooking collection</li>
+                            <li>Established <strong>new distribution partnerships</strong> in 5+ European countries, creating market entry strategies adapted to local regulations</li>
+                            <li>Led complete creation of <strong>licensed product portfolios</strong> for premium European brands including technical adaptations for EU compliance</li>
+                            <li>Conducted <strong>extensive factory audits</strong> across Asia: production line inspections, pre-shipment quality control, storage facility assessments</li>
+                            <li>Developed <strong>gift box strategies</strong> with country-specific mandatory information, instruction manuals, and power cable adaptations</li>
+                            <li>Negotiated <strong>strategic partnerships</strong> with Chinese manufacturers through relationship-building dinners and face-to-face negotiations</li>
+                        </ul>
                     </div>
                     <div class="skills-tags">
                         <span class="skill-tag">Global Expansion</span>
-                        <span class="skill-tag">Product Development</span>
-                        <span class="skill-tag">Luxury Brands</span>
-                        <span class="skill-tag">R&D Management</span>
+                        <span class="skill-tag">Luxury Brand Management</span>
+                        <span class="skill-tag">Regulatory Compliance</span>
+                        <span class="skill-tag">Supplier Audits</span>
+                        <span class="skill-tag">R&D Leadership</span>
                     </div>
                 </div>
             </div>
@@ -1912,16 +1967,23 @@
                 <div class="timeline-content">
                     <h3 class="timeline-title">International Product & Licensing Manager</h3>
                     <div class="timeline-company"><i class="fas fa-industry"></i> SKN Global | Europe</div>
-                    <p class="timeline-description">Launched licensed portfolios and built automated analytics systems for European expansion. Led R&D initiatives for home appliances, lighting solutions, and consumer electronics. Managed complete product lifecycle including market research, prototyping, testing, and mass production.</p>
+                    <p class="timeline-description">Launched licensed portfolios and built automated analytics systems for European expansion. Led R&D initiatives for home appliances, lighting solutions, and consumer electronics. Established quality control frameworks and supplier audit processes that became company standards.</p>
                     <div class="achievement-box">
-                        <strong><i class="fas fa-trophy"></i> Key Achievement:</strong>
-                        <p>Led complete creation and launch of Blaupunkt Tools for European market. Built KPI dashboards using Streamlit, Pandas, Plotly, SQL. Established quality control frameworks and supplier audit processes across 15+ manufacturing partners.</p>
+                        <strong><i class="fas fa-trophy"></i> Key Achievements & Leadership Impact:</strong>
+                        <ul>
+                            <li>Led complete creation and launch of <strong>Blaupunkt Tools</strong> for European market—from concept to mass production</li>
+                            <li>Built <strong>KPI dashboards using Streamlit, Pandas, Plotly, SQL</strong> that became standard analytics tools across departments</li>
+                            <li>Established <strong>quality control frameworks</strong> and supplier audit processes across 15+ manufacturing partners in Asia</li>
+                            <li>Managed <strong>product localization</strong> including regulatory adaptations, packaging compliance, and technical documentation translation</li>
+                            <li>Created <strong>automated reporting systems</strong> that reduced manual data processing time by 70%</li>
+                        </ul>
                     </div>
                     <div class="skills-tags">
-                        <span class="skill-tag">Licensing</span>
                         <span class="skill-tag">Data Analytics</span>
-                        <span class="skill-tag">Quality Control</span>
+                        <span class="skill-tag">Quality Systems</span>
                         <span class="skill-tag">Supplier Management</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Licensing</span>
                     </div>
                 </div>
             </div>
@@ -1934,75 +1996,81 @@
                 <div class="timeline-content">
                     <h3 class="timeline-title">Product & Import Manager → LATAM Area Manager</h3>
                     <div class="timeline-company"><i class="fas fa-map-marker-alt"></i> SKN do Brasil | Rio de Janeiro</div>
-                    <p class="timeline-description">Progressed from Import Analyst to Area Manager, leading Ford Lighting expansion across Latin America. Managed R&D for lighting solutions, home appliances, beauty care, and audio/video products. Conducted 20+ international trade shows as both exhibitor and buyer.</p>
+                    <p class="timeline-description">Progressed from Import Analyst to Area Manager, leading Ford Lighting expansion across Latin America. Managed R&D for lighting solutions, home appliances, beauty care, and audio/video products. Built distributor network from scratch and represented the brand at major international trade shows.</p>
                     <div class="achievement-box">
-                        <strong><i class="fas fa-trophy"></i> Key Achievement:</strong>
-                        <p>Represented Ford Lighting at major international fairs: Hong Kong International Lighting Fair, Canton Fair, and fairs in Brazil, Guatemala, and Panama. Built distributor network across 12 Latin American countries.</p>
+                        <strong><i class="fas fa-trophy"></i> Key Achievements & Leadership Impact:</strong>
+                        <ul>
+                            <li>Built <strong>distributor network across 12 Latin American countries</strong>, establishing Ford Lighting presence in new markets</li>
+                            <li>Represented Ford Lighting at <strong>Hong Kong International Lighting Fair, Canton Fair</strong>, and regional fairs in Brazil, Guatemala, and Panama</li>
+                            <li>Managed <strong>end-to-end import operations</strong> including customs clearance, logistics coordination, and supplier relationship management</li>
+                            <li>Developed <strong>localized product lines</strong> adapted to LATAM voltage standards, safety regulations, and consumer preferences</li>
+                            <li>Conducted <strong>20+ international trade shows</strong> as both exhibitor and buyer, establishing key industry relationships</li>
+                        </ul>
                     </div>
                     <div class="skills-tags">
                         <span class="skill-tag">LATAM Expansion</span>
                         <span class="skill-tag">Trade Shows</span>
                         <span class="skill-tag">Import/Export</span>
                         <span class="skill-tag">Distribution</span>
+                        <span class="skill-tag">R&D</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Projects Section -->
     <section class="projects" id="projects">
         <div class="section-header animate-on-scroll">
             <h2>Featured Projects</h2>
-            <p>Product development and innovation portfolio</p>
+            <p>Product development excellence and AI innovation portfolio</p>
         </div>
         <div class="projects-grid">
             <div class="project-card animate-on-scroll delay-1">
                 <div class="project-image">
-                    <img src="https://raw.githubusercontent.com/LucianoRSouza/LucianoRSouza.github.io/main/Blaupunkt%20Tools.png" alt="Blaupunkt Tools" onerror="this.src='https://via.placeholder.com/400x300/1a1f3a/d4af37?text=Blaupunkt+Tools'">
-                    <div class="project-overlay">
-                        <div class="project-overlay-text">Complete tools portfolio for European market</div>
-                    </div>
+                    <img src="https://raw.githubusercontent.com/LucianoRSouza/LucianoRSouza.github.io/main/Blaupunkt_Tools.png" alt="Blaupunkt Tools" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-tools\' style=\'font-size: 3.5rem; color: var(--gold);\'></i>'">
                 </div>
                 <div class="project-content">
-                    <h3>Blaupunkt Tools</h3>
-                    <p>Complete creation and launch of power tools and garden tools line for European market. Full R&D cycle from concept to mass production.</p>
+                    <h3>Blaupunkt Tools Portfolio</h3>
+                    <p>Complete creation and launch of power tools and garden equipment line for European market. Full R&D cycle from concept to mass production, including German engineering standards compliance and CE certification.</p>
+                    <div class="project-highlights">
+                        <strong>Scope:</strong> DIY tools, power tools, garden equipment | <strong>Markets:</strong> EU-wide distribution | <strong>Compliance:</strong> CE, German standards
+                    </div>
                     <div class="project-tags">
-                        <span class="project-tag">DIY</span>
-                        <span class="project-tag">Licensing</span>
                         <span class="project-tag">Product Development</span>
+                        <span class="project-tag">Licensing</span>
+                        <span class="project-tag">EU Compliance</span>
                     </div>
                 </div>
             </div>
 
             <div class="project-card animate-on-scroll delay-2">
                 <div class="project-image">
-                    <img src="https://raw.githubusercontent.com/LucianoRSouza/LucianoRSouza.github.io/main/Blaupunkt%20Power%20Tools.png" alt="Blaupunkt Power Tools" onerror="this.src='https://via.placeholder.com/400x300/1a1f3a/d4af37?text=Power+Tools'">
-                    <div class="project-overlay">
-                        <div class="project-overlay-text">Professional grade power tools</div>
-                    </div>
+                    <img src="https://raw.githubusercontent.com/LucianoRSouza/LucianoRSouza.github.io/main/Blaupunkt_Power_Tools.png" alt="Blaupunkt Power Tools" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-bolt\' style=\'font-size: 3.5rem; color: var(--gold);\'></i>'">
                 </div>
                 <div class="project-content">
-                    <h3>Blaupunkt Power Tools</h3>
-                    <p>Professional power tools line including drills, saws, and sanders for European market. German engineering standards.</p>
+                    <h3>Blaupunkt Power Tools Line</h3>
+                    <p>Professional-grade power tools including drills, saws, and sanders. Managed complete technical specifications, safety certifications, and production line audits across Asian manufacturing partners.</p>
+                    <div class="project-highlights">
+                        <strong>Innovation:</strong> Professional grade | <strong>Audits:</strong> Production line inspections | <strong>Standards:</strong> German engineering
+                    </div>
                     <div class="project-tags">
                         <span class="project-tag">Power Tools</span>
-                        <span class="project-tag">EU Market</span>
-                        <span class="project-tag">German Brand</span>
+                        <span class="project-tag">Factory Audits</span>
+                        <span class="project-tag">Quality Control</span>
                     </div>
                 </div>
             </div>
 
             <div class="project-card animate-on-scroll delay-3">
                 <div class="project-image">
-                    <img src="https://raw.githubusercontent.com/LucianoRSouza/LucianoRSouza.github.io/main/Blaupunkt%20Garden%20Tools.png" alt="Blaupunkt Garden Tools" onerror="this.src='https://via.placeholder.com/400x300/1a1f3a/d4af37?text=Garden+Tools'">
-                    <div class="project-overlay">
-                        <div class="project-overlay-text">Outdoor power equipment</div>
-                    </div>
+                    <img src="https://raw.githubusercontent.com/LucianoRSouza/LucianoRSouza.github.io/main/Blaupunkt_Garden_Tools.png" alt="Blaupunkt Garden Tools" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-leaf\' style=\'font-size: 3.5rem; color: var(--gold);\'></i>'">
                 </div>
                 <div class="project-content">
-                    <h3>Blaupunkt Garden Tools</h3>
-                    <p>Garden equipment line including chainsaws, trimmers, and outdoor power equipment. Full technical specifications and compliance.</p>
+                    <h3>Blaupunkt Garden Equipment</h3>
+                    <p>Outdoor power equipment line including chainsaws, trimmers, and garden tools. Full technical documentation, safety compliance, and pre-shipment inspection protocols.</p>
+                    <div class="project-highlights">
+                        <strong>Products:</strong> Chainsaws, trimmers, outdoor equipment | <strong>Focus:</strong> Safety & compliance | <strong>Process:</strong> End-to-end R&D
+                    </div>
                     <div class="project-tags">
                         <span class="project-tag">Garden</span>
                         <span class="project-tag">Outdoor</span>
@@ -2013,14 +2081,14 @@
 
             <div class="project-card animate-on-scroll delay-1">
                 <div class="project-image">
-                    <img src="https://raw.githubusercontent.com/LucianoRSouza/LucianoRSouza.github.io/main/S%26J%20Cast%20Irons.jpg" alt="Spear & Jackson Cast Irons" onerror="this.src='https://via.placeholder.com/400x300/1a1f3a/d4af37?text=S%26J+Cast+Irons'">
-                    <div class="project-overlay">
-                        <div class="project-overlay-text">Premium British cookware</div>
-                    </div>
+                    <img src="https://raw.githubusercontent.com/LucianoRSouza/LucianoRSouza.github.io/main/S&J_Cast_Irons_2.jpg" alt="Spear & Jackson Cast Irons" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-fire\' style=\'font-size: 3.5rem; color: var(--gold);\'></i>'">
                 </div>
                 <div class="project-content">
                     <h3>Spear & Jackson Cast Irons</h3>
-                    <p>Premium enameled cast iron cookware line for the British brand Spear & Jackson since 1760. Heritage quality meets modern design.</p>
+                    <p>Premium enameled cast iron cookware line for the British brand Spear & Jackson (est. 1760). Heritage quality meets modern design, including packaging compliance and instruction manuals for UK market.</p>
+                    <div class="project-highlights">
+                        <strong>Heritage:</strong> British brand since 1760 | <strong>Products:</strong> Enameled cast iron cookware | <strong>Compliance:</strong> UK standards, packaging regs
+                    </div>
                     <div class="project-tags">
                         <span class="project-tag">Cookware</span>
                         <span class="project-tag">UK Brand</span>
@@ -2031,53 +2099,53 @@
 
             <div class="project-card animate-on-scroll delay-2">
                 <div class="project-image">
-                    <i class="fas fa-fire"></i>
-                    <div class="project-overlay">
-                        <div class="project-overlay-text">Italian luxury outdoor cooking</div>
-                    </div>
+                    <img src="https://raw.githubusercontent.com/LucianoRSouza/LucianoRSouza.github.io/main/Pininfarina_BBQ.jpg" alt="Pininfarina Essenza" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-fire-alt\' style=\'font-size: 3.5rem; color: var(--gold);\'></i>'">
                 </div>
                 <div class="project-content">
-                    <h3>Pininfarina Essenza</h3>
-                    <p>Premium outdoor cooking appliances collection developed for EU and Asia markets. Handcrafted in Italy with automotive design excellence.</p>
+                    <h3>Pininfarina Essenza Collection</h3>
+                    <p>Premium outdoor cooking appliances collection developed for EU and Asia markets. Handcrafted in Italy with automotive design excellence. Coordinated engineering teams across Italy and China for $10M+ portfolio.</p>
+                    <div class="project-highlights">
+                        <strong>Design:</strong> Italian automotive excellence | <strong>Coordination:</strong> Italy-China engineering teams | <strong>Value:</strong> $10M+ portfolio
+                    </div>
                     <div class="project-tags">
                         <span class="project-tag">Luxury</span>
                         <span class="project-tag">Italian Design</span>
-                        <span class="project-tag">Outdoor Cooking</span>
+                        <span class="project-tag">Global Coordination</span>
                     </div>
                 </div>
             </div>
 
             <div class="project-card animate-on-scroll delay-3">
                 <div class="project-image">
-                    <i class="fas fa-chart-line"></i>
-                    <div class="project-overlay">
-                        <div class="project-overlay-text">AI-powered sales forecasting</div>
-                    </div>
+                    <i class="fas fa-chart-line" style="font-size: 3.5rem; color: var(--gold);"></i>
                 </div>
                 <div class="project-content">
-                    <h3>Sales Prediction ML</h3>
-                    <p>Machine learning project using Linear Regression, Random Forest, and XGBoost to predict future sales with 95% accuracy.</p>
+                    <h3>Sales Prediction ML Engine</h3>
+                    <p>Machine learning project using Linear Regression, Random Forest, and XGBoost to predict future sales with 95% accuracy. Implemented data cleaning pipelines to eliminate noise and ensure reliable outputs for strategic decision-making.</p>
+                    <div class="project-highlights">
+                        <strong>Algorithms:</strong> Linear Regression, Random Forest, XGBoost | <strong>Accuracy:</strong> 95% prediction rate | <strong>Stack:</strong> Python, scikit-learn
+                    </div>
                     <div class="project-tags">
                         <span class="project-tag">Python</span>
                         <span class="project-tag">Machine Learning</span>
-                        <span class="project-tag">Data Science</span>
+                        <span class="project-tag">Predictive Analytics</span>
                     </div>
                 </div>
             </div>
 
             <div class="project-card animate-on-scroll delay-1">
                 <div class="project-image">
-                    <i class="fas fa-warehouse"></i>
-                    <div class="project-overlay">
-                        <div class="project-overlay-text">Smart inventory management</div>
-                    </div>
+                    <i class="fas fa-warehouse" style="font-size: 3.5rem; color: var(--gold);"></i>
                 </div>
                 <div class="project-content">
-                    <h3>Inventory Optimization</h3>
-                    <p>ML project that predicts optimal inventory levels for future months, reducing carrying costs by 30% and stockouts by 85%.</p>
+                    <h3>Inventory Optimization System</h3>
+                    <p>ML-powered inventory management system predicting optimal stock levels for future months. Reduced carrying costs by 30% and stockouts by 85% through intelligent demand forecasting and automated reorder point calculations.</p>
+                    <div class="project-highlights">
+                        <strong>Impact:</strong> 30% cost reduction, 85% fewer stockouts | <strong>Method:</strong> Demand forecasting | <strong>Result:</strong> Automated reorder points
+                    </div>
                     <div class="project-tags">
                         <span class="project-tag">Optimization</span>
-                        <span class="project-tag">Analytics</span>
+                        <span class="project-tag">Inventory</span>
                         <span class="project-tag">Cost Reduction</span>
                     </div>
                 </div>
@@ -2085,29 +2153,28 @@
 
             <div class="project-card animate-on-scroll delay-2">
                 <div class="project-image">
-                    <img src="https://raw.githubusercontent.com/LucianoRSouza/LucianoRSouza.github.io/main/BP%20Powertools.jpg" alt="Blaupunkt Powertools" onerror="this.src='https://via.placeholder.com/400x300/1a1f3a/d4af37?text=BP+Powertools'">
-                    <div class="project-overlay">
-                        <div class="project-overlay-text">Complete powertools portfolio</div>
-                    </div>
+                    <img src="https://raw.githubusercontent.com/LucianoRSouza/LucianoRSouza.github.io/main/BP_Powertools.jpg" alt="Blaupunkt Powertools" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-tools\' style=\'font-size: 3.5rem; color: var(--gold);\'></i>'">
                 </div>
                 <div class="project-content">
                     <h3>Blaupunkt Powertools Range</h3>
-                    <p>Complete powertools portfolio development including sanders, drills, and multi-tools. Full technical documentation and certification.</p>
+                    <p>Complete powertools portfolio development including sanders, drills, and multi-tools. Full technical documentation, certification management, and supplier quality audits across Asian manufacturing facilities.</p>
+                    <div class="project-highlights">
+                        <strong>Portfolio:</strong> Complete tool range | <strong>Process:</strong> Certification & audits | <strong>Focus:</strong> Quality assurance
+                    </div>
                     <div class="project-tags">
                         <span class="project-tag">Portfolio</span>
-                        <span class="project-tag">Development</span>
                         <span class="project-tag">Certification</span>
+                        <span class="project-tag">Quality Audits</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Trade Shows Section -->
     <section class="trade-shows" id="trade-shows">
         <div class="section-header animate-on-scroll">
-            <h2>Trade Shows & Exhibitions</h2>
-            <p>20+ participations in international fairs as both exhibitor and buyer across China, Hong Kong, and worldwide</p>
+            <h2>Trade Shows & Global Exhibitions</h2>
+            <p>20+ international fairs as exhibitor and strategic buyer across China, Hong Kong, and worldwide markets</p>
         </div>
         
         <div class="gallery-tabs animate-on-scroll delay-1">
@@ -2118,24 +2185,24 @@
         <div id="gallery-ford" class="gallery-content">
             <div class="gallery-grid">
                 <div class="gallery-item animate-on-scroll" onclick="openLightbox(this)">
-                    <img src="https://raw.githubusercontent.com/LucianoRSouza/LucianoRSouza.github.io/main/Ford%20lighting%20solutions%20HK%20Intl.png" alt="Ford Lighting HK Intl">
+                    <img src="https://raw.githubusercontent.com/LucianoRSouza/LucianoRSouza.github.io/main/Ford_lighting_solutions_HK_Intl.png" alt="Ford Lighting HK Intl">
                     <div class="gallery-overlay">
                         <h4>Hong Kong International Lighting Fair</h4>
-                        <p>Ford Lighting Solutions Exhibition Stand</p>
+                        <p>Strategic booth design working with Marketing & Merchandising to create memorable brand experiences that drive post-show engagement</p>
                     </div>
                 </div>
                 <div class="gallery-item animate-on-scroll delay-1" onclick="openLightbox(this)">
-                    <img src="https://raw.githubusercontent.com/LucianoRSouza/LucianoRSouza.github.io/main/Ford%20lighting%20solutions%20HK%20Intl%201.png" alt="Ford Lighting Stand 1">
+                    <img src="https://raw.githubusercontent.com/LucianoRSouza/LucianoRSouza.github.io/main/Ford_lighting_solutions_HK_Intl_1.png" alt="Ford Lighting Stand 1">
                     <div class="gallery-overlay">
-                        <h4>Global Presence</h4>
-                        <p>Showcasing Ford Lighting across continents</p>
+                        <h4>Global Brand Presence</h4>
+                        <p>Coordinated exhibition strategy across continents, ensuring consistent brand messaging while adapting to local market preferences</p>
                     </div>
                 </div>
                 <div class="gallery-item animate-on-scroll delay-2" onclick="openLightbox(this)">
-                    <img src="https://raw.githubusercontent.com/LucianoRSouza/LucianoRSouza.github.io/main/Ford%20lighting%20solutions%20HK%20Intl%202.png" alt="Ford Lighting Stand 2">
+                    <img src="https://raw.githubusercontent.com/LucianoRSouza/LucianoRSouza.github.io/main/Ford_lighting_solutions_HK_Intl_2.png" alt="Ford Lighting Stand 2">
                     <div class="gallery-overlay">
-                        <h4>Professional Setup</h4>
-                        <p>Corporate exhibition design and execution</p>
+                        <h4>Professional Exhibition Execution</h4>
+                        <p>End-to-end booth management from design conceptualization to lead capture systems and post-show follow-up protocols</p>
                     </div>
                 </div>
             </div>
@@ -2144,49 +2211,72 @@
         <div id="gallery-blaupunkt" class="gallery-content active">
             <div class="gallery-grid">
                 <div class="gallery-item" onclick="openLightbox(this)">
-                    <img src="https://raw.githubusercontent.com/LucianoRSouza/LucianoRSouza.github.io/main/Blaupunkt%20Illumiation%20booth%20HK%20Fair.png" alt="Blaupunkt Booth">
+                    <img src="https://raw.githubusercontent.com/LucianoRSouza/LucianoRSouza.github.io/main/Blaupunkt_Illumiation_booth_HK_Fair.png" alt="Blaupunkt Booth">
                     <div class="gallery-overlay">
                         <h4>Blaupunkt Illumination Booth</h4>
-                        <p>Hong Kong International Lighting Fair 2016</p>
+                        <p>Hong Kong International Lighting Fair 2016—premium German engineering showcase with strategic product positioning</p>
                     </div>
                 </div>
                 <div class="gallery-item" onclick="openLightbox(this)">
-                    <img src="https://raw.githubusercontent.com/LucianoRSouza/LucianoRSouza.github.io/main/Blaupunkt%20Illumiation%20booth%20HK%20Fair%201.png" alt="Blaupunkt Booth 1">
+                    <img src="https://raw.githubusercontent.com/LucianoRSouza/LucianoRSouza.github.io/main/Blaupunkt_Illumiation_booth_HK_Fair_1.png" alt="Blaupunkt Booth 1">
                     <div class="gallery-overlay">
-                        <h4>Premium Brand Presentation</h4>
-                        <p>German engineering excellence showcase</p>
+                        <h4>Premium Brand Experience</h4>
+                        <p>Collaborated with Marketing to create immersive brand experiences that leave lasting impressions on visitors</p>
                     </div>
                 </div>
                 <div class="gallery-item" onclick="openLightbox(this)">
-                    <img src="https://raw.githubusercontent.com/LucianoRSouza/LucianoRSouza.github.io/main/Blaupunkt%20Illumiation%20booth%20HK%20Fair%202.png" alt="Blaupunkt Booth 2">
+                    <img src="https://raw.githubusercontent.com/LucianoRSouza/LucianoRSouza.github.io/main/Blaupunkt_Illumiation_booth_HK_Fair_2.png" alt="Blaupunkt Booth 2">
                     <div class="gallery-overlay">
                         <h4>Product Display Excellence</h4>
-                        <p>Complete lighting solutions portfolio</p>
+                        <p>Complete lighting solutions portfolio presentation with technical demonstrations and hands-on experiences</p>
                     </div>
                 </div>
                 <div class="gallery-item" onclick="openLightbox(this)">
-                    <img src="https://raw.githubusercontent.com/LucianoRSouza/LucianoRSouza.github.io/main/Blaupunkt%20Illumiation%20booth%20HK%20Fair%203.png" alt="Blaupunkt Booth 3">
+                    <img src="https://raw.githubusercontent.com/LucianoRSouza/LucianoRSouza.github.io/main/Blaupunkt_Illumiation_booth_HK_Fair_3.png" alt="Blaupunkt Booth 3">
                     <div class="gallery-overlay">
                         <h4>Innovation Showcase</h4>
-                        <p>LED technology and smart lighting</p>
+                        <p>LED technology and smart lighting demonstrations attracting qualified leads and strategic partnerships</p>
                     </div>
                 </div>
                 <div class="gallery-item" onclick="openLightbox(this)">
-                    <img src="https://raw.githubusercontent.com/LucianoRSouza/LucianoRSouza.github.io/main/Blaupunkt%20Illumiation%20booth%20HK%20Fair%204.png" alt="Blaupunkt Booth 4">
+                    <img src="https://raw.githubusercontent.com/LucianoRSouza/LucianoRSouza.github.io/main/Blaupunkt_Illumiation_booth_HK_Fair_4.png" alt="Blaupunkt Booth 4">
                     <div class="gallery-overlay">
-                        <h4>Complete Booth View</h4>
-                        <p>360° brand experience design</p>
+                        <h4>360° Brand Experience</h4>
+                        <p>Comprehensive booth design integrating product display, brand storytelling, and visitor engagement strategies</p>
                     </div>
+                </div>
+            </div>
+        </div>
+        
+        <div style="max-width: 1000px; margin: 4rem auto 0; text-align: center; padding: 2rem; background: linear-gradient(135deg, rgba(212,175,55,0.1), rgba(212,175,55,0.05)); border-radius: 20px; border: 2px solid rgba(212,175,55,0.2);">
+            <h3 style="font-family: 'Playfair Display', serif; color: var(--navy); margin-bottom: 1rem;"><i class="fas fa-handshake" style="color: var(--gold); margin-right: 10px;"></i>Trade Show Strategy & Execution</h3>
+            <p style="color: var(--text); line-height: 1.8; margin-bottom: 1.5rem;">My approach to trade shows goes beyond booth presence. I work closely with Marketing and Merchandising teams to create <strong>memorable brand experiences</strong> that differentiate us from competitors. From strategic product positioning to branded giveaways that ensure post-show recall, every detail is orchestrated to maximize ROI.</p>
+            <p style="color: var(--text); line-height: 1.8; margin-bottom: 1.5rem;">As a <strong>strategic buyer</strong>, I leverage trade shows for face-to-face renegotiations with key suppliers, discovering emerging technologies before competitors, and building relationships through business dinners—particularly with Chinese partners who value personal connection. Factory visits during show seasons provide critical insights into production capabilities and quality standards.</p>
+            <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-top: 1.5rem;">
+                <div style="text-align: center;">
+                    <i class="fas fa-users" style="font-size: 2rem; color: var(--gold); margin-bottom: 0.5rem;"></i>
+                    <p style="font-size: 0.9rem; color: var(--text-light);">Lead Generation</p>
+                </div>
+                <div style="text-align: center;">
+                    <i class="fas fa-comments" style="font-size: 2rem; color: var(--gold); margin-bottom: 0.5rem;"></i>
+                    <p style="font-size: 0.9rem; color: var(--text-light);">Supplier Negotiations</p>
+                </div>
+                <div style="text-align: center;">
+                    <i class="fas fa-industry" style="font-size: 2rem; color: var(--gold); margin-bottom: 0.5rem;"></i>
+                    <p style="font-size: 0.9rem; color: var(--text-light);">Factory Audits</p>
+                </div>
+                <div style="text-align: center;">
+                    <i class="fas fa-lightbulb" style="font-size: 2rem; color: var(--gold); margin-bottom: 0.5rem;"></i>
+                    <p style="font-size: 0.9rem; color: var(--text-light);">Tech Discovery</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Certifications Section -->
     <section class="certs" id="certs">
         <div class="section-header animate-on-scroll">
             <h2>Certifications & Education</h2>
-            <p>Continuous learning in AI, Data Science, and Strategic Procurement</p>
+            <p>Continuous learning in AI, Data Science, and Strategic Procurement from world-class institutions</p>
         </div>
         <div class="certs-grid">
             <div class="cert-card framework-highlight animate-on-scroll">
@@ -2195,13 +2285,13 @@
                         <i class="fas fa-star"></i>
                     </div>
                     <h3>AI-Driven Strategic Procurement Framework</h3>
-                    <p>My proprietary one-page executive framework summarizing how AI, data and operational alignment elevate procurement performance across hospitality & leisure assets. Developed based on 15+ years of experience and recent AI implementations.</p>
+                    <p>My proprietary one-page executive framework summarizing how AI, data, and operational alignment elevate procurement performance across hospitality & leisure assets. Developed based on 15+ years of experience and recent AI implementations that delivered €1M+ in savings.</p>
                     <div class="cert-badge">
                         <i class="fas fa-check-circle"></i> Proprietary Methodology
                     </div>
                 </div>
                 <div class="framework-image">
-                    <img src="https://raw.githubusercontent.com/LucianoRSouza/LucianoRSouza.github.io/main/AI%20Driven%20Strategic%20Procurement%20Framework.png" alt="AI Framework" onerror="this.style.display='none'">
+                    <img src="https://raw.githubusercontent.com/LucianoRSouza/LucianoRSouza.github.io/main/AI_Driven_Strategic_Procurement_Framework.png" alt="AI Framework" onerror="this.style.display='none'">
                 </div>
             </div>
 
@@ -2284,328 +2374,48 @@
         </div>
     </section>
 
-    <!-- GitHub Section -->
     <section class="github" id="github">
         <div class="section-header animate-on-scroll">
-            <h2>GitHub & Code</h2>
-            <p>Explore my data science and automation projects</p>
+            <h2>GitHub & Data Science Projects</h2>
+            <p>Transforming procurement through code, algorithms, and data-driven insights</p>
         </div>
         <div class="github-card animate-on-scroll delay-1">
             <i class="fab fa-github github-icon"></i>
             <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 1rem; font-size: 2rem;">github.com/LucianoRSouza</h3>
-            <p style="color: var(--text-light); margin-bottom: 2rem; font-size: 1.1rem;">Python enthusiast learning about data analysis and machine learning. Building tools for procurement automation.</p>
+            <p style="color: var(--text-light); margin-bottom: 2rem; font-size: 1.1rem;">Python enthusiast leveraging data science to revolutionize procurement decision-making. From predictive analytics to automated dashboards, my code delivers measurable business impact.</p>
+            
+            <div class="ml-metrics">
+                <div class="metric-box">
+                    <span class="metric-value">95%</span>
+                    <span class="metric-label">Prediction Accuracy</span>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-value">30%</span>
+                    <span class="metric-label">Cost Reduction</span>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-value">85%</span>
+                    <span class="metric-label">Stockout Reduction</span>
+                </div>
+            </div>
             
             <div class="repo-list">
                 <div class="repo-item" onclick="window.open('https://github.com/LucianoRSouza/sales_prediction_future_months', '_blank')">
                     <h4>sales_prediction_future_months</h4>
-                    <p>Linear Regression, Random Forest, XGBoost implementation for sales forecasting</p>
+                    <p>Linear Regression, Random Forest, XGBoost implementation for sales forecasting with 95% accuracy. Features data cleaning pipelines, feature engineering, and automated model selection.</p>
                 </div>
                 <div class="repo-item" onclick="window.open('https://github.com/LucianoRSouza/inventory_optimization_level', '_blank')">
                     <h4>inventory_optimization_level</h4>
-                    <p>ML models for inventory management and cost optimization</p>
+                    <p>ML models for inventory management using demand forecasting algorithms. Reduced carrying costs by 30% and stockouts by 85% through intelligent reorder point calculations.</p>
                 </div>
                 <div class="repo-item" onclick="window.open('https://github.com/LucianoRSouza/promotional_impact', '_blank')">
                     <h4>promotional_impact</h4>
-                    <p>Gradient Boosting Regressor for promotional campaign analysis</p>
+                    <p>Gradient Boosting Regressor for promotional campaign analysis. Identifies optimal discount levels and timing to maximize ROI while protecting brand value.</p>
                 </div>
                 <div class="repo-item" onclick="window.open('https://github.com/LucianoRSouza/Webapp-Sales-Dashboard', '_blank')">
                     <h4>Webapp-Sales-Dashboard</h4>
-                    <p>Interactive dashboards with Streamlit + Plotly visualization</p>
+                    <p>Interactive dashboards with Streamlit + Plotly visualization. Real-time KPI monitoring, drill-down capabilities, and automated reporting for procurement teams.</p>
                 </div>
             </div>
 
-            <a href="https://github.com/LucianoRSouza" target="_blank" class="btn btn-primary" style="margin-top: 2rem;">
-                <i class="fab fa-github"></i> View All Repositories
-            </a>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="contact-container">
-            <div class="section-header animate-on-scroll">
-                <h2>Let's Connect</h2>
-                <p>Open to procurement consulting, AI implementation projects, and leadership opportunities</p>
-            </div>
-            
-            <div class="contact-grid animate-on-scroll delay-1">
-                <div class="contact-card">
-                    <div class="contact-icon">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <h3>Email</h3>
-                    <p>luciano.vlap@gmail.com</p>
-                </div>
-                <div class="contact-card">
-                    <div class="contact-icon">
-                        <i class="fas fa-phone"></i>
-                    </div>
-                    <h3>Phone</h3>
-                    <p>+351 939 879 114</p>
-                </div>
-            </div>
-            
-            <div class="contact-links animate-on-scroll delay-2">
-                <a href="mailto:luciano.vlap@gmail.com" class="contact-link">
-                    <i class="fas fa-envelope"></i> Send Email
-                </a>
-                <a href="https://www.linkedin.com/in/luciano-rodrigues-541a2544/" target="_blank" class="contact-link">
-                    <i class="fab fa-linkedin"></i> LinkedIn
-                </a>
-                <a href="https://github.com/LucianoRSouza" target="_blank" class="contact-link">
-                    <i class="fab fa-github"></i> GitHub
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <p style="font-size: 1.5rem; font-family: 'Playfair Display', serif; margin-bottom: 1rem;">Luciano Rodrigues de Souza</p>
-            <div class="social-links">
-                <a href="https://www.linkedin.com/in/luciano-rodrigues-541a2544/" target="_blank" class="social-link">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="https://github.com/LucianoRSouza" target="_blank" class="social-link">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="mailto:luciano.vlap@gmail.com" class="social-link">
-                    <i class="fas fa-envelope"></i>
-                </a>
-            </div>
-            <p style="opacity: 0.8; margin-top: 1rem;">&copy; 2025 All rights reserved.</p>
-            <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.6;">Strategic Procurement | AI Implementation | Global Operations</p>
-        </div>
-    </footer>
-
-    <!-- Lightbox -->
-    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-        <span class="lightbox-close">&times;</span>
-        <img src="" alt="Full size" id="lightbox-img">
-    </div>
-
-    <!-- Scroll to Top -->
-    <div class="scroll-top" id="scrollTop" onclick="scrollToTop()">
-        <i class="fas fa-arrow-up"></i>
-    </div>
-
-    <!-- Toast -->
-    <div class="toast" id="toast"></div>
-
-    <script>
-        // Loading screen
-        window.addEventListener('load', function() {
-            setTimeout(function() {
-                document.getElementById('loading').classList.add('hidden');
-            }, 1500);
-        });
-
-        // Custom cursor
-        const cursor = document.getElementById('cursor');
-        const cursorFollower = document.getElementById('cursorFollower');
-        
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-            
-            setTimeout(() => {
-                cursorFollower.style.left = e.clientX + 'px';
-                cursorFollower.style.top = e.clientY + 'px';
-            }, 100);
-        });
-        
-        document.querySelectorAll('a, button, .stat-box, .project-card, .gallery-item').forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
-                cursor.style.borderColor = 'var(--gold)';
-            });
-            el.addEventListener('mouseleave', () => {
-                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-                cursor.style.borderColor = 'var(--gold)';
-            });
-        });
-
-        // Create particles
-        function createParticles() {
-            const container = document.getElementById('particles');
-            for (let i = 0; i < 50; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 6 + 's';
-                particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
-                container.appendChild(particle);
-            }
-        }
-        createParticles();
-
-        // Navbar scroll effect
-        window.addEventListener('scroll', function() {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-
-            const scrollTop = document.getElementById('scrollTop');
-            if (window.scrollY > 500) {
-                scrollTop.classList.add('visible');
-            } else {
-                scrollTop.classList.remove('visible');
-            }
-        });
-
-        // Intersection Observer
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.animate-on-scroll').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Language switcher with content
-        const translations = {
-            en: {
-                about: 'About Me',
-                experience: 'Experience',
-                projects: 'Projects',
-                tradeShows: 'Trade Shows',
-                certifications: 'Certifications',
-                contact: 'Contact'
-            },
-            pt: {
-                about: 'Sobre Mim',
-                experience: 'Experiência',
-                projects: 'Projetos',
-                tradeShows: 'Feiras',
-                certifications: 'Certificações',
-                contact: 'Contato'
-            },
-            es: {
-                about: 'Sobre Mí',
-                experience: 'Experiencia',
-                projects: 'Proyectos',
-                tradeShows: 'Ferias',
-                certifications: 'Certificaciones',
-                contact: 'Contacto'
-            },
-            fr: {
-                about: 'À Propos',
-                experience: 'Expérience',
-                projects: 'Projets',
-                tradeShows: 'Salons',
-                certifications: 'Certifications',
-                contact: 'Contact'
-            }
-        };
-
-        function changeLang(lang) {
-            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            
-            const t = translations[lang];
-            const navLinks = document.querySelectorAll('.nav-links a');
-            navLinks[0].textContent = t.about;
-            navLinks[1].textContent = t.experience;
-            navLinks[2].textContent = t.projects;
-            navLinks[3].textContent = t.tradeShows;
-            navLinks[4].textContent = t.certifications;
-            navLinks[5].textContent = t.contact;
-            
-            showToast(`Language changed to ${lang.toUpperCase()}`);
-        }
-
-        // Gallery tabs - Blaupunkt default
-        function switchGallery(gallery) {
-            document.querySelectorAll('.gallery-tab').forEach(tab => tab.classList.remove('active'));
-            event.target.classList.add('active');
-            
-            document.querySelectorAll('.gallery-content').forEach(content => content.classList.remove('active'));
-            document.getElementById('gallery-' + gallery).classList.add('active');
-        }
-
-        // Lightbox
-        function openLightbox(element) {
-            const img = element.querySelector('img');
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.getElementById('lightbox-img');
-            
-            lightboxImg.src = img.src;
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeLightbox() {
-            const lightbox = document.getElementById('lightbox');
-            lightbox.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-
-        // Scroll to top
-        function scrollToTop() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        }
-
-        // Toast notification
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            toast.textContent = message;
-            toast.classList.add('show');
-            
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
-        }
-
-        // Stat detail popup
-        function showStatDetail(type) {
-            const messages = {
-                savings: '€1M+ in cost savings achieved through AI-driven procurement strategies and negotiation excellence',
-                experience: '15+ years of progressive experience from Import Analyst to Senior Procurement Leader',
-                projects: '$10M+ in project value managed across global markets and product categories',
-                countries: '20+ countries experience across Europe, LATAM, and Asia with deep market knowledge'
-            };
-            showToast(messages[type]);
-        }
-
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Parallax effect
-        window.addEventListener('scroll', function() {
-            const scrolled = window.pageYOffset;
-            const hero = document.querySelector('.hero');
-            if (hero && scrolled < window.innerHeight) {
-                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-            }
-        });
-    </script>
-</body>
-</html>
+            <div style="background: linear-gradient(135deg, rgba(212,175,55,0.1), rgba(212,175,55,0.05)); padding: 2rem; border-radius: 15px; margin: 2rem 0; text-align: left; border-left
