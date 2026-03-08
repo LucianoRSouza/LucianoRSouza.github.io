@@ -1,0 +1,267 @@
+#!/usr/bin/env python3
+"""
+GitHub Pages Image URL Fixer
+Converte URLs absolutas do GitHub raw para caminhos relativos locais
+Autor: Assistente IA
+Data: 2024
+"""
+
+import re
+import json
+from pathlib import Path
+from dataclasses import dataclass
+from typing import List, Tuple, Optional
+import argparse
+
+
+@dataclass
+class ImageMapping:
+    """Mapeamento de URL antiga para nova"""
+    old_url: str
+    new_path: str
+    filename: str
+    status: str = "pending"  # pending, success, error
+
+
+class GitHubPagesImageFixer:
+    """
+    Corrige URLs de imagens em arquivos HTML para GitHub Pages.
+    Converte URLs raw.githubusercontent.com para caminhos relativos.
+    """
+    
+    def __init__(self, html_file: str, dry_run: bool = False):
+        self.html_file = Path(html_file)
+        self.dry_run = dry_run
+        self.mappings: List[ImageMapping] = []
+        self.stats = {"total": 0, "fixed": 0, "skipped": 0, "errors": 0}
+        
+    def extract_image_urls(self, content: str) -> List[Tuple[str, str, str]]:
+        """
+        Extrai URLs de imagens do HTML.
+        Retorna: [(url_completa, atributo, texto_original), ...]
+        """
+        patterns = [
+            # src="URL" ou src='URL'
+            (r'src=["\'](https://raw\.githubusercontent\.com/[^"\']+)["\']', 'src'),
+            # url(URL) em CSS
+            (r'url\(["\']?(https://raw\.githubusercontent\.com/[^"\')]+)["\']?\)', 'css-url'),
+        ]
+        
+        found = []
+        for pattern, attr in patterns:
+            matches = re.finditer(pattern, content, re.IGNORECASE)
+            for match in matches:
+                url = match.group(1)
+                full_match = match.group(0)
+                found.append((url, attr, full_match))
+        
+        return found
+    
+    def generate_local_path(self, github_url: str) -> Optional[str]:
+        """
+        Converte URL do GitHub raw para caminho relativo local.
+        Ex: https://raw.githubusercontent.com/user/repo/main/Photo.jpg -> ./Photo.jpg
+        """
+        # Padrão: https://raw.githubusercontent.com/{user}/{repo}/{branch}/{path}
+        pattern = r'https://raw\.githubusercontent\.com/[^/]+/[^/]+/[^/]+/(.+)'
+        match = re.match(pattern, github_url)
+        
+        if not match:
+            return None
+            
+        file_path = match.group(1)
+        # Decodificar espaços URL-encoded
+        file_path = file_path.replace('%20', ' ')
+        # Extrair apenas o nome do arquivo (assumindo que está na raiz)
+        filename = Path(file_path).name
+        
+        # Verificar se o arquivo existe (com diferentes variações de nome)
+        possible_names = [
+            filename,
+            filename.replace(' ', '_'),  # versão com underscore
+            filename.replace('_', ' '),  # versão com espaço
+        ]
+        
+        return f"./{filename.replace(' ', '_')}"  # Sempre usar underscore para consistência
+    
+    def fix_html(self) -> str:
+        """Processa o arquivo HTML e retorna o conteúdo corrigido."""
+        if not self.html_file.exists():
+            raise FileNotFoundError(f"Arquivo não encontrado: {self.html_file}")
+        
+        content = self.html_file.read_text(encoding='utf-8')
+        original_content = content
+        
+        images = self.extract_image_urls(content)
+        self.stats["total"] = len(images)
+        
+        print(f"🔍 Encontradas {len(images)} imagens para processar...\n")
+        
+        for url, attr, original in images:
+            local_path = self.generate_local_path(url)
+            
+            if not local_path:
+                print(f"⚠️  URL não reconhecida: {url[:60]}...")
+                self.stats["errors"] += 1
+                continue
+            
+            mapping = ImageMapping(
+                old_url=url,
+                new_path=local_path,
+                filename=Path(local_path).name
+            )
+            
+            # Criar padrão de substituição específico
+            if attr == 'src':
+                new_text = f'src="{local_path}"'
+                pattern = re.escape(original)
+            else:  # css-url
+                new_text = f'url({local_path})'
+                pattern = re.escape(original)
+            
+            # Verificar se já está correto
+            if local_path in original:
+                print(f"✅ Já está correto: {local_path}")
+                mapping.status = "skipped"
+                self.stats["skipped"] += 1
+            else:
+                # Substituir no conteúdo
+                content, count = re.subn(pattern, new_text, content)
+                if count > 0:
+                    print(f"🔄 {local_path}")
+                    print(f"   De: {url[:50]}...")
+                    mapping.status = "success"
+                    self.stats["fixed"] += 1
+                else:
+                    mapping.status = "error"
+                    self.stats["errors"] += 1
+            
+            self.mappings.append(mapping)
+        
+        return content
+    
+    def save_report(self):
+        """Gera relatório JSON das alterações."""
+        report = {
+            "arquivo": str(self.html_file),
+            "estatisticas": self.stats,
+            "mapeamentos": [
+                {
+                    "antiga": m.old_url,
+                    "nova": m.new_path,
+                    "status": m.status
+                } for m in self.mappings
+            ]
+        }
+        
+        report_file = self.html_file.stem + "_fix_report.json"
+        with open(report_file, 'w', encoding='utf-8') as f:
+            json.dump(report, f, indent=2, ensure_ascii=False)
+        
+        print(f"\n📄 Relatório salvo: {report_file}")
+    
+    def run(self):
+        """Executa o processo completo de correção."""
+        print("=" * 60)
+        print("🚀 GitHub Pages Image URL Fixer")
+        print("=" * 60)
+        print(f"Arquivo: {self.html_file}")
+        print(f"Modo dry-run: {self.dry_run}")
+        print("-" * 60 + "\n")
+        
+        try:
+            new_content = self.fix_html()
+            
+            if not self.dry_run and new_content:
+                # Backup do original
+                backup = self.html_file.with_suffix('.html.backup')
+                self.html_file.rename(backup)
+                print(f"\n💾 Backup criado: {backup}")
+                
+                # Salvar novo arquivo
+                self.html_file.write_text(new_content, encoding='utf-8')
+                print(f"✅ Arquivo atualizado: {self.html_file}")
+            
+            self.save_report()
+            self._print_summary()
+            
+        except Exception as e:
+            print(f"❌ Erro: {e}")
+            raise
+    
+    def _print_summary(self):
+        """Imprime resumo das operações."""
+        print("\n" + "=" * 60)
+        print("📊 RESUMO")
+        print("=" * 60)
+        print(f"Total de imagens:  {self.stats['total']}")
+        print(f"Corrigidas:        {self.stats['fixed']} ✅")
+        print(f"Já corretas:       {self.stats['skipped']} ⏭️")
+        print(f"Erros:             {self.stats['errors']} ❌")
+        print("=" * 60)
+
+
+def verify_images(html_file: str) -> List[str]:
+    """
+    Verifica quais imagens referenciadas no HTML existem no diretório.
+    Retorna lista de imagens faltantes.
+    """
+    html_path = Path(html_file)
+    if not html_path.exists():
+        return []
+    
+    content = html_path.read_text(encoding='utf-8')
+    
+    # Encontrar todos os src="./imagem.ext"
+    pattern = r'src=["\'](\./[^"\']+)["\']'
+    matches = re.findall(pattern, content)
+    
+    missing = []
+    for img_path in matches:
+        # Remover ./ do início
+        filename = img_path[2:] if img_path.startswith('./') else img_path
+        img_file = html_path.parent / filename
+        
+        if not img_file.exists():
+            missing.append(filename)
+    
+    return missing
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description='Corrige URLs de imagens para GitHub Pages',
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Exemplos:
+  python fix_images.py index.html
+  python fix_images.py index.html --dry-run
+  python fix_images.py index.html --verify
+        """
+    )
+    
+    parser.add_argument('html_file', help='Arquivo HTML para processar')
+    parser.add_argument('--dry-run', action='store_true', 
+                       help='Simula as alterações sem aplicar')
+    parser.add_argument('--verify', action='store_true',
+                       help='Verifica se as imagens existem localmente')
+    
+    args = parser.parse_args()
+    
+    if args.verify:
+        print("🔍 Verificando imagens...")
+        missing = verify_images(args.html_file)
+        if missing:
+            print(f"\n⚠️  Imagens não encontradas ({len(missing)}):")
+            for img in missing:
+                print(f"   - {img}")
+        else:
+            print("\n✅ Todas as imagens estão presentes!")
+        return
+    
+    fixer = GitHubPagesImageFixer(args.html_file, args.dry_run)
+    fixer.run()
+
+
+if __name__ == "__main__":
+    main()
