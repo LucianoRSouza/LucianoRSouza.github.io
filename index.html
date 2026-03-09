@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- Custom Cursor -->
+    <!-- Custom Cursor Original -->
     <div class="cursor" id="cursor"></div>
     <div class="cursor-follower" id="cursorFollower"></div>
 
@@ -33,12 +33,12 @@
     <nav id="navbar">
         <a href="#" class="logo"><i class="fas fa-crown"></i> LR.</a>
         <ul class="nav-links">
-            <li><a href="#about">Sobre</a></li>
-            <li><a href="#timeline">Experiência</a></li>
-            <li><a href="#projects">Projetos</a></li>
-            <li><a href="#trade-shows">Feiras</a></li>
-            <li><a href="#certs">Certificações</a></li>
-            <li><a href="#contact">Contato</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#timeline">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#trade-shows">Trade Shows</a></li>
+            <li><a href="#certs">Certifications</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
 
@@ -55,7 +55,7 @@
                     LATAM, and Asia, delivering €1M+ in savings through AI-powered strategies.
                 </p>
 
-                <!-- STATS BOXES QUADRADOS (VOLTOU AO ORIGINAL) -->
+                <!-- STATS BOXES ORIGINAIS -->
                 <div class="hero-stats">
                     <div class="stat-box" onclick="showStatDetail('savings')">
                         <i class="fas fa-piggy-bank stat-icon"></i>
@@ -157,8 +157,7 @@
             <!-- Logo único sticky -->
             <div class="timeline-logo-sticky">
                 <div class="company-logo-display" id="current-logo">
-                    <!-- Verifique o nome exato do arquivo -->
-                    <img src="./Details_Symbol.jpg" alt="Company Logo" id="logo-img" onerror="this.src='./Details.png'">
+                    <img src="./Details_Symbol.jpg" alt="Company Logo" id="logo-img">
                     <div class="logo-indicator">
                         <span class="indicator-dot active"></span>
                         <span class="indicator-dot"></span>
@@ -228,8 +227,8 @@
                     </div>
                 </div>
 
-                <!-- SKN Europe -->
-                <div class="timeline-item" data-company="skn-europe" data-logo="./SKN_Europe.png">
+                <!-- SKN Europe - USA MESMO LOGO SKN_Global.png -->
+                <div class="timeline-item" data-company="skn-europe" data-logo="./SKN_Global.png">
                     <div class="timeline-date">
                         <span class="date-range">2018-2022</span>
                         <span class="date-level">Manager Level</span>
@@ -289,7 +288,7 @@
         </div>
     </section>
 
-    <!-- Projects Section (ORIGINAL) -->
+    <!-- Projects Section COM GALERIAS -->
     <section class="projects" id="projects">
         <div class="section-header animate-on-scroll">
             <h2>Featured Projects</h2>
@@ -297,13 +296,20 @@
         </div>
 
         <div class="projects-grid">
+            <!-- Blaupunkt Tools -->
             <div class="project-card animate-on-scroll delay-1">
-                <div class="project-image">
-                    <img src="./Blaupunkt_Tools.png" alt="Blaupunkt Tools" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-tools\' style=\'font-size: 3.5rem; color: var(--gold);\'></i>'">
+                <div class="project-gallery">
+                    <div class="gallery-main">
+                        <img src="./Blaupunkt_Tools.png" alt="Blaupunkt Tools" class="main-image" onclick="openProjectGallery('blaupunkt-tools')">
+                        <div class="gallery-overlay" onclick="openProjectGallery('blaupunkt-tools')">
+                            <i class="fas fa-images"></i>
+                            <span>View Gallery</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="project-content">
                     <h3>Blaupunkt Tools Portfolio</h3>
-                    <p>Complete creation and launch of power tools and garden equipment line for European market.</p>
+                    <p>Complete creation and launch of power tools and garden equipment line for European market. Full R&D cycle from concept to mass production.</p>
                     <div class="project-highlights">
                         <strong>Scope:</strong> DIY tools, power tools, garden equipment | <strong>Markets:</strong> EU-wide
                     </div>
@@ -315,13 +321,20 @@
                 </div>
             </div>
 
+            <!-- Blaupunkt Power Tools -->
             <div class="project-card animate-on-scroll delay-2">
-                <div class="project-image">
-                    <img src="./Blaupunkt_Power_Tools.png" alt="Blaupunkt Power Tools" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-bolt\' style=\'font-size: 3.5rem; color: var(--gold);\'></i>'">
+                <div class="project-gallery">
+                    <div class="gallery-main">
+                        <img src="./Blaupunkt_Power_Tools.png" alt="Blaupunkt Power Tools" class="main-image" onclick="openProjectGallery('blaupunkt-power')">
+                        <div class="gallery-overlay" onclick="openProjectGallery('blaupunkt-power')">
+                            <i class="fas fa-images"></i>
+                            <span>View Gallery</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="project-content">
                     <h3>Blaupunkt Power Tools Line</h3>
-                    <p>Professional-grade power tools including drills, saws, and sanders.</p>
+                    <p>Professional-grade power tools including drills, saws, and sanders. Managed complete technical specifications and safety certifications.</p>
                     <div class="project-highlights">
                         <strong>Innovation:</strong> Professional grade | <strong>Audits:</strong> Production line inspections
                     </div>
@@ -333,13 +346,20 @@
                 </div>
             </div>
 
+            <!-- Blaupunkt Garden -->
             <div class="project-card animate-on-scroll delay-3">
-                <div class="project-image">
-                    <img src="./Blaupunkt_Garden_Tools.png" alt="Blaupunkt Garden Tools" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-leaf\' style=\'font-size: 3.5rem; color: var(--gold);\'></i>'">
+                <div class="project-gallery">
+                    <div class="gallery-main">
+                        <img src="./Blaupunkt_Garden_Tools.png" alt="Blaupunkt Garden Tools" class="main-image" onclick="openProjectGallery('blaupunkt-garden')">
+                        <div class="gallery-overlay" onclick="openProjectGallery('blaupunkt-garden')">
+                            <i class="fas fa-images"></i>
+                            <span>View Gallery</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="project-content">
                     <h3>Blaupunkt Garden Equipment</h3>
-                    <p>Outdoor power equipment line including chainsaws, trimmers, and garden tools.</p>
+                    <p>Outdoor power equipment line including chainsaws, trimmers, and garden tools. Full technical documentation and safety compliance.</p>
                     <div class="project-highlights">
                         <strong>Products:</strong> Chainsaws, trimmers | <strong>Focus:</strong> Safety & compliance
                     </div>
@@ -351,15 +371,22 @@
                 </div>
             </div>
 
+            <!-- Spear & Jackson - COM GALERIA COMPLETA -->
             <div class="project-card animate-on-scroll delay-1">
-                <div class="project-image">
-                    <img src="./S&J_Cast_Irons_2.jpg" alt="Spear & Jackson Cast Irons" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-fire\' style=\'font-size: 3.5rem; color: var(--gold);\'></i>'">
+                <div class="project-gallery">
+                    <div class="gallery-main">
+                        <img src="./S&J_Cast_Irons_2.jpg" alt="Spear & Jackson" class="main-image" onclick="openProjectGallery('spear-jackson')">
+                        <div class="gallery-overlay" onclick="openProjectGallery('spear-jackson')">
+                            <i class="fas fa-images"></i>
+                            <span>View Gallery (6 photos)</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="project-content">
                     <h3>Spear & Jackson Cast Irons</h3>
-                    <p>Premium enameled cast iron cookware line for the British brand Spear & Jackson (est. 1760).</p>
+                    <p>Premium enameled cast iron cookware line for the British brand Spear & Jackson (est. 1760). Heritage quality meets modern design.</p>
                     <div class="project-highlights">
-                        <strong>Heritage:</strong> British brand since 1760 | <strong>Products:</strong> Enameled cast iron
+                        <strong>Heritage:</strong> British brand since 1760 | <strong>Products:</strong> Enameled cast iron cookware
                     </div>
                     <div class="project-tags">
                         <span class="project-tag">Cookware</span>
@@ -369,13 +396,20 @@
                 </div>
             </div>
 
+            <!-- Pininfarina -->
             <div class="project-card animate-on-scroll delay-2">
-                <div class="project-image">
-                    <img src="./Pininfarina_BBQ.jpg" alt="Pininfarina Essenza" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-fire-alt\' style=\'font-size: 3.5rem; color: var(--gold);\'></i>'">
+                <div class="project-gallery">
+                    <div class="gallery-main">
+                        <img src="./Pininfarina_BBQ.jpg" alt="Pininfarina Essenza" class="main-image" onclick="openProjectGallery('pininfarina')">
+                        <div class="gallery-overlay" onclick="openProjectGallery('pininfarina')">
+                            <i class="fas fa-images"></i>
+                            <span>View Gallery</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="project-content">
                     <h3>Pininfarina Essenza Collection</h3>
-                    <p>Premium outdoor cooking appliances collection developed for EU and Asia markets.</p>
+                    <p>Premium outdoor cooking appliances collection developed for EU and Asia markets. Handcrafted in Italy with automotive design excellence.</p>
                     <div class="project-highlights">
                         <strong>Design:</strong> Italian automotive excellence | <strong>Value:</strong> $10M+ portfolio
                     </div>
@@ -387,6 +421,82 @@
                 </div>
             </div>
 
+            <!-- NKS Estrelas - COM GALERIA COMPLETA -->
+            <div class="project-card animate-on-scroll delay-3">
+                <div class="project-gallery">
+                    <div class="gallery-main">
+                        <img src="./NKS_Estrelas.png" alt="NKS Estrelas" class="main-image" onclick="openProjectGallery('nks-estrelas')">
+                        <div class="gallery-overlay" onclick="openProjectGallery('nks-estrelas')">
+                            <i class="fas fa-images"></i>
+                            <span>View Gallery (6 photos)</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <h3>NKS Estrelas Product Line</h3>
+                    <p>Premium consumer electronics and home appliances developed for Brazilian market under NKS brand. Complete product lifecycle management.</p>
+                    <div class="project-highlights">
+                        <strong>Market:</strong> Brazil | <strong>Category:</strong> Consumer electronics
+                    </div>
+                    <div class="project-tags">
+                        <span class="project-tag">Electronics</span>
+                        <span class="project-tag">Brazilian Market</span>
+                        <span class="project-tag">Product Launch</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NKS Audio - COM GALERIA -->
+            <div class="project-card animate-on-scroll delay-1">
+                <div class="project-gallery">
+                    <div class="gallery-main">
+                        <img src="./NKS_Audio.png" alt="NKS Audio" class="main-image" onclick="openProjectGallery('nks-audio')">
+                        <div class="gallery-overlay" onclick="openProjectGallery('nks-audio')">
+                            <i class="fas fa-images"></i>
+                            <span>View Gallery (8 photos)</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <h3>NKS Audio Systems</h3>
+                    <p>Professional and consumer audio equipment including speakers, sound systems, and headphones. Technical specifications and acoustic engineering.</p>
+                    <div class="project-highlights">
+                        <strong>Products:</strong> Speakers, sound systems, headphones | <strong>Compliance:</strong> ANATEL
+                    </div>
+                    <div class="project-tags">
+                        <span class="project-tag">Audio</span>
+                        <span class="project-tag">Acoustic Engineering</span>
+                        <span class="project-tag">ANATEL</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NKS Mais Você - COM GALERIA -->
+            <div class="project-card animate-on-scroll delay-2">
+                <div class="project-gallery">
+                    <div class="gallery-main">
+                        <img src="./NKS_Mais_Vc.png" alt="NKS Mais Você" class="main-image" onclick="openProjectGallery('nks-maisvc')">
+                        <div class="gallery-overlay" onclick="openProjectGallery('nks-maisvc')">
+                            <i class="fas fa-images"></i>
+                            <span>View Gallery (5 photos)</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <h3>NKS Mais Você Collection</h3>
+                    <p>Personal care and beauty appliances product line developed for Brazilian retail. Market-specific adaptations and INMETRO certification.</p>
+                    <div class="project-highlights">
+                        <strong>Category:</strong> Beauty & personal care | <strong>Features:</strong> INMETRO certification
+                    </div>
+                    <div class="project-tags">
+                        <span class="project-tag">Beauty Care</span>
+                        <span class="project-tag">INMETRO</span>
+                        <span class="project-tag">Retail</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ML Project -->
             <div class="project-card animate-on-scroll delay-3">
                 <div class="project-image" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);">
                     <div style="text-align: center; color: var(--gold);">
@@ -412,7 +522,109 @@
         </div>
     </section>
 
-    <!-- Certifications Section (ORIGINAL) -->
+    <!-- Trade Shows Section - VOLTOU COMPLETA -->
+    <section class="trade-shows" id="trade-shows">
+        <div class="section-header animate-on-scroll">
+            <h2>Trade Shows & Global Exhibitions</h2>
+            <p>20+ international fairs as exhibitor and strategic buyer across China, Hong Kong, and worldwide markets</p>
+        </div>
+
+        <div class="gallery-tabs animate-on-scroll delay-1">
+            <button class="gallery-tab" onclick="switchGallery('ford')">Ford Lighting</button>
+            <button class="gallery-tab active" onclick="switchGallery('blaupunkt')">Blaupunkt</button>
+        </div>
+
+        <div id="gallery-ford" class="gallery-content">
+            <div class="gallery-grid">
+                <div class="gallery-item animate-on-scroll" onclick="openLightbox(this)">
+                    <img src="./Ford_lighting_solutions_HK_Intl.png" alt="Ford Lighting HK Intl">
+                    <div class="gallery-overlay">
+                        <h4>Hong Kong International Lighting Fair</h4>
+                        <p>Strategic booth design working with Marketing & Merchandising to create memorable brand experiences</p>
+                    </div>
+                </div>
+                <div class="gallery-item animate-on-scroll delay-1" onclick="openLightbox(this)">
+                    <img src="./Ford_lighting_solutions_HK_Intl_1.png" alt="Ford Lighting Stand 1">
+                    <div class="gallery-overlay">
+                        <h4>Global Brand Presence</h4>
+                        <p>Coordinated exhibition strategy across continents, ensuring consistent brand messaging</p>
+                    </div>
+                </div>
+                <div class="gallery-item animate-on-scroll delay-2" onclick="openLightbox(this)">
+                    <img src="./Ford_lighting_solutions_HK_Intl_2.png" alt="Ford Lighting Stand 2">
+                    <div class="gallery-overlay">
+                        <h4>Professional Exhibition Execution</h4>
+                        <p>End-to-end booth management from design conceptualization to lead capture systems</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="gallery-blaupunkt" class="gallery-content active">
+            <div class="gallery-grid">
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="./Blaupunkt_Illumiation_booth_HK_Fair.png" alt="Blaupunkt Booth">
+                    <div class="gallery-overlay">
+                        <h4>Blaupunkt Illumination Booth</h4>
+                        <p>Hong Kong International Lighting Fair 2016—premium German engineering showcase</p>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="./Blaupunkt_Illumiation_booth_HK_Fair_1.png" alt="Blaupunkt Booth 1">
+                    <div class="gallery-overlay">
+                        <h4>Premium Brand Experience</h4>
+                        <p>Collaborated with Marketing to create immersive brand experiences</p>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="./Blaupunkt_Illumiation_booth_HK_Fair_2.png" alt="Blaupunkt Booth 2">
+                    <div class="gallery-overlay">
+                        <h4>Product Display Excellence</h4>
+                        <p>Complete lighting solutions portfolio presentation with technical demonstrations</p>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="./Blaupunkt_Illumiation_booth_HK_Fair_3.png" alt="Blaupunkt Booth 3">
+                    <div class="gallery-overlay">
+                        <h4>Innovation Showcase</h4>
+                        <p>LED technology and smart lighting demonstrations attracting qualified leads</p>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="./Blaupunkt_Illumiation_booth_HK_Fair_4.png" alt="Blaupunkt Booth 4">
+                    <div class="gallery-overlay">
+                        <h4>360° Brand Experience</h4>
+                        <p>Comprehensive booth design integrating product display and brand storytelling</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="trade-show-strategy">
+            <h3><i class="fas fa-handshake" style="color: var(--gold); margin-right: 10px;"></i>Trade Show Strategy & Execution</h3>
+            <p>My approach to trade shows goes beyond booth presence. I work closely with Marketing and Merchandising teams to create <strong>memorable brand experiences</strong> that differentiate us from competitors.</p>
+            <div class="strategy-icons">
+                <div class="strategy-item">
+                    <i class="fas fa-users"></i>
+                    <p>Lead Generation</p>
+                </div>
+                <div class="strategy-item">
+                    <i class="fas fa-comments"></i>
+                    <p>Supplier Negotiations</p>
+                </div>
+                <div class="strategy-item">
+                    <i class="fas fa-industry"></i>
+                    <p>Factory Audits</p>
+                </div>
+                <div class="strategy-item">
+                    <i class="fas fa-lightbulb"></i>
+                    <p>Tech Discovery</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section COM IBM EM DESTAQUE -->
     <section class="certs" id="certs">
         <div class="section-header animate-on-scroll">
             <h2>Certifications & Education</h2>
@@ -420,7 +632,60 @@
         </div>
 
         <div class="certs-grid">
-            <div class="cert-card framework-highlight animate-on-scroll">
+            <!-- IBM GENERATIVE AI - DESTAQUE -->
+            <div class="cert-card featured-cert animate-on-scroll">
+                <div class="cert-badge-new">NEW 2025</div>
+                <div class="cert-header">
+                    <div class="cert-logo" style="background: linear-gradient(135deg, #054ada, #0f62fe);">
+                        <i class="fas fa-robot" style="font-size: 2.5rem; color: white;"></i>
+                    </div>
+                    <div class="cert-title-group">
+                        <h4>IBM SkillsBuild</h4>
+                        <div class="cert-subtitle">Foundations in Generative AI</div>
+                        <span class="cert-date"><i class="fas fa-calendar"></i> 2025</span>
+                    </div>
+                </div>
+                <p><strong>Generative AI & LLMs for Procurement Innovation</strong></p>
+                <p>Deep dive into large language models, prompt engineering, and ethical AI deployment. Practical applications in business process optimization.</p>
+                <div class="ai-application">
+                    <strong><i class="fas fa-lightbulb"></i> How I Apply This in Procurement:</strong>
+                    <ul>
+                        <li><strong>Automated Contract Analysis:</strong> Using LLMs to review and extract key clauses from supplier contracts in seconds</li>
+                        <li><strong>RFP Generation:</strong> AI-powered creation of technical specifications and RFP documents, saving 15+ hours per week</li>
+                        <li><strong>Supplier Communication:</strong> Automated email drafting and negotiation preparation with consistent tone</li>
+                        <li><strong>Market Intelligence:</strong> AI analysis of supplier proposals and market trends for strategic sourcing</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- IBM LLMs - DESTAQUE -->
+            <div class="cert-card featured-cert animate-on-scroll delay-1">
+                <div class="cert-badge-new">NEW 2025</div>
+                <div class="cert-header">
+                    <div class="cert-logo" style="background: linear-gradient(135deg, #054ada, #0f62fe);">
+                        <i class="fas fa-brain" style="font-size: 2.5rem; color: white;"></i>
+                    </div>
+                    <div class="cert-title-group">
+                        <h4>IBM SkillsBuild</h4>
+                        <div class="cert-subtitle">Introduction to Large Language Models</div>
+                        <span class="cert-date"><i class="fas fa-calendar"></i> 2025</span>
+                    </div>
+                </div>
+                <p><strong>LLM Architecture & Prompt Engineering</strong></p>
+                <p>Comprehensive understanding of transformer architectures, tokenization, and advanced prompting techniques for business applications.</p>
+                <div class="ai-application">
+                    <strong><i class="fas fa-lightbulb"></i> How I Apply This in Procurement:</strong>
+                    <ul>
+                        <li><strong>Intelligent Data Extraction:</strong> Automated parsing of supplier quotes and technical documents</li>
+                        <li><strong>Predictive Analytics:</strong> LLM-enhanced forecasting models for demand planning and inventory optimization</li>
+                        <li><strong>Compliance Checking:</strong> AI verification of contractual terms against company policies and regulations</li>
+                        <li><strong>Knowledge Management:</strong> Internal AI assistant for procurement guidelines and historical data queries</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Framework -->
+            <div class="cert-card framework-highlight animate-on-scroll delay-2">
                 <div class="framework-content">
                     <div class="cert-icon" style="width: 60px; height: 60px; background: rgba(212,175,55,0.2); border-radius: 15px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
                         <i class="fas fa-star" style="font-size: 1.8rem; color: var(--gold);"></i>
@@ -436,6 +701,7 @@
                 </div>
             </div>
 
+            <!-- Outros certificados -->
             <div class="cert-card animate-on-scroll delay-1">
                 <div class="cert-header">
                     <div class="cert-logo">
@@ -443,130 +709,39 @@
                     </div>
                     <div class="cert-title-group">
                         <h4>University of Maryland</h4>
-                        <div class="cert-subtitle">Robert H. Smith School of Business</div>
-                        <span style="color: var(--gold); font-size: 0.9rem;"><i class="fas fa-calendar"></i> February 2026</span>
+                        <div class="cert-subtitle">AI and Career Empowerment</div>
+                        <span class="cert-date"><i class="fas fa-calendar"></i> February 2026</span>
                     </div>
                 </div>
-                <p><strong>AI and Career Empowerment</strong></p>
-                <p>Comprehensive program covering AI applications in business strategy and automation of procurement workflows.</p>
-                <div class="cert-impact">
-                    <strong>Impact on My Work:</strong>
-                    <p>Directly applied AI automation concepts to reduce procurement cycle times by 40%.</p>
-                </div>
+                <p>AI applications in business strategy and automation of procurement workflows.</p>
             </div>
 
             <div class="cert-card animate-on-scroll delay-2">
                 <div class="cert-header">
                     <div class="cert-logo">
-                        <img src="./IBM.png" alt="IBM">
+                        <img src="./MIT.png" alt="MIT Sloan">
                     </div>
                     <div class="cert-title-group">
-                        <h4>IBM SkillsBuild</h4>
-                        <div class="cert-subtitle">Professional Certification</div>
-                        <span style="color: var(--gold); font-size: 0.9rem;"><i class="fas fa-calendar"></i> 2025</span>
+                        <h4>MIT Sloan School of Management</h4>
+                        <div class="cert-subtitle">Supply Chain Analytics</div>
+                        <span class="cert-date"><i class="fas fa-calendar"></i> 2025</span>
                     </div>
                 </div>
-                <p><strong>Foundations in Generative AI & LLMs</strong></p>
-                <p>Deep dive into generative AI technologies, large language models, and prompt engineering.</p>
-                <div class="cert-impact">
-                    <strong>Impact on My Work:</strong>
-                    <p>Utilizing LLMs for automated contract analysis and RFP document generation.</p>
-                </div>
+                <p>Advanced analytics methodologies for supply chain optimization and demand forecasting.</p>
             </div>
 
             <div class="cert-card animate-on-scroll delay-3">
-                <div class="cert-header">
-                    <div class="cert-logo">
-                        <img src="./MIT.png" alt="MIT Sloan">
-                    </div>
-                    <div class="cert-title-group">
-                        <h4>MIT Sloan School of Management</h4>
-                        <div class="cert-subtitle">Executive Education</div>
-                        <span style="color: var(--gold); font-size: 0.9rem;"><i class="fas fa-calendar"></i> 2025</span>
-                    </div>
-                </div>
-                <p><strong>Supply Chain Analytics for Procurement</strong></p>
-                <p>Advanced analytics methodologies for supply chain optimization and demand forecasting.</p>
-                <div class="cert-impact">
-                    <strong>Impact on My Work:</strong>
-                    <p>Implemented demand forecasting models that reduced inventory carrying costs by 30%.</p>
-                </div>
-            </div>
-
-            <div class="cert-card animate-on-scroll delay-1">
-                <div class="cert-header">
-                    <div class="cert-logo">
-                        <img src="./MIT.png" alt="MIT Sloan">
-                    </div>
-                    <div class="cert-title-group">
-                        <h4>MIT Sloan School of Management</h4>
-                        <div class="cert-subtitle">Executive Education</div>
-                        <span style="color: var(--gold); font-size: 0.9rem;"><i class="fas fa-calendar"></i> 2024</span>
-                    </div>
-                </div>
-                <p><strong>Digital Transformation in Operations</strong></p>
-                <p>Strategic frameworks for digital transformation and process automation.</p>
-                <div class="cert-impact">
-                    <strong>Impact on My Work:</strong>
-                    <p>Led digital transformation initiative implementing ASANA-based project tracking.</p>
-                </div>
-            </div>
-
-            <div class="cert-card animate-on-scroll delay-2">
                 <div class="cert-header">
                     <div class="cert-logo">
                         <img src="./Harvard_University.png" alt="Harvard">
                     </div>
                     <div class="cert-title-group">
                         <h4>Harvard University</h4>
-                        <div class="cert-subtitle">Professional Development</div>
-                        <span style="color: var(--gold); font-size: 0.9rem;"><i class="fas fa-calendar"></i> 2023</span>
+                        <div class="cert-subtitle">Decision-Making in Leadership</div>
+                        <span class="cert-date"><i class="fas fa-calendar"></i> 2023</span>
                     </div>
                 </div>
-                <p><strong>Decision-Making in Leadership</strong></p>
                 <p>Evidence-based decision making frameworks and strategic thinking.</p>
-                <div class="cert-impact">
-                    <strong>Impact on My Work:</strong>
-                    <p>Applied structured decision-making frameworks to supplier selection processes.</p>
-                </div>
-            </div>
-
-            <div class="cert-card animate-on-scroll delay-3">
-                <div class="cert-header">
-                    <div class="cert-logo">
-                        <img src="./IBM.png" alt="IBM">
-                    </div>
-                    <div class="cert-title-group">
-                        <h4>IBM Data Science Professional</h4>
-                        <div class="cert-subtitle">Professional Certificate</div>
-                        <span style="color: var(--gold); font-size: 0.9rem;"><i class="fas fa-award"></i> Professional Level</span>
-                    </div>
-                </div>
-                <p><strong>Data Science & Machine Learning</strong></p>
-                <p>Comprehensive data science curriculum covering Python, SQL, and machine learning.</p>
-                <div class="cert-impact">
-                    <strong>Impact on My Work:</strong>
-                    <p>Built predictive sales and inventory models achieving 95% accuracy.</p>
-                </div>
-            </div>
-
-            <div class="cert-card animate-on-scroll delay-1">
-                <div class="cert-header">
-                    <div class="cert-logo" style="background: #0a0a23;">
-                        <i class="fas fa-code" style="font-size: 2rem; color: white;"></i>
-                    </div>
-                    <div class="cert-title-group">
-                        <h4>freeCodeCamp</h4>
-                        <div class="cert-subtitle">Technical Certification</div>
-                        <span style="color: var(--gold); font-size: 0.9rem;"><i class="fas fa-award"></i> Technical Level</span>
-                    </div>
-                </div>
-                <p><strong>Machine Learning with Python</strong></p>
-                <p>Hands-on training in TensorFlow, neural networks, and deep learning.</p>
-                <div class="cert-impact">
-                    <strong>Impact on My Work:</strong>
-                    <p>Developed custom ML algorithms for promotional impact analysis.</p>
-                </div>
             </div>
         </div>
     </section>
@@ -601,11 +776,11 @@
             <div class="repo-list">
                 <div class="repo-item" onclick="window.open('https://github.com/LucianoRSouza/sales_prediction_future_months', '_blank')">
                     <h4>sales_prediction_future_months</h4>
-                    <p>Linear Regression, Random Forest, XGBoost implementation for sales forecasting with 95% accuracy.</p>
+                    <p>Linear Regression, Random Forest, XGBoost for sales forecasting with 95% accuracy.</p>
                 </div>
                 <div class="repo-item" onclick="window.open('https://github.com/LucianoRSouza/inventory_optimization_level', '_blank')">
                     <h4>inventory_optimization_level</h4>
-                    <p>ML models for inventory management reducing carrying costs by 30% and stockouts by 85%.</p>
+                    <p>ML models reducing carrying costs by 30% and stockouts by 85%.</p>
                 </div>
                 <div class="repo-item" onclick="window.open('https://github.com/LucianoRSouza/promotional_impact', '_blank')">
                     <h4>promotional_impact</h4>
@@ -682,10 +857,25 @@
         </div>
     </footer>
 
-    <!-- Lightbox -->
+    <!-- Lightbox para galerias -->
     <div class="lightbox" id="lightbox" onclick="closeLightbox()">
         <span class="lightbox-close">&times;</span>
         <img src="" alt="Gallery Image" id="lightbox-img">
+    </div>
+
+    <!-- Project Gallery Modal -->
+    <div class="project-gallery-modal" id="projectGalleryModal">
+        <div class="gallery-modal-content">
+            <span class="gallery-close" onclick="closeProjectGallery()">&times;</span>
+            <div class="gallery-slider" id="gallerySlider">
+                <!-- Imagens serão inseridas via JS -->
+            </div>
+            <div class="gallery-controls">
+                <button class="gallery-btn prev" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+                <div class="gallery-dots" id="galleryDots"></div>
+                <button class="gallery-btn next" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
     </div>
 
     <!-- Scroll to Top -->
