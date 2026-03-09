@@ -14,26 +14,23 @@ window.addEventListener('scroll', () => {
     const navbar = document.getElementById('navbar');
     const scrollTop = document.getElementById('scrollTop');
     
-    // Navbar effect
     if (window.scrollY > 50) {
         navbar.classList.add('scrolled');
     } else {
         navbar.classList.remove('scrolled');
     }
     
-    // Scroll to top button
     if (window.scrollY > 500) {
         scrollTop.classList.add('visible');
     } else {
         scrollTop.classList.remove('visible');
     }
     
-    // Timeline logo spy
     updateTimelineLogo();
 });
 
 // ============================================
-// SCROLL ANIMATIONS (Intersection Observer)
+// SCROLL ANIMATIONS
 // ============================================
 const observerOptions = {
     threshold: 0.1,
@@ -53,7 +50,7 @@ document.querySelectorAll('.animate-on-scroll').forEach(el => {
 });
 
 // ============================================
-// TIMELINE LOGO SCROLL SPY (ÚNICO LOGO QUE MUDA)
+// TIMELINE LOGO SCROLL SPY
 // ============================================
 function updateTimelineLogo() {
     const timelineItems = document.querySelectorAll('.timeline-item');
@@ -66,7 +63,6 @@ function updateTimelineLogo() {
         const rect = item.getBoundingClientRect();
         const windowHeight = window.innerHeight;
         
-        // Item está no centro da viewport
         if (rect.top < windowHeight * 0.6 && rect.bottom > windowHeight * 0.4) {
             activeIndex = index;
             item.classList.add('active');
@@ -75,15 +71,12 @@ function updateTimelineLogo() {
         }
     });
     
-    // Atualiza o logo com base no item ativo
     const activeItem = timelineItems[activeIndex];
     if (activeItem && logoImg) {
         const newLogo = activeItem.getAttribute('data-logo');
         const currentSrc = logoImg.getAttribute('src');
         
-        // Só atualiza se for diferente (evita flicker)
         if (newLogo && newLogo !== currentSrc) {
-            // Animação de fade out/in
             logoImg.style.opacity = '0';
             setTimeout(() => {
                 logoImg.src = newLogo;
@@ -92,7 +85,6 @@ function updateTimelineLogo() {
         }
     }
     
-    // Atualiza indicadores
     indicators.forEach((dot, index) => {
         if (index === activeIndex) {
             dot.classList.add('active');
@@ -102,11 +94,10 @@ function updateTimelineLogo() {
     });
 }
 
-// Inicializa o logo spy
 updateTimelineLogo();
 
 // ============================================
-// PARTICLES ANIMATION
+// PARTICLES
 // ============================================
 function createParticles() {
     const container = document.getElementById('particles');
@@ -128,6 +119,59 @@ function createParticles() {
 createParticles();
 
 // ============================================
+// CUSTOM CURSOR (VOLTOU!)
+// ============================================
+if (window.matchMedia('(pointer: fine)').matches) {
+    const cursor = document.getElementById('cursor');
+    const follower = document.getElementById('cursorFollower');
+    
+    let mouseX = 0, mouseY = 0;
+    let cursorX = 0, cursorY = 0;
+    let followerX = 0, followerY = 0;
+    
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+    
+    function animateCursor() {
+        cursorX += (mouseX - cursorX) * 0.2;
+        cursorY += (mouseY - cursorY) * 0.2;
+        cursor.style.left = cursorX + 'px';
+        cursor.style.top = cursorY + 'px';
+        
+        followerX += (mouseX - followerX) * 0.1;
+        followerY += (mouseY - followerY) * 0.1;
+        follower.style.left = followerX + 'px';
+        follower.style.top = followerY + 'px';
+        
+        requestAnimationFrame(animateCursor);
+    }
+    
+    animateCursor();
+    
+    // Hover effects
+    document.querySelectorAll('a, button, .stat-box, .project-card, .repo-item, .contact-link, .social-link').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
+            follower.style.transform = 'translate(-50%, -50%) scale(1.5)';
+            cursor.style.background = 'var(--gold)';
+            cursor.style.borderColor = 'var(--gold)';
+        });
+        
+        el.addEventListener('mouseleave', () => {
+            cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+            follower.style.transform = 'translate(-50%, -50%) scale(1)';
+            cursor.style.background = 'transparent';
+            cursor.style.borderColor = 'var(--gold)';
+        });
+    });
+} else {
+    document.getElementById('cursor').style.display = 'none';
+    document.getElementById('cursorFollower').style.display = 'none';
+}
+
+// ============================================
 // TOAST NOTIFICATION
 // ============================================
 function showToast(message) {
@@ -145,14 +189,15 @@ function showToast(message) {
 // ============================================
 // STAT DETAIL CLICK
 // ============================================
-function showDetail(stat) {
+function showStatDetail(stat) {
     const messages = {
-        savings: '€1M+ em economias através de estratégias de procurement com IA',
-        experience: '15+ anos liderando transformações em 4 continentes',
-        ai: 'Especialista em ML, Python e automação inteligente de processos'
+        savings: '€1M+ in cost savings achieved through AI-powered procurement strategies',
+        experience: '15+ years leading procurement transformations across 4 continents',
+        projects: '$10M+ in project value managed from concept to delivery',
+        countries: '20+ countries served across Europe, LATAM, and Asia'
     };
     
-    showToast(messages[stat] || 'Detalhes em breve');
+    showToast(messages[stat] || 'Details coming soon');
 }
 
 // ============================================
@@ -165,10 +210,10 @@ function changeLang(lang) {
     
     event.target.classList.add('active');
     
-    if (lang === 'pt') {
-        showToast('Português já está ativo');
+    if (lang === 'en') {
+        showToast('English is already active');
     } else {
-        showToast(`Clique com botão direito e selecione "Traduzir para ${lang.toUpperCase()}"`);
+        showToast('Right-click and select "Translate to ' + lang.toUpperCase() + '" for automatic translation');
     }
 }
 
@@ -180,7 +225,7 @@ function scrollToTop() {
 }
 
 // ============================================
-// SMOOTH SCROLL FOR ANCHOR LINKS
+// SMOOTH SCROLL
 // ============================================
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -196,7 +241,36 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // ============================================
-// LAZY LOAD IMAGES
+// LIGHTBOX
+// ============================================
+function openLightbox(element) {
+    const img = element.querySelector('img');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    
+    if (img && lightbox && lightboxImg) {
+        lightboxImg.src = img.src;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function closeLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    if (lightbox) {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+}
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        closeLightbox();
+    }
+});
+
+// ============================================
+// LAZY LOAD
 // ============================================
 if ('IntersectionObserver' in window) {
     const imageObserver = new IntersectionObserver((entries, observer) => {
@@ -216,25 +290,5 @@ if ('IntersectionObserver' in window) {
         imageObserver.observe(img);
     });
 }
-
-// ============================================
-// PERFORMANCE: DEBOUNCE SCROLL EVENTS
-// ============================================
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
-// Aplica debounce no scroll para melhor performance
-window.addEventListener('scroll', debounce(() => {
-    // Ações de scroll otimizadas aqui se necessário
-}, 10));
 
 console.log('🚀 Site de Luciano Rodrigues carregado com sucesso!');
