@@ -1,3 +1,4 @@
+// Estado global
 const PG_state = {
   images: [],
   index: 0,
@@ -6,10 +7,18 @@ const PG_state = {
   currentProjectIndex: 0
 };
 
-const CardSlides = new Map;
-const $ = (e, t = document) => t.querySelector(e);
-const $$ = (e, t = document) => Array.from(t.querySelectorAll(e));
+const CardSlides = new Map();
 
+// Helpers
+function $(selector, context) {
+  return (context || document).querySelector(selector);
+}
+
+function $$(selector, context) {
+  return Array.from((context || document).querySelectorAll(selector));
+}
+
+// Dados
 const statDetailsData = {
   savings: {
     icon: "fa-piggy-bank",
@@ -290,7 +299,7 @@ const strategyDetailsData = {
       {
         title: "Performance Metrics",
         items: [
-          "Cost per lead calculation (stand cost ÷ qualified leads) with benchmark comparison",
+          "Cost per lead calculation (stand cost / qualified leads) with benchmark comparison",
           "Conversion rate tracking from lead to order with cohort analysis",
           "Average deal size comparison vs. non-fair customers and channel benchmarks",
           "Time-to-close analysis identifying bottlenecks and process improvements",
@@ -301,27 +310,38 @@ const strategyDetailsData = {
   }
 };
 
+// Inicialização
 function initLoading() {
-  const e = $("#loading");
-  e && window.addEventListener("load", (() => {
-    setTimeout((() => {
-      e.classList.add("hidden");
-      setTimeout((() => e.remove()), 400);
-    }), 1200);
-  }));
+  const loading = $("#loading");
+  if (!loading) return;
+  
+  window.addEventListener("load", function() {
+    setTimeout(function() {
+      loading.classList.add("hidden");
+      setTimeout(function() {
+        loading.remove();
+      }, 400);
+    }, 1200);
+  });
 }
 
 function initNavbarScroll() {
-  const e = $("#navbar");
-  const t = $("#scrollTop");
-  const n = () => {
-    const n = window.scrollY || document.documentElement.scrollTop;
-    e && e.classList.toggle("scrolled", n > 50);
-    t && t.classList.toggle("visible", n > 600);
+  const navbar = $("#navbar");
+  const scrollTop = $("#scrollTop");
+  
+  function update() {
+    const scrollY = window.scrollY || document.documentElement.scrollTop;
+    if (navbar) {
+      navbar.classList.toggle("scrolled", scrollY > 50);
+    }
+    if (scrollTop) {
+      scrollTop.classList.toggle("visible", scrollY > 600);
+    }
     updateTimelineSpy();
-  };
-  n();
-  window.addEventListener("scroll", n, { passive: true });
+  }
+  
+  update();
+  window.addEventListener("scroll", update, { passive: true });
 }
 
 function scrollToTop() {
@@ -329,53 +349,70 @@ function scrollToTop() {
 }
 
 function initScrollAnimations() {
-  const e = {
+  const options = {
     threshold: 0.12,
     rootMargin: "0px 0px -60px 0px"
   };
-  const t = new IntersectionObserver((e => {
-    e.forEach((e => {
-      e.isIntersecting && e.target.classList.add("visible");
-    }));
-  }), e);
-  $$(".animate-on-scroll").forEach((e => t.observe(e)));
+  
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+      }
+    });
+  }, options);
+  
+  $$(".animate-on-scroll").forEach(function(el) {
+    observer.observe(el);
+  });
 }
 
 function initParticles() {
-  const e = $("#particles");
-  if (!e) return;
-  for (let t = 0; t < 26; t++) {
-    const t = document.createElement("div");
-    t.className = "particle";
-    t.style.left = 100 * Math.random() + "%";
-    t.style.top = 100 * Math.random() + "%";
-    t.style.width = t.style.height = Math.max(3, Math.min(6, 3 + 4 * Math.random())) + "px";
-    t.style.opacity = (0.22 + 0.35 * Math.random()).toFixed(2);
-    t.style.animationDelay = (5 * Math.random()).toFixed(2) + "s";
-    t.style.animationDuration = (4 + 5 * Math.random()).toFixed(2) + "s";
-    t.style.position = "absolute";
-    t.style.background = "var(--gold)";
-    t.style.borderRadius = "50%";
-    t.style.pointerEvents = "none";
-    e.appendChild(t);
+  const container = $("#particles");
+  if (!container) return;
+  
+  for (let i = 0; i < 26; i++) {
+    const particle = document.createElement("div");
+    particle.className = "particle";
+    particle.style.left = (100 * Math.random()) + "%";
+    particle.style.top = (100 * Math.random()) + "%";
+    const size = Math.max(3, Math.min(6, 3 + 4 * Math.random()));
+    particle.style.width = size + "px";
+    particle.style.height = size + "px";
+    particle.style.opacity = (0.22 + 0.35 * Math.random()).toFixed(2);
+    particle.style.animationDelay = (5 * Math.random()).toFixed(2) + "s";
+    particle.style.animationDuration = (4 + 5 * Math.random()).toFixed(2) + "s";
+    particle.style.position = "absolute";
+    particle.style.background = "var(--gold)";
+    particle.style.borderRadius = "50%";
+    particle.style.pointerEvents = "none";
+    container.appendChild(particle);
   }
 }
 
 function initSmoothAnchors() {
-  $$('a[href^="#"]').forEach((e => {
-    e.addEventListener("click", (t => {
-      const n = e.getAttribute("href");
-      if (n && "#" !== n) {
-        const e = $(n);
-        e && (t.preventDefault(), e.scrollIntoView({ behavior: "smooth", block: "start" }));
+  $$('a[href^="#"]').forEach(function(anchor) {
+    anchor.addEventListener("click", function(e) {
+      const href = anchor.getAttribute("href");
+      if (href && href !== "#") {
+        const target = $(href);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
       }
-    }));
-  }));
+    });
+  });
 }
 
-function showToast(e = "") {
-  const t = $("#toast");
-  t && (t.textContent = e, t.classList.add("show"), setTimeout((() => t.classList.remove("show")), 2800));
+function showToast(message) {
+  const toast = $("#toast");
+  if (!toast) return;
+  toast.textContent = message;
+  toast.classList.add("show");
+  setTimeout(function() {
+    toast.classList.remove("show");
+  }, 2800);
 }
 
 function initTimelineSpy() {
@@ -383,239 +420,382 @@ function initTimelineSpy() {
 }
 
 function updateTimelineSpy() {
-  const e = $$(".timeline-item");
-  if (!e.length) return;
-  const t = $("#logo-img");
-  const n = $$(".indicator-dot");
-  if (!t) return;
-  let o = 0;
-  const i = window.innerHeight;
-  const s = 0.62 * i;
-  const a = 0.38 * i;
-  e.forEach(((e, t) => {
-    const n = e.getBoundingClientRect();
-    n.top < s && n.bottom > a ? (o = t, e.classList.add("active")) : e.classList.remove("active");
-  }));
-  const r = e[o];
-  if (r) {
-    const e = r.getAttribute("data-logo");
-    const n = t.getAttribute("src");
-    e && e !== n && (t.style.opacity = "0", setTimeout((() => {
-      t.src = e;
-      t.onload = () => {
-        t.style.opacity = "1";
-      };
-    }), 160));
+  const items = $$(".timeline-item");
+  if (!items.length) return;
+  
+  const logoImg = $("#logo-img");
+  const dots = $$(".indicator-dot");
+  if (!logoImg) return;
+  
+  let activeIndex = 0;
+  const viewportHeight = window.innerHeight;
+  const upperThreshold = 0.62 * viewportHeight;
+  const lowerThreshold = 0.38 * viewportHeight;
+  
+  items.forEach(function(item, index) {
+    const rect = item.getBoundingClientRect();
+    if (rect.top < upperThreshold && rect.bottom > lowerThreshold) {
+      activeIndex = index;
+      item.classList.add("active");
+    } else {
+      item.classList.remove("active");
+    }
+  });
+  
+  const activeItem = items[activeIndex];
+  if (activeItem) {
+    const newLogo = activeItem.getAttribute("data-logo");
+    const currentLogo = logoImg.getAttribute("src");
+    if (newLogo && newLogo !== currentLogo) {
+      logoImg.style.opacity = "0";
+      setTimeout(function() {
+        logoImg.src = newLogo;
+        logoImg.onload = function() {
+          logoImg.style.opacity = "1";
+        };
+      }, 160);
+    }
   }
-  n.forEach(((e, t) => e.classList.toggle("active", t === o)));
+  
+  dots.forEach(function(dot, index) {
+    dot.classList.toggle("active", index === activeIndex);
+  });
 }
 
 function initLangSwitcher() {
-  const e = $("#langSwitcher");
-  e && e.addEventListener("click", (e => {
-    const t = e.target.closest(".lang-btn");
-    if (!t) return;
-    const n = t.dataset.lang;
-    n && ($$(".lang-btn").forEach((e => e.classList.remove("active"))), t.classList.add("active"), showToast(`Language: ${n.toUpperCase()}`));
-  }));
+  const switcher = $("#langSwitcher");
+  if (!switcher) return;
+  
+  switcher.addEventListener("click", function(e) {
+    const btn = e.target.closest(".lang-btn");
+    if (!btn) return;
+    
+    const lang = btn.dataset.lang;
+    if (!lang) return;
+    
+    $$(".lang-btn").forEach(function(b) {
+      b.classList.remove("active");
+    });
+    btn.classList.add("active");
+    showToast("Language: " + lang.toUpperCase());
+  });
 }
 
 function initTradeTabs() {
-  const e = $$(".gallery-tab");
-  e.length && e.forEach((t => {
-    t.addEventListener("click", (() => {
-      e.forEach((e => {
-        e.classList.remove("active");
-        e.setAttribute("aria-selected", "false");
-      }));
-      t.classList.add("active");
-      t.setAttribute("aria-selected", "true");
-      $$(".gallery-content").forEach((e => e.classList.remove("active")));
-      const n = t.dataset.target;
-      const o = $("#" + n);
-      o && o.classList.add("active");
-    }));
-  }));
+  const tabs = $$(".gallery-tab");
+  if (!tabs.length) return;
+  
+  tabs.forEach(function(tab) {
+    tab.addEventListener("click", function() {
+      tabs.forEach(function(t) {
+        t.classList.remove("active");
+        t.setAttribute("aria-selected", "false");
+      });
+      tab.classList.add("active");
+      tab.setAttribute("aria-selected", "true");
+      
+      $$(".gallery-content").forEach(function(content) {
+        content.classList.remove("active");
+      });
+      
+      const targetId = tab.dataset.target;
+      const target = $("#" + targetId);
+      if (target) {
+        target.classList.add("active");
+      }
+    });
+  });
 }
 
-function openStatModal(e) {
-  const t = statDetailsData[e];
-  if (!t) return;
-  const n = $("#statModalOverlay");
-  const o = $("#statModalIcon");
-  const i = $("#statModalTitle");
-  const s = $("#statModalStory");
-  const a = $("#statModalValue");
-  const r = $("#statModalDetails");
-  n && (o.className = "fas " + t.icon, i.textContent = t.title, s.textContent = t.story, a.textContent = t.value, r.innerHTML = t.details.map((e => "<li>" + e + "</li>")).join(""), n.classList.add("active"), document.body.style.overflow = "hidden");
+// Modais
+function openStatModal(statKey) {
+  const data = statDetailsData[statKey];
+  if (!data) return;
+  
+  const overlay = $("#statModalOverlay");
+  const icon = $("#statModalIcon");
+  const title = $("#statModalTitle");
+  const story = $("#statModalStory");
+  const value = $("#statModalValue");
+  const details = $("#statModalDetails");
+  
+  if (!overlay) return;
+  
+  icon.className = "fas " + data.icon;
+  title.textContent = data.title;
+  story.textContent = data.story;
+  value.textContent = data.value;
+  details.innerHTML = data.details.map(function(item) {
+    return "<li>" + item + "</li>";
+  }).join("");
+  
+  overlay.classList.add("active");
+  document.body.style.overflow = "hidden";
 }
 
 function closeStatModal() {
-  const e = $("#statModalOverlay");
-  e && (e.classList.remove("active"), document.body.style.overflow = "auto");
+  const overlay = $("#statModalOverlay");
+  if (overlay) {
+    overlay.classList.remove("active");
+    document.body.style.overflow = "auto";
+  }
 }
 
-function openStrategyModal(e) {
-  const t = strategyDetailsData[e];
-  if (!t) return;
-  const n = $("#strategyDetailOverlay");
-  const o = $("#strategyDetailIcon");
-  const i = $("#strategyDetailTitle");
-  const s = $("#strategyDetailSubtitle");
-  const a = $("#strategyDetailBody");
-  n && (o.className = "fas " + t.icon, i.textContent = t.title, s.textContent = t.subtitle, a.innerHTML = t.sections.map((e => '<div class="strategy-detail-section"><h4><i class="fas fa-chevron-right"></i> ' + e.title + '</h4><ul>' + e.items.map((e => "<li>" + e + "</li>")).join("") + "</ul></div>")).join(""), n.classList.add("active"), document.body.style.overflow = "hidden");
+function openStrategyModal(id) {
+  const data = strategyDetailsData[id];
+  if (!data) return;
+  
+  const overlay = $("#strategyDetailOverlay");
+  const icon = $("#strategyDetailIcon");
+  const title = $("#strategyDetailTitle");
+  const subtitle = $("#strategyDetailSubtitle");
+  const body = $("#strategyDetailBody");
+  
+  if (!overlay) return;
+  
+  icon.className = "fas " + data.icon;
+  title.textContent = data.title;
+  subtitle.textContent = data.subtitle;
+  body.innerHTML = data.sections.map(function(section) {
+    return '<div class="strategy-detail-section"><h4><i class="fas fa-chevron-right"></i> ' + 
+           section.title + '</h4><ul>' + 
+           section.items.map(function(item) {
+             return "<li>" + item + "</li>";
+           }).join("") + 
+           "</ul></div>";
+  }).join("");
+  
+  overlay.classList.add("active");
+  document.body.style.overflow = "hidden";
 }
 
 function closeStrategyModal() {
-  const e = $("#strategyDetailOverlay");
-  e && (e.classList.remove("active"), document.body.style.overflow = "auto");
+  const overlay = $("#strategyDetailOverlay");
+  if (overlay) {
+    overlay.classList.remove("active");
+    document.body.style.overflow = "auto";
+  }
 }
 
+// Galerias de projetos
 function initProjectGalleries() {
   $$(".project-card[data-gallery]").forEach(setupCardAutoSlide);
 }
 
-function setupCardAutoSlide(e) {
-  const t = e.querySelector(".gallery-main");
-  if (!t) return;
-  let n = [];
-  const o = e.getAttribute("data-images") || "";
-  if (o.trim().length) n = o.split(",").map((e => e.trim())).filter(Boolean);
-  else {
-    const e = t.querySelector("img");
-    e && e.src && (n = [e.src]);
+function setupCardAutoSlide(card) {
+  const main = card.querySelector(".gallery-main");
+  if (!main) return;
+  
+  let images = [];
+  const dataAttr = card.getAttribute("data-images") || "";
+  
+  if (dataAttr.trim().length) {
+    images = dataAttr.split(",").map(function(s) {
+      return s.trim();
+    }).filter(Boolean);
+  } else {
+    const img = main.querySelector("img");
+    if (img && img.src) {
+      images = [img.src];
+    }
   }
-  if (!n.length) return;
-  const i = t.querySelector("img");
-  if (!i) return;
-  const s = {
-    images: n,
+  
+  if (!images.length) return;
+  
+  const imgEl = main.querySelector("img");
+  if (!imgEl) return;
+  
+  const state = {
+    images: images,
     idx: 0,
     timer: null,
     interval: 2500,
-    imgEl: i,
+    imgEl: imgEl,
     paused: false
   };
-  CardSlides.set(e, s);
-  const a = document.createElement("div");
-  a.className = "gallery-dots";
-  n.forEach(((e, t) => {
-    const n = document.createElement("div");
-    n.className = "gallery-dot" + (0 === t ? " active" : "");
-    a.appendChild(n);
-  }));
-  e.querySelector(".project-gallery").appendChild(a);
-
-  function r() {
-    s.paused || s.images.length <= 1 || (s.idx = (s.idx + 1) % s.images.length, i.style.opacity = "0", setTimeout((() => {
-      i.src = s.images[s.idx];
-      i.onload = () => {
-        i.style.opacity = "1";
+  
+  CardSlides.set(card, state);
+  
+  const dotsContainer = document.createElement("div");
+  dotsContainer.className = "gallery-dots";
+  images.forEach(function(_, idx) {
+    const dot = document.createElement("div");
+    dot.className = "gallery-dot" + (idx === 0 ? " active" : "");
+    dotsContainer.appendChild(dot);
+  });
+  
+  const gallery = card.querySelector(".project-gallery");
+  if (gallery) {
+    gallery.appendChild(dotsContainer);
+  }
+  
+  function nextSlide() {
+    if (state.paused || state.images.length <= 1) return;
+    state.idx = (state.idx + 1) % state.images.length;
+    imgEl.style.opacity = "0";
+    setTimeout(function() {
+      imgEl.src = state.images[state.idx];
+      imgEl.onload = function() {
+        imgEl.style.opacity = "1";
       };
-      e.querySelectorAll(".gallery-dot").forEach(((e, t) => e.classList.toggle("active", t === s.idx)));
-    }), 160));
+      const dots = card.querySelectorAll(".gallery-dot");
+      dots.forEach(function(dot, idx) {
+        dot.classList.toggle("active", idx === state.idx);
+      });
+    }, 160);
   }
-
-  function l() {
-    c();
-    s.images.length > 1 && (s.timer = setInterval(r, s.interval));
+  
+  function start() {
+    stop();
+    if (state.images.length > 1) {
+      state.timer = setInterval(nextSlide, state.interval);
+    }
   }
-
-  function c() {
-    s.timer && (clearInterval(s.timer), s.timer = null);
+  
+  function stop() {
+    if (state.timer) {
+      clearInterval(state.timer);
+      state.timer = null;
+    }
   }
-
-  e.addEventListener("mouseenter", (() => {
-    s.paused = true;
-  }));
-  e.addEventListener("mouseleave", (() => {
-    s.paused = false;
-  }));
-  l();
+  
+  card.addEventListener("mouseenter", function() {
+    state.paused = true;
+  });
+  
+  card.addEventListener("mouseleave", function() {
+    state.paused = false;
+  });
+  
+  start();
 }
 
-function openProjectGallery(e) {
-  const t = e.closest(".project-card");
-  if (!t) return;
-  const n = t.getAttribute("data-images") || "";
-  if (!n.trim().length) return;
-  const o = n.split(",").map((e => e.trim())).filter(Boolean);
-  if (!o.length) return;
-  PG_state.currentProjectImages = o;
+function openProjectGallery(element) {
+  const card = element.closest(".project-card");
+  if (!card) return;
+  
+  const dataAttr = card.getAttribute("data-images") || "";
+  if (!dataAttr.trim().length) return;
+  
+  const images = dataAttr.split(",").map(function(s) {
+    return s.trim();
+  }).filter(Boolean);
+  
+  if (!images.length) return;
+  
+  PG_state.currentProjectImages = images;
   PG_state.currentProjectIndex = 0;
-  const i = $("#projectGalleryModal");
-  const s = $("#gallerySlider");
-  const a = $("#galleryDots");
-  if (!i || !s || !a) return;
-  s.innerHTML = "";
-  a.innerHTML = "";
-  o.forEach(((e, t) => {
-    const n = document.createElement("div");
-    n.className = "gallery-slide" + (0 === t ? " active" : "");
-    const o = document.createElement("img");
-    o.alt = "Project image " + (t + 1);
-    o.src = e;
-    n.appendChild(o);
-    s.appendChild(n);
-    const i = document.createElement("div");
-    i.className = "gallery-dot" + (0 === t ? " active" : "");
-    i.onclick = () => goToProjectSlide(t);
-    a.appendChild(i);
-  }));
-  i.classList.add("active");
+  
+  const modal = $("#projectGalleryModal");
+  const slider = $("#gallerySlider");
+  const dots = $("#galleryDots");
+  
+  if (!modal || !slider || !dots) return;
+  
+  slider.innerHTML = "";
+  dots.innerHTML = "";
+  
+  images.forEach(function(src, idx) {
+    const slide = document.createElement("div");
+    slide.className = "gallery-slide" + (idx === 0 ? " active" : "");
+    const img = document.createElement("img");
+    img.alt = "Project image " + (idx + 1);
+    img.src = src;
+    slide.appendChild(img);
+    slider.appendChild(slide);
+    
+    const dot = document.createElement("div");
+    dot.className = "gallery-dot" + (idx === 0 ? " active" : "");
+    dot.onclick = function() {
+      goToProjectSlide(idx);
+    };
+    dots.appendChild(dot);
+  });
+  
+  modal.classList.add("active");
   document.body.style.overflow = "hidden";
 }
 
-function changeProjectSlide(e) {
+function changeProjectSlide(direction) {
   if (!PG_state.currentProjectImages.length) return;
-  const t = $$(".gallery-slide");
-  const n = $$("#galleryDots .gallery-dot");
-  t[PG_state.currentProjectIndex]?.classList.remove("active");
-  n[PG_state.currentProjectIndex]?.classList.remove("active");
-  PG_state.currentProjectIndex = (PG_state.currentProjectIndex + e + PG_state.currentProjectImages.length) % PG_state.currentProjectImages.length;
-  t[PG_state.currentProjectIndex]?.classList.add("active");
-  n[PG_state.currentProjectIndex]?.classList.add("active");
+  
+  const slides = $$(".gallery-slide");
+  const dots = $$("#galleryDots .gallery-dot");
+  
+  slides[PG_state.currentProjectIndex]?.classList.remove("active");
+  dots[PG_state.currentProjectIndex]?.classList.remove("active");
+  
+  PG_state.currentProjectIndex = (PG_state.currentProjectIndex + direction + PG_state.currentProjectImages.length) % PG_state.currentProjectImages.length;
+  
+  slides[PG_state.currentProjectIndex]?.classList.add("active");
+  dots[PG_state.currentProjectIndex]?.classList.add("active");
 }
 
-function goToProjectSlide(e) {
+function goToProjectSlide(index) {
   if (!PG_state.currentProjectImages.length) return;
-  const t = $$(".gallery-slide");
-  const n = $$("#galleryDots .gallery-dot");
-  t[PG_state.currentProjectIndex]?.classList.remove("active");
-  n[PG_state.currentProjectIndex]?.classList.remove("active");
-  PG_state.currentProjectIndex = e;
-  t[PG_state.currentProjectIndex]?.classList.add("active");
-  n[PG_state.currentProjectIndex]?.classList.add("active");
+  
+  const slides = $$(".gallery-slide");
+  const dots = $$("#galleryDots .gallery-dot");
+  
+  slides[PG_state.currentProjectIndex]?.classList.remove("active");
+  dots[PG_state.currentProjectIndex]?.classList.remove("active");
+  
+  PG_state.currentProjectIndex = index;
+  
+  slides[PG_state.currentProjectIndex]?.classList.add("active");
+  dots[PG_state.currentProjectIndex]?.classList.add("active");
 }
 
 function closeProjectGallery() {
-  const e = $("#projectGalleryModal");
-  e && (e.classList.remove("active"), document.body.style.overflow = "auto");
+  const modal = $("#projectGalleryModal");
+  if (modal) {
+    modal.classList.remove("active");
+    document.body.style.overflow = "auto";
+  }
 }
 
-function openLightbox(e) {
-  const t = $("#lightbox");
-  const n = $("#lightbox-img");
-  if (!t || !n) return;
-  let o = "";
-  if (e && e.querySelector) {
-    const t = e.querySelector("img");
-    t && (o = t.src);
+// Lightbox
+function openLightbox(element) {
+  const lightbox = $("#lightbox");
+  const img = $("#lightbox-img");
+  
+  if (!lightbox || !img) return;
+  
+  let src = "";
+  if (element && element.querySelector) {
+    const thumb = element.querySelector("img");
+    if (thumb) {
+      src = thumb.src;
+    }
   }
-  o && (n.src = o, t.classList.add("active"), document.body.style.overflow = "hidden");
+  
+  if (src) {
+    img.src = src;
+    lightbox.classList.add("active");
+    document.body.style.overflow = "hidden";
+  }
 }
 
 function closeLightbox() {
-  const e = $("#lightbox");
-  e && (e.classList.remove("active"), document.body.style.overflow = "auto");
+  const lightbox = $("#lightbox");
+  if (lightbox) {
+    lightbox.classList.remove("active");
+    document.body.style.overflow = "auto";
+  }
 }
 
-document.addEventListener("keydown", (e => {
-  "Escape" === e.key && (closeStatModal(), closeStrategyModal(), closeProjectGallery(), closeLightbox());
-}));
+// Event listeners globais
+document.addEventListener("keydown", function(e) {
+  if (e.key === "Escape") {
+    closeStatModal();
+    closeStrategyModal();
+    closeProjectGallery();
+    closeLightbox();
+  }
+});
 
-document.addEventListener("DOMContentLoaded", (function() {
-  console.log("🚀 Initializing Luciano Portfolio...");
+document.addEventListener("DOMContentLoaded", function() {
+  console.log("Inicializando portfolio...");
   initLoading();
   initNavbarScroll();
   initScrollAnimations();
@@ -625,9 +805,10 @@ document.addEventListener("DOMContentLoaded", (function() {
   initTradeTabs();
   initTimelineSpy();
   initProjectGalleries();
-  console.log("✅ All systems initialized");
-}));
+  console.log("Sistema inicializado");
+});
 
+// Exportar funções globais
 window.openStatModal = openStatModal;
 window.closeStatModal = closeStatModal;
 window.openStrategyModal = openStrategyModal;
