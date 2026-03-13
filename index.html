@@ -64,32 +64,35 @@
         <p class="hero-description" data-i18n="hero.desc">
           I connect governance, technical rigor, and AI to deliver measurable outcomes: transparent tenders, reliable partners, and resilient operations across Europe, LATAM, and Asia.
         </p>
-        <div class="hero-stats" aria-label="Key metrics">
-          <div class="stat-box" data-stat="savings" tabindex="0" aria-label="Cumulative savings delivered">
-            <i class="fas fa-piggy-bank stat-icon" aria-hidden="true"></i>
-            <span class="stat-number" id="statSavings">€1M+</span>
-            <span class="stat-label" data-i18n="hero.stats.savings">Cumulative Savings</span>
-            <small class="stat-note" data-i18n="hero.stats.savings_note">Across multi-category negotiations</small>
-          </div>
-          <div class="stat-box" data-stat="rfps" tabindex="0" aria-label="Strategic tenders led">
-            <i class="fas fa-file-contract stat-icon" aria-hidden="true"></i>
-            <span class="stat-number" id="statRFPs">120+</span>
-            <span class="stat-label" data-i18n="hero.stats.rfps">RFP/RFQ Led</span>
-            <small class="stat-note" data-i18n="hero.stats.rfps_note">With technical annexes &amp; weighted scoring</small>
-          </div>
-          <div class="stat-box" data-stat="projects" tabindex="0" aria-label="Project value managed">
-            <i class="fas fa-project-diagram stat-icon" aria-hidden="true"></i>
-            <span class="stat-number" id="statProjects">€10M+</span>
-            <span class="stat-label" data-i18n="hero.stats.projects">Project Portfolio</span>
-            <small class="stat-note" data-i18n="hero.stats.projects_note">From concept to audited mass production</small>
-          </div>
-          <div class="stat-box" data-stat="regions" tabindex="0" aria-label="Regions served">
-            <i class="fas fa-globe stat-icon" aria-hidden="true"></i>
-            <span class="stat-number" id="statRegions">20+</span>
-            <span class="stat-label" data-i18n="hero.stats.regions">Countries</span>
-            <small class="stat-note" data-i18n="hero.stats.regions_note">Europe · LATAM · Asia</small>
-          </div>
-        </div>
+        <div class="hero-stats">
+  <div class="stat-box" onclick="openStatModal('savings')">
+    <div class="stat-icon"><i class="fas fa-piggy-bank"></i></div>
+    <span class="stat-number">€1M+</span>
+    <span class="stat-label">Savings</span>
+    <span class="stat-note">Cumulative</span>
+  </div>
+
+  <div class="stat-box" onclick="openStatModal('rfps')">
+    <div class="stat-icon"><i class="fas fa-file-contract"></i></div>
+    <span class="stat-number">120+</span>
+    <span class="stat-label">Strategic</span>
+    <span class="stat-note">Tenders Led</span>
+  </div>
+
+  <div class="stat-box" onclick="openStatModal('projects')">
+    <div class="stat-icon"><i class="fas fa-project-diagram"></i></div>
+    <span class="stat-number">€10M+</span>
+    <span class="stat-label">Value</span>
+    <span class="stat-note">Portfolio</span>
+  </div>
+
+  <div class="stat-box" onclick="openStatModal('regions')">
+    <div class="stat-icon"><i class="fas fa-globe"></i></div>
+    <span class="stat-number">20+</span>
+    <span class="stat-label">Countries</span>
+    <span class="stat-note">Global Ops</span>
+  </div>
+</div>
         <div class="hero-buttons">
           <a href="#contact" class="btn btn-primary">
             <i class="fas fa-paper-plane"></i>
@@ -2013,6 +2016,15 @@ window.scrollToTop = scrollToTop;
 
 <!-- ✅ Inclui o seu arquivo externo JS (carrega TODO o código do script.js) -->
 <script src="./js/script.js"></script>
+<div id="statModalOverlay" class="stat-modal-overlay" onclick="if(event.target===this) closeStatModal()">
+  <div class="stat-modal">
+    <button class="stat-modal-close" onclick="closeStatModal()">&times;</button>
+    <div id="statModalIcon" class="stat-modal-icon"></div>
+    <h3 id="statModalTitle"></h3>
+    <span id="statModalValue" class="stat-modal-value"></span>
+    <ul id="statModalDetails" class="stat-modal-details"></ul>
+  </div>
+</div>
 </body>
 </html>
 
