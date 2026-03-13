@@ -745,6 +745,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // Mobile/touch
   initMobileEnhancements();
 
+// Mobile/touch
+  initMobileEnhancements();
+
   // Fechar modais por clique/ESC
   on(document, 'click', (e) => {
     if (e.target?.id === 'statModalOverlay') closeStatModal();
@@ -757,15 +760,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-    console.log('✅ Portfolio JS (consolidado) inicializado');
-  
-  // Inicializar modais dos stat boxes
+  console.log('✅ Portfolio JS (consolidado) inicializado');
   initStatModals();
 });
-
-// ============================================
-// STAT BOXES MODAL FUNCTIONS
-// ============================================
 
 function initStatModals() {
   document.querySelectorAll('.stat-box').forEach(box => {
@@ -775,31 +772,18 @@ function initStatModals() {
 }
 
 function openStatModal(key) {
-  // 1. Verificar se os dados existem
   const data = statDetailsData[key];
-  if (!data) {
-    console.error('Dados não encontrados para:', key);
-    return;
-  }
-
-  // 2. Localizar o modal
+  if (!data) return;
   const overlay = document.getElementById('statModalOverlay');
-  if (!overlay) {
-    console.error('Elemento statModalOverlay não encontrado no HTML!');
-    return;
-  }
+  if (!overlay) return;
 
-  // 3. Preencher os campos
   document.getElementById('statModalIcon').className = `fas ${data.icon} stat-modal-icon`;
   document.getElementById('statModalTitle').textContent = data.title;
   document.getElementById('statModalValue').textContent = data.value;
-  
-  const detailsList = document.getElementById('statModalDetails');
-  detailsList.innerHTML = data.details
+  document.getElementById('statModalDetails').innerHTML = data.details
     .map(item => `<li>${item}</li>`)
     .join('');
 
-  // 4. Mostrar o modal
   overlay.classList.add('active');
   document.body.style.overflow = 'hidden';
 }
@@ -812,14 +796,13 @@ function closeStatModal() {
   }
 }
 
-// Expor funções para o HTML
-window.openStatModal        = openStatModal;
-window.closeStatModal       = closeStatModal;
-window.openStrategyModal    = openStrategyModal;
-window.closeStrategyModal   = closeStrategyModal;
-window.openLightbox         = openLightbox;
-window.closeLightbox        = closeLightbox;
-window.changeProjectSlide   = changeProjectSlide;
-window.goToProjectSlide     = goToProjectSlide;
-window.closeProjectGallery  = closeProjectGallery;
-window.scrollToTop          = scrollToTop;
+window.openStatModal = openStatModal;
+window.closeStatModal = closeStatModal;
+window.scrollToTop = scrollToTop;
+window.openLightbox = openLightbox;
+window.closeLightbox = closeLightbox;
+window.changeProjectSlide = changeProjectSlide;
+window.goToProjectSlide = goToProjectSlide;
+window.closeProjectGallery = closeProjectGallery;
+window.openStrategyModal = openStrategyModal;
+window.closeStrategyModal = closeStrategyModal;
