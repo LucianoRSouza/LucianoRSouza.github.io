@@ -1,5 +1,5 @@
 /* =========================================================
-   Luciano Rodrigues — Portfolio JS (consolidado e limpo)
+   Luciano Rodrigues — Portfolio JS (CORRIGIDO E LIMPO)
    ========================================================= */
 
 /* -------------------------
@@ -13,8 +13,10 @@ const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
 const on = (el, evt, fn, opts) => el && el.addEventListener(evt, fn, opts);
 
 /* -------------------------
-   Dados — Stats & Estratégia
+   DADOS — STATS & ESTRATÉGIA
 --------------------------*/
+
+// Dados dos 4 blocos do Hero (Savings, RFPs, Projects, Regions)
 const statDetailsData = {
   savings: {
     icon: "fa-piggy-bank",
@@ -66,6 +68,7 @@ const statDetailsData = {
   }
 };
 
+// Dados dos 6 pilares da Estratégia de Feiras
 const strategyDetailsData = {
   1: {
     title: "Stand Design & Merchandising",
@@ -232,57 +235,109 @@ const strategyDetailsData = {
 };
 
 /* -------------------------
-   Modais — Stats
+   MODAL FUNCTIONS — STATS (4 blocos do Hero)
 --------------------------*/
+
 function openStatModal(key) {
   const data = statDetailsData[key];
-  if (!data) return;
-  $('#statModalIcon').className = `fas ${data.icon}`;
-  $('#statModalTitle').textContent = data.title;
-  $('#statModalValue').textContent = data.value;
-  $('#statModalDetails').innerHTML = data.details.map(it => `<li>${it}</li>`).join('');
-  $('#statModalOverlay').classList.add('active');
+  if (!data) {
+    console.error('Stat data not found for key:', key);
+    return;
+  }
+  
+  const overlay = $('#statModalOverlay');
+  if (!overlay) {
+    console.error('Modal overlay not found');
+    return;
+  }
+  
+  // Preencher conteúdo
+  const iconEl = $('#statModalIcon');
+  const titleEl = $('#statModalTitle');
+  const valueEl = $('#statModalValue');
+  const detailsEl = $('#statModalDetails');
+  
+  if (iconEl) iconEl.className = `fas ${data.icon}`;
+  if (titleEl) titleEl.textContent = data.title;
+  if (valueEl) valueEl.textContent = data.value;
+  if (detailsEl) {
+    detailsEl.innerHTML = data.details
+      .map(item => `<li>${item}</li>`)
+      .join('');
+  }
+  
+  // Mostrar modal
+  overlay.classList.add('active');
   document.body.style.overflow = 'hidden';
 }
+
 function closeStatModal() {
   const overlay = $('#statModalOverlay');
-  if (!overlay) return;
-  overlay.classList.remove('active');
-  document.body.style.overflow = 'auto';
+  if (overlay) {
+    overlay.classList.remove('active');
+    document.body.style.overflow = 'auto';
+  }
 }
 
 /* -------------------------
-   Modais — Estratégia
+   MODAL FUNCTIONS — ESTRATÉGIA (6 pilares das Feiras)
 --------------------------*/
+
 function openStrategyModal(num) {
   const data = strategyDetailsData[num];
-  if (!data) return;
-  $('#strategyDetailIcon').className = `fas ${data.icon}`;
-  $('#strategyDetailTitle').textContent = data.title;
-  $('#strategyDetailSubtitle').textContent = data.subtitle;
-  const body = data.sections.map(sec => {
-    const items = sec.items.map(li => `<li>${li}</li>`).join('');
-    return `<div class="strategy-detail-section"><h4><i class="fas fa-chevron-right"></i> ${sec.title}</h4><ul>${items}</ul></div>`;
-  }).join('');
-  $('#strategyDetailBody').innerHTML = body;
-  $('#strategyDetailOverlay').classList.add('active');
+  if (!data) {
+    console.error('Strategy data not found for num:', num);
+    return;
+  }
+  
+  const overlay = $('#strategyDetailOverlay');
+  if (!overlay) {
+    console.error('Strategy overlay not found');
+    return;
+  }
+  
+  // Preencher conteúdo
+  const iconEl = $('#strategyDetailIcon');
+  const titleEl = $('#strategyDetailTitle');
+  const subtitleEl = $('#strategyDetailSubtitle');
+  const bodyEl = $('#strategyDetailBody');
+  
+  if (iconEl) iconEl.className = `fas ${data.icon}`;
+  if (titleEl) titleEl.textContent = data.title;
+  if (subtitleEl) subtitleEl.textContent = data.subtitle;
+  
+  if (bodyEl) {
+    bodyEl.innerHTML = data.sections.map(sec => `
+      <div class="strategy-detail-section">
+        <h4><i class="fas fa-chevron-right"></i> ${sec.title}</h4>
+        <ul>
+          ${sec.items.map(item => `<li>${item}</li>`).join('')}
+        </ul>
+      </div>
+    `).join('');
+  }
+  
+  // Mostrar modal
+  overlay.classList.add('active');
   document.body.style.overflow = 'hidden';
 }
+
 function closeStrategyModal() {
   const overlay = $('#strategyDetailOverlay');
-  if (!overlay) return;
-  overlay.classList.remove('active');
-  document.body.style.overflow = 'auto';
+  if (overlay) {
+    overlay.classList.remove('active');
+    document.body.style.overflow = 'auto';
+  }
 }
 
 /* -------------------------
-   Galerias de Projetos
+   GALERIAS DE PROJETOS (mantido do original)
 --------------------------*/
+
 function setupCardAutoSlide(card) {
   const container = card.querySelector('.gallery-main');
   if (!container) return;
 
-  // carregar lista de imagens
   let images = [];
   const csv = card.getAttribute('data-images') || '';
   if (csv.trim()) {
@@ -388,6 +443,7 @@ function changeProjectSlide(dir) {
   slides[PG_state.index]?.classList.add('active');
   dots[PG_state.index]?.classList.add('active');
 }
+
 function goToProjectSlide(idx) {
   if (!PG_state.images.length) return;
   const slides = $$('.gallery-slide');
@@ -398,6 +454,7 @@ function goToProjectSlide(idx) {
   slides[PG_state.index]?.classList.add('active');
   dots[PG_state.index]?.classList.add('active');
 }
+
 function closeProjectGallery() {
   const modal = $('#projectGalleryModal');
   if (modal) {
@@ -407,8 +464,9 @@ function closeProjectGallery() {
 }
 
 /* -------------------------
-   Outras melhorias
+   OUTRAS FUNÇÕES AUXILIARES
 --------------------------*/
+
 function initMobileEnhancements() {
   const isTouch = window.matchMedia('(pointer: coarse)').matches;
   if (!isTouch) return;
@@ -508,7 +566,6 @@ function initVolunteerEnhancement() {
   header.after(hero);
 }
 
-/* Corrige logos do Gadsden (usa OR correto) */
 function fixGadsdenImages() {
   $$('.cert-logo img').forEach(img => {
     if (img.src.includes('Gadsden') || img.alt.includes('Gadsden')) {
@@ -517,9 +574,6 @@ function fixGadsdenImages() {
   });
 }
 
-/* -------------------------
-   Outras iniciais
---------------------------*/
 function initScrollAnimations() {
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
@@ -539,6 +593,7 @@ function initNavbarScroll() {
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
 }
+
 function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
 
 function initLightbox() {
@@ -549,6 +604,7 @@ function initLightbox() {
   on(lb, 'click', (e) => { if (e.target === lb) closeLightbox(); });
   on(document, 'keydown', (e) => { if (lb.classList.contains('active') && e.key === 'Escape') closeLightbox(); });
 }
+
 function openLightbox(el) {
   const lb = $('#lightbox');
   const lbImg = $('#lightbox-img');
@@ -559,6 +615,7 @@ function openLightbox(el) {
   lb.classList.add('active');
   document.body.style.overflow = 'hidden';
 }
+
 function closeLightbox() {
   const lb = $('#lightbox');
   if (!lb) return;
@@ -589,8 +646,8 @@ function showToast(message = '') {
   setTimeout(() => t.classList.remove('show'), 2800);
 }
 
-/* Timeline Spy (logo) */
 function initTimelineSpy() { updateTimelineSpy(); }
+
 function updateTimelineSpy() {
   const items = $$('.timeline-item');
   if (!items.length) return;
@@ -628,7 +685,6 @@ function updateTimelineSpy() {
   indicators.forEach((dot, idx) => dot.classList.toggle('active', idx === activeIndex));
 }
 
-/* Partículas (hero) – opcional, já usado pelo HTML */
 function initParticles() {
   const container = $('#particles');
   if (!container) return;
@@ -651,7 +707,6 @@ function initParticles() {
   }
 }
 
-/* I18N — usa dicionário que já está no index.html */
 function translateAll(lang) {
   PG_state.currentLang = lang;
   document.documentElement.lang = lang;
@@ -663,9 +718,11 @@ function translateAll(lang) {
   });
   setTimeout(updateTimelineSpy, 100);
 }
+
 function markActiveLang(lang) {
   $$('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
 }
+
 function initLangSwitcher() {
   const switcher = $('#langSwitcher');
   if (!switcher) return;
@@ -680,6 +737,7 @@ function initLangSwitcher() {
     showToast(`Translated to ${lang.toUpperCase()}`);
   });
 }
+
 function initI18N() {
   try {
     const stored = localStorage.getItem('lang');
@@ -693,7 +751,6 @@ function initI18N() {
   }
 }
 
-/* Loading & Âncoras */
 function initLoading() {
   const loading = $('#loading');
   if (!loading) return;
@@ -704,6 +761,7 @@ function initLoading() {
     }, 1200);
   });
 }
+
 function initSmoothAnchors() {
   $$('a[href^="#"]').forEach(a => {
     on(a, 'click', (e) => {
@@ -718,10 +776,11 @@ function initSmoothAnchors() {
 }
 
 /* -------------------------
-   Bootstrap
+   INICIALIZAÇÃO
 --------------------------*/
+
 document.addEventListener('DOMContentLoaded', () => {
-  // Sequência única de inicialização
+  // Sequência de inicialização
   initLoading();
   initNavbarScroll();
   initScrollAnimations();
@@ -738,75 +797,50 @@ document.addEventListener('DOMContentLoaded', () => {
   enhanceProjectGalleries();
   $$('.project-card').forEach(setupCardAutoSlide);
 
-  // Voluntariado + correções de imagem
+  // Voluntariado + correções
   initVolunteerEnhancement();
   fixGadsdenImages();
 
   // Mobile/touch
   initMobileEnhancements();
 
-  // Fechar modais por clique/ESC
-  on(document, 'click', (e) => {
-    if (e.target?.id === 'statModalOverlay') closeStatModal();
-    if (e.target?.id === 'strategyDetailOverlay') closeStrategyModal();
-  });
-  on(document, 'keydown', (e) => {
-    if (e.key === 'Escape') {
-      closeStatModal();
-      closeStrategyModal();
-    }
-  });
-
-    console.log('✅ Portfolio JS (consolidado) inicializado');
-  
-  // Inicializar modais dos stat boxes
-  initStatModals();
-});
-
-// ============================================
-// STAT BOXES MODAL FUNCTIONS
-// ============================================
-
-function initStatModals() {
-  // Adicionar evento de clique em todos os stat-boxes
-  document.querySelectorAll('.stat-box').forEach(box => {
+  // Configurar cliques nos stat-boxes (4 blocos do hero)
+  $$('.stat-box').forEach(box => {
     box.style.cursor = 'pointer';
-    box.addEventListener('click', function(e) {
-      const statKey = this.dataset.stat;
+    on(box, 'click', () => {
+      const statKey = box.dataset.stat;
       if (statKey && statDetailsData[statKey]) {
         openStatModal(statKey);
       }
     });
   });
-  
-  console.log('✅ Stat modals initialized');
-}
-  
-  if (!data || !overlay) {
-    console.error('Modal data or overlay not found:', key);
-    return;
-  }
-  
-  document.getElementById('statModalIcon').className = `fas ${data.icon}`;
-  document.getElementById('statModalTitle').textContent = data.title;
-  document.getElementById('statModalValue').textContent = data.value;
-  document.getElementById('statModalDetails').innerHTML = data.details
-    .map(item => `<li>${item}</li>`)
-    .join('');
-  
-  overlay.classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-window.openStatModal        = openStatModal;
-window.closeStatModal       = closeStatModal;
-window.openStrategyModal    = openStrategyModal;
-window.closeStrategyModal   = closeStrategyModal;
 
-window.openLightbox         = openLightbox;
-window.closeLightbox        = closeLightbox;
+  // Fechar modais por clique no overlay ou ESC
+  on(document, 'click', (e) => {
+    if (e.target?.id === 'statModalOverlay') closeStatModal();
+    if (e.target?.id === 'strategyDetailOverlay') closeStrategyModal();
+  });
+  
+  on(document, 'keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeStatModal();
+      closeStrategyModal();
+      closeProjectGallery();
+      closeLightbox();
+    }
+  });
 
-window.changeProjectSlide   = changeProjectSlide;
-window.goToProjectSlide     = goToProjectSlide;
-window.closeProjectGallery  = closeProjectGallery;
+  console.log('✅ Portfolio JS inicializado com sucesso');
+});
 
-window.scrollToTop          = scrollToTop;
+/* Expor funções globais para handlers inline no HTML */
+window.openStatModal = openStatModal;
+window.closeStatModal = closeStatModal;
+window.openStrategyModal = openStrategyModal;
+window.closeStrategyModal = closeStrategyModal;
+window.openLightbox = openLightbox;
+window.closeLightbox = closeLightbox;
+window.changeProjectSlide = changeProjectSlide;
+window.goToProjectSlide = goToProjectSlide;
+window.closeProjectGallery = closeProjectGallery;
+window.scrollToTop = scrollToTop;
