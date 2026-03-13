@@ -1998,24 +1998,6 @@ function goToProjectSlide(idx) {
   slides[PG_state.index]?.classList.add('active');
   dots[PG_state.index]?.classList.add('active');
 }
-
-function closeProjectGallery() {
-  const modal = $('#projectGalleryModal');
-  if (modal) {
-    modal.classList.remove('active');
-    document.body.style.overflow = 'auto';
-  }
-}
-
-// Expose functions globally for inline onclick handlers
-window.openLightbox = openLightbox;
-window.closeLightbox = closeLightbox;
-window.changeProjectSlide = changeProjectSlide;
-window.goToProjectSlide = goToProjectSlide;
-window.closeProjectGallery = closeProjectGallery;
-window.scrollToTop = scrollToTop;
-  </script>
-
 <div id="statModalOverlay" class="stat-modal-overlay" onclick="if(event.target===this) closeStatModal()">
     <div class="stat-modal">
       <button class="stat-modal-close" onclick="closeStatModal()">&times;</button>
@@ -2030,4 +2012,3 @@ window.scrollToTop = scrollToTop;
 
 </body>
 </html>
-
