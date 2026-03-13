@@ -768,26 +768,25 @@ document.addEventListener('DOMContentLoaded', () => {
 // ============================================
 
 function initStatModals() {
+  // Adicionar evento de clique em todos os stat-boxes
   document.querySelectorAll('.stat-box').forEach(box => {
     box.style.cursor = 'pointer';
-    box.addEventListener('click', function() {
+    box.addEventListener('click', function(e) {
       const statKey = this.dataset.stat;
-      if (statKey) openStatModal(statKey);
+      if (statKey && statDetailsData[statKey]) {
+        openStatModal(statKey);
+      }
     });
   });
+  
   console.log('✅ Stat modals initialized');
 }
-
-function openStatModal(key) {
-  const data = statDetailsData[key];
-  const overlay = document.getElementById('statModalOverlay');
   
   if (!data || !overlay) {
     console.error('Modal data or overlay not found:', key);
     return;
   }
   
-  // Preenche os elementos do modal
   document.getElementById('statModalIcon').className = `fas ${data.icon}`;
   document.getElementById('statModalTitle').textContent = data.title;
   document.getElementById('statModalValue').textContent = data.value;
@@ -798,23 +797,16 @@ function openStatModal(key) {
   overlay.classList.add('active');
   document.body.style.overflow = 'hidden';
 }
-
-function closeStatModal() {
-  const overlay = document.getElementById('statModalOverlay');
-  if (overlay) {
-    overlay.classList.remove('active');
-    document.body.style.overflow = 'auto';
-  }
-}
-
-// Expor funções para o HTML
 window.openStatModal        = openStatModal;
 window.closeStatModal       = closeStatModal;
 window.openStrategyModal    = openStrategyModal;
 window.closeStrategyModal   = closeStrategyModal;
+
 window.openLightbox         = openLightbox;
 window.closeLightbox        = closeLightbox;
+
 window.changeProjectSlide   = changeProjectSlide;
 window.goToProjectSlide     = goToProjectSlide;
 window.closeProjectGallery  = closeProjectGallery;
+
 window.scrollToTop          = scrollToTop;
