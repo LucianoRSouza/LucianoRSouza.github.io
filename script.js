@@ -745,9 +745,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // Mobile/touch
   initMobileEnhancements();
 
-// Mobile/touch
-  initMobileEnhancements();
-
   // Fechar modais por clique/ESC
   on(document, 'click', (e) => {
     if (e.target?.id === 'statModalOverlay') closeStatModal();
@@ -760,30 +757,44 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  console.log('✅ Portfolio JS (consolidado) inicializado');
+    console.log('✅ Portfolio JS (consolidado) inicializado');
+  
+  // Inicializar modais dos stat boxes
   initStatModals();
 });
+
+// ============================================
+// STAT BOXES MODAL FUNCTIONS
+// ============================================
 
 function initStatModals() {
   document.querySelectorAll('.stat-box').forEach(box => {
     box.style.cursor = 'pointer';
+    box.addEventListener('click', function() {
+      const statKey = this.dataset.stat;
+      if (statKey) openStatModal(statKey);
+    });
   });
   console.log('✅ Stat modals initialized');
 }
 
 function openStatModal(key) {
   const data = statDetailsData[key];
-  if (!data) return;
   const overlay = document.getElementById('statModalOverlay');
-  if (!overlay) return;
-
-  document.getElementById('statModalIcon').className = `fas ${data.icon} stat-modal-icon`;
+  
+  if (!data || !overlay) {
+    console.error('Modal data or overlay not found:', key);
+    return;
+  }
+  
+  // Preenche os elementos do modal
+  document.getElementById('statModalIcon').className = `fas ${data.icon}`;
   document.getElementById('statModalTitle').textContent = data.title;
   document.getElementById('statModalValue').textContent = data.value;
   document.getElementById('statModalDetails').innerHTML = data.details
     .map(item => `<li>${item}</li>`)
     .join('');
-
+  
   overlay.classList.add('active');
   document.body.style.overflow = 'hidden';
 }
@@ -796,13 +807,14 @@ function closeStatModal() {
   }
 }
 
-window.openStatModal = openStatModal;
-window.closeStatModal = closeStatModal;
-window.scrollToTop = scrollToTop;
-window.openLightbox = openLightbox;
-window.closeLightbox = closeLightbox;
-window.changeProjectSlide = changeProjectSlide;
-window.goToProjectSlide = goToProjectSlide;
-window.closeProjectGallery = closeProjectGallery;
-window.openStrategyModal = openStrategyModal;
-window.closeStrategyModal = closeStrategyModal;
+// Expor funções para o HTML
+window.openStatModal        = openStatModal;
+window.closeStatModal       = closeStatModal;
+window.openStrategyModal    = openStrategyModal;
+window.closeStrategyModal   = closeStrategyModal;
+window.openLightbox         = openLightbox;
+window.closeLightbox        = closeLightbox;
+window.changeProjectSlide   = changeProjectSlide;
+window.goToProjectSlide     = goToProjectSlide;
+window.closeProjectGallery  = closeProjectGallery;
+window.scrollToTop          = scrollToTop;
