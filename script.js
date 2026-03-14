@@ -457,10 +457,35 @@ function initSmoothAnchors(){ $$('a[href^="#"]').forEach(a=>{ on(a,'click',(e)=>
 --------------------------*/
 function fixGadsdenImages(){ $$('.cert-logo img').forEach(img=>{ if(img.src.includes('Gadsden') || img.alt.includes('Gadsden')){ img.onerror = function(){ this.src = './gadsdenstatecommunitycollege_logo.jpg'; }; } }); }
 
+// ================= LOADING OVERLAY =================
+function initLoading() {
+  const loading = document.getElementById('loading');
+  if (!loading) return;
+
+  // Esconde assim que todos os assets carregarem
+  window.addEventListener('load', () => {
+    // pequeno delay só para suavizar a transição
+    setTimeout(() => {
+      loading.classList.add('hidden'); // .hidden => opacity:0; pointer-events:none
+      // remove do DOM depois da transição (evita capturar clique)
+      setTimeout(() => loading.remove(), 400);
+    }, 300);
+  });
+
+  // **Fallback de segurança**:
+  // Se o evento 'load' atrasar (ex.: fonts/CDN), esconde após 5s.
+  setTimeout(() => {
+    if (!loading.classList.contains('hidden')) {
+      loading.classList.add('hidden');
+    }
+  }, 5000);
+}
+
 /* -------------------------
  Init
 --------------------------*/
 document.addEventListener('DOMContentLoaded', ()=>{
+  initLoading();
   initNavbarScroll();
   initScrollAnimations();
   initParticles();
