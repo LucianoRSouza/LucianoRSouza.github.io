@@ -1,8 +1,51 @@
-/* Build v5.fix patches (non-destructive) */
+/* Build v5.fix — patches não-intrusivos */
 (function () {
   // =========================
-  // 1) I18N dos STAT MODALS
+  // 0) Utilitários
   // =========================
+  const $ = (s, c = document) => c.querySelector(s);
+  const $$ = (s, c = document) => Array.from(c.querySelectorAll(s));
+  const on = (el, ev, fn, opts) => el && el.addEventListener(ev, fn, opts);
+
+  // =========================
+  // 1) STAT BOXES
+  // =========================
+  // 1.1 Liga o clique dos .stat-box (usa data-stat)
+  function initStatBoxClicks() {
+    $$('.stat-box').forEach((box) => {
+      box.style.cursor = 'pointer';
+      on(box, 'click', () => {
+        const key = box.dataset.stat || box.getAttribute('data-stat');
+        const opener = window.openStatModal || (typeof openStatModal === 'function' && openStatModal);
+        if (key && opener) opener(key);
+      });
+    });
+    // Delegação de segurança
+    on(document, 'click', (e) => {
+      const box = e.target.closest('.stat-box');
+      if (!box) return;
+      const key = box.dataset.stat || box.getAttribute('data-stat');
+      const opener = window.openStatModal || (typeof openStatModal === 'function' && openStatModal);
+      if (key && opener) opener(key);
+    }, true);
+    // Fechar por ESC / clique fora (se o seu base não tiver)
+    on(document, 'keydown', (e) => {
+      if (e.key !== 'Escape') return;
+      const overlay = $('#statModalOverlay');
+      if (overlay && overlay.classList.contains('active')) {
+        overlay.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+    });
+    on(document, 'click', (e) => {
+      if (e.target?.id === 'statModalOverlay') {
+        e.target.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+    });
+  }
+
+  // 1.2 I18N dos modais (usa idioma atual em PG_state.currentLang)
   const STAT_I18N = {
     en: {
       savings: {
@@ -174,9 +217,8 @@
     },
   };
 
-  // Wrapper: após abrir o modal (função original), aplica a tradução
   const _openStatOrig =
-    window.openStatModal || (typeof openStatModal === 'function' ? openStatModal : null);
+    window.openStatModal || (typeof openStatModal === 'function' && openStatModal);
 
   window.openStatModal = function (key) {
     if (_openStatOrig) _openStatOrig(key);
@@ -194,53 +236,64 @@
     }
   };
 
-  // =================================
-  // 2) Galeria: clique delegado robusto
-  // =================================
-  document.addEventListener(
-    'click',
-    function (ev) {
-      const card = ev.target.closest('.project-card');
-      if (!card) return;
-      if (
-        ev.target.closest('.gallery-main') ||
-        ev.target.closest('.gallery-overlay') ||
-        ev.target.closest('.project-image')
-      ) {
-        if (typeof window.openProjectGalleryFromCard === 'function') {
-          ev.preventDefault();
-          window.openProjectGalleryFromCard(card);
-        }
+  // =========================
+  // 2) GALERIA — clique robusto
+  // =========================
+  on(document, 'click', (ev) => {
+    const card = ev.target.closest('.project-card');
+    if (!card) return;
+    if (
+      ev.target.closest('.gallery-main') ||
+      ev.target.closest('.gallery-overlay') ||
+      ev.target.closest('.project-image')
+    ) {
+      if (typeof window.openProjectGalleryFromCard === 'function') {
+        ev.preventDefault();
+        window.openProjectGalleryFromCard(card);
       }
-    },
-    true
-  );
+    }
+  }, true);
 
-  // =================================
-  // 3) Blaupunkt: mapeamento estrito
-  // =================================
-  function fixBlaupunktGalleriesStrict() {
-    const tools = [
-      './Blaupunkt_Tools.png',
-      './Blaupunkt_Power_Tools.png',
-      './Blaupunkt_Garden_Tools.png',
-    ];
-    const power = ['./Blaupunkt_Power_Tools.png'];
-    const garden = ['./Blaupunkt_Garden_Tools.png'];
+  // =========================
+  // 3) BLAUPUNKT — mapeamento estrito por nome
+  // =========================
+  function collectCandidates() {
+    const set = new Set();
+    // fontes: <img src>, data-images
+    $$('img[src]').forEach((img) => set.add(img.getAttribute('src')));
+    $$('[data-images]').forEach((el) => {
+      (el.getAttribute('data-images') || '')
+        .split(',')
+        .map((s) => s.trim())
+        .filter(Boolean)
+        .forEach((s) => set.add(s));
+    });
+    // normaliza
+    return Array.from(set).map((s) => s.replace(/\\s+/g, ' ').trim());
+  }
+  function mapBlaupunkt() {
+    const all = collectCandidates();
+    const isFair = (s) => /Illumi|HK_Fair|Ford/i.test(s);
+    const tools  = all.filter((s) => /Blaupunkt_.*Tools/i.test(s) && !isFair(s));
+    const power  = all.filter((s) => /Power_Tools/i.test(s) && !isFair(s));
+    const garden = all.filter((s) => /Garden_Tools/i.test(s) && !isFair(s));
 
     const set = (key, arr) => {
       const el = document.querySelector(`.project-card[data-gallery="${key}"]`);
-      if (el) el.setAttribute('data-images', arr.join(','));
+      if (!el) return;
+      // garante pelo menos 1
+      const list = arr.length ? arr : tools;
+      el.setAttribute('data-images', list.join(','));
     };
 
-    set('blaupunkt-tools', tools);
-    set('blaupunkt-power', power);
-    set('blaupunkt-garden', garden);
+    set('blaupunkt-tools', tools);     // tudo que tiver "Tools"
+    set('blaupunkt-power', power);     // só Power
+    set('blaupunkt-garden', garden);   // só Garden
   }
 
-  // =================================
-  // 4) Voluntariado: bolinha com o “G”
-  // =================================
+  // =========================
+  // 4) VOLUNTARIADO — “G” e hero centrado
+  // =========================
   function swapVolunteerIconToG() {
     const icon = document.querySelector('.volunteer-icon');
     if (!icon) return;
@@ -251,9 +304,51 @@
     img.className = 'g-badge';
     icon.appendChild(img);
   }
+  // garante centralização do hero (caso exista essa seção)
+  function fixVolunteerHero() {
+    const hero = document.querySelector('.volunteer-hero-image');
+    const img  = hero?.querySelector('img');
+    if (hero && img) {
+      hero.style.maxWidth = '1000px';
+      hero.style.margin   = '0 auto 3rem';
+      hero.style.border   = '4px solid var(--gold)';
+      hero.style.borderRadius = '24px';
+      hero.style.overflow = 'hidden';
+      img.style.display   = 'block';
+      img.style.width     = '100%';
+      img.style.height    = 'auto';
+      img.style.objectFit = 'cover';
+      img.style.objectPosition = 'center center';
+    }
+  }
 
+  // =========================
+  // 5) JOURNEY (MOBILE) — badge do logo no canto sup. esquerdo em cada item
+  // =========================
+  function injectTimelineMobileBadges() {
+    if (window.matchMedia && !window.matchMedia('(max-width: 768px)').matches) return;
+    $$('.timeline-item').forEach((item) => {
+      if (item.querySelector('.timeline-badge-mobile')) return;
+      item.style.position = 'relative';
+      const src = item.getAttribute('data-logo');
+      if (!src) return;
+      const badge = document.createElement('div');
+      badge.className = 'timeline-badge-mobile';
+      const im = document.createElement('img');
+      im.src = src; im.alt = 'Company';
+      badge.appendChild(im);
+      item.appendChild(badge);
+    });
+  }
+
+  // =========================
+  // Bootstrap dos patches
+  // =========================
   document.addEventListener('DOMContentLoaded', () => {
-    try { fixBlaupunktGalleriesStrict(); } catch (_) {}
+    try { initStatBoxClicks(); } catch (_) {}
+    try { mapBlaupunkt(); } catch (_) {}
     try { swapVolunteerIconToG(); } catch (_) {}
+    try { fixVolunteerHero(); } catch (_) {}
+    try { injectTimelineMobileBadges(); } catch (_) {}
   });
 })();
