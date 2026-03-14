@@ -1,14 +1,15 @@
-/* =========================================================
- Luciano Rodrigues — Portfolio JS (clean & consolidated)
-========================================================= */
-// ---------- Helpers / Global State ----------
+/* ============================================
+ Portfolio JS — Cleaned & Consolidated
+============================================ */
 const PG_state = { images: [], index: 0, currentLang: 'en' };
 const CardSlides = new Map();
 const $ = (sel, ctx = document) => ctx.querySelector(sel);
 const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
 const on = (el, evt, fn, opts) => el && el.addEventListener(evt, fn, opts);
 
-// ---------- Data — Stats & Trade Show Strategy ----------
+/* -------------------------
+ Data — Stats & Strategy
+--------------------------*/
 const statDetailsData = {
   savings: {
     icon: 'fa-piggy-bank',
@@ -19,8 +20,8 @@ const statDetailsData = {
       'Negotiated favorable payment terms (60-90 days) improving cash flow',
       'Implemented should-cost modeling identifying 15-25% cost reduction opportunities',
       'Consolidated supplier base from 200+ to 80 key partners',
-      'Zero-based budgeting approach for CAPEX projects saving 20% on average'
-    ]
+      'Zero-based budgeting approach for CAPEX projects saving 20% on average',
+    ],
   },
   rfps: {
     icon: 'fa-file-contract',
@@ -31,8 +32,8 @@ const statDetailsData = {
       'Weighted scoring matrices balancing technical (40%), commercial (35%), and ESG (25%) criteria',
       'E-procurement platform integration with full audit trails',
       'Cross-functional evaluation committees (Engineering, Finance, Legal, Operations)',
-      'Average cycle time reduction from 45 to 28 days while improving compliance'
-    ]
+      'Average cycle time reduction from 45 to 28 days while improving compliance',
+    ],
   },
   projects: {
     icon: 'fa-project-diagram',
@@ -43,8 +44,8 @@ const statDetailsData = {
       'Licensed portfolio launches (Blaupunkt, Spear & Jackson, Pininfarina)',
       'Factory audits and supplier capability assessments across Asia',
       'Quality system implementations (ISO 9001, compliance frameworks)',
-      'Cross-border logistics optimization and customs compliance'
-    ]
+      'Cross-border logistics optimization and customs compliance',
+    ],
   },
   regions: {
     icon: 'fa-globe',
@@ -55,9 +56,9 @@ const statDetailsData = {
       'LATAM: Brazil, Argentina, Chile, Colombia, Mexico, Peru, Uruguay',
       'Asia: China, Hong Kong, Taiwan, Vietnam, India, South Korea',
       'Multi-cultural negotiation experience and local market knowledge',
-      'Time zone coordination for 24/7 project execution'
-    ]
-  }
+      'Time zone coordination for 24/7 project execution',
+    ],
+  },
 };
 
 const strategyDetailsData = {
@@ -73,8 +74,8 @@ const strategyDetailsData = {
           'Traffic flow optimization for maximum visitor engagement',
           'Product display hierarchy highlighting hero SKUs and new launches',
           'Lighting and visual merchandising for premium brand perception',
-          'Interactive demo stations for hands-on product experience'
-        ]
+          'Interactive demo stations for hands-on product experience',
+        ],
       },
       {
         title: 'Technical Execution',
@@ -83,10 +84,10 @@ const strategyDetailsData = {
           'Modular stand components for reusability across fairs',
           'Digital signage integration with real-time product catalogs',
           'Storage and logistics planning for 500+ SKU displays',
-          'On-site supervision during build-up and dismantling'
-        ]
-      }
-    ]
+          'On-site supervision during build-up and dismantling',
+        ],
+      },
+    ],
   },
   2: {
     title: 'Meetings Orchestration & Lead Capture',
@@ -100,8 +101,8 @@ const strategyDetailsData = {
           'Meeting scheduling system with automated reminders',
           'Sales team briefing with product knowledge sessions',
           'Customized pitch decks by customer segment',
-          'Lead scoring criteria defined (budget, timeline, authority)'
-        ]
+          'Lead scoring criteria defined (budget, timeline, authority)',
+        ],
       },
       {
         title: 'On-Site Execution',
@@ -110,10 +111,10 @@ const strategyDetailsData = {
           'Real-time lead capture via CRM mobile app',
           'Immediate follow-up emails sent within 4 hours',
           'Meeting notes standardized for pipeline visibility',
-          'Daily team huddles to adjust strategy based on feedback'
-        ]
-      }
-    ]
+          'Daily team huddles to adjust strategy based on feedback',
+        ],
+      },
+    ],
   },
   3: {
     title: 'Negotiations & Partnering',
@@ -127,8 +128,8 @@ const strategyDetailsData = {
           'Term sheet negotiations: MOQ, payment terms, exclusivity clauses',
           'Pricing framework with volume breaks and annual rebates',
           'Quality agreements defining defect rates and corrective actions',
-          'IP protection and NDA frameworks for new product development'
-        ]
+          'IP protection and NDA frameworks for new product development',
+        ],
       },
       {
         title: 'Contractual Framework',
@@ -137,10 +138,10 @@ const strategyDetailsData = {
           'Statement of Work (SoW) templates for project-based work',
           'Service Level Agreements (SLA) with penalty/incentive clauses',
           'Force majeure and business continuity provisions',
-          'Exit clauses and knowledge transfer obligations'
-        ]
-      }
-    ]
+          'Exit clauses and knowledge transfer obligations',
+        ],
+      },
+    ],
   },
   4: {
     title: 'Tech Discovery & Benchmark',
@@ -154,8 +155,8 @@ const strategyDetailsData = {
           'Competitive product teardowns and feature comparison',
           'Cost benchmarking for similar specifications',
           'Innovation trend mapping (IoT, sustainability, smart features)',
-          'Patent landscape analysis for freedom to operate'
-        ]
+          'Patent landscape analysis for freedom to operate',
+        ],
       },
       {
         title: 'Technical Evaluation',
@@ -164,10 +165,10 @@ const strategyDetailsData = {
           'Engineering team consultations on technical feasibility',
           'Prototype review and design for manufacturing (DFM) feedback',
           'Certification requirements assessment (CE, FCC, ANATEL)',
-          'Roadmap alignment with supplier R&D investments'
-        ]
-      }
-    ]
+          'Roadmap alignment with supplier R&D investments',
+        ],
+      },
+    ],
   },
   5: {
     title: 'Factory Audits & Capability Mapping',
@@ -181,8 +182,8 @@ const strategyDetailsData = {
           'Production capacity analysis (lines, shifts, utilization)',
           'Equipment maintenance records and calibration certificates',
           'Workforce skill assessment and training programs',
-          'Environmental compliance and waste management practices'
-        ]
+          'Environmental compliance and waste management practices',
+        ],
       },
       {
         title: 'Risk Assessment',
@@ -191,10 +192,10 @@ const strategyDetailsData = {
           'Supply chain resilience (dual sourcing, buffer stock)',
           'Social compliance audits (SA8000, BSCI standards)',
           'Cybersecurity protocols for data-sharing partnerships',
-          'Business continuity planning and disaster recovery'
-        ]
-      }
-    ]
+          'Business continuity planning and disaster recovery',
+        ],
+      },
+    ],
   },
   6: {
     title: 'Post-Fair Pipeline, ROI & Governance',
@@ -208,8 +209,8 @@ const strategyDetailsData = {
           'CRM integration with automated follow-up sequences',
           'Opportunity value estimation and win probability scoring',
           'Cross-functional handover to regional sales teams',
-          'Weekly pipeline review meetings for first 30 days'
-        ]
+          'Weekly pipeline review meetings for first 30 days',
+        ],
       },
       {
         title: 'Performance Metrics',
@@ -218,46 +219,39 @@ const strategyDetailsData = {
           'Conversion rate tracking from lead to order',
           'Average deal size comparison vs. non-fair customers',
           'Time-to-close analysis identifying bottlenecks',
-          'Annual ROI reporting for marketing budget justification'
-        ]
-      }
-    ]
-  }
+          'Annual ROI reporting for marketing budget justification',
+        ],
+      },
+    ],
+  },
 };
 
-// ---------- Modals — Stats ----------
-function openStatModal(key) {
+/* -------------------------
+ Modals — Stats
+--------------------------*/
+function openStatModal(key){
   const data = statDetailsData[key];
-  const overlay = $('#statModalOverlay');
-  if (!data || !overlay) return;
+  if(!data) return;
   $('#statModalIcon').className = `fas ${data.icon}`;
   $('#statModalTitle').textContent = data.title;
   $('#statModalValue').textContent = data.value;
   $('#statModalDetails').innerHTML = data.details.map(it => `<li>${it}</li>`).join('');
-  overlay.classList.add('active');
-  document.body.style.overflow = 'hidden';
+  $('#statModalOverlay').classList.add('active');
+  document.body.style.overflow='hidden';
 }
-function closeStatModal() {
-  const overlay = $('#statModalOverlay');
-  if (!overlay) return;
-  overlay.classList.remove('active');
-  document.body.style.overflow = 'auto';
-}
-function initStatModals() {
-  $$('.stat-box').forEach(box => {
-    box.style.cursor = 'pointer';
-    on(box, 'click', () => {
-      const key = box.dataset.stat;
-      if (key && statDetailsData[key]) openStatModal(key);
-    });
-  });
+function closeStatModal(){
+  const o = $('#statModalOverlay');
+  if(!o) return;
+  o.classList.remove('active');
+  document.body.style.overflow='auto';
 }
 
-// ---------- Modals — Trade Show Strategy ----------
-function openStrategyModal(num) {
+/* -------------------------
+ Modals — Strategy
+--------------------------*/
+function openStrategyModal(num){
   const data = strategyDetailsData[num];
-  const overlay = $('#strategyDetailOverlay');
-  if (!data || !overlay) return;
+  if(!data) return;
   $('#strategyDetailIcon').className = `fas ${data.icon}`;
   $('#strategyDetailTitle').textContent = data.title;
   $('#strategyDetailSubtitle').textContent = data.subtitle;
@@ -266,91 +260,89 @@ function openStrategyModal(num) {
     return `<div class="strategy-detail-section"><h4><i class="fas fa-chevron-right"></i> ${sec.title}</h4><ul>${items}</ul></div>`;
   }).join('');
   $('#strategyDetailBody').innerHTML = body;
-  overlay.classList.add('active');
-  document.body.style.overflow = 'hidden';
+  $('#strategyDetailOverlay').classList.add('active');
+  document.body.style.overflow='hidden';
 }
-function closeStrategyModal() {
-  const overlay = $('#strategyDetailOverlay');
-  if (!overlay) return;
-  overlay.classList.remove('active');
-  document.body.style.overflow = 'auto';
+function closeStrategyModal(){
+  const o = $('#strategyDetailOverlay');
+  if(!o) return;
+  o.classList.remove('active');
+  document.body.style.overflow='auto';
 }
 
-// ---------- Project Galleries ----------
-function setupCardAutoSlide(card) {
+/* -------------------------
+ Project Galleries
+--------------------------*/
+function setupCardAutoSlide(card){
   const container = card.querySelector('.gallery-main');
-  if (!container) return;
+  if(!container) return;
   let images = [];
   const csv = card.getAttribute('data-images') || '';
-  if (csv.trim()) images = csv.split(',').map(s => s.trim()).filter(Boolean);
+  if(csv.trim()) images = csv.split(',').map(s=>s.trim()).filter(Boolean);
   else {
     const main = container.querySelector('img');
-    if (main?.src) images = [main.src];
+    if(main?.src) images = [main.src];
   }
-  if (!images.length) return;
+  if(!images.length) return;
   const imgEl = container.querySelector('img');
   const auto = card.getAttribute('data-autoslide') === 'true';
-  const interval = Math.max(1200, parseInt(card.getAttribute('data-interval'), 10) || 2500);
-  const state = { images, idx: 0, timer: null, interval, imgEl, paused: false };
+  const interval = Math.max(1200, parseInt(card.getAttribute('data-interval'),10) || 2500);
+  const state = { images, idx:0, timer:null, interval, imgEl, paused:false };
   CardSlides.set(card, state);
-
-  function tick() {
-    if (state.paused || !auto || state.images.length <= 1) return;
+  function tick(){
+    if(state.paused || !auto || state.images.length<=1) return;
     state.idx = (state.idx + 1) % state.images.length;
-    state.imgEl.style.opacity = '0';
-    setTimeout(() => {
+    state.imgEl.style.opacity='0';
+    setTimeout(()=>{
       state.imgEl.src = state.images[state.idx];
-      state.imgEl.onload = () => { state.imgEl.style.opacity = '1'; };
-    }, 160);
+      state.imgEl.onload = ()=>{ state.imgEl.style.opacity='1'; };
+    },160);
   }
-  function start() { stop(); if (auto && state.images.length > 1) state.timer = setInterval(tick, state.interval); }
-  function stop() { if (state.timer) { clearInterval(state.timer); state.timer = null; } }
-
-  on(card, 'mouseenter', () => { state.paused = true; });
-  on(card, 'mouseleave', () => { state.paused = false; });
+  function start(){ stop(); if(auto && state.images.length>1) state.timer = setInterval(tick, state.interval); }
+  function stop(){ if(state.timer){ clearInterval(state.timer); state.timer=null; } }
+  on(card, 'mouseenter', ()=>{ state.paused = true; });
+  on(card, 'mouseleave', ()=>{ state.paused = false; });
   const clickable = card.querySelector('.gallery-overlay') || container;
-  on(clickable, 'click', (e) => { e.stopPropagation(); openProjectGalleryFromCard(card); });
+  on(clickable, 'click', (e)=>{ e.stopPropagation(); openProjectGalleryFromCard(card); });
   start();
 }
-function openProjectGalleryFromCard(card) {
-  const modal = $('#projectGalleryModal');
-  if (!modal) return;
+function openProjectGalleryFromCard(card){
+  const modal = $('#projectGalleryModal'); if(!modal) return;
   let images = [];
   const csv = card.getAttribute('data-images') || '';
-  if (csv.trim()) images = csv.split(',').map(s => s.trim()).filter(Boolean);
-  else {
+  if(csv.trim()) images = csv.split(',').map(s=>s.trim()).filter(Boolean);
+  else{
     const main = card.querySelector('.gallery-main img');
-    if (main?.src) images = [main.src];
+    if(main?.src) images = [main.src];
   }
-  if (!images.length) return;
+  if(!images.length) return;
   buildProjectSlides(images);
   modal.classList.add('active');
-  document.body.style.overflow = 'hidden';
+  document.body.style.overflow='hidden';
 }
-function buildProjectSlides(images) {
+function buildProjectSlides(images){
   const slider = $('#gallerySlider');
   const dotsContainer = $('#galleryDots');
-  if (!slider || !dotsContainer) return;
-  slider.innerHTML = '';
-  dotsContainer.innerHTML = '';
-  images.forEach((src, idx) => {
+  if(!slider||!dotsContainer) return;
+  slider.innerHTML=''; dotsContainer.innerHTML='';
+  images.forEach((src, idx)=>{
     const slide = document.createElement('div');
-    slide.className = 'gallery-slide' + (idx === 0 ? ' active' : '');
+    slide.className = 'gallery-slide' + (idx===0 ? ' active' : '');
     const img = document.createElement('img');
-    img.alt = 'Project image ' + (idx + 1);
+    img.alt = 'Project image ' + (idx+1);
     img.src = src;
     slide.appendChild(img);
     slider.appendChild(slide);
     const dot = document.createElement('div');
-    dot.className = 'gallery-dot' + (idx === 0 ? ' active' : '');
-    dot.addEventListener('click', () => goToProjectSlide(idx));
+    dot.className = 'gallery-dot' + (idx===0 ? ' active' : '');
+    dot.addEventListener('click', ()=> goToProjectSlide(idx));
     dotsContainer.appendChild(dot);
   });
   PG_state.images = images.slice();
   PG_state.index = 0;
 }
-function changeProjectSlide(dir) {
-  if (!PG_state.images.length) return;
+function changeProjectSlide(dir){
+  if(!PG_state.images.length) return;
   const slides = $$('.gallery-slide');
   const dots = $$('.gallery-dot');
   slides[PG_state.index]?.classList.remove('active');
@@ -359,8 +351,8 @@ function changeProjectSlide(dir) {
   slides[PG_state.index]?.classList.add('active');
   dots[PG_state.index]?.classList.add('active');
 }
-function goToProjectSlide(idx) {
-  if (!PG_state.images.length) return;
+function goToProjectSlide(idx){
+  if(!PG_state.images.length) return;
   const slides = $$('.gallery-slide');
   const dots = $$('.gallery-dot');
   slides[PG_state.index]?.classList.remove('active');
@@ -369,170 +361,106 @@ function goToProjectSlide(idx) {
   slides[PG_state.index]?.classList.add('active');
   dots[PG_state.index]?.classList.add('active');
 }
-function closeProjectGallery() {
+function closeProjectGallery(){
   const modal = $('#projectGalleryModal');
-  if (!modal) return;
-  modal.classList.remove('active');
-  document.body.style.overflow = 'auto';
+  if(modal){ modal.classList.remove('active'); document.body.style.overflow='auto'; }
 }
 
-// ---------- Misc Enhancements ----------
-function initScrollAnimations() {
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
-  $$('.animate-on-scroll').forEach(el => io.observe(el));
+/* -------------------------
+ Lightbox
+--------------------------*/
+function initLightbox(){
+  const lb = $('#lightbox'); const lbImg = $('#lightbox-img'); if(!lb||!lbImg) return;
+  on(lb, 'click', (e)=>{ if(e.target === lb) closeLightbox(); });
+  on(document, 'keydown', (e)=>{ if(lb.classList.contains('active') && e.key==='Escape') closeLightbox(); });
 }
-function initNavbarScroll() {
-  const navbar = $('#navbar');
-  const scrollTopBtn = $('#scrollTop');
-  const onScroll = () => {
+function openLightbox(el){
+  const lb = $('#lightbox'); const lbImg = $('#lightbox-img'); if(!lb||!lbImg) return;
+  const img = el?.querySelector?.('img'); if(!img?.src) return;
+  lbImg.src = img.src; lb.classList.add('active'); document.body.style.overflow='hidden';
+}
+function closeLightbox(){ const lb = $('#lightbox'); if(!lb) return; lb.classList.remove('active'); document.body.style.overflow='auto'; }
+
+/* -------------------------
+ Navbar, Scroll & Particles
+--------------------------*/
+function initNavbarScroll(){
+  const navbar = $('#navbar'); const scrollTopBtn = $('#scrollTop');
+  const onScroll = ()=>{
     const y = window.scrollY || document.documentElement.scrollTop;
-    navbar?.classList.toggle('scrolled', y > 50);
-    scrollTopBtn?.classList.toggle('visible', y > 600);
+    navbar?.classList.toggle('scrolled', y>50);
+    scrollTopBtn?.classList.toggle('visible', y>600);
     updateTimelineSpy();
   };
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
 }
-function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
-function initLightbox() {
-  const lb = $('#lightbox');
-  const lbImg = $('#lightbox-img');
-  if (!lb || !lbImg) return;
-  on(lb, 'click', (e) => { if (e.target === lb) closeLightbox(); });
-  on(document, 'keydown', (e) => { if (lb.classList.contains('active') && e.key === 'Escape') closeLightbox(); });
+function scrollToTop(){ window.scrollTo({ top:0, behavior:'smooth' }); }
+
+function initScrollAnimations(){
+  const io = new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold:0.12, rootMargin:'0px 0px -60px 0px' });
+  $$('.animate-on-scroll').forEach(el=> io.observe(el));
 }
-function openLightbox(el) {
-  const lb = $('#lightbox');
-  const lbImg = $('#lightbox-img');
-  if (!lb || !lbImg) return;
-  const img = el?.querySelector?.('img');
-  if (!img?.src) return;
-  lbImg.src = img.src;
-  lb.classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-function closeLightbox() {
-  const lb = $('#lightbox');
-  if (!lb) return;
-  lb.classList.remove('active');
-  document.body.style.overflow = 'auto';
-}
-function initTradeTabs() {
-  const tabs = $$('.gallery-tab');
-  if (!tabs.length) return;
-  tabs.forEach(btn => {
-    on(btn, 'click', () => {
-      tabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
-      btn.classList.add('active');
-      btn.setAttribute('aria-selected', 'true');
-      $$('.gallery-content').forEach(gc => gc.classList.remove('active'));
-      const panel = $('#' + btn.dataset.target);
-      panel?.classList.add('active');
-    });
-  });
-}
-function showToast(message = '') {
-  const t = $('#toast');
-  if (!t) return;
-  t.textContent = message;
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2800);
-}
-function initTimelineSpy() { updateTimelineSpy(); }
-function updateTimelineSpy() {
-  const items = $$('.timeline-item');
-  if (!items.length) return;
-  const logoImg = $('#logo-img');
-  const indicators = $$('.indicator-dot');
-  if (!logoImg) return;
-  let activeIndex = 0;
-  const windowHeight = window.innerHeight;
-  const midTop = windowHeight * 0.62;
-  const midBottom = windowHeight * 0.38;
-  items.forEach((item, idx) => {
-    const r = item.getBoundingClientRect();
-    if (r.top < midTop && r.bottom > midBottom) { activeIndex = idx; item.classList.add('active'); }
-    else item.classList.remove('active');
-  });
-  const activeItem = items[activeIndex];
-  if (activeItem) {
-    const newLogo = activeItem.getAttribute('data-logo');
-    const currentSrc = logoImg.getAttribute('src');
-    if (newLogo && newLogo !== currentSrc) {
-      logoImg.style.opacity = '0';
-      setTimeout(() => { logoImg.src = newLogo; logoImg.onload = () => { logoImg.style.opacity = '1'; }; }, 160);
-    }
-  }
-  indicators.forEach((dot, idx) => dot.classList.toggle('active', idx === activeIndex));
-}
-function initParticles() {
-  const container = $('#particles');
-  if (!container) return;
-  const count = 26;
-  for (let i = 0; i < count; i++) {
-    const p = document.createElement('div');
-    p.className = 'particle';
-    p.style.left = Math.random() * 100 + '%';
-    p.style.top = Math.random() * 100 + '%';
-    const s = Math.max(3, Math.min(6, 3 + Math.random() * 4));
-    p.style.width = p.style.height = s + 'px';
-    p.style.opacity = (0.22 + Math.random() * 0.35).toFixed(2);
-    p.style.animationDelay = (Math.random() * 5).toFixed(2) + 's';
-    p.style.animationDuration = (4 + Math.random() * 5).toFixed(2) + 's';
-    p.style.position = 'absolute';
-    p.style.background = 'var(--gold)';
-    p.style.borderRadius = '50%';
-    p.style.pointerEvents = 'none';
+function initParticles(){
+  const container = $('#particles'); if(!container) return; const count = 26;
+  for(let i=0;i<count;i++){
+    const p = document.createElement('div'); p.className='particle';
+    p.style.left = Math.random()*100 + '%'; p.style.top = Math.random()*100 + '%';
+    const s = Math.max(3, Math.min(6, 3 + Math.random()*4)); p.style.width = p.style.height = s + 'px';
+    p.style.opacity = (0.22 + Math.random()*0.35).toFixed(2); p.style.animationDelay = (Math.random()*5).toFixed(2)+'s';
+    p.style.animationDuration = (4 + Math.random()*5).toFixed(2)+'s';
+    p.style.position='absolute'; p.style.background='var(--gold)'; p.style.borderRadius='50%'; p.style.pointerEvents='none';
     container.appendChild(p);
   }
 }
-function translateAll(lang) {
-  PG_state.currentLang = lang;
-  document.documentElement.lang = lang;
-  const dict = (window.I18N && window.I18N[lang]) || (window.I18N && window.I18N['en']) || {};
-  $$('[data-i18n]').forEach(el => {
-    const path = el.dataset.i18n;
-    const value = path?.split('.').reduce((acc, key) => (acc && acc[key] !== undefined ? acc[key] : undefined), dict);
-    if (value !== undefined) el.textContent = value;
-  });
-  setTimeout(updateTimelineSpy, 100);
-}
-function markActiveLang(lang) { $$('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang)); }
-function initLangSwitcher() {
-  const switcher = $('#langSwitcher');
-  if (!switcher) return;
-  on(switcher, 'click', (e) => {
-    const btn = e.target.closest('.lang-btn');
-    if (!btn) return;
-    const lang = btn.dataset.lang; if (!lang) return;
-    translateAll(lang); markActiveLang(lang);
-    try { localStorage.setItem('lang', lang); } catch(e) {}
-    showToast(`Translated to ${lang.toUpperCase()}`);
+
+/* -------------------------
+ Tabs & Timeline
+--------------------------*/
+function initTradeTabs(){
+  const tabs = $$('.gallery-tab'); if(!tabs.length) return;
+  tabs.forEach(btn=>{
+    on(btn, 'click', ()=>{
+      tabs.forEach(t=>{ t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
+      btn.classList.add('active'); btn.setAttribute('aria-selected','true');
+      $$('.gallery-content').forEach(gc=> gc.classList.remove('active'));
+      const panel = $('#' + btn.dataset.target); panel?.classList.add('active');
+    });
   });
 }
-function initI18N() {
-  try {
-    const stored = localStorage.getItem('lang');
-    const browser = (navigator.language || 'en').slice(0, 2).toLowerCase();
-    const initial = stored || (['en', 'pt', 'es', 'fr'].includes(browser) ? browser : 'en');
-    translateAll(initial); markActiveLang(initial);
-  } catch(e) { translateAll('en'); markActiveLang('en'); }
-}
-function initLoading() {
-  const loading = $('#loading'); if (!loading) return;
-  window.addEventListener('load', () => { setTimeout(() => { loading.classList.add('hidden'); setTimeout(() => loading.remove(), 400); }, 1200); });
-}
-function initSmoothAnchors() {
-  $$('a[href^="#"]').forEach(a => {
-    on(a, 'click', (e) => { const href = a.getAttribute('href'); if (!href || href === '#') return; const target = $(href); if (!target) return; e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
-  });
+function initTimelineSpy(){ updateTimelineSpy(); }
+function updateTimelineSpy(){
+  const items = $$('.timeline-item'); if(!items.length) return;
+  const logoImg = $('#logo-img'); const indicators = $$('.indicator-dot'); if(!logoImg) return;
+  let activeIndex = 0; const wh = window.innerHeight; const midTop = wh*0.62; const midBottom = wh*0.38;
+  items.forEach((item, idx)=>{ const r = item.getBoundingClientRect(); if(r.top < midTop && r.bottom > midBottom){ activeIndex = idx; item.classList.add('active'); } else { item.classList.remove('active'); } });
+  const activeItem = items[activeIndex]; if(activeItem){ const newLogo = activeItem.getAttribute('data-logo'); const currentSrc = logoImg.getAttribute('src'); if(newLogo && newLogo !== currentSrc){ logoImg.style.opacity='0'; setTimeout(()=>{ logoImg.src=newLogo; logoImg.onload=()=>{ logoImg.style.opacity='1'; }; },160); } }
+  indicators.forEach((dot, idx)=> dot.classList.toggle('active', idx===activeIndex));
 }
 
-// ---------- Bootstrap ----------
-document.addEventListener('DOMContentLoaded', () => {
-  initLoading();
+/* -------------------------
+ I18N (minimal bootstrap)
+--------------------------*/
+function initI18N(){ try{ const stored = localStorage.getItem('lang'); const browser = (navigator.language || 'en').slice(0,2).toLowerCase(); const initial = stored || (['en','pt','es','fr'].includes(browser) ? browser : 'en'); translateAll(initial); markActiveLang(initial);}catch(e){}}
+function translateAll(lang){ PG_state.currentLang = lang; document.documentElement.lang = lang; /* dictionary lives inline in previous version; keeping placeholders */ }
+function markActiveLang(lang){ $$('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang)); }
+function initLangSwitcher(){ const switcher = $('#langSwitcher'); if(!switcher) return; on(switcher, 'click', (e)=>{ const btn = e.target.closest('.lang-btn'); if(!btn) return; const lang = btn.dataset.lang; translateAll(lang); markActiveLang(lang); try{ localStorage.setItem('lang', lang); }catch(_){} showToast(`Translated to ${lang.toUpperCase()}`); }); }
+
+/* -------------------------
+ Toast & Anchors
+--------------------------*/
+function showToast(message=''){ const t = $('#toast'); if(!t) return; t.textContent = message; t.classList.add('show'); setTimeout(()=> t.classList.remove('show'), 2800); }
+function initSmoothAnchors(){ $$('a[href^="#"]').forEach(a=>{ on(a,'click',(e)=>{ const href=a.getAttribute('href'); if(!href || href === '#') return; const target = $(href); if(!target) return; e.preventDefault(); target.scrollIntoView({ behavior:'smooth', block:'start' }); }); }); }
+
+/* -------------------------
+ Gadsden image fix
+--------------------------*/
+function fixGadsdenImages(){ $$('.cert-logo img').forEach(img=>{ if(img.src.includes('Gadsden') || img.alt.includes('Gadsden')){ img.onerror = function(){ this.src = './gadsdenstatecommunitycollege_logo.jpg'; }; } }); }
+
+/* -------------------------
+ Init
+--------------------------*/
+document.addEventListener('DOMContentLoaded', ()=>{
   initNavbarScroll();
   initScrollAnimations();
   initParticles();
@@ -543,18 +471,20 @@ document.addEventListener('DOMContentLoaded', () => {
   initLightbox();
   // Project cards
   $$('.project-card').forEach(setupCardAutoSlide);
-  // Modals
-  initStatModals();
-  // Global listeners
-  on(document, 'click', (e) => {
-    if (e.target?.id === 'statModalOverlay') closeStatModal();
-    if (e.target?.id === 'strategyDetailOverlay') closeStrategyModal();
+  // Stat modals (click + keyboard)
+  $$('.stat-box').forEach(box=>{
+    box.style.cursor='pointer';
+    on(box,'click',()=>{ const key = box.dataset.stat; if(key && statDetailsData[key]) openStatModal(key); });
+    on(box,'keydown',(e)=>{ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); const key = box.dataset.stat; if(key && statDetailsData[key]) openStatModal(key); }});
   });
-  on(document, 'keydown', (e) => { if (e.key === 'Escape') { closeStatModal(); closeStrategyModal(); } });
-  console.log('✅ Portfolio JS initialized (clean)');
+  // Close overlays on escape / outside click
+  on(document,'click',(e)=>{ if(e.target?.id==='statModalOverlay') closeStatModal(); if(e.target?.id==='strategyDetailOverlay') closeStrategyModal(); });
+  on(document,'keydown',(e)=>{ if(e.key==='Escape'){ closeStatModal(); closeStrategyModal(); }});
+  fixGadsdenImages();
+  console.log('✅ Portfolio JS initialized');
 });
 
-// ---------- Expose for inline handlers ----------
+// Expose for inline handlers in HTML
 window.openStatModal = openStatModal;
 window.closeStatModal = closeStatModal;
 window.openStrategyModal = openStrategyModal;
