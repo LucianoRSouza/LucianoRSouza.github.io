@@ -1,5 +1,5 @@
 /* =========================================================
-   Portfolio JS — v5.fix (Edge + Chrome OK)
+   Portfolio JS — v5.fix (Chrome + Edge)
    ========================================================= */
 const PG_state = { images: [], index: 0, currentLang: 'en' };
 
@@ -112,7 +112,7 @@ const STAT_I18N = {
   ]}}
 };
 
-/* ---------- Dados (stat e strategy) ---------- */
+/* ---------- Dados (stat & strategy) ---------- */
 const statDetailsData = {
   savings:{icon:'fa-piggy-bank', title:'Cumulative Savings Delivered', value:'€1M+', details:[
     'Multi-category strategic sourcing initiatives across direct and indirect spend',
@@ -312,7 +312,7 @@ document.addEventListener('click',(ev)=>{
   }
 }, true);
 
-/* ---------- Blaupunkt (mapeamento estrito) ---------- */
+/* ---------- Blaupunkt (mapeamento estrito por nomes) ---------- */
 function collectCandidates(){
   const set=new Set();
   $$('img[src]').forEach(img=>set.add(img.getAttribute('src')));
@@ -324,16 +324,16 @@ function collectCandidates(){
 function mapBlaupunkt(){
   const all=collectCandidates();
   const isFair=s=>/Illumi|HK_Fair|Booth|Fair/i.test(s);
-  const tools = all.filter(s=>/Blaupunkt_.*Tools/i.test(s) && !isFair(s));
-  const power = all.filter(s=>/Power_Tools/i.test(s) && !isFair(s));
-  const garden= all.filter(s=>/Garden_Tools/i.test(s) && !isFair(s));
+  const tools = all.filter(s=>/Blaupunkt_.*Tools/i.test(s) && !isFair(s));   // tudo com "Tools" (exceto feiras)
+  const power = all.filter(s=>/Power_Tools/i.test(s) && !isFair(s));         // só Power_Tools
+  const garden= all.filter(s=>/Garden_Tools/i.test(s) && !isFair(s));        // só Garden_Tools
   const set=(key,arr)=>{ const el=document.querySelector(`.project-card[data-gallery="${key}"]`); if(!el) return; el.setAttribute('data-images',(arr.length?arr:tools).join(','));};
   set('blaupunkt-tools', tools);
   set('blaupunkt-power', power);
   set('blaupunkt-garden', garden);
 }
 
-/* ---------- Journey: sticky + badges mobile ---------- */
+/* ---------- Journey: sticky + badge mobile ---------- */
 function updateTimelineSpy(){
   const items=$$('.timeline-item'); if(!items.length) return;
   const logoImg=$('#logo-img'); if(!logoImg) return;
@@ -376,7 +376,7 @@ function initNavbarScroll(){ const navbar=$('#navbar'), topBtn=$('#scrollTop'); 
 function scrollToTop(){ scrollTo({top:0,behavior:'smooth'}); }
 window.scrollToTop=scrollToTop;
 
-/* ---------- Strategy click & keyboard ---------- */
+/* ---------- Strategy click + teclado ---------- */
 function initStrategyClick(){
   $$('.strategy-item[data-strategy]').forEach(el=>{
     on(el,'click',()=>{ const n=Number(el.getAttribute('data-strategy')); if(!isNaN(n)) openStrategyModal(n); });
