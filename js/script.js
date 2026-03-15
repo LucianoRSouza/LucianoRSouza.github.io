@@ -624,20 +624,10 @@ const strategyDetailsData = {
 /* -------------------------
    Modais — Stats
 --------------------------*/
-
-function openStatModal(key){
-  const lang = PG_state.currentLang || document.documentElement.lang || 'en';
-  const dict = (I18N_STAT_DETAILS[lang]||I18N_STAT_DETAILS['en']);
-  const data = dict[key];
-  if(!data) return;
+function openStatModal(key) {
+  const data = statDetailsData[key];
+  if (!data) return;
   $('#statModalIcon').className = `fas ${data.icon}`;
-  $('#statModalTitle').textContent = data.title;
-  $('#statModalValue').textContent = data.value;
-  $('#statModalDetails').innerHTML = data.details.map(it=>`<li>${it}</li>`).join('');
-  $('#statModalOverlay').classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-            `;
   $('#statModalTitle').textContent = data.title;
   $('#statModalValue').textContent = data.value;
   $('#statModalDetails').innerHTML = data.details.map(it => `<li>${it}</li>`).join('');
@@ -654,23 +644,10 @@ function closeStatModal() {
 /* -------------------------
    Modais — Estratégia
 --------------------------*/
-
-function openStrategyModal(num){
-  const lang = PG_state.currentLang || document.documentElement.lang || 'en';
-  const data = (I18N_STRATEGY_DETAILS[lang]||I18N_STRATEGY_DETAILS['en'])[num];
-  if(!data) return;
+function openStrategyModal(num) {
+  const data = strategyDetailsData[num];
+  if (!data) return;
   $('#strategyDetailIcon').className = `fas ${data.icon}`;
-  $('#strategyDetailTitle').textContent = data.title;
-  $('#strategyDetailSubtitle').textContent = data.subtitle;
-  const body = data.sections.map(sec => {
-    const items = sec.items.map(li=>`<li>${li}</li>`).join('');
-    return `<div class="strategy-detail-section"><h4><i class="fas fa-chevron-right"></i> ${sec.title}</h4><ul>${items}</ul></div>`;
-  }).join('');
-  $('#strategyDetailBody').innerHTML = body;
-  $('#strategyDetailOverlay').classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-            `;
   $('#strategyDetailTitle').textContent = data.title;
   $('#strategyDetailSubtitle').textContent = data.subtitle;
   const body = data.sections.map(sec => {
@@ -863,21 +840,29 @@ function initMobileEnhancements() {
 
 function enhanceProjectGalleries() {
   const map = {
-  "blaupunkt-tools": [
-    "./BP_Powertools.jpg",
-    "./Blaupunkt_Illumiation_booth_HK_Fair.png",
-    "./Blaupunkt_Power_Tools.png",
-    "./Blaupunkt_Tools.png"
-  ],
-  "blaupunkt-power": [
-    "./BP_Powertools.jpg",
-    "./Blaupunkt_Power_Tools.png",
-    "./Blaupunkt_Tools.png"
-  ],
-  "blaupunkt-garden": [
-    "./Blaupunkt_Garden_Tools.png"
-  ]
-};
+    "blaupunkt-tools": [
+      "./Blaupunkt_Tools.png",
+      "./Blaupunkt_Illumiation_booth_HK_Fair.png",
+      "./Blaupunkt_Illumiation_booth_HK_Fair_1.png",
+      "./Blaupunkt_Illumiation_booth_HK_Fair_2.png",
+      "./Blaupunkt_Illumiation_booth_HK_Fair_3.png",
+      "./Blaupunkt_Illumiation_booth_HK_Fair_4.png"
+    ],
+    "blaupunkt-power": [
+      "./Blaupunkt_Power_Tools.png",
+      "./Blaupunkt_Tools.png",
+      "./Blaupunkt_Illumiation_booth_HK_Fair.png",
+      "./Blaupunkt_Illumiation_booth_HK_Fair_1.png",
+      "./Blaupunkt_Illumiation_booth_HK_Fair_2.png"
+    ],
+    "blaupunkt-garden": [
+      "./Blaupunkt_Garden_Tools.png",
+      "./Blaupunkt_Tools.png",
+      "./Blaupunkt_Illumiation_booth_HK_Fair_2.png",
+      "./Blaupunkt_Illumiation_booth_HK_Fair_3.png",
+      "./Blaupunkt_Illumiation_booth_HK_Fair_4.png"
+    ]
+  };
 
   Object.keys(map).forEach(key => {
     const card = document.querySelector(`.project-card[data-gallery="${key}"]`);
@@ -1082,7 +1067,7 @@ function initLangSwitcher() {
     translateAll(lang);
     markActiveLang(lang);
     try { localStorage.setItem('lang', lang); } catch(e) {}
-    showToast(`Translated to ${lang.toUpperCase()}`); try{ document.dispatchEvent(new Event('i18n:changed')); }catch(e){}
+    showToast(`Translated to ${lang.toUpperCase()}`);
   });
 }
 function initI18N() {
@@ -1137,16 +1122,14 @@ document.addEventListener('DOMContentLoaded', () => {
   initI18N();
 
   initTradeTabs();
-  initTradeShowAuto();
   initLightbox();
 
   // Galerias & cartões
   enhanceProjectGalleries();
-  $$('.project-card').forEach(c=>{ c.classList.add('gold-pulse'); setupCardAutoSlide(c); });
+  $$('.project-card').forEach(setupCardAutoSlide);
 
   // Voluntariado + correções de imagem
   initVolunteerEnhancement();
-  injectMobileTimelineLogos();
   fixGadsdenImages();
 
   // Mobile/touch
@@ -1189,20 +1172,14 @@ function initStatModals() {
   console.log('✅ Stat modals initialized');
 }
 
-
-function openStatModal(key){
-  const lang = PG_state.currentLang || document.documentElement.lang || 'en';
-  const dict = (I18N_STAT_DETAILS[lang]||I18N_STAT_DETAILS['en']);
-  const data = dict[key];
-  if(!data) return;
-  $('#statModalIcon').className = `fas ${data.icon}`;
-  $('#statModalTitle').textContent = data.title;
-  $('#statModalValue').textContent = data.value;
-  $('#statModalDetails').innerHTML = data.details.map(it=>`<li>${it}</li>`).join('');
-  $('#statModalOverlay').classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-            
+function openStatModal(key) {
+  const data = statDetailsData[key];
+  const overlay = document.getElementById('statModalOverlay');
+  
+  if (!data || !overlay) {
+    console.error('Modal data or overlay not found:', key);
+    return;
+  }
   
   document.getElementById('statModalIcon').className = `fas ${data.icon}`;
   document.getElementById('statModalTitle').textContent = data.title;
@@ -1265,44 +1242,21 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-
-function initTradeShowAuto(){
-  $$('.gallery-content').forEach(content=>{
-    const imgs = Array.from(content.querySelectorAll('.gallery-grid img')).map(i=>i.getAttribute('src')).filter(Boolean);
-    if(!imgs.length) return;
-    // build auto area if not exists
-    let auto = content.querySelector('.trade-auto');
-    if(!auto){
-      auto = document.createElement('div');
-      auto.className = 'trade-auto';
-      auto.innerHTML = '<img alt="trade show image" />';
-      content.insertBefore(auto, content.firstChild);
-    }
-    const imgEl = auto.querySelector('img');
-    let idx = 0; imgEl.src = imgs[0];
-    let timer = setInterval(()=>{
-      idx = (idx+1)%imgs.length; imgEl.style.opacity='0';
-      setTimeout(()=>{ imgEl.src = imgs[idx]; imgEl.onload = ()=>{ imgEl.style.opacity='1'; } }, 120);
-    }, 1000);
-    auto.addEventListener('click', ()=>{ buildProjectSlides(imgs); document.getElementById('projectGalleryModal').classList.add('active'); document.body.style.overflow='hidden'; });
-  });
-}
-
-
-function injectMobileTimelineLogos(){
-  const isMobile = window.matchMedia('(max-width: 768px)').matches;
-  if(!isMobile) return;
-  $$('.timeline-item').forEach(item=>{
-    const logo = item.getAttribute('data-logo');
-    const card = item.querySelector('.timeline-content');
-    if(logo && card && !card.querySelector('.tl-mobile-logo')){
-      const img = document.createElement('img');
-      img.className = 'tl-mobile-logo';
-      img.src = logo; img.alt = 'Company logo';
-      card.prepend(img);
-    }
-  });
-}
-
-// If a modal is open during language change, close it to avoid mismatched language.
-document.addEventListener("i18n:changed", ()=>{ closeStatModal(); closeStrategyModal(); });
+/* ===== Loader robust fallback (idempotent) ===== */
+(function(){
+  var loader = document.querySelector('#loading, #page-loader, #loader, .loading');
+  function hide(){
+    if(!loader || loader.dataset._hidden==='1') return;
+    try{ document.body.classList.remove('no-scroll'); }catch(e){}
+    loader.classList.add('hidden');
+    loader.classList.add('loader--hidden');
+    loader.setAttribute('aria-busy','false');
+    loader.dataset._hidden='1';
+    setTimeout(function(){ try{ loader.parentNode && loader.parentNode.removeChild(loader); }catch(e){} }, 400);
+  }
+  if(document.readyState==='complete' || document.readyState==='interactive'){ setTimeout(hide, 100); }
+  else { document.addEventListener('DOMContentLoaded', function(){ setTimeout(hide, 120); }, { once:true }); }
+  window.addEventListener('load', hide, { once:true });
+  window.addEventListener('pageshow', function(e){ if(e.persisted) hide(); });
+  setTimeout(hide, 7000);
+})();
