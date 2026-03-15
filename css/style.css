@@ -120,3 +120,23 @@ om:.5rem}.volunteer-card .period{color:var(--text-light);font-size:.9rem;margin-
 /* Volunteer logo circle */
 .skill-logo{ width:66px; height:66px; border-radius:50%; object-fit:cover; display:block; }
 .volunteer-icon{ background:transparent; border:2px solid rgba(212,175,55,.45); border-radius:50%; display:flex; align-items:center; justify-content:center; width:90px; height:90px; margin:0 auto 1.2rem; }
+/* ==== FIX: Loader (robusto) ==== */
+#loader, #loading, .loading-overlay {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: #0b0b0b;           /* mantém o visual atual, ajusta se quiser */
+  z-index: 9999;
+  transition: opacity .3s ease, visibility .3s ease;
+}
+
+.loader--hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+body.no-scroll {
+  overflow: hidden;               /* será removido no JS ao finalizar o load */
+}
