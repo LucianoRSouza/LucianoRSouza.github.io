@@ -346,3 +346,36 @@ function initTradeSlides(){ document.querySelectorAll('.trade-hero[data-gallery-
 function injectMobileLogos(){ const isMobile = window.matchMedia('(max-width: 640px)').matches; document.querySelectorAll('.timeline-item').forEach(item=>{ const content = item.querySelector('.timeline-content'); if(!content) return; const existing = content.querySelector('.mobile-company-logo'); if(!isMobile){ if(existing) existing.remove(); return; } if(existing) return; const src=item.getAttribute('data-logo'); if(!src) return; const img=document.createElement('img'); img.className='mobile-company-logo'; img.src=src; img.alt='Company logo'; content.appendChild(img); }); }
 
 document.addEventListener('DOMContentLoaded', ()=>{ try{ initTradeSlides(); }catch(e){} injectMobileLogos(); window.addEventListener('resize', injectMobileLogos); });
+/* ==== FIX: Loader (robusto) ==== */
+(function () {
+  // procura por IDs/classes mais comuns para overlay
+  var loader = document.querySelector('#loader, #loading, .loading-overlay');
+
+  function hideLoader() {
+    if (!loader || loader.dataset._hidden === '1') return;
+    loader.classList.add('loader--hidden');
+    document.body.classList.remove('no-scroll');
+    loader.dataset._hidden = '1';
+    // remove do DOM após a animação (não intercepta cliques)
+    setTimeout(function () {
+      try { loader.parentNode && loader.parentNode.removeChild(loader); } catch (e) {}
+    }, 350);
+  }
+
+  // dispara quando todos os recursos carregarem
+  window.addEventListener('load', hideLoader, { once: true });
+
+  // se a página já estiver completa (cache, navegação instantânea), esconde já
+  if (document.readyState === 'complete') {
+    hideLoader();
+  } else {
+    // alternativa mais cedo: após DOM pronto, agenda um "verificador"
+    document.addEventListener('DOMContentLoaded', function () {
+      // em alguns casos o 'load' não vem; garante ocultar
+      setTimeout(hideLoader, 100); 
+    }, { once: true });
+  }
+
+  // fallback duro: nunca deixa o overlay preso
+  setTimeout(hideLoader, 7000);
+})();
