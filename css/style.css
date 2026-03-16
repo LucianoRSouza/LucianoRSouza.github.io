@@ -47,27 +47,14 @@
   .stat-modal,.strategy-detail-card{margin:1rem;max-height:80vh;padding:1.5rem}
   .stat-modal-value{font-size:2.2rem}
 }
+.strategy-detail-header{position:sticky;top:0;z-index:3}
 
-/* --- Language switcher (refined) --- */
+.framework-highlight{max-width:1000px;margin:0 auto}
+
 .lang-switcher{top:84px;right:18px;background:rgba(255,255,255,.85);border:1px solid rgba(212,175,55,.25);backdrop-filter:blur(8px);padding:8px;border-radius:14px;box-shadow:0 6px 18px rgba(0,0,0,.12)}
-.lang-btn{padding:6px 10px;border-radius:999px;font-size:.82rem;border:1px solid transparent;color:var(--text);}
+
+.lang-btn{padding:6px 10px;border-radius:999px;font-size:.82rem;border:1px solid transparent;color:var(--text)}
+
 .lang-btn.active{background:linear-gradient(180deg,var(--gold),#f5d97a);color:var(--navy);border-color:var(--gold)}
-.lang-btn:hover{color:var(--navy)}
 
-/* --- Gold frame for hero/about images --- */
-.hero-image img,.about-image img{border:3px solid var(--gold);box-shadow:0 12px 28px rgba(212,175,55,.25);border-radius:24px}
-
-/* --- Project/gallery images: keep proportions without crop --- */
 .gallery-item img{object-fit:contain;background:#fff}
-
-/* --- Trade Shows DUO only --- */
-.trade-duo{max-width:1200px;margin:1rem auto 0;display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-.trade-card{background:var(--white);border:1px solid rgba(212,175,55,.25);border-radius:16px;box-shadow:0 10px 22px rgba(0,0,0,.08);padding:10px;cursor:pointer;transition:transform .2s ease, box-shadow .2s ease}
-.trade-card:hover{transform:translateY(-4px);box-shadow:0 16px 32px rgba(0,0,0,.14)}
-.trade-card img{width:100%;height:240px;object-fit:contain;background:#fff;border-radius:12px}
-.trade-card h4{margin:.6rem 0 0;color:var(--navy);text-align:center}
-@media(max-width:840px){.trade-duo{grid-template-columns:1fr}}
-
-/* --- Volunteer icon with Gadsden logo --- */
-.volunteer-icon{width:90px;height:90px;border:2px solid var(--gold);background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;overflow:hidden;margin:0 auto 1.2rem}
-.volunteer-icon img{width:85%;height:85%;object-fit:contain}
