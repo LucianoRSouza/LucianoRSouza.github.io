@@ -1346,16 +1346,12 @@ var __proj_lastY=0;
   if(typeof _close==='function'){
     window.closeProjectGallery = function(){
       _close();
-      setTimeout(function(){
-        if(__proj_lastY){ window.scrollTo({top: __proj_lastY, behavior:'instant'}); }
-        var sec=document.getElementById('projects');
-        if(sec){ /* ensure in view if needed */ }
-      },0);
+      setTimeout(function(){ if(__proj_lastY!=null){ window.scrollTo({top: __proj_lastY, behavior:'instant'}); } },0);
     }
   }
 })();
 
 
-/* ensure post-init translation */
-document.addEventListener('DOMContentLoaded',function(){try{var l=localStorage.getItem('lang')||document.documentElement.lang||'en';if(typeof translateAll==='function'){translateAll(l);}}catch(e){}});
+document.addEventListener('click',function(e){var trg=e.target.closest('.project-card .gallery-main, .project-card .project-gallery');if(!trg)return;var card=trg.closest('.project-card');if(card){openProjectGalleryFromCard(card);}});
 
+document.addEventListener('click',function(e){var b=e.target.closest('#langSwitcher .lang-btn');if(!b)return;var lang=b.getAttribute('data-lang')||'en';try{document.documentElement.lang=lang;localStorage.setItem('lang',lang);}catch(_){} if(typeof translateAll==='function'){translateAll(lang);} if(typeof markActiveLang==='function'){markActiveLang(lang);} });
