@@ -838,49 +838,31 @@ function initMobileEnhancements() {
   });
 }
 
-function enhanceProjectGalleries() {
+
+function enhanceProjectGalleries(){
   const map = {
     "blaupunkt-tools": [
-      "./Blaupunkt_Tools.png",
-      "./Blaupunkt_Illumiation_booth_HK_Fair.png",
-      "./Blaupunkt_Illumiation_booth_HK_Fair_1.png",
-      "./Blaupunkt_Illumiation_booth_HK_Fair_2.png",
-      "./Blaupunkt_Illumiation_booth_HK_Fair_3.png",
-      "./Blaupunkt_Illumiation_booth_HK_Fair_4.png"
+      "./BP_Powertools.jpg",
+      "./Blaupunkt_Illumination_booth_HK_Fair.png",
+      "./Blaupunkt_Power_Tools.png",
+      "./Blaupunkt_Tools.png"
     ],
     "blaupunkt-power": [
+      "./BP_Powertools.jpg",
       "./Blaupunkt_Power_Tools.png",
-      "./Blaupunkt_Tools.png",
-      "./Blaupunkt_Illumiation_booth_HK_Fair.png",
-      "./Blaupunkt_Illumiation_booth_HK_Fair_1.png",
-      "./Blaupunkt_Illumiation_booth_HK_Fair_2.png"
+      "./Blaupunkt_Tools.png"
     ],
     "blaupunkt-garden": [
-      "./Blaupunkt_Garden_Tools.png",
-      "./Blaupunkt_Tools.png",
-      "./Blaupunkt_Illumiation_booth_HK_Fair_2.png",
-      "./Blaupunkt_Illumiation_booth_HK_Fair_3.png",
-      "./Blaupunkt_Illumiation_booth_HK_Fair_4.png"
+      "./Blaupunkt_Garden_Tools.png"
     ]
   };
-
   Object.keys(map).forEach(key => {
     const card = document.querySelector(`.project-card[data-gallery="${key}"]`);
-    if (!card) return;
+    if(!card) return;
     const images = map[key];
     card.setAttribute('data-images', images.join(','));
-
-    const gallery = card.querySelector('.project-gallery');
-    if (gallery && !gallery.querySelector('.gallery-dots')) {
-      const dots = document.createElement('div');
-      dots.className = 'gallery-dots';
-      images.forEach((_, i) => {
-        const dot = document.createElement('div');
-        dot.className = `gallery-dot ${i === 0 ? 'active' : ''}`;
-        dots.appendChild(dot);
-      });
-      gallery.appendChild(dots);
-    }
+  });
+}
   });
 }
 
@@ -1148,6 +1130,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
     console.log('✅ Portfolio JS (consolidado) inicializado');
+  try{ initCustomCursor(); }catch(e){}
   
   // Inicializar modais dos stat boxes
   initStatModals();
@@ -1335,119 +1318,44 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
 (function(){
   window.I18N = window.I18N || {};
-  function ensureLang(lang){ window.I18N[lang] = window.I18N[lang] || {}; window.I18N[lang].statdetails = window.I18N[lang].statdetails || {}; }
-  var pt = {
-    savings: [
-      'Iniciativas de sourcing estratégico em categorias diretas e indiretas',
-      'Negociação de prazos de pagamento favoráveis (60–90 dias) melhorando o cash flow',
-      'Modelagem should‑cost identificando 15–25% de oportunidades',
-      'Consolidação da base de fornecedores de 200+ para 80 parceiros‑chave',
-      'Orçamentação base‑zero para CAPEX com ~20% de poupança média'
-    ],
-    rfps: [
-      'Processo ponta‑a‑ponta RFI/RFP/RFQ com anexos técnicos (A1/A2)',
-      'Matrizes de scoring ponderado: técnico (40%), comercial (35%), ESG (25%)',
-      'Integração com e‑procurement e trilhas de auditoria',
-      'Comités de avaliação (Engenharia, Finanças, Jurídico, Operações)',
-      'Ciclo médio reduzido de 45 para 28 dias com maior compliance'
-    ],
-    projects: [
-      'Desenvolvimento de produto do conceito à produção em escala',
-      'Lançamentos licenciados (Blaupunkt, Spear & Jackson, Pininfarina)',
-      'Auditorias de fábrica e avaliação de capacidades na Ásia',
-      'Implementações de sistemas de qualidade (ISO 9001, conformidade)',
-      'Otimização logística transfronteiriça e compliance aduaneiro'
-    ],
-    regions: [
-      'Europa: Portugal, Espanha, Alemanha, Reino Unido, Holanda, Itália, França',
-      'LATAM: Brasil, Argentina, Chile, Colômbia, México, Peru, Uruguai',
-      'Ásia: China, Hong Kong, Taiwan, Vietname, Índia, Coreia do Sul',
-      'Negociação multicultural e conhecimento de mercados locais',
-      'Coordenação de fusos para execução 24/7'
-    ]
-  };
-  var es = {
-    savings: [
-      'Iniciativas de sourcing estratégico en categorías directas e indirectas',
-      'Negociación de plazos favorables (60–90 días) mejorando el cash flow',
-      'Modelado should‑cost identificando 15–25% de oportunidades',
-      'Consolidación de la base de proveedores de 200+ a 80 socios clave',
-      'Presupuesto base cero para CAPEX con ~20% de ahorro promedio'
-    ],
-    rfps: [
-      'Proceso integral RFI/RFP/RFQ con anexos técnicos (A1/A2)',
-      'Matrices de puntuación ponderada: técnico (40%), comercial (35%), ESG (25%)',
-      'Integración con e‑procurement y trazabilidad de auditoría',
-      'Comités de evaluación (Ingeniería, Finanzas, Legal, Operaciones)',
-      'Reducción del ciclo medio de 45 a 28 días con más compliance'
-    ],
-    projects: [
-      'Desarrollo de producto del concepto a la producción',
-      'Lanzamientos licenciados (Blaupunkt, Spear & Jackson, Pininfarina)',
-      'Auditorías de fábrica y evaluación de capacidades en Asia',
-      'Implementación de sistemas de calidad (ISO 9001, cumplimiento)',
-      'Optimización logística transfronteriza y cumplimiento aduanero'
-    ],
-    regions: [
-      'Europa: Portugal, España, Alemania, Reino Unido, Países Bajos, Italia, Francia',
-      'LATAM: Brasil, Argentina, Chile, Colombia, México, Perú, Uruguay',
-      'Asia: China, Hong Kong, Taiwán, Vietnam, India, Corea del Sur',
-      'Negociación multicultural y conocimiento de mercados locales',
-      'Coordinación de zonas horarias para ejecución 24/7'
-    ]
-  };
-  var fr = {
-    savings: [
-      'Initiatives d\'approvisionnement stratégique en direct et indirect',
-      'Négociation de délais favorables (60–90 jours) améliorant la trésorerie',
-      'Modélisation should‑cost identifiant 15–25% d\'opportunités',
-      'Consolidation des fournisseurs de 200+ à 80 partenaires clés',
-      'Budget base zéro pour CAPEX avec ~20% d\'économies en moyenne'
-    ],
-    rfps: [
-      'Processus complet RFI/RFP/RFQ avec annexes techniques (A1/A2)',
-      'Matrices de scoring pondéré : technique (40%), commercial (35%), ESG (25%)',
-      'Intégration à l\'e‑procurement et traçabilité audit',
-      'Comités d\'évaluation (Ingénierie, Finance, Juridique, Opérations)',
-      'Réduction du cycle moyen de 45 à 28 jours avec plus de compliance'
-    ],
-    projects: [
-      'Développement produit du concept à la production',
-      'Lancements sous licence (Blaupunkt, Spear & Jackson, Pininfarina)',
-      'Audits d\'usine et évaluation des capacités en Asie',
-      'Mise en place de systèmes qualité (ISO 9001, conformité)',
-      'Optimisation logistique transfrontalière et conformité douanière'
-    ],
-    regions: [
-      'Europe : Portugal, Espagne, Allemagne, Royaume‑Uni, Pays‑Bas, Italie, France',
-      'LATAM : Brésil, Argentine, Chili, Colombie, Mexique, Pérou, Uruguay',
-      'Asie : Chine, Hong Kong, Taïwan, Vietnam, Inde, Corée du Sud',
-      'Négociation multiculturelle et connaissance des marchés locaux',
-      'Coordination des fuseaux horaires pour exécution 24/7'
-    ]
-  };
-  var en = {};
-  ['en','pt','es','fr'].forEach(function(l){ensureLang(l);});
-  window.I18N.pt.statdetails = pt; window.I18N.es.statdetails = es; window.I18N.fr.statdetails = fr; window.I18N.en.statdetails = window.I18N.en.statdetails||{};
+  function ensure(lang){ window.I18N[lang]=window.I18N[lang]||{}; window.I18N[lang].statdetails=window.I18N[lang].statdetails||{}; }
+  ['en','pt','es','fr'].forEach(ensure);
+  window.I18N.pt.statdetails = Object.assign(window.I18N.pt.statdetails, {
+    savings:['Iniciativas de sourcing estratégico (direto e indireto)','Prazos de pagamento favoráveis (60–90 dias) melhorando o cash flow','Modelagem should‑cost com 15–25% de oportunidades','Consolidação de fornecedores (200+ → 80 parceiros‑chave)','Orçamentação base‑zero para CAPEX (~20% de poupança)'],
+    rfps:['RFI/RFP/RFQ ponta‑a‑ponta com anexos técnicos (A1/A2)','Matrizes de scoring ponderado: técnico, comercial, ESG','Integração com e‑procurement e trilhas de auditoria','Comités de avaliação multifuncionais','Ciclo médio reduzido: 45 → 28 dias'],
+    projects:['Desenvolvimento de produto do conceito à produção','Lançamentos licenciados (Blaupunkt, Spear & Jackson, Pininfarina)','Auditorias e mapeamento de capacidades na Ásia','Sistemas de qualidade (ISO 9001, conformidade)','Otimização logística e aduaneira'],
+    regions:['Europa: PT, ES, DE, UK, NL, IT, FR','LATAM: BR, AR, CL, CO, MX, PE, UY','Ásia: CN, HK, TW, VN, IN, KR','Negociação multicultural','Coordenação de fusos 24/7']
+  });
+  window.I18N.es.statdetails = Object.assign(window.I18N.es.statdetails, {
+    savings:['Iniciativas de sourcing estratégico (directo e indirecto)','Términos de pago favorables (60–90 días) mejorando el cash flow','Modelado should‑cost con 15–25% de oportunidades','Consolidación de proveedores (200+ → 80 socios clave)','Presupuesto base‑cero para CAPEX (~20% de ahorro)'],
+    rfps:['RFI/RFP/RFQ de punta a punta con anexos técnicos (A1/A2)','Matrices ponderadas: técnico, comercial, ESG','Integración con e‑procurement y trazabilidad','Comités de evaluación multifuncionales','Ciclo promedio reducido: 45 → 28 días'],
+    projects:['Desarrollo de producto del concepto a la producción','Lanzamientos licenciados (Blaupunkt, Spear & Jackson, Pininfarina)','Auditorías y mapeo de capacidades en Asia','Sistemas de calidad (ISO 9001, cumplimiento)','Optimización logística y aduanera'],
+    regions:['Europa: PT, ES, DE, UK, NL, IT, FR','LATAM: BR, AR, CL, CO, MX, PE, UY','Asia: CN, HK, TW, VN, IN, KR','Negociación multicultural','Coordinación de husos 24/7']
+  });
+  window.I18N.fr.statdetails = Object.assign(window.I18N.fr.statdetails, {
+    savings:["Initiatives d'approvisionnement stratégique (direct/indirect)",'Délais de paiement favorables (60–90 jours) améliorant la trésorerie',"Modélisation should‑cost avec 15–25% d'opportunités",'Consolidation fournisseurs (200+ → 80 partenaires clés)','Budget base‑zéro CAPEX (~20% d’économies)'],
+    rfps:["RFI/RFP/RFQ bout‑en‑bout avec annexes techniques (A1/A2)",'Matrices pondérées : technique, commercial, ESG',"Intégration e‑procurement avec traçabilité","Comités d’évaluation interfonctionnels",'Cycle moyen réduit : 45 → 28 jours'],
+    projects:['Développement produit du concept à la production','Lancements sous licence (Blaupunkt, Spear & Jackson, Pininfarina)',"Audits et cartographie des capacités en Asie","Systèmes qualité (ISO 9001, conformité)",'Optimisation logistique et douanière'],
+    regions:['Europe : PT, ES, DE, UK, NL, IT, FR','LATAM : BR, AR, CL, CO, MX, PE, UY','Asie : CN, HK, TW, VN, IN, KR','Négociations multiculturelles','Coordination des fuseaux 24/7']
+  });
 })();
 
 
 
 (function(){
-  var _open = window.openStatModal;
+  var _open = window.openStatModal || openStatModal;
+  if(typeof _open !== 'function') return;
   window.openStatModal = function(key){
-    var lang = (function(){try{return localStorage.getItem('lang')||document.documentElement.lang||'en';}catch(e){return 'en';}})();
+    var lang; try{ lang = localStorage.getItem('lang') || document.documentElement.lang || 'en'; }catch(e){ lang='en'; }
     var dict = (window.I18N && window.I18N[lang]) || (window.I18N && window.I18N['en']) || {};
-    var lbl = (((dict.hero||{}).stats||{})[key]) || key; // title from i18n label
-    var details = (((dict.statdetails||{})[key])||null);
-    // call original to set icons/value and fallback English details
     _open(key);
-    // then override title and details if we have translations
     try{
+      var lbl = (((dict.hero||{}).stats||{})[key]) || null;
+      var details = (((dict.statdetails||{})[key]) || null);
       if(lbl){ document.getElementById('statModalTitle').textContent = lbl; }
       if(Array.isArray(details) && details.length){
         var ul = document.getElementById('statModalDetails');
-        ul.innerHTML = details.map(function(d){return '<li>'+d+'</li>';}).join('');
+        if(ul){ ul.innerHTML = details.map(function(d){ return '<li>'+d+'</li>'; }).join(''); }
       }
     }catch(e){}
   };
@@ -1456,25 +1364,27 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
 
 (function(){
-  var _chg = window.changeProjectSlide; var _goto = window.goToProjectSlide;
+  var _chg=window.changeProjectSlide; var _goto=window.goToProjectSlide;
   function sync(){
     try{
       var slides = Array.from(document.querySelectorAll('#gallerySlider .gallery-slide'));
-      var idx = slides.findIndex(function(s){return s.classList.contains('active');});
+      var idx = slides.findIndex(function(s){ return s.classList.contains('active'); });
       var dots = document.querySelectorAll('#galleryDots .gallery-dot');
       dots.forEach(function(d,i){ d.classList.toggle('active', i===idx); });
     }catch(e){}
   }
-  window.changeProjectSlide = function(dir){ if(typeof _chg==='function'){ _chg(dir); } sync(); };
-  window.goToProjectSlide = function(i){ if(typeof _goto==='function'){ _goto(i); } sync(); };
+  window.changeProjectSlide=function(d){ if(typeof _chg==='function'){ _chg(d); } sync(); };
+  window.goToProjectSlide=function(i){ if(typeof _goto==='function'){ _goto(i); } sync(); };
 })();
 
 
 
-document.addEventListener('error', function(e){
-  var t = e.target; if(!(t && t.tagName==='IMG')) return;
-  if(/Blaupunkt_Illumination_booth_HK_Fair\.png/.test(t.src)){
-    t.onerror=null; t.src=t.src.replace('Illumination','Illumiation');
-  }
-}, true);
+function initCustomCursor(){
+  var c=document.getElementById('cursor'); var f=document.getElementById('cursorFollower'); if(!c||!f) return;
+  var cx=0, cy=0, fx=0, fy=0, vis=false; var lerp=function(a,b,t){return a+(b-a)*t;};
+  function raf(){ fx=lerp(fx,cx,0.18); fy=lerp(fy,cy,0.18); f.style.transform='translate('+fx+'px,'+fy+'px)'; requestAnimationFrame(raf); }
+  requestAnimationFrame(raf);
+  window.addEventListener('mousemove', function(e){ cx=e.clientX; cy=e.clientY; c.style.transform='translate('+cx+'px,'+cy+'px)'; if(!vis){ c.style.opacity=1; f.style.opacity=1; vis=true; }});
+  window.addEventListener('mouseleave', function(){ c.style.opacity=0; f.style.opacity=0; vis=false; });
+}
 
