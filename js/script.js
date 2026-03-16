@@ -668,16 +668,40 @@ function closeStrategyModal() {
 /* -------------------------
    Galerias de Projetos
 --------------------------*/
+
 function setupCardAutoSlide(card) {
   const container = card.querySelector('.gallery-main');
   if (!container) return;
-
-  // carregar lista de imagens
+  // Prepare images list
   let images = [];
-  const csv = card.getAttribute('data-images') || '';
-  if (csv.trim()) {
+  const csv = (card.getAttribute('data-images') || '').trim();
+  if (csv) {
     images = csv.split(',').map(s => s.trim()).filter(Boolean);
   } else {
+    const main = container.querySelector('img');
+    if (main && main.src) images = [main.src];
+  }
+  if (!images.length) return;
+  const imgEl = container.querySelector('img');
+  const auto = card.getAttribute('data-autoslide') === 'true';
+  const interval = Math.max(1200, parseInt(card.getAttribute('data-interval'), 10) || 2500);
+  const state = { images, idx: 0, timer: null, interval, imgEl, paused: false };
+  CardSlides.set(card, state);
+  function tick(){
+    if (state.paused || !auto || state.images.length <= 1) return;
+    state.idx = (state.idx + 1) % state.images.length;
+    state.imgEl.style.opacity = '0';
+    setTimeout(()=>{ state.imgEl.src = state.images[state.idx]; state.imgEl.onload=()=>{state.imgEl.style.opacity='1';}; },160);
+  }
+  function start(){ stop(); if (auto && state.images.length > 1) state.timer = setInterval(tick, state.interval); }
+  function stop(){ if (state.timer){ clearInterval(state.timer); state.timer=null; } }
+  on(card, 'mouseenter', ()=>{ state.paused = true; });
+  on(card, 'mouseleave', ()=>{ state.paused = false; });
+  // Click to open gallery (use container to avoid overlay pointer-events)
+  on(container, 'click', (e)=>{ e.stopPropagation(); openProjectGalleryFromCard(card); });
+  start();
+}
+ else {
     const main = container.querySelector('img');
     if (main?.src) images = [main.src];
   }
@@ -1243,7 +1267,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// --- Inject duo layout for Trade Shows (Blaupunkt left, Ford right) using existing galleries ---
+// --- Trade Shows: Duo cover + open gallery ---
 function initTradeDuoFromExisting(){
   const sec = document.getElementById('trade-shows');
   if(!sec) return;
@@ -1295,23 +1319,25 @@ function ensurePGCloseButton(){
 }
 
 // Wrap open & close to preserve/restore scroll
-const __origOpenPG = window.openProjectGalleryFromCard ? window.openProjectGalleryFromCard : null;
-if(__origOpenPG){
-  window.openProjectGalleryFromCard = function(card){
-    __pg_lastScrollY = window.scrollY || document.documentElement.scrollTop || 0;
-    __origOpenPG(card);
-    ensurePGCloseButton();
+(function(){
+  const __origOpen = window.openProjectGalleryFromCard;
+  if(typeof __origOpen === 'function'){
+    window.openProjectGalleryFromCard = function(card){
+      __pg_lastScrollY = window.scrollY || document.documentElement.scrollTop || 0;
+      __origOpen(card);
+      ensurePGCloseButton();
+    }
   }
-}
-const __origClosePG = window.closeProjectGallery ? window.closeProjectGallery : null;
-if(__origClosePG){
-  window.closeProjectGallery = function(){
-    __origClosePG();
-    setTimeout(()=> window.scrollTo({top: __pg_lastScrollY, behavior:'instant'}), 0);
+  const __origClose = window.closeProjectGallery;
+  if(typeof __origClose === 'function'){
+    window.closeProjectGallery = function(){
+      __origClose();
+      setTimeout(()=> window.scrollTo({top: __pg_lastScrollY, behavior:'instant'}), 0);
+    }
   }
-}
+})();
 
-// Mobile timeline logos outside the frame (non-intrusive)
+// Mobile: logos outside the frame
 function initMobileTimelineLogos(){
   if(!window.matchMedia('(max-width: 1200px)').matches) return;
   document.querySelectorAll('.timeline-item').forEach(item=>{
@@ -1326,7 +1352,6 @@ function initMobileTimelineLogos(){
   });
 }
 
-// Boot hook
 document.addEventListener('DOMContentLoaded', ()=>{
   try{ initTradeDuoFromExisting(); }catch(e){}
   try{ initMobileTimelineLogos(); }catch(e){}
