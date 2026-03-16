@@ -47,14 +47,4 @@
   .stat-modal,.strategy-detail-card{margin:1rem;max-height:80vh;padding:1.5rem}
   .stat-modal-value{font-size:2.2rem}
 }
-.strategy-detail-header{position:sticky;top:0;z-index:3}
-
-.framework-highlight{max-width:1000px;margin:0 auto}
-
-.lang-switcher{top:84px;right:18px;background:rgba(255,255,255,.85);border:1px solid rgba(212,175,55,.25);backdrop-filter:blur(8px);padding:8px;border-radius:14px;box-shadow:0 6px 18px rgba(0,0,0,.12)}
-
-.lang-btn{padding:6px 10px;border-radius:999px;font-size:.82rem;border:1px solid transparent;color:var(--text)}
-
-.lang-btn.active{background:linear-gradient(180deg,var(--gold),#f5d97a);color:var(--navy);border-color:var(--gold)}
-
-.gallery-item img{object-fit:contain;background:#fff}
+.hero-image img,.about-image img{border:3px solid var(--gold);box-shadow:0 12px 28px rgba(212,175,55,.25);border-radius:24px}
