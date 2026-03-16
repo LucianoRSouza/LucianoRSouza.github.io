@@ -668,40 +668,16 @@ function closeStrategyModal() {
 /* -------------------------
    Galerias de Projetos
 --------------------------*/
-
 function setupCardAutoSlide(card) {
   const container = card.querySelector('.gallery-main');
   if (!container) return;
-  // Prepare images list
+
+  // carregar lista de imagens
   let images = [];
-  const csv = (card.getAttribute('data-images') || '').trim();
-  if (csv) {
+  const csv = card.getAttribute('data-images') || '';
+  if (csv.trim()) {
     images = csv.split(',').map(s => s.trim()).filter(Boolean);
   } else {
-    const main = container.querySelector('img');
-    if (main && main.src) images = [main.src];
-  }
-  if (!images.length) return;
-  const imgEl = container.querySelector('img');
-  const auto = card.getAttribute('data-autoslide') === 'true';
-  const interval = Math.max(1200, parseInt(card.getAttribute('data-interval'), 10) || 2500);
-  const state = { images, idx: 0, timer: null, interval, imgEl, paused: false };
-  CardSlides.set(card, state);
-  function tick(){
-    if (state.paused || !auto || state.images.length <= 1) return;
-    state.idx = (state.idx + 1) % state.images.length;
-    state.imgEl.style.opacity = '0';
-    setTimeout(()=>{ state.imgEl.src = state.images[state.idx]; state.imgEl.onload=()=>{state.imgEl.style.opacity='1';}; },160);
-  }
-  function start(){ stop(); if (auto && state.images.length > 1) state.timer = setInterval(tick, state.interval); }
-  function stop(){ if (state.timer){ clearInterval(state.timer); state.timer=null; } }
-  on(card, 'mouseenter', ()=>{ state.paused = true; });
-  on(card, 'mouseleave', ()=>{ state.paused = false; });
-  // Click to open gallery (use container to avoid overlay pointer-events)
-  on(container, 'click', (e)=>{ e.stopPropagation(); openProjectGalleryFromCard(card); });
-  start();
-}
- else {
     const main = container.querySelector('img');
     if (main?.src) images = [main.src];
   }
@@ -1264,95 +1240,4 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!isNaN(n)) { window.openStrategyModal(n); }
     });
   });
-});
-
-
-// --- Trade Shows: Duo cover + open gallery ---
-function initTradeDuoFromExisting(){
-  const sec = document.getElementById('trade-shows');
-  if(!sec) return;
-  const blau = document.querySelector('#gallery-blaupunkt .gallery-item img');
-  const ford = document.querySelector('#gallery-ford .gallery-item img');
-  const blauSrc = blau ? blau.getAttribute('src') : '';
-  const fordSrc = ford ? ford.getAttribute('src') : '';
-  if(!blauSrc || !fordSrc) return;
-  if(sec.querySelector('.trade-duo')) return; // avoid duplicates
-  const duo = document.createElement('div');
-  duo.className = 'trade-duo';
-  duo.innerHTML = `
-    <div class="brand-card" data-brand="blaupunkt">
-      <div class="brand-head"><h4>Blaupunkt</h4><i class="fas fa-images" style="color:var(--gold);"></i></div>
-      <div class="brand-body"><img src="${blauSrc}" alt="Blaupunkt cover"/></div>
-    </div>
-    <div class="brand-card" data-brand="ford">
-      <div class="brand-head"><h4>Ford Lighting</h4><i class="fas fa-images" style="color:var(--gold);"></i></div>
-      <div class="brand-body"><img src="${fordSrc}" alt="Ford cover"/></div>
-    </div>`;
-  const tabs = sec.querySelector('.gallery-tabs');
-  sec.insertBefore(duo, tabs);
-  const openBrand = (brand)=>{
-    const panel = document.getElementById(brand==='blaupunkt' ? 'gallery-blaupunkt' : 'gallery-ford');
-    if(!panel) return;
-    const imgs = Array.from(panel.querySelectorAll('.gallery-item img')).map(i=> i.getAttribute('src')).filter(Boolean);
-    if(!imgs.length) return;
-    buildProjectSlides(imgs);
-    const modal = document.getElementById('projectGalleryModal');
-    if(modal){ modal.classList.add('active'); document.body.style.overflow='hidden'; ensurePGCloseButton(); }
-  };
-  duo.querySelector('[data-brand="blaupunkt"]').addEventListener('click', ()=> openBrand('blaupunkt'));
-  duo.querySelector('[data-brand="ford"]').addEventListener('click', ()=> openBrand('ford'));
-}
-
-let __pg_lastScrollY = 0;
-function ensurePGCloseButton(){
-  const modal = document.getElementById('projectGalleryModal');
-  if(!modal) return;
-  const controls = modal.querySelector('.gallery-controls');
-  if(!controls) return;
-  if(!controls.querySelector('.gallery-close-primary')){
-    const btn = document.createElement('button');
-    btn.className = 'gallery-close-primary';
-    btn.textContent = (document.documentElement.lang||'pt').startsWith('pt')?'Fechar e Voltar':'Close';
-    btn.addEventListener('click', closeProjectGallery);
-    controls.appendChild(btn);
-  }
-}
-
-// Wrap open & close to preserve/restore scroll
-(function(){
-  const __origOpen = window.openProjectGalleryFromCard;
-  if(typeof __origOpen === 'function'){
-    window.openProjectGalleryFromCard = function(card){
-      __pg_lastScrollY = window.scrollY || document.documentElement.scrollTop || 0;
-      __origOpen(card);
-      ensurePGCloseButton();
-    }
-  }
-  const __origClose = window.closeProjectGallery;
-  if(typeof __origClose === 'function'){
-    window.closeProjectGallery = function(){
-      __origClose();
-      setTimeout(()=> window.scrollTo({top: __pg_lastScrollY, behavior:'instant'}), 0);
-    }
-  }
-})();
-
-// Mobile: logos outside the frame
-function initMobileTimelineLogos(){
-  if(!window.matchMedia('(max-width: 1200px)').matches) return;
-  document.querySelectorAll('.timeline-item').forEach(item=>{
-    if(item.querySelector('.mobile-company-logo')) return;
-    const logo = item.getAttribute('data-logo');
-    if(!logo) return;
-    const img = document.createElement('img');
-    img.className = 'mobile-company-logo';
-    img.alt = 'Company logo';
-    img.src = logo;
-    item.appendChild(img);
-  });
-}
-
-document.addEventListener('DOMContentLoaded', ()=>{
-  try{ initTradeDuoFromExisting(); }catch(e){}
-  try{ initMobileTimelineLogos(); }catch(e){}
 });
