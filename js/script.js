@@ -1333,25 +1333,76 @@ document.addEventListener('DOMContentLoaded', ()=>{
 });
 
 
-var __proj_lastY=0;
+function __translateHeroStats(lang){
+  try{
+    var dict=(window.I18N&&window.I18N[lang])||(window.I18N&&window.I18N['en'])||{};
+    var map={savings:['hero','stats','savings'], rfps:['hero','stats','rfps'], projects:['hero','stats','projects'], regions:['hero','stats','regions']};
+    document.querySelectorAll('.hero-stats .stat-box').forEach(function(box){
+      var k=box.getAttribute('data-stat'); if(!k||!map[k]) return;
+      var label=box.querySelector('.stat-label'); var note=box.querySelector('.stat-note');
+      // resolve path
+      function get(path){ return path.reduce(function(a,c){return (a&&a[c]!==undefined)?a[c]:undefined;}, dict);} 
+      var lbl=get(['hero','stats',k]); var nte=get(['hero','stats',k+'_note']);
+      if(label && typeof lbl==='string') label.textContent=lbl;
+      if(note && typeof nte==='string') note.textContent=nte;
+    });
+  }catch(e){}
+}
+
+
+
+document.addEventListener('DOMContentLoaded',function(){
+  try{var l=localStorage.getItem('lang')||document.documentElement.lang||'en'; if(typeof translateAll==='function'){translateAll(l);} __translateHeroStats(l);}catch(e){}
+});
+
+document.addEventListener('click',function(e){
+  var b=e.target.closest('#langSwitcher .lang-btn'); if(!b) return;
+  var lang=b.getAttribute('data-lang')||'en';
+  try{document.documentElement.lang=lang; localStorage.setItem('lang',lang);}catch(_){ }
+  if(typeof translateAll==='function'){translateAll(lang);} 
+  if(typeof markActiveLang==='function'){markActiveLang(lang);} 
+  __translateHeroStats(lang);
+});
+
+
+
 (function(){
-  var _openCard = window.openProjectGalleryFromCard;
-  if(typeof _openCard==='function'){
-    window.openProjectGalleryFromCard = function(card){
-      __proj_lastY = window.scrollY || document.documentElement.scrollTop || 0;
-      _openCard(card);
+  var _chg=window.changeProjectSlide; var _goto=window.goToProjectSlide;
+  function syncDots(){
+    try{
+      var slides=document.querySelectorAll('.gallery-slide');
+      var dots=document.querySelectorAll('.gallery-dots .gallery-dot');
+      var activeIndex=[].findIndex.call(slides,function(s){return s.classList.contains('active');});
+      dots.forEach(function(d,i){d.classList.toggle('active', i===activeIndex);});
+    }catch(e){}
+  }
+  window.changeProjectSlide=function(dir){ if(typeof _chg==='function'){ _chg(dir); } syncDots(); };
+  window.goToProjectSlide=function(i){ if(typeof _goto==='function'){ _goto(i); } syncDots(); };
+})();
+
+
+
+var __lightbox_origin=null, __fair_lastY=0;
+(function(){
+  var _openFair=window.openTradeGallery;
+  if(typeof _openFair==='function'){
+    window.openTradeGallery=function(brand){
+      __lightbox_origin='fairs';
+      __fair_lastY=window.scrollY||document.documentElement.scrollTop||0;
+      return _openFair(brand);
     }
   }
-  var _close = window.closeProjectGallery;
+  var _close=window.closeProjectGallery;
   if(typeof _close==='function'){
-    window.closeProjectGallery = function(){
+    window.closeProjectGallery=function(){
       _close();
-      setTimeout(function(){ if(__proj_lastY!=null){ window.scrollTo({top: __proj_lastY, behavior:'instant'}); } },0);
+      setTimeout(function(){
+        if(__lightbox_origin==='fairs'){
+          window.scrollTo({top: __fair_lastY, behavior:'instant'});
+        }
+      },0);
+      __lightbox_origin=null;
     }
   }
 })();
 
-
-document.addEventListener('click',function(e){var trg=e.target.closest('.project-card .gallery-main, .project-card .project-gallery');if(!trg)return;var card=trg.closest('.project-card');if(card){openProjectGalleryFromCard(card);}});
-
-document.addEventListener('click',function(e){var b=e.target.closest('#langSwitcher .lang-btn');if(!b)return;var lang=b.getAttribute('data-lang')||'en';try{document.documentElement.lang=lang;localStorage.setItem('lang',lang);}catch(_){} if(typeof translateAll==='function'){translateAll(lang);} if(typeof markActiveLang==='function'){markActiveLang(lang);} });
