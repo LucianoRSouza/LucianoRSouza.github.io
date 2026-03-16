@@ -1331,3 +1331,5 @@ document.addEventListener('DOMContentLoaded', ()=>{
   try{ initTradeDuoFromExisting(); }catch(e){}
   try{ initMobileTimelineLogos(); }catch(e){}
 });
+
+function openTradeGallery(b){const imgs=b==='blaupunkt'?['./Blaupunkt_Illumiation_booth_HK_Fair.png']:['./Ford_lighting_solutions_HK_Intl.png'];buildProjectSlides(imgs);document.getElementById('projectGalleryModal').classList.add('active');document.body.style.overflow='hidden';}
