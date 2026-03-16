@@ -1332,4 +1332,16 @@ document.addEventListener('DOMContentLoaded', ()=>{
   try{ initMobileTimelineLogos(); }catch(e){}
 });
 
-function openTradeGallery(b){const imgs=b==='blaupunkt'?['./Blaupunkt_Illumiation_booth_HK_Fair.png']:['./Ford_lighting_solutions_HK_Intl.png'];buildProjectSlides(imgs);document.getElementById('projectGalleryModal').classList.add('active');document.body.style.overflow='hidden';}
+const TRADE_GALLERIES={blaupunkt:[
+'./Blaupunkt_Illumiation_booth_HK_Fair.png',
+'./Blaupunkt_Illumiation_booth_HK_Fair_1.png',
+'./Blaupunkt_Illumiation_booth_HK_Fair_2.png',
+'./Blaupunkt_Illumiation_booth_HK_Fair_3.png',
+'./Blaupunkt_Illumiation_booth_HK_Fair_4.png'
+], ford:[
+'./Ford_lighting_solutions_HK_Intl.png',
+'./Ford_lighting_solutions_HK_Intl_1.png',
+'./Ford_lighting_solutions_HK_Intl_2.png'
+]};
+
+function openTradeGallery(brand){const images=(TRADE_GALLERIES[brand]||[]).slice();if(!images.length)return;buildProjectSlides(images);document.getElementById('projectGalleryModal').classList.add('active');document.body.style.overflow='hidden';}
