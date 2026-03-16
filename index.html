@@ -521,7 +521,7 @@
 <div class="section-header animate-on-scroll">
 <h2 data-i18n="tradeshows.title">Trade Shows &amp; Global Exhibitions</h2>
 <p data-i18n="tradeshows.subtitle">Exhibitor and strategic buyer across worldwide markets</p>
-</div><div class="trade-duo"><div class="trade-card" onclick="openTradeGallery('blaupunkt')"><img alt="Blaupunkt Cover" src="./Blaupunkt_Illumination_booth_HK_Fair.png"/><h4>Blaupunkt</h4></div><div class="trade-card" onclick="openTradeGallery('ford')"><img alt="Ford Lighting Cover" src="./Ford_lighting_solutions_HK_Intl.png"/><h4>Ford Lighting</h4></div></div>
+</div><div class="trade-duo"><div class="trade-card" onclick="openTradeGallery('blaupunkt')"><img alt="Blaupunkt Cover" onerror="this.onerror=null; this.src=this.src.replace('Illumination','Illumiation');" src="./Blaupunkt_Illumination_booth_HK_Fair.png"/><h4>Blaupunkt</h4></div><div class="trade-card" onclick="openTradeGallery('ford')"><img alt="Ford Lighting Cover" onerror="this.onerror=null; this.src=this.src.replace('Illumination','Illumiation');" src="./Ford_lighting_solutions_HK_Intl.png"/><h4>Ford Lighting</h4></div></div>
 <!-- Tabs -->
 
 <!-- Blaupunkt Gallery -->
@@ -738,7 +738,9 @@
 <img alt="Gadsden State Community College" src="./gadsdenstatecommunitycollege.jpg"/>
 </div>
 <div class="volunteer-card animate-on-scroll delay-1">
-<div class="volunteer-icon"><img alt="Gadsden State Community College" src="./gadsdenstatecommunitycollege_logo.jpg"/></div>
+<div class="volunteer-icon">
+<i aria-hidden="true" class="fas fa-chalkboard-teacher"></i>
+</div>
 <h3 data-i18n="vol.position">Mathematics &amp; English Instructor</h3>
 <div class="school" data-i18n="vol.school">Gadsden State Community College</div>
 <div class="period">1999–2000</div>
