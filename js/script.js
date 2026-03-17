@@ -1482,3 +1482,28 @@ const STRATEGY_I18N = {
     document.body.style.overflow = 'hidden';
   };
 })();
+// --- Loading overlay robust fallback ---
+(function(){
+  var loading = document.getElementById('loading');
+  if(!loading) return;
+
+  function hideLoading(){
+    if(!loading || loading.classList.contains('hidden')) return;
+    loading.classList.add('hidden');
+    // remove do DOM um pouco depois para liberar eventos/cliques
+    setTimeout(function(){ try{ loading.remove(); }catch(e){} }, 400);
+  }
+
+  // Se o documento já estiver pronto, esconde em ~1.2s
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    setTimeout(hideLoading, 1200);
+  } else {
+    // Fallback por DOMContentLoaded (caso o window.load não dispare)
+    document.addEventListener('DOMContentLoaded', function(){
+      setTimeout(hideLoading, 1500);
+    });
+  }
+
+  // Kill‑switch: se nada disparar, garante remoção em até 5s
+  setTimeout(hideLoading, 5000);
+})();
