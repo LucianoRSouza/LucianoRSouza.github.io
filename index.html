@@ -942,5 +942,22 @@
 <div aria-live="polite" class="toast" id="toast" role="status"></div>
 <!-- ✅ Inclui o seu arquivo externo JS (carrega TODO o código do script.js) -->
 <script src="./js/script.js"></script>
+          <script>
+(function(){
+  function kill(){
+    var l = document.getElementById('loading');
+    if (!l) return;
+    l.classList.add('hidden');
+    setTimeout(function(){ try{ l.remove(); }catch(e){} }, 400);
+  }
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    setTimeout(kill, 1200);
+  } else {
+    document.addEventListener('DOMContentLoaded', function(){ setTimeout(kill, 1500); });
+  }
+  window.addEventListener('load', function(){ setTimeout(kill, 600); });
+  setTimeout(kill, 5000); // kill-switch
+})();
+</script>
 </body>
 </html>
