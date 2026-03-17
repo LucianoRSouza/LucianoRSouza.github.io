@@ -58,3 +58,5 @@
 .lang-btn.active{background:linear-gradient(180deg,var(--gold),#f5d97a);color:var(--navy);border-color:var(--gold)}
 
 .gallery-item img{object-fit:contain;background:#fff}
+
+body.custom-cursor{cursor:none}
