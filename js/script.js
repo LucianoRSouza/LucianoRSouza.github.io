@@ -838,49 +838,31 @@ function initMobileEnhancements() {
   });
 }
 
-function enhanceProjectGalleries() {
+
+function enhanceProjectGalleries(){
   const map = {
     "blaupunkt-tools": [
-      "./Blaupunkt_Tools.png",
-      "./Blaupunkt_Illumiation_booth_HK_Fair.png",
-      "./Blaupunkt_Illumiation_booth_HK_Fair_1.png",
-      "./Blaupunkt_Illumiation_booth_HK_Fair_2.png",
-      "./Blaupunkt_Illumiation_booth_HK_Fair_3.png",
-      "./Blaupunkt_Illumiation_booth_HK_Fair_4.png"
+      "./BP_Powertools.jpg",
+      "./Blaupunkt_Illumination_booth_HK_Fair.png",
+      "./Blaupunkt_Power_Tools.png",
+      "./Blaupunkt_Tools.png"
     ],
     "blaupunkt-power": [
+      "./BP_Powertools.jpg",
       "./Blaupunkt_Power_Tools.png",
-      "./Blaupunkt_Tools.png",
-      "./Blaupunkt_Illumiation_booth_HK_Fair.png",
-      "./Blaupunkt_Illumiation_booth_HK_Fair_1.png",
-      "./Blaupunkt_Illumiation_booth_HK_Fair_2.png"
+      "./Blaupunkt_Tools.png"
     ],
     "blaupunkt-garden": [
-      "./Blaupunkt_Garden_Tools.png",
-      "./Blaupunkt_Tools.png",
-      "./Blaupunkt_Illumiation_booth_HK_Fair_2.png",
-      "./Blaupunkt_Illumiation_booth_HK_Fair_3.png",
-      "./Blaupunkt_Illumiation_booth_HK_Fair_4.png"
+      "./Blaupunkt_Garden_Tools.png"
     ]
   };
-
   Object.keys(map).forEach(key => {
     const card = document.querySelector(`.project-card[data-gallery="${key}"]`);
-    if (!card) return;
+    if(!card) return;
     const images = map[key];
     card.setAttribute('data-images', images.join(','));
-
-    const gallery = card.querySelector('.project-gallery');
-    if (gallery && !gallery.querySelector('.gallery-dots')) {
-      const dots = document.createElement('div');
-      dots.className = 'gallery-dots';
-      images.forEach((_, i) => {
-        const dot = document.createElement('div');
-        dot.className = `gallery-dot ${i === 0 ? 'active' : ''}`;
-        dots.appendChild(dot);
-      });
-      gallery.appendChild(dots);
-    }
+  });
+}
   });
 }
 
@@ -1148,6 +1130,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
     console.log('✅ Portfolio JS (consolidado) inicializado');
+  try{ initCustomCursor(); }catch(e){}
   
   // Inicializar modais dos stat boxes
   initStatModals();
@@ -1333,76 +1316,75 @@ document.addEventListener('DOMContentLoaded', ()=>{
 });
 
 
-function __translateHeroStats(lang){
-  try{
-    var dict=(window.I18N&&window.I18N[lang])||(window.I18N&&window.I18N['en'])||{};
-    var map={savings:['hero','stats','savings'], rfps:['hero','stats','rfps'], projects:['hero','stats','projects'], regions:['hero','stats','regions']};
-    document.querySelectorAll('.hero-stats .stat-box').forEach(function(box){
-      var k=box.getAttribute('data-stat'); if(!k||!map[k]) return;
-      var label=box.querySelector('.stat-label'); var note=box.querySelector('.stat-note');
-      // resolve path
-      function get(path){ return path.reduce(function(a,c){return (a&&a[c]!==undefined)?a[c]:undefined;}, dict);} 
-      var lbl=get(['hero','stats',k]); var nte=get(['hero','stats',k+'_note']);
-      if(label && typeof lbl==='string') label.textContent=lbl;
-      if(note && typeof nte==='string') note.textContent=nte;
-    });
-  }catch(e){}
-}
+(function(){
+  window.I18N = window.I18N || {};
+  function ensure(lang){ window.I18N[lang]=window.I18N[lang]||{}; window.I18N[lang].statdetails=window.I18N[lang].statdetails||{}; }
+  ['en','pt','es','fr'].forEach(ensure);
+  window.I18N.pt.statdetails = Object.assign(window.I18N.pt.statdetails, {
+    savings:['Iniciativas de sourcing estratégico (direto e indireto)','Prazos de pagamento favoráveis (60–90 dias) melhorando o cash flow','Modelagem should‑cost com 15–25% de oportunidades','Consolidação de fornecedores (200+ → 80 parceiros‑chave)','Orçamentação base‑zero para CAPEX (~20% de poupança)'],
+    rfps:['RFI/RFP/RFQ ponta‑a‑ponta com anexos técnicos (A1/A2)','Matrizes de scoring ponderado: técnico, comercial, ESG','Integração com e‑procurement e trilhas de auditoria','Comités de avaliação multifuncionais','Ciclo médio reduzido: 45 → 28 dias'],
+    projects:['Desenvolvimento de produto do conceito à produção','Lançamentos licenciados (Blaupunkt, Spear & Jackson, Pininfarina)','Auditorias e mapeamento de capacidades na Ásia','Sistemas de qualidade (ISO 9001, conformidade)','Otimização logística e aduaneira'],
+    regions:['Europa: PT, ES, DE, UK, NL, IT, FR','LATAM: BR, AR, CL, CO, MX, PE, UY','Ásia: CN, HK, TW, VN, IN, KR','Negociação multicultural','Coordenação de fusos 24/7']
+  });
+  window.I18N.es.statdetails = Object.assign(window.I18N.es.statdetails, {
+    savings:['Iniciativas de sourcing estratégico (directo e indirecto)','Términos de pago favorables (60–90 días) mejorando el cash flow','Modelado should‑cost con 15–25% de oportunidades','Consolidación de proveedores (200+ → 80 socios clave)','Presupuesto base‑cero para CAPEX (~20% de ahorro)'],
+    rfps:['RFI/RFP/RFQ de punta a punta con anexos técnicos (A1/A2)','Matrices ponderadas: técnico, comercial, ESG','Integración con e‑procurement y trazabilidad','Comités de evaluación multifuncionales','Ciclo promedio reducido: 45 → 28 días'],
+    projects:['Desarrollo de producto del concepto a la producción','Lanzamientos licenciados (Blaupunkt, Spear & Jackson, Pininfarina)','Auditorías y mapeo de capacidades en Asia','Sistemas de calidad (ISO 9001, cumplimiento)','Optimización logística y aduanera'],
+    regions:['Europa: PT, ES, DE, UK, NL, IT, FR','LATAM: BR, AR, CL, CO, MX, PE, UY','Asia: CN, HK, TW, VN, IN, KR','Negociación multicultural','Coordinación de husos 24/7']
+  });
+  window.I18N.fr.statdetails = Object.assign(window.I18N.fr.statdetails, {
+    savings:["Initiatives d'approvisionnement stratégique (direct/indirect)",'Délais de paiement favorables (60–90 jours) améliorant la trésorerie',"Modélisation should‑cost avec 15–25% d'opportunités",'Consolidation fournisseurs (200+ → 80 partenaires clés)','Budget base‑zéro CAPEX (~20% d’économies)'],
+    rfps:["RFI/RFP/RFQ bout‑en‑bout avec annexes techniques (A1/A2)",'Matrices pondérées : technique, commercial, ESG',"Intégration e‑procurement avec traçabilité","Comités d’évaluation interfonctionnels",'Cycle moyen réduit : 45 → 28 jours'],
+    projects:['Développement produit du concept à la production','Lancements sous licence (Blaupunkt, Spear & Jackson, Pininfarina)',"Audits et cartographie des capacités en Asie","Systèmes qualité (ISO 9001, conformité)",'Optimisation logistique et douanière'],
+    regions:['Europe : PT, ES, DE, UK, NL, IT, FR','LATAM : BR, AR, CL, CO, MX, PE, UY','Asie : CN, HK, TW, VN, IN, KR','Négociations multiculturelles','Coordination des fuseaux 24/7']
+  });
+})();
 
 
 
-document.addEventListener('DOMContentLoaded',function(){
-  try{var l=localStorage.getItem('lang')||document.documentElement.lang||'en'; if(typeof translateAll==='function'){translateAll(l);} __translateHeroStats(l);}catch(e){}
-});
-
-document.addEventListener('click',function(e){
-  var b=e.target.closest('#langSwitcher .lang-btn'); if(!b) return;
-  var lang=b.getAttribute('data-lang')||'en';
-  try{document.documentElement.lang=lang; localStorage.setItem('lang',lang);}catch(_){ }
-  if(typeof translateAll==='function'){translateAll(lang);} 
-  if(typeof markActiveLang==='function'){markActiveLang(lang);} 
-  __translateHeroStats(lang);
-});
+(function(){
+  var _open = window.openStatModal || openStatModal;
+  if(typeof _open !== 'function') return;
+  window.openStatModal = function(key){
+    var lang; try{ lang = localStorage.getItem('lang') || document.documentElement.lang || 'en'; }catch(e){ lang='en'; }
+    var dict = (window.I18N && window.I18N[lang]) || (window.I18N && window.I18N['en']) || {};
+    _open(key);
+    try{
+      var lbl = (((dict.hero||{}).stats||{})[key]) || null;
+      var details = (((dict.statdetails||{})[key]) || null);
+      if(lbl){ document.getElementById('statModalTitle').textContent = lbl; }
+      if(Array.isArray(details) && details.length){
+        var ul = document.getElementById('statModalDetails');
+        if(ul){ ul.innerHTML = details.map(function(d){ return '<li>'+d+'</li>'; }).join(''); }
+      }
+    }catch(e){}
+  };
+})();
 
 
 
 (function(){
   var _chg=window.changeProjectSlide; var _goto=window.goToProjectSlide;
-  function syncDots(){
+  function sync(){
     try{
-      var slides=document.querySelectorAll('.gallery-slide');
-      var dots=document.querySelectorAll('.gallery-dots .gallery-dot');
-      var activeIndex=[].findIndex.call(slides,function(s){return s.classList.contains('active');});
-      dots.forEach(function(d,i){d.classList.toggle('active', i===activeIndex);});
+      var slides = Array.from(document.querySelectorAll('#gallerySlider .gallery-slide'));
+      var idx = slides.findIndex(function(s){ return s.classList.contains('active'); });
+      var dots = document.querySelectorAll('#galleryDots .gallery-dot');
+      dots.forEach(function(d,i){ d.classList.toggle('active', i===idx); });
     }catch(e){}
   }
-  window.changeProjectSlide=function(dir){ if(typeof _chg==='function'){ _chg(dir); } syncDots(); };
-  window.goToProjectSlide=function(i){ if(typeof _goto==='function'){ _goto(i); } syncDots(); };
+  window.changeProjectSlide=function(d){ if(typeof _chg==='function'){ _chg(d); } sync(); };
+  window.goToProjectSlide=function(i){ if(typeof _goto==='function'){ _goto(i); } sync(); };
 })();
 
 
 
-var __lightbox_origin=null, __fair_lastY=0;
-(function(){
-  var _openFair=window.openTradeGallery;
-  if(typeof _openFair==='function'){
-    window.openTradeGallery=function(brand){
-      __lightbox_origin='fairs';
-      __fair_lastY=window.scrollY||document.documentElement.scrollTop||0;
-      return _openFair(brand);
-    }
-  }
-  var _close=window.closeProjectGallery;
-  if(typeof _close==='function'){
-    window.closeProjectGallery=function(){
-      _close();
-      setTimeout(function(){
-        if(__lightbox_origin==='fairs'){
-          window.scrollTo({top: __fair_lastY, behavior:'instant'});
-        }
-      },0);
-      __lightbox_origin=null;
-    }
-  }
-})();
+function initCustomCursor(){
+  var c=document.getElementById('cursor'); var f=document.getElementById('cursorFollower'); if(!c||!f) return;
+  var cx=0, cy=0, fx=0, fy=0, vis=false; var lerp=function(a,b,t){return a+(b-a)*t;};
+  function raf(){ fx=lerp(fx,cx,0.18); fy=lerp(fy,cy,0.18); f.style.transform='translate('+fx+'px,'+fy+'px)'; requestAnimationFrame(raf); }
+  requestAnimationFrame(raf);
+  window.addEventListener('mousemove', function(e){ cx=e.clientX; cy=e.clientY; c.style.transform='translate('+cx+'px,'+cy+'px)'; if(!vis){ c.style.opacity=1; f.style.opacity=1; vis=true; }});
+  window.addEventListener('mouseleave', function(){ c.style.opacity=0; f.style.opacity=0; vis=false; });
+}
 
