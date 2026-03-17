@@ -59,26 +59,26 @@
 <div aria-label="Cumulative savings delivered" class="stat-box" data-stat="savings" tabindex="0">
 <i aria-hidden="true" class="fas fa-piggy-bank stat-icon"></i>
 <span class="stat-number" id="statSavings">€1M+</span>
-<span class="stat-label" data-i18n="hero.stats.savings"></span>
-<small class="stat-note" data-i18n="hero.stats.savings_note"></small>
+<span class="stat-label" data-i18n="hero.stats.savings">Cumulative Savings</span>
+<small class="stat-note" data-i18n="hero.stats.savings_note">Across multi-category negotiations</small>
 </div>
 <div aria-label="Strategic tenders led" class="stat-box" data-stat="rfps" tabindex="0">
 <i aria-hidden="true" class="fas fa-file-contract stat-icon"></i>
 <span class="stat-number" id="statRFPs">120+</span>
-<span class="stat-label" data-i18n="hero.stats.rfps"></span>
-<small class="stat-note" data-i18n="hero.stats.rfps_note"></small>
+<span class="stat-label" data-i18n="hero.stats.rfps">RFP/RFQ Led</span>
+<small class="stat-note" data-i18n="hero.stats.rfps_note">With technical annexes &amp; weighted scoring</small>
 </div>
 <div aria-label="Project value managed" class="stat-box" data-stat="projects" tabindex="0">
 <i aria-hidden="true" class="fas fa-project-diagram stat-icon"></i>
 <span class="stat-number" id="statProjects">€10M+</span>
-<span class="stat-label" data-i18n="hero.stats.projects"></span>
-<small class="stat-note" data-i18n="hero.stats.projects_note"></small>
+<span class="stat-label" data-i18n="hero.stats.projects">Project Portfolio</span>
+<small class="stat-note" data-i18n="hero.stats.projects_note">From concept to audited mass production</small>
 </div>
 <div aria-label="Regions served" class="stat-box" data-stat="regions" tabindex="0">
 <i aria-hidden="true" class="fas fa-globe stat-icon"></i>
 <span class="stat-number" id="statRegions">20+</span>
-<span class="stat-label" data-i18n="hero.stats.regions"></span>
-<small class="stat-note" data-i18n="hero.stats.regions_note"></small>
+<span class="stat-label" data-i18n="hero.stats.regions">Countries</span>
+<small class="stat-note" data-i18n="hero.stats.regions_note">Europe · LATAM · Asia</small>
 </div>
 </div>
 <div class="hero-buttons">
@@ -521,13 +521,78 @@
 <div class="section-header animate-on-scroll">
 <h2 data-i18n="tradeshows.title">Trade Shows &amp; Global Exhibitions</h2>
 <p data-i18n="tradeshows.subtitle">Exhibitor and strategic buyer across worldwide markets</p>
-</div><div class="trade-duo"><div class="trade-card" onclick="openTradeGallery('blaupunkt')"><img alt="Blaupunkt Cover" src="./Blaupunkt_Illumination_booth_HK_Fair.png"/><h4>Blaupunkt</h4></div><div class="trade-card" onclick="openTradeGallery('ford')"><img alt="Ford Lighting Cover" src="./Ford_lighting_solutions_HK_Intl.png"/><h4>Ford Lighting</h4></div></div>
+</div>
 <!-- Tabs -->
-
+<div aria-label="Trade show brands" class="gallery-tabs animate-on-scroll delay-1" role="tablist">
+<button aria-selected="true" class="gallery-tab active" data-target="gallery-blaupunkt" role="tab" type="button">Blaupunkt</button>
+<button aria-selected="false" class="gallery-tab" data-target="gallery-ford" role="tab" type="button">Ford Lighting</button>
+</div>
 <!-- Blaupunkt Gallery -->
-
+<div class="gallery-content active" id="gallery-blaupunkt" role="tabpanel">
+<div class="gallery-grid">
+<div class="gallery-item animate-on-scroll" onclick="openLightbox(this)">
+<img alt="Blaupunkt Illumination Booth" src="./Blaupunkt_Illumiation_booth_HK_Fair.png"/>
+<div class="gallery-overlay">
+<h4 data-i18n="tradeshows.blaupunkt.1.title">Blaupunkt Illumination Booth</h4>
+<p data-i18n="tradeshows.blaupunkt.1.desc">Hong Kong International Lighting Fair — premium brand experience co-designed with Marketing.</p>
+</div>
+</div>
+<div class="gallery-item animate-on-scroll delay-1" onclick="openLightbox(this)">
+<img alt="Stand Design &amp; Storytelling" src="./Blaupunkt_Illumiation_booth_HK_Fair_1.png"/>
+<div class="gallery-overlay">
+<h4 data-i18n="tradeshows.blaupunkt.2.title">Stand Design &amp; Storytelling</h4>
+<p data-i18n="tradeshows.blaupunkt.2.desc">Layout, flow, lighting demos, and merchandising aligned to category strategy.</p>
+</div>
+</div>
+<div class="gallery-item animate-on-scroll delay-2" onclick="openLightbox(this)">
+<img alt="Product Display Excellence" src="./Blaupunkt_Illumiation_booth_HK_Fair_2.png"/>
+<div class="gallery-overlay">
+<h4 data-i18n="tradeshows.blaupunkt.3.title">Product Display Excellence</h4>
+<p data-i18n="tradeshows.blaupunkt.3.desc">Complete portfolio with compliance highlights and technical feature cards.</p>
+</div>
+</div>
+<div class="gallery-item animate-on-scroll delay-3" onclick="openLightbox(this)">
+<img alt="Lead Generation" src="./Blaupunkt_Illumiation_booth_HK_Fair_3.png"/>
+<div class="gallery-overlay">
+<h4 data-i18n="tradeshows.blaupunkt.4.title">Lead Generation</h4>
+<p data-i18n="tradeshows.blaupunkt.4.desc">On-stand meetings, scanning, qualification, and live slotting into pipeline.</p>
+</div>
+</div>
+<div class="gallery-item animate-on-scroll delay-1" onclick="openLightbox(this)">
+<img alt="Global Coordination" src="./Blaupunkt_Illumiation_booth_HK_Fair_4.png"/>
+<div class="gallery-overlay">
+<h4 data-i18n="tradeshows.blaupunkt.5.title">Global Coordination</h4>
+<p data-i18n="tradeshows.blaupunkt.5.desc">Consistent brand messaging across regions with localized assortments.</p>
+</div>
+</div>
+</div>
+</div>
 <!-- Ford Lighting Gallery -->
-
+<div class="gallery-content" id="gallery-ford" role="tabpanel">
+<div class="gallery-grid">
+<div class="gallery-item animate-on-scroll" onclick="openLightbox(this)">
+<img alt="Hong Kong International Lighting Fair" src="./Ford_lighting_solutions_HK_Intl.png"/>
+<div class="gallery-overlay">
+<h4 data-i18n="tradeshows.ford.1.title">Hong Kong International Lighting Fair</h4>
+<p data-i18n="tradeshows.ford.1.desc">Strategic booth planning with Marketing &amp; Merchandising; category narratives and demos.</p>
+</div>
+</div>
+<div class="gallery-item animate-on-scroll delay-1" onclick="openLightbox(this)">
+<img alt="Meetings &amp; Lead Capture" src="./Ford_lighting_solutions_HK_Intl_1.png"/>
+<div class="gallery-overlay">
+<h4 data-i18n="tradeshows.ford.2.title">Meetings &amp; Lead Capture</h4>
+<p data-i18n="tradeshows.ford.2.desc">Meetings agenda, lead qualification and structured post-fair follow-up.</p>
+</div>
+</div>
+<div class="gallery-item animate-on-scroll delay-2" onclick="openLightbox(this)">
+<img alt="Supplier Engagement" src="./Ford_lighting_solutions_HK_Intl_2.png"/>
+<div class="gallery-overlay">
+<h4 data-i18n="tradeshows.ford.3.title">Supplier Engagement</h4>
+<p data-i18n="tradeshows.ford.3.desc">Negotiations, technical samples, costs, MOQs, and certification roadmaps.</p>
+</div>
+</div>
+</div>
+</div>
 <!-- Strategy Block -->
 <div class="trade-show-strategy">
 <h3><i aria-hidden="true" class="fas fa-handshake" style="color: var(--gold); margin-right: 10px;"></i>
@@ -738,7 +803,9 @@
 <img alt="Gadsden State Community College" src="./gadsdenstatecommunitycollege.jpg"/>
 </div>
 <div class="volunteer-card animate-on-scroll delay-1">
-<div class="volunteer-icon"><img alt="Gadsden State Community College" src="./gadsdenstatecommunitycollege_logo.jpg"/></div>
+<div class="volunteer-icon">
+<i aria-hidden="true" class="fas fa-chalkboard-teacher"></i>
+</div>
 <h3 data-i18n="vol.position">Mathematics &amp; English Instructor</h3>
 <div class="school" data-i18n="vol.school">Gadsden State Community College</div>
 <div class="period">1999–2000</div>
