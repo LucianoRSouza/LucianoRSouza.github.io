@@ -1345,3 +1345,180 @@ function openTradeGallery(brand){__pg_lastY=window.scrollY||document.documentEle
 
 /* restore scroll after closing project gallery */
 (function(){var _oldClose=window.closeProjectGallery;if(typeof _oldClose==='function'){window.closeProjectGallery=function(){_oldClose();setTimeout(function(){window.scrollTo({top:__pg_lastY,behavior:'instant'});},0);};}})();
+
+
+
+// ========= I18N for Stat Modals (Hero) =========
+const STAT_I18N = {
+  en: {
+    savings: { title: 'Cumulative Savings Delivered', value: '€1M+', details: [
+      'Multi-category strategic sourcing initiatives across direct and indirect spend',
+      'Negotiated favorable payment terms (60-90 days) improving cash flow',
+      'Implemented should-cost modeling identifying 15-25% cost reduction opportunities',
+      'Consolidated supplier base from 200+ to 80 key partners',
+      'Zero-based budgeting approach for CAPEX projects saving 20% on average'
+    ]},
+    rfps: { title: 'Strategic Tenders Led', value: '120+', details: [
+      'End-to-end RFI/RFP/RFQ process design with technical annexes (A1/A2)',
+      'Weighted scoring matrices balancing technical (40%), commercial (35%), and ESG (25%) criteria',
+      'E-procurement platform integration with full audit trails',
+      'Cross-functional evaluation committees (Engineering, Finance, Legal, Operations)',
+      'Average cycle time reduction from 45 to 28 days while improving compliance'
+    ]},
+    projects: { title: 'Project Portfolio Value', value: '€10M+', details: [
+      'New product development from concept to mass production',
+      'Licensed portfolio launches (Blaupunkt, Spear & Jackson, Pininfarina)',
+      'Factory audits and supplier capability assessments across Asia',
+      'Quality system implementations (ISO 9001, compliance frameworks)',
+      'Cross-border logistics optimization and customs compliance'
+    ]},
+    regions: { title: 'Global Operations Coverage', value: '20+', details: [
+      'Europe: Portugal, Spain, Germany, UK, Netherlands, Italy, France',
+      'LATAM: Brazil, Argentina, Chile, Colombia, Mexico, Peru, Uruguay',
+      'Asia: China, Hong Kong, Taiwan, Vietnam, India, South Korea',
+      'Multi-cultural negotiation experience and local market knowledge',
+      'Time zone coordination for 24/7 project execution'
+    ]}
+  },
+  pt: {
+    savings: { title: 'Poupança Acumulada Entregue', value: '€1M+', details: [
+      'Iniciativas de strategic sourcing multi‑categoria em despesas diretas e indiretas',
+      'Negociação de prazos de pagamento favoráveis (60–90 dias) melhorando o cash flow',
+      'Modelos de should‑cost identificando oportunidades de 15–25% de redução de custos',
+      'Consolidação da base de fornecedores de 200+ para 80 parceiros‑chave',
+      'Orçamentação base‑zero para projetos CAPEX economizando ~20% em média'
+    ]},
+    rfps: { title: 'Tenders Estratégicos Conduzidos', value: '120+', details: [
+      'Desenho ponta‑a‑ponta de RFI/RFP/RFQ com anexos técnicos (A1/A2)',
+      'Matrizes de scoring ponderado: técnico (40%), comercial (35%) e ESG (25%)',
+      'Integração com plataforma de e‑procurement com trilhas de auditoria',
+      'Comitês de avaliação multifuncionais (Engenharia, Finanças, Jurídico, Operações)',
+      'Redução do ciclo médio de 45 para 28 dias com mais compliance'
+    ]},
+    projects: { title: 'Valor do Portfólio de Projetos', value: '€10M+', details: [
+      'Desenvolvimento de produto do conceito à produção em massa',
+      'Lançamentos licenciados (Blaupunkt, Spear & Jackson, Pininfarina)',
+      'Auditorias fabris e avaliação de capacidades na Ásia',
+      'Implementação de sistemas de qualidade (ISO 9001, frameworks de compliance)',
+      'Otimização logística transfronteiriça e conformidade aduaneira'
+    ]},
+    regions: { title: 'Cobertura Operacional Global', value: '20+', details: [
+      'Europa: Portugal, Espanha, Alemanha, Reino Unido, Países Baixos, Itália, França',
+      'LATAM: Brasil, Argentina, Chile, Colômbia, México, Peru, Uruguai',
+      'Ásia: China, Hong Kong, Taiwan, Vietname, Índia, Coreia do Sul',
+      'Negociação multicultural e conhecimento de mercados locais',
+      'Coordenação de fuso horário para execução 24/7'
+    ]}
+  },
+  es: {
+    savings: { title: 'Ahorros Acumulados Entregados', value: '€1M+', details: [
+      'Iniciativas de strategic sourcing multi‑categoría en gasto directo e indirecto',
+      'Negociación de plazos de pago favorables (60–90 días) mejorando el flujo de caja',
+      'Modelado should‑cost identificando oportunidades de reducción del 15–25%',
+      'Consolidación de la base de proveedores de 200+ a 80 socios clave',
+      'Presupuestación base‑cero para proyectos CAPEX ahorrando ~20% en promedio'
+    ]},
+    rfps: { title: 'Licitaciones Estratégicas Dirigidas', value: '120+', details: [
+      'Diseño integral RFI/RFP/RFQ con anexos técnicos (A1/A2)',
+      'Matrices de ponderación: técnico (40%), comercial (35%) y ESG (25%)',
+      'Integración con plataforma de e‑procurement con trazabilidad completa',
+      'Comités de evaluación multifuncionales (Ingeniería, Finanzas, Legal, Operaciones)',
+      'Reducción del ciclo promedio de 45 a 28 días con mayor cumplimiento'
+    ]},
+    projects: { title: 'Valor del Portafolio de Proyectos', value: '€10M+', details: [
+      'Desarrollo de producto del concepto a producción masiva',
+      'Lanzamientos licenciados (Blaupunkt, Spear & Jackson, Pininfarina)',
+      'Auditorías de fábrica y evaluación de capacidades en Asia',
+      'Implementación de sistemas de calidad (ISO 9001, marcos de compliance)',
+      'Optimización logística transfronteriza y cumplimiento aduanero'
+    ]},
+    regions: { title: 'Cobertura Operativa Global', value: '20+', details: [
+      'Europa: Portugal, España, Alemania, Reino Unido, Países Bajos, Italia, Francia',
+      'LATAM: Brasil, Argentina, Chile, Colombia, México, Perú, Uruguay',
+      'Asia: China, Hong Kong, Taiwán, Vietnam, India, Corea del Sur',
+      'Experiencia de negociación multicultural y conocimiento local',
+      'Coordinación de husos horarios para ejecución 24/7'
+    ]}
+  },
+  fr: {
+    savings: { title: 'Économies Cumulées Réalisées', value: '€1M+', details: [
+      'Initiatives de sourcing stratégique multi‑catégories sur dépenses directes et indirectes',
+      'Négociation de conditions de paiement favorables (60–90 jours) améliorant la trésorerie',
+      'Modélisation should‑cost identifiant 15–25% d’opportunités de réduction',
+      'Consolidation de la base fournisseurs de 200+ à 80 partenaires clés',
+      'Budget base‑zéro pour projets CAPEX économisant ~20% en moyenne'
+    ]},
+    rfps: { title: 'Appels d’Offres Stratégiques Menés', value: '120+', details: [
+      'Conception bout‑à‑bout RFI/RFP/RFQ avec annexes techniques (A1/A2)',
+      'Matrices de pondération : technique (40%), commercial (35%), ESG (25%)',
+      'Intégration à la plateforme d’e‑procurement avec traçabilité complète',
+      'Comités d’évaluation interfonctionnels (Ingénierie, Finance, Juridique, Opérations)',
+      'Réduction du cycle moyen de 45 à 28 jours avec meilleur compliance'
+    ]},
+    projects: { title: 'Valeur du Portefeuille de Projets', value: '€10M+', details: [
+      'Développement produit du concept à la production de masse',
+      'Lancements sous licence (Blaupunkt, Spear & Jackson, Pininfarina)',
+      'Audits d’usines et évaluation des capacités en Asie',
+      'Mise en place de systèmes qualité (ISO 9001, cadres de conformité)',
+      'Optimisation logistique transfrontalière et conformité douanière'
+    ]},
+    regions: { title: 'Couverture Opérationnelle Globale', value: '20+', details: [
+      'Europe : Portugal, Espagne, Allemagne, Royaume‑Uni, Pays‑Bas, Italie, France',
+      'LATAM : Brésil, Argentine, Chili, Colombie, Mexique, Pérou, Uruguay',
+      'Asie : Chine, Hong Kong, Taïwan, Viêt Nam, Inde, Corée du Sud',
+      'Expérience de négociation multiculturelle et connaissance des marchés locaux',
+      'Coordination des fuseaux horaires pour exécution 24/7'
+    ]}
+  }
+};
+
+// Override openStatModal to use current language
+(function(){
+  const getLang = ()=> (window.PG_state && PG_state.currentLang) || (document.documentElement.lang||'en').slice(0,2);
+  const overlay = ()=> document.getElementById('statModalOverlay');
+  window.openStatModal = function(key){
+    const lang = getLang();
+    const dict = (STAT_I18N[lang]||STAT_I18N.en||{});
+    const data = dict[key];
+    if(!data){
+      // fallback to existing behavior if any
+      try{ if(typeof closeStatModal==='function'){ /*noop*/ } }catch(e){}
+    }
+    const ov = overlay();
+    if(!ov||!data) return;
+    document.getElementById('statModalIcon').className = 'fas ' + (statDetailsData[key]?.icon||'fa-chart-line');
+    document.getElementById('statModalTitle').textContent = data.title||'';
+    document.getElementById('statModalValue').textContent = data.value||'';
+    const list = (data.details||[]).map(x=> '<li>'+x+'</li>').join('');
+    document.getElementById('statModalDetails').innerHTML = list;
+    ov.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  };
+})();
+
+// ===== Preserve scroll when opening/closing any gallery/lightbox =====
+(function(){
+  let LAST_Y = 0;
+  function saveY(){ LAST_Y = window.scrollY || document.documentElement.scrollTop || 0; }
+  function restoreY(){ setTimeout(()=>{ window.scrollTo({top: LAST_Y, left:0, behavior:'instant'}); }, 0); }
+
+  // Project gallery wrappers
+  if (typeof window.openProjectGalleryFromCard === 'function'){
+    const __oldOpen = window.openProjectGalleryFromCard;
+    window.openProjectGalleryFromCard = function(card){ saveY(); return __oldOpen(card); };
+  }
+  if (typeof window.closeProjectGallery === 'function'){
+    const __oldClose = window.closeProjectGallery;
+    window.closeProjectGallery = function(){ const r = __oldClose(); restoreY(); return r; };
+  }
+
+  // Lightbox wrappers
+  if (typeof window.openLightbox === 'function'){
+    const __oldOpenLb = window.openLightbox;
+    window.openLightbox = function(el){ saveY(); return __oldOpenLb(el); };
+  }
+  if (typeof window.closeLightbox === 'function'){
+    const __oldCloseLb = window.closeLightbox;
+    window.closeLightbox = function(){ const r = __oldCloseLb(); restoreY(); return r; };
+  }
+})();
