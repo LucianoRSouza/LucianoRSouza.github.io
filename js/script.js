@@ -1332,16 +1332,16 @@ document.addEventListener('DOMContentLoaded', ()=>{
   try{ initMobileTimelineLogos(); }catch(e){}
 });
 
-/* ensure post-init translation */
-document.addEventListener('DOMContentLoaded',function(){try{var l=localStorage.getItem('lang')||document.documentElement.lang||'en';if(typeof translateAll==='function'){translateAll(l);}}catch(e){}});
+const TRADE_GALLERIES={blaupunkt:[
+'./Blaupunkt_Illumiation_booth_HK_Fair.png',
+'./Blaupunkt_Illumiation_booth_HK_Fair_1.png',
+'./Blaupunkt_Illumiation_booth_HK_Fair_2.png',
+'./Blaupunkt_Illumiation_booth_HK_Fair_3.png',
+'./Blaupunkt_Illumiation_booth_HK_Fair_4.png'
+], ford:[
+'./Ford_lighting_solutions_HK_Intl.png',
+'./Ford_lighting_solutions_HK_Intl_1.png',
+'./Ford_lighting_solutions_HK_Intl_2.png'
+]};
 
-// open gallery on project main image click
-document.addEventListener('click',function(e){const gm=e.target.closest('.project-card .gallery-main');if(!gm)return;const card=gm.closest('.project-card');openProjectGalleryFromCard(card);});
-
-var __pg_lastY=0;
-
-const TRADE_GALLERIES={blaupunkt:['./Blaupunkt_Illumiation_booth_HK_Fair.png','./Blaupunkt_Illumiation_booth_HK_Fair_1.png','./Blaupunkt_Illumiation_booth_HK_Fair_2.png','./Blaupunkt_Illumiation_booth_HK_Fair_3.png','./Blaupunkt_Illumiation_booth_HK_Fair_4.png'],ford:['./Ford_lighting_solutions_HK_Intl.png','./Ford_lighting_solutions_HK_Intl_1.png','./Ford_lighting_solutions_HK_Intl_2.png']};
-function openTradeGallery(brand){__pg_lastY=window.scrollY||document.documentElement.scrollTop||0;const images=(TRADE_GALLERIES[brand]||[]).slice();if(!images.length)return;buildProjectSlides(images);document.getElementById('projectGalleryModal').classList.add('active');document.body.style.overflow='hidden';}
-
-/* restore scroll after closing project gallery */
-(function(){var _oldClose=window.closeProjectGallery;if(typeof _oldClose==='function'){window.closeProjectGallery=function(){_oldClose();setTimeout(function(){window.scrollTo({top:__pg_lastY,behavior:'instant'});},0);};}})();
+function openTradeGallery(brand){const images=(TRADE_GALLERIES[brand]||[]).slice();if(!images.length)return;buildProjectSlides(images);document.getElementById('projectGalleryModal').classList.add('active');document.body.style.overflow='hidden';}
