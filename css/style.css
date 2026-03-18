@@ -132,3 +132,5 @@
   pointer-events: none; 
   transition: opacity .4s ease; /* se já houver, mantenha a sua */
 }
+/* Kill-switch temporário do overlay de loading (reversível) */
+.loading { display: none !important; }
