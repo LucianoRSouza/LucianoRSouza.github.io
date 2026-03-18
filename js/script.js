@@ -389,7 +389,7 @@ window.I18N = {
 };
 
 /* =========================================================
-   Luciano Rodrigues — Portfolio JS (CORREÇÕES APLICADAS)
+   Luciano Rodrigues — Portfolio JS (consolidado e limpo)
    ========================================================= */
 
 /* -------------------------
@@ -403,94 +403,307 @@ const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
 const on = (el, evt, fn, opts) => el && el.addEventListener(evt, fn, opts);
 
 /* -------------------------
-   Dados — Stats
+   Dados — Stats & Estratégia (com tradução)
 --------------------------*/
-const statDetailsData = {
-  savings: {
-    icon: "fa-piggy-bank",
-    title: "Cumulative Savings Delivered",
-    value: "€1M+",
-    details: [
-      "Multi-category strategic sourcing initiatives across direct and indirect spend",
-      "Negotiated favorable payment terms (60-90 days) improving cash flow",
-      "Implemented should-cost modeling identifying 15-25% cost reduction opportunities",
-      "Consolidated supplier base from 200+ to 80 key partners",
-      "Zero-based budgeting approach for CAPEX projects saving 20% on average"
-    ]
-  },
-  rfps: {
-    icon: "fa-file-contract",
-    title: "Strategic Tenders Led",
-    value: "120+",
-    details: [
-      "End-to-end RFI/RFP/RFQ process design with technical annexes (A1/A2)",
-      "Weighted scoring matrices balancing technical (40%), commercial (35%), and ESG (25%) criteria",
-      "E-procurement platform integration with full audit trails",
-      "Cross-functional evaluation committees (Engineering, Finance, Legal, Operations)",
-      "Average cycle time reduction from 45 to 28 days while improving compliance"
-    ]
-  },
-  projects: {
-    icon: "fa-project-diagram",
-    title: "Project Portfolio Value",
-    value: "€10M+",
-    details: [
-      "New product development from concept to mass production",
-      "Licensed portfolio launches (Blaupunkt, Spear & Jackson, Pininfarina)",
-      "Factory audits and supplier capability assessments across Asia",
-      "Quality system implementations (ISO 9001, compliance frameworks)",
-      "Cross-border logistics optimization and customs compliance"
-    ]
-  },
-  regions: {
-    icon: "fa-globe",
-    title: "Global Operations Coverage",
-    value: "20+",
-    details: [
-      "Europe: Portugal, Spain, Germany, UK, Netherlands, Italy, France",
-      "LATAM: Brazil, Argentina, Chile, Colombia, Mexico, Peru, Uruguay",
-      "Asia: China, Hong Kong, Taiwan, Vietnam, India, South Korea",
-      "Multi-cultural negotiation experience and local market knowledge",
-      "Time zone coordination for 24/7 project execution"
-    ]
-  }
-};
+function getStatDetailsData() {
+  const lang = PG_state.currentLang || 'en';
+  const t = window.I18N[lang] || window.I18N['en'];
+  
+  return {
+    savings: {
+      icon: "fa-piggy-bank",
+      title: t.hero?.stats?.savings || "Cumulative Savings",
+      value: "€1M+",
+      details: STAT_I18N[lang]?.savings?.details || STAT_I18N['en'].savings.details
+    },
+    rfps: {
+      icon: "fa-file-contract",
+      title: t.hero?.stats?.rfps || "RFP/RFQ Led",
+      value: "120+",
+      details: STAT_I18N[lang]?.rfps?.details || STAT_I18N['en'].rfps.details
+    },
+    projects: {
+      icon: "fa-project-diagram",
+      title: t.hero?.stats?.projects || "Project Portfolio",
+      value: "€10M+",
+      details: STAT_I18N[lang]?.projects?.details || STAT_I18N['en'].projects.details
+    },
+    regions: {
+      icon: "fa-globe",
+      title: t.hero?.stats?.regions || "Countries",
+      value: "20+",
+      details: STAT_I18N[lang]?.regions?.details || STAT_I18N['en'].regions.details
+    }
+  };
+}
 
-/* -------------------------
-   Dados — Strategy (com tradução)
---------------------------*/
-const strategyDetailsDataI18N = {
+function getStrategyDetailsData() {
+  const lang = PG_state.currentLang || 'en';
+  const t = window.I18N[lang] || window.I18N['en'];
+  const pillars = t?.tradeshows?.strategy?.pillars || {};
+  
+  return {
+    1: {
+      title: pillars[1] || "Stand Design & Merchandising",
+      subtitle: t?.tradeshows?.strategy?.title || "Trade Show Strategy",
+      icon: "fa-drafting-compass",
+      sections: [
+        {
+          title: lang === 'pt' ? "Abordagem Estratégica" : lang === 'es' ? "Enfoque Estratégico" : lang === 'fr' ? "Approche Stratégique" : "Strategic Approach",
+          items: [
+            lang === 'pt' ? "Co-criação do conceito do estande com Marketing alinhado ao posicionamento da marca" : 
+            lang === 'es' ? "Co-creación del concepto de stand con Marketing alineado al posicionamiento de marca" :
+            lang === 'fr' ? "Co-création du concept de stand avec le Marketing aligné sur le positionnement de la marque" :
+            "Co-created booth concept with Marketing aligning to brand positioning",
+            
+            lang === 'pt' ? "Otimização do fluxo de tráfego para máximo engajamento de visitantes" :
+            lang === 'es' ? "Optimización del flujo de tráfico para máximo compromiso de visitantes" :
+            lang === 'fr' ? "Optimisation du flux de trafic pour un engagement maximal des visiteurs" :
+            "Traffic flow optimization for maximum visitor engagement",
+            
+            lang === 'pt' ? "Hierarquia de exibição de produtos destacando SKUs hero e novos lançamentos" :
+            lang === 'es' ? "Jerarquía de exhibición de productos destacando SKUs hero y nuevos lanzamientos" :
+            lang === 'fr' ? "Hiérarchie d'affichage des produits mettant en avant les SKUs phares et les nouveautés" :
+            "Product display hierarchy highlighting hero SKUs and new launches"
+          ]
+        }
+      ]
+    },
+    2: {
+      title: pillars[2] || "Meetings Orchestration & Lead Capture",
+      subtitle: t?.tradeshows?.strategy?.title || "Trade Show Strategy",
+      icon: "fa-calendar-check",
+      sections: [
+        {
+          title: lang === 'pt' ? "Planejamento Pré-Evento" : lang === 'es' ? "Planificación Pre-Evento" : lang === 'fr' ? "Planification Pré-Événement" : "Pre-Event Planning",
+          items: [
+            lang === 'pt' ? "Desenvolvimento de lista de alvos: 200+ prospects qualificados por feira" :
+            lang === 'es' ? "Desarrollo de lista de objetivos: 200+ prospectos calificados por feria" :
+            lang === 'fr' ? "Développement de liste cible: 200+ prospects qualifiés par salon" :
+            "Target list development: 200+ qualified prospects per fair"
+          ]
+        }
+      ]
+    },
+    3: {
+      title: pillars[3] || "Negotiations & Partnering",
+      subtitle: t?.tradeshows?.strategy?.title || "Trade Show Strategy",
+      icon: "fa-handshake-angle",
+      sections: [
+        {
+          title: lang === 'pt' ? "Desenvolvimento de Parcerias" : lang === 'es' ? "Desarrollo de Alianzas" : lang === 'fr' ? "Développement de Partenariats" : "Partnership Development",
+          items: [
+            lang === 'pt' ? "Qualificação inicial: estabilidade financeira, capacidade, certificações" :
+            lang === 'es' ? "Calificación inicial: estabilidad financiera, capacidad, certificaciones" :
+            lang === 'fr' ? "Qualification initiale: stabilité financière, capacité, certifications" :
+            "Initial qualification: financial stability, capacity, certifications"
+          ]
+        }
+      ]
+    },
+    4: {
+      title: pillars[4] || "Tech Discovery & Benchmark",
+      subtitle: t?.tradeshows?.strategy?.title || "Trade Show Strategy",
+      icon: "fa-microchip",
+      sections: [
+        {
+          title: lang === 'pt' ? "Inteligência de Mercado" : lang === 'es' ? "Inteligencia de Mercado" : lang === 'fr' ? "Intelligence Marché" : "Market Intelligence",
+          items: [
+            lang === 'pt' ? "Scouting tecnológico em 50+ estandes de fornecedores por feira" :
+            lang === 'es' ? "Scouting tecnológico en 50+ stands de proveedores por feria" :
+            lang === 'fr' ? "Veille technologique sur 50+ stands fournisseurs par salon" :
+            "Technology scouting across 50+ supplier booths per fair"
+          ]
+        }
+      ]
+    },
+    5: {
+      title: pillars[5] || "Factory Audits & Capability Mapping",
+      subtitle: t?.tradeshows?.strategy?.title || "Trade Show Strategy",
+      icon: "fa-industry",
+      sections: [
+        {
+          title: lang === 'pt' ? "Framework de Auditoria" : lang === 'es' ? "Marco de Auditoría" : lang === 'fr' ? "Cadre d'Audit" : "Audit Framework",
+          items: [
+            lang === 'pt' ? "Verificação do sistema de gestão de qualidade ISO 9001" :
+            lang === 'es' ? "Verificación del sistema de gestión de calidad ISO 9001" :
+            lang === 'fr' ? "Vérification du système de management de la qualité ISO 9001" :
+            "ISO 9001 quality management system verification"
+          ]
+        }
+      ]
+    },
+    6: {
+      title: pillars[6] || "Post-Fair Pipeline, ROI & Governance",
+      subtitle: t?.tradeshows?.strategy?.title || "Trade Show Strategy",
+      icon: "fa-chart-line",
+      sections: [
+        {
+          title: lang === 'pt' ? "Gestão de Pipeline" : lang === 'es' ? "Gestión de Pipeline" : lang === 'fr' ? "Gestion du Pipeline" : "Pipeline Management",
+          items: [
+            lang === 'pt' ? "Categorização de leads: Hot (imediato), Warm (3 meses), Cold (nutrição)" :
+            lang === 'es' ? "Categorización de leads: Hot (inmediato), Warm (3 meses), Cold (nutrición)" :
+            lang === 'fr' ? "Catégorisation des leads: Hot (immédiat), Warm (3 mois), Cold (nurturing)" :
+            "Lead categorization: Hot (immediate), Warm (3 months), Cold (nurture)"
+          ]
+        }
+      ]
+    }
+  };
+}
+
+const STAT_I18N = {
   en: {
-    1: { title: "Stand Design & Merchandising", subtitle: "Creating immersive brand experiences", icon: "fa-drafting-compass", sections: [{ title: "Strategic Approach", items: ["Co-created booth concept with Marketing aligning to brand positioning", "Traffic flow optimization for maximum visitor engagement", "Product display hierarchy highlighting hero SKUs and new launches", "Lighting and visual merchandising for premium brand perception", "Interactive demo stations for hands-on product experience"] }, { title: "Technical Execution", items: ["3D renderings and mockups approved 60 days prior to event", "Modular stand components for reusability across fairs", "Digital signage integration with real-time product catalogs", "Storage and logistics planning for 500+ SKU displays", "On-site supervision during build-up and dismantling"] }] },
-    2: { title: "Meetings Orchestration & Lead Capture", subtitle: "Maximizing ROI through structured engagement", icon: "fa-calendar-check", sections: [{ title: "Pre-Event Planning", items: ["Target list development: 200+ qualified prospects per fair", "Meeting scheduling system with automated reminders", "Sales team briefing with product knowledge sessions", "Customized pitch decks by customer segment", "Lead scoring criteria defined (budget, timeline, authority)"] }, { title: "On-Site Execution", items: ["Structured 30-minute meeting slots with clear agendas", "Real-time lead capture via CRM mobile app", "Immediate follow-up emails sent within 4 hours", "Meeting notes standardized for pipeline visibility", "Daily team huddles to adjust strategy based on feedback"] }] },
-    3: { title: "Negotiations & Partnering", subtitle: "Building strategic supplier relationships", icon: "fa-handshake-angle", sections: [{ title: "Partnership Development", items: ["Initial qualification: financial stability, capacity, certifications", "Term sheet negotiations: MOQ, payment terms, exclusivity clauses", "Pricing framework with volume breaks and annual rebates", "Quality agreements defining defect rates and corrective actions", "IP protection and NDA frameworks for new product development"] }, { title: "Contractual Framework", items: ["Master Service Agreements (MSA) with standardized terms", "Statement of Work (SoW) templates for project-based work", "Service Level Agreements (SLA) with penalty/incentive clauses", "Force majeure and business continuity provisions", "Exit clauses and knowledge transfer obligations"] }] },
-    4: { title: "Tech Discovery & Benchmark", subtitle: "Staying ahead of market innovation", icon: "fa-microchip", sections: [{ title: "Market Intelligence", items: ["Technology scouting across 50+ supplier booths per fair", "Competitive product teardowns and feature comparison", "Cost benchmarking for similar specifications", "Innovation trend mapping (IoT, sustainability, smart features)", "Patent landscape analysis for freedom to operate"] }, { title: "Technical Evaluation", items: ["Sample collection for lab testing and validation", "Engineering team consultations on technical feasibility", "Prototype review and design for manufacturing (DFM) feedback", "Certification requirements assessment (CE, FCC, ANATEL)", "Roadmap alignment with supplier R&D investments"] }] },
-    5: { title: "Factory Audits & Capability Mapping", subtitle: "Ensuring operational excellence", icon: "fa-industry", sections: [{ title: "Audit Framework", items: ["ISO 9001 quality management system verification", "Production capacity analysis (lines, shifts, utilization)", "Equipment maintenance records and calibration certificates", "Workforce skill assessment and training programs", "Environmental compliance and waste management practices"] }, { title: "Risk Assessment", items: ["Financial health check (credit reports, payment history)", "Supply chain resilience (dual sourcing, buffer stock)", "Social compliance audits (SA8000, BSCI standards)", "Cybersecurity protocols for data-sharing partnerships", "Business continuity planning and disaster recovery"] }] },
-    6: { title: "Post-Fair Pipeline, ROI & Governance", subtitle: "Converting leads into revenue", icon: "fa-chart-line", sections: [{ title: "Pipeline Management", items: ["Lead categorization: Hot (immediate), Warm (3 months), Cold (nurture)", "CRM integration with automated follow-up sequences", "Opportunity value estimation and win probability scoring", "Cross-functional handover to regional sales teams", "Weekly pipeline review meetings for first 30 days"] }, { title: "Performance Metrics", items: ["Cost per lead calculation (stand cost ÷ qualified leads)", "Conversion rate tracking from lead to order", "Average deal size comparison vs. non-fair customers", "Time-to-close analysis identifying bottlenecks", "Annual ROI reporting for marketing budget justification"] }] }
+    savings: {
+      details: [
+        "Multi-category strategic sourcing initiatives across direct and indirect spend",
+        "Negotiated favorable payment terms (60-90 days) improving cash flow",
+        "Implemented should-cost modeling identifying 15-25% cost reduction opportunities",
+        "Consolidated supplier base from 200+ to 80 key partners",
+        "Zero-based budgeting approach for CAPEX projects saving 20% on average"
+      ]
+    },
+    rfps: {
+      details: [
+        "End-to-end RFI/RFP/RFQ process design with technical annexes (A1/A2)",
+        "Weighted scoring matrices balancing technical (40%), commercial (35%), and ESG (25%) criteria",
+        "E-procurement platform integration with full audit trails",
+        "Cross-functional evaluation committees (Engineering, Finance, Legal, Operations)",
+        "Average cycle time reduction from 45 to 28 days while improving compliance"
+      ]
+    },
+    projects: {
+      details: [
+        "New product development from concept to mass production",
+        "Licensed portfolio launches (Blaupunkt, Spear & Jackson, Pininfarina)",
+        "Factory audits and supplier capability assessments across Asia",
+        "Quality system implementations (ISO 9001, compliance frameworks)",
+        "Cross-border logistics optimization and customs compliance"
+      ]
+    },
+    regions: {
+      details: [
+        "Europe: Portugal, Spain, Germany, UK, Netherlands, Italy, France",
+        "LATAM: Brazil, Argentina, Chile, Colombia, Mexico, Peru, Uruguay",
+        "Asia: China, Hong Kong, Taiwan, Vietnam, India, South Korea",
+        "Multi-cultural negotiation experience and local market knowledge",
+        "Time zone coordination for 24/7 project execution"
+      ]
+    }
   },
   pt: {
-    1: { title: "Design de Stand & Merchandising", subtitle: "Criando experiências de marca imersivas", icon: "fa-drafting-compass", sections: [{ title: "Abordagem Estratégica", items: ["Co-criação do conceito do stand com Marketing alinhado ao posicionamento da marca", "Otimização do fluxo de tráfego para máximo engajamento de visitantes", "Hierarquia de exibição de produtos destacando SKUs principais e novos lançamentos", "Iluminação e merchandising visual para percepção premium da marca", "Estações de demonstração interativa para experiência prática do produto"] }, { title: "Execução Técnica", items: ["Renderizações 3D e maquetes aprovadas 60 dias antes do evento", "Componentes modulares de stand para reutilização em feiras", "Integração de sinalização digital com catálogos de produtos em tempo real", "Planejamento de armazenamento e logística para exibição de 500+ SKUs", "Supervisão no local durante montagem e desmontagem"] }] },
-    2: { title: "Orquestração de Reuniões & Captação de Leads", subtitle: "Maximizando ROI através de engajamento estruturado", icon: "fa-calendar-check", sections: [{ title: "Planejamento Pré-Evento", items: ["Desenvolvimento de lista de alvos: 200+ prospectos qualificados por feira", "Sistema de agendamento de reuniões com lembretes automatizados", "Briefing da equipe de vendas com sessões de conhecimento do produto", "Pitch decks personalizados por segmento de cliente", "Critérios de pontuação de leads definidos (orçamento, cronograma, autoridade)"] }, { title: "Execução no Local", items: ["Slots de reunião estruturados de 30 minutos com agendas claras", "Captação de leads em tempo real via aplicativo móvel de CRM", "E-mails de acompanhamento imediato enviados dentro de 4 horas", "Notas de reunião padronizadas para visibilidade do pipeline", "Reuniões diárias da equipe para ajustar estratégia baseada em feedback"] }] },
-    3: { title: "Negociações & Parcerias", subtitle: "Construindo relacionamentos estratégicos com fornecedores", icon: "fa-handshake-angle", sections: [{ title: "Desenvolvimento de Parcerias", items: ["Qualificação inicial: estabilidade financeira, capacidade, certificações", "Negociações de term sheet: MOQ, prazos de pagamento, cláusulas de exclusividade", "Estrutura de preços com quebras de volume e rebaixas anuais", "Acordos de qualidade definindo taxas de defeitos e ações corretivas", "Proteção de PI e frameworks de NDA para desenvolvimento de novos produtos"] }, { title: "Estrutura Contratual", items: ["Acordos Mestre de Serviço (MSA) com termos padronizados", "Modelos de Declaração de Trabalho (SoW) para trabalho baseado em projeto", "Acordos de Nível de Serviço (SLA) com cláusulas de penalidade/incentivo", "Provisões de força maior e continuidade de negócios", "Cláusulas de saída e obrigações de transferência de conhecimento"] }] },
-    4: { title: "Descoberta Tecnológica & Benchmark", subtitle: "Mantendo-se à frente da inovação de mercado", icon: "fa-microchip", sections: [{ title: "Inteligência de Mercado", items: ["Prospecção de tecnologia em 50+ estandes de fornecedores por feira", "Desmontagem de produtos competitivos e comparação de recursos", "Benchmark de custos para especificações similares", "Mapeamento de tendências de inovação (IoT, sustentabilidade, recursos inteligentes)", "Análise de panorama de patentes para liberdade de operação"] }, { title: "Avaliação Técnica", items: ["Coleta de amostras para testes de laboratório e validação", "Consultas da equipe de engenharia sobre viabilidade técnica", "Revisão de protótipos e feedback de design para manufatura (DFM)", "Avaliação de requisitos de certificação (CE, FCC, ANATEL)", "Alinhamento de roadmap com investimentos em P&D do fornecedor"] }] },
-    5: { title: "Auditorias de Fábrica & Mapeamento de Capacidades", subtitle: "Garantindo excelência operacional", icon: "fa-industry", sections: [{ title: "Framework de Auditoria", items: ["Verificação do sistema de gestão de qualidade ISO 9001", "Análise de capacidade de produção (linhas, turnos, utilização)", "Registros de manutenção de equipamentos e certificados de calibração", "Avaliação de habilidades da força de trabalho e programas de treinamento", "Práticas de conformidade ambiental e gestão de resíduos"] }, { title: "Avaliação de Riscos", items: ["Verificação de saúde financeira (relatórios de crédito, histórico de pagamentos)", "Resiliência da cadeia de suprimentos (dual sourcing, estoque de segurança)", "Auditorias de conformidade social (padrões SA8000, BSCI)", "Protocolos de cibersegurança para parcerias de compartilhamento de dados", "Planejamento de continuidade de negócios e recuperação de desastres"] }] },
-    6: { title: "Pipeline Pós-Feira, ROI & Governança", subtitle: "Convertendo leads em receita", icon: "fa-chart-line", sections: [{ title: "Gestão de Pipeline", items: ["Categorização de leads: Quente (imediato), Morno (3 meses), Frio (nutrição)", "Integração com CRM com sequências automatizadas de acompanhamento", "Estimativa de valor de oportunidade e pontuação de probabilidade de ganho", "Handover multifuncional para equipes de vendas regionais", "Reuniões semanais de revisão de pipeline para primeiros 30 dias"] }, { title: "Métricas de Desempenho", items: ["Cálculo de custo por lead (custo do stand ÷ leads qualificados)", "Acompanhamento de taxa de conversão de lead para pedido", "Comparação de tamanho médio de negócio vs. clientes não-feira", "Análise de tempo para fechamento identificando gargalos", "Relatório anual de ROI para justificação de orçamento de marketing"] }] }
+    savings: {
+      details: [
+        "Iniciativas de strategic sourcing multi‑categoria em despesas diretas e indiretas",
+        "Negociação de prazos de pagamento favoráveis (60–90 dias) melhorando o cash flow",
+        "Modelos de should‑cost identificando oportunidades de 15–25% de redução de custos",
+        "Consolidação da base de fornecedores de 200+ para 80 parceiros‑chave",
+        "Orçamentação base‑zero para projetos CAPEX economizando ~20% em média"
+      ]
+    },
+    rfps: {
+      details: [
+        "Desenho ponta‑a‑ponta de RFI/RFP/RFQ com anexos técnicos (A1/A2)",
+        "Matrizes de scoring ponderado: técnico (40%), comercial (35%) e ESG (25%)",
+        "Integração com plataforma de e‑procurement com trilhas de auditoria",
+        "Comitês de avaliação multifuncionais (Engenharia, Finanças, Jurídico, Operações)",
+        "Redução do ciclo médio de 45 para 28 dias com mais compliance"
+      ]
+    },
+    projects: {
+      details: [
+        "Desenvolvimento de produto do conceito à produção em massa",
+        "Lançamentos licenciados (Blaupunkt, Spear & Jackson, Pininfarina)",
+        "Auditorias fabris e avaliação de capacidades na Ásia",
+        "Implementação de sistemas de qualidade (ISO 9001, frameworks de compliance)",
+        "Otimização logística transfronteiriça e conformidade aduaneira"
+      ]
+    },
+    regions: {
+      details: [
+        "Europa: Portugal, Espanha, Alemanha, Reino Unido, Países Baixos, Itália, França",
+        "LATAM: Brasil, Argentina, Chile, Colômbia, México, Peru, Uruguai",
+        "Ásia: China, Hong Kong, Taiwan, Vietname, Índia, Coreia do Sul",
+        "Negociação multicultural e conhecimento de mercados locais",
+        "Coordenação de fuso horário para execução 24/7"
+      ]
+    }
   },
   es: {
-    1: { title: "Diseño de Stand & Merchandising", subtitle: "Creando experiencias de marca inmersivas", icon: "fa-drafting-compass", sections: [{ title: "Enfoque Estratégico", items: ["Co-creación del concepto de stand con Marketing alineado al posicionamiento de marca", "Optimización del flujo de tráfico para máximo engagement de visitantes", "Jerarquía de exhibición de productos destacando SKUs principales y nuevos lanzamientos", "Iluminación y merchandising visual para percepción premium de marca", "Estaciones de demostración interactiva para experiencia práctica del producto"] }, { title: "Ejecución Técnica", items: ["Renderizaciones 3D y maquetas aprobadas 60 días antes del evento", "Componentes modulares de stand para reutilización en ferias", "Integración de señalización digital con catálogos de productos en tiempo real", "Planificación de almacenamiento y logística para exhibición de 500+ SKUs", "Supervisión en el sitio durante montaje y desmontaje"] }] },
-    2: { title: "Orquestación de Reuniones & Captación de Leads", subtitle: "Maximizando ROI a través de engagement estructurado", icon: "fa-calendar-check", sections: [{ title: "Planificación Pre-Evento", items: ["Desarrollo de lista de objetivos: 200+ prospectos calificados por feria", "Sistema de programación de reuniones con recordatorios automatizados", "Briefing del equipo de ventas con sesiones de conocimiento del producto", "Pitch decks personalizados por segmento de cliente", "Criterios de puntuación de leads definidos (presupuesto, cronograma, autoridad)"] }, { title: "Ejecución en el Sitio", items: ["Slots de reunión estructurados de 30 minutos con agendas claras", "Captación de leads en tiempo real vía aplicación móvil de CRM", "Correos de seguimiento inmediatos enviados dentro de 4 horas", "Notas de reunión estandarizadas para visibilidad del pipeline", "Reuniones diarias del equipo para ajustar estrategia basada en feedback"] }] },
-    3: { title: "Negociaciones & Alianzas", subtitle: "Construyendo relaciones estratégicas con proveedores", icon: "fa-handshake-angle", sections: [{ title: "Desarrollo de Alianzas", items: ["Calificación inicial: estabilidad financiera, capacidad, certificaciones", "Negociaciones de hoja de términos: MOQ, plazos de pago, cláusulas de exclusividad", "Estructura de precios con descuentos por volumen y rebajas anuales", "Acuerdos de calidad definiendo tasas de defectos y acciones correctivas", "Protección de PI y marcos de NDA para desarrollo de nuevos productos"] }, { title: "Marco Contractual", items: ["Acuerdos Maestros de Servicio (MSA) con términos estandarizados", "Plantillas de Declaración de Trabajo (SoW) para trabajo basado en proyecto", "Acuerdos de Nivel de Servicio (SLA) con cláusulas de penalización/incentivo", "Disposiciones de fuerza mayor y continuidad de negocios", "Cláusulas de salida y obligaciones de transferencia de conocimiento"] }] },
-    4: { title: "Descubrimiento Tecnológico & Benchmark", subtitle: "Manteniéndose a la vanguardia de la innovación de mercado", icon: "fa-microchip", sections: [{ title: "Inteligencia de Mercado", items: ["Exploración tecnológica en 50+ stands de proveedores por feria", "Desmontaje de productos competitivos y comparación de características", "Benchmark de costos para especificaciones similares", "Mapeo de tendencias de innovación (IoT, sostenibilidad, características inteligentes)", "Análisis de panorama de patentes para libertad de operación"] }, { title: "Evaluación Técnica", items: ["Recolección de muestras para pruebas de laboratorio y validación", "Consultas del equipo de ingeniería sobre viabilidad técnica", "Revisión de prototipos y retroalimentación de diseño para manufactura (DFM)", "Evaluación de requisitos de certificación (CE, FCC, ANATEL)", "Alineación de hoja de ruta con inversiones en I+D del proveedor"] }] },
-    5: { title: "Auditorías de Fábrica & Mapeo de Capacidades", subtitle: "Garantizando excelencia operativa", icon: "fa-industry", sections: [{ title: "Marco de Auditoría", items: ["Verificación del sistema de gestión de calidad ISO 9001", "Análisis de capacidad de producción (líneas, turnos, utilización)", "Registros de mantenimiento de equipos y certificados de calibración", "Evaluación de habilidades de la fuerza laboral y programas de entrenamiento", "Prácticas de cumplimiento ambiental y gestión de residuos"] }, { title: "Evaluación de Riesgos", items: ["Verificación de salud financiera (reportes de crédito, historial de pagos)", "Resiliencia de la cadena de suministro (dual sourcing, inventario de seguridad)", "Auditorías de cumplimiento social (estándares SA8000, BSCI)", "Protocolos de ciberseguridad para asociaciones de intercambio de datos", "Planificación de continuidad de negocios y recuperación de desastres"] }] },
-    6: { title: "Pipeline Post-Feria, ROI & Gobernanza", subtitle: "Convirtiendo leads en ingresos", icon: "fa-chart-line", sections: [{ title: "Gestión de Pipeline", items: ["Categorización de leads: Caliente (inmediato), Tibio (3 meses), Frío (nutrición)", "Integración con CRM con secuencias automatizadas de seguimiento", "Estimación de valor de oportunidad y puntuación de probabilidad de ganancia", "Transferencia multifuncional a equipos de ventas regionales", "Reuniones semanales de revisión de pipeline para primeros 30 días"] }, { title: "Métricas de Desempeño", items: ["Cálculo de costo por lead (costo del stand ÷ leads calificados)", "Seguimiento de tasa de conversión de lead a orden", "Comparación de tamaño promedio de trato vs. clientes no-feria", "Análisis de tiempo para cierre identificando cuellos de botella", "Reporte anual de ROI para justificación de presupuesto de marketing"] }] }
+    savings: {
+      details: [
+        "Iniciativas de strategic sourcing multi‑categoría en gasto directo e indirecto",
+        "Negociación de plazos de pago favorables (60–90 días) mejorando el flujo de caja",
+        "Modelado should‑cost identificando oportunidades de reducción del 15–25%",
+        "Consolidación de la base de proveedores de 200+ a 80 socios clave",
+        "Presupuestación base‑cero para proyectos CAPEX ahorrando ~20% en promedio"
+      ]
+    },
+    rfps: {
+      details: [
+        "Diseño integral RFI/RFP/RFQ con anexos técnicos (A1/A2)",
+        "Matrices de ponderación: técnico (40%), comercial (35%) y ESG (25%)",
+        "Integración con plataforma de e‑procurement con trazabilidad completa",
+        "Comités de evaluación multifuncionales (Ingeniería, Finanzas, Legal, Operaciones)",
+        "Reducción del ciclo promedio de 45 a 28 días con mayor cumplimiento"
+      ]
+    },
+    projects: {
+      details: [
+        "Desarrollo de producto del concepto a producción masiva",
+        "Lanzamientos licenciados (Blaupunkt, Spear & Jackson, Pininfarina)",
+        "Auditorías de fábrica y evaluación de capacidades en Asia",
+        "Implementación de sistemas de calidad (ISO 9001, marcos de compliance)",
+        "Optimización logística transfronteriza y cumplimiento aduanero"
+      ]
+    },
+    regions: {
+      details: [
+        "Europa: Portugal, España, Alemania, Reino Unido, Países Bajos, Italia, Francia",
+        "LATAM: Brasil, Argentina, Chile, Colombia, México, Perú, Uruguay",
+        "Asia: China, Hong Kong, Taiwán, Vietnam, India, Corea del Sur",
+        "Experiencia de negociación multicultural y conocimiento local",
+        "Coordinación de husos horarios para ejecución 24/7"
+      ]
+    }
   },
   fr: {
-    1: { title: "Design de Stand & Merchandising", subtitle: "Création d'expériences de marque immersives", icon: "fa-drafting-compass", sections: [{ title: "Approche Stratégique", items: ["Co-création du concept de stand avec Marketing aligné sur le positionnement de la marque", "Optimisation du flux de trafic pour un engagement maximal des visiteurs", "Hiérarchie d'affichage des produits mettant en valeur les SKU phares et les nouveaux lancements", "Éclairage et merchandising visuel pour une perception premium de la marque", "Stations de démonstration interactive pour une expérience produit pratique"] }, { title: "Exécution Technique", items: ["Rendus 3D et maquettes approuvés 60 jours avant l'événement", "Composants modulaires de stand pour réutilisation sur les salons", "Intégration de signalisation numérique avec catalogues de produits en temps réel", "Planification de stockage et logistique pour l'affichage de 500+ SKU", "Supervision sur site pendant le montage et le démontage"] }] },
-    2: { title: "Orchestration de Réunions & Capture de Leads", subtitle: "Maximisation du ROI grâce à un engagement structuré", icon: "fa-calendar-check", sections: [{ title: "Planification Pré-Événement", items: ["Développement de liste cible: 200+ prospects qualifiés par salon", "Système de planification de réunions avec rappels automatisés", "Briefing de l'équipe commerciale avec sessions de connaissance produit", "Pitch decks personnalisés par segment client", "Critères de scoring des leads définis (budget, calendrier, autorité)"] }, { title: "Exécution sur Site", items: ["Créneaux de réunion structurés de 30 minutes avec agendas clairs", "Capture de leads en temps réel via application mobile CRM", "E-mails de suivi immédiats envoyés dans les 4 heures", "Notes de réunion standardisées pour visibilité du pipeline", "Réunions d'équipe quotidiennes pour ajuster la stratégie basée sur les retours"] }] },
-    3: { title: "Négociations & Partenariats", subtitle: "Construction de relations fournisseurs stratégiques", icon: "fa-handshake-angle", sections: [{ title: "Développement de Partenariats", items: ["Qualification initiale: stabilité financière, capacité, certifications", "Négociations de feuille de termes: MOQ, délais de paiement, clauses d'exclusivité", "Cadre de tarification avec ruptures de volume et remises annuelles", "Accords qualité définissant les taux de défauts et actions correctives", "Protection de PI et cadres de NDA pour développement de nouveaux produits"] }, { title: "Cadre Contractuel", items: ["Accords Cadre de Service (MSA) avec termes standardisés", "Modèles de Déclaration de Travail (SoW) pour travail basé sur projet", "Accords de Niveau de Service (SLA) avec clauses de pénalité/incitation", "Dispositions de force majeure et continuité d'activité", "Clauses de sortie et obligations de transfert de connaissances"] }] },
-    4: { title: "Veille Technologique & Benchmark", subtitle: "Rester à la pointe de l'innovation marché", icon: "fa-microchip", sections: [{ title: "Intelligence Marché", items: ["Prospection technologique sur 50+ stands fournisseurs par salon", "Démontages de produits concurrents et comparaison de fonctionnalités", "Benchmark de coûts pour spécifications similaires", "Cartographie des tendances d'innovation (IoT, durabilité, fonctionnalités intelligentes)", "Analyse de paysage de brevets pour liberté d'exploitation"] }, { title: "Évaluation Technique", items: ["Collecte d'échantillons pour tests en laboratoire et validation", "Consultations de l'équipe d'ingénierie sur faisabilité technique", "Revue de prototype et retour de conception pour fabrication (DFM)", "Évaluation des exigences de certification (CE, FCC, ANATEL)", "Alignement de feuille de route avec investissements R&D du fournisseur"] }] },
-    5: { title: "Audits d'Usines & Cartographie des Capacités", subtitle: "Garantir l'excellence opérationnelle", icon: "fa-industry", sections: [{ title: "Cadre d'Audit", items: ["Vérification du système de management qualité ISO 9001", "Analyse de capacité de production (lignes, équipes, utilisation)", "Dossiers de maintenance équipement et certificats d'étalonnage", "Évaluation des compétences de la main-d'œuvre et programmes de formation", "Pratiques de conformité environnementale et gestion des déchets"] }, { title: "Évaluation des Risques", items: ["Vérification de santé financière (rapports de crédit, historique de paiements)", "Résilience de la chaîne d'approvisionnement (double sourcing, stock tampon)", "Audits de conformité sociale (normes SA8000, BSCI)", "Protocoles de cybersécurité pour partenariats de partage de données", "Planification de continuité d'activité et reprise après sinistre"] }] },
-    6: { title: "Pipeline Post-Salon, ROI & Gouvernance", subtitle: "Conversion des leads en revenus", icon: "fa-chart-line", sections: [{ title: "Gestion du Pipeline", items: ["Catégorisation des leads: Chaud (immédiat), Tiède (3 mois), Froid (nurturing)", "Intégration CRM avec séquences de suivi automatisées", "Estimation de valeur d'opportunité et scoring de probabilité de gain", "Passation de relais transversale aux équipes commerciales régionales", "Réunions hebdomadaires de revue de pipeline pour les 30 premiers jours"] }, { title: "Métriques de Performance", items: ["Calcul de coût par lead (coût stand ÷ leads qualifiés)", "Suivi de taux de conversion lead à commande", "Comparaison de taille moyenne de transaction vs. clients non-salon", "Analyse de délai de clôture identifiant les goulots d'étranglement", "Rapport annuel de ROI pour justification du budget marketing"] }] }
+    savings: {
+      details: [
+        "Initiatives de sourcing stratégique multi‑catégories sur dépenses directes et indirectes",
+        "Négociation de conditions de paiement favorables (60–90 jours) améliorant la trésorerie",
+        "Modélisation should‑cost identifiant 15–25% d'opportunités de réduction",
+        "Consolidation de la base fournisseurs de 200+ à 80 partenaires clés",
+        "Budget base‑zéro pour projets CAPEX économisant ~20% en moyenne"
+      ]
+    },
+    rfps: {
+      details: [
+        "Conception bout‑à‑bout RFI/RFP/RFQ avec annexes techniques (A1/A2)",
+        "Matrices de pondération : technique (40%), commercial (35%), ESG (25%)",
+        "Intégration à la plateforme d'e‑procurement avec traçabilité complète",
+        "Comités d'évaluation interfonctionnels (Ingénierie, Finance, Juridique, Opérations)",
+        "Réduction du cycle moyen de 45 à 28 jours avec meilleur compliance"
+      ]
+    },
+    projects: {
+      details: [
+        "Développement produit du concept à la production de masse",
+        "Lancements sous licence (Blaupunkt, Spear & Jackson, Pininfarina)",
+        "Audits d'usines et évaluation des capacités en Asie",
+        "Mise en place de systèmes qualité (ISO 9001, cadres de conformité)",
+        "Optimisation logistique transfrontalière et conformité douanière"
+      ]
+    },
+    regions: {
+      details: [
+        "Europe : Portugal, Espagne, Allemagne, Royaume‑Uni, Pays‑Bas, Italie, France",
+        "LATAM : Brésil, Argentine, Chili, Colombie, Mexique, Pérou, Uruguay",
+        "Asie : Chine, Hong Kong, Taïwan, Viêt Nam, Inde, Corée du Sud",
+        "Expérience de négociation multiculturelle et connaissance des marchés locaux",
+        "Coordination des fuseaux horaires pour exécution 24/7"
+      ]
+    }
   }
 };
 
@@ -498,7 +711,7 @@ const strategyDetailsDataI18N = {
    Modais — Stats
 --------------------------*/
 function openStatModal(key) {
-  const data = statDetailsData[key];
+  const data = getStatDetailsData()[key];
   if (!data) return;
   $('#statModalIcon').className = `fas ${data.icon}`;
   $('#statModalTitle').textContent = data.title;
@@ -507,7 +720,6 @@ function openStatModal(key) {
   $('#statModalOverlay').classList.add('active');
   document.body.style.overflow = 'hidden';
 }
-
 function closeStatModal() {
   const overlay = $('#statModalOverlay');
   if (!overlay) return;
@@ -516,31 +728,22 @@ function closeStatModal() {
 }
 
 /* -------------------------
-   Modais — Strategy (com tradução)
+   Modais — Estratégia
 --------------------------*/
 function openStrategyModal(num) {
-  const lang = PG_state.currentLang || 'en';
-  const data = strategyDetailsDataI18N[lang] && strategyDetailsDataI18N[lang][num];
-  
-  if (!data) {
-    console.error('Strategy data not found for lang:', lang, 'num:', num);
-    return;
-  }
-  
-  $('#strategyDetailIcon').className = `fas ${data.icon} fa-2x`;
+  const data = getStrategyDetailsData()[num];
+  if (!data) return;
+  $('#strategyDetailIcon').className = `fas ${data.icon}`;
   $('#strategyDetailTitle').textContent = data.title;
   $('#strategyDetailSubtitle').textContent = data.subtitle;
-  
   const body = data.sections.map(sec => {
     const items = sec.items.map(li => `<li>${li}</li>`).join('');
     return `<div class="strategy-detail-section"><h4><i class="fas fa-chevron-right"></i> ${sec.title}</h4><ul>${items}</ul></div>`;
   }).join('');
-  
   $('#strategyDetailBody').innerHTML = body;
   $('#strategyDetailOverlay').classList.add('active');
   document.body.style.overflow = 'hidden';
 }
-
 function closeStrategyModal() {
   const overlay = $('#strategyDetailOverlay');
   if (!overlay) return;
@@ -555,6 +758,7 @@ function setupCardAutoSlide(card) {
   const container = card.querySelector('.gallery-main');
   if (!container) return;
 
+  // carregar lista de imagens
   let images = [];
   const csv = card.getAttribute('data-images') || '';
   if (csv.trim()) {
@@ -572,52 +776,21 @@ function setupCardAutoSlide(card) {
   const state = { images, idx: 0, timer: null, interval, imgEl, paused: false };
   CardSlides.set(card, state);
 
-  // Create dots if they don't exist
-  let dotsContainer = card.querySelector('.gallery-dots');
-  if (!dotsContainer && images.length > 1) {
-    dotsContainer = document.createElement('div');
-    dotsContainer.className = 'gallery-dots';
-    images.forEach((_, i) => {
-      const dot = document.createElement('div');
-      dot.className = `gallery-dot ${i === 0 ? 'active' : ''}`;
-      dot.addEventListener('click', (e) => {
-        e.stopPropagation();
-        goToCardSlide(card, i);
-      });
-      dotsContainer.appendChild(dot);
-    });
-    card.querySelector('.project-gallery')?.appendChild(dotsContainer);
-  }
-
-  function updateDots() {
-    const dots = card.querySelectorAll('.gallery-dot');
-    dots.forEach((dot, i) => {
-      dot.classList.toggle('active', i === state.idx);
-      if (i === state.idx) {
-        dot.style.transform = 'scale(1.4)';
-        setTimeout(() => { dot.style.transform = ''; }, 200);
-      }
-    });
-  }
-
   function tick() {
     if (state.paused || !auto || state.images.length <= 1) return;
     state.idx = (state.idx + 1) % state.images.length;
     state.imgEl.style.opacity = '0';
     setTimeout(() => {
       state.imgEl.src = state.images[state.idx];
-      state.imgEl.onload = () => { 
-        state.imgEl.style.opacity = '1'; 
-        updateDots();
-      };
+      state.imgEl.onload = () => { state.imgEl.style.opacity = '1'; };
+      // Atualizar dots
+      updateCardDots(card, state.idx);
     }, 160);
   }
-  
   function start() {
     stop();
     if (auto && state.images.length > 1) state.timer = setInterval(tick, state.interval);
   }
-  
   function stop() {
     if (state.timer) {
       clearInterval(state.timer);
@@ -637,26 +810,11 @@ function setupCardAutoSlide(card) {
   start();
 }
 
-function goToCardSlide(card, idx) {
-  const state = CardSlides.get(card);
-  if (!state || !state.images.length) return;
-  
-  state.idx = idx;
-  state.imgEl.style.opacity = '0';
-  setTimeout(() => {
-    state.imgEl.src = state.images[state.idx];
-    state.imgEl.onload = () => { 
-      state.imgEl.style.opacity = '1';
-      const dots = card.querySelectorAll('.gallery-dot');
-      dots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === state.idx);
-        if (i === state.idx) {
-          dot.style.transform = 'scale(1.4)';
-          setTimeout(() => { dot.style.transform = ''; }, 200);
-        }
-      });
-    };
-  }, 160);
+function updateCardDots(card, idx) {
+  const dots = card.querySelectorAll('.gallery-dot');
+  dots.forEach((dot, i) => {
+    dot.classList.toggle('active', i === idx);
+  });
 }
 
 function openProjectGalleryFromCard(card) {
@@ -672,6 +830,10 @@ function openProjectGalleryFromCard(card) {
     if (main?.src) images = [main.src];
   }
   if (!images.length) return;
+
+  // Salvar posição atual para restaurar ao fechar
+  PG_state.lastScrollY = window.scrollY || document.documentElement.scrollTop || 0;
+  PG_state.lastSection = 'projects';
 
   buildProjectSlides(images);
   modal.classList.add('active');
@@ -709,57 +871,34 @@ function changeProjectSlide(dir) {
   if (!PG_state.images.length) return;
   const slides = $$('.gallery-slide');
   const dots = $$('.gallery-dot');
-  
   slides[PG_state.index]?.classList.remove('active');
   dots[PG_state.index]?.classList.remove('active');
-  
   PG_state.index = (PG_state.index + dir + PG_state.images.length) % PG_state.images.length;
-  
   slides[PG_state.index]?.classList.add('active');
   dots[PG_state.index]?.classList.add('active');
-  
-  // Força animação
-  dots[PG_state.index]?.style.transform = 'scale(1.25)';
-  setTimeout(() => {
-    dots[PG_state.index]?.style.transform = '';
-  }, 220);
 }
-
 function goToProjectSlide(idx) {
   if (!PG_state.images.length) return;
   const slides = $$('.gallery-slide');
   const dots = $$('.gallery-dot');
-  
   slides[PG_state.index]?.classList.remove('active');
   dots[PG_state.index]?.classList.remove('active');
-  
   PG_state.index = idx;
-  
   slides[PG_state.index]?.classList.add('active');
   dots[PG_state.index]?.classList.add('active');
-  
-  // Força animação
-  dots[PG_state.index]?.style.transform = 'scale(1.25)';
-  setTimeout(() => {
-    dots[PG_state.index]?.style.transform = '';
-  }, 220);
 }
-
-/* -------------------------
-   Correção: Trade Shows - fechar galeria permanece na seção
---------------------------*/
-let tradeShowsScrollY = 0;
-
 function closeProjectGallery() {
   const modal = $('#projectGalleryModal');
   if (modal) {
     modal.classList.remove('active');
     document.body.style.overflow = 'auto';
+    // Restaurar posição de scroll
+    if (PG_state.lastScrollY !== undefined) {
+      setTimeout(() => {
+        window.scrollTo({ top: PG_state.lastScrollY, behavior: 'instant' });
+      }, 0);
+    }
   }
-  // Restaura scroll para trade shows
-  setTimeout(() => {
-    window.scrollTo({top: tradeShowsScrollY, behavior: 'instant'});
-  }, 0);
 }
 
 /* -------------------------
@@ -794,9 +933,7 @@ function initMobileEnhancements() {
           setTimeout(() => {
             state.imgEl.src = state.images[state.idx];
             state.imgEl.onload = () => { state.imgEl.style.opacity = '1'; };
-            card.querySelectorAll('.gallery-dot').forEach((dot, i) => {
-              dot.classList.toggle('active', i === state.idx);
-            });
+            updateCardDots(card, state.idx);
           }, 160);
         }
       }
@@ -864,6 +1001,7 @@ function initVolunteerEnhancement() {
   header.after(hero);
 }
 
+/* Corrige logos do Gadsden (usa OR correto) */
 function fixGadsdenImages() {
   $$('.cert-logo img').forEach(img => {
     if (img.src.includes('Gadsden') || img.alt.includes('Gadsden')) {
@@ -872,6 +1010,9 @@ function fixGadsdenImages() {
   });
 }
 
+/* -------------------------
+   Outras iniciais
+--------------------------*/
 function initScrollAnimations() {
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
@@ -891,7 +1032,6 @@ function initNavbarScroll() {
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
 }
-
 function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
 
 function initLightbox() {
@@ -902,10 +1042,9 @@ function initLightbox() {
   on(lb, 'click', (e) => { if (e.target === lb) closeLightbox(); });
   on(document, 'keydown', (e) => { if (lb.classList.contains('active') && e.key === 'Escape') closeLightbox(); });
 }
-
 function openLightbox(el) {
-  // Guarda posição antes de abrir
-  tradeShowsScrollY = window.scrollY || document.documentElement.scrollTop || 0;
+  // Salvar posição atual
+  PG_state.lastScrollY = window.scrollY || document.documentElement.scrollTop || 0;
   
   const lb = $('#lightbox');
   const lbImg = $('#lightbox-img');
@@ -916,16 +1055,17 @@ function openLightbox(el) {
   lb.classList.add('active');
   document.body.style.overflow = 'hidden';
 }
-
 function closeLightbox() {
   const lb = $('#lightbox');
   if (!lb) return;
   lb.classList.remove('active');
   document.body.style.overflow = 'auto';
-  // Restaura posição
-  setTimeout(() => {
-    window.scrollTo({top: tradeShowsScrollY, behavior: 'instant'});
-  }, 0);
+  // Restaurar posição
+  if (PG_state.lastScrollY !== undefined) {
+    setTimeout(() => {
+      window.scrollTo({ top: PG_state.lastScrollY, behavior: 'instant' });
+    }, 0);
+  }
 }
 
 function initTradeTabs() {
@@ -951,9 +1091,7 @@ function showToast(message = '') {
   setTimeout(() => t.classList.remove('show'), 2800);
 }
 
-/* -------------------------
-   Correção: Timeline logos terminam em NKS
---------------------------*/
+/* Timeline Spy (logo) - CORRIGIDO: termina em NKS */
 function initTimelineSpy() { updateTimelineSpy(); }
 
 function updateTimelineSpy() {
@@ -978,6 +1116,16 @@ function updateTimelineSpy() {
     }
   });
 
+  // CORREÇÃO: Se estiver além do último item, mantém o logo do último (NKS)
+  const lastIndex = items.length - 1;
+  const lastItem = items[lastIndex];
+  const lastItemRect = lastItem?.getBoundingClientRect();
+  
+  // Se o último item já passou do meio da tela ou está visível, mantém ele
+  if (lastItemRect && lastItemRect.top < windowHeight * 0.8) {
+    activeIndex = lastIndex;
+  }
+
   const activeItem = items[activeIndex];
   if (activeItem) {
     const newLogo = activeItem.getAttribute('data-logo');
@@ -990,11 +1138,10 @@ function updateTimelineSpy() {
       }, 160);
     }
   }
-  
-  // CORREÇÃO: Não resetar para Details quando passar do último item
   indicators.forEach((dot, idx) => dot.classList.toggle('active', idx === activeIndex));
 }
 
+/* Partículas (hero) – opcional, já usado pelo HTML */
 function initParticles() {
   const container = $('#particles');
   if (!container) return;
@@ -1017,6 +1164,7 @@ function initParticles() {
   }
 }
 
+/* I18N — usa dicionário que já está no index.html */
 function translateAll(lang) {
   PG_state.currentLang = lang;
   document.documentElement.lang = lang;
@@ -1028,11 +1176,9 @@ function translateAll(lang) {
   });
   setTimeout(updateTimelineSpy, 100);
 }
-
 function markActiveLang(lang) {
   $$('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
 }
-
 function initLangSwitcher() {
   const switcher = $('#langSwitcher');
   if (!switcher) return;
@@ -1047,7 +1193,6 @@ function initLangSwitcher() {
     showToast(`Translated to ${lang.toUpperCase()}`);
   });
 }
-
 function initI18N() {
   try {
     const stored = localStorage.getItem('lang');
@@ -1061,6 +1206,7 @@ function initI18N() {
   }
 }
 
+/* Loading & Âncoras */
 function initLoading() {
   const loading = $('#loading');
   if (!loading) return;
@@ -1071,7 +1217,6 @@ function initLoading() {
     }, 1200);
   });
 }
-
 function initSmoothAnchors() {
   $$('a[href^="#"]').forEach(a => {
     on(a, 'click', (e) => {
@@ -1089,26 +1234,35 @@ function initSmoothAnchors() {
    Bootstrap
 --------------------------*/
 document.addEventListener('DOMContentLoaded', () => {
+  // Sequência única de inicialização
   initLoading();
   initNavbarScroll();
   initScrollAnimations();
   initParticles();
   initSmoothAnchors();
+
   initLangSwitcher();
   initI18N();
+
   initTradeTabs();
   initLightbox();
+
+  // Galerias & cartões
   enhanceProjectGalleries();
   $$('.project-card').forEach(setupCardAutoSlide);
+
+  // Voluntariado + correções de imagem
   initVolunteerEnhancement();
   fixGadsdenImages();
+
+  // Mobile/touch
   initMobileEnhancements();
 
+  // Fechar modais por clique/ESC
   on(document, 'click', (e) => {
     if (e.target?.id === 'statModalOverlay') closeStatModal();
     if (e.target?.id === 'strategyDetailOverlay') closeStrategyModal();
   });
-  
   on(document, 'keydown', (e) => {
     if (e.key === 'Escape') {
       closeStatModal();
@@ -1116,97 +1270,182 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Attach listeners for strategy items
-  document.querySelectorAll('.strategy-item[data-strategy]').forEach(el => {
-    el.addEventListener('click', () => {
-      const n = Number(el.getAttribute('data-strategy'));
-      if (!isNaN(n)) { openStrategyModal(n); }
-    });
-  });
-
-  console.log('✅ Portfolio JS inicializado');
+  console.log('✅ Portfolio JS (consolidado) inicializado');
+  
+  // Inicializar modais dos stat boxes
+  initStatModals();
 });
 
-/* Expor globais */
+// ============================================
+// STAT BOXES MODAL FUNCTIONS
+// ============================================
+
+function initStatModals() {
+  // Adicionar evento de clique em todos os stat-boxes
+  document.querySelectorAll('.stat-box').forEach(box => {
+    box.style.cursor = 'pointer';
+    box.addEventListener('click', function(e) {
+      const statKey = this.dataset.stat;
+      if (statKey) {
+        openStatModal(statKey);
+      }
+    });
+  });
+  
+  console.log('✅ Stat modals initialized');
+}
+
+/* Expor globais chamadas pelo HTML inline */
+window.openStatModal        = openStatModal;
+window.closeStatModal       = closeStatModal;
+window.openStrategyModal    = openStrategyModal;
+window.closeStrategyModal   = closeStrategyModal;
+
+window.openLightbox         = openLightbox;
+window.closeLightbox        = closeLightbox;
+
+window.changeProjectSlide   = changeProjectSlide;
+window.goToProjectSlide     = goToProjectSlide;
+window.closeProjectGallery  = closeProjectGallery;
+
+window.scrollToTop          = scrollToTop;
+
+
+/* ==== ADDED MODAL MODULES (stat & strategy) ==== */
+
+// ============== GLOBAL LISTENERS =====================
+document.addEventListener('keydown', (e)=>{
+  if(e.key==='Escape'){
+    try{ closeStatModal(); }catch(_){ }
+    try{ closeStrategyModal(); }catch(_){ }
+  }
+});
+
+// Expose for inline handlers present in HTML
 window.openStatModal = openStatModal;
 window.closeStatModal = closeStatModal;
 window.openStrategyModal = openStrategyModal;
 window.closeStrategyModal = closeStrategyModal;
-window.openLightbox = openLightbox;
-window.closeLightbox = closeLightbox;
-window.changeProjectSlide = changeProjectSlide;
-window.goToProjectSlide = goToProjectSlide;
-window.closeProjectGallery = closeProjectGallery;
-window.scrollToTop = scrollToTop;
 
-const TRADE_GALLERIES = {
-  blaupunkt: ['./Blaupunkt_Illumiation_booth_HK_Fair.png','./Blaupunkt_Illumiation_booth_HK_Fair_1.png','./Blaupunkt_Illumiation_booth_HK_Fair_2.png','./Blaupunkt_Illumiation_booth_HK_Fair_3.png','./Blaupunkt_Illumiation_booth_HK_Fair_4.png'],
-  ford: ['./Ford_lighting_solutions_HK_Intl.png','./Ford_lighting_solutions_HK_Intl_1.png','./Ford_lighting_solutions_HK_Intl_2.png']
-};
+// Attach listeners for strategy items without inline handlers
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.strategy-item[data-strategy]').forEach(el => {
+    el.addEventListener('click', () => {
+      const n = Number(el.getAttribute('data-strategy'));
+      if (!isNaN(n)) { window.openStrategyModal(n); }
+    });
+  });
+});
 
-function openTradeGallery(brand) {
-  tradeShowsScrollY = window.scrollY || document.documentElement.scrollTop || 0;
-  const images = (TRADE_GALLERIES[brand] || []).slice();
-  if (!images.length) return;
-  buildProjectSlides(images);
-  document.getElementById('projectGalleryModal').classList.add('active');
-  document.body.style.overflow = 'hidden';
+
+// --- Inject duo layout for Trade Shows (Blaupunkt left, Ford right) using existing galleries ---
+function initTradeDuoFromExisting(){
+  const sec = document.getElementById('trade-shows');
+  if(!sec) return;
+  const blau = document.querySelector('#gallery-blaupunkt .gallery-item img');
+  const ford = document.querySelector('#gallery-ford .gallery-item img');
+  const blauSrc = blau ? blau.getAttribute('src') : '';
+  const fordSrc = ford ? ford.getAttribute('src') : '';
+  if(!blauSrc || !fordSrc) return;
+  if(sec.querySelector('.trade-duo')) return; // avoid duplicates
+  const duo = document.createElement('div');
+  duo.className = 'trade-duo';
+  duo.innerHTML = `
+    <div class="brand-card" data-brand="blaupunkt">
+      <div class="brand-head"><h4>Blaupunkt</h4><i class="fas fa-images" style="color:var(--gold);"></i></div>
+      <div class="brand-body"><img src="${blauSrc}" alt="Blaupunkt cover"/></div>
+    </div>
+    <div class="brand-card" data-brand="ford">
+      <div class="brand-head"><h4>Ford Lighting</h4><i class="fas fa-images" style="color:var(--gold);"></i></div>
+      <div class="brand-body"><img src="${fordSrc}" alt="Ford cover"/></div>
+    </div>`;
+  const tabs = sec.querySelector('.gallery-tabs');
+  sec.insertBefore(duo, tabs);
+  const openBrand = (brand)=>{
+    const panel = document.getElementById(brand==='blaupunkt' ? 'gallery-blaupunkt' : 'gallery-ford');
+    if(!panel) return;
+    const imgs = Array.from(panel.querySelectorAll('.gallery-item img')).map(i=> i.getAttribute('src')).filter(Boolean);
+    if(!imgs.length) return;
+    
+    // Salvar seção atual
+    PG_state.lastScrollY = window.scrollY || document.documentElement.scrollTop || 0;
+    PG_state.lastSection = 'trade-shows';
+    
+    buildProjectSlides(imgs);
+    const modal = document.getElementById('projectGalleryModal');
+    if(modal){ 
+      modal.classList.add('active'); 
+      document.body.style.overflow='hidden'; 
+      ensurePGCloseButton(); 
+    }
+  };
+  duo.querySelector('[data-brand="blaupunkt"]').addEventListener('click', ()=> openBrand('blaupunkt'));
+  duo.querySelector('[data-brand="ford"]').addEventListener('click', ()=> openBrand('ford'));
 }
 
-window.openTradeGallery = openTradeGallery;
-
-// I18N for Stat Modals
-const STAT_I18N = {
-  en: {
-    savings: { title: 'Cumulative Savings Delivered', value: '€1M+', details: ['Multi-category strategic sourcing initiatives across direct and indirect spend','Negotiated favorable payment terms (60-90 days) improving cash flow','Implemented should-cost modeling identifying 15-25% cost reduction opportunities','Consolidated supplier base from 200+ to 80 key partners','Zero-based budgeting approach for CAPEX projects saving 20% on average']},
-    rfps: { title: 'Strategic Tenders Led', value: '120+', details: ['End-to-end RFI/RFP/RFQ process design with technical annexes (A1/A2)','Weighted scoring matrices balancing technical (40%), commercial (35%), and ESG (25%) criteria','E-procurement platform integration with full audit trails','Cross-functional evaluation committees (Engineering, Finance, Legal, Operations)','Average cycle time reduction from 45 to 28 days while improving compliance']},
-    projects: { title: 'Project Portfolio Value', value: '€10M+', details: ['New product development from concept to mass production','Licensed portfolio launches (Blaupunkt, Spear & Jackson, Pininfarina)','Factory audits and supplier capability assessments across Asia','Quality system implementations (ISO 9001, compliance frameworks)','Cross-border logistics optimization and customs compliance']},
-    regions: { title: 'Global Operations Coverage', value: '20+', details: ['Europe: Portugal, Spain, Germany, UK, Netherlands, Italy, France','LATAM: Brazil, Argentina, Chile, Colombia, Mexico, Peru, Uruguay','Asia: China, Hong Kong, Taiwan, Vietnam, India, South Korea','Multi-cultural negotiation experience and local market knowledge','Time zone coordination for 24/7 project execution']}
-  },
-  pt: {
-    savings: { title: 'Poupança Acumulada Entregue', value: '€1M+', details: ['Iniciativas de strategic sourcing multi‑categoria em despesas diretas e indiretas','Negociação de prazos de pagamento favoráveis (60–90 dias) melhorando o cash flow','Modelos de should‑cost identificando oportunidades de 15–25% de redução de custos','Consolidação da base de fornecedores de 200+ para 80 parceiros‑chave','Orçamentação base‑zero para projetos CAPEX economizando ~20% em média']},
-    rfps: { title: 'Tenders Estratégicos Conduzidos', value: '120+', details: ['Desenho ponta‑a‑ponta de RFI/RFP/RFQ com anexos técnicos (A1/A2)','Matrizes de scoring ponderado: técnico (40%), comercial (35%) e ESG (25%)','Integração com plataforma de e‑procurement com trilhas de auditoria','Comitês de avaliação multifuncionais (Engenharia, Finanças, Jurídico, Operações)','Redução do ciclo médio de 45 para 28 dias com mais compliance']},
-    projects: { title: 'Valor do Portfólio de Projetos', value: '€10M+', details: ['Desenvolvimento de produto do conceito à produção em massa','Lançamentos licenciados (Blaupunkt, Spear & Jackson, Pininfarina)','Auditorias fabris e avaliação de capacidades na Ásia','Implementação de sistemas de qualidade (ISO 9001, frameworks de compliance)','Otimização logística transfronteiriça e conformidade aduaneira']},
-    regions: { title: 'Cobertura Operacional Global', value: '20+', details: ['Europa: Portugal, Espanha, Alemanha, Reino Unido, Países Baixos, Itália, França','LATAM: Brasil, Argentina, Chile, Colômbia, México, Peru, Uruguai','Ásia: China, Hong Kong, Taiwan, Vietname, Índia, Coreia do Sul','Negociação multicultural e conhecimento de mercados locais','Coordenação de fuso horário para execução 24/7']}
-  },
-  es: {
-    savings: { title: 'Ahorros Acumulados Entregados', value: '€1M+', details: ['Iniciativas de strategic sourcing multi‑categoría en gasto directo e indirecto','Negociación de plazos de pago favorables (60–90 días) mejorando el flujo de caja','Modelado should‑cost identificando oportunidades de reducción del 15–25%','Consolidación de la base de proveedores de 200+ a 80 socios clave','Presupuestación base‑cero para proyectos CAPEX ahorrando ~20% en promedio']},
-    rfps: { title: 'Licitaciones Estratégicas Dirigidas', value: '120+', details: ['Diseño integral RFI/RFP/RFQ con anexos técnicos (A1/A2)','Matrices de ponderación: técnico (40%), comercial (35%) y ESG (25%)','Integración con plataforma de e‑procurement con trazabilidad completa','Comités de evaluación multifuncionales (Ingeniería, Finanzas, Legal, Operaciones)','Reducción del ciclo promedio de 45 a 28 días con mayor cumplimiento']},
-    projects: { title: 'Valor del Portafolio de Proyectos', value: '€10M+', details: ['Desarrollo de producto del concepto a producción masiva','Lanzamientos licenciados (Blaupunkt, Spear & Jackson, Pininfarina)','Auditorías de fábrica y evaluación de capacidades en Asia','Implementación de sistemas de calidad (ISO 9001, marcos de compliance)','Optimización logística transfronteriza y cumplimiento aduanero']},
-    regions: { title: 'Cobertura Operativa Global', value: '20+', details: ['Europa: Portugal, España, Alemania, Reino Unido, Países Bajos, Italia, Francia','LATAM: Brasil, Argentina, Chile, Colombia, México, Perú, Uruguay','Asia: China, Hong Kong, Taiwán, Vietnam, India, Corea del Sur','Experiencia de negociación multicultural y conocimiento local','Coordinación de husos horarios para ejecución 24/7']}
-  },
-  fr: {
-    savings: { title: 'Économies Cumulées Réalisées', value: '€1M+', details: ['Initiatives de sourcing stratégique multi‑catégories sur dépenses directes et indirectes','Négociation de conditions de paiement favorables (60–90 jours) améliorant la trésorerie','Modélisation should‑cost identifiant 15–25% d’opportunités de réduction','Consolidation de la base fournisseurs de 200+ à 80 partenaires clés','Budget base‑zéro pour projets CAPEX économisant ~20% en moyenne']},
-    rfps: { title: 'Appels d’Offres Stratégiques Menés', value: '120+', details: ['Conception bout‑à‑bout RFI/RFP/RFQ avec annexes techniques (A1/A2)','Matrices de pondération : technique (40%), commercial (35%), ESG (25%)','Intégration à la plateforme d’e‑procurement avec traçabilité complète','Comités d’évaluation interfonctionnels (Ingénierie, Finance, Juridique, Opérations)','Réduction du cycle moyen de 45 à 28 jours avec meilleur compliance']},
-    projects: { title: 'Valeur du Portefeuille de Projets', value: '€10M+', details: ['Développement produit du concept à la production de masse','Lancements sous licence (Blaupunkt, Spear & Jackson, Pininfarina)','Audits d’usines et évaluation des capacités en Asie','Mise en place de systèmes qualité (ISO 9001, cadres de conformité)','Optimisation logistique transfrontalière et conformité douanière']},
-    regions: { title: 'Couverture Opérationnelle Globale', value: '20+', details: ['Europe : Portugal, Espagne, Allemagne, Royaume‑Uni, Pays‑Bas, Italie, France','LATAM : Brésil, Argentine, Chili, Colombie, Mexique, Pérou, Uruguay','Asie : Chine, Hong Kong, Taïwan, Viêt Nam, Inde, Corée du Sud','Expérience de négociation multiculturelle et connaissance des marchés locaux','Coordination des fuseaux horaires pour exécution 24/7']}
+let __pg_lastScrollY = 0;
+function ensurePGCloseButton(){
+  const modal = document.getElementById('projectGalleryModal');
+  if(!modal) return;
+  const controls = modal.querySelector('.gallery-controls');
+  if(!controls) return;
+  if(!controls.querySelector('.gallery-close-primary')){
+    const btn = document.createElement('button');
+    btn.className = 'gallery-close-primary';
+    btn.textContent = (document.documentElement.lang||'pt').startsWith('pt')?'Fechar e Voltar':'Close';
+    btn.addEventListener('click', closeProjectGallery);
+    controls.appendChild(btn);
   }
-};
+}
 
-// Override openStatModal to use current language
-(function(){
-  const getLang = ()=> (window.PG_state && PG_state.currentLang) || (document.documentElement.lang||'en').slice(0,2);
-  const overlay = ()=> document.getElementById('statModalOverlay');
-  window.openStatModal = function(key){
-    const lang = getLang();
-    const dict = (STAT_I18N[lang]||STAT_I18N.en||{});
-    const data = dict[key];
-    const ov = overlay();
-    if(!ov||!data) return;
-    document.getElementById('statModalIcon').className = 'fas ' + (statDetailsData[key]?.icon||'fa-chart-line');
-    document.getElementById('statModalTitle').textContent = data.title||'';
-    document.getElementById('statModalValue').textContent = data.value||'';
-    const list = (data.details||[]).map(x=> '<li>'+x+'</li>').join('');
-    document.getElementById('statModalDetails').innerHTML = list;
-    ov.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  };
-})();
+// Wrap open & close to preserve/restore scroll
+const __origOpenPG = window.openProjectGalleryFromCard ? window.openProjectGalleryFromCard : null;
+if(__origOpenPG){
+  window.openProjectGalleryFromCard = function(card){
+    __pg_lastScrollY = window.scrollY || document.documentElement.scrollTop || 0;
+    __origOpenPG(card);
+    ensurePGCloseButton();
+  }
+}
+const __origClosePG = window.closeProjectGallery ? window.closeProjectGallery : null;
+if(__origClosePG){
+  window.closeProjectGallery = function(){
+    __origClosePG();
+    setTimeout(()=> window.scrollTo({top: __pg_lastScrollY, behavior:'instant'}), 0);
+  }
+}
+
+// Mobile timeline logos outside the frame (non-intrusive)
+function initMobileTimelineLogos(){
+  if(!window.matchMedia('(max-width: 1200px)').matches) return;
+  document.querySelectorAll('.timeline-item').forEach(item=>{
+    if(item.querySelector('.mobile-company-logo')) return;
+    const logo = item.getAttribute('data-logo');
+    if(!logo) return;
+    const img = document.createElement('img');
+    img.className = 'mobile-company-logo';
+    img.alt = 'Company logo';
+    img.src = logo;
+    item.appendChild(img);
+  });
+}
+
+// Boot hook
+document.addEventListener('DOMContentLoaded', ()=>{
+  try{ initTradeDuoFromExisting(); }catch(e){}
+  try{ initMobileTimelineLogos(); }catch(e){}
+});
+
+/* ensure post-init translation */
+document.addEventListener('DOMContentLoaded',function(){try{var l=localStorage.getItem('lang')||document.documentElement.lang||'en';if(typeof translateAll==='function'){translateAll(l);}}catch(e){}});
 
 // open gallery on project main image click
-document.addEventListener('click',function(e){
-  const gm=e.target.closest('.project-card .gallery-main');
-  if(!gm)return;
-  const card=gm.closest('.project-card');
-  openProjectGalleryFromCard(card);
-});
+document.addEventListener('click',function(e){const gm=e.target.closest('.project-card .gallery-main');if(!gm)return;const card=gm.closest('.project-card');openProjectGalleryFromCard(card);});
+
+var __pg_lastY=0;
+
+const TRADE_GALLERIES={blaupunkt:['./Blaupunkt_Illumiation_booth_HK_Fair.png','./Blaupunkt_Illumiation_booth_HK_Fair_1.png','./Blaupunkt_Illumiation_booth_HK_Fair_2.png','./Blaupunkt_Illumiation_booth_HK_Fair_3.png','./Blaupunkt_Illumiation_booth_HK_Fair_4.png'],ford:['./Ford_lighting_solutions_HK_Intl.png','./Ford_lighting_solutions_HK_Intl_1.png','./Ford_lighting_solutions_HK_Intl_2.png']};
+function openTradeGallery(brand){__pg_lastY=window.scrollY||document.documentElement.scrollTop||0;const images=(TRADE_GALLERIES[brand]||[]).slice();if(!images.length)return;buildProjectSlides(images);document.getElementById('projectGalleryModal').classList.add('active');document.body.style.overflow='hidden';}
+
+/* restore scroll after closing project gallery */
+(function(){var _oldClose=window.closeProjectGallery;if(typeof _oldClose==='function'){window.closeProjectGallery=function(){_oldClose();setTimeout(function(){window.scrollTo({top:__pg_lastY,behavior:'instant'});},0);};}})();
