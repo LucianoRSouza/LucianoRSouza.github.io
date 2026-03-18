@@ -18,8 +18,6 @@
 <link href="css/style.css" rel="stylesheet"/>
 </head>
 <body>
-<noscript><style>#loading{display:none!important}</style></noscript>
-
 <!-- Custom Cursor -->
 <div class="cursor" id="cursor"></div>
 <div class="cursor-follower" id="cursorFollower"></div>
@@ -805,8 +803,8 @@
 <img alt="Gadsden State Community College" src="./gadsdenstatecommunitycollege.jpg"/>
 </div>
 <div class="volunteer-card animate-on-scroll delay-1">
-<div class="volunteer-logo">
-  <img src="./gadsdenstatecommunitycollege_logo.jpg" alt="Gadsden State Community College" onerror="this.src='./gadsdenstatecommunitycollege.jpg'">
+<div class="volunteer-icon">
+<i aria-hidden="true" class="fas fa-chalkboard-teacher"></i>
 </div>
 <h3 data-i18n="vol.position">Mathematics &amp; English Instructor</h3>
 <div class="school" data-i18n="vol.school">Gadsden State Community College</div>
@@ -944,19 +942,5 @@
 <div aria-live="polite" class="toast" id="toast" role="status"></div>
 <!-- ✅ Inclui o seu arquivo externo JS (carrega TODO o código do script.js) -->
 <script src="./js/script.js"></script>
-
-<!-- Inline loader failsafe (ES5) -->
-<script>
-(function(){
-  var done=false;
-  function kill(){ if(done) return; done=true; var l=document.getElementById('loading'); if(l){ l.className += ' hidden'; setTimeout(function(){ if(l && l.parentNode){ l.parentNode.removeChild(l); } }, 600); } }
-  // Absolute fallback: 4000ms
-  setTimeout(kill, 4000);
-  // DOM ready fallback
-  if(document.readyState==='complete' || document.readyState==='interactive'){ setTimeout(kill,0); } else { document.addEventListener('DOMContentLoaded', kill); }
-  // In case of any script error before window.load
-  window.addEventListener('error', function(){ setTimeout(kill,0); }, true);
-})();
-</script>
 </body>
 </html>
