@@ -77,3 +77,53 @@
 .about-image img.gold-frame{border-radius:20px}
 
 #trade-shows .gallery-item img{object-fit:cover;background:none}
+/* === SEU CSS ORIGINAL INTEIRO AQUI (sem alterações) === */
+/* ... (mantido exatamente como fornecido) ... */
+
+
+
+/* =======================================================
+   🔽 ADIÇÕES (ao final do arquivo) — NÃO alteram o resto
+   ======================================================= */
+
+/* 1) Molduras douradas discretas (hero + about) */
+.gold-frame{
+  border:3px solid var(--gold);
+  box-shadow:0 16px 36px rgba(212,175,55,.18);
+}
+.hero-image.gold-frame{ /* aplica ao wrapper do retrato no hero */
+  border-color:var(--gold);
+}
+.about-image img.gold-frame{ /* aplica à imagem do about */
+  border-radius:20px; /* preserva o raio do seu layout */
+}
+
+/* 2) Trade shows: imagem preenche todo o box (mesmo tamanho) */
+#trade-shows .gallery-item img{
+  width:100%;
+  height:100%;
+  object-fit:cover;    /* sobrescreve qualquer regra anterior de contain */
+  background:none;
+}
+
+/* 3) Refinos dos dots (já existiam): suavidade e realce */
+.project-card .gallery-dots{
+  position:absolute;
+  bottom:12px; left:50%; transform:translateX(-50%);
+  display:flex; gap:6px; z-index:3;
+}
+.project-card .gallery-dot{
+  width:8px; height:8px; border-radius:50%;
+  background:rgba(255,255,255,.5);
+  cursor:pointer; transition:all .2s ease;
+}
+.project-card .gallery-dot.active{
+  background:var(--gold);
+  transform:scale(1.3);
+}
+
+/* Dots do modal (já havia), só garantindo consistência de animação */
+.gallery-dots{display:flex;gap:10px}
+.gallery-dot{width:12px;height:12px;border-radius:50%;
+  background:rgba(212,175,55,.34);cursor:pointer;transition:all .22s ease}
+.gallery-dot.active{background:var(--gold);transform:scale(1.18)}
