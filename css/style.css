@@ -127,3 +127,8 @@
 .gallery-dot{width:12px;height:12px;border-radius:50%;
   background:rgba(212,175,55,.34);cursor:pointer;transition:all .22s ease}
 .gallery-dot.active{background:var(--gold);transform:scale(1.18)}
+.loading.hidden {
+  opacity: 0; 
+  pointer-events: none; 
+  transition: opacity .4s ease; /* se já houver, mantenha a sua */
+}
