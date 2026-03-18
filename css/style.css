@@ -74,9 +74,5 @@
 
 
 
-/* === Gold frame for first two photos (subtle, modern) === */
-.gold-frame{
-  border:4px solid var(--gold);
-  border-radius:20px;
-  box-shadow:0 16px 36px rgba(212,175,55,.18), 0 4px 10px rgba(0,0,0,.12);
-}
+/* === Gold frame (discreto, moderno) para as 2 primeiras fotos === */
+.gold-frame{border:4px solid var(--gold);border-radius:20px;box-shadow:0 16px 36px rgba(212,175,55,.18),0 4px 10px rgba(0,0,0,.12);}
