@@ -395,7 +395,8 @@ window.I18N = {
 /* -------------------------
    Helpers / Estado Global
 --------------------------*/
-const PG_state = { images: [], index: 0, currentLang: 'en' };
+let TIMELINE_ACTIVE_INDEX = 0;
+const PG_state = { images: [], index: 0, currentLang: 'en', origin: null };
 const CardSlides = new Map();
 
 const $  = (sel, ctx = document) => ctx.querySelector(sel);
@@ -669,6 +670,12 @@ function closeStrategyModal() {
    Galerias de Projetos
 --------------------------*/
 function setupCardAutoSlide(card) {
+ // ensure dots exist for this card
+ try{
+  const gm = card.querySelector('.project-gallery') || card;
+  let dotsBar = gm.querySelector('.gallery-dots');
+  if(!dotsBar){ dotsBar = document.createElement('div'); dotsBar.className = "gallery-dots"; gm.appendChild(dotsBar); }
+ }catch(e){}
   const container = card.querySelector('.gallery-main');
   if (!container) return;
 
@@ -770,8 +777,8 @@ function buildProjectSlides(images) {
 
 function changeProjectSlide(dir) {
   if (!PG_state.images.length) return;
-  const slides = $$('.gallery-slide');
-  const dots = $$('.gallery-dot');
+  const slides = $$('#gallerySlider .gallery-slide');
+  const dots = $$('#galleryDots .gallery-dot');
   slides[PG_state.index]?.classList.remove('active');
   dots[PG_state.index]?.classList.remove('active');
   PG_state.index = (PG_state.index + dir + PG_state.images.length) % PG_state.images.length;
@@ -780,8 +787,8 @@ function changeProjectSlide(dir) {
 }
 function goToProjectSlide(idx) {
   if (!PG_state.images.length) return;
-  const slides = $$('.gallery-slide');
-  const dots = $$('.gallery-dot');
+  const slides = $$('#gallerySlider .gallery-slide');
+  const dots = $$('#galleryDots .gallery-dot');
   slides[PG_state.index]?.classList.remove('active');
   dots[PG_state.index]?.classList.remove('active');
   PG_state.index = idx;
@@ -790,10 +797,10 @@ function goToProjectSlide(idx) {
 }
 function closeProjectGallery() {
   const modal = $('#projectGalleryModal');
-  if (modal) {
-    modal.classList.remove('active');
-    document.body.style.overflow = 'auto';
-  }
+  if (modal) { modal.classList.remove('active'); document.body.style.overflow = 'auto'; }
+  if (PG_state.origin === 'trade') { const sec = document.getElementById('trade-shows'); if (sec) sec.scrollIntoView({behavior:'smooth', block:'start'}); }
+  PG_state.origin = null;
+}
 }
 
 /* -------------------------
@@ -987,12 +994,10 @@ function updateTimelineSpy() {
   const logoImg = $('#logo-img');
   const indicators = $$('.indicator-dot');
   if (!logoImg) return;
-
-  let activeIndex = 0;
+  let activeIndex = -1;
   const windowHeight = window.innerHeight;
   const midTop = windowHeight * 0.62;
   const midBottom = windowHeight * 0.38;
-
   items.forEach((item, idx) => {
     const r = item.getBoundingClientRect();
     if (r.top < midTop && r.bottom > midBottom) {
@@ -1001,6 +1006,45 @@ function updateTimelineSpy() {
     } else {
       item.classList.remove('active');
     }
+  });
+  if (activeIndex === -1) {
+    const last = items[items.length-1].getBoundingClientRect();
+    const first = items[0].getBoundingClientRect();
+    if (last.top < windowHeight * 0.3) {
+      activeIndex = items.length - 1;
+    } else if (first.bottom > windowHeight * 0.7) {
+      activeIndex = 0;
+    } else {
+      activeIndex = 0;
+    }
+  }
+  const activeItem = items[activeIndex];
+  if (activeItem) {
+    const newLogo = activeItem.getAttribute('data-logo');
+    const currentSrc = logoImg.getAttribute('src');
+    if (newLogo && newLogo !== currentSrc) {
+      logoImg.style.opacity = '0';
+      setTimeout(() => {
+        logoImg.src = newLogo;
+        logoImg.onload = () => { logoImg.style.opacity = '1'; };
+      }, 160);
+    }
+  }
+  indicators.forEach((dot, idx) => dot.classList.toggle('active', idx === activeIndex));
+} else { item.classList.remove('active'); }
+  });
+  TIMELINE_ACTIVE_INDEX = activeIndex;
+  const activeItem = items[activeIndex];
+  if (activeItem) {
+    const newLogo = activeItem.getAttribute('data-logo');
+    const currentSrc = logoImg.getAttribute('src');
+    if (newLogo && newLogo !== currentSrc) {
+      logoImg.style.opacity = '0';
+      setTimeout(() => { logoImg.src = newLogo; logoImg.onload = () => { logoImg.style.opacity = '1'; }; }, 160);
+    }
+  }
+  indicators.forEach((dot, idx) => dot.classList.toggle('active', idx === activeIndex));
+}
   });
 
   const activeItem = items[activeIndex];
@@ -1341,184 +1385,132 @@ document.addEventListener('click',function(e){const gm=e.target.closest('.projec
 var __pg_lastY=0;
 
 const TRADE_GALLERIES={blaupunkt:['./Blaupunkt_Illumiation_booth_HK_Fair.png','./Blaupunkt_Illumiation_booth_HK_Fair_1.png','./Blaupunkt_Illumiation_booth_HK_Fair_2.png','./Blaupunkt_Illumiation_booth_HK_Fair_3.png','./Blaupunkt_Illumiation_booth_HK_Fair_4.png'],ford:['./Ford_lighting_solutions_HK_Intl.png','./Ford_lighting_solutions_HK_Intl_1.png','./Ford_lighting_solutions_HK_Intl_2.png']};
-function openTradeGallery(brand){__pg_lastY=window.scrollY||document.documentElement.scrollTop||0;const images=(TRADE_GALLERIES[brand]||[]).slice();if(!images.length)return;buildProjectSlides(images);document.getElementById('projectGalleryModal').classList.add('active');document.body.style.overflow='hidden';}
+function openTradeGallery(brand){
+PG_state.origin = 'trade';__pg_lastY=window.scrollY||document.documentElement.scrollTop||0;const images=(TRADE_GALLERIES[brand]||[]).slice();if(!images.length)return;buildProjectSlides(images);document.getElementById('projectGalleryModal').classList.add('active');document.body.style.overflow='hidden';}
 
 /* restore scroll after closing project gallery */
 (function(){var _oldClose=window.closeProjectGallery;if(typeof _oldClose==='function'){window.closeProjectGallery=function(){_oldClose();setTimeout(function(){window.scrollTo({top:__pg_lastY,behavior:'instant'});},0);};}})();
 
 
 
-// ========= I18N for Stat Modals (Hero) =========
-const STAT_I18N = {
-  en: {
-    savings: { title: 'Cumulative Savings Delivered', value: '€1M+', details: [
-      'Multi-category strategic sourcing initiatives across direct and indirect spend',
-      'Negotiated favorable payment terms (60-90 days) improving cash flow',
-      'Implemented should-cost modeling identifying 15-25% cost reduction opportunities',
-      'Consolidated supplier base from 200+ to 80 key partners',
-      'Zero-based budgeting approach for CAPEX projects saving 20% on average'
-    ]},
-    rfps: { title: 'Strategic Tenders Led', value: '120+', details: [
-      'End-to-end RFI/RFP/RFQ process design with technical annexes (A1/A2)',
-      'Weighted scoring matrices balancing technical (40%), commercial (35%), and ESG (25%) criteria',
-      'E-procurement platform integration with full audit trails',
-      'Cross-functional evaluation committees (Engineering, Finance, Legal, Operations)',
-      'Average cycle time reduction from 45 to 28 days while improving compliance'
-    ]},
-    projects: { title: 'Project Portfolio Value', value: '€10M+', details: [
-      'New product development from concept to mass production',
-      'Licensed portfolio launches (Blaupunkt, Spear & Jackson, Pininfarina)',
-      'Factory audits and supplier capability assessments across Asia',
-      'Quality system implementations (ISO 9001, compliance frameworks)',
-      'Cross-border logistics optimization and customs compliance'
-    ]},
-    regions: { title: 'Global Operations Coverage', value: '20+', details: [
-      'Europe: Portugal, Spain, Germany, UK, Netherlands, Italy, France',
-      'LATAM: Brazil, Argentina, Chile, Colombia, Mexico, Peru, Uruguay',
-      'Asia: China, Hong Kong, Taiwan, Vietnam, India, South Korea',
-      'Multi-cultural negotiation experience and local market knowledge',
-      'Time zone coordination for 24/7 project execution'
-    ]}
-  },
+// ========= I18N for Strategy Detail Modal =========
+const STRATEGY_I18N = {
   pt: {
-    savings: { title: 'Poupança Acumulada Entregue', value: '€1M+', details: [
-      'Iniciativas de strategic sourcing multi‑categoria em despesas diretas e indiretas',
-      'Negociação de prazos de pagamento favoráveis (60–90 dias) melhorando o cash flow',
-      'Modelos de should‑cost identificando oportunidades de 15–25% de redução de custos',
-      'Consolidação da base de fornecedores de 200+ para 80 parceiros‑chave',
-      'Orçamentação base‑zero para projetos CAPEX economizando ~20% em média'
+    1: { title: 'Design de Stand & Merchandising', subtitle: 'Criando experiências de marca imersivas', icon: 'fa-drafting-compass', sections: [
+      { title: 'Abordagem Estratégica', items: [
+        'Co-criação do conceito do stand com Marketing alinhado ao posicionamento da marca',
+        'Otimização do fluxo de tráfego para máximo engajamento dos visitantes',
+        'Hierarquia de exposição destacando SKUs heróis e lançamentos',
+        'Iluminação e visual merchandising para percepção premium da marca',
+        'Estações de demo interativas para experiência prática do produto'
+      ]},
+      { title: 'Execução Técnica', items: [
+        'Renderizações e mockups 3D aprovados 60 dias antes do evento',
+        'Componentes modulares de stand reutilizáveis entre feiras',
+        'Integração de sinalização digital com catálogos em tempo real',
+        'Planeamento de armazenamento e logística para 500+ SKUs',
+        'Supervisão on-site durante montagem e desmontagem'
+      ]}
     ]},
-    rfps: { title: 'Tenders Estratégicos Conduzidos', value: '120+', details: [
-      'Desenho ponta‑a‑ponta de RFI/RFP/RFQ com anexos técnicos (A1/A2)',
-      'Matrizes de scoring ponderado: técnico (40%), comercial (35%) e ESG (25%)',
-      'Integração com plataforma de e‑procurement com trilhas de auditoria',
-      'Comitês de avaliação multifuncionais (Engenharia, Finanças, Jurídico, Operações)',
-      'Redução do ciclo médio de 45 para 28 dias com mais compliance'
+    2: { title: 'Orquestração de Reuniões & Captação de Leads', subtitle: 'Maximizando ROI com engajamento estruturado', icon: 'fa-calendar-check', sections: [
+      { title: 'Planeamento Pré-Evento', items: [
+        'Lista-alvo: 200+ prospetos qualificados por feira',
+        'Agendamento com lembretes automáticos',
+        'Briefing da equipa de vendas com sessões de produto',
+        'Apresentações personalizadas por segmento de cliente',
+        'Critérios de lead scoring (orçamento, prazo, autoridade)'
+      ]},
+      { title: 'Execução no Stand', items: [
+        'Slots estruturados de 30 minutos com agenda clara',
+        'Captação de leads em CRM móvel em tempo real',
+        'Follow-up enviado em até 4 horas',
+        'Notas padronizadas para visibilidade do pipeline',
+        'Reuniões diárias da equipa para ajustes táticos'
+      ]}
     ]},
-    projects: { title: 'Valor do Portfólio de Projetos', value: '€10M+', details: [
-      'Desenvolvimento de produto do conceito à produção em massa',
-      'Lançamentos licenciados (Blaupunkt, Spear & Jackson, Pininfarina)',
-      'Auditorias fabris e avaliação de capacidades na Ásia',
-      'Implementação de sistemas de qualidade (ISO 9001, frameworks de compliance)',
-      'Otimização logística transfronteiriça e conformidade aduaneira'
+    3: { title: 'Negociações & Parcerias', subtitle: 'Construindo relacionamentos estratégicos com fornecedores', icon: 'fa-handshake-angle', sections: [
+      { title: 'Desenvolvimento de Parcerias', items: [
+        'Qualificação inicial: estabilidade financeira, capacidade, certificações',
+        'Negociação de termos: MOQ, prazos de pagamento, exclusividade',
+        'Estrutura de preços com escalas de volume e rebates anuais',
+        'Acordos de qualidade com taxas de defeito e ações corretivas',
+        'Proteção de IP e NDAs para novos desenvolvimentos'
+      ]},
+      { title: 'Estrutura Contratual', items: [
+        'MSA (Master Service Agreement) com termos padrão',
+        'Modelos de SoW para trabalhos por projeto',
+        'SLAs com cláusulas de penalidade/incentivo',
+        'Força maior e continuidade de negócio',
+        'Cláusulas de saída e transferência de conhecimento'
+      ]}
     ]},
-    regions: { title: 'Cobertura Operacional Global', value: '20+', details: [
-      'Europa: Portugal, Espanha, Alemanha, Reino Unido, Países Baixos, Itália, França',
-      'LATAM: Brasil, Argentina, Chile, Colômbia, México, Peru, Uruguai',
-      'Ásia: China, Hong Kong, Taiwan, Vietname, Índia, Coreia do Sul',
-      'Negociação multicultural e conhecimento de mercados locais',
-      'Coordenação de fuso horário para execução 24/7'
-    ]}
-  },
-  es: {
-    savings: { title: 'Ahorros Acumulados Entregados', value: '€1M+', details: [
-      'Iniciativas de strategic sourcing multi‑categoría en gasto directo e indirecto',
-      'Negociación de plazos de pago favorables (60–90 días) mejorando el flujo de caja',
-      'Modelado should‑cost identificando oportunidades de reducción del 15–25%',
-      'Consolidación de la base de proveedores de 200+ a 80 socios clave',
-      'Presupuestación base‑cero para proyectos CAPEX ahorrando ~20% en promedio'
+    4: { title: 'Descoberta Tecnológica & Benchmark', subtitle: 'Mantendo-se à frente da inovação', icon: 'fa-microchip', sections: [
+      { title: 'Inteligência de Mercado', items: [
+        'Scouting de tecnologia em 50+ booths por feira',
+        'Teardown competitivo e comparação de funcionalidades',
+        'Benchmark de custos para especificações similares',
+        'Mapeamento de tendências (IoT, sustentabilidade, smart)',
+        'Análise de patentes para liberdade de operação'
+      ]},
+      { title: 'Avaliação Técnica', items: [
+        'Coleta de amostras para testes laboratoriais',
+        'Consultas com engenharia sobre viabilidade técnica',
+        'Revisão de protótipos e DFM (design para manufatura)',
+        'Levantamento de requisitos de certificação (CE, FCC, ANATEL)',
+        'Alinhamento com o roadmap de P&D do fornecedor'
+      ]}
     ]},
-    rfps: { title: 'Licitaciones Estratégicas Dirigidas', value: '120+', details: [
-      'Diseño integral RFI/RFP/RFQ con anexos técnicos (A1/A2)',
-      'Matrices de ponderación: técnico (40%), comercial (35%) y ESG (25%)',
-      'Integración con plataforma de e‑procurement con trazabilidad completa',
-      'Comités de evaluación multifuncionales (Ingeniería, Finanzas, Legal, Operaciones)',
-      'Reducción del ciclo promedio de 45 a 28 días con mayor cumplimiento'
+    5: { title: 'Auditorias de Fábrica & Mapeamento de Capacidades', subtitle: 'Garantindo excelência operacional', icon: 'fa-industry', sections: [
+      { title: 'Framework de Auditoria', items: [
+        'Verificação do sistema de qualidade (ISO 9001)',
+        'Análise de capacidade (linhas, turnos, utilização)',
+        'Registos de manutenção e calibração de equipamentos',
+        'Avaliação de competências e programas de treino',
+        'Conformidade ambiental e gestão de resíduos'
+      ]},
+      { title: 'Avaliação de Risco', items: [
+        'Saúde financeira (relatórios de crédito, histórico)',
+        'Resiliência da cadeia (dual-sourcing, stock tampão)',
+        'Auditorias sociais (SA8000, BSCI)',
+        'Cibersegurança para partilha de dados',
+        'Continuidade de negócio e recuperação de desastres'
+      ]}
     ]},
-    projects: { title: 'Valor del Portafolio de Proyectos', value: '€10M+', details: [
-      'Desarrollo de producto del concepto a producción masiva',
-      'Lanzamientos licenciados (Blaupunkt, Spear & Jackson, Pininfarina)',
-      'Auditorías de fábrica y evaluación de capacidades en Asia',
-      'Implementación de sistemas de calidad (ISO 9001, marcos de compliance)',
-      'Optimización logística transfronteriza y cumplimiento aduanero'
-    ]},
-    regions: { title: 'Cobertura Operativa Global', value: '20+', details: [
-      'Europa: Portugal, España, Alemania, Reino Unido, Países Bajos, Italia, Francia',
-      'LATAM: Brasil, Argentina, Chile, Colombia, México, Perú, Uruguay',
-      'Asia: China, Hong Kong, Taiwán, Vietnam, India, Corea del Sur',
-      'Experiencia de negociación multicultural y conocimiento local',
-      'Coordinación de husos horarios para ejecución 24/7'
-    ]}
-  },
-  fr: {
-    savings: { title: 'Économies Cumulées Réalisées', value: '€1M+', details: [
-      'Initiatives de sourcing stratégique multi‑catégories sur dépenses directes et indirectes',
-      'Négociation de conditions de paiement favorables (60–90 jours) améliorant la trésorerie',
-      'Modélisation should‑cost identifiant 15–25% d’opportunités de réduction',
-      'Consolidation de la base fournisseurs de 200+ à 80 partenaires clés',
-      'Budget base‑zéro pour projets CAPEX économisant ~20% en moyenne'
-    ]},
-    rfps: { title: 'Appels d’Offres Stratégiques Menés', value: '120+', details: [
-      'Conception bout‑à‑bout RFI/RFP/RFQ avec annexes techniques (A1/A2)',
-      'Matrices de pondération : technique (40%), commercial (35%), ESG (25%)',
-      'Intégration à la plateforme d’e‑procurement avec traçabilité complète',
-      'Comités d’évaluation interfonctionnels (Ingénierie, Finance, Juridique, Opérations)',
-      'Réduction du cycle moyen de 45 à 28 jours avec meilleur compliance'
-    ]},
-    projects: { title: 'Valeur du Portefeuille de Projets', value: '€10M+', details: [
-      'Développement produit du concept à la production de masse',
-      'Lancements sous licence (Blaupunkt, Spear & Jackson, Pininfarina)',
-      'Audits d’usines et évaluation des capacités en Asie',
-      'Mise en place de systèmes qualité (ISO 9001, cadres de conformité)',
-      'Optimisation logistique transfrontalière et conformité douanière'
-    ]},
-    regions: { title: 'Couverture Opérationnelle Globale', value: '20+', details: [
-      'Europe : Portugal, Espagne, Allemagne, Royaume‑Uni, Pays‑Bas, Italie, France',
-      'LATAM : Brésil, Argentine, Chili, Colombie, Mexique, Pérou, Uruguay',
-      'Asie : Chine, Hong Kong, Taïwan, Viêt Nam, Inde, Corée du Sud',
-      'Expérience de négociation multiculturelle et connaissance des marchés locaux',
-      'Coordination des fuseaux horaires pour exécution 24/7'
+    6: { title: 'Pipeline Pós-Feira, ROI & Governança', subtitle: 'Convertendo leads em receita', icon: 'fa-chart-line', sections: [
+      { title: 'Gestão de Pipeline', items: [
+        'Categorias de lead: Quente, Morno, Frio',
+        'Integração ao CRM com sequências de follow-up',
+        'Estimativa de valor e probabilidade de fecho',
+        'Handover para equipas regionais',
+        'Revisões semanais no primeiro mês'
+      ]},
+      { title: 'Métricas de Performance', items: [
+        'Custo por lead (custo do stand ÷ leads qualificados)',
+        'Taxa de conversão lead → pedido',
+        'Tamanho médio de negócio vs. clientes fora de feira',
+        'Análise de time-to-close e gargalos',
+        'Relatório anual de ROI para orçamento de marketing'
+      ]}
     ]}
   }
 };
 
-// Override openStatModal to use current language
 (function(){
-  const getLang = ()=> (window.PG_state && PG_state.currentLang) || (document.documentElement.lang||'en').slice(0,2);
-  const overlay = ()=> document.getElementById('statModalOverlay');
-  window.openStatModal = function(key){
-    const lang = getLang();
-    const dict = (STAT_I18N[lang]||STAT_I18N.en||{});
-    const data = dict[key];
-    if(!data){
-      // fallback to existing behavior if any
-      try{ if(typeof closeStatModal==='function'){ /*noop*/ } }catch(e){}
-    }
-    const ov = overlay();
-    if(!ov||!data) return;
-    document.getElementById('statModalIcon').className = 'fas ' + (statDetailsData[key]?.icon||'fa-chart-line');
-    document.getElementById('statModalTitle').textContent = data.title||'';
-    document.getElementById('statModalValue').textContent = data.value||'';
-    const list = (data.details||[]).map(x=> '<li>'+x+'</li>').join('');
-    document.getElementById('statModalDetails').innerHTML = list;
-    ov.classList.add('active');
+  const getLang = ()=> (window.PG_state && PG_state.currentLang) || (document.documentElement.lang||'en');
+  const base = strategyDetailsData;
+  window.openStrategyModal = function(num){
+    const lang = (getLang().slice(0,2) || 'en');
+    const dict = (STRATEGY_I18N[lang] && STRATEGY_I18N[lang][num]) ? STRATEGY_I18N[lang][num] : base[num];
+    if (!dict) return;
+    $('#strategyDetailIcon').className = 'fas ' + (dict.icon||'fa-drafting-compass');
+    $('#strategyDetailTitle').textContent = dict.title||'';
+    $('#strategyDetailSubtitle').textContent = dict.subtitle||'';
+    const body = (dict.sections||[]).map(sec => {
+      const items = (sec.items||[]).map(li => '<li>'+li+'</li>').join('');
+      return '<div class="strategy-detail-section"><h4><i class="fas fa-chevron-right"></i> '+sec.title+'</h4><ul>'+items+'</ul></div>';
+    }).join('');
+    $('#strategyDetailBody').innerHTML = body;
+    $('#strategyDetailOverlay').classList.add('active');
     document.body.style.overflow = 'hidden';
   };
-})();
-
-// ===== Preserve scroll when opening/closing any gallery/lightbox =====
-(function(){
-  let LAST_Y = 0;
-  function saveY(){ LAST_Y = window.scrollY || document.documentElement.scrollTop || 0; }
-  function restoreY(){ setTimeout(()=>{ window.scrollTo({top: LAST_Y, left:0, behavior:'instant'}); }, 0); }
-
-  // Project gallery wrappers
-  if (typeof window.openProjectGalleryFromCard === 'function'){
-    const __oldOpen = window.openProjectGalleryFromCard;
-    window.openProjectGalleryFromCard = function(card){ saveY(); return __oldOpen(card); };
-  }
-  if (typeof window.closeProjectGallery === 'function'){
-    const __oldClose = window.closeProjectGallery;
-    window.closeProjectGallery = function(){ const r = __oldClose(); restoreY(); return r; };
-  }
-
-  // Lightbox wrappers
-  if (typeof window.openLightbox === 'function'){
-    const __oldOpenLb = window.openLightbox;
-    window.openLightbox = function(el){ saveY(); return __oldOpenLb(el); };
-  }
-  if (typeof window.closeLightbox === 'function'){
-    const __oldCloseLb = window.closeLightbox;
-    window.closeLightbox = function(){ const r = __oldCloseLb(); restoreY(); return r; };
-  }
 })();
