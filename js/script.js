@@ -1664,3 +1664,647 @@ const STRATEGY_I18N = {
     if(typeof base === 'function') return base(num);
   }
 })();
+/* ====================== I18N (mantido) + TODO o seu JS ORIGINAL ====================== */
+/*  ...  (todo o conteúdo que você já tinha no script.js permanece)  ...  */
+
+
+/* ===================== ALTERAÇÕES PONTUAIS — SUBSTITUIÇÃO SEGURA ===================== */
+
+/* 1) Atualiza setupCardAutoSlide para inserir dots (quando faltarem) e animá-los corretamente */
+function setupCardAutoSlide(card) {
+  const container = card.querySelector('.gallery-main');
+  if (!container) return;
+
+  // carregar lista de imagens
+  let images = [];
+  const csv = card.getAttribute('data-images') || '';
+  if (csv.trim()) {
+    images = csv.split(',').map(s => s.trim()).filter(Boolean);
+  } else {
+    const main = container.querySelector('img');
+    if (main?.src) images = [main.src];
+  }
+  if (!images.length) return;
+
+  const imgEl = container.querySelector('img');
+  const auto = card.getAttribute('data-autoslide') === 'true';
+  const interval = Math.max(1200, parseInt(card.getAttribute('data-interval'), 10) || 2500);
+
+  const state = { images, idx: 0, timer: null, interval, imgEl, paused: false };
+  CardSlides.set(card, state);
+
+  // 🔹 Garantir dots no card quando houver >1 imagem
+  let dotsWrap = card.querySelector('.project-gallery .gallery-dots');
+  if (!dotsWrap && state.images.length > 1) {
+    dotsWrap = document.createElement('div');
+    dotsWrap.className = 'gallery-dots';
+    state.images.forEach((_, i) => {
+      const dot = document.createElement('div');
+      dot.className = 'gallery-dot' + (i === 0 ? ' active' : '');
+      dot.addEventListener('click', () => {
+        state.idx = i;
+        state.imgEl.style.opacity = '0';
+        setTimeout(() => {
+          state.imgEl.src = state.images[state.idx];
+          state.imgEl.onload = () => { state.imgEl.style.opacity = '1'; updateDots(); };
+        }, 160);
+      });
+      dotsWrap.appendChild(dot);
+    });
+    const pg = card.querySelector('.project-gallery');
+    if (pg) pg.appendChild(dotsWrap);
+  }
+
+  function updateDots() {
+    const dots = card.querySelectorAll('.gallery-dot');
+    dots.forEach((d, i) => d.classList.toggle('active', i === state.idx));
+  }
+
+  function tick() {
+    if (state.paused || !auto || state.images.length <= 1) return;
+    state.idx = (state.idx + 1) % state.images.length;
+    state.imgEl.style.opacity = '0';
+    setTimeout(() => {
+      state.imgEl.src = state.images[state.idx];
+      state.imgEl.onload = () => { state.imgEl.style.opacity = '1'; };
+      updateDots(); // 🔸 sincroniza dot ativo
+    }, 160);
+  }
+
+  function start() {
+    stop();
+    if (auto && state.images.length > 1) state.timer = setInterval(tick, state.interval);
+    updateDots(); // 🔸 garante estado inicial correto
+  }
+  function stop() {
+    if (state.timer) { clearInterval(state.timer); state.timer = null; }
+  }
+
+  on(card, 'mouseenter', () => { state.paused = true; });
+  on(card, 'mouseleave', () => { state.paused = false; });
+
+  const clickable = card.querySelector('.gallery-overlay') || container;
+  on(clickable, 'click', (e) => { e.stopPropagation(); openProjectGalleryFromCard(card); });
+
+  start();
+
+  // Swipe mobile (já existia) — mantido; apenas garante updateDots após swipe
+  let startX = 0, currentX = 0;
+  on(container, 'touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+  on(container, 'touchmove',  e => { currentX = e.touches[0].clientX; }, { passive: true });
+  on(container, 'touchend',  () => {
+    const diff = startX - currentX;
+    if (Math.abs(diff) > 50) {
+      if (state && state.images.length > 1) {
+        state.idx = diff > 0
+          ? (state.idx + 1) % state.images.length
+          : (state.idx - 1 + state.images.length) % state.images.length;
+        state.imgEl.style.opacity = '0';
+        setTimeout(() => {
+          state.imgEl.src = state.images[state.idx];
+          state.imgEl.onload = () => { state.imgEl.style.opacity = '1'; };
+          updateDots(); // 🔸 sincroniza dot após swipe
+        }, 160);
+      }
+    }
+  }, { passive: true });
+}
+
+/* 2) Timeline logos: manter último ativo (terminar em NKS) */
+let TL_lastActiveIndex = 0; // lembra o último ativo
+function updateTimelineSpy() {
+  const items = $$('.timeline-item');
+  if (!items.length) return;
+  const logoImg = $('#logo-img');
+  const indicators = $$('.indicator-dot');
+  if (!logoImg) return;
+
+  let foundIndex = -1;
+  const windowHeight = window.innerHeight;
+  const midTop = windowHeight * 0.62;
+  const midBottom = windowHeight * 0.38;
+
+  items.forEach((item, idx) => {
+    const r = item.getBoundingClientRect();
+    const activeNow = (r.top < midTop && r.bottom > midBottom);
+    item.classList.toggle('active', activeNow);
+    if (activeNow) foundIndex = idx;
+  });
+
+  // ✅ Se nada está no foco, mantemos o último (não volta para 0/Details)
+  const activeIndex = (foundIndex >= 0 ? foundIndex : TL_lastActiveIndex);
+  if (foundIndex >= 0) TL_lastActiveIndex = foundIndex;
+
+  const activeItem = items[activeIndex];
+  if (activeItem) {
+    const newLogo = activeItem.getAttribute('data-logo');
+    const currentSrc = logoImg.getAttribute('src');
+    if (newLogo && newLogo !== currentSrc) {
+      logoImg.style.opacity = '0';
+      setTimeout(() => {
+        logoImg.src = newLogo;
+        logoImg.onload = () => { logoImg.style.opacity = '1'; };
+      }, 160);
+    }
+  }
+  indicators.forEach((dot, idx) => dot.classList.toggle('active', idx === activeIndex));
+}
+
+/* 3) Tradução do Modal de Estratégia (EN/PT/ES/FR) */
+const STRATEGY_I18N = {
+  en: {
+    1: {
+      icon:'fa-drafting-compass',
+      title: "Stand Design & Merchandising",
+      subtitle: "Creating immersive brand experiences",
+      sections: [
+        { title: "Strategic Approach", items: [
+          "Co-created booth concept with Marketing aligning to brand positioning",
+          "Traffic flow optimization for maximum visitor engagement",
+          "Product display hierarchy highlighting hero SKUs and new launches",
+          "Lighting and visual merchandising for premium brand perception",
+          "Interactive demo stations for hands-on product experience"
+        ]},
+        { title: "Technical Execution", items: [
+          "3D renderings and mockups approved 60 days prior to event",
+          "Modular stand components for reusability across fairs",
+          "Digital signage integration with real-time product catalogs",
+          "Storage and logistics planning for 500+ SKU displays",
+          "On-site supervision during build-up and dismantling"
+        ]}
+      ]
+    },
+    2: {
+      icon:'fa-calendar-check',
+      title: "Meetings Orchestration & Lead Capture",
+      subtitle: "Maximizing ROI through structured engagement",
+      sections: [
+        { title: "Pre-Event Planning", items: [
+          "Target list development: 200+ qualified prospects per fair",
+          "Meeting scheduling system with automated reminders",
+          "Sales team briefing with product knowledge sessions",
+          "Customized pitch decks by customer segment",
+          "Lead scoring criteria defined (budget, timeline, authority)"
+        ]},
+        { title: "On-Site Execution", items: [
+          "Structured 30-minute meeting slots with clear agendas",
+          "Real-time lead capture via CRM mobile app",
+          "Immediate follow-up emails sent within 4 hours",
+          "Standardized meeting notes for pipeline visibility",
+          "Daily team huddles to adjust strategy based on feedback"
+        ]}
+      ]
+    },
+    3: {
+      icon:'fa-handshake-angle',
+      title: "Negotiations & Partnering",
+      subtitle: "Building strategic supplier relationships",
+      sections: [
+        { title: "Partnership Development", items: [
+          "Initial qualification: financial stability, capacity, certifications",
+          "Term sheet negotiations: MOQ, payment terms, exclusivity clauses",
+          "Pricing framework with volume breaks and annual rebates",
+          "Quality agreements defining defect rates and corrective actions",
+          "IP protection and NDA frameworks for new product development"
+        ]},
+        { title: "Contractual Framework", items: [
+          "Master Service Agreements (MSA) with standardized terms",
+          "Statement of Work (SoW) templates for project-based work",
+          "Service Level Agreements (SLA) with penalty/incentive clauses",
+          "Force majeure and business continuity provisions",
+          "Exit clauses and knowledge transfer obligations"
+        ]}
+      ]
+    },
+    4: {
+      icon:'fa-microchip',
+      title: "Tech Discovery & Benchmark",
+      subtitle: "Staying ahead of market innovation",
+      sections: [
+        { title: "Market Intelligence", items: [
+          "Technology scouting across 50+ supplier booths per fair",
+          "Competitive product teardowns and feature comparison",
+          "Cost benchmarking for similar specifications",
+          "Innovation trend mapping (IoT, sustainability, smart features)",
+          "Patent landscape analysis for freedom to operate"
+        ]},
+        { title: "Technical Evaluation", items: [
+          "Sample collection for lab testing and validation",
+          "Engineering team consultations on technical feasibility",
+          "Prototype review and design for manufacturing (DFM) feedback",
+          "Certification requirements assessment (CE, FCC, ANATEL)",
+          "Roadmap alignment with supplier R&D investments"
+        ]}
+      ]
+    },
+    5: {
+      icon:'fa-industry',
+      title: "Factory Audits & Capability Mapping",
+      subtitle: "Ensuring operational excellence",
+      sections: [
+        { title: "Audit Framework", items: [
+          "ISO 9001 quality management system verification",
+          "Production capacity analysis (lines, shifts, utilization)",
+          "Equipment maintenance records and calibration certificates",
+          "Workforce skill assessment and training programs",
+          "Environmental compliance and waste management practices"
+        ]},
+        { title: "Risk Assessment", items: [
+          "Financial health check (credit reports, payment history)",
+          "Supply chain resilience (dual sourcing, buffer stock)",
+          "Social compliance audits (SA8000, BSCI standards)",
+          "Cybersecurity protocols for data-sharing partnerships",
+          "Business continuity planning and disaster recovery"
+        ]}
+      ]
+    },
+    6: {
+      icon:'fa-chart-line',
+      title: "Post-Fair Pipeline, ROI & Governance",
+      subtitle: "Converting leads into revenue",
+      sections: [
+        { title: "Pipeline Management", items: [
+          "Lead categorization: Hot (immediate), Warm (3 months), Cold (nurture)",
+          "CRM integration with automated follow-up sequences",
+          "Opportunity value estimation and win probability scoring",
+          "Cross-functional handover to regional sales teams",
+          "Weekly pipeline review meetings for first 30 days"
+        ]},
+        { title: "Performance Metrics", items: [
+          "Cost per lead calculation (stand cost ÷ qualified leads)",
+          "Conversion rate tracking from lead to order",
+          "Average deal size comparison vs. non-fair customers",
+          "Time-to-close analysis identifying bottlenecks",
+          "Annual ROI reporting for marketing budget justification"
+        ]}
+      ]
+    }
+  },
+  pt: {
+    1: {
+      icon:'fa-drafting-compass',
+      title: "Design de Stand & Merchandising",
+      subtitle: "Experiências de marca imersivas",
+      sections: [
+        { title: "Abordagem Estratégica", items: [
+          "Co-criação do conceito com Marketing alinhado ao posicionamento",
+          "Fluxo de tráfego otimizado para engajamento máximo",
+          "Hierarquia de exposição destacando SKUs heróis e lançamentos",
+          "Iluminação e VM para percepção premium da marca",
+          "Estações interativas de demo para experiência prática"
+        ]},
+        { title: "Execução Técnica", items: [
+          "Renderizações e mockups aprovados 60 dias antes do evento",
+          "Componentes modulares para reuso em diferentes feiras",
+          "Sinalização digital integrada a catálogos em tempo real",
+          "Planeamento de armazenagem/logística para 500+ SKUs",
+          "Supervisão on-site no setup e desmontagem"
+        ]}
+      ]
+    },
+    2: {
+      icon:'fa-calendar-check',
+      title: "Orquestração de Reuniões & Captação de Leads",
+      subtitle: "Maximizando ROI com engajamento estruturado",
+      sections: [
+        { title: "Planeamento Pré-Evento", items: [
+          "Lista-alvo: 200+ prospects qualificados por feira",
+          "Agendamento com lembretes automáticos",
+          "Briefing da equipa de vendas (product knowledge)",
+          "Apresentações personalizadas por segmento",
+          "Critérios de scoring (budget, timeline, autoridade)"
+        ]},
+        { title: "Execução no Stand", items: [
+          "Slots estruturados de 30 min com agendas claras",
+          "Captação de leads via app móvel de CRM",
+          "Follow-up imediato (até 4 horas após reunião)",
+          "Notas padronizadas para visibilidade de pipeline",
+          "Reuniões diárias para afinar estratégia"
+        ]}
+      ]
+    },
+    3: {
+      icon:'fa-handshake-angle',
+      title: "Negociações & Parcerias",
+      subtitle: "Construindo relações estratégicas com fornecedores",
+      sections: [
+        { title: "Desenvolvimento de Parceria", items: [
+          "Qualificação inicial: finanças, capacidade, certificações",
+          "Termos: MOQ, prazos, cláusulas de exclusividade",
+          "Pricing com degraus de volume e rebates anuais",
+          "Acordos de qualidade (defeitos e ações corretivas)",
+          "Proteção de IP e NDAs para NPD"
+        ]},
+        { title: "Estrutura Contratual", items: [
+          "MSA com termos padronizados",
+          "Modelos de SoW para projetos",
+          "SLAs com penalidades/incentivos",
+          "Força maior e continuidade de negócio",
+          "Cláusulas de saída e transferência de know-how"
+        ]}
+      ]
+    },
+    4: {
+      icon:'fa-microchip',
+      title: "Descoberta Tecnológica & Benchmark",
+      subtitle: "Mantendo-se à frente da inovação",
+      sections: [
+        { title: "Inteligência de Mercado", items: [
+          "Scouting em 50+ estandes por feira",
+          "Teardowns e comparação de features",
+          "Benchmark de custos por especificação",
+          "Mapeamento de tendências (IoT, sustentabilidade, smart)",
+          "Patentes e liberdade de operar"
+        ]},
+        { title: "Avaliação Técnica", items: [
+          "Coleta de amostras para testes de laboratório",
+          "Consultas com Engenharia sobre viabilidade",
+          "Revisão de protótipos e feedback DFM",
+          "Requisitos de certificação (CE, FCC, ANATEL)",
+          "Alinhamento com o roadmap de P&D do fornecedor"
+        ]}
+      ]
+    },
+    5: {
+      icon:'fa-industry',
+      title: "Auditorias de Fábrica & Mapeamento de Capacidades",
+      subtitle: "Assegurando excelência operacional",
+      sections: [
+        { title: "Framework de Auditoria", items: [
+          "Verificação do sistema ISO 9001",
+          "Análise de capacidade (linhas, turnos, utilização)",
+          "Registos de manutenção e calibração de equipamentos",
+          "Avaliação de skills e programas de treino",
+          "Conformidade ambiental e gestão de resíduos"
+        ]},
+        { title: "Avaliação de Risco", items: [
+          "Saúde financeira (crédito, histórico de pagamentos)",
+          "Resiliência da cadeia (dual sourcing, buffer)",
+          "Auditorias sociais (SA8000, BSCI)",
+          "Cibersegurança para parcerias de dados",
+          "Plano de continuidade e recuperação de desastres"
+        ]}
+      ]
+    },
+    6: {
+      icon:'fa-chart-line',
+      title: "Pipeline Pós-Feira, ROI & Governança",
+      subtitle: "Convertendo leads em receita",
+      sections: [
+        { title: "Gestão de Pipeline", items: [
+          "Categorias: Quente (imediato), Morno (3m), Frio (nutrição)",
+          "CRM com sequências automáticas de follow-up",
+          "Estimativa de valor e probabilidade de fecho",
+          "Handover para equipas regionais",
+          "Revisão semanal nos primeiros 30 dias"
+        ]},
+        { title: "Métricas de Performance", items: [
+          "Custo por lead (custo do stand ÷ leads qualificados)",
+          "Taxa de conversão lead→pedido",
+          "Ticket médio vs. clientes fora de feiras",
+          "Time-to-close e gargalos",
+          "ROI anual para justificar orçamento de marketing"
+        ]}
+      ]
+    }
+  },
+  es: {
+    1:{icon:'fa-drafting-compass',title:"Diseño de Stand & Merchandising",subtitle:"Experiencias de marca inmersivas",
+      sections:[
+        {title:"Enfoque Estratégico",items:[
+          "Co-creación del concepto con Marketing alineado a la marca",
+          "Flujo de tráfico optimizado para máximo engagement",
+          "Jerarquía de exhibición destacando SKUs héroe y lanzamientos",
+          "Iluminación y VM para percepción premium",
+          "Estaciones interactivas para demos prácticas"
+        ]},
+        {title:"Ejecución Técnica",items:[
+          "Renderizados y maquetas aprobadas 60 días antes",
+          "Componentes modulares reutilizables",
+          "Señalización digital integrada al catálogo en tiempo real",
+          "Plan logístico para 500+ SKUs en exposición",
+          "Supervisión in situ en montaje y desmontaje"
+        ]}
+      ]},
+    2:{icon:'fa-calendar-check',title:"Orquestación de Reuniones & Captura de Leads",subtitle:"Maximizando el ROI con engagement estructurado",
+      sections:[
+        {title:"Planificación Previa",items:[
+          "Lista objetivo: 200+ prospectos calificados por feria",
+          "Agenda con recordatorios automáticos",
+          "Briefing del equipo comercial (conocimiento de producto)",
+          "Pitch decks por segmento de cliente",
+          "Criterios de scoring (presupuesto, plazo, autoridad)"
+        ]},
+        {title:"Ejecución en el Stand",items:[
+          "Bloques de 30 min con agendas claras",
+          "Captura de leads en tiempo real vía app CRM",
+          "Follow-up inmediato en menos de 4 horas",
+          "Notas estandarizadas para visibilidad del pipeline",
+          "Reuniones diarias para ajustar estrategia"
+        ]}
+      ]},
+    3:{icon:'fa-handshake-angle',title:"Negociaciones & Alianzas",subtitle:"Relaciones estratégicas con proveedores",
+      sections:[
+        {title:"Desarrollo de Socios",items:[
+          "Calificación inicial: finanzas, capacidad, certificaciones",
+          "Términos: MOQ, pagos, exclusividades",
+          "Precios con escalas por volumen y rebates anuales",
+          "Acuerdos de calidad y acciones correctivas",
+          "Protección de IP y NDAs para NPD"
+        ]},
+        {title:"Marco Contractual",items:[
+          "MSA con términos estandarizados",
+          "Plantillas de SoW por proyecto",
+          "SLAs con penalizaciones/incentivos",
+          "Fuerza mayor y continuidad del negocio",
+          "Cláusulas de salida y transferencia de conocimiento"
+        ]}
+      ]},
+    4:{icon:'fa-microchip',title:"Descubrimiento Tecnológico & Benchmark",subtitle:"A la vanguardia de la innovación",
+      sections:[
+        {title:"Inteligencia de Mercado",items:[
+          "Scouting en 50+ stands por feria",
+          "Teardowns y comparación de características",
+          "Benchmark de costos por especificación",
+          "Mapa de tendencias (IoT, sostenibilidad, smart)",
+          "Análisis de patentes y libertad de operación"
+        ]},
+        {title:"Evaluación Técnica",items:[
+          "Recolección de muestras para laboratorio",
+          "Consultas con Ingeniería sobre viabilidad",
+          "Revisión de prototipos y feedback DFM",
+          "Requisitos de certificación (CE, FCC, ANATEL)",
+          "Alineación con el roadmap de I+D del proveedor"
+        ]}
+      ]},
+    5:{icon:'fa-industry',title:"Auditorías de Fábrica & Mapeo de Capacidades",subtitle:"Excelencia operativa",
+      sections:[
+        {title:"Marco de Auditoría",items:[
+          "Verificación del sistema ISO 9001",
+          "Análisis de capacidad (líneas, turnos, uso)",
+          "Mantenimiento/calibración de equipos",
+          "Evaluación de habilidades y formación",
+          "Cumplimiento ambiental y gestión de residuos"
+        ]},
+        {title:"Evaluación de Riesgo",items:[
+          "Salud financiera (crédito, historial de pagos)",
+          "Resiliencia (dual sourcing, buffer)",
+          "Auditorías sociales (SA8000, BSCI)",
+          "Ciberseguridad para intercambio de datos",
+          "Plan de continuidad y recuperación"
+        ]}
+      ]},
+    6:{icon:'fa-chart-line',title:"Pipeline Post-Feria, ROI & Gobernanza",subtitle:"Convirtiendo leads en ingresos",
+      sections:[
+        {title:"Gestión del Pipeline",items:[
+          "Hot/Warm/Cold según urgencia",
+          "CRM con secuencias automáticas",
+          "Estimación de valor y probabilidad",
+          "Handover a equipos regionales",
+          "Revisión semanal por 30 días"
+        ]},
+        {title:"Métricas de Desempeño",items:[
+          "Costo por lead (stand ÷ leads calificados)",
+          "Tasa de conversión lead→orden",
+          "Ticket medio vs. no feria",
+          "Time-to-close y cuellos de botella",
+          "Reporte anual de ROI"
+        ]}
+      ]}
+  },
+  fr: {
+    1:{icon:'fa-drafting-compass',title:"Design de Stand & Merchandising",subtitle:"Expériences de marque immersives",
+      sections:[
+        {title:"Approche Stratégique",items:[
+          "Co-création du concept avec le Marketing",
+          "Flux de trafic optimisé pour l’engagement",
+          "Hiérarchie d’exposition (SKUs héros & nouveautés)",
+          "Éclairage et VM pour perception premium",
+          "Stations démo interactives"
+        ]},
+        {title:"Exécution Technique",items:[
+          "Rendus 3D approuvés J-60",
+          "Modules réutilisables multi-salons",
+          "Signalétique digitale et catalogue live",
+          "Logistique pour 500+ références",
+          "Supervision sur site (montage/démontage)"
+        ]}
+      ]},
+    2:{icon:'fa-calendar-check',title:"Orchestration de Réunions & Capture de Leads",subtitle:"Maximiser le ROI avec un engagement structuré",
+      sections:[
+        {title:"Pré-événement",items:[
+          "Ciblage: 200+ prospects qualifiés/salon",
+          "Agenda avec rappels automatiques",
+          "Brief équipes ventes (connaissance produit)",
+          "Pitchs adaptés par segment",
+          "Critères de scoring (budget, délai, autorité)"
+        ]},
+        {title:"Exécution sur Stand",items:[
+          "Créneaux de 30 min avec agenda clair",
+          "Capture en temps réel via CRM mobile",
+          "Follow-up < 4h après réunion",
+          "Notes standardisées pour le pipeline",
+          "Points d’équipe quotidiens"
+        ]}
+      ]},
+    3:{icon:'fa-handshake-angle',title:"Négociations & Partenariats",subtitle:"Relations fournisseurs stratégiques",
+      sections:[
+        {title:"Développement de Partenariats",items:[
+          "Qualification: finances, capacité, certifications",
+          "Term sheets: MOQ, paiements, exclusivité",
+          "Prix avec paliers volume & remises annuelles",
+          "Accords qualité & actions correctives",
+          "Protection PI et NDA pour NPD"
+        ]},
+        {title:"Cadre Contractuel",items:[
+          "MSA avec termes standard",
+          "Modèles de SoW par projet",
+          "SLAs avec pénalités/incitations",
+          "Force majeure & continuité d’activité",
+          "Clauses de sortie & transfert de savoir"
+        ]}
+      ]},
+    4:{icon:'fa-microchip',title:"Veille Technologique & Benchmark",subtitle:"Rester en avance",
+      sections:[
+        {title:"Intelligence Marché",items:[
+          "Scouting de 50+ stands par salon",
+          "Teardowns & comparatifs de fonctionnalités",
+          "Benchmark coûts par spécification",
+          "Cartographie tendances (IoT, durable, smart)",
+          "Paysage brevets & liberté d’exploitation"
+        ]},
+        {title:"Évaluation Technique",items:[
+          "Échantillons pour tests labo",
+          "Consultations avec l’Ingénierie",
+          "Revues de prototypes & feedback DFM",
+          "Évaluation des certifications (CE, FCC, ANATEL)",
+          "Alignement avec la R&D fournisseur"
+        ]}
+      ]},
+    5:{icon:'fa-industry',title:"Audits d’Usine & Cartographie des Capacités",subtitle:"Excellence opérationnelle",
+      sections:[
+        {title:"Cadre d’Audit",items:[
+          "Vérification ISO 9001",
+          "Analyse de capacité (lignes, shifts, taux d’utilisation)",
+          "Maintenance & calibrage équipements",
+          "Compétences & programmes de formation",
+          "Conformité environnementale & déchets"
+        ]},
+        {title:"Évaluation des Risques",items:[
+          "Santé financière (crédit, historique)",
+          "Résilience supply chain (double sourcing, buffer)",
+          "Conformité sociale (SA8000, BSCI)",
+          "Cybersécurité pour échanges de données",
+          "Plan de continuité & reprise"
+        ]}
+      ]},
+    6:{icon:'fa-chart-line',title:"Pipeline Post-Salon, ROI & Gouvernance",subtitle:"Convertir les leads en revenus",
+      sections:[
+        {title:"Gestion du Pipeline",items:[
+          "Catégories: Hot/Warm/Cold",
+          "CRM & séquences automatiques",
+          "Estimation de valeur & probabilité de gain",
+          "Passation aux équipes régionales",
+          "Revue hebdo pendant 30 jours"
+        ]},
+        {title:"Indicateurs de Performance",items:[
+          "Coût par lead (stand ÷ leads qualifiés)",
+          "Taux de conversion lead→commande",
+          "Panier moyen vs. hors salons",
+          "Time-to-close & goulots d’étranglement",
+          "Reporting ROI annuel"
+        ]}
+      ]}
+  }
+};
+
+/* Override do modal para usar o idioma atual (derivado do seu padrão STAT_I18N) */
+(function(){
+  const getLang = () => (window.PG_state && PG_state.currentLang) || (document.documentElement.lang || 'en').slice(0,2);
+  window.openStrategyModal = function(num){
+    const lang = getLang();
+    const dict = STRATEGY_I18N[lang] || STRATEGY_I18N.en;
+    const data = dict[num];
+    if(!data) return;
+
+    // Ícone
+    const iconEl = document.getElementById('strategyDetailIcon');
+    iconEl.className = 'fas ' + data.icon;
+
+    // Títulos
+    document.getElementById('strategyDetailTitle').textContent = data.title || '';
+    document.getElementById('strategyDetailSubtitle').textContent = data.subtitle || '';
+
+    // Corpo com seções e listas
+    const body = (data.sections || []).map(sec => {
+      const items = (sec.items || []).map(li => `<li>${li}</li>`).join('');
+      return `<div class="strategy-detail-section"><h4><i class="fas fa-chevron-right"></i> ${sec.title}</h4><ul>${items}</ul></div>`;
+    }).join('');
+    document.getElementById('strategyDetailBody').innerHTML = body;
+
+    // Abrir modal
+    const ov = document.getElementById('strategyDetailOverlay');
+    ov.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  };
+})();
