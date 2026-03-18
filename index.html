@@ -1,5 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+ <script>
+/* Kill-switch do loading (independente do script externo) */
+(function () {
+  function hideLoading() {
+    var l = document.getElementById('loading');
+    if (!l) return;
+    l.classList.add('hidden');
+    // remove o nó após a transição, mesmo que não haja CSS de transição
+    setTimeout(function(){ try { l.remove(); } catch(e){} }, 500);
+  }
+  // Se o DOM já estiver pronto, executa já; senão, aguarda.
+  if (document.readyState === 'interactive' || document.readyState === 'complete') {
+    hideLoading();
+  } else {
+    document.addEventListener('DOMContentLoaded', hideLoading);
+  }
+})();
+</script>
+``
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
