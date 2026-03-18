@@ -2308,3 +2308,13 @@ const STRATEGY_I18N = {
     document.body.style.overflow = 'hidden';
   };
 })();
+document.addEventListener('DOMContentLoaded', () => {
+  // Fallback: se o overlay ainda estiver visível após 2,5s, esconda‑o
+  setTimeout(() => {
+    const loading = document.getElementById('loading');
+    if (loading && !loading.classList.contains('hidden')) {
+      loading.classList.add('hidden');
+      setTimeout(() => { try { loading.remove(); } catch(_){} }, 400);
+    }
+  }, 2500);
+});
