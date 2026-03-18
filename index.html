@@ -963,4 +963,9 @@
 <!-- ✅ Inclui o seu arquivo externo JS (carrega TODO o código do script.js) -->
 <script src="./js/script.js"></script>
 </body>
+ <script>
+/* Segunda proteção: se o overlay ainda existir depois de 2.5s, some com ele */
+setTimeout(function(){
+  var l = document.getElementById('loading');
+  if (l) { l.classList.add('hidden'); setTimeout(function
 </html>
