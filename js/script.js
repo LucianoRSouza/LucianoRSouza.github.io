@@ -406,237 +406,740 @@ const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
 const on = (el, evt, fn, opts) => el && el.addEventListener(evt, fn, opts);
 
 /* -------------------------
-   Dados — Stats & Estratégia
+   Dados — Stats & Estratégia (com tradução)
 --------------------------*/
-const statDetailsData = {
+const getStatDetailsData = () => ({
   savings: {
     icon: "fa-piggy-bank",
-    title: "Cumulative Savings Delivered",
+    title: { en: "Cumulative Savings Delivered", pt: "Poupança Acumulada Entregue", es: "Ahorros Acumulados Entregados", fr: "Économies Cumulées Réalisées" },
     value: "€1M+",
-    details: [
-      "Multi-category strategic sourcing initiatives across direct and indirect spend",
-      "Negotiated favorable payment terms (60-90 days) improving cash flow",
-      "Implemented should-cost modeling identifying 15-25% cost reduction opportunities",
-      "Consolidated supplier base from 200+ to 80 key partners",
-      "Zero-based budgeting approach for CAPEX projects saving 20% on average"
-    ]
+    details: {
+      en: [
+        "Multi-category strategic sourcing initiatives across direct and indirect spend",
+        "Negotiated favorable payment terms (60-90 days) improving cash flow",
+        "Implemented should-cost modeling identifying 15-25% cost reduction opportunities",
+        "Consolidated supplier base from 200+ to 80 key partners",
+        "Zero-based budgeting approach for CAPEX projects saving 20% on average"
+      ],
+      pt: [
+        "Iniciativas de strategic sourcing multi‑categoria em despesas diretas e indiretas",
+        "Negociação de prazos de pagamento favoráveis (60–90 dias) melhorando o cash flow",
+        "Modelos de should‑cost identificando oportunidades de 15–25% de redução de custos",
+        "Consolidação da base de fornecedores de 200+ para 80 parceiros‑chave",
+        "Orçamentação base‑zero para projetos CAPEX economizando ~20% em média"
+      ],
+      es: [
+        "Iniciativas de strategic sourcing multi‑categoría en gasto directo e indirecto",
+        "Negociación de plazos de pago favorables (60–90 días) mejorando el flujo de caja",
+        "Modelado should‑cost identificando oportunidades de reducción del 15–25%",
+        "Consolidación de la base de proveedores de 200+ a 80 socios clave",
+        "Presupuestación base‑cero para proyectos CAPEX ahorrando ~20% en promedio"
+      ],
+      fr: [
+        "Initiatives de sourcing stratégique multi‑catégories sur dépenses directes et indirectes",
+        "Négociation de conditions de paiement favorables (60–90 jours) améliorant la trésorerie",
+        "Modélisation should‑cost identifiant 15–25% d\'opportunités de réduction",
+        "Consolidation de la base fournisseurs de 200+ à 80 partenaires clés",
+        "Budget base‑zéro pour projets CAPEX économisant ~20% en moyenne"
+      ]
+    }
   },
   rfps: {
     icon: "fa-file-contract",
-    title: "Strategic Tenders Led",
+    title: { en: "Strategic Tenders Led", pt: "Tenders Estratégicos Conduzidos", es: "Licitaciones Estratégicas Dirigidas", fr: "Appels d\'Offres Stratégiques Menés" },
     value: "120+",
-    details: [
-      "End-to-end RFI/RFP/RFQ process design with technical annexes (A1/A2)",
-      "Weighted scoring matrices balancing technical (40%), commercial (35%), and ESG (25%) criteria",
-      "E-procurement platform integration with full audit trails",
-      "Cross-functional evaluation committees (Engineering, Finance, Legal, Operations)",
-      "Average cycle time reduction from 45 to 28 days while improving compliance"
-    ]
+    details: {
+      en: [
+        "End-to-end RFI/RFP/RFQ process design with technical annexes (A1/A2)",
+        "Weighted scoring matrices balancing technical (40%), commercial (35%), and ESG (25%) criteria",
+        "E-procurement platform integration with full audit trails",
+        "Cross-functional evaluation committees (Engineering, Finance, Legal, Operations)",
+        "Average cycle time reduction from 45 to 28 days while improving compliance"
+      ],
+      pt: [
+        "Desenho ponta‑a‑ponta de RFI/RFP/RFQ com anexos técnicos (A1/A2)",
+        "Matrizes de scoring ponderado: técnico (40%), comercial (35%) e ESG (25%)",
+        "Integração com plataforma de e‑procurement com trilhas de auditoria",
+        "Comitês de avaliação multifuncionais (Engenharia, Finanças, Jurídico, Operações)",
+        "Redução do ciclo médio de 45 para 28 dias com mais compliance"
+      ],
+      es: [
+        "Diseño integral RFI/RFP/RFQ con anexos técnicos (A1/A2)",
+        "Matrices de ponderación: técnico (40%), comercial (35%) y ESG (25%)",
+        "Integración con plataforma de e‑procurement con trazabilidad completa",
+        "Comités de evaluación multifuncionales (Ingeniería, Finanzas, Legal, Operaciones)",
+        "Reducción del ciclo promedio de 45 a 28 días con mayor cumplimiento"
+      ],
+      fr: [
+        "Conception bout‑à‑bout RFI/RFP/RFQ avec annexes techniques (A1/A2)",
+        "Matrices de pondération : technique (40%), commercial (35%), ESG (25%)",
+        "Intégration à la plateforme d\'e‑procurement avec traçabilité complète",
+        "Comités d\'évaluation interfonctionnels (Ingénierie, Finance, Juridique, Opérations)",
+        "Réduction du cycle moyen de 45 à 28 jours avec meilleur compliance"
+      ]
+    }
   },
   projects: {
     icon: "fa-project-diagram",
-    title: "Project Portfolio Value",
+    title: { en: "Project Portfolio Value", pt: "Valor do Portfólio de Projetos", es: "Valor del Portafolio de Proyectos", fr: "Valeur du Portefeuille de Projets" },
     value: "€10M+",
-    details: [
-      "New product development from concept to mass production",
-      "Licensed portfolio launches (Blaupunkt, Spear & Jackson, Pininfarina)",
-      "Factory audits and supplier capability assessments across Asia",
-      "Quality system implementations (ISO 9001, compliance frameworks)",
-      "Cross-border logistics optimization and customs compliance"
-    ]
+    details: {
+      en: [
+        "New product development from concept to mass production",
+        "Licensed portfolio launches (Blaupunkt, Spear & Jackson, Pininfarina)",
+        "Factory audits and supplier capability assessments across Asia",
+        "Quality system implementations (ISO 9001, compliance frameworks)",
+        "Cross-border logistics optimization and customs compliance"
+      ],
+      pt: [
+        "Desenvolvimento de produto do conceito à produção em massa",
+        "Lançamentos licenciados (Blaupunkt, Spear & Jackson, Pininfarina)",
+        "Auditorias fabris e avaliação de capacidades na Ásia",
+        "Implementação de sistemas de qualidade (ISO 9001, frameworks de compliance)",
+        "Otimização logística transfronteiriça e conformidade aduaneira"
+      ],
+      es: [
+        "Desarrollo de producto del concepto a producción masiva",
+        "Lanzamientos licenciados (Blaupunkt, Spear & Jackson, Pininfarina)",
+        "Auditorías de fábrica y evaluación de capacidades en Asia",
+        "Implementación de sistemas de calidad (ISO 9001, marcos de compliance)",
+        "Optimización logística transfronteriza y cumplimiento aduanero"
+      ],
+      fr: [
+        "Développement produit du concept à la production de masse",
+        "Lancements sous licence (Blaupunkt, Spear & Jackson, Pininfarina)",
+        "Audits d\'usines et évaluation des capacités en Asie",
+        "Mise en place de systèmes qualité (ISO 9001, cadres de conformité)",
+        "Optimisation logistique transfrontalière et conformité douanière"
+      ]
+    }
   },
   regions: {
     icon: "fa-globe",
-    title: "Global Operations Coverage",
+    title: { en: "Global Operations Coverage", pt: "Cobertura Operacional Global", es: "Cobertura Operativa Global", fr: "Couverture Opérationnelle Globale" },
     value: "20+",
-    details: [
-      "Europe: Portugal, Spain, Germany, UK, Netherlands, Italy, France",
-      "LATAM: Brazil, Argentina, Chile, Colombia, Mexico, Peru, Uruguay",
-      "Asia: China, Hong Kong, Taiwan, Vietnam, India, South Korea",
-      "Multi-cultural negotiation experience and local market knowledge",
-      "Time zone coordination for 24/7 project execution"
-    ]
+    details: {
+      en: [
+        "Europe: Portugal, Spain, Germany, UK, Netherlands, Italy, France",
+        "LATAM: Brazil, Argentina, Chile, Colombia, Mexico, Peru, Uruguay",
+        "Asia: China, Hong Kong, Taiwan, Vietnam, India, South Korea",
+        "Multi-cultural negotiation experience and local market knowledge",
+        "Time zone coordination for 24/7 project execution"
+      ],
+      pt: [
+        "Europa: Portugal, Espanha, Alemanha, Reino Unido, Países Baixos, Itália, França",
+        "LATAM: Brasil, Argentina, Chile, Colômbia, México, Peru, Uruguai",
+        "Ásia: China, Hong Kong, Taiwan, Vietname, Índia, Coreia do Sul",
+        "Negociação multicultural e conhecimento de mercados locais",
+        "Coordenação de fuso horário para execução 24/7"
+      ],
+      es: [
+        "Europa: Portugal, España, Alemania, Reino Unido, Países Bajos, Italia, Francia",
+        "LATAM: Brasil, Argentina, Chile, Colombia, México, Perú, Uruguay",
+        "Asia: China, Hong Kong, Taiwán, Vietnam, India, Corea del Sur",
+        "Experiencia de negociación multicultural y conocimiento local",
+        "Coordinación de husos horarios para ejecución 24/7"
+      ],
+      fr: [
+        "Europe : Portugal, Espagne, Allemagne, Royaume‑Uni, Pays‑Bas, Italie, France",
+        "LATAM : Brésil, Argentine, Chili, Colombie, Mexique, Pérou, Uruguay",
+        "Asie : Chine, Hong Kong, Taïwan, Viêt Nam, Inde, Corée du Sud",
+        "Expérience de négociation multiculturelle et connaissance des marchés locaux",
+        "Coordination des fuseaux horaires pour exécution 24/7"
+      ]
+    }
   }
-};
+});
 
-const strategyDetailsData = {
+const getStrategyDetailsData = () => ({
   1: {
-    title: "Stand Design & Merchandising",
-    subtitle: "Creating immersive brand experiences",
+    title: { en: "Stand Design & Merchandising", pt: "Design de Stand & Merchandising", es: "Diseño de Stand & Merchandising", fr: "Design de Stand & Merchandising" },
+    subtitle: { en: "Creating immersive brand experiences", pt: "Criando experiências de marca imersivas", es: "Creando experiencias de marca inmersivas", fr: "Création d'expériences de marque immersives" },
     icon: "fa-drafting-compass",
-    sections: [
-      {
-        title: "Strategic Approach",
-        items: [
-          "Co-created booth concept with Marketing aligning to brand positioning",
-          "Traffic flow optimization for maximum visitor engagement",
-          "Product display hierarchy highlighting hero SKUs and new launches",
-          "Lighting and visual merchandising for premium brand perception",
-          "Interactive demo stations for hands-on product experience"
-        ]
-      },
-      {
-        title: "Technical Execution",
-        items: [
-          "3D renderings and mockups approved 60 days prior to event",
-          "Modular stand components for reusability across fairs",
-          "Digital signage integration with real-time product catalogs",
-          "Storage and logistics planning for 500+ SKU displays",
-          "On-site supervision during build-up and dismantling"
-        ]
-      }
-    ]
+    sections: {
+      en: [
+        {
+          title: "Strategic Approach",
+          items: [
+            "Co-created booth concept with Marketing aligning to brand positioning",
+            "Traffic flow optimization for maximum visitor engagement",
+            "Product display hierarchy highlighting hero SKUs and new launches",
+            "Lighting and visual merchandising for premium brand perception",
+            "Interactive demo stations for hands-on product experience"
+          ]
+        },
+        {
+          title: "Technical Execution",
+          items: [
+            "3D renderings and mockups approved 60 days prior to event",
+            "Modular stand components for reusability across fairs",
+            "Digital signage integration with real-time product catalogs",
+            "Storage and logistics planning for 500+ SKU displays",
+            "On-site supervision during build-up and dismantling"
+          ]
+        }
+      ],
+      pt: [
+        {
+          title: "Abordagem Estratégica",
+          items: [
+            "Co-criação do conceito do stand com Marketing alinhado ao posicionamento da marca",
+            "Otimização do fluxo de tráfego para máximo engajamento de visitantes",
+            "Hierarquia de exibição de produtos destacando SKUs principais e novos lançamentos",
+            "Iluminação e merchandising visual para percepção premium da marca",
+            "Estações de demonstração interativas para experiência prática do produto"
+          ]
+        },
+        {
+          title: "Execução Técnica",
+          items: [
+            "Renderizações 3D e maquetes aprovadas 60 dias antes do evento",
+            "Componentes modulares do stand para reutilização em feiras",
+            "Integração de sinalização digital com catálogos de produtos em tempo real",
+            "Planejamento de armazenamento e logística para exibição de 500+ SKUs",
+            "Supervisão no local durante montagem e desmontagem"
+          ]
+        }
+      ],
+      es: [
+        {
+          title: "Enfoque Estratégico",
+          items: [
+            "Co-creación del concepto de stand con Marketing alineado al posicionamiento de marca",
+            "Optimización del flujo de tráfico para máximo compromiso de visitantes",
+            "Jerarquía de exhibición de productos destacando SKUs principales y nuevos lanzamientos",
+            "Iluminación y merchandising visual para percepción premium de marca",
+            "Estaciones de demostración interactivas para experiencia práctica del producto"
+          ]
+        },
+        {
+          title: "Ejecución Técnica",
+          items: [
+            "Renderizados 3D y maquetas aprobadas 60 días antes del evento",
+            "Componentes modulares de stand para reutilización en ferias",
+            "Integración de señalización digital con catálogos de productos en tiempo real",
+            "Planificación de almacenamiento y logística para exhibición de 500+ SKUs",
+            "Supervisión en sitio durante montaje y desmontaje"
+          ]
+        }
+      ],
+      fr: [
+        {
+          title: "Approche Stratégique",
+          items: [
+            "Co-création du concept de stand avec le Marketing aligné sur le positionnement de la marque",
+            "Optimisation du flux de trafic pour un engagement maximal des visiteurs",
+            "Hiérarchie d'affichage des produits mettant en avant les SKU phares et les nouveautés",
+            "Éclairage et merchandising visuel pour une perception premium de la marque",
+            "Stations de démonstration interactives pour une expérience produit hands-on"
+          ]
+        },
+        {
+          title: "Exécution Technique",
+          items: [
+            "Rendus 3D et maquettes approuvés 60 jours avant l'événement",
+            "Composants modulaires de stand pour réutilisation sur les salons",
+            "Intégration de signalétique numérique avec catalogues produits en temps réel",
+            "Planification de stockage et logistique pour l'affichage de 500+ SKU",
+            "Supervision sur site pendant le montage et le démontage"
+          ]
+        }
+      ]
+    }
   },
   2: {
-    title: "Meetings Orchestration & Lead Capture",
-    subtitle: "Maximizing ROI through structured engagement",
+    title: { en: "Meetings Orchestration & Lead Capture", pt: "Reuniões & Captação de Leads", es: "Orquestación de Reuniones & Captación", fr: "Orquestration de Réunions & Capture" },
+    subtitle: { en: "Maximizing ROI through structured engagement", pt: "Maximizando ROI através de engajamento estruturado", es: "Maximizando ROI mediante compromiso estructurado", fr: "Maximisation du ROI via un engagement structuré" },
     icon: "fa-calendar-check",
-    sections: [
-      {
-        title: "Pre-Event Planning",
-        items: [
-          "Target list development: 200+ qualified prospects per fair",
-          "Meeting scheduling system with automated reminders",
-          "Sales team briefing with product knowledge sessions",
-          "Customized pitch decks by customer segment",
-          "Lead scoring criteria defined (budget, timeline, authority)"
-        ]
-      },
-      {
-        title: "On-Site Execution",
-        items: [
-          "Structured 30-minute meeting slots with clear agendas",
-          "Real-time lead capture via CRM mobile app",
-          "Immediate follow-up emails sent within 4 hours",
-          "Meeting notes standardized for pipeline visibility",
-          "Daily team huddles to adjust strategy based on feedback"
-        ]
-      }
-    ]
+    sections: {
+      en: [
+        {
+          title: "Pre-Event Planning",
+          items: [
+            "Target list development: 200+ qualified prospects per fair",
+            "Meeting scheduling system with automated reminders",
+            "Sales team briefing with product knowledge sessions",
+            "Customized pitch decks by customer segment",
+            "Lead scoring criteria defined (budget, timeline, authority)"
+          ]
+        },
+        {
+          title: "On-Site Execution",
+          items: [
+            "Structured 30-minute meeting slots with clear agendas",
+            "Real-time lead capture via CRM mobile app",
+            "Immediate follow-up emails sent within 4 hours",
+            "Meeting notes standardized for pipeline visibility",
+            "Daily team huddles to adjust strategy based on feedback"
+          ]
+        }
+      ],
+      pt: [
+        {
+          title: "Planejamento Pré-Evento",
+          items: [
+            "Desenvolvimento de lista de alvos: 200+ prospectos qualificados por feira",
+            "Sistema de agendamento de reuniões com lembretes automatizados",
+            "Briefing da equipe de vendas com sessões de conhecimento de produto",
+            "Pitch decks personalizados por segmento de cliente",
+            "Critérios de pontuação de leads definidos (orçamento, cronograma, autoridade)"
+          ]
+        },
+        {
+          title: "Execução no Local",
+          items: [
+            "Slots de reunião estruturados de 30 minutos com agendas claras",
+            "Captação de leads em tempo real via app móvel de CRM",
+            "Emails de acompanhamento imediato enviados em até 4 horas",
+            "Notas de reunião padronizadas para visibilidade do pipeline",
+            "Reuniões diárias da equipe para ajustar estratégia baseada em feedback"
+          ]
+        }
+      ],
+      es: [
+        {
+          title: "Planificación Pre-Evento",
+          items: [
+            "Desarrollo de lista de objetivos: 200+ prospectos calificados por feria",
+            "Sistema de programación de reuniones con recordatorios automatizados",
+            "Briefing del equipo de ventas con sesiones de conocimiento de producto",
+            "Pitch decks personalizados por segmento de cliente",
+            "Criterios de puntuación de leads definidos (presupuesto, cronograma, autoridad)"
+          ]
+        },
+        {
+          title: "Ejecución en Sitio",
+          items: [
+            "Slots de reunión estructurados de 30 minutos con agendas claras",
+            "Captación de leads en tiempo real vía app móvil de CRM",
+            "Emails de seguimiento inmediato enviados dentro de 4 horas",
+            "Notas de reunión estandarizadas para visibilidad del pipeline",
+            "Reuniones diarias del equipo para ajustar estrategia basada en feedback"
+          ]
+        }
+      ],
+      fr: [
+        {
+          title: "Planification Pré-Événement",
+          items: [
+            "Développement de liste cible: 200+ prospects qualifiés par salon",
+            "Système de planification de réunions avec rappels automatisés",
+            "Briefing de l'équipe commerciale avec sessions de connaissance produit",
+            "Pitch decks personnalisés par segment client",
+            "Critères de scoring des leads définis (budget, calendrier, autorité)"
+          ]
+        },
+        {
+          title: "Exécution sur Site",
+          items: [
+            "Créneaux de réunion structurés de 30 minutes avec agendas clairs",
+            "Capture de leads en temps réel via app mobile CRM",
+            "Emails de suivi immédiat envoyés sous 4 heures",
+            "Notes de réunion standardisées pour visibilité du pipeline",
+            "Réunions d'équipe quotidiennes pour ajuster la stratégie basée sur le feedback"
+          ]
+        }
+      ]
+    }
   },
   3: {
-    title: "Negotiations & Partnering",
-    subtitle: "Building strategic supplier relationships",
+    title: { en: "Negotiations & Partnering", pt: "Negociações & Parcerias", es: "Negociaciones y Alianzas", fr: "Négociations et Partenariats" },
+    subtitle: { en: "Building strategic supplier relationships", pt: "Construindo relacionamentos estratégicos com fornecedores", es: "Construyendo relaciones estratégicas con proveedores", fr: "Construction de relations fournisseurs stratégiques" },
     icon: "fa-handshake-angle",
-    sections: [
-      {
-        title: "Partnership Development",
-        items: [
-          "Initial qualification: financial stability, capacity, certifications",
-          "Term sheet negotiations: MOQ, payment terms, exclusivity clauses",
-          "Pricing framework with volume breaks and annual rebates",
-          "Quality agreements defining defect rates and corrective actions",
-          "IP protection and NDA frameworks for new product development"
-        ]
-      },
-      {
-        title: "Contractual Framework",
-        items: [
-          "Master Service Agreements (MSA) with standardized terms",
-          "Statement of Work (SoW) templates for project-based work",
-          "Service Level Agreements (SLA) with penalty/incentive clauses",
-          "Force majeure and business continuity provisions",
-          "Exit clauses and knowledge transfer obligations"
-        ]
-      }
-    ]
+    sections: {
+      en: [
+        {
+          title: "Partnership Development",
+          items: [
+            "Initial qualification: financial stability, capacity, certifications",
+            "Term sheet negotiations: MOQ, payment terms, exclusivity clauses",
+            "Pricing framework with volume breaks and annual rebates",
+            "Quality agreements defining defect rates and corrective actions",
+            "IP protection and NDA frameworks for new product development"
+          ]
+        },
+        {
+          title: "Contractual Framework",
+          items: [
+            "Master Service Agreements (MSA) with standardized terms",
+            "Statement of Work (SoW) templates for project-based work",
+            "Service Level Agreements (SLA) with penalty/incentive clauses",
+            "Force majeure and business continuity provisions",
+            "Exit clauses and knowledge transfer obligations"
+          ]
+        }
+      ],
+      pt: [
+        {
+          title: "Desenvolvimento de Parcerias",
+          items: [
+            "Qualificação inicial: estabilidade financeira, capacidade, certificações",
+            "Negociações de term sheet: MOQ, prazos de pagamento, cláusulas de exclusividade",
+            "Framework de preços com quebras de volume e rebates anuais",
+            "Acordos de qualidade definindo taxas de defeito e ações corretivas",
+            "Proteção de PI e frameworks de NDA para desenvolvimento de novos produtos"
+          ]
+        },
+        {
+          title: "Framework Contratual",
+          items: [
+            "Master Service Agreements (MSA) com termos padronizados",
+            "Templates de Statement of Work (SoW) para trabalho baseado em projeto",
+            "Service Level Agreements (SLA) com cláusulas de penalidade/incentivo",
+            "Disposições de força maior e continuidade de negócios",
+            "Cláusulas de saída e obrigações de transferência de conhecimento"
+          ]
+        }
+      ],
+      es: [
+        {
+          title: "Desarrollo de Alianzas",
+          items: [
+            "Calificación inicial: estabilidad financiera, capacidad, certificaciones",
+            "Negociaciones de hoja de términos: MOQ, plazos de pago, cláusulas de exclusividad",
+            "Marco de precios con descuentos por volumen y rebates anuales",
+            "Acuerdos de calidad definiendo tasas de defecto y acciones correctivas",
+            "Protección de PI y marcos de NDA para desarrollo de nuevos productos"
+          ]
+        },
+        {
+          title: "Marco Contractual",
+          items: [
+            "Master Service Agreements (MSA) con términos estandarizados",
+            "Plantillas de Statement of Work (SoW) para trabajo basado en proyecto",
+            "Service Level Agreements (SLA) con cláusulas de penalidad/incentivo",
+            "Disposiciones de fuerza mayor y continuidad de negocios",
+            "Cláusulas de salida y obligaciones de transferencia de conocimiento"
+          ]
+        }
+      ],
+      fr: [
+        {
+          title: "Développement de Partenariats",
+          items: [
+            "Qualification initiale: stabilité financière, capacité, certifications",
+            "Négociations de term sheet: MOQ, conditions de paiement, clauses d'exclusivité",
+            "Cadre de prix avec ruptures de volume et rebates annuels",
+            "Accords de qualité définissant les taux de défaut et actions correctives",
+            "Protection de PI et cadres de NDA pour développement de nouveaux produits"
+          ]
+        },
+        {
+          title: "Cadre Contractuel",
+          items: [
+            "Master Service Agreements (MSA) avec termes standardisés",
+            "Templates de Statement of Work (SoW) pour travail basé sur projet",
+            "Service Level Agreements (SLA) avec clauses de pénalité/incitation",
+            "Dispositions de force majeure et continuité d'activité",
+            "Clauses de sortie et obligations de transfert de connaissances"
+          ]
+        }
+      ]
+    }
   },
   4: {
-    title: "Tech Discovery & Benchmark",
-    subtitle: "Staying ahead of market innovation",
+    title: { en: "Tech Discovery & Benchmark", pt: "Descoberta Tecnológica", es: "Descubrimiento Tecnológico", fr: "Veille Technologique & Benchmark" },
+    subtitle: { en: "Staying ahead of market innovation", pt: "Mantendo-se à frente da inovação de mercado", es: "Manteniéndose a la vanguardia de la innovación de mercado", fr: "Rester à la pointe de l'innovation marché" },
     icon: "fa-microchip",
-    sections: [
-      {
-        title: "Market Intelligence",
-        items: [
-          "Technology scouting across 50+ supplier booths per fair",
-          "Competitive product teardowns and feature comparison",
-          "Cost benchmarking for similar specifications",
-          "Innovation trend mapping (IoT, sustainability, smart features)",
-          "Patent landscape analysis for freedom to operate"
-        ]
-      },
-      {
-        title: "Technical Evaluation",
-        items: [
-          "Sample collection for lab testing and validation",
-          "Engineering team consultations on technical feasibility",
-          "Prototype review and design for manufacturing (DFM) feedback",
-          "Certification requirements assessment (CE, FCC, ANATEL)",
-          "Roadmap alignment with supplier R&D investments"
-        ]
-      }
-    ]
+    sections: {
+      en: [
+        {
+          title: "Market Intelligence",
+          items: [
+            "Technology scouting across 50+ supplier booths per fair",
+            "Competitive product teardowns and feature comparison",
+            "Cost benchmarking for similar specifications",
+            "Innovation trend mapping (IoT, sustainability, smart features)",
+            "Patent landscape analysis for freedom to operate"
+          ]
+        },
+        {
+          title: "Technical Evaluation",
+          items: [
+            "Sample collection for lab testing and validation",
+            "Engineering team consultations on technical feasibility",
+            "Prototype review and design for manufacturing (DFM) feedback",
+            "Certification requirements assessment (CE, FCC, ANATEL)",
+            "Roadmap alignment with supplier R&D investments"
+          ]
+        }
+      ],
+      pt: [
+        {
+          title: "Inteligência de Mercado",
+          items: [
+            "Scouting de tecnologia em 50+ stands de fornecedores por feira",
+            "Desmontagem de produtos concorrentes e comparação de features",
+            "Benchmark de custos para especificações similares",
+            "Mapeamento de tendências de inovação (IoT, sustentabilidade, features inteligentes)",
+            "Análise de panorama de patentes para liberdade de operação"
+          ]
+        },
+        {
+          title: "Avaliação Técnica",
+          items: [
+            "Coleta de amostras para testes de laboratório e validação",
+            "Consultas da equipe de engenharia sobre viabilidade técnica",
+            "Revisão de protótipos e feedback de design para manufatura (DFM)",
+            "Avaliação de requisitos de certificação (CE, FCC, ANATEL)",
+            "Alinhamento de roadmap com investimentos em P&D de fornecedores"
+          ]
+        }
+      ],
+      es: [
+        {
+          title: "Inteligencia de Mercado",
+          items: [
+            "Scouting de tecnología en 50+ stands de proveedores por feria",
+            "Desmontaje de productos competitivos y comparación de características",
+            "Benchmark de costos para especificaciones similares",
+            "Mapeo de tendencias de innovación (IoT, sostenibilidad, características inteligentes)",
+            "Análisis de panorama de patentes para libertad de operación"
+          ]
+        },
+        {
+          title: "Evaluación Técnica",
+          items: [
+            "Recolección de muestras para pruebas de laboratorio y validación",
+            "Consultas del equipo de ingeniería sobre viabilidad técnica",
+            "Revisión de prototipos y feedback de diseño para manufactura (DFM)",
+            "Evaluación de requisitos de certificación (CE, FCC, ANATEL)",
+            "Alineación de roadmap con inversiones en I+D de proveedores"
+          ]
+        }
+      ],
+      fr: [
+        {
+          title: "Intelligence Marché",
+          items: [
+            "Veille technologique sur 50+ stands fournisseurs par salon",
+            "Démontage de produits concurrents et comparaison de fonctionnalités",
+            "Benchmark de coûts pour spécifications similaires",
+            "Cartographie des tendances d'innovation (IoT, durabilité, fonctionnalités intelligentes)",
+            "Analyse de paysage de brevets pour liberté d'exploitation"
+          ]
+        },
+        {
+          title: "Évaluation Technique",
+          items: [
+            "Collecte d'échantillons pour tests laboratoire et validation",
+            "Consultations de l'équipe ingénierie sur faisabilité technique",
+            "Revue de prototypes et feedback de conception pour fabrication (DFM)",
+            "Évaluation des exigences de certification (CE, FCC, ANATEL)",
+            "Alignement de roadmap avec investissements R&D fournisseurs"
+          ]
+        }
+      ]
+    }
   },
   5: {
-    title: "Factory Audits & Capability Mapping",
-    subtitle: "Ensuring operational excellence",
+    title: { en: "Factory Audits & Capability Mapping", pt: "Auditorias de Fábrica", es: "Auditorías y Mapeo de Capacidades", fr: "Audits et Cartographie des Capacités" },
+    subtitle: { en: "Ensuring operational excellence", pt: "Garantindo excelência operacional", es: "Garantizando excelencia operativa", fr: "Assurance d'excellence opérationnelle" },
     icon: "fa-industry",
-    sections: [
-      {
-        title: "Audit Framework",
-        items: [
-          "ISO 9001 quality management system verification",
-          "Production capacity analysis (lines, shifts, utilization)",
-          "Equipment maintenance records and calibration certificates",
-          "Workforce skill assessment and training programs",
-          "Environmental compliance and waste management practices"
-        ]
-      },
-      {
-        title: "Risk Assessment",
-        items: [
-          "Financial health check (credit reports, payment history)",
-          "Supply chain resilience (dual sourcing, buffer stock)",
-          "Social compliance audits (SA8000, BSCI standards)",
-          "Cybersecurity protocols for data-sharing partnerships",
-          "Business continuity planning and disaster recovery"
-        ]
-      }
-    ]
+    sections: {
+      en: [
+        {
+          title: "Audit Framework",
+          items: [
+            "ISO 9001 quality management system verification",
+            "Production capacity analysis (lines, shifts, utilization)",
+            "Equipment maintenance records and calibration certificates",
+            "Workforce skill assessment and training programs",
+            "Environmental compliance and waste management practices"
+          ]
+        },
+        {
+          title: "Risk Assessment",
+          items: [
+            "Financial health check (credit reports, payment history)",
+            "Supply chain resilience (dual sourcing, buffer stock)",
+            "Social compliance audits (SA8000, BSCI standards)",
+            "Cybersecurity protocols for data-sharing partnerships",
+            "Business continuity planning and disaster recovery"
+          ]
+        }
+      ],
+      pt: [
+        {
+          title: "Framework de Auditoria",
+          items: [
+            "Verificação do sistema de gestão de qualidade ISO 9001",
+            "Análise de capacidade produtiva (linhas, turnos, utilização)",
+            "Registros de manutenção de equipamentos e certificados de calibração",
+            "Avaliação de habilidades da força de trabalho e programas de treinamento",
+            "Conformidade ambiental e práticas de gestão de resíduos"
+          ]
+        },
+        {
+          title: "Avaliação de Riscos",
+          items: [
+            "Verificação de saúde financeira (relatórios de crédito, histórico de pagamentos)",
+            "Resiliência da cadeia de suprimentos (dual sourcing, estoque de segurança)",
+            "Auditorias de conformidade social (padrões SA8000, BSCI)",
+            "Protocolos de cibersegurança para parcerias de compartilhamento de dados",
+            "Planejamento de continuidade de negócios e recuperação de desastres"
+          ]
+        }
+      ],
+      es: [
+        {
+          title: "Marco de Auditoría",
+          items: [
+            "Verificación del sistema de gestión de calidad ISO 9001",
+            "Análisis de capacidad productiva (líneas, turnos, utilización)",
+            "Registros de mantenimiento de equipos y certificados de calibración",
+            "Evaluación de habilidades de la fuerza laboral y programas de capacitación",
+            "Cumplimiento ambiental y prácticas de gestión de residuos"
+          ]
+        },
+        {
+          title: "Evaluación de Riesgos",
+          items: [
+            "Verificación de salud financiera (reportes de crédito, historial de pagos)",
+            "Resiliencia de cadena de suministro (dual sourcing, stock de seguridad)",
+            "Auditorías de cumplimiento social (estándares SA8000, BSCI)",
+            "Protocolos de ciberseguridad para alianzas de intercambio de datos",
+            "Planificación de continuidad de negocios y recuperación ante desastres"
+          ]
+        }
+      ],
+      fr: [
+        {
+          title: "Cadre d'Audit",
+          items: [
+            "Vérification du système de management qualité ISO 9001",
+            "Analyse de capacité de production (lignes, équipes, utilisation)",
+            "Registres de maintenance équipements et certificats d'étalonnage",
+            "Évaluation des compétences de la main-d'œuvre et programmes de formation",
+            "Conformité environnementale et pratiques de gestion des déchets"
+          ]
+        },
+        {
+          title: "Évaluation des Risques",
+          items: [
+            "Vérification de santé financière (rapports de crédit, historique de paiements)",
+            "Résilience de la chaîne d'approvisionnement (double sourcing, stock tampon)",
+            "Audits de conformité sociale (normes SA8000, BSCI)",
+            "Protocoles de cybersécurité pour partenariages de partage de données",
+            "Planification de continuité d'activité et reprise après sinistre"
+          ]
+        }
+      ]
+    }
   },
   6: {
-    title: "Post-Fair Pipeline, ROI & Governance",
-    subtitle: "Converting leads into revenue",
+    title: { en: "Post-Fair Pipeline, ROI & Governance", pt: "Pipeline, ROI & Governança", es: "Pipeline Post-Feria, ROI y Gobernanza", fr: "Pipeline Post-Salon, ROI et Gouvernance" },
+    subtitle: { en: "Converting leads into revenue", pt: "Convertendo leads em receita", es: "Convirtiendo leads en ingresos", fr: "Conversion des leads en revenus" },
     icon: "fa-chart-line",
-    sections: [
-      {
-        title: "Pipeline Management",
-        items: [
-          "Lead categorization: Hot (immediate), Warm (3 months), Cold (nurture)",
-          "CRM integration with automated follow-up sequences",
-          "Opportunity value estimation and win probability scoring",
-          "Cross-functional handover to regional sales teams",
-          "Weekly pipeline review meetings for first 30 days"
-        ]
-      },
-      {
-        title: "Performance Metrics",
-        items: [
-          "Cost per lead calculation (stand cost ÷ qualified leads)",
-          "Conversion rate tracking from lead to order",
-          "Average deal size comparison vs. non-fair customers",
-          "Time-to-close analysis identifying bottlenecks",
-          "Annual ROI reporting for marketing budget justification"
-        ]
-      }
-    ]
+    sections: {
+      en: [
+        {
+          title: "Pipeline Management",
+          items: [
+            "Lead categorization: Hot (immediate), Warm (3 months), Cold (nurture)",
+            "CRM integration with automated follow-up sequences",
+            "Opportunity value estimation and win probability scoring",
+            "Cross-functional handover to regional sales teams",
+            "Weekly pipeline review meetings for first 30 days"
+          ]
+        },
+        {
+          title: "Performance Metrics",
+          items: [
+            "Cost per lead calculation (stand cost ÷ qualified leads)",
+            "Conversion rate tracking from lead to order",
+            "Average deal size comparison vs. non-fair customers",
+            "Time-to-close analysis identifying bottlenecks",
+            "Annual ROI reporting for marketing budget justification"
+          ]
+        }
+      ],
+      pt: [
+        {
+          title: "Gestão de Pipeline",
+          items: [
+            "Categorização de leads: Hot (imediato), Warm (3 meses), Cold (nutrição)",
+            "Integração com CRM com sequências automatizadas de acompanhamento",
+            "Estimativa de valor de oportunidade e pontuação de probabilidade de ganho",
+            "Handover multifuncional para equipes de vendas regionais",
+            "Reuniões semanais de revisão de pipeline para primeiros 30 dias"
+          ]
+        },
+        {
+          title: "Métricas de Performance",
+          items: [
+            "Cálculo de custo por lead (custo do stand ÷ leads qualificados)",
+            "Acompanhamento de taxa de conversão de lead para pedido",
+            "Comparação de tamanho médio de negócio vs. clientes não-feira",
+            "Análise de tempo para fechamento identificando gargalos",
+            "Relatório anual de ROI para justificação de orçamento de marketing"
+          ]
+        }
+      ],
+      es: [
+        {
+          title: "Gestión de Pipeline",
+          items: [
+            "Categorización de leads: Hot (inmediato), Warm (3 meses), Cold (nutrición)",
+            "Integración con CRM con secuencias automatizadas de seguimiento",
+            "Estimación de valor de oportunidad y puntuación de probabilidad de ganancia",
+            "Handover multifuncional a equipos de ventas regionales",
+            "Reuniones semanales de revisión de pipeline para primeros 30 días"
+          ]
+        },
+        {
+          title: "Métricas de Rendimiento",
+          items: [
+            "Cálculo de costo por lead (costo de stand ÷ leads calificados)",
+            "Seguimiento de tasa de conversión de lead a pedido",
+            "Comparación de tamaño promedio de trato vs. clientes no-feria",
+            "Análisis de tiempo para cierre identificando cuellos de botella",
+            "Reporte anual de ROI para justificación de presupuesto de marketing"
+          ]
+        }
+      ],
+      fr: [
+        {
+          title: "Gestion du Pipeline",
+          items: [
+            "Catégorisation des leads: Hot (immédiat), Warm (3 mois), Cold (nurturing)",
+            "Intégration CRM avec séquences de suivi automatisées",
+            "Estimation de valeur d'opportunité et scoring de probabilité de gain",
+            "Passation interfonctionnelle aux équipes commerciales régionales",
+            "Réunions hebdomadaires de revue de pipeline pour les 30 premiers jours"
+          ]
+        },
+        {
+          title: "Métriques de Performance",
+          items: [
+            "Calcul de coût par lead (coût stand ÷ leads qualifiés)",
+            "Suivi de taux de conversion lead à commande",
+            "Comparaison de taille moyenne d'affaire vs. clients non-salon",
+            "Analyse de délai de clôture identifiant les goulots d'étranglement",
+            "Rapport annuel de ROI pour justification du budget marketing"
+          ]
+        }
+      ]
+    }
   }
-};
+});
 
 /* -------------------------
-   Modais — Stats
+   Modais — Stats (com tradução dinâmica)
 --------------------------*/
 function openStatModal(key) {
-  const data = statDetailsData[key];
+  const lang = PG_state.currentLang || 'en';
+  const data = getStatDetailsData()[key];
   if (!data) return;
+  
   $('#statModalIcon').className = `fas ${data.icon}`;
-  $('#statModalTitle').textContent = data.title;
+  $('#statModalTitle').textContent = data.title[lang] || data.title.en;
   $('#statModalValue').textContent = data.value;
-  $('#statModalDetails').innerHTML = data.details.map(it => `<li>${it}</li>`).join('');
+  $('#statModalDetails').innerHTML = (data.details[lang] || data.details.en).map(it => `<li>${it}</li>`).join('');
   $('#statModalOverlay').classList.add('active');
   document.body.style.overflow = 'hidden';
 }
+
 function closeStatModal() {
   const overlay = $('#statModalOverlay');
   if (!overlay) return;
@@ -645,28 +1148,35 @@ function closeStatModal() {
 }
 
 /* -------------------------
-   Modais — Estratégia
+   Modais — Estratégia (com tradução dinâmica)
 --------------------------*/
 function openStrategyModal(num) {
-  const data = strategyDetailsData[num];
+  const lang = PG_state.currentLang || 'en';
+  const data = getStrategyDetailsData()[num];
   if (!data) return;
+  
   $('#strategyDetailIcon').className = `fas ${data.icon}`;
-  $('#strategyDetailTitle').textContent = data.title;
-  $('#strategyDetailSubtitle').textContent = data.subtitle;
-  const body = data.sections.map(sec => {
+  $('#strategyDetailTitle').textContent = data.title[lang] || data.title.en;
+  $('#strategyDetailSubtitle').textContent = data.subtitle[lang] || data.subtitle.en;
+  
+  const sections = data.sections[lang] || data.sections.en;
+  const body = sections.map(sec => {
     const items = sec.items.map(li => `<li>${li}</li>`).join('');
     return `<div class="strategy-detail-section"><h4><i class="fas fa-chevron-right"></i> ${sec.title}</h4><ul>${items}</ul></div>`;
   }).join('');
+  
   $('#strategyDetailBody').innerHTML = body;
   $('#strategyDetailOverlay').classList.add('active');
   document.body.style.overflow = 'hidden';
 }
+
 function closeStrategyModal() {
   const overlay = $('#strategyDetailOverlay');
   if (!overlay) return;
   overlay.classList.remove('active');
   document.body.style.overflow = 'auto';
 }
+
 /* -------------------------
    Galerias de Projetos - CORRIGIDO
 --------------------------*/
@@ -699,7 +1209,7 @@ function setupCardAutoSlide(card) {
     setTimeout(() => {
       state.imgEl.src = state.images[state.idx];
       state.imgEl.onload = () => { state.imgEl.style.opacity = '1'; };
-      // Atualizar dots
+      // Atualizar dots COM ANIMAÇÃO
       updateCardDots(card, state.idx);
     }, 160);
   }
@@ -787,7 +1297,7 @@ function buildProjectSlides(images) {
   PG_state.index = 0;
 }
 
-// CORRIGIDO: Animação das bolinhas
+// CORRIGIDO: Animação das bolinhas COM TRANSIÇÃO
 function changeProjectSlide(dir) {
   if (!PG_state.images.length) return;
   const slides = $$('.gallery-slide');
@@ -800,7 +1310,7 @@ function changeProjectSlide(dir) {
   // Calcular novo índice
   PG_state.index = (PG_state.index + dir + PG_state.images.length) % PG_state.images.length;
   
-  // Adicionar active novo
+  // Adicionar active novo COM ANIMAÇÃO
   slides[PG_state.index]?.classList.add('active');
   dots[PG_state.index]?.classList.add('active');
 }
@@ -817,7 +1327,7 @@ function goToProjectSlide(idx) {
   // Novo índice
   PG_state.index = idx;
   
-  // Adicionar active
+  // Adicionar active COM ANIMAÇÃO
   slides[PG_state.index]?.classList.add('active');
   dots[PG_state.index]?.classList.add('active');
 }
@@ -1385,214 +1895,3 @@ function openTradeGallery(brand){
 
 // REMOVIDO: Função antiga de restore scroll que usava __pg_lastY
 // Agora tudo usa savedScrollPosition e closeProjectGallery()
-
-/* ========= I18N for Stat Modals (Hero) ========= */
-const STAT_I18N = {
-  en: {
-    savings: { 
-      title: 'Cumulative Savings Delivered', 
-      value: '€1M+', 
-      details: [
-        'Multi-category strategic sourcing initiatives across direct and indirect spend',
-        'Negotiated favorable payment terms (60-90 days) improving cash flow',
-        'Implemented should-cost modeling identifying 15-25% cost reduction opportunities',
-        'Consolidated supplier base from 200+ to 80 key partners',
-        'Zero-based budgeting approach for CAPEX projects saving 20% on average'
-      ]
-    },
-    rfps: { 
-      title: 'Strategic Tenders Led', 
-      value: '120+', 
-      details: [
-        'End-to-end RFI/RFP/RFQ process design with technical annexes (A1/A2)',
-        'Weighted scoring matrices balancing technical (40%), commercial (35%), and ESG (25%) criteria',
-        'E-procurement platform integration with full audit trails',
-        'Cross-functional evaluation committees (Engineering, Finance, Legal, Operations)',
-        'Average cycle time reduction from 45 to 28 days while improving compliance'
-      ]
-    },
-    projects: { 
-      title: 'Project Portfolio Value', 
-      value: '€10M+', 
-      details: [
-        'New product development from concept to mass production',
-        'Licensed portfolio launches (Blaupunkt, Spear & Jackson, Pininfarina)',
-        'Factory audits and supplier capability assessments across Asia',
-        'Quality system implementations (ISO 9001, compliance frameworks)',
-        'Cross-border logistics optimization and customs compliance'
-      ]
-    },
-    regions: { 
-      title: 'Global Operations Coverage', 
-      value: '20+', 
-      details: [
-        'Europe: Portugal, Spain, Germany, UK, Netherlands, Italy, France',
-        'LATAM: Brazil, Argentina, Chile, Colombia, Mexico, Peru, Uruguay',
-        'Asia: China, Hong Kong, Taiwan, Vietnam, India, South Korea',
-        'Multi-cultural negotiation experience and local market knowledge',
-        'Time zone coordination for 24/7 project execution'
-      ]
-    }
-  },
-  pt: {
-    savings: { 
-      title: 'Poupança Acumulada Entregue', 
-      value: '€1M+', 
-      details: [
-        'Iniciativas de strategic sourcing multi‑categoria em despesas diretas e indiretas',
-        'Negociação de prazos de pagamento favoráveis (60–90 dias) melhorando o cash flow',
-        'Modelos de should‑cost identificando oportunidades de 15–25% de redução de custos',
-        'Consolidação da base de fornecedores de 200+ para 80 parceiros‑chave',
-        'Orçamentação base‑zero para projetos CAPEX economizando ~20% em média'
-      ]
-    },
-    rfps: { 
-      title: 'Tenders Estratégicos Conduzidos', 
-      value: '120+', 
-      details: [
-        'Desenho ponta‑a‑ponta de RFI/RFP/RFQ com anexos técnicos (A1/A2)',
-        'Matrizes de scoring ponderado: técnico (40%), comercial (35%) e ESG (25%)',
-        'Integração com plataforma de e‑procurement com trilhas de auditoria',
-        'Comitês de avaliação multifuncionais (Engenharia, Finanças, Jurídico, Operações)',
-        'Redução do ciclo médio de 45 para 28 dias com mais compliance'
-      ]
-    },
-    projects: { 
-      title: 'Valor do Portfólio de Projetos', 
-      value: '€10M+', 
-      details: [
-        'Desenvolvimento de produto do conceito à produção em massa',
-        'Lançamentos licenciados (Blaupunkt, Spear & Jackson, Pininfarina)',
-        'Auditorias fabris e avaliação de capacidades na Ásia',
-        'Implementação de sistemas de qualidade (ISO 9001, frameworks de compliance)',
-        'Otimização logística transfronteiriça e conformidade aduaneira'
-      ]
-    },
-    regions: { 
-      title: 'Cobertura Operacional Global', 
-      value: '20+', 
-      details: [
-        'Europa: Portugal, Espanha, Alemanha, Reino Unido, Países Baixos, Itália, França',
-        'LATAM: Brasil, Argentina, Chile, Colômbia, México, Peru, Uruguai',
-        'Ásia: China, Hong Kong, Taiwan, Vietname, Índia, Coreia do Sul',
-        'Negociação multicultural e conhecimento de mercados locais',
-        'Coordenação de fuso horário para execução 24/7'
-      ]
-    }
-  },
-  es: {
-    savings: { 
-      title: 'Ahorros Acumulados Entregados', 
-      value: '€1M+', 
-      details: [
-        'Iniciativas de strategic sourcing multi‑categoría en gasto directo e indirecto',
-        'Negociación de plazos de pago favorables (60–90 días) mejorando el flujo de caja',
-        'Modelado should‑cost identificando oportunidades de reducción del 15–25%',
-        'Consolidación de la base de proveedores de 200+ a 80 socios clave',
-        'Presupuestación base‑cero para proyectos CAPEX ahorrando ~20% en promedio'
-      ]
-    },
-    rfps: { 
-      title: 'Licitaciones Estratégicas Dirigidas', 
-      value: '120+', 
-      details: [
-        'Diseño integral RFI/RFP/RFQ con anexos técnicos (A1/A2)',
-        'Matrices de ponderación: técnico (40%), comercial (35%) y ESG (25%)',
-        'Integración con plataforma de e‑procurement con trazabilidad completa',
-        'Comités de evaluación multifuncionales (Ingeniería, Finanzas, Legal, Operaciones)',
-        'Reducción del ciclo promedio de 45 a 28 días con mayor cumplimiento'
-      ]
-    },
-    projects: { 
-      title: 'Valor del Portafolio de Proyectos', 
-      value: '€10M+', 
-      details: [
-        'Desarrollo de producto del concepto a producción masiva',
-        'Lanzamientos licenciados (Blaupunkt, Spear & Jackson, Pininfarina)',
-        'Auditorías de fábrica y evaluación de capacidades en Asia',
-        'Implementación de sistemas de calidad (ISO 9001, marcos de compliance)',
-        'Optimización logística transfronteriza y cumplimiento aduanero'
-      ]
-    },
-    regions: { 
-      title: 'Cobertura Operativa Global', 
-      value: '20+', 
-      details: [
-        'Europa: Portugal, España, Alemania, Reino Unido, Países Bajos, Italia, Francia',
-        'LATAM: Brasil, Argentina, Chile, Colombia, México, Perú, Uruguay',
-        'Asia: China, Hong Kong, Taiwán, Vietnam, India, Corea del Sur',
-        'Experiencia de negociación multicultural y conocimiento local',
-        'Coordinación de husos horarios para ejecución 24/7'
-      ]
-    }
-  },
-  fr: {
-    savings: { 
-      title: 'Économies Cumulées Réalisées', 
-      value: '€1M+', 
-      details: [
-        'Initiatives de sourcing stratégique multi‑catégories sur dépenses directes et indirectes',
-        'Négociation de conditions de paiement favorables (60–90 jours) améliorant la trésorerie',
-        'Modélisation should‑cost identifiant 15–25% d\'opportunités de réduction',
-        'Consolidation de la base fournisseurs de 200+ à 80 partenaires clés',
-        'Budget base‑zéro pour projets CAPEX économisant ~20% en moyenne'
-      ]
-    },
-    rfps: { 
-      title: 'Appels d\'Offres Stratégiques Menés', 
-      value: '120+', 
-      details: [
-        'Conception bout‑à‑bout RFI/RFP/RFQ avec annexes techniques (A1/A2)',
-        'Matrices de pondération : technique (40%), commercial (35%), ESG (25%)',
-        'Intégration à la plateforme d\'e‑procurement avec traçabilité complète',
-        'Comités d\'évaluation interfonctionnels (Ingénierie, Finance, Juridique, Opérations)',
-        'Réduction du cycle moyen de 45 à 28 jours avec meilleur compliance'
-      ]
-    },
-    projects: { 
-      title: 'Valeur du Portefeuille de Projets', 
-      value: '€10M+', 
-      details: [
-        'Développement produit du concept à la production de masse',
-        'Lancements sous licence (Blaupunkt, Spear & Jackson, Pininfarina)',
-        'Audits d\'usines et évaluation des capacités en Asie',
-        'Mise en place de systèmes qualité (ISO 9001, cadres de conformité)',
-        'Optimisation logistique transfrontalière et conformité douanière'
-      ]
-    },
-    regions: { 
-      title: 'Couverture Opérationnelle Globale', 
-      value: '20+', 
-      details: [
-        'Europe : Portugal, Espagne, Allemagne, Royaume‑Uni, Pays‑Bas, Italie, France',
-        'LATAM : Brésil, Argentine, Chili, Colombie, Mexique, Pérou, Uruguay',
-        'Asie : Chine, Hong Kong, Taïwan, Viêt Nam, Inde, Corée du Sud',
-        'Expérience de négociation multiculturelle et connaissance des marchés locaux',
-        'Coordination des fuseaux horaires pour exécution 24/7'
-      ]
-    }
-  }
-};
-
-// Override openStatModal to use current language
-(function(){
-  const getLang = ()=> (window.PG_state && PG_state.currentLang) || (document.documentElement.lang||'en').slice(0,2);
-  
-  window.openStatModal = function(key){
-    const lang = getLang();
-    const dict = (STAT_I18N[lang]||STAT_I18N.en||{});
-    const data = dict[key];
-    if(!data) return;
-    
-    const ov = document.getElementById('statModalOverlay');
-    if(!ov) return;
-    
-    document.getElementById('statModalIcon').className = 'fas ' + (statDetailsData[key]?.icon||'fa-chart-line');
-    document.getElementById('statModalTitle').textContent = data.title||'';
-    document.getElementById('statModalValue').textContent = data.value||'';
-    const list = (data.details||[]).map(x=> '<li>'+x+'</li>').join('');
-    document.getElementById('statModalDetails').innerHTML = list;
-    ov.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  };
-})();
