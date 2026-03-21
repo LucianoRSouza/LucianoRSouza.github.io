@@ -298,7 +298,7 @@
 }
 
 /* -------------------------
-   2. TIMELINE - LOGOS À ESQUERDA, DATAS NO TOPO (CORRIGIDO)
+   2. TIMELINE - REORGANIZADO: LOGO+DATA ACIMA, BOX LARGURA TOTAL
    -------------------------*/
 @media (max-width: 1200px) {
   /* Esconde o logo sticky lateral */
@@ -308,104 +308,145 @@
   
   .timeline-container {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 2rem;
     padding: 0 1rem;
+    max-width: 100%;
   }
   
-  /* Cada item: logo + data na esquerda, conteúdo na direita */
+  /* Cada item como container flex vertical */
   .timeline-item {
-    display: grid;
-    grid-template-columns: 70px 1fr;
-    grid-template-rows: auto 1fr;
-    gap: 0.5rem 1rem;
-    margin-bottom: 2rem;
-    opacity: 1;
-    position: relative;
-  }
-  
-  /* Remove a linha vertical */
-  .timeline-item::before {
-    display: none;
-  }
-  
-  /* Coluna da esquerda: logo e data empilhados */
-  .timeline-date {
-    grid-column: 1;
-    grid-row: 1 / 3;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 0.5rem;
-    padding-top: 0.5rem;
+    gap: 0.8rem;
+    margin-bottom: 2.5rem;
+    opacity: 1;
+    width: 100%;
   }
   
-  /* Logo no topo - usando background-image */
-  .timeline-date::before {
-    content: '';
-    display: block;
-    width: 60px;
-    height: 60px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    border-radius: 12px;
-    border: 2px solid var(--gold);
-    background-color: var(--white);
-    flex-shrink: 0;
-  }
-  
-  /* Logos específicas por empresa */
-  .timeline-item[data-company="details"] .timeline-date::before {
-    background-image: url('./Details_Symbol.jpg');
-  }
-  
-  .timeline-item[data-company="skn-global"] .timeline-date::before,
-  .timeline-item[data-company="skn-europe"] .timeline-date::before {
-    background-image: url('./SKN_Global.png');
-  }
-  
-  .timeline-item[data-company="skn-brasil"] .timeline-date::before {
-    background-image: url('./SKN_Brasil.png');
-  }
-  
-  /* Datas mantidas como estavam */
-  .date-range {
-    font-size: 0.85rem;
-    font-weight: 800;
-    color: var(--gold);
-    line-height: 1.2;
-  }
-  
-  .date-level {
-    font-size: 0.75rem;
-    color: var(--text-light);
-    padding: 0.2rem 0.5rem;
-    background: rgba(212, 175, 55, 0.12);
-    border-radius: 16px;
-    border: 1px solid rgba(212, 175, 55, 0.2);
-  }
-  
-  /* Conteúdo à direita */
-  .timeline-content {
-    grid-column: 2;
-    grid-row: 1 / 3;
-    margin-left: 0;
-  }
-  
-  /* Remove o círculo dourado */
+  /* Remove elementos antigos */
+  .timeline-item::before,
   .timeline-content::before {
     display: none;
   }
   
+  /* HEADER: Logo à esquerda, Data+Nível à direita */
+  .timeline-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0.5rem;
+  }
+  
+  /* Logo */
+  .timeline-header .company-logo {
+    width: 70px;
+    height: 70px;
+    border-radius: 14px;
+    border: 3px solid var(--gold);
+    background: var(--white);
+    overflow: hidden;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+  
+  .timeline-header .company-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 8px;
+  }
+  
+  /* Data e Nível à direita */
+  .timeline-header .date-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.4rem;
+  }
+  
+  .timeline-header .date-range {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--gold);
+  }
+  
+  .timeline-header .date-level {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    padding: 0.3rem 0.8rem;
+    background: rgba(212, 175, 55, 0.12);
+    border-radius: 20px;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    font-weight: 600;
+  }
+  
+  /* BOX: Largura total com pequenas margens */
+  .timeline-content {
+    width: 100%;
+    margin-left: 0;
+    padding: 1.8rem;
+    border-radius: 18px;
+    border: 2px solid rgba(212, 175, 55, 0.3);
+    background: var(--white);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  }
+  
+  .timeline-item.active .timeline-content {
+    border-color: var(--gold);
+    box-shadow: 0 12px 32px rgba(212, 175, 55, 0.15);
+  }
+  
+  /* Esconde a data antiga */
+  .timeline-date {
+    display: none;
+  }
+  
   .timeline-title {
-    font-size: 1.15rem;
-    margin-bottom: 0.3rem;
+    font-size: 1.25rem;
+    margin-bottom: 0.4rem;
   }
   
   .timeline-company {
+    font-size: 1rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .timeline-description {
     font-size: 0.95rem;
-    margin-bottom: 0.6rem;
+    line-height: 1.7;
+  }
+}
+
+/* Ajuste para telas muito pequenas */
+@media (max-width: 480px) {
+  .timeline-container {
+    padding: 0 0.8rem;
+  }
+  
+  .timeline-header .company-logo {
+    width: 55px;
+    height: 55px;
+  }
+  
+  .timeline-header .date-range {
+    font-size: 0.95rem;
+  }
+  
+  .timeline-header .date-level {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.6rem;
+  }
+  
+  .timeline-content {
+    padding: 1.4rem;
+  }
+  
+  .timeline-title {
+    font-size: 1.1rem;
+  }
+  
+  .timeline-company {
+    font-size: 0.9rem;
   }
 }
 
