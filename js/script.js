@@ -1181,28 +1181,6 @@ function closeStrategyModal() {
    CORREÇÃO DAS BOLINHAS - ANIMAÇÃO GARANTIDA
    ========================================================= */
 
-// Função para atualizar bolinhas com animação forçada via JS
-function updateGalleryDots(containerSelector, activeIndex) {
-  const container = document.querySelector(containerSelector);
-  if (!container) return;
-  
-  const dots = container.querySelectorAll('.gallery-dot');
-  dots.forEach((dot, i) => {
-    if (i === activeIndex) {
-      dot.classList.add('active');
-      // Força estilos inline para garantir animação
-      dot.style.transform = 'scale(1.4)';
-      dot.style.background = 'var(--gold)';
-      dot.style.boxShadow = '0 0 15px rgba(212, 175, 55, 0.6)';
-    } else {
-      dot.classList.remove('active');
-      dot.style.transform = 'scale(1)';
-      dot.style.background = 'rgba(212, 175, 55, 0.34)';
-      dot.style.boxShadow = 'none';
-    }
-  });
-}
-
 // Função para atualizar bolinhas dos cards de projeto
 function updateCardDots(card, idx) {
   const dots = card.querySelectorAll('.gallery-dot');
@@ -1221,11 +1199,16 @@ function updateCardDots(card, idx) {
   });
 }
 
-// Override das funções de navegação da galeria
+// CORREÇÃO PRINCIPAL: Navegação da galeria do modal - VERSÃO CORRIGIDA
 function changeProjectSlide(dir) {
   if (!PG_state.images.length) return;
-  const slides = document.querySelectorAll('.gallery-slide');
-  const dots = document.querySelectorAll('.gallery-dot');
+  
+  // Busca específica dentro do modal ativo (CORREÇÃO CHAVE!)
+  const modal = document.getElementById('projectGalleryModal');
+  if (!modal) return;
+  
+  const slides = modal.querySelectorAll('.gallery-slide');
+  const dots = modal.querySelectorAll('.gallery-dot');
   
   // Remove active atual
   if (slides[PG_state.index]) {
@@ -1253,10 +1236,16 @@ function changeProjectSlide(dir) {
   }
 }
 
+// CORREÇÃO PRINCIPAL: Ir para slide específico no modal - VERSÃO CORRIGIDA
 function goToProjectSlide(idx) {
   if (!PG_state.images.length) return;
-  const slides = document.querySelectorAll('.gallery-slide');
-  const dots = document.querySelectorAll('.gallery-dot');
+  
+  // Busca específica dentro do modal ativo (CORREÇÃO CHAVE!)
+  const modal = document.getElementById('projectGalleryModal');
+  if (!modal) return;
+  
+  const slides = modal.querySelectorAll('.gallery-slide');
+  const dots = modal.querySelectorAll('.gallery-dot');
   
   // Remove active atual
   if (slides[PG_state.index]) {
