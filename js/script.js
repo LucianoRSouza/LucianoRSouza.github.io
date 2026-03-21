@@ -1011,7 +1011,7 @@ const getStrategyDetailsData = () => ({
             "Analyse de capacité de production (lignes, équipes, utilisation)",
             "Registres de maintenance équipements et certificats d'étalonnage",
             "Évaluation des compétences de la main-d'œuvre et programmes de formation",
-            "Conformité environnementale et pratiques de gestion des déchets"
+            "Conformité environnementale et prátiques de gestion des déchets"
           ]
         },
         {
@@ -1178,7 +1178,114 @@ function closeStrategyModal() {
 }
 
 /* -------------------------
-   Galerias de Projetos - CORRIGIDO
+   CORREÇÃO DAS BOLINHAS - ANIMAÇÃO GARANTIDA
+   ========================================================= */
+
+// Função para atualizar bolinhas com animação forçada via JS
+function updateGalleryDots(containerSelector, activeIndex) {
+  const container = document.querySelector(containerSelector);
+  if (!container) return;
+  
+  const dots = container.querySelectorAll('.gallery-dot');
+  dots.forEach((dot, i) => {
+    if (i === activeIndex) {
+      dot.classList.add('active');
+      // Força estilos inline para garantir animação
+      dot.style.transform = 'scale(1.4)';
+      dot.style.background = 'var(--gold)';
+      dot.style.boxShadow = '0 0 15px rgba(212, 175, 55, 0.6)';
+    } else {
+      dot.classList.remove('active');
+      dot.style.transform = 'scale(1)';
+      dot.style.background = 'rgba(212, 175, 55, 0.34)';
+      dot.style.boxShadow = 'none';
+    }
+  });
+}
+
+// Função para atualizar bolinhas dos cards de projeto
+function updateCardDots(card, idx) {
+  const dots = card.querySelectorAll('.gallery-dot');
+  dots.forEach((dot, i) => {
+    if (i === idx) {
+      dot.classList.add('active');
+      dot.style.transform = 'scale(1.4)';
+      dot.style.background = 'var(--gold)';
+      dot.style.boxShadow = '0 0 10px rgba(212, 175, 55, 0.6)';
+    } else {
+      dot.classList.remove('active');
+      dot.style.transform = 'scale(1)';
+      dot.style.background = 'rgba(255, 255, 255, 0.5)';
+      dot.style.boxShadow = 'none';
+    }
+  });
+}
+
+// Override das funções de navegação da galeria
+function changeProjectSlide(dir) {
+  if (!PG_state.images.length) return;
+  const slides = document.querySelectorAll('.gallery-slide');
+  const dots = document.querySelectorAll('.gallery-dot');
+  
+  // Remove active atual
+  if (slides[PG_state.index]) {
+    slides[PG_state.index].classList.remove('active');
+  }
+  if (dots[PG_state.index]) {
+    dots[PG_state.index].classList.remove('active');
+    dots[PG_state.index].style.transform = 'scale(1)';
+    dots[PG_state.index].style.background = 'rgba(212, 175, 55, 0.34)';
+    dots[PG_state.index].style.boxShadow = 'none';
+  }
+  
+  // Calcula novo índice
+  PG_state.index = (PG_state.index + dir + PG_state.images.length) % PG_state.images.length;
+  
+  // Adiciona active novo com animação
+  if (slides[PG_state.index]) {
+    slides[PG_state.index].classList.add('active');
+  }
+  if (dots[PG_state.index]) {
+    dots[PG_state.index].classList.add('active');
+    dots[PG_state.index].style.transform = 'scale(1.4)';
+    dots[PG_state.index].style.background = 'var(--gold)';
+    dots[PG_state.index].style.boxShadow = '0 0 15px rgba(212, 175, 55, 0.6)';
+  }
+}
+
+function goToProjectSlide(idx) {
+  if (!PG_state.images.length) return;
+  const slides = document.querySelectorAll('.gallery-slide');
+  const dots = document.querySelectorAll('.gallery-dot');
+  
+  // Remove active atual
+  if (slides[PG_state.index]) {
+    slides[PG_state.index].classList.remove('active');
+  }
+  if (dots[PG_state.index]) {
+    dots[PG_state.index].classList.remove('active');
+    dots[PG_state.index].style.transform = 'scale(1)';
+    dots[PG_state.index].style.background = 'rgba(212, 175, 55, 0.34)';
+    dots[PG_state.index].style.boxShadow = 'none';
+  }
+  
+  // Novo índice
+  PG_state.index = idx;
+  
+  // Adiciona active com animação
+  if (slides[PG_state.index]) {
+    slides[PG_state.index].classList.add('active');
+  }
+  if (dots[PG_state.index]) {
+    dots[PG_state.index].classList.add('active');
+    dots[PG_state.index].style.transform = 'scale(1.4)';
+    dots[PG_state.index].style.background = 'var(--gold)';
+    dots[PG_state.index].style.boxShadow = '0 0 15px rgba(212, 175, 55, 0.6)';
+  }
+}
+
+/* -------------------------
+   Galerias de Projetos
 --------------------------*/
 function setupCardAutoSlide(card) {
   const container = card.querySelector('.gallery-main');
@@ -1236,20 +1343,8 @@ function setupCardAutoSlide(card) {
   start();
 }
 
-function updateCardDots(card, idx) {
-  const dots = card.querySelectorAll('.gallery-dot');
-  dots.forEach((dot, i) => {
-    if (i === idx) {
-      dot.classList.add('active');
-    } else {
-      dot.classList.remove('active');
-    }
-  });
-}
-
-// CORRIGIDO: Salvar posição antes de abrir
+// Salvar posição antes de abrir
 function openProjectGalleryFromCard(card) {
-  // SALVAR posição ANTES de abrir
   savedScrollPosition = window.scrollY || document.documentElement.scrollTop || 0;
   
   const modal = $('#projectGalleryModal');
@@ -1289,6 +1384,12 @@ function buildProjectSlides(images) {
 
     const dot = document.createElement('div');
     dot.className = 'gallery-dot' + (idx === 0 ? ' active' : '');
+    // Aplica estilos iniciais
+    if (idx === 0) {
+      dot.style.transform = 'scale(1.4)';
+      dot.style.background = 'var(--gold)';
+      dot.style.boxShadow = '0 0 15px rgba(212, 175, 55, 0.6)';
+    }
     dot.addEventListener('click', () => goToProjectSlide(idx));
     dotsContainer.appendChild(dot);
   });
@@ -1297,49 +1398,13 @@ function buildProjectSlides(images) {
   PG_state.index = 0;
 }
 
-// CORRIGIDO: Animação das bolinhas COM TRANSIÇÃO
-function changeProjectSlide(dir) {
-  if (!PG_state.images.length) return;
-  const slides = $$('.gallery-slide');
-  const dots = $$('.gallery-dot');
-  
-  // Remover active atual
-  slides[PG_state.index]?.classList.remove('active');
-  dots[PG_state.index]?.classList.remove('active');
-  
-  // Calcular novo índice
-  PG_state.index = (PG_state.index + dir + PG_state.images.length) % PG_state.images.length;
-  
-  // Adicionar active novo COM ANIMAÇÃO
-  slides[PG_state.index]?.classList.add('active');
-  dots[PG_state.index]?.classList.add('active');
-}
-
-function goToProjectSlide(idx) {
-  if (!PG_state.images.length) return;
-  const slides = $$('.gallery-slide');
-  const dots = $$('.gallery-dot');
-  
-  // Remover active atual
-  slides[PG_state.index]?.classList.remove('active');
-  dots[PG_state.index]?.classList.remove('active');
-  
-  // Novo índice
-  PG_state.index = idx;
-  
-  // Adicionar active COM ANIMAÇÃO
-  slides[PG_state.index]?.classList.add('active');
-  dots[PG_state.index]?.classList.add('active');
-}
-
-// CORRIGIDO: Restaurar posição ao fechar
+// Restaurar posição ao fechar
 function closeProjectGallery() {
   const modal = $('#projectGalleryModal');
   if (modal) {
     modal.classList.remove('active');
     document.body.style.overflow = 'auto';
     
-    // RESTAURAR posição salva
     if (savedScrollPosition > 0) {
       setTimeout(() => {
         window.scrollTo({ top: savedScrollPosition, behavior: 'instant' });
@@ -1428,6 +1493,11 @@ function enhanceProjectGalleries() {
       images.forEach((_, i) => {
         const dot = document.createElement('div');
         dot.className = `gallery-dot ${i === 0 ? 'active' : ''}`;
+        if (i === 0) {
+          dot.style.transform = 'scale(1.4)';
+          dot.style.background = 'var(--gold)';
+          dot.style.boxShadow = '0 0 10px rgba(212, 175, 55, 0.6)';
+        }
         dots.appendChild(dot);
       });
       gallery.appendChild(dots);
@@ -1449,7 +1519,6 @@ function initVolunteerEnhancement() {
   header.after(hero);
 }
 
-/* Corrige logos do Gadsden (usa OR correto) */
 function fixGadsdenImages() {
   $$('.cert-logo img').forEach(img => {
     if (img.src.includes('Gadsden') || img.alt.includes('Gadsden')) {
@@ -1458,9 +1527,6 @@ function fixGadsdenImages() {
   });
 }
 
-/* -------------------------
-   Outras iniciais
---------------------------*/
 function initScrollAnimations() {
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
@@ -1480,9 +1546,9 @@ function initNavbarScroll() {
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
 }
+
 function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
 
-// CORRIGIDO: Salvar posição no lightbox
 function initLightbox() {
   const lb = $('#lightbox');
   const lbImg = $('#lightbox-img');
@@ -1493,7 +1559,6 @@ function initLightbox() {
 }
 
 function openLightbox(el) {
-  // SALVAR posição ANTES de abrir
   savedScrollPosition = window.scrollY || document.documentElement.scrollTop || 0;
   
   const lb = $('#lightbox');
@@ -1506,14 +1571,12 @@ function openLightbox(el) {
   document.body.style.overflow = 'hidden';
 }
 
-// CORRIGIDO: Restaurar posição ao fechar lightbox
 function closeLightbox() {
   const lb = $('#lightbox');
   if (!lb) return;
   lb.classList.remove('active');
   document.body.style.overflow = 'auto';
   
-  // RESTAURAR posição
   if (savedScrollPosition > 0) {
     setTimeout(() => {
       window.scrollTo({ top: savedScrollPosition, behavior: 'instant' });
@@ -1545,7 +1608,6 @@ function showToast(message = '') {
   setTimeout(() => t.classList.remove('show'), 2800);
 }
 
-/* Timeline Spy (logo) - CORRIGIDO: termina em NKS */
 function initTimelineSpy() { updateTimelineSpy(); }
 
 function updateTimelineSpy() {
@@ -1570,12 +1632,10 @@ function updateTimelineSpy() {
     }
   });
 
-  // CORREÇÃO: Se estiver além do último item, mantém o logo do último (NKS)
   const lastIndex = items.length - 1;
   const lastItem = items[lastIndex];
   const lastItemRect = lastItem?.getBoundingClientRect();
   
-  // Se o último item já passou do meio da tela ou está visível, mantém ele
   if (lastItemRect && lastItemRect.top < windowHeight * 0.8) {
     activeIndex = lastIndex;
   }
@@ -1595,7 +1655,6 @@ function updateTimelineSpy() {
   indicators.forEach((dot, idx) => dot.classList.toggle('active', idx === activeIndex));
 }
 
-/* Partículas (hero) – opcional, já usado pelo HTML */
 function initParticles() {
   const container = $('#particles');
   if (!container) return;
@@ -1618,7 +1677,6 @@ function initParticles() {
   }
 }
 
-/* I18N — usa dicionário que já está no index.html */
 function translateAll(lang) {
   PG_state.currentLang = lang;
   document.documentElement.lang = lang;
@@ -1630,9 +1688,11 @@ function translateAll(lang) {
   });
   setTimeout(updateTimelineSpy, 100);
 }
+
 function markActiveLang(lang) {
   $$('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
 }
+
 function initLangSwitcher() {
   const switcher = $('#langSwitcher');
   if (!switcher) return;
@@ -1647,6 +1707,7 @@ function initLangSwitcher() {
     showToast(`Translated to ${lang.toUpperCase()}`);
   });
 }
+
 function initI18N() {
   try {
     const stored = localStorage.getItem('lang');
@@ -1660,7 +1721,6 @@ function initI18N() {
   }
 }
 
-/* Loading & Âncoras */
 function initLoading() {
   const loading = $('#loading');
   if (!loading) return;
@@ -1671,6 +1731,7 @@ function initLoading() {
     }, 1200);
   });
 }
+
 function initSmoothAnchors() {
   $$('a[href^="#"]').forEach(a => {
     on(a, 'click', (e) => {
@@ -1683,11 +1744,8 @@ function initSmoothAnchors() {
     });
   });
 }
-/* -------------------------
-   Bootstrap
---------------------------*/
+
 document.addEventListener('DOMContentLoaded', () => {
-  // Sequência única de inicialização
   initLoading();
   initNavbarScroll();
   initScrollAnimations();
@@ -1700,18 +1758,14 @@ document.addEventListener('DOMContentLoaded', () => {
   initTradeTabs();
   initLightbox();
 
-  // Galerias & cartões
   enhanceProjectGalleries();
   $$('.project-card').forEach(setupCardAutoSlide);
 
-  // Voluntariado + correções de imagem
   initVolunteerEnhancement();
   fixGadsdenImages();
 
-  // Mobile/touch
   initMobileEnhancements();
 
-  // Fechar modais por clique/ESC
   on(document, 'click', (e) => {
     if (e.target?.id === 'statModalOverlay') closeStatModal();
     if (e.target?.id === 'strategyDetailOverlay') closeStrategyModal();
@@ -1725,16 +1779,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   console.log('✅ Portfolio JS (consolidado) inicializado');
   
-  // Inicializar modais dos stat boxes
   initStatModals();
 });
 
-// ============================================
-// STAT BOXES MODAL FUNCTIONS
-// ============================================
-
 function initStatModals() {
-  // Adicionar evento de clique em todos os stat-boxes
   document.querySelectorAll('.stat-box').forEach(box => {
     box.style.cursor = 'pointer';
     box.addEventListener('click', function(e) {
@@ -1748,25 +1796,17 @@ function initStatModals() {
   console.log('✅ Stat modals initialized');
 }
 
-/* Expor globais chamadas pelo HTML inline */
 window.openStatModal        = openStatModal;
 window.closeStatModal       = closeStatModal;
 window.openStrategyModal    = openStrategyModal;
 window.closeStrategyModal   = closeStrategyModal;
-
 window.openLightbox         = openLightbox;
 window.closeLightbox        = closeLightbox;
-
 window.changeProjectSlide   = changeProjectSlide;
 window.goToProjectSlide     = goToProjectSlide;
 window.closeProjectGallery  = closeProjectGallery;
-
 window.scrollToTop          = scrollToTop;
 
-
-/* ==== ADDED MODAL MODULES (stat & strategy) ==== */
-
-// ============== GLOBAL LISTENERS =====================
 document.addEventListener('keydown', (e)=>{
   if(e.key==='Escape'){
     try{ closeStatModal(); }catch(_){ }
@@ -1774,13 +1814,6 @@ document.addEventListener('keydown', (e)=>{
   }
 });
 
-// Expose for inline handlers present in HTML
-window.openStatModal = openStatModal;
-window.closeStatModal = closeStatModal;
-window.openStrategyModal = openStrategyModal;
-window.closeStrategyModal = closeStrategyModal;
-
-// Attach listeners for strategy items without inline handlers
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.strategy-item[data-strategy]').forEach(el => {
     el.addEventListener('click', () => {
@@ -1790,8 +1823,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-
-// --- Inject duo layout for Trade Shows (Blaupunkt left, Ford right) using existing galleries ---
 function initTradeDuoFromExisting(){
   const sec = document.getElementById('trade-shows');
   if(!sec) return;
@@ -1800,7 +1831,7 @@ function initTradeDuoFromExisting(){
   const blauSrc = blau ? blau.getAttribute('src') : '';
   const fordSrc = ford ? ford.getAttribute('src') : '';
   if(!blauSrc || !fordSrc) return;
-  if(sec.querySelector('.trade-duo')) return; // avoid duplicates
+  if(sec.querySelector('.trade-duo')) return;
   
   const duo = document.createElement('div');
   duo.className = 'trade-duo';
@@ -1817,7 +1848,6 @@ function initTradeDuoFromExisting(){
   sec.insertBefore(duo, tabs);
   
   const openBrand = (brand)=>{
-    // SALVAR posição antes de abrir
     savedScrollPosition = window.scrollY || document.documentElement.scrollTop || 0;
     
     const panel = document.getElementById(brand==='blaupunkt' ? 'gallery-blaupunkt' : 'gallery-ford');
@@ -1837,7 +1867,6 @@ function initTradeDuoFromExisting(){
   duo.querySelector('[data-brand="ford"]').addEventListener('click', ()=> openBrand('ford'));
 }
 
-// Mobile timeline logos outside the frame (non-intrusive)
 function initMobileTimelineLogos(){
   if(!window.matchMedia('(max-width: 1200px)').matches) return;
   document.querySelectorAll('.timeline-item').forEach(item=>{
@@ -1852,19 +1881,14 @@ function initMobileTimelineLogos(){
   });
 }
 
-// Boot hook
 document.addEventListener('DOMContentLoaded', ()=>{
   try{ initTradeDuoFromExisting(); }catch(e){}
   try{ initMobileTimelineLogos(); }catch(e){}
 });
 
-/* ensure post-init translation */
 document.addEventListener('DOMContentLoaded',function(){try{var l=localStorage.getItem('lang')||document.documentElement.lang||'en';if(typeof translateAll==='function'){translateAll(l);}}catch(e){}});
 
-// open gallery on project main image click
 document.addEventListener('click',function(e){const gm=e.target.closest('.project-card .gallery-main');if(!gm)return;const card=gm.closest('.project-card');openProjectGalleryFromCard(card);});
-
-// REMOVIDO: var __pg_lastY=0; (não usar mais)
 
 const TRADE_GALLERIES={
   blaupunkt:[
@@ -1882,7 +1906,6 @@ const TRADE_GALLERIES={
 };
 
 function openTradeGallery(brand){
-  // SALVAR posição
   savedScrollPosition = window.scrollY || document.documentElement.scrollTop || 0;
   
   const images = (TRADE_GALLERIES[brand] || []).slice();
@@ -1892,6 +1915,3 @@ function openTradeGallery(brand){
   document.getElementById('projectGalleryModal').classList.add('active');
   document.body.style.overflow = 'hidden';
 }
-
-// REMOVIDO: Função antiga de restore scroll que usava __pg_lastY
-// Agora tudo usa savedScrollPosition e closeProjectGallery()
