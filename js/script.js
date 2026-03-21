@@ -1904,3 +1904,46 @@ function openTradeGallery(brand){
   document.getElementById('projectGalleryModal').classList.add('active');
   document.body.style.overflow = 'hidden';
 }
+/* -------------------------
+   TIMELINE MOBILE - ADICIONAR HEADERS COM LOGO E DATA
+   -------------------------*/
+function initTimelineMobileHeaders() {
+  if (window.innerWidth > 1200) return;
+  
+  const items = document.querySelectorAll('.timeline-item');
+  
+  items.forEach(item => {
+    // Se já tem header, pula
+    if (item.querySelector('.timeline-header')) return;
+    
+    const company = item.dataset.company;
+    const logo = item.dataset.logo;
+    const dateRange = item.querySelector('.date-range')?.textContent || '';
+    const dateLevel = item.querySelector('.date-level')?.textContent || '';
+    
+    // Cria o header
+    const header = document.createElement('div');
+    header.className = 'timeline-header';
+    header.innerHTML = `
+      <div class="company-logo">
+        <img src="${logo}" alt="Company logo" onerror="this.style.display='none'">
+      </div>
+      <div class="date-info">
+        <span class="date-range">${dateRange}</span>
+        <span class="date-level">${dateLevel}</span>
+      </div>
+    `;
+    
+    // Insere antes do content
+    const content = item.querySelector('.timeline-content');
+    item.insertBefore(header, content);
+  });
+}
+
+// Inicializa no load e no resize
+window.addEventListener('load', initTimelineMobileHeaders);
+window.addEventListener('resize', () => {
+  // Debounce simples
+  clearTimeout(window.timelineResizeTimer);
+  window.timelineResizeTimer = setTimeout(initTimelineMobileHeaders, 250);
+});
