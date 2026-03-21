@@ -593,3 +593,20 @@
     max-height: 350px;
   }
 }
+/* -------------------------
+   REMOVER LOGOS DUPLICADAS NO FINAL DOS BOXES
+   -------------------------*/
+@media (max-width: 1200px) {
+  /* Esconde a logo que aparece no final do box */
+  .timeline-item .mobile-company-logo,
+  .timeline-item img.mobile-company-logo,
+  img.mobile-company-logo {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    height: 0 !important;
+    width: 0 !important;
+    position: absolute !important;
+    pointer-events: none !important;
+  }
+}
