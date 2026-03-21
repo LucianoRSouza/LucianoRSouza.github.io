@@ -247,38 +247,33 @@
 /* Volunteer: use Gadsden logo instead of yellow icon */
 .volunteer-logo{width:100px;height:100px;border-radius:16px;overflow:hidden;margin:0 auto 1.2rem;border:3px solid var(--gold);background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 22px rgba(0,0,0,.15)}
 .volunteer-logo img{width:100%;height:100%;object-fit:contain}
+
 /* ============================================
-   CORREÇÕES MOBILE ESPECÍFICAS
+   CORREÇÕES MOBILE ESPECÍFICAS - V2
    ============================================ */
 
 /* -------------------------
-   1. STAT BOXES - AJUSTE EM TELAS PEQUENAS
+   1. STAT BOXES - MODAL AJUSTADO (SEM QUEBRAR LAYOUT)
    -------------------------*/
 @media (max-width: 768px) {
+  /* Stats em grid de 2 colunas */
   .hero-stats {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 0.8rem;
-    padding-bottom: 1rem;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    justify-content: flex-start;
-  }
-  
-  .hero-stats::-webkit-scrollbar {
-    display: none;
+    justify-content: center;
   }
   
   .stat-box {
-    flex: 0 0 auto;
-    min-width: 140px;
-    max-width: 160px;
-    padding: 1rem;
+    min-width: auto;
+    padding: 1rem 0.8rem;
   }
   
-  /* Modal de stats ajustado para mobile */
+  .stat-number {
+    font-size: 1.6rem;
+  }
+  
+  /* Modal de stats ajustado */
   .stat-modal-overlay {
     padding: 1rem;
     align-items: flex-end;
@@ -286,6 +281,7 @@
   
   .stat-modal {
     max-width: 100%;
+    width: calc(100vw - 2rem);
     max-height: 85vh;
     overflow-y: auto;
     margin: 0;
@@ -302,7 +298,7 @@
 }
 
 /* -------------------------
-   2. TIMELINE - LOGOS NO LADO ESQUERDO SUPERIOR
+   2. TIMELINE - LOGOS À ESQUERDA, DATAS NO TOPO (CORRIGIDO)
    -------------------------*/
 @media (max-width: 1200px) {
   /* Esconde o logo sticky lateral */
@@ -313,35 +309,38 @@
   .timeline-container {
     grid-template-columns: 1fr;
     gap: 1.5rem;
+    padding: 0 1rem;
   }
   
-  /* Reorganiza cada item da timeline */
+  /* Cada item: logo + data na esquerda, conteúdo na direita */
   .timeline-item {
     display: grid;
-    grid-template-columns: 80px 1fr;
-    grid-template-rows: auto auto;
+    grid-template-columns: 70px 1fr;
+    grid-template-rows: auto 1fr;
     gap: 0.5rem 1rem;
     margin-bottom: 2rem;
     opacity: 1;
+    position: relative;
   }
   
-  /* Logo no canto superior esquerdo */
+  /* Remove a linha vertical */
   .timeline-item::before {
     display: none;
   }
   
-  /* Cria container para logo + data */
+  /* Coluna da esquerda: logo e data empilhados */
   .timeline-date {
     grid-column: 1;
-    grid-row: 1;
+    grid-row: 1 / 3;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     gap: 0.5rem;
+    padding-top: 0.5rem;
   }
   
-  /* Adiciona logo acima da data */
+  /* Logo no topo - usando background-image */
   .timeline-date::before {
     content: '';
     display: block;
@@ -353,10 +352,10 @@
     border-radius: 12px;
     border: 2px solid var(--gold);
     background-color: var(--white);
-    margin-bottom: 0.5rem;
+    flex-shrink: 0;
   }
   
-  /* Cada item com sua logo específica */
+  /* Logos específicas por empresa */
   .timeline-item[data-company="details"] .timeline-date::before {
     background-image: url('./Details_Symbol.jpg');
   }
@@ -370,43 +369,55 @@
     background-image: url('./SKN_Brasil.png');
   }
   
-  /* Ajusta o conteúdo */
+  /* Datas mantidas como estavam */
+  .date-range {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: var(--gold);
+    line-height: 1.2;
+  }
+  
+  .date-level {
+    font-size: 0.75rem;
+    color: var(--text-light);
+    padding: 0.2rem 0.5rem;
+    background: rgba(212, 175, 55, 0.12);
+    border-radius: 16px;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+  }
+  
+  /* Conteúdo à direita */
   .timeline-content {
     grid-column: 2;
     grid-row: 1 / 3;
     margin-left: 0;
   }
   
+  /* Remove o círculo dourado */
   .timeline-content::before {
     display: none;
   }
   
-  /* Ajusta tamanhos de fonte */
-  .date-range {
-    font-size: 0.9rem;
-  }
-  
-  .date-level {
-    font-size: 0.75rem;
-    padding: 0.2rem 0.5rem;
-  }
-  
   .timeline-title {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
+    margin-bottom: 0.3rem;
+  }
+  
+  .timeline-company {
+    font-size: 0.95rem;
+    margin-bottom: 0.6rem;
   }
 }
 
 /* -------------------------
-   3. FEIRAS - FOTOS PROPORCIONAIS NO MOBILE
+   3. FEIRAS - FOTOS PROPORCIONAIS SEM CORTE
    -------------------------*/
 @media (max-width: 768px) {
-  /* Container das feiras */
   .trade-duo {
     padding: 0 1rem;
     gap: 1rem;
   }
   
-  /* Cards de marca */
   .trade-duo .brand-card {
     border-radius: 16px;
     border: 3px solid var(--gold);
@@ -416,85 +427,79 @@
     padding: 0.8rem 1rem;
   }
   
-  .trade-duo .brand-head h4 {
-    font-size: 1.1rem;
-  }
-  
-  /* Body da foto - proporção correta */
+  /* Container da foto - altura automática proporcional */
   .trade-duo .brand-body {
     width: 100%;
-    aspect-ratio: 16/10;
+    height: auto;
+    min-height: 200px;
+    max-height: 350px;
     overflow: hidden;
     background: linear-gradient(135deg, rgba(15, 21, 56, 0.04), rgba(15, 21, 56, 0.08));
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
+  /* Foto se adapta sem corte - CONTAIN em vez de COVER */
   .trade-duo .brand-body img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
+    height: auto;
+    max-height: 350px;
+    object-fit: contain;
     display: block;
   }
   
-  /* Grid de galeria de feiras */
+  /* Galeria de feiras */
   #trade-shows .gallery-grid {
     grid-template-columns: 1fr;
     gap: 1rem;
     padding: 0 1rem;
   }
   
-  /* Items de feira - proporção fixa */
+  /* Items da galeria - altura automática */
   #trade-shows .gallery-item {
-    aspect-ratio: 4/3;
-    min-height: auto;
+    width: 100%;
     height: auto;
+    min-height: 250px;
+    max-height: 400px;
+    aspect-ratio: auto;
     border-radius: 16px;
     border: 3px solid var(--gold);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(15, 21, 56, 0.06), rgba(15, 21, 56, 0.12));
   }
   
+  /* Foto se adapta sem corte - CONTAIN em vez de COVER */
   #trade-shows .gallery-item img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
+    max-height: 400px;
+    object-fit: contain;
     object-position: center;
-  }
-  
-  /* Ajuste do overlay */
-  #trade-shows .gallery-item .gallery-overlay {
-    padding: 1.2rem;
-  }
-  
-  #trade-shows .gallery-item .gallery-overlay h4 {
-    font-size: 1.1rem;
-  }
-  
-  #trade-shows .gallery-item .gallery-overlay p {
-    font-size: 0.9rem;
   }
 }
 
-/* Ajuste extra para telas muito pequenas */
+/* Ajuste para telas muito pequenas */
 @media (max-width: 480px) {
   .hero-stats {
+    grid-template-columns: repeat(2, 1fr);
     gap: 0.6rem;
   }
   
   .stat-box {
-    min-width: 130px;
-    padding: 0.8rem;
+    padding: 0.8rem 0.5rem;
   }
   
   .stat-number {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
   }
   
-  .stat-label {
-    font-size: 0.75rem;
-  }
-  
-  /* Timeline em telas pequenas */
+  /* Timeline */
   .timeline-item {
-    grid-template-columns: 60px 1fr;
+    grid-template-columns: 55px 1fr;
     gap: 0.4rem 0.8rem;
   }
   
@@ -503,12 +508,47 @@
     height: 50px;
   }
   
-  .timeline-content {
-    padding: 1.2rem;
+  .date-range {
+    font-size: 0.8rem;
   }
   
-  /* Feiras em telas pequenas */
+  /* Feiras */
   .trade-duo .brand-body {
-    aspect-ratio: 4/3;
+    min-height: 180px;
+    max-height: 280px;
+  }
+  
+  .trade-duo .brand-body img {
+    max-height: 280px;
+  }
+  
+  #trade-shows .gallery-item {
+    min-height: 220px;
+    max-height: 320px;
+  }
+  
+  #trade-shows .gallery-item img {
+    max-height: 320px;
+  }
+}
+
+/* Ajuste para telas grandes de celular */
+@media (min-width: 481px) and (max-width: 768px) {
+  .trade-duo .brand-body {
+    min-height: 220px;
+    max-height: 300px;
+  }
+  
+  .trade-duo .brand-body img {
+    max-height: 300px;
+  }
+  
+  #trade-shows .gallery-item {
+    min-height: 280px;
+    max-height: 350px;
+  }
+  
+  #trade-shows .gallery-item img {
+    max-height: 350px;
   }
 }
