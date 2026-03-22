@@ -116,8 +116,7 @@ window.I18N = {
       subtitle: 'Ready to transform your procurement strategy?',
       email: 'Email',
       location: 'Location'
-    }
-
+    },
     proj: {
       critical: {
         title: "Critical Infrastructure Procurement",
@@ -251,8 +250,7 @@ window.I18N = {
       subtitle: 'Pronto para transformar sua estratégia de procurement?',
       email: 'Email',
       location: 'Localização'
-    }
-
+    },
     proj: {
       critical: {
         title: "Aquisição de Infraestrutura Crítica",
@@ -340,8 +338,7 @@ window.I18N = {
       subtitle: '¿Listo para transformar tu estrategia de compras?',
       email: 'Email',
       location: 'Ubicación'
-    }
-
+    },
     proj: {
       critical: {
         title: "Adquisición de Infraestructura Crítica",
@@ -429,8 +426,7 @@ window.I18N = {
       subtitle: 'Prêt à transformer votre stratégie achats?',
       email: 'Email',
       location: 'Localisation'
-    }
-
+    },
     proj: {
       critical: {
         title: "Approvisionnement en Infrastructure Critique",
