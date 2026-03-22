@@ -169,6 +169,334 @@ window.I18N = {
       location: 'Location'
     }
   },
+  es: {
+    nav: { about: 'Sobre', experience: 'Experiencia', projects: 'Proyectos', tradeshows: 'Ferias', certs: 'Certificaciones', contact: 'Contacto' },
+    hero: {
+      title: 'Luciano Rodrigues de Souza',
+      subtitle: 'Líder en Procurement y Operaciones con IA · Transformación Estratégica',
+      desc: 'Conecto gobernanza, rigor técnico e IA para generar resultados medibles: licitaciones transparentes, socios confiables y operaciones resilientes en Europa, LATAM y Asia.',
+      badges: { top: 'Top Performer 2025', middle: 'Especialista en IA', bottom: 'Líder de Confianza' },
+      stats: {
+        savings: 'Ahorro Acumulado',
+        savings_note: 'En negociaciones multi-categoría',
+        rfps: 'RFP/RFQ Dirigidos',
+        rfps_note: 'Con anexos técnicos y scoring ponderado',
+        projects: 'Portafolio de Proyectos',
+        projects_note: 'Del concepto a la producción auditada',
+        regions: 'Países',
+        regions_note: 'Europa · LATAM · Asia'
+      }
+    },
+    cta: { connect: 'Conectemos', journey: 'Ver Trayectoria' },
+    about: {
+      title: 'Filosofía de Liderazgo',
+      subtitle: 'De operaciones LATAM a estrategia global de procurement',
+      heading: 'Transformación mediante Colaboración',
+      body: {
+        1: 'Diseño sistemas de procurement escalables: desde playbooks de RFI/RFP y BidMaps hasta gobernanza, auditorías y desarrollo de proveedores. Resultado: velocidad con control — decisiones más rápidas, menos riesgo y responsabilidades claras.',
+        2: 'Mi estilo de liderazgo combina facilitación transversal (Ingeniería, ESG, Legal, Finanzas, Operaciones) con datos e IA. Enfoque en tres pilares: claridad de requisitos, transparencia de mercado y resultados medibles.'
+      },
+      philosophy: '"No solo optimizo cadenas de suministro — construyo coaliciones multifuncionales que transforman cómo las organizaciones piensan el procurement."',
+      points: {
+        1: 'Arquitectura de Procesos: tender kits, scoring ponderado, compliance-by-design',
+        2: 'IA & Analytics: RFPs inteligentes, parsing de propuestas, forecasting, inventario',
+        3: 'Estrategia de Proveedores: auditorías, mapeo de capacidades, dual-sourcing',
+        4: 'Confianza en Stakeholders: dashboards transparentes, SLAs y gobernanza post-contrato'
+      },
+      lang: { pt: 'Portugués (Nativo)', en: 'Inglés (Nativo)', es: 'Español (Profesional)', fr: 'Francés (Profesional)' }
+    },
+    timeline: {
+      title: 'Trayectoria Profesional',
+      subtitle: '15+ años de liderazgo progresivo',
+      level: { senior: 'Nivel Senior', director: 'Dirección', manager: 'Gestión', growth: 'Expansión' }
+    },
+    projects: {
+      title: 'Proyectos Destacados',
+      subtitle: 'Excelencia en desarrollo de producto e innovación con IA',
+      view_gallery: 'Ver Galería'
+    },
+    proj: {
+      critical: {
+        title: "Adquisición de Infraestructura Crítica",
+        desc: "Adquisición estratégica y gobernanza de todos los sistemas críticos de edificios en más de 50 activos de hospitalidad. Gestión integral de SCIE/Seguridad Contra Incendios, Prevención de Legionella, HVAC, Elevadores, Calderas y Hottis — garantizando cumplimiento regulatorio total, continuidad operacional y optimización medible de costos. Frameworks estructurados de RFP/RFQ con anexos técnicos (A1/A2), matrices de puntuación ponderada y documentación lista para auditoría. *Las representaciones visuales y volúmenes son aproximados para proteger la confidencialidad de la empresa."
+      },
+      hospitality: {
+        title: "Excelencia en Operaciones de Hospitalidad",
+        desc: "Adquisición integral para operaciones de hospitalidad de lujo en más de 50 activos premium. Gestión integral de F&B, lavandería, energía, campos de golf, canchas de padel, clubhouses y spas. Sourcing estratégico que equilibra excelencia de calidad con optimización de costos, garantizando experiencias impecables para huéspedes mientras se genera impacto financiero medible. Incluye integración de Monte Rei, Els Club, San Lourenzo con onboarding completo en cumplimiento. *Las representaciones de datos son ilustrativas para mantener la confidencialidad corporativa."
+      },
+      digital: {
+        title: "Transformación Digital de Procurement",
+        desc: "Integración Primavera P6 y e-Procurement (Mercado Eletrônico) con BidMaps automatizados, dashboards Power BI en tiempo real y análisis predictivo. Trazabilidad completa desde la requisición hasta el pago, con flujos de trabajo automatizados, scorecards de proveedores y monitoreo de cumplimiento. Sistemas de procurement y contabilidad conectados permitiendo armonización de datos y seguimiento de rendimiento en tiempo real. €1M+ en ahorros entregados en 2025, con meta de €3M el próximo año mediante toma de decisiones basada en datos. *Los visuales de dashboards representan métricas aproximadas por confidencialidad."
+      },
+      blaupunkt: {
+        tools: { desc: "Creación y lanzamiento de línea completa de herramientas para el mercado europeo — del concepto, BOM y compliance a la producción." },
+        power: { desc: "Taladros, sierras y lijadoras profesionales con especificaciones técnicas, auditorías y certificaciones de seguridad." },
+        garden: { desc: "Equipos outdoor (motosierras, desbrozadoras) con documentación completa y cumplimiento de seguridad." }
+      },
+      sj: { desc: "Ollas de hierro fundido esmaltado premium para marca británica de tradición (desde 1760)." },
+      pininfarina: { desc: "Electrodomésticos premium para cocina externa con diseño italiano y coordinación global (UE/Asia)." },
+      nks: {
+        estrelas: { desc: "Electrónica y electrodomésticos para el mercado brasileño con gestión completa del ciclo de vida." },
+        audio: { desc: "Audio profesional y consumer: bocinas, sistemas de sonido y auriculares (cumplimiento ANATEL)." },
+        maisvc: { desc: "Línea de belleza y cuidado personal con certificación INMETRO para retail brasileño." }
+      },
+      ml: {
+        title: "Proyectos de IA & ML (Seleccionados)",
+        desc: "Portafolio consolidado: previsión de ventas, optimización de inventario, uplift de promociones, elasticidad de precio, detección de anomalías/calidad, churn y CLV.",
+        caption1: "Portafolio de Machine Learning",
+        caption2: "Previsión · Optimización · Uplift"
+      }
+    },
+    tradeshows: {
+      title: 'Ferias y Exposiciones Internacionales',
+      subtitle: 'Expositor y comprador estratégico en mercados globales',
+      blaupunkt: {
+        1: { title: "Stand Blaupunkt Ilumination", desc: "Hong Kong International Lighting Fair — experiencia premium co-creada con Marketing." },
+        2: { title: "Diseño de Stand & Storytelling", desc: "Layout, flujo, demostraciones de iluminación y merchandising alineados a la estrategia." },
+        3: { title: "Excelencia en Exhibición de Productos", desc: "Portafolio completo con destacados de compliance y cards de features técnicas." },
+        4: { title: "Generación de Leads", desc: "Reuniones en stand, scanning, calificación e inserción en tiempo real en el pipeline." },
+        5: { title: "Coordinación Global", desc: "Mensaje de marca consistente entre regiones con surtidos localizados." }
+      },
+      ford: {
+        1: { title: "Hong Kong International Lighting Fair", desc: "Planificación estratégica del stand con Marketing & Merchandising; narrativas y demos." },
+        2: { title: "Reuniones & Captación de Leads", desc: "Agenda de reuniones, calificación de leads y follow-up estructurado post-feria." },
+        3: { title: "Engagement con Proveedores", desc: "Negociaciones, muestras técnicas, costos, MOQs y roadmaps de certificación." }
+      },
+      strategy: {
+        title: 'Estrategia y Ejecución de Ferias',
+        desc: 'Más allá del stand: co-creo con Marketing la jornada de punta a punta — diseño, narrativa y assets; orquesto reuniones, califico leads y conduzco el pipeline post-feria. En paralelo, negocio con socios, hago benchmark de tecnologías y audito fábricas.',
+        pillars: {
+          1: 'Diseño de Stand & Merchandising',
+          2: 'Reuniones & Captación de Leads',
+          3: 'Negociaciones & Alianzas',
+          4: 'Descubrimiento Tecnológico',
+          5: 'Auditorías de Fábrica',
+          6: 'Pipeline, ROI y Gobernanza'
+        }
+      }
+    },
+    certs: {
+      title: 'Certificaciones y Educación',
+      subtitle: 'Aprendizaje continuo en IA, Data Science y Procurement Estratégico'
+    },
+    framework: {
+      title: 'Framework Estratégico de Procurement con IA',
+      desc: 'Framework ejecutivo one-page que muestra cómo IA, datos y alineación operacional elevan el rendimiento de procurement.',
+      badge: 'Metodología Propietaria'
+    },
+    ibm: {
+      apply: { title: 'Aplicaciones en Procurement:' },
+      genai: {
+        subtitle: 'Fundamentos en IA Generativa',
+        desc: 'Fundamentos de LLMs, prompt engineering y ética; aplicación práctica en flujos de procurement.',
+        point1: 'Lectura de Contratos: extracción de cláusulas y riesgos',
+        point2: 'RFPs Inteligentes: specs/SoW automáticos, horas ahorradas',
+        point3: 'Comunicación con Proveedores: templates consistentes',
+        point4: 'Inteligencia de Mercado: comparación de propuestas'
+      },
+      llms: {
+        subtitle: 'Introducción a LLMs',
+        desc: 'Transformers, tokenización y prompting; patrones de extracción y soporte a la decisión.',
+        point1: 'Inteligencia de Documentos',
+        point2: 'Forecasting asistido por LLM',
+        point3: 'Compliance vs. políticas',
+        point4: 'Asistente interno de procurement'
+      }
+    },
+    umd: { subtitle: 'IA y Empoderamiento Profesional', desc: 'Aplicaciones de IA en estrategia de negocios y automatización de flujos de procurement.' },
+    mit: { subtitle: 'Supply Chain Analytics', desc: 'Metodologías avanzadas de analytics para optimización y forecasting de la cadena de suministro.' },
+    harvard: { subtitle: 'Toma de Decisiones en Liderazgo', desc: 'Frameworks de decisión basados en evidencias y pensamiento estratégico para líderes.' },
+    esl: {
+      school: 'Gadsden State Community College',
+      subtitle: 'Diploma — ESL (Inglés como 2ª Lengua)',
+      desc: 'Inglés académico: comunicación, escritura y presentaciones.'
+    },
+    vol: {
+      title: 'Voluntariado e Impacto Comunitario',
+      subtitle: 'Retribuyendo mediante educación y mentoría',
+      position: 'Instructor de Matemáticas e Inglés',
+      school: 'Gadsden State Community College',
+      desc: 'Clases de matemáticas e inglés para alumnos con necesidad de apoyo académico. Desarrollé planes de aprendizaje personalizados, mentoreé poblaciones diversas de estudiantes y contribuí a iniciativas de educación comunitaria. Esta experiencia fortaleció mis habilidades de comunicación, paciencia y capacidad de explicar conceptos complejos — habilidades que aplico actualmente en entrenamiento de procurement y liderazgo de equipos multifuncionales.'
+    },
+    github: {
+      title: 'Proyectos de GitHub y Data Science',
+      subtitle: 'Transformando procurement con código e insights',
+      tagline: 'Entusiasta de Python usando data science para decisiones en procurement.',
+      metrics: { accuracy: 'Precisión de Predicción', cost: 'Reducción de Costos', stockout: 'Reducción de Ruptura' },
+      cta: 'Ver Todos los Repositorios'
+    },
+    contact: {
+      title: 'Conectemos',
+      subtitle: '¿Listo para transformar tu estrategia de procurement?',
+      email: 'Email',
+      location: 'Ubicación'
+    }
+  },
+
+  fr: {
+    nav: { about: 'À propos', experience: 'Expérience', projects: 'Projets', tradeshows: 'Salons', certs: 'Certifications', contact: 'Contact' },
+    hero: {
+      title: 'Luciano Rodrigues de Souza',
+      subtitle: 'Leader en Procurement et Opérations IA · Transformation Stratégique',
+      desc: 'Je connecte la gouvernance, la rigueur technique et l'IA pour générer des résultats mesurables: appels d'offres transparents, partenaires fiables et opérations résilientes en Europe, LATAM et Asie.',
+      badges: { top: 'Top Performer 2025', middle: 'Spécialiste IA', bottom: 'Leader de Confiance' },
+      stats: {
+        savings: 'Économies Accumulées',
+        savings_note: 'Dans les négociations multi-catégories',
+        rfps: 'RFP/RFQ Dirigés',
+        rfps_note: 'Avec annexes techniques et scoring pondéré',
+        projects: 'Portefeuille de Projets',
+        projects_note: 'Du concept à la production auditée',
+        regions: 'Pays',
+        regions_note: 'Europe · LATAM · Asie'
+      }
+    },
+    cta: { connect: 'Connectons-nous', journey: 'Voir le Parcours' },
+    about: {
+      title: 'Philosophie de Leadership',
+      subtitle: 'Des opérations LATAM à la stratégie globale de procurement',
+      heading: 'Transformation par la Collaboration',
+      body: {
+        1: 'Je conçois des systèmes de procurement évolutifs: des playbooks RFI/RFP et BidMaps à la gouvernance, aux audits et au développement fournisseurs. Résultat: vitesse avec contrôle — décisions plus rapides, moins de risques et responsabilités claires.',
+        2: 'Mon style de leadership combine la facilitation transversale (Ingénierie, ESG, Juridique, Finance, Opérations) avec les données et l'IA. Focus sur trois piliers: clarté des exigences, transparence du marché et résultats mesurables.'
+      },
+      philosophy: '"Je n'optimise pas seulement les chaînes d'approvisionnement — je construis des coalitions multifonctionnelles qui transforment la façon dont les organisations pensent le procurement."',
+      points: {
+        1: 'Architecture de Processus: tender kits, scoring pondéré, compliance-by-design',
+        2: 'IA & Analytics: RFPs intelligents, parsing de propositions, forecasting, inventaire',
+        3: 'Stratégie Fournisseurs: audits, cartographie des capacités, dual-sourcing',
+        4: 'Confiance des Parties Prenantes: dashboards transparents, SLAs et gouvernance post-contrat'
+      },
+      lang: { pt: 'Portugais (Natif)', en: 'Anglais (Natif)', es: 'Espagnol (Professionnel)', fr: 'Français (Professionnel)' }
+    },
+    timeline: {
+      title: 'Parcours Professionnel',
+      subtitle: '15+ ans de leadership progressif',
+      level: { senior: 'Niveau Senior', director: 'Direction', manager: 'Management', growth: 'Expansion' }
+    },
+    projects: {
+      title: 'Projets en Vedette',
+      subtitle: 'Excellence en développement produit et innovation IA',
+      view_gallery: 'Voir la Galerie'
+    },
+    proj: {
+      critical: {
+        title: "Approvisionnement en Infrastructure Critique",
+        desc: "Approvisionnement stratégique et gouvernance de tous les systèmes critiques de bâtiments dans plus de 50 actifs d'hôtellerie. Gestion complète des SCIE/Sécurité Incendie, Prévention Légionnelle, CVC, Ascenseurs, Chaudières et Hottis — garantissant la conformité réglementaire totale, la continuité opérationnelle et l'optimisation mesurable des coûts. Cadres structurés RFP/RFQ avec annexes techniques (A1/A2), matrices de scoring pondéré et documentation prête pour audit. *Les représentations visuelles et volumes sont approximatifs pour protéger la confidentialité de l'entreprise."
+      },
+      hospitality: {
+        title: "Excellence en Opérations Hôtelières",
+        desc: "Approvisionnement complet pour opérations hôtelières de luxe dans plus de 50 actifs premium. Gestion complète de F&B, blanchisserie, énergie, terrains de golf, courts de padel, clubhouses et spas. Sourcing stratégique équilibrant excellence qualité et optimisation des coûts, garantissant des expériences client impeccables tout en générant un impact financier mesurable. Inclut l'intégration de Monte Rei, Els Club, San Lourenzo avec onboarding complet en conformité. *Les représentations de données sont illustratives pour maintenir la confidentialité corporative."
+      },
+      digital: {
+        title: "Transformation Digitale du Procurement",
+        desc: "Intégration Primavera P6 et e-Procurement (Mercado Eletrônico) avec BidMaps automatisés, dashboards Power BI en temps réel et analyses prédictives. Traçabilité complète de la réquisition au paiement, avec workflows automatisés, scorecards fournisseurs et monitoring de conformité. Systèmes de procurement et comptabilité connectés permettant l'harmonisation des données et le suivi de performance en temps réel. €1M+ d'économies réalisées en 2025, cible de €3M l'année prochaine via la prise de décision basée sur les données. *Les visuels de dashboards représentent des métriques approximatives pour confidentialité."
+      },
+      blaupunkt: {
+        tools: { desc: "Création et lancement d'une gamme complète d'outils pour le marché européen — du concept, BOM et conformité à la production." },
+        power: { desc: "Perceuses, scies et ponceuses professionnelles avec spécifications techniques, audits et certifications de sécurité." },
+        garden: { desc: "Équipements outdoor (tronçonneuses, débroussailleuses) avec documentation complète et conformité sécurité." }
+      },
+      sj: { desc: "Casseroles en fonte émaillée premium pour une marque britannique d'héritage (depuis 1760)." },
+      pininfarina: { desc: "Appareils premium pour cuisine extérieure avec design italien et coordination globale (UE/Asie)." },
+      nks: {
+        estrelas: { desc: "Électronique et électroménager pour le marché brésilien avec gestion complète du cycle de vie." },
+        audio: { desc: "Audio professionnel et grand public: enceintes, systèmes audio et casques (conformité ANATEL)." },
+        maisvc: { desc: "Ligne beauté et soins personnels avec certification INMETRO pour le retail brésilien." }
+      },
+      ml: {
+        title: "Projets IA & ML (Sélection)",
+        desc: "Portefeuille consolidé: prévision des ventes, optimisation des stocks, uplift des promotions, élasticité des prix, détection d'anomalies/qualité, churn et CLV.",
+        caption1: "Portefeuille Machine Learning",
+        caption2: "Prévision · Optimisation · Uplift"
+      }
+    },
+    tradeshows: {
+      title: 'Salons et Expositions Internationales',
+      subtitle: 'Exposant et acheteur stratégique sur les marchés mondiaux',
+      blaupunkt: {
+        1: { title: "Stand Blaupunkt Ilumination", desc: "Hong Kong International Lighting Fair — expérience premium co-créée avec le Marketing." },
+        2: { title: "Design de Stand & Storytelling", desc: "Layout, flux, démonstrations d'éclairage et merchandising alignés sur la stratégie." },
+        3: { title: "Excellence en Exposition de Produits", desc: "Portefeuille complet avec points forts de conformité et fiches techniques." },
+        4: { title: "Génération de Leads", desc: "Réunions sur stand, scanning, qualification et insertion en temps réel dans le pipeline." },
+        5: { title: "Coordination Globale", desc: "Message de marque cohérent entre régions avec assortiments localisés." }
+      },
+      ford: {
+        1: { title: "Hong Kong International Lighting Fair", desc: "Planification stratégique du stand avec Marketing & Merchandising; narratifs et démos." },
+        2: { title: "Réunions & Capture de Leads", desc: "Agenda de réunions, qualification de leads et suivi structuré post-salon." },
+        3: { title: "Engagement Fournisseurs", desc: "Négociations, échantillons techniques, coûts, MOQs et feuilles de route de certification." }
+      },
+      strategy: {
+        title: 'Stratégie et Exécution de Salons',
+        desc: 'Au-delà du stand: je co-crée avec le Marketing le parcours de bout en bout — design, narration et assets; j'orquestre les réunions, je qualifie les leads et je conduis le pipeline post-salon vers des résultats concrets. En parallèle, je négocie avec les partenaires, je fais du benchmark technologique et j'audit les usines.',
+        pillars: {
+          1: 'Design de Stand & Merchandising',
+          2: 'Réunions & Capture de Leads',
+          3: 'Négociations & Partenariats',
+          4: 'Découverte Technologique',
+          5: 'Audits d'Usine',
+          6: 'Pipeline, ROI et Gouvernance'
+        }
+      }
+    },
+    certs: {
+      title: 'Certifications et Éducation',
+      subtitle: 'Apprentissage continu en IA, Data Science et Procurement Stratégique'
+    },
+    framework: {
+      title: 'Framework Stratégique de Procurement IA',
+      desc: 'Framework exécutif one-page montrant comment l'IA, les données et l'alignement opérationnel élèvent la performance du procurement.',
+      badge: 'Méthodologie Propriétaire'
+    },
+    ibm: {
+      apply: { title: 'Applications en Procurement:' },
+      genai: {
+        subtitle: 'Fondamentaux en IA Générative',
+        desc: 'Fondamentaux des LLMs, prompt engineering et éthique; application pratique dans les flux de procurement.',
+        point1: 'Lecture de Contrats: extraction de clauses et risques',
+        point2: 'RFPs Intelligentes: specs/SoW automatiques, heures économisées',
+        point3: 'Communication Fournisseurs: templates cohérents',
+        point4: 'Intelligence de Marché: comparaison de propositions'
+      },
+      llms: {
+        subtitle: 'Introduction aux LLMs',
+        desc: 'Transformers, tokenisation et prompting; patterns d'extraction et support à la décision.',
+        point1: 'Intelligence Documentaire',
+        point2: 'Forecasting assisté par LLM',
+        point3: 'Compliance vs. politiques',
+        point4: 'Assistant interne de procurement'
+      }
+    },
+    umd: { subtitle: 'IA et Empowerment Professionnel', desc: 'Applications de l'IA en stratégie d'entreprise et automatisation des flux de procurement.' },
+    mit: { subtitle: 'Supply Chain Analytics', desc: 'Méthodologies avancées d'analytics pour l'optimisation et le forecasting de la chaîne d'approvisionnement.' },
+    harvard: { subtitle: 'Prise de Décision en Leadership', desc: 'Frameworks de décision basés sur les preuves et pensée stratégique pour les leaders.' },
+    esl: {
+      school: 'Gadsden State Community College',
+      subtitle: 'Diplôme — ESL (Anglais comme 2ème Langue)',
+      desc: 'Anglais académique: communication, écriture et présentations.'
+    },
+    vol: {
+      title: 'Bénévolat et Impact Communautaire',
+      subtitle: 'Retour via l'éducation et le mentorat',
+      position: 'Instructeur de Mathématiques et Anglais',
+      school: 'Gadsden State Community College',
+      desc: 'Cours de mathématiques et d'anglais pour étudiants ayant besoin de soutien académique. J'ai développé des plans d'apprentissage personnalisés, mentoré des populations étudiantes diverses et contribué à des initiatives d'éducation communautaire. Cette expérience a renforcé mes compétences en communication, patience et capacité à expliquer des concepts complexes — compétences que j'applique actuellement en formation procurement et leadership d'équipes multifonctionnelles.'
+    },
+    github: {
+      title: 'Projets GitHub et Data Science',
+      subtitle: 'Transformer le procurement par le code et les insights',
+      tagline: 'Passionné de Python utilisant la data science pour les décisions en procurement.',
+      metrics: { accuracy: 'Précision de Prédiction', cost: 'Réduction des Coûts', stockout: 'Réduction de Rupture' },
+      cta: 'Voir Tous les Repositories'
+    },
+    contact: {
+      title: 'Connectons-nous',
+      subtitle: 'Prêt à transformer votre stratégie de procurement?',
+      email: 'Email',
+      location: 'Localisation'
+    }
+  }
+,
 
   pt: {
     nav: { about: 'Sobre', experience: 'Experiência', projects: 'Projetos', tradeshows: 'Feiras', certs: 'Certificações', contact: 'Contato' },
