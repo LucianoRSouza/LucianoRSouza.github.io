@@ -1173,14 +1173,25 @@ function openStrategyModal(num) {
 function closeStrategyModal() {
   const overlay = $('#strategyDetailOverlay');
   if (!overlay) return;
-  overlay.classList.remove('active');
-  document.body.style.overflow = 'auto';
 
-  // Reset scroll inside the strategy modal card
+  // Reset scroll BEFORE closing - try multiple methods
   const card = overlay.querySelector('.strategy-detail-card');
+  const body = overlay.querySelector('.strategy-detail-body');
+
   if (card) {
     card.scrollTop = 0;
+    card.scrollTo(0, 0);
   }
+  if (body) {
+    body.scrollTop = 0;
+    body.scrollTo(0, 0);
+  }
+
+  // Also try the overlay itself
+  overlay.scrollTop = 0;
+
+  overlay.classList.remove('active');
+  document.body.style.overflow = 'auto';
 }
 
 /* -------------------------
