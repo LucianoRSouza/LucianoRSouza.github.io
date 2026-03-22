@@ -116,22 +116,22 @@ window.I18N = {
       subtitle: 'Ready to transform your procurement strategy?',
       email: 'Email',
       location: 'Location'
-    },
+    }
+
     proj: {
       critical: {
         title: "Critical Infrastructure Procurement",
-        desc: "Strategic procurement of all critical building systems: SCIE/Fire Safety, Legionella Prevention, HVAC, Elevators, Caldeiras, Hottis, and full building compliance. €30K+ savings with 22% average reduction across 50+ hospitality assets."
+        desc: "Strategic procurement and governance of all critical building systems across 50+ hospitality assets. End-to-end management of SCIE/Fire Safety, Legionella Prevention, HVAC, Elevators, Caldeiras, and Hottis — ensuring full regulatory compliance, operational continuity, and measurable cost optimization. Structured RFP/RFQ frameworks with technical annexes (A1/A2), weighted scoring matrices, and audit-ready documentation. *Visual representations and volumes are approximate to protect company confidentiality."
       },
       hospitality: {
         title: "Hospitality Operations Excellence",
-        desc: "End-to-end procurement for luxury hospitality operations across 50+ assets: F&B, laundry, energy, golf courses, padel courts, clubhouses, spas, and all hospitality services. Including Monte Rei, Els Club, San Lourenzo and expanding portfolio."
+        desc: "End-to-end procurement for luxury hospitality operations across 50+ premium assets. Comprehensive management of F&B, laundry, energy, golf courses, padel courts, clubhouses, and spas. Strategic sourcing that balances quality excellence with cost optimization, ensuring seamless guest experiences while delivering measurable financial impact. Includes Monte Rei, Els Club, San Lourenzo integration with full compliance onboarding. *Data representations are illustrative to maintain corporate confidentiality."
       },
       digital: {
         title: "Digital Procurement Transformation",
-        desc: "Primavera P6 and e-Procurement integration, automated BidMaps, real-time dashboards. €1M+ savings delivered, targeting €3M next year."
+        desc: "Primavera P6 and e-Procurement (Mercado Eletrônico) integration with automated BidMaps, real-time Power BI dashboards, and predictive analytics. Full traceability from requisition to payment, with automated workflows, supplier scorecards, and compliance monitoring. Connected procurement and accounting systems enabling data harmonization and real-time performance tracking. €1M+ savings delivered in 2025, targeting €3M next year through data-driven decision making. *Dashboard visuals represent approximate metrics for confidentiality."
       }
-    },
-  },
+    },  },
   
   pt: {
     nav: { about: 'Sobre', experience: 'Experiência', projects: 'Projetos', tradeshows: 'Feiras', certs: 'Certificações', contact: 'Contato' },
@@ -250,22 +250,22 @@ window.I18N = {
       subtitle: 'Pronto para transformar sua estratégia de procurement?',
       email: 'Email',
       location: 'Localização'
-    },
+    }
+
     proj: {
       critical: {
         title: "Aquisição de Infraestrutura Crítica",
-        desc: "Aquisição estratégica de todos os sistemas críticos de edifícios: SCIE/Segurança Contra Incêndio, Prevenção de Legionella, HVAC, Elevadores, Caldeiras, Hottis e conformidade total do edifício. €30K+ em economias com redução média de 22% em mais de 50 ativos de hospitalidade."
+        desc: "Aquisição estratégica e governança de todos os sistemas críticos de edifícios em mais de 50 ativos de hospitalidade. Gestão completa de SCIE/Segurança Contra Incêndio, Prevenção de Legionella, HVAC, Elevadores, Caldeiras e Hottis — garantindo conformidade regulatória total, continuidade operacional e otimização mensurável de custos. Frameworks estruturados de RFP/RFQ com anexos técnicos (A1/A2), matrizes de pontuação ponderada e documentação pronta para auditoria. *Representações visuais e volumes são aproximados para proteger a confidencialidade da empresa."
       },
       hospitality: {
         title: "Excelência em Operações de Hospitalidade",
-        desc: "Aquisição completa para operações de hospitalidade de luxo em mais de 50 ativos: F&B, lavanderia, energia, campos de golfe, courts de padel, clubhouses, spas e todos os serviços de hospitalidade. Incluindo Monte Rei, Els Club, San Lourenzo e portfólio em expansão."
+        desc: "Aquisição completa para operações de hospitalidade de luxo em mais de 50 ativos premium. Gestão abrangente de F&B, lavanderia, energia, campos de golfe, courts de padel, clubhouses e spas. Sourcing estratégico que equilibra excelência de qualidade com otimização de custos, garantindo experiências impecáveis aos hóspedes enquanto entrega impacto financeiro mensurável. Inclui integração de Monte Rei, Els Club, San Lourenzo com onboarding completo em conformidade. *Representações de dados são ilustrativas para manter a confidencialidade corporativa."
       },
       digital: {
         title: "Transformação Digital de Procurement",
-        desc: "Integração Primavera P6 e e-Procurement, BidMaps automatizados, dashboards em tempo real. €1M+ em economias entregues, com meta de €3M no próximo ano."
+        desc: "Integração Primavera P6 e e-Procurement (Mercado Eletrônico) com BidMaps automatizados, dashboards Power BI em tempo real e análise preditiva. Rastreabilidade completa da requisição ao pagamento, com workflows automatizados, scorecards de fornecedores e monitoramento de conformidade. Sistemas de procurement e contabilidade conectados permitindo harmonização de dados e acompanhamento de performance em tempo real. €1M+ em economias entregues em 2025, com meta de €3M no próximo ano através de tomada de decisão baseada em dados. *Visuais de dashboards representam métricas aproximadas por confidencialidade."
       }
-    },
-  },
+    },  },
   
   es: {
     nav: { about: 'Acerca', experience: 'Experiencia', projects: 'Proyectos', tradeshows: 'Ferias', certs: 'Certificaciones', contact: 'Contacto' },
@@ -338,22 +338,22 @@ window.I18N = {
       subtitle: '¿Listo para transformar tu estrategia de compras?',
       email: 'Email',
       location: 'Ubicación'
-    },
+    }
+
     proj: {
       critical: {
         title: "Adquisición de Infraestructura Crítica",
-        desc: "Adquisición estratégica de todos los sistemas críticos de edificios: SCIE/Seguridad Contra Incendios, Prevención de Legionella, HVAC, Elevadores, Caldeiras, Hottis y cumplimiento total del edificio. €30K+ en ahorros con reducción promedio del 22% en más de 50 activos de hospitalidad."
+        desc: "Adquisición estratégica y gobernanza de todos los sistemas críticos de edificios en más de 50 activos de hospitalidad. Gestión integral de SCIE/Seguridad Contra Incendios, Prevención de Legionella, HVAC, Elevadores, Caldeiras y Hottis — garantizando cumplimiento regulatorio total, continuidad operacional y optimización mensurable de costos. Marcos estructurados de RFP/RFQ con anexos técnicos (A1/A2), matrices de puntuación ponderada y documentación lista para auditoría. *Las representaciones visuales y volúmenes son aproximados para proteger la confidencialidad de la empresa."
       },
       hospitality: {
         title: "Excelencia en Operaciones de Hospitalidad",
-        desc: "Adquisición integral para operaciones de hospitalidad de lujo en más de 50 activos: F&B, lavandería, energía, campos de golf, canchas de padel, clubhouses, spas y todos los servicios de hospitalidad. Incluyendo Monte Rei, Els Club, San Lourenzo y cartera en expansión."
+        desc: "Adquisición integral para operaciones de hospitalidad de lujo en más de 50 activos premium. Gestión comprehensiva de F&B, lavandería, energía, campos de golf, canchas de padel, clubhouses y spas. Sourcing estratégico que equilibra excelencia de calidad con optimización de costos, garantizando experiencias impecables a los huéspedes mientras entrega impacto financiero mensurable. Incluye integración de Monte Rei, Els Club, San Lourenzo con onboarding completo en cumplimiento. *Las representaciones de datos son ilustrativas para mantener la confidencialidad corporativa."
       },
       digital: {
         title: "Transformación Digital de Compras",
-        desc: "Integración Primavera P6 y e-Procurement, BidMaps automatizados, dashboards en tiempo real. €1M+ en ahorros entregados, con objetivo de €3M el próximo año."
+        desc: "Integración Primavera P6 y e-Procurement (Mercado Eletrônico) con BidMaps automatizados, dashboards Power BI en tiempo real y análisis predictivo. Trazabilidad completa de la requisición al pago, con workflows automatizados, scorecards de proveedores y monitoreo de cumplimiento. Sistemas de compras y contabilidad conectados permitiendo armonización de datos y seguimiento de performance en tiempo real. €1M+ en ahorros entregados en 2025, con objetivo de €3M el próximo año mediante toma de decisiones basada en datos. *Los visuales de dashboards representan métricas aproximadas por confidencialidad."
       }
-    },
-  },
+    },  },
   
   fr: {
     nav: { about: 'À propos', experience: 'Expérience', projects: 'Projets', tradeshows: 'Salons', certs: 'Certifications', contact: 'Contact' },
@@ -426,19 +426,20 @@ window.I18N = {
       subtitle: 'Prêt à transformer votre stratégie achats?',
       email: 'Email',
       location: 'Localisation'
-    },
+    }
+
     proj: {
       critical: {
         title: "Approvisionnement en Infrastructure Critique",
-        desc: "Approvisionnement stratégique de tous les systèmes critiques de bâtiments: SCIE/Sécurité Incendie, Prévention Legionella, HVAC, Ascenseurs, Caldeiras, Hottis et conformité totale du bâtiment. €30K+ d'économies avec réduction moyenne de 22% sur plus de 50 actifs d'hôtellerie."
+        desc: "Approvisionnement stratégique et gouvernance de tous les systèmes critiques de bâtiments sur plus de 50 actifs d'hôtellerie. Gestion complète de SCIE/Sécurité Incendie, Prévention Legionella, HVAC, Ascenseurs, Caldeiras et Hottis — garantissant conformité réglementaire totale, continuité opérationnelle et optimisation mesurable des coûts. Cadres structurés RFP/RFQ avec annexes techniques (A1/A2), matrices de notation pondérée et documentation prête pour audit. *Les représentations visuelles et volumes sont approximatifs pour protéger la confidentialité de l'entreprise."
       },
       hospitality: {
         title: "Excellence des Opérations d'Hôtellerie",
-        desc: "Approvisionnement complet pour opérations hôtelières de luxe sur plus de 50 actifs: F&B, blanchisserie, énergie, terrains de golf, courts de padel, clubhouses, spas et tous les services hôteliers. Incluant Monte Rei, Els Club, San Lourenzo et portefeuille en expansion."
+        desc: "Approvisionnement complet pour opérations hôtelières de luxe sur plus de 50 actifs premium. Gestion complète de F&B, blanchisserie, énergie, terrains de golf, courts de padel, clubhouses et spas. Sourcing stratégique équilibrant excellence qualité et optimisation des coûts, garantissant des expériences impeccables aux clients tout en délivrant un impact financier mesurable. Inclut l'intégration de Monte Rei, Els Club, San Lourenzo avec onboarding complet en conformité. *Les représentations de données sont illustratives pour maintenir la confidentialité corporative."
       },
       digital: {
         title: "Transformation Digitale des Achats",
-        desc: "Intégration Primavera P6 et e-Procurement, BidMaps automatisés, dashboards en temps réel. €1M+ d'économies réalisées, ciblant €3M l'année prochaine."
+        desc: "Intégration Primavera P6 et e-Procurement (Mercado Eletrônico) avec BidMaps automatisés, dashboards Power BI en temps réel et analyse prédictive. Traçabilité complète de la réquisition au paiement, avec workflows automatisés, scorecards fournisseurs et monitoring de conformité. Systèmes d'achats et comptabilité connectés permettant l'harmonisation des données et le suivi de performance en temps réel. €1M+ d'économies réalisées en 2025, ciblant €3M l'année prochaine via la prise de décision basée sur les données. *Les visuels de dashboards représentent des métriques approximatives pour confidentialité."
       }
     },
   }
