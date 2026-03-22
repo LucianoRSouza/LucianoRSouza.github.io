@@ -1175,6 +1175,12 @@ function closeStrategyModal() {
   if (!overlay) return;
   overlay.classList.remove('active');
   document.body.style.overflow = 'auto';
+
+  // Reset scroll inside the strategy modal card
+  const card = overlay.querySelector('.strategy-detail-card');
+  if (card) {
+    card.scrollTop = 0;
+  }
 }
 
 /* -------------------------
@@ -1758,7 +1764,57 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  console.log('✅ Portfolio JS (consolidado) inicializado');
+  // Cursor animation
+try {
+    const cursor = document.getElementById('cursor');
+    const cursorFollower = document.getElementById('cursorFollower');
+
+    if (cursor && cursorFollower) {
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+        let followerX = 0, followerY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function animateCursor() {
+            // Smooth follow for main cursor
+            cursorX += (mouseX - cursorX) * 0.15;
+            cursorY += (mouseY - cursorY) * 0.15;
+
+            // Slower follow for follower
+            followerX += (mouseX - followerX) * 0.08;
+            followerY += (mouseY - followerY) * 0.08;
+
+            cursor.style.left = cursorX + 'px';
+            cursor.style.top = cursorY + 'px';
+            cursorFollower.style.left = followerX + 'px';
+            cursorFollower.style.top = followerY + 'px';
+
+            requestAnimationFrame(animateCursor);
+        }
+
+        animateCursor();
+
+        // Hover effects
+        document.querySelectorAll('a, button, .project-card, .stat-box, .strategy-item').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                cursor.style.borderColor = 'var(--gold-light)';
+                cursorFollower.style.transform = 'translate(-50%, -50%) scale(1.5)';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+                cursor.style.borderColor = 'var(--gold)';
+                cursorFollower.style.transform = 'translate(-50%, -50%) scale(1)';
+            });
+        });
+    }
+} catch(e) { console.log('Cursor init error:', e); }
+
+console.log('✅ Portfolio JS (consolidado) inicializado');
   
   initStatModals();
 });
