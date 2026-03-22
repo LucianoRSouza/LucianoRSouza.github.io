@@ -1,75 +1,11 @@
 window.I18N = {
   en: {
-    proj: {
-      critical: {
-        title: 'Critical Infrastructure Procurement',
-        desc: 'Strategic procurement of all critical building systems: SCIE/Fire Safety, Legionella Prevention, HVAC, Elevators, Caldeiras, Hottis, and full building compliance. €30K+ savings with 22% average reduction across 50+ hospitality assets.'
-      },
-      hospitality: {
-        title: 'Hospitality Operations Excellence',
-        desc: 'End-to-end procurement for luxury hospitality operations across 50+ assets: F&B, laundry, energy, golf courses, padel courts, clubhouses, spas, and all hospitality services. Including Monte Rei, Els Club, San Lourenzo and expanding portfolio.'
-      },
-      digital: {
-        title: 'Digital Procurement Transformation',
-        desc: 'Primavera P6 and e-Procurement integration, automated BidMaps, real-time dashboards. €1M+ savings delivered, targeting €3M next year.'
-      },
-      blaupunkt: {
-        tools: { desc: 'Creation and launch of a complete tools line for the European market — from concept, BOM & compliance to production.' },
-        power: { desc: 'Professional-grade drills, saws, sanders with technical specs, audits and safety certifications.' },
-        garden: { desc: 'Outdoor equipment (chainsaws, trimmers) with complete documentation and safety compliance.' }
-      },
-      sj: { desc: 'Premium enameled cast iron cookware for a British heritage brand (est. 1760).' },
-      pininfarina: { desc: 'Premium outdoor cooking appliances with Italian design and global coordination (EU/Asia).' },
-      nks: {
-        estrelas: { desc: 'Consumer electronics & home appliances for the Brazilian market with full lifecycle management.' },
-        audio: { desc: 'Professional & consumer audio: speakers, sound systems and headphones (ANATEL compliance).' },
-        maisvc: { desc: 'Beauty & personal care line with INMETRO certification tailored to Brazilian retail.' }
-      },
-      ml: {
-        title: 'AI & ML Projects (Selected)',
-        desc: 'Consolidated portfolio: sales forecasting, inventory optimization, promotion uplift, price elasticity, anomaly/quality detection, churn & CLV.',
-        caption1: 'Machine Learning Portfolio',
-        caption2: 'Forecasting · Optimization · Uplift'
-      }
-    },
     nav: { about: 'About', experience: 'Experience', projects: 'Projects', tradeshows: 'Trade Shows', certs: 'Certifications', contact: 'Contact' },
     hero: {
       title: 'Luciano Rodrigues de Souza',
       subtitle: 'AI-Driven Procurement & Operations Leader · Strategic Transformation',
       desc: 'I connect governance, technical rigor, and AI to deliver measurable outcomes: transparent tenders, reliable partners, and resilient operations across Europe, LATAM, and Asia.',
-      badges: {
-    proj: {
-      critical: {
-        title: 'Adquisición de Infraestructura Crítica',
-        desc: 'Adquisición estratégica de todos los sistemas críticos de edificios: SCIE/Seguridad Contra Incendios, Prevención de Legionella, HVAC, Elevadores, Caldeiras, Hottis y cumplimiento total. €30K+ ahorrados con 22% de reducción promedio en 50+ activos de hospitalidad.'
-      },
-      hospitality: {
-        title: 'Excelencia en Operaciones de Hospitalidad',
-        desc: 'Adquisición integral para operaciones de hospitalidad de lujo en 50+ activos: F&B, lavandería, energía, campos de golf, canchas de padel, clubhouses, spas y todos los servicios de hospitalidad. Incluyendo Monte Rei, Els Club, San Lourenzo y cartera en expansión.'
-      },
-      digital: {
-        title: 'Transformación Digital de Adquisiciones',
-        desc: 'Integración Primavera P6 y e-Procurement, BidMaps automatizados, dashboards en tiempo real. €1M+ ahorrados, objetivo de €3M el próximo año.'
-      },
-      blaupunkt: {
-        tools: { desc: 'Creación y lanzamiento de línea completa de herramientas para el mercado europeo — desde concepto, BOM y cumplimiento hasta producción.' },
-        power: { desc: 'Taladros, sierras y lijadoras profesionales con especificaciones técnicas, auditorías y certificaciones de seguridad.' },
-        garden: { desc: 'Equipos outdoor (motosierras, desbrozadoras) con documentación completa y cumplimiento de seguridad.' }
-      },
-      sj: { desc: 'Cacerolas de hierro fundido esmaltado premium para marca británica histórica (fundada en 1760).' },
-      pininfarina: { desc: 'Electrodomésticos premium para cocina outdoor con diseño italiano y coordinación global (UE/Asia).' },
-      nks: {
-        estrelas: { desc: 'Electrónicos y electrodomésticos para el mercado brasileño con gestión completa del ciclo de vida.' },
-        audio: { desc: 'Audio profesional y consumer: bocinas, sistemas de sonido y auriculares (cumplimiento ANATEL).' },
-        maisvc: { desc: 'Línea de belleza y cuidado personal con certificación INMETRO para retail brasileño.' }
-      },
-      ml: {
-        title: 'Proyectos de IA & ML (Seleccionados)',
-        desc: 'Portafolio consolidado: forecasting de ventas, optimización de inventario, uplift de promociones, elasticidad de precio, detección de anomalías/calidad, churn y CLV.',
-        caption1: 'Portafolio de Machine Learning',
-        caption2: 'Forecasting · Optimización · Uplift'
-      }
-    }, top: 'Top Performer 2025', middle: 'AI Specialist', bottom: 'Trusted Leader' },
+      badges: { top: 'Top Performer 2025', middle: 'AI Specialist', bottom: 'Trusted Leader' },
       stats: {
         savings: 'Cumulative Savings',
         savings_note: 'Across multi-category negotiations',
@@ -181,41 +117,24 @@ window.I18N = {
       email: 'Email',
       location: 'Location'
     }
+
+    proj: {
+      critical: {
+        title: "Critical Infrastructure Procurement",
+        desc: "Strategic procurement of all critical building systems: SCIE/Fire Safety, Legionella Prevention, HVAC, Elevators, Caldeiras, Hottis, and full building compliance. €30K+ savings with 22% average reduction across 50+ hospitality assets."
+      },
+      hospitality: {
+        title: "Hospitality Operations Excellence",
+        desc: "End-to-end procurement for luxury hospitality operations across 50+ assets: F&B, laundry, energy, golf courses, padel courts, clubhouses, spas, and all hospitality services. Including Monte Rei, Els Club, San Lourenzo and expanding portfolio."
+      },
+      digital: {
+        title: "Digital Procurement Transformation",
+        desc: "Primavera P6 and e-Procurement integration, automated BidMaps, real-time dashboards. €1M+ savings delivered, targeting €3M next year."
+      }
+    },
   },
   
   pt: {
-    proj: {
-      critical: {
-        title: 'Procurement de Infraestrutura Crítica',
-        desc: 'Aquisição estratégica de todos os sistemas críticos de edifícios: SCIE/Segurança Contra Incêndio, Prevenção de Legionella, HVAC, Elevadores, Caldeiras, Hottis e conformidade total. €30K+ economizados com 22% de redução média em 50+ ativos de hospitalidade.'
-      },
-      hospitality: {
-        title: 'Excelência em Operações de Hospitalidade',
-        desc: 'Procurement end-to-end para operações de hospitalidade de luxo em 50+ ativos: F&B, lavanderia, energia, campos de golfe, courts de padel, clubhouses, spas e todos os serviços de hospitalidade. Incluindo Monte Rei, Els Club, San Lourenzo e portfólio em expansão.'
-      },
-      digital: {
-        title: 'Transformação Digital de Procurement',
-        desc: 'Integração Primavera P6 e e-Procurement, BidMaps automatizados, dashboards em tempo real. €1M+ economizados, meta de €3M no próximo ano.'
-      },
-      blaupunkt: {
-        tools: { desc: 'Criação e lançamento de linha completa de ferramentas para o mercado europeu — do conceito, BOM e conformidade à produção.' },
-        power: { desc: 'Furadeiras, serras e lixadeiras profissionais com especificações técnicas, auditorias e certificações de segurança.' },
-        garden: { desc: 'Equipamentos outdoor (motosserras, aparadores) com documentação completa e conformidade de segurança.' }
-      },
-      sj: { desc: 'Panelas de ferro fundido esmaltado premium para marca britânica histórica (fundada em 1760).' },
-      pininfarina: { desc: 'Eletrodomésticos premium para cozinha outdoor com design italiano e coordenação global (UE/Ásia).' },
-      nks: {
-        estrelas: { desc: 'Eletrônicos e eletrodomésticos para o mercado brasileiro com gestão completa do ciclo de vida.' },
-        audio: { desc: 'Áudio profissional e consumer: caixas, sistemas de som e fones (conformidade ANATEL).' },
-        maisvc: { desc: 'Linha de beleza e cuidados pessoais com certificação INMETRO para varejo brasileiro.' }
-      },
-      ml: {
-        title: 'Projetos de IA & ML (Selecionados)',
-        desc: 'Portfólio consolidado: forecasting de vendas, otimização de estoque, uplift de promoções, elasticidade de preço, detecção de anomalias/qualidade, churn e CLV.',
-        caption1: 'Portfólio de Machine Learning',
-        caption2: 'Forecasting · Otimização · Uplift'
-      }
-    },
     nav: { about: 'Sobre', experience: 'Experiência', projects: 'Projetos', tradeshows: 'Feiras', certs: 'Certificações', contact: 'Contato' },
     hero: {
       title: 'Luciano Rodrigues de Souza',
@@ -333,6 +252,21 @@ window.I18N = {
       email: 'Email',
       location: 'Localização'
     }
+
+    proj: {
+      critical: {
+        title: "Aquisição de Infraestrutura Crítica",
+        desc: "Aquisição estratégica de todos os sistemas críticos de edifícios: SCIE/Segurança Contra Incêndio, Prevenção de Legionella, HVAC, Elevadores, Caldeiras, Hottis e conformidade total do edifício. €30K+ em economias com redução média de 22% em mais de 50 ativos de hospitalidade."
+      },
+      hospitality: {
+        title: "Excelência em Operações de Hospitalidade",
+        desc: "Aquisição completa para operações de hospitalidade de luxo em mais de 50 ativos: F&B, lavanderia, energia, campos de golfe, courts de padel, clubhouses, spas e todos os serviços de hospitalidade. Incluindo Monte Rei, Els Club, San Lourenzo e portfólio em expansão."
+      },
+      digital: {
+        title: "Transformação Digital de Procurement",
+        desc: "Integração Primavera P6 e e-Procurement, BidMaps automatizados, dashboards em tempo real. €1M+ em economias entregues, com meta de €3M no próximo ano."
+      }
+    },
   },
   
   es: {
@@ -407,41 +341,24 @@ window.I18N = {
       email: 'Email',
       location: 'Ubicación'
     }
+
+    proj: {
+      critical: {
+        title: "Adquisición de Infraestructura Crítica",
+        desc: "Adquisición estratégica de todos los sistemas críticos de edificios: SCIE/Seguridad Contra Incendios, Prevención de Legionella, HVAC, Elevadores, Caldeiras, Hottis y cumplimiento total del edificio. €30K+ en ahorros con reducción promedio del 22% en más de 50 activos de hospitalidad."
+      },
+      hospitality: {
+        title: "Excelencia en Operaciones de Hospitalidad",
+        desc: "Adquisición integral para operaciones de hospitalidad de lujo en más de 50 activos: F&B, lavandería, energía, campos de golf, canchas de padel, clubhouses, spas y todos los servicios de hospitalidad. Incluyendo Monte Rei, Els Club, San Lourenzo y cartera en expansión."
+      },
+      digital: {
+        title: "Transformación Digital de Compras",
+        desc: "Integración Primavera P6 y e-Procurement, BidMaps automatizados, dashboards en tiempo real. €1M+ en ahorros entregados, con objetivo de €3M el próximo año."
+      }
+    },
   },
   
   fr: {
-    proj: {
-      critical: {
-        title: 'Approvisionnement Infrastructure Critique',
-        desc: 'Approvisionnement stratégique de tous les systèmes critiques de bâtiments: SCIE/Sécurité Incendie, Prévention Legionella, HVAC, Ascenseurs, Caldeiras, Hottis et conformité totale. €30K+ économisés avec 22% de réduction moyenne sur 50+ actifs d'hôtellerie.'
-      },
-      hospitality: {
-        title: 'Excellence des Opérations Hôtelières',
-        desc: 'Approvisionnement end-to-end pour opérations hôtelières de luxe sur 50+ actifs: F&B, blanchisserie, énergie, terrains de golf, courts de padel, clubhouses, spas et tous les services hôteliers. Incluant Monte Rei, Els Club, San Lourenzo et portefeuille en expansion.'
-      },
-      digital: {
-        title: 'Transformation Digitale des Achats',
-        desc: 'Intégration Primavera P6 et e-Procurement, BidMaps automatisés, dashboards en temps réel. €1M+ économisés, objectif de €3M l'année prochaine.'
-      },
-      blaupunkt: {
-        tools: { desc: 'Création et lancement d'une ligne complète d'outils pour le marché européen — du concept, BOM et conformité à la production.' },
-        power: { desc: 'Perceuses, scies et ponceuses professionnelles avec spécifications techniques, audits et certifications de sécurité.' },
-        garden: { desc: 'Équipements outdoor (tronçonneuses, débroussailleuses) avec documentation complète et conformité sécurité.' }
-      },
-      sj: { desc: 'Casseroles en fonte émaillée premium pour marque britannique historique (fondée en 1760).' },
-      pininfarina: { desc: 'Électroménagers premium pour cuisine outdoor avec design italien et coordination globale (UE/Asie).' },
-      nks: {
-        estrelas: { desc: 'Électronique et électroménager pour le marché brésilien avec gestion complète du cycle de vie.' },
-        audio: { desc: 'Audio professionnel et grand public: enceintes, systèmes son et casques (conformité ANATEL).' },
-        maisvc: { desc: 'Ligne beauté et soins personnels avec certification INMETRO pour retail brésilien.' }
-      },
-      ml: {
-        title: 'Projets IA & ML (Sélectionnés)',
-        desc: 'Portefeuille consolidé: forecasting des ventes, optimisation des stocks, uplift des promotions, élasticité des prix, détection d'anomalies/qualité, churn et CLV.',
-        caption1: 'Portefeuille Machine Learning',
-        caption2: 'Forecasting · Optimisation · Uplift'
-      }
-    },
     nav: { about: 'À propos', experience: 'Expérience', projects: 'Projets', tradeshows: 'Salons', certs: 'Certifications', contact: 'Contact' },
     hero: {
       title: 'Luciano Rodrigues de Souza',
@@ -513,6 +430,21 @@ window.I18N = {
       email: 'Email',
       location: 'Localisation'
     }
+
+    proj: {
+      critical: {
+        title: "Approvisionnement en Infrastructure Critique",
+        desc: "Approvisionnement stratégique de tous les systèmes critiques de bâtiments: SCIE/Sécurité Incendie, Prévention Legionella, HVAC, Ascenseurs, Caldeiras, Hottis et conformité totale du bâtiment. €30K+ d'économies avec réduction moyenne de 22% sur plus de 50 actifs d'hôtellerie."
+      },
+      hospitality: {
+        title: "Excellence des Opérations d'Hôtellerie",
+        desc: "Approvisionnement complet pour opérations hôtelières de luxe sur plus de 50 actifs: F&B, blanchisserie, énergie, terrains de golf, courts de padel, clubhouses, spas et tous les services hôteliers. Incluant Monte Rei, Els Club, San Lourenzo et portefeuille en expansion."
+      },
+      digital: {
+        title: "Transformation Digitale des Achats",
+        desc: "Intégration Primavera P6 et e-Procurement, BidMaps automatisés, dashboards en temps réel. €1M+ d'économies réalisées, ciblant €3M l'année prochaine."
+      }
+    },
   }
 };
 
