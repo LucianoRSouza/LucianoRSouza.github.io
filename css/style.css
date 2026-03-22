@@ -124,3 +124,50 @@
     height: 100px;
   }
 }
+
+/* ============================================
+   CORREÇÕES DE VISUALIZAÇÃO - 100% HEIGHT
+   ============================================ */
+
+.project-visualization {
+  height: 100% !important;
+  min-height: 250px;
+}
+
+.project-visualization .viz-container {
+  height: 100% !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Garantir que os cards de projeto tenham altura consistente */
+.project-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card .project-visualization,
+.project-card .project-image,
+.project-card .gallery-main {
+  flex: 1;
+  min-height: 250px;
+}
+
+.project-card .project-content {
+  flex-shrink: 0;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+  .project-visualization {
+    min-height: 200px;
+  }
+
+  .project-card .project-visualization,
+  .project-card .project-image,
+  .project-card .gallery-main {
+    min-height: 200px;
+  }
+}
