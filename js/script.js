@@ -1843,3 +1843,8 @@ window.goToProjectSlide = goToProjectSlide;
 window.closeProjectGallery = closeProjectGallery;
 window.scrollToTop = scrollToTop;
 window.openTradeGallery = openTradeGallery;
+
+window.addEventListener('load', function(){ var l=document.getElementById('loading'); if(l){ l.classList.add('hidden'); setTimeout(function(){ try{l.remove()}catch(e){} },500);} });
+
+// Safety net: hide loader after 5s
+setTimeout(function(){ var l=document.getElementById('loading'); if(l){ l.classList.add('hidden'); } }, 5000);
