@@ -1646,11 +1646,12 @@ function initLoading() {
   const loading = $('#loading');
   if (!loading) return;
   
-  
-  } else {
-    window.addEventListener('load', hideLoading);
-  }
-}
+  const hideLoading = () => {
+    setTimeout(() => {
+      loading.classList.add('hidden');
+      setTimeout(() => loading.remove(), 400);
+    }, 1200);
+  };
   
   // Se a página já estiver completamente carregada, esconde imediatamente
   if (document.readyState === 'complete') {
@@ -1659,6 +1660,8 @@ function initLoading() {
     window.addEventListener('load', hideLoading);
   }
 }
+
+function initSmoothAnchors() {
 
 function initSmoothAnchors() {
   $$('a[href^="#"]').forEach(a => {
