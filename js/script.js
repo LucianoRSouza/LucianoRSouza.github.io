@@ -1843,20 +1843,3 @@ window.goToProjectSlide = goToProjectSlide;
 window.closeProjectGallery = closeProjectGallery;
 window.scrollToTop = scrollToTop;
 window.openTradeGallery = openTradeGallery;
-
-// --- Auto hide loading screen on full load ---
-window.addEventListener('load', () => {
-  const loading = document.getElementById('loading');
-  if (loading) {
-    loading.classList.add('hidden');
-    setTimeout(() => loading.remove(), 500);
-  }
-});
-
-// --- Safety net: hide loader after 5s even if some assets fail ---
-document.addEventListener('DOMContentLoaded', () => {
-  setTimeout(() => {
-    const loading = document.getElementById('loading');
-    if (loading) loading.classList.add('hidden');
-  }, 5000);
-});
