@@ -1660,6 +1660,14 @@ function initLoading() {
     window.addEventListener('load', hideLoading);
   }
 }
+  
+  // Se a página já estiver completamente carregada, esconde imediatamente
+  if (document.readyState === 'complete') {
+    hideLoading();
+  } else {
+    window.addEventListener('load', hideLoading);
+  }
+}
 
 function initSmoothAnchors() {
   $$('a[href^="#"]').forEach(a => {
