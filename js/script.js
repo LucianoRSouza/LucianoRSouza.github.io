@@ -1843,3 +1843,10 @@ window.goToProjectSlide = goToProjectSlide;
 window.closeProjectGallery = closeProjectGallery;
 window.scrollToTop = scrollToTop;
 window.openTradeGallery = openTradeGallery;
+window.addEventListener("load", () => {
+    const loading = document.getElementById("loading");
+    if (loading) {
+        loading.classList.add("hidden");
+        setTimeout(() => loading.remove(), 500);
+    }
+});
