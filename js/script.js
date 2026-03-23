@@ -1,27 +1,16 @@
-/* =========================================================
-   Luciano Rodrigues — Portfolio JS (Otimizado - Sem I18N Manual)
-   ========================================================= */
+const PG_state={images:[],index:0};
+const CardSlides=new Map();
+let savedScrollPosition=0;
+const $=(sel,ctx=document)=>ctx.querySelector(sel);
+const $$=(sel,ctx=document)=>Array.from(ctx.querySelectorAll(sel));
+const on=(el,evt,fn,opts)=>el&&el.addEventListener(evt,fn,opts);
 
-/* -------------------------
-   Helpers / Estado Global
---------------------------*/
-const PG_state = { images: [], index: 0 };
-const CardSlides = new Map();
-let savedScrollPosition = 0;
-
-const $  = (sel, ctx = document) => ctx.querySelector(sel);
-const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
-const on = (el, evt, fn, opts) => el && el.addEventListener(evt, fn, opts);
-
-/* -------------------------
-   Dados dos Modais (Apenas Inglês)
---------------------------*/
-const StatDetailsData = {
-  savings: {
-    icon: "fa-piggy-bank",
-    title: "Cumulative Savings Delivered",
-    value: "€1M+",
-    details: [
+const getStatDetailsData=()=>({
+  savings:{
+    icon:"fa-piggy-bank",
+    title:"Cumulative Savings Delivered",
+    value:"€1M+",
+    details:[
       "Multi-category strategic sourcing initiatives across direct and indirect spend",
       "Negotiated favorable payment terms (60-90 days) improving cash flow",
       "Implemented should-cost modeling identifying 15-25% cost reduction opportunities",
@@ -29,11 +18,11 @@ const StatDetailsData = {
       "Zero-based budgeting approach for CAPEX projects saving 20% on average"
     ]
   },
-  rfps: {
-    icon: "fa-file-contract",
-    title: "Strategic Tenders Led",
-    value: "120+",
-    details: [
+  rfps:{
+    icon:"fa-file-contract",
+    title:"Strategic Tenders Led",
+    value:"120+",
+    details:[
       "End-to-end RFI/RFP/RFQ process design with technical annexes (A1/A2)",
       "Weighted scoring matrices balancing technical (40%), commercial (35%), and ESG (25%) criteria",
       "E-procurement platform integration with full audit trails",
@@ -41,11 +30,11 @@ const StatDetailsData = {
       "Average cycle time reduction from 45 to 28 days while improving compliance"
     ]
   },
-  projects: {
-    icon: "fa-project-diagram",
-    title: "Project Portfolio Value",
-    value: "€10M+",
-    details: [
+  projects:{
+    icon:"fa-project-diagram",
+    title:"Project Portfolio Value",
+    value:"€10M+",
+    details:[
       "New product development from concept to mass production",
       "Licensed portfolio launches (Blaupunkt, Spear & Jackson, Pininfarina)",
       "Factory audits and supplier capability assessments across Asia",
@@ -53,11 +42,11 @@ const StatDetailsData = {
       "Cross-border logistics optimization and customs compliance"
     ]
   },
-  regions: {
-    icon: "fa-globe",
-    title: "Global Operations Coverage",
-    value: "20+",
-    details: [
+  regions:{
+    icon:"fa-globe",
+    title:"Global Operations Coverage",
+    value:"20+",
+    details:[
       "Europe: Portugal, Spain, Germany, UK, Netherlands, Italy, France",
       "LATAM: Brazil, Argentina, Chile, Colombia, Mexico, Peru, Uruguay",
       "Asia: China, Hong Kong, Taiwan, Vietnam, India, South Korea",
@@ -65,17 +54,17 @@ const StatDetailsData = {
       "Time zone coordination for 24/7 project execution"
     ]
   }
-};
+});
 
-const StrategyDetailsData = {
-  1: {
-    title: "Stand Design & Merchandising",
-    subtitle: "Creating immersive brand experiences",
-    icon: "fa-drafting-compass",
-    sections: [
+const getStrategyDetailsData=()=>({
+  1:{
+    title:"Stand Design & Merchandising",
+    subtitle:"Creating immersive brand experiences",
+    icon:"fa-drafting-compass",
+    sections:[
       {
-        title: "Strategic Approach",
-        items: [
+        title:"Strategic Approach",
+        items:[
           "Co-created booth concept with Marketing aligning to brand positioning",
           "Traffic flow optimization for maximum visitor engagement",
           "Product display hierarchy highlighting hero SKUs and new launches",
@@ -84,8 +73,8 @@ const StrategyDetailsData = {
         ]
       },
       {
-        title: "Technical Execution",
-        items: [
+        title:"Technical Execution",
+        items:[
           "3D renderings and mockups approved 60 days prior to event",
           "Modular stand components for reusability across fairs",
           "Digital signage integration with real-time product catalogs",
@@ -95,14 +84,14 @@ const StrategyDetailsData = {
       }
     ]
   },
-  2: {
-    title: "Meetings Orchestration & Lead Capture",
-    subtitle: "Maximizing ROI through structured engagement",
-    icon: "fa-calendar-check",
-    sections: [
+  2:{
+    title:"Meetings Orchestration & Lead Capture",
+    subtitle:"Maximizing ROI through structured engagement",
+    icon:"fa-calendar-check",
+    sections:[
       {
-        title: "Pre-Event Planning",
-        items: [
+        title:"Pre-Event Planning",
+        items:[
           "Target list development: 200+ qualified prospects per fair",
           "Meeting scheduling system with automated reminders",
           "Sales team briefing with product knowledge sessions",
@@ -111,8 +100,8 @@ const StrategyDetailsData = {
         ]
       },
       {
-        title: "On-Site Execution",
-        items: [
+        title:"On-Site Execution",
+        items:[
           "Structured 30-minute meeting slots with clear agendas",
           "Real-time lead capture via CRM mobile app",
           "Immediate follow-up emails sent within 4 hours",
@@ -122,14 +111,14 @@ const StrategyDetailsData = {
       }
     ]
   },
-  3: {
-    title: "Negotiations & Partnering",
-    subtitle: "Building strategic supplier relationships",
-    icon: "fa-handshake-angle",
-    sections: [
+  3:{
+    title:"Negotiations & Partnering",
+    subtitle:"Building strategic supplier relationships",
+    icon:"fa-handshake-angle",
+    sections:[
       {
-        title: "Partnership Development",
-        items: [
+        title:"Partnership Development",
+        items:[
           "Initial qualification: financial stability, capacity, certifications",
           "Term sheet negotiations: MOQ, payment terms, exclusivity clauses",
           "Pricing framework with volume breaks and annual rebates",
@@ -138,8 +127,8 @@ const StrategyDetailsData = {
         ]
       },
       {
-        title: "Contractual Framework",
-        items: [
+        title:"Contractual Framework",
+        items:[
           "Master Service Agreements (MSA) with standardized terms",
           "Statement of Work (SoW) templates for project-based work",
           "Service Level Agreements (SLA) with penalty/incentive clauses",
@@ -149,14 +138,14 @@ const StrategyDetailsData = {
       }
     ]
   },
-  4: {
-    title: "Tech Discovery & Benchmark",
-    subtitle: "Staying ahead of market innovation",
-    icon: "fa-microchip",
-    sections: [
+  4:{
+    title:"Tech Discovery & Benchmark",
+    subtitle:"Staying ahead of market innovation",
+    icon:"fa-microchip",
+    sections:[
       {
-        title: "Market Intelligence",
-        items: [
+        title:"Market Intelligence",
+        items:[
           "Technology scouting across 50+ supplier booths per fair",
           "Competitive product teardowns and feature comparison",
           "Cost benchmarking for similar specifications",
@@ -165,8 +154,8 @@ const StrategyDetailsData = {
         ]
       },
       {
-        title: "Technical Evaluation",
-        items: [
+        title:"Technical Evaluation",
+        items:[
           "Sample collection for lab testing and validation",
           "Engineering team consultations on technical feasibility",
           "Prototype review and design for manufacturing (DFM) feedback",
@@ -176,14 +165,14 @@ const StrategyDetailsData = {
       }
     ]
   },
-  5: {
-    title: "Factory Audits & Capability Mapping",
-    subtitle: "Ensuring operational excellence",
-    icon: "fa-industry",
-    sections: [
+  5:{
+    title:"Factory Audits & Capability Mapping",
+    subtitle:"Ensuring operational excellence",
+    icon:"fa-industry",
+    sections:[
       {
-        title: "Audit Framework",
-        items: [
+        title:"Audit Framework",
+        items:[
           "ISO 9001 quality management system verification",
           "Production capacity analysis (lines, shifts, utilization)",
           "Equipment maintenance records and calibration certificates",
@@ -192,8 +181,8 @@ const StrategyDetailsData = {
         ]
       },
       {
-        title: "Risk Assessment",
-        items: [
+        title:"Risk Assessment",
+        items:[
           "Financial health check (credit reports, payment history)",
           "Supply chain resilience (dual sourcing, buffer stock)",
           "Social compliance audits (SA8000, BSCI standards)",
@@ -203,14 +192,14 @@ const StrategyDetailsData = {
       }
     ]
   },
-  6: {
-    title: "Post-Fair Pipeline, ROI & Governance",
-    subtitle: "Converting leads into revenue",
-    icon: "fa-chart-line",
-    sections: [
+  6:{
+    title:"Post-Fair Pipeline, ROI & Governance",
+    subtitle:"Converting leads into revenue",
+    icon:"fa-chart-line",
+    sections:[
       {
-        title: "Pipeline Management",
-        items: [
+        title:"Pipeline Management",
+        items:[
           "Lead categorization: Hot (immediate), Warm (3 months), Cold (nurture)",
           "CRM integration with automated follow-up sequences",
           "Opportunity value estimation and win probability scoring",
@@ -219,8 +208,8 @@ const StrategyDetailsData = {
         ]
       },
       {
-        title: "Performance Metrics",
-        items: [
+        title:"Performance Metrics",
+        items:[
           "Cost per lead calculation (stand cost ÷ qualified leads)",
           "Conversion rate tracking from lead to order",
           "Average deal size comparison vs. non-fair customers",
@@ -230,333 +219,265 @@ const StrategyDetailsData = {
       }
     ]
   }
-};
+});
 
-/* -------------------------
-   Modais — Stats
---------------------------*/
-function openStatModal(key) {
-  const data = StatDetailsData[key];
-  if (!data) return;
-
-  $('#statModalIcon').className = `fas ${data.icon}`;
-  $('#statModalTitle').textContent = data.title;
-  $('#statModalValue').textContent = data.value;
-  $('#statModalDetails').innerHTML = data.details.map(it => `<li>${it}</li>`).join('');
+function openStatModal(key){
+  const data=getStatDetailsData()[key];
+  if(!data)return;
+  $('#statModalIcon').className=`fas ${data.icon}`;
+  $('#statModalTitle').textContent=data.title;
+  $('#statModalValue').textContent=data.value;
+  $('#statModalDetails').innerHTML=data.details.map(it=>`<li>${it}</li>`).join('');
   $('#statModalOverlay').classList.add('active');
-  document.body.style.overflow = 'hidden';
+  document.body.style.overflow='hidden';
 }
 
-function closeStatModal() {
-  const overlay = $('#statModalOverlay');
-  if (!overlay) return;
+function closeStatModal(){
+  const overlay=$('#statModalOverlay');
+  if(!overlay)return;
   overlay.classList.remove('active');
-  document.body.style.overflow = 'auto';
+  document.body.style.overflow='auto';
 }
 
-/* -------------------------
-   Modais — Estratégia
---------------------------*/
-function openStrategyModal(num) {
-  const data = StrategyDetailsData[num];
-  if (!data) return;
-
-  $('#strategyDetailIcon').className = `fas ${data.icon}`;
-  $('#strategyDetailTitle').textContent = data.title;
-  $('#strategyDetailSubtitle').textContent = data.subtitle;
-
-  const body = data.sections.map(sec => {
-    const items = sec.items.map(li => `<li>${li}</li>`).join('');
+function openStrategyModal(num){
+  const data=getStrategyDetailsData()[num];
+  if(!data)return;
+  $('#strategyDetailIcon').className=`fas ${data.icon}`;
+  $('#strategyDetailTitle').textContent=data.title;
+  $('#strategyDetailSubtitle').textContent=data.subtitle;
+  const body=data.sections.map(sec=>{
+    const items=sec.items.map(li=>`<li>${li}</li>`).join('');
     return `<div class="strategy-detail-section"><h4><i class="fas fa-chevron-right"></i> ${sec.title}</h4><ul>${items}</ul></div>`;
   }).join('');
-
-  $('#strategyDetailBody').innerHTML = body;
+  $('#strategyDetailBody').innerHTML=body;
   $('#strategyDetailOverlay').classList.add('active');
-  document.body.style.overflow = 'hidden';
+  document.body.style.overflow='hidden';
 }
 
-function closeStrategyModal() {
-  const overlay = $('#strategyDetailOverlay');
-  if (!overlay) return;
-
-  const card = overlay.querySelector('.strategy-detail-card');
-  const body = overlay.querySelector('.strategy-detail-body');
-
-  if (card) { card.scrollTop = 0; card.scrollTo(0, 0); }
-  if (body) { body.scrollTop = 0; body.scrollTo(0, 0); }
-  overlay.scrollTop = 0;
-
+function closeStrategyModal(){
+  const overlay=$('#strategyDetailOverlay');
+  if(!overlay)return;
+  const card=overlay.querySelector('.strategy-detail-card');
+  const body=overlay.querySelector('.strategy-detail-body');
+  if(card){card.scrollTop=0;card.scrollTo(0,0);}
+  if(body){body.scrollTop=0;body.scrollTo(0,0);}
+  overlay.scrollTop=0;
   overlay.classList.remove('active');
-  document.body.style.overflow = 'auto';
+  document.body.style.overflow='auto';
 }
 
-/* -------------------------
-   Galerias - Animação das Bolinhas
---------------------------*/
-function updateCardDots(card, idx) {
-  const dots = card.querySelectorAll('.gallery-dot');
-  dots.forEach((dot, i) => {
-    if (i === idx) {
+function updateCardDots(card,idx){
+  const dots=card.querySelectorAll('.gallery-dot');
+  dots.forEach((dot,i)=>{
+    if(i===idx){
       dot.classList.add('active');
-      dot.style.transform = 'scale(1.4)';
-      dot.style.background = 'var(--gold)';
-      dot.style.boxShadow = '0 0 10px rgba(212, 175, 55, 0.6)';
-    } else {
+      dot.style.transform='scale(1.4)';
+      dot.style.background='var(--gold)';
+      dot.style.boxShadow='0 0 10px rgba(212, 175, 55, 0.6)';
+    }else{
       dot.classList.remove('active');
-      dot.style.transform = 'scale(1)';
-      dot.style.background = 'rgba(255, 255, 255, 0.5)';
-      dot.style.boxShadow = 'none';
+      dot.style.transform='scale(1)';
+      dot.style.background='rgba(255, 255, 255, 0.5)';
+      dot.style.boxShadow='none';
     }
   });
 }
 
-function changeProjectSlide(dir) {
-  if (!PG_state.images.length) return;
-  const modal = document.getElementById('projectGalleryModal');
-  if (!modal) return;
-
-  const slides = modal.querySelectorAll('.gallery-slide');
-  const dots = modal.querySelectorAll('.gallery-dot');
-
-  if (slides[PG_state.index]) slides[PG_state.index].classList.remove('active');
-  if (dots[PG_state.index]) {
+function changeProjectSlide(dir){
+  if(!PG_state.images.length)return;
+  const modal=document.getElementById('projectGalleryModal');
+  if(!modal)return;
+  const slides=modal.querySelectorAll('.gallery-slide');
+  const dots=modal.querySelectorAll('.gallery-dot');
+  if(slides[PG_state.index])slides[PG_state.index].classList.remove('active');
+  if(dots[PG_state.index]){
     dots[PG_state.index].classList.remove('active');
-    dots[PG_state.index].style.transform = 'scale(1)';
-    dots[PG_state.index].style.background = 'rgba(212, 175, 55, 0.34)';
-    dots[PG_state.index].style.boxShadow = 'none';
+    dots[PG_state.index].style.transform='scale(1)';
+    dots[PG_state.index].style.background='rgba(212, 175, 55, 0.34)';
+    dots[PG_state.index].style.boxShadow='none';
   }
-
-  PG_state.index = (PG_state.index + dir + PG_state.images.length) % PG_state.images.length;
-
-  if (slides[PG_state.index]) slides[PG_state.index].classList.add('active');
-  if (dots[PG_state.index]) {
+  PG_state.index=(PG_state.index+dir+PG_state.images.length)%PG_state.images.length;
+  if(slides[PG_state.index])slides[PG_state.index].classList.add('active');
+  if(dots[PG_state.index]){
     dots[PG_state.index].classList.add('active');
-    dots[PG_state.index].style.transform = 'scale(1.4)';
-    dots[PG_state.index].style.background = 'var(--gold)';
-    dots[PG_state.index].style.boxShadow = '0 0 15px rgba(212, 175, 55, 0.6)';
+    dots[PG_state.index].style.transform='scale(1.4)';
+    dots[PG_state.index].style.background='var(--gold)';
+    dots[PG_state.index].style.boxShadow='0 0 15px rgba(212, 175, 55, 0.6)';
   }
 }
 
-function goToProjectSlide(idx) {
-  if (!PG_state.images.length) return;
-  const modal = document.getElementById('projectGalleryModal');
-  if (!modal) return;
-
-  const slides = modal.querySelectorAll('.gallery-slide');
-  const dots = modal.querySelectorAll('.gallery-dot');
-
-  if (slides[PG_state.index]) slides[PG_state.index].classList.remove('active');
-  if (dots[PG_state.index]) {
+function goToProjectSlide(idx){
+  if(!PG_state.images.length)return;
+  const modal=document.getElementById('projectGalleryModal');
+  if(!modal)return;
+  const slides=modal.querySelectorAll('.gallery-slide');
+  const dots=modal.querySelectorAll('.gallery-dot');
+  if(slides[PG_state.index])slides[PG_state.index].classList.remove('active');
+  if(dots[PG_state.index]){
     dots[PG_state.index].classList.remove('active');
-    dots[PG_state.index].style.transform = 'scale(1)';
-    dots[PG_state.index].style.background = 'rgba(212, 175, 55, 0.34)';
-    dots[PG_state.index].style.boxShadow = 'none';
+    dots[PG_state.index].style.transform='scale(1)';
+    dots[PG_state.index].style.background='rgba(212, 175, 55, 0.34)';
+    dots[PG_state.index].style.boxShadow='none';
   }
-
-  PG_state.index = idx;
-
-  if (slides[PG_state.index]) slides[PG_state.index].classList.add('active');
-  if (dots[PG_state.index]) {
+  PG_state.index=idx;
+  if(slides[PG_state.index])slides[PG_state.index].classList.add('active');
+  if(dots[PG_state.index]){
     dots[PG_state.index].classList.add('active');
-    dots[PG_state.index].style.transform = 'scale(1.4)';
-    dots[PG_state.index].style.background = 'var(--gold)';
-    dots[PG_state.index].style.boxShadow = '0 0 15px rgba(212, 175, 55, 0.6)';
+    dots[PG_state.index].style.transform='scale(1.4)';
+    dots[PG_state.index].style.background='var(--gold)';
+    dots[PG_state.index].style.boxShadow='0 0 15px rgba(212, 175, 55, 0.6)';
   }
 }
 
-/* -------------------------
-   Galerias de Projetos
---------------------------*/
-function setupCardAutoSlide(card) {
-  const container = card.querySelector('.gallery-main');
-  if (!container) return;
-
-  let images = [];
-  const csv = card.getAttribute('data-images') || '';
-  if (csv.trim()) {
-    images = csv.split(',').map(s => s.trim()).filter(Boolean);
-  } else {
-    const main = container.querySelector('img');
-    if (main?.src) images = [main.src];
+function setupCardAutoSlide(card){
+  const container=card.querySelector('.gallery-main');
+  if(!container)return;
+  let images=[];
+  const csv=card.getAttribute('data-images')||'';
+  if(csv.trim()){
+    images=csv.split(',').map(s=>s.trim()).filter(Boolean);
+  }else{
+    const main=container.querySelector('img');
+    if(main?.src)images=[main.src];
   }
-  if (!images.length) return;
-
-  const imgEl = container.querySelector('img');
-  const auto = card.getAttribute('data-autoslide') === 'true';
-  const interval = Math.max(1200, parseInt(card.getAttribute('data-interval'), 10) || 2500);
-
-  const state = { images, idx: 0, timer: null, interval, imgEl, paused: false };
-  CardSlides.set(card, state);
-
-  function tick() {
-    if (state.paused || !auto || state.images.length <= 1) return;
-    state.idx = (state.idx + 1) % state.images.length;
-    state.imgEl.style.opacity = '0';
-    setTimeout(() => {
-      state.imgEl.src = state.images[state.idx];
-      state.imgEl.onload = () => { state.imgEl.style.opacity = '1'; };
-      updateCardDots(card, state.idx);
-    }, 160);
+  if(!images.length)return;
+  const imgEl=container.querySelector('img');
+  const auto=card.getAttribute('data-autoslide')==='true';
+  const interval=Math.max(1200,parseInt(card.getAttribute('data-interval'),10)||2500);
+  const state={images,idx:0,timer:null,interval,imgEl,paused:false};
+  CardSlides.set(card,state);
+  function tick(){
+    if(state.paused||!auto||state.images.length<=1)return;
+    state.idx=(state.idx+1)%state.images.length;
+    state.imgEl.style.opacity='0';
+    setTimeout(()=>{
+      state.imgEl.src=state.images[state.idx];
+      state.imgEl.onload=()=>{state.imgEl.style.opacity='1';};
+      updateCardDots(card,state.idx);
+    },160);
   }
-  function start() {
-    stop();
-    if (auto && state.images.length > 1) state.timer = setInterval(tick, state.interval);
-  }
-  function stop() {
-    if (state.timer) { clearInterval(state.timer); state.timer = null; }
-  }
-
-  on(card, 'mouseenter', () => { state.paused = true; });
-  on(card, 'mouseleave', () => { state.paused = false; });
-
-  const clickable = card.querySelector('.gallery-overlay') || container;
-  on(clickable, 'click', (e) => {
-    e.stopPropagation();
-    openProjectGalleryFromCard(card);
-  });
-
+  function start(){stop();if(auto&&state.images.length>1)state.timer=setInterval(tick,state.interval);}
+  function stop(){if(state.timer){clearInterval(state.timer);state.timer=null;}}
+  on(card,'mouseenter',()=>{state.paused=true;});
+  on(card,'mouseleave',()=>{state.paused=false;});
+  const clickable=card.querySelector('.gallery-overlay')||container;
+  on(clickable,'click',(e)=>{e.stopPropagation();openProjectGalleryFromCard(card);});
   start();
 }
 
-function openProjectGalleryFromCard(card) {
-  savedScrollPosition = window.scrollY || document.documentElement.scrollTop || 0;
-
-  const modal = $('#projectGalleryModal');
-  if (!modal) return;
-
-  let images = [];
-  const csv = card.getAttribute('data-images') || '';
-  if (csv.trim()) {
-    images = csv.split(',').map(s => s.trim()).filter(Boolean);
-  } else {
-    const main = card.querySelector('.gallery-main img');
-    if (main?.src) images = [main.src];
+function openProjectGalleryFromCard(card){
+  savedScrollPosition=window.scrollY||document.documentElement.scrollTop||0;
+  const modal=$('#projectGalleryModal');
+  if(!modal)return;
+  let images=[];
+  const csv=card.getAttribute('data-images')||'';
+  if(csv.trim()){
+    images=csv.split(',').map(s=>s.trim()).filter(Boolean);
+  }else{
+    const main=card.querySelector('.gallery-main img');
+    if(main?.src)images=[main.src];
   }
-  if (!images.length) return;
-
+  if(!images.length)return;
   buildProjectSlides(images);
   modal.classList.add('active');
-  document.body.style.overflow = 'hidden';
+  document.body.style.overflow='hidden';
 }
 
-function buildProjectSlides(images) {
-  const slider = $('#gallerySlider');
-  const dotsContainer = $('#galleryDots');
-  if (!slider || !dotsContainer) return;
-
-  slider.innerHTML = '';
-  dotsContainer.innerHTML = '';
-
-  images.forEach((src, idx) => {
-    const slide = document.createElement('div');
-    slide.className = 'gallery-slide' + (idx === 0 ? ' active' : '');
-    const img = document.createElement('img');
-    img.alt = 'Project image ' + (idx + 1);
-    img.src = src;
+function buildProjectSlides(images){
+  const slider=$('#gallerySlider');
+  const dotsContainer=$('#galleryDots');
+  if(!slider||!dotsContainer)return;
+  slider.innerHTML='';
+  dotsContainer.innerHTML='';
+  images.forEach((src,idx)=>{
+    const slide=document.createElement('div');
+    slide.className='gallery-slide'+(idx===0?' active':'');
+    const img=document.createElement('img');
+    img.alt='Project image '+(idx+1);
+    img.src=src;
     slide.appendChild(img);
     slider.appendChild(slide);
-
-    const dot = document.createElement('div');
-    dot.className = 'gallery-dot' + (idx === 0 ? ' active' : '');
-    if (idx === 0) {
-      dot.style.transform = 'scale(1.4)';
-      dot.style.background = 'var(--gold)';
-      dot.style.boxShadow = '0 0 15px rgba(212, 175, 55, 0.6)';
+    const dot=document.createElement('div');
+    dot.className='gallery-dot'+(idx===0?' active':'');
+    if(idx===0){
+      dot.style.transform='scale(1.4)';
+      dot.style.background='var(--gold)';
+      dot.style.boxShadow='0 0 15px rgba(212, 175, 55, 0.6)';
     }
-    dot.addEventListener('click', () => goToProjectSlide(idx));
+    dot.addEventListener('click',()=>goToProjectSlide(idx));
     dotsContainer.appendChild(dot);
   });
-
-  PG_state.images = images.slice();
-  PG_state.index = 0;
+  PG_state.images=images.slice();
+  PG_state.index=0;
 }
 
-function closeProjectGallery() {
-  const modal = $('#projectGalleryModal');
-  if (modal) {
+function closeProjectGallery(){
+  const modal=$('#projectGalleryModal');
+  if(modal){
     modal.classList.remove('active');
-    document.body.style.overflow = 'auto';
-
-    if (savedScrollPosition > 0) {
-      setTimeout(() => {
-        window.scrollTo({ top: savedScrollPosition, behavior: 'instant' });
-        savedScrollPosition = 0;
-      }, 10);
+    document.body.style.overflow='auto';
+    if(savedScrollPosition>0){
+      setTimeout(()=>{
+        window.scrollTo({top:savedScrollPosition,behavior:'instant'});
+        savedScrollPosition=0;
+      },10);
     }
   }
 }
 
-/* -------------------------
-   Inicializações
---------------------------*/
-function initMobileEnhancements() {
-  const isTouch = window.matchMedia('(pointer: coarse)').matches;
-  if (!isTouch) return;
-
-  $$('.stat-box, .strategy-item, .project-card, .gallery-item').forEach(el => {
-    on(el, 'touchstart', function(){ this.style.transform = 'scale(0.98)'; }, { passive: true });
-    on(el, 'touchend', function(){ this.style.transform = ''; }, { passive: true });
+function initMobileEnhancements(){
+  const isTouch=window.matchMedia('(pointer: coarse)').matches;
+  if(!isTouch)return;
+  $$('.stat-box, .strategy-item, .project-card, .gallery-item').forEach(el=>{
+    on(el,'touchstart',function(){this.style.transform='scale(0.98)';},{passive:true});
+    on(el,'touchend',function(){this.style.transform='';},{passive:true});
   });
-
-  $$('.project-card').forEach(card => {
-    let startX = 0, currentX = 0;
-    const gallery = card.querySelector('.gallery-main');
-    if (!gallery) return;
-
-    on(gallery, 'touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
-    on(gallery, 'touchmove', e => { currentX = e.touches[0].clientX; }, { passive: true });
-    on(gallery, 'touchend', () => {
-      const diff = startX - currentX;
-      if (Math.abs(diff) > 50) {
-        const state = CardSlides.get(card);
-        if (state && state.images.length > 1) {
-          state.idx = diff > 0 
-            ? (state.idx + 1) % state.images.length
-            : (state.idx - 1 + state.images.length) % state.images.length;
-
-          state.imgEl.style.opacity = '0';
-          setTimeout(() => {
-            state.imgEl.src = state.images[state.idx];
-            state.imgEl.onload = () => { state.imgEl.style.opacity = '1'; };
-            updateCardDots(card, state.idx);
-          }, 160);
+  $$('.project-card').forEach(card=>{
+    let startX=0,currentX=0;
+    const gallery=card.querySelector('.gallery-main');
+    if(!gallery)return;
+    on(gallery,'touchstart',e=>{startX=e.touches[0].clientX;},{passive:true});
+    on(gallery,'touchmove',e=>{currentX=e.touches[0].clientX;},{passive:true});
+    on(gallery,'touchend',()=>{
+      const diff=startX-currentX;
+      if(Math.abs(diff)>50){
+        const state=CardSlides.get(card);
+        if(state&&state.images.length>1){
+          state.idx=diff>0?(state.idx+1)%state.images.length:(state.idx-1+state.images.length)%state.images.length;
+          state.imgEl.style.opacity='0';
+          setTimeout(()=>{
+            state.imgEl.src=state.images[state.idx];
+            state.imgEl.onload=()=>{state.imgEl.style.opacity='1';};
+            updateCardDots(card,state.idx);
+          },160);
         }
       }
-    }, { passive: true });
+    },{passive:true});
   });
 }
 
-function enhanceProjectGalleries() {
-  const map = {
-    "blaupunkt": [
-      "./Blaupunkt_Tools.png",
-      "./Blaupunkt_Illumiation_booth_HK_Fair.png",
-      "./Blaupunkt_Illumiation_booth_HK_Fair_1.png",
-      "./Blaupunkt_Illumiation_booth_HK_Fair_2.png",
-      "./Blaupunkt_Illumiation_booth_HK_Fair_3.png",
-      "./Blaupunkt_Illumiation_booth_HK_Fair_4.png"
-    ],
-    "blaupunkt-power": ["./Blaupunkt_Power_Tools.png"],
-    "blaupunkt-garden": ["./Blaupunkt_Garden_Tools.png"]
+function enhanceProjectGalleries(){
+  const map={
+    blaupunkt:["./Blaupunkt_Tools.png","./Blaupunkt_Illumiation_booth_HK_Fair.png","./Blaupunkt_Illumiation_booth_HK_Fair_1.png","./Blaupunkt_Illumiation_booth_HK_Fair_2.png","./Blaupunkt_Illumiation_booth_HK_Fair_3.png","./Blaupunkt_Illumiation_booth_HK_Fair_4.png"],
+    "blaupunkt-power":["./Blaupunkt_Power_Tools.png"],
+    "blaupunkt-garden":["./Blaupunkt_Garden_Tools.png"]
   };
-
-  Object.keys(map).forEach(key => {
-    const card = document.querySelector(`.project-card[data-gallery="${key}"]`);
-    if (!card) return;
-    const images = map[key];
-    card.setAttribute('data-images', images.join(','));
-
-    const gallery = card.querySelector('.project-gallery');
-    if (gallery && !gallery.querySelector('.gallery-dots')) {
-      const dots = document.createElement('div');
-      dots.className = 'gallery-dots';
-      images.forEach((_, i) => {
-        const dot = document.createElement('div');
-        dot.className = `gallery-dot ${i === 0 ? 'active' : ''}`;
-        if (i === 0) {
-          dot.style.transform = 'scale(1.4)';
-          dot.style.background = 'var(--gold)';
-          dot.style.boxShadow = '0 0 10px rgba(212, 175, 55, 0.6)';
+  Object.keys(map).forEach(key=>{
+    const card=document.querySelector(`.project-card[data-gallery="${key}"]`);
+    if(!card)return;
+    const images=map[key];
+    card.setAttribute('data-images',images.join(','));
+    const gallery=card.querySelector('.project-gallery');
+    if(gallery&&!gallery.querySelector('.gallery-dots')){
+      const dots=document.createElement('div');
+      dots.className='gallery-dots';
+      images.forEach((_,i)=>{
+        const dot=document.createElement('div');
+        dot.className=`gallery-dot ${i===0?'active':''}`;
+        if(i===0){
+          dot.style.transform='scale(1.4)';
+          dot.style.background='var(--gold)';
+          dot.style.boxShadow='0 0 10px rgba(212, 175, 55, 0.6)';
         }
         dots.appendChild(dot);
       });
@@ -565,275 +486,189 @@ function enhanceProjectGalleries() {
   });
 }
 
-function initScrollAnimations() {
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
-  $$('.animate-on-scroll').forEach(el => io.observe(el));
+function initVolunteerEnhancement(){
+  const section=$('#volunteering');
+  if(!section)return;
+  if(section.querySelector('.volunteer-hero-image'))return;
+  const header=section.querySelector('.section-header');
+  if(!header)return;
+  const hero=document.createElement('div');
+  hero.className='volunteer-hero-image animate-on-scroll visible';
+  hero.innerHTML='<img src="./gadsdenstatecommunitycollege.jpg" alt="Gadsden State Community College" onerror="this.style.display='none'" />';
+  header.after(hero);
 }
 
-function initNavbarScroll() {
-  const navbar = $('#navbar');
-  const scrollTopBtn = $('#scrollTop');
-  const onScroll = () => {
-    const y = window.scrollY || document.documentElement.scrollTop;
-    navbar?.classList.toggle('scrolled', y > 50);
-    scrollTopBtn?.classList.toggle('visible', y > 600);
+function fixGadsdenImages(){
+  $$('.cert-logo img').forEach(img=>{
+    if(img.src.includes('Gadsden')||img.alt.includes('Gadsden')){
+      img.onerror=function(){this.src='./gadsdenstatecommunitycollege_logo.jpg';};
+    }
+  });
+}
+
+function initScrollAnimations(){
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
+  },{threshold:0.12,rootMargin:'0px 0px -60px 0px'});
+  $$('.animate-on-scroll').forEach(el=>io.observe(el));
+}
+
+function initNavbarScroll(){
+  const navbar=$('#navbar');
+  const scrollTopBtn=$('#scrollTop');
+  const onScroll=()=>{
+    const y=window.scrollY||document.documentElement.scrollTop;
+    navbar?.classList.toggle('scrolled',y>50);
+    scrollTopBtn?.classList.toggle('visible',y>600);
     updateTimelineSpy();
   };
   onScroll();
-  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('scroll',onScroll,{passive:true});
 }
 
-function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+function scrollToTop(){window.scrollTo({top:0,behavior:'smooth'});}
 
-function initLightbox() {
-  const lb = $('#lightbox');
-  if (!lb) return;
-  on(lb, 'click', (e) => { if (e.target === lb) closeLightbox(); });
-  on(document, 'keydown', (e) => { if (lb.classList.contains('active') && e.key === 'Escape') closeLightbox(); });
+function initLightbox(){
+  const lb=$('#lightbox');
+  const lbImg=$('#lightbox-img');
+  if(!lb||!lbImg)return;
+  on(lb,'click',(e)=>{if(e.target===lb)closeLightbox();});
+  on(document,'keydown',(e)=>{if(lb.classList.contains('active')&&e.key==='Escape')closeLightbox();});
 }
 
-function openLightbox(el) {
-  savedScrollPosition = window.scrollY || document.documentElement.scrollTop || 0;
-  const lb = $('#lightbox');
-  const lbImg = $('#lightbox-img');
-  if (!lb || !lbImg) return;
-  const img = el?.querySelector?.('img');
-  if (!img?.src) return;
-  lbImg.src = img.src;
+function openLightbox(el){
+  savedScrollPosition=window.scrollY||document.documentElement.scrollTop||0;
+  const lb=$('#lightbox');
+  const lbImg=$('#lightbox-img');
+  if(!lb||!lbImg)return;
+  const img=el?.querySelector?.('img');
+  if(!img?.src)return;
+  lbImg.src=img.src;
   lb.classList.add('active');
-  document.body.style.overflow = 'hidden';
+  document.body.style.overflow='hidden';
 }
 
-function closeLightbox() {
-  const lb = $('#lightbox');
-  if (!lb) return;
+function closeLightbox(){
+  const lb=$('#lightbox');
+  if(!lb)return;
   lb.classList.remove('active');
-  document.body.style.overflow = 'auto';
-
-  if (savedScrollPosition > 0) {
-    setTimeout(() => {
-      window.scrollTo({ top: savedScrollPosition, behavior: 'instant' });
-      savedScrollPosition = 0;
-    }, 10);
+  document.body.style.overflow='auto';
+  if(savedScrollPosition>0){
+    setTimeout(()=>{
+      window.scrollTo({top:savedScrollPosition,behavior:'instant'});
+      savedScrollPosition=0;
+    },10);
   }
 }
 
-function initTradeTabs() {
-  const tabs = $$('.gallery-tab');
-  if (!tabs.length) return;
-  tabs.forEach(btn => {
-    on(btn, 'click', () => {
-      tabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
+function initTradeTabs(){
+  const tabs=$$('.gallery-tab');
+  if(!tabs.length)return;
+  tabs.forEach(btn=>{
+    on(btn,'click',()=>{
+      tabs.forEach(t=>{t.classList.remove('active');t.setAttribute('aria-selected','false');});
       btn.classList.add('active');
-      btn.setAttribute('aria-selected', 'true');
-      $$('.gallery-content').forEach(gc => gc.classList.remove('active'));
-      const panel = $('#' + btn.dataset.target);
+      btn.setAttribute('aria-selected','true');
+      $$('.gallery-content').forEach(gc=>gc.classList.remove('active'));
+      const panel=$('#'+btn.dataset.target);
       panel?.classList.add('active');
     });
   });
 }
 
-function showToast(message = '') {
-  const t = $('#toast');
-  if (!t) return;
-  t.textContent = message;
+function showToast(message=''){
+  const t=$('#toast');
+  if(!t)return;
+  t.textContent=message;
   t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2800);
+  setTimeout(()=>t.classList.remove('show'),2800);
 }
 
-function updateTimelineSpy() {
-  const items = $$('.timeline-item');
-  if (!items.length) return;
-  const logoImg = $('#logo-img');
-  const indicators = $$('.indicator-dot');
-  if (!logoImg) return;
+function initTimelineSpy(){updateTimelineSpy();}
 
-  let activeIndex = 0;
-  const windowHeight = window.innerHeight;
-  const midTop = windowHeight * 0.62;
-  const midBottom = windowHeight * 0.38;
-
-  items.forEach((item, idx) => {
-    const r = item.getBoundingClientRect();
-    if (r.top < midTop && r.bottom > midBottom) {
-      activeIndex = idx;
+function updateTimelineSpy(){
+  const items=$$('.timeline-item');
+  if(!items.length)return;
+  const logoImg=$('#logo-img');
+  const indicators=$$('.indicator-dot');
+  if(!logoImg)return;
+  let activeIndex=0;
+  const windowHeight=window.innerHeight;
+  const midTop=windowHeight*0.62;
+  const midBottom=windowHeight*0.38;
+  items.forEach((item,idx)=>{
+    const r=item.getBoundingClientRect();
+    if(r.top<midTop&&r.bottom>midBottom){
+      activeIndex=idx;
       item.classList.add('active');
-    } else {
+    }else{
       item.classList.remove('active');
     }
   });
-
-  const lastIndex = items.length - 1;
-  const lastItem = items[lastIndex];
-  const lastItemRect = lastItem?.getBoundingClientRect();
-
-  if (lastItemRect && lastItemRect.top < windowHeight * 0.8) {
-    activeIndex = lastIndex;
-  }
-
-  const activeItem = items[activeIndex];
-  if (activeItem) {
-    const newLogo = activeItem.getAttribute('data-logo');
-    const currentSrc = logoImg.getAttribute('src');
-    if (newLogo && newLogo !== currentSrc) {
-      logoImg.style.opacity = '0';
-      setTimeout(() => {
-        logoImg.src = newLogo;
-        logoImg.onload = () => { logoImg.style.opacity = '1'; };
-      }, 160);
+  const lastIndex=items.length-1;
+  const lastItem=items[lastIndex];
+  const lastItemRect=lastItem?.getBoundingClientRect();
+  if(lastItemRect&&lastItemRect.top<windowHeight*0.8)activeIndex=lastIndex;
+  const activeItem=items[activeIndex];
+  if(activeItem){
+    const newLogo=activeItem.getAttribute('data-logo');
+    const currentSrc=logoImg.getAttribute('src');
+    if(newLogo&&newLogo!==currentSrc){
+      logoImg.style.opacity='0';
+      setTimeout(()=>{
+        logoImg.src=newLogo;
+        logoImg.onload=()=>{logoImg.style.opacity='1';};
+      },160);
     }
   }
-  indicators.forEach((dot, idx) => dot.classList.toggle('active', idx === activeIndex));
+  indicators.forEach((dot,idx)=>dot.classList.toggle('active',idx===activeIndex));
 }
 
-function initParticles() {
-  const container = $('#particles');
-  if (!container) return;
-  const count = 26;
-  for (let i = 0; i < count; i++) {
-    const p = document.createElement('div');
-    p.className = 'particle';
-    p.style.left = Math.random() * 100 + '%';
-    p.style.top = Math.random() * 100 + '%';
-    const s = Math.max(3, Math.min(6, 3 + Math.random() * 4));
-    p.style.width = p.style.height = s + 'px';
-    p.style.opacity = (0.22 + Math.random() * 0.35).toFixed(2);
-    p.style.animationDelay = (Math.random() * 5).toFixed(2) + 's';
-    p.style.animationDuration = (4 + Math.random() * 5).toFixed(2) + 's';
-    p.style.position = 'absolute';
-    p.style.background = 'var(--gold)';
-    p.style.borderRadius = '50%';
-    p.style.pointerEvents = 'none';
+function initParticles(){
+  const container=$('#particles');
+  if(!container)return;
+  const count=26;
+  for(let i=0;i<count;i++){
+    const p=document.createElement('div');
+    p.className='particle';
+    p.style.left=Math.random()*100+'%';
+    p.style.top=Math.random()*100+'%';
+    const s=Math.max(3,Math.min(6,3+Math.random()*4));
+    p.style.width=p.style.height=s+'px';
+    p.style.opacity=(0.22+Math.random()*0.35).toFixed(2);
+    p.style.animationDelay=(Math.random()*5).toFixed(2)+'s';
+    p.style.animationDuration=(4+Math.random()*5).toFixed(2)+'s';
+    p.style.position='absolute';
+    p.style.background='var(--gold)';
+    p.style.borderRadius='50%';
+    p.style.pointerEvents='none';
     container.appendChild(p);
   }
 }
 
-function initLoading() {
-  const loading = $('#loading');
-  if (!loading) return;
-  window.addEventListener('load', () => {
-    setTimeout(() => {
-      loading.classList.add('hidden');
-      setTimeout(() => loading.remove(), 400);
-    }, 1200);
-  });
-}
-
-function initSmoothAnchors() {
-  $$('a[href^="#"]').forEach(a => {
-    on(a, 'click', (e) => {
-      const href = a.getAttribute('href');
-      if (!href || href === '#') return;
-      const target = $(href);
-      if (!target) return;
+function initSmoothAnchors(){
+  $$('a[href^="#"]').forEach(a=>{
+    on(a,'click',(e)=>{
+      const href=a.getAttribute('href');
+      if(!href||href==='#')return;
+      const target=$(href);
+      if(!target)return;
       e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      target.scrollIntoView({behavior:'smooth',block:'start'});
     });
   });
 }
 
-function initStatModals() {
-  document.querySelectorAll('.stat-box').forEach(box => {
-    box.style.cursor = 'pointer';
-    box.addEventListener('click', function(e) {
-      const statKey = this.dataset.stat;
-      if (statKey) openStatModal(statKey);
+document.addEventListener('DOMContentLoaded',()=>{
+  const loading=$('#loading');
+  if(loading){
+    window.addEventListener('load',()=>{
+      setTimeout(()=>{
+        loading.classList.add('hidden');
+        setTimeout(()=>loading.remove(),400);
+      },1200);
     });
-  });
-}
-
-function initTradeDuoFromExisting(){
-  const sec = document.getElementById('trade-shows');
-  if(!sec) return;
-  const blau = document.querySelector('#gallery-blaupunkt .gallery-item img');
-  const ford = document.querySelector('#gallery-ford .gallery-item img');
-  const blauSrc = blau ? blau.getAttribute('src') : '';
-  const fordSrc = ford ? ford.getAttribute('src') : '';
-  if(!blauSrc || !fordSrc) return;
-  if(sec.querySelector('.trade-duo')) return;
-
-  const duo = document.createElement('div');
-  duo.className = 'trade-duo';
-  duo.innerHTML = `
-    <div class="brand-card" data-brand="blaupunkt">
-      <div class="brand-head"><h4>Blaupunkt</h4><i class="fas fa-images" style="color:var(--gold);"></i></div>
-      <div class="brand-body"><img src="${blauSrc}" alt="Blaupunkt cover"/></div>
-    </div>
-    <div class="brand-card" data-brand="ford">
-      <div class="brand-head"><h4>Ford Lighting</h4><i class="fas fa-images" style="color:var(--gold);"></i></div>
-      <div class="brand-body"><img src="${fordSrc}" alt="Ford cover"/></div>
-    </div>`;
-  const tabs = sec.querySelector('.gallery-tabs');
-  sec.insertBefore(duo, tabs);
-
-  const openBrand = (brand)=>{
-    savedScrollPosition = window.scrollY || document.documentElement.scrollTop || 0;
-    const panel = document.getElementById(brand==='blaupunkt' ? 'gallery-blaupunkt' : 'gallery-ford');
-    if(!panel) return;
-    const imgs = Array.from(panel.querySelectorAll('.gallery-item img')).map(i=> i.getAttribute('src')).filter(Boolean);
-    if(!imgs.length) return;
-
-    buildProjectSlides(imgs);
-    const modal = document.getElementById('projectGalleryModal');
-    if(modal){ 
-      modal.classList.add('active'); 
-      document.body.style.overflow='hidden'; 
-    }
-  };
-
-  duo.querySelector('[data-brand="blaupunkt"]').addEventListener('click', ()=> openBrand('blaupunkt'));
-  duo.querySelector('[data-brand="ford"]').addEventListener('click', ()=> openBrand('ford'));
-}
-
-function initMobileTimelineLogos(){
-  if(!window.matchMedia('(max-width: 1200px)').matches) return;
-  document.querySelectorAll('.timeline-item').forEach(item=>{
-    if(item.querySelector('.mobile-company-logo')) return;
-    const logo = item.getAttribute('data-logo');
-    if(!logo) return;
-    const img = document.createElement('img');
-    img.className = 'mobile-company-logo';
-    img.alt = 'Company logo';
-    img.src = logo;
-    item.appendChild(img);
-  });
-}
-
-function initTimelineMobileHeaders() {
-  if (window.innerWidth > 1200) return;
-
-  const items = document.querySelectorAll('.timeline-item');
-
-  items.forEach(item => {
-    if (item.querySelector('.timeline-header')) return;
-
-    const company = item.dataset.company;
-    const logo = item.dataset.logo;
-    const dateRange = item.querySelector('.date-range')?.textContent || '';
-    const dateLevel = item.querySelector('.date-level')?.textContent || '';
-
-    const header = document.createElement('div');
-    header.className = 'timeline-header';
-    header.innerHTML = `
-      <div class="company-logo">
-        <img src="${logo}" alt="Company logo" onerror="this.style.display='none'">
-      </div>
-      <div class="date-info">
-        <span class="date-range">${dateRange}</span>
-        <span class="date-level">${dateLevel}</span>
-      </div>
-    `;
-
-    const content = item.querySelector('.timeline-content');
-    item.insertBefore(header, content);
-  });
-}
-
-// Inicialização Principal
-document.addEventListener('DOMContentLoaded', () => {
-  initLoading();
+  }
   initNavbarScroll();
   initScrollAnimations();
   initParticles();
@@ -842,125 +677,92 @@ document.addEventListener('DOMContentLoaded', () => {
   initLightbox();
   enhanceProjectGalleries();
   $$('.project-card').forEach(setupCardAutoSlide);
+  initVolunteerEnhancement();
+  fixGadsdenImages();
   initMobileEnhancements();
-  initStatModals();
-
-  try { initTradeDuoFromExisting(); } catch(e){}
-  try { initMobileTimelineLogos(); } catch(e){}
-  try { initTimelineMobileHeaders(); } catch(e){}
-
-  on(document, 'click', (e) => {
-    if (e.target?.id === 'statModalOverlay') closeStatModal();
-    if (e.target?.id === 'strategyDetailOverlay') closeStrategyModal();
+  on(document,'click',(e)=>{
+    if(e.target?.id==='statModalOverlay')closeStatModal();
+    if(e.target?.id==='strategyDetailOverlay')closeStrategyModal();
   });
-
-  on(document, 'keydown', (e) => {
-    if (e.key === 'Escape') {
+  on(document,'keydown',(e)=>{
+    if(e.key==='Escape'){
       closeStatModal();
       closeStrategyModal();
     }
   });
-
-  // Cursor animation
-  try {
-    const cursor = document.getElementById('cursor');
-    const cursorFollower = document.getElementById('cursorFollower');
-
-    if (cursor && cursorFollower) {
-      let mouseX = 0, mouseY = 0;
-      let cursorX = 0, cursorY = 0;
-      let followerX = 0, followerY = 0;
-
-      document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
+  try{
+    const cursor=document.getElementById('cursor');
+    const cursorFollower=document.getElementById('cursorFollower');
+    if(cursor&&cursorFollower){
+      let mouseX=0,mouseY=0;
+      let cursorX=0,cursorY=0;
+      let followerX=0,followerY=0;
+      document.addEventListener('mousemove',(e)=>{
+        mouseX=e.clientX;
+        mouseY=e.clientY;
       });
-
-      function animateCursor() {
-        cursorX += (mouseX - cursorX) * 0.15;
-        cursorY += (mouseY - cursorY) * 0.15;
-        followerX += (mouseX - followerX) * 0.08;
-        followerY += (mouseY - followerY) * 0.08;
-
-        cursor.style.left = cursorX + 'px';
-        cursor.style.top = cursorY + 'px';
-        cursorFollower.style.left = followerX + 'px';
-        cursorFollower.style.top = followerY + 'px';
-
+      function animateCursor(){
+        cursorX+=(mouseX-cursorX)*0.15;
+        cursorY+=(mouseY-cursorY)*0.15;
+        followerX+=(mouseX-followerX)*0.08;
+        followerY+=(mouseY-followerY)*0.08;
+        cursor.style.left=cursorX+'px';
+        cursor.style.top=cursorY+'px';
+        cursorFollower.style.left=followerX+'px';
+        cursorFollower.style.top=followerY+'px';
         requestAnimationFrame(animateCursor);
       }
-
       animateCursor();
-
-      document.querySelectorAll('a, button, .project-card, .stat-box, .strategy-item').forEach(el => {
-        el.addEventListener('mouseenter', () => {
-          cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
-          cursor.style.borderColor = 'var(--gold-light)';
-          cursorFollower.style.transform = 'translate(-50%, -50%) scale(1.5)';
+      document.querySelectorAll('a, button, .project-card, .stat-box, .strategy-item').forEach(el=>{
+        el.addEventListener('mouseenter',()=>{
+          cursor.style.transform='translate(-50%, -50%) scale(1.5)';
+          cursor.style.borderColor='var(--gold-light)';
+          cursorFollower.style.transform='translate(-50%, -50%) scale(1.5)';
         });
-        el.addEventListener('mouseleave', () => {
-          cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-          cursor.style.borderColor = 'var(--gold)';
-          cursorFollower.style.transform = 'translate(-50%, -50%) scale(1)';
+        el.addEventListener('mouseleave',()=>{
+          cursor.style.transform='translate(-50%, -50%) scale(1)';
+          cursor.style.borderColor='var(--gold)';
+          cursorFollower.style.transform='translate(-50%, -50%) scale(1)';
         });
       });
     }
-  } catch(e) { console.log('Cursor init error:', e); }
-
-  // Strategy items
-  document.querySelectorAll('.strategy-item[data-strategy]').forEach(el => {
-    el.addEventListener('click', () => {
-      const n = Number(el.getAttribute('data-strategy'));
-      if (!isNaN(n)) openStrategyModal(n);
+  }catch(e){}
+  document.querySelectorAll('.stat-box').forEach(box=>{
+    box.style.cursor='pointer';
+    box.addEventListener('click',function(){
+      const statKey=this.dataset.stat;
+      if(statKey)openStatModal(statKey);
     });
   });
-
-  console.log('✅ Portfolio JS otimizado inicializado');
+  document.querySelectorAll('.strategy-item[data-strategy]').forEach(el=>{
+    el.addEventListener('click',()=>{
+      const n=Number(el.getAttribute('data-strategy'));
+      if(!isNaN(n))openStrategyModal(n);
+    });
+  });
 });
 
-// Resize handler para timeline
-window.addEventListener('resize', () => {
-  clearTimeout(window.timelineResizeTimer);
-  window.timelineResizeTimer = setTimeout(initTimelineMobileHeaders, 250);
-});
+window.openStatModal=openStatModal;
+window.closeStatModal=closeStatModal;
+window.openStrategyModal=openStrategyModal;
+window.closeStrategyModal=closeStrategyModal;
+window.openLightbox=openLightbox;
+window.closeLightbox=closeLightbox;
+window.changeProjectSlide=changeProjectSlide;
+window.goToProjectSlide=goToProjectSlide;
+window.closeProjectGallery=closeProjectGallery;
+window.scrollToTop=scrollToTop;
 
-// Expor funções globais
-window.openStatModal = openStatModal;
-window.closeStatModal = closeStatModal;
-window.openStrategyModal = openStrategyModal;
-window.closeStrategyModal = closeStrategyModal;
-window.openLightbox = openLightbox;
-window.closeLightbox = closeLightbox;
-window.changeProjectSlide = changeProjectSlide;
-window.goToProjectSlide = goToProjectSlide;
-window.closeProjectGallery = closeProjectGallery;
-window.scrollToTop = scrollToTop;
-
-// Trade galleries
-const TRADE_GALLERIES = {
-  blaupunkt: [
-    './Blaupunkt_Illumiation_booth_HK_Fair.png',
-    './Blaupunkt_Illumiation_booth_HK_Fair_1.png',
-    './Blaupunkt_Illumiation_booth_HK_Fair_2.png',
-    './Blaupunkt_Illumiation_booth_HK_Fair_3.png',
-    './Blaupunkt_Illumiation_booth_HK_Fair_4.png'
-  ],
-  ford: [
-    './Ford_lighting_solutions_HK_Intl.png',
-    './Ford_lighting_solutions_HK_Intl_1.png',
-    './Ford_lighting_solutions_HK_Intl_2.png'
-  ]
+const TRADE_GALLERIES={
+  blaupunkt:["./Blaupunkt_Illumiation_booth_HK_Fair.png","./Blaupunkt_Illumiation_booth_HK_Fair_1.png","./Blaupunkt_Illumiation_booth_HK_Fair_2.png","./Blaupunkt_Illumiation_booth_HK_Fair_3.png","./Blaupunkt_Illumiation_booth_HK_Fair_4.png"],
+  ford:["./Ford_lighting_solutions_HK_Intl.png","./Ford_lighting_solutions_HK_Intl_1.png","./Ford_lighting_solutions_HK_Intl_2.png"]
 };
 
-window.openTradeGallery = function(brand) {
-  savedScrollPosition = window.scrollY || document.documentElement.scrollTop || 0;
-  const images = (TRADE_GALLERIES[brand] || []).slice();
-  if(!images.length) return;
-
+function openTradeGallery(brand){
+  savedScrollPosition=window.scrollY||document.documentElement.scrollTop||0;
+  const images=(TRADE_GALLERIES[brand]||[]).slice();
+  if(!images.length)return;
   buildProjectSlides(images);
-  const modal = document.getElementById('projectGalleryModal');
-  if(modal){ 
-    modal.classList.add('active'); 
-    document.body.style.overflow = 'hidden'; 
-  }
-};
+  document.getElementById('projectGalleryModal').classList.add('active');
+  document.body.style.overflow='hidden';
+}
