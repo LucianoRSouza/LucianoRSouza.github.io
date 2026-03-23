@@ -1,10 +1,6 @@
 
 
-// ===== Injected: Project translations (titles, descriptions, labels) =====
-(function(){
-  function mergeProj(langKey, projObj){
-    try {
-      if (!window.I18N[langKey]) window.I18N[langKey] = {};
+window.I18N[langKey]) window.I18N[langKey] = {};
       const cur = window.I18N[langKey].proj || {};
       window.I18N[langKey].proj = Object.assign({}, cur, projObj);
     } catch(e) {}
