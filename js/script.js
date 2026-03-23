@@ -1,3 +1,93 @@
+
+
+// ===== Injected: Project translations (titles, descriptions, labels) =====
+(function(){
+  function mergeProj(langKey, projObj){
+    try {
+      if (!window.I18N[langKey]) window.I18N[langKey] = {};
+      const cur = window.I18N[langKey].proj || {};
+      window.I18N[langKey].proj = Object.assign({}, cur, projObj);
+    } catch(e) {}
+  }
+
+  const enProj = {
+    labels: { scope: 'Scope:', markets: 'Markets:', market: 'Market:', products: 'Products:', innovation: 'Innovation:', audits: 'Audits:', category: 'Category:', design: 'Design:', value: 'Value:', focus: 'Focus:', compliance: 'Compliance:', heritage: 'Heritage:', features: 'Features:' },
+    blaupunkt: {
+      title: 'Blaupunkt',
+      tools: { desc: 'Creation and launch of a complete tools line for the European market — from concept, BOM & compliance to production.', scope: 'DIY & power tools', markets: 'EU' },
+      power: { title: 'Blaupunkt Power Tools Line', desc: 'Professional-grade drills, saws, sanders with technical specs, audits and safety certifications.', innovation: 'Pro grade', audits: 'Line inspections' },
+      garden:{ title: 'Blaupunkt Garden Tools', desc: 'Outdoor equipment (chainsaws, trimmers) with complete documentation and safety compliance.', products: 'Chainsaws, trimmers', focus: 'Safety & compliance' }
+    },
+    sj: { title: 'Spear & Jackson Cast Irons', desc: 'Premium enameled cast iron cookware for a British heritage brand (est. 1760).', category: 'Cookware', heritage: 'UK brand' },
+    pininfarina: { title: 'Pininfarina Essenza Collection', desc: 'Premium outdoor cooking appliances with Italian design and global coordination (EU/Asia).', design: 'Italian automotive', value: '€10M+ portfolio' },
+    nks: {
+      estrelas: { title: 'NKS Estrelas Product Line', desc: 'Consumer electronics & home appliances for the Brazilian market with full lifecycle management.', markets: 'Brazil', category: 'Electronics' },
+      audio: { title: 'NKS Audio Systems', desc: 'Professional & consumer audio: speakers, sound systems and headphones (ANATEL compliance).', products: 'Speakers & systems', compliance: 'ANATEL' },
+      maisvc: { title: 'NKS Mais Você Collection', desc: 'Beauty & personal care line with INMETRO certification tailored to Brazilian retail.', category: 'Personal care', features: 'INMETRO' }
+    },
+    ml: { title: 'AI & ML Projects (Selected)', desc: 'Consolidated portfolio: sales forecasting, inventory optimization, promotion uplift, price elasticity, anomaly/quality detection, churn & CLV.', caption1: 'Machine Learning Portfolio', caption2: 'Forecasting · Optimization · Uplift' }
+  };
+
+  const ptProj = {
+    labels: { scope: 'Âmbito:', markets: 'Mercados:', market: 'Mercado:', products: 'Produtos:', innovation: 'Inovação:', audits: 'Auditorias:', category: 'Categoria:', design: 'Design:', value: 'Valor:', focus: 'Foco:', compliance: 'Compliance:', heritage: 'Herança:', features: 'Funcionalidades:' },
+    blaupunkt: {
+      title: 'Blaupunkt',
+      tools: { desc: 'Criação e lançamento de uma linha completa de ferramentas para o mercado europeu — do conceito, BOM e compliance à produção.', scope: 'DIY & ferramentas elétricas', markets: 'UE' },
+      power: { title: 'Blaupunkt — Linha Power Tools', desc: 'Berbequins, serras e lixadeiras “pro grade” com especificações técnicas, auditorias e certificações de segurança.', innovation: 'Gama profissional', audits: 'Inspeções de linha' },
+      garden:{ title: 'Blaupunkt — Garden Tools', desc: 'Equipamentos de exterior (motosserras, roçadoras) com documentação completa e conformidade de segurança.', products: 'Motosserras, roçadoras', focus: 'Segurança & compliance' }
+    },
+    sj: { title: 'Spear & Jackson — Ferro Fundido', desc: 'Utensílios premium de ferro fundido esmaltado para marca britânica (desde 1760).', category: 'Cozinha', heritage: 'Marca do Reino Unido' },
+    pininfarina: { title: 'Pininfarina Essenza', desc: 'Aparelhos premium para cozinha exterior com design italiano e coordenação global (UE/Ásia).', design: 'Automotivo italiano', value: 'Portefólio €10M+' },
+    nks: {
+      estrelas: { title: 'NKS Estrelas', desc: 'Eletrónica de consumo & Eletrodomésticos para o mercado brasileiro com gestão de ciclo de vida completo.', markets: 'Brasil', category: 'Eletrónica' },
+      audio: { title: 'NKS Áudio', desc: 'Áudio profissional & consumo: colunas, sistemas de som e headphones (conformidade ANATEL).', products: 'Colunas & sistemas', compliance: 'ANATEL' },
+      maisvc: { title: 'NKS Mais Você', desc: 'Linha de beleza & cuidados pessoais com certificação INMETRO, adaptada ao retalho brasileiro.', category: 'Cuidados pessoais', features: 'INMETRO' }
+    },
+    ml: { title: 'Projetos de IA & ML (Seleção)', desc: 'Portefólio consolidado: previsão de vendas, otimização de inventário, uplift de promoções, elasticidade de preço, deteção de anomalias/qualidade, churn & CLV.', caption1: 'Portefólio de Machine Learning', caption2: 'Forecasting · Otimização · Uplift' }
+  };
+
+  const esProj = {
+    labels: { scope: 'Ámbito:', markets: 'Mercados:', market: 'Mercado:', products: 'Productos:', innovation: 'Innovación:', audits: 'Auditorías:', category: 'Categoría:', design: 'Diseño:', value: 'Valor:', focus: 'Enfoque:', compliance: 'Compliance:', heritage: 'Herencia:', features: 'Características:' },
+    blaupunkt: {
+      title: 'Blaupunkt',
+      tools: { desc: 'Creación y lanzamiento de una línea completa de herramientas para la UE — del concepto, BOM y compliance a la producción.', scope: 'Bricolaje & herramientas eléctricas', markets: 'UE' },
+      power: { title: 'Blaupunkt — Power Tools', desc: 'Taladros, sierras y lijadoras de nivel profesional con especificaciones técnicas, auditorías y certificaciones.', innovation: 'Grado profesional', audits: 'Inspecciones de línea' },
+      garden:{ title: 'Blaupunkt — Garden Tools', desc: 'Equipos de exterior (motosierras, desbrozadoras) con documentación completa y seguridad certificada.', products: 'Motosierras, desbrozadoras', focus: 'Seguridad & compliance' }
+    },
+    sj: { title: 'Spear & Jackson — Fundición', desc: 'Batería de cocina premium de hierro fundido esmaltado para marca británica (est. 1760).', category: 'Cocina', heritage: 'Marca del Reino Unido' },
+    pininfarina: { title: 'Pininfarina Essenza', desc: 'Electrodomésticos premium para exterior con diseño italiano y coordinación global (UE/Asia).', design: 'Automotriz italiana', value: 'Portafolio €10M+' },
+    nks: {
+      estrelas: { title: 'NKS Estrelas', desc: 'Electrónica de consumo y electrodomésticos para Brasil con gestión integral del ciclo de vida.', markets: 'Brasil', category: 'Electrónica' },
+      audio: { title: 'NKS Audio', desc: 'Audio profesional y de consumo: altavoces, sistemas de sonido y auriculares (cumplimiento ANATEL).', products: 'Altavoces & sistemas', compliance: 'ANATEL' },
+      maisvc: { title: 'NKS Mais Você', desc: 'Línea de belleza y cuidado personal con certificación INMETRO, adaptada al retail brasileño.', category: 'Cuidado personal', features: 'INMETRO' }
+    },
+    ml: { title: 'Proyectos de IA & ML (Selección)', desc: 'Portafolio consolidado: forecasting de ventas, optimización de inventario, uplift, elasticidad de precio, detección de anomalías/calidad, churn & CLV.', caption1: 'Portafolio de Machine Learning', caption2: 'Forecasting · Optimización · Uplift' }
+  };
+
+  const frProj = {
+    labels: { scope: 'Périmètre :', markets: 'Marchés :', market: 'Marché :', products: 'Produits :', innovation: 'Innovation :', audits: 'Audits :', category: 'Catégorie :', design: 'Design :', value: 'Valeur :', focus: 'Focus :', compliance: 'Conformité :', heritage: 'Héritage :', features: 'Caractéristiques :' },
+    blaupunkt: {
+      title: 'Blaupunkt',
+      tools: { desc: 'Création et lancement d’une ligne complète d’outillage pour l’UE — du concept, BOM & conformité à la production.', scope: 'Bricolage & électroportatif', markets: 'UE' },
+      power: { title: 'Blaupunkt — Power Tools', desc: 'Perceuses, scies, ponceuses “pro grade” avec specs techniques, audits et certifications de sécurité.', innovation: 'Niveau professionnel', audits: 'Inspections de ligne' },
+      garden:{ title: 'Blaupunkt — Outils de Jardin', desc: 'Équipements d’extérieur (tronçonneuses, débroussailleuses) avec documentation complète et conformité sécurité.', products: 'Tronçonneuses, débroussailleuses', focus: 'Sécurité & conformité' }
+    },
+    sj: { title: 'Spear & Jackson — Fonte Émaillée', desc: 'Batterie premium en fonte émaillée pour marque britannique (depuis 1760).', category: 'Cuisine', heritage: 'Marque Royaume‑Uni' },
+    pininfarina: { title: 'Pininfarina Essenza', desc: 'Appareils premium de cuisine extérieure avec design italien et coordination globale (UE/Asie).', design: 'Design automobile italien', value: 'Portefeuille €10M+' },
+    nks: {
+      estrelas: { title: 'NKS Estrelas', desc: 'Électronique grand public & électroménager pour le marché brésilien avec gestion de cycle de vie complète.', markets: 'Brésil', category: 'Électronique' },
+      audio: { title: 'NKS Audio', desc: 'Audio pro & grand public : enceintes, systèmes et casques (conformité ANATEL).', products: 'Enceintes & systèmes', compliance: 'ANATEL' },
+      maisvc: { title: 'NKS Mais Você', desc: 'Ligne beauté & soins personnels certifiée INMETRO, adaptée au retail brésilien.', category: 'Soins personnels', features: 'INMETRO' }
+    },
+    ml: { title: 'Projets IA & ML (Sélection)', desc: 'Portefeuille consolidé : prévision des ventes, optimisation des stocks, uplift promotionnel, élasticité prix, détection d’anomalies/qualité, churn & CLV.', caption1: 'Portefeuille Machine Learning', caption2: 'Forecasting · Optimisation · Uplift' }
+  };
+
+  mergeProj('en', enProj);
+  mergeProj('pt', ptProj);
+  mergeProj('es', esProj);
+  mergeProj('fr', frProj);
+})();
+
 window.I18N = {
   en: {
     nav: { about: 'About', experience: 'Experience', projects: 'Projects', tradeshows: 'Trade Shows', certs: 'Certifications', contact: 'Contact' },
