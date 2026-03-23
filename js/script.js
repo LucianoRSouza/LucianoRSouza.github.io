@@ -1662,8 +1662,6 @@ function initLoading() {
 }
 
 function initSmoothAnchors() {
-
-function initSmoothAnchors() {
   $$('a[href^="#"]').forEach(a => {
     on(a, 'click', (e) => {
       const href = a.getAttribute('href');
@@ -1675,7 +1673,6 @@ function initSmoothAnchors() {
     });
   });
 }
-
 function initStatModals() {
   document.querySelectorAll('.stat-box').forEach(box => {
     box.style.cursor = 'pointer';
