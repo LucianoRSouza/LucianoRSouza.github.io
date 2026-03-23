@@ -2,12 +2,21 @@
 
 window.I18N = {
   en: {
+ proj: {
+ labels: { scope: 'Scope:', markets: 'Markets:', market: 'Market:', products: 'Products:', innovation: 'Innovation:', audits: 'Audits:', category: 'Category:', design: 'Design:', value: 'Value:', focus: 'Focus:', compliance: 'Compliance:', heritage: 'Heritage:', features: 'Features:' },
+ blaupunkt: { title: 'Blaupunkt', tools: { desc: 'Creation and launch...', scope:'DIY & power tools', markets:'EU' }, power:{ title:'Blaupunkt Power Tools Line', desc:'Professional-grade...', innovation:'Pro grade', audits:'Line inspections'}, garden:{ title:'Blaupunkt Garden Tools', desc:'Outdoor equipment...', products:'Chainsaws, trimmers', focus:'Safety & compliance'} },
+ sj:{ title:'Spear & Jackson Cast Irons', desc:'Premium enameled...', category:'Cookware', heritage:'UK brand'},
+ pininfarina:{ title:'Pininfarina Essenza Collection', desc:'Premium outdoor...', design:'Italian automotive', value:'€10M+ portfolio'},
+ nks:{ estrelas:{ title:'NKS Estrelas Product Line', desc:'Consumer electronics...', markets:'Brazil', category:'Electronics'}, audio:{ title:'NKS Audio Systems', desc:'Professional & consumer...', products:'Speakers & systems', compliance:'ANATEL'}, maisvc:{ title:'NKS Mais Você Collection', desc:'Beauty & personal care...', category:'Personal care', features:'INMETRO'} },
+ ml:{ title:'AI & ML Projects (Selected)', desc:'Consolidated portfolio...', caption1:'Machine Learning Portfolio', caption2:'Forecasting · Optimization · Uplift'}
+},
     nav: { about: 'About', experience: 'Experience', projects: 'Projects', tradeshows: 'Trade Shows', certs: 'Certifications', contact: 'Contact' },
     hero: {
       title: 'Luciano Rodrigues de Souza',
       subtitle: 'AI-Driven Procurement & Operations Leader · Strategic Transformation',
       desc: 'I connect governance, technical rigor, and AI to deliver measurable outcomes: transparent tenders, reliable partners, and resilient operations across Europe, LATAM, and Asia.',
-      badges: { top: 'Top Performer 2025', middle: 'AI Specialist', bottom: 'Trusted Leader' },
+      badges: {
+ proj: {} top: 'Top Performer 2025', middle: 'AI Specialist', bottom: 'Trusted Leader' },
       stats: {
         savings: 'Cumulative Savings',
         savings_note: 'Across multi-category negotiations',
@@ -122,12 +131,14 @@ window.I18N = {
   },
   
   pt: {
+ proj: {labels:{scope:'Âmbito:',markets:'Mercados:',market:'Mercado:',products:'Produtos:',innovation:'Inovação:',audits:'Auditorias:',category:'Categoria:',design:'Design:',value:'Valor:',focus:'Foco:',compliance:'Compliance:',heritage:'Herança:',features:'Funcionalidades:'},blaupunkt:{title:'Blaupunkt',tools:{desc:'Criação...',scope:'DIY & ferramentas elétricas',markets:'UE'},power:{title:'Blaupunkt — Linha Power Tools',desc:'Berbequins...',innovation:'Gama profissional',audits:'Inspeções de linha'},garden:{title:'Blaupunkt — Garden Tools',desc:'Equipamentos...',products:'Motosserras, roçadoras',focus:'Segurança & compliance'}},sj:{title:'Spear & Jackson — Ferro Fundido',desc:'Utensílios...',category:'Cozinha',heritage:'Marca do Reino Unido'},pininfarina:{title:'Pininfarina Essenza',desc:'Aparelhos...',design:'Automotivo italiano',value:'Portefólio €10M+'},nks:{estrelas:{title:'NKS Estrelas',desc:'Eletrónica...',markets:'Brasil',category:'Eletrónica'},audio:{title:'NKS Áudio',desc:'Áudio...',products:'Colunas & sistemas',compliance:'ANATEL'},maisvc:{title:'NKS Mais Você',desc:'Linha...',category:'Cuidados pessoais',features:'INMETRO'}},ml:{title:'Projetos de IA & ML (Seleção)',desc:'Portefólio...',caption1:'Portefólio de Machine Learning',caption2:'Forecasting · Otimização · Uplift'}},
     nav: { about: 'Sobre', experience: 'Experiência', projects: 'Projetos', tradeshows: 'Feiras', certs: 'Certificações', contact: 'Contato' },
     hero: {
       title: 'Luciano Rodrigues de Souza',
       subtitle: 'Procurement & Operações orientados por IA · Transformação Estratégica',
       desc: 'Conecto governança, rigor técnico e IA para gerar resultados mensuráveis: tenders transparentes, parceiros confiáveis e operações resilientes na Europa, LATAM e Ásia.',
-      badges: { top: 'Top Performer 2025', middle: 'Especialista em IA', bottom: 'Líder de Confiança' },
+      badges: {
+ proj: {} top: 'Top Performer 2025', middle: 'Especialista em IA', bottom: 'Líder de Confiança' },
       stats: {
         savings: 'Poupança Acumulada',
         savings_note: 'Em negociações multi-categoria',
@@ -242,12 +253,14 @@ window.I18N = {
   },
   
   es: {
+ proj: {}
     nav: { about: 'Acerca', experience: 'Experiencia', projects: 'Proyectos', tradeshows: 'Ferias', certs: 'Certificaciones', contact: 'Contacto' },
     hero: {
       title: 'Luciano Rodrigues de Souza',
       subtitle: 'Líder en Procurement y Operaciones con IA · Transformación Estratégica',
       desc: 'Conecto gobernanza, rigor técnico e IA para generar resultados medibles: licitaciones transparentes, socios confiables y operaciones resilientes en Europa, LATAM y Asia.',
-      badges: { top: 'Top Performer 2025', middle: 'Especialista en IA', bottom: 'Líder de Confianza' },
+      badges: {
+ proj: {} top: 'Top Performer 2025', middle: 'Especialista en IA', bottom: 'Líder de Confianza' },
       stats: {
         savings: 'Ahorro Acumulado',
         savings_note: 'En negociaciones multi-categoría',
@@ -316,12 +329,14 @@ window.I18N = {
   },
   
   fr: {
+ proj: {}
     nav: { about: 'À propos', experience: 'Expérience', projects: 'Projets', tradeshows: 'Salons', certs: 'Certifications', contact: 'Contact' },
     hero: {
       title: 'Luciano Rodrigues de Souza',
       subtitle: 'Leader en Approvisionnement et Opérations IA · Transformation Stratégique',
       desc: 'Je connecte la gouvernance, la rigueur technique et l\'IA pour livrer des résultats mesurables: appels d\'offres transparents, partenaires fiables et opérations résilientes en Europe, LATAM et Asie.',
-      badges: { top: 'Top Performer 2025', middle: 'Spécialiste IA', bottom: 'Leader de Confiance' },
+      badges: {
+ proj: {} top: 'Top Performer 2025', middle: 'Spécialiste IA', bottom: 'Leader de Confiance' },
       stats: {
         savings: 'Économies Cumulées',
         savings_note: 'Dans les négociations multi-catégories',
