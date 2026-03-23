@@ -735,15 +735,26 @@ function initParticles() {
   }
 }
 
+function hideLoading() {
+  const loading = $('#loading');
+  if (!loading) return;
+  loading.classList.add('hidden');
+  setTimeout(() => loading.remove(), 400);
+}
+
 function initLoading() {
   const loading = $('#loading');
   if (!loading) return;
-  window.addEventListener('load', () => {
-    setTimeout(() => {
-      loading.classList.add('hidden');
-      setTimeout(() => loading.remove(), 400);
-    }, 1200);
-  });
+
+  // Hide loading after 1.2 seconds regardless of window.onload
+  setTimeout(() => {
+    hideLoading();
+  }, 1200);
+
+  // Fallback: ensure loading is hidden even if something goes wrong
+  setTimeout(() => {
+    hideLoading();
+  }, 3000);
 }
 
 function initSmoothAnchors() {
