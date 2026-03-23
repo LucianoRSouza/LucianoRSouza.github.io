@@ -1645,20 +1645,33 @@ function initI18N() {
 function initLoading() {
   const loading = $('#loading');
   if (!loading) return;
-  
+
   const hideLoading = () => {
     setTimeout(() => {
       loading.classList.add('hidden');
       setTimeout(() => loading.remove(), 400);
     }, 1200);
   };
-  
-  // Se a página já estiver completamente carregada, esconde imediatamente
-  if (document.readyState === 'complete') {
+
+  // Verifica o readyState atual
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
     hideLoading();
   } else {
-    window.addEventListener('load', hideLoading);
+    // Usa readystatechange que é mais confiável que load
+    document.addEventListener('readystatechange', function checkState() {
+      if (document.readyState === 'complete') {
+        document.removeEventListener('readystatechange', checkState);
+        hideLoading();
+      }
+    });
+    // Fallback com timeout de segurança (5 segundos)
+    setTimeout(() => {
+      if (loading && !loading.classList.contains('hidden')) {
+        hideLoading();
+      }
+    }, 5000);
   }
+}
 }
 
 function initSmoothAnchors() {
