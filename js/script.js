@@ -1645,12 +1645,20 @@ function initI18N() {
 function initLoading() {
   const loading = $('#loading');
   if (!loading) return;
-  window.addEventListener('load', () => {
+  
+  const hideLoading = () => {
     setTimeout(() => {
       loading.classList.add('hidden');
       setTimeout(() => loading.remove(), 400);
     }, 1200);
-  });
+  };
+  
+  // Se a página já estiver completamente carregada, esconde imediatamente
+  if (document.readyState === 'complete') {
+    hideLoading();
+  } else {
+    window.addEventListener('load', hideLoading);
+  }
 }
 
 function initSmoothAnchors() {
