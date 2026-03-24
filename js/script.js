@@ -36,7 +36,9 @@ function initLoading() {
 
 function hideLoading(loading) {
   if (!loading || loading.classList.contains('hidden')) return;
+
   loading.classList.add('hidden');
+
   setTimeout(() => {
     if (loading.parentNode) loading.parentNode.removeChild(loading);
   }, 500);
