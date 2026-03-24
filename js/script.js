@@ -1,4 +1,10 @@
+/* =========================================================
+   Luciano Rodrigues — Portfolio JS (Otimizado com Google Translate)
+   ========================================================= */
 
+/* -------------------------
+   Helpers / Estado Global
+--------------------------*/
 const PG_state = { images: [], index: 0 };
 const CardSlides = new Map();
 let savedScrollPosition = 0;
@@ -7,7 +13,10 @@ const $  = (sel, ctx = document) => ctx.querySelector(sel);
 const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
 const on = (el, evt, fn, opts) => el && el.addEventListener(evt, fn, opts);
 
-const getStatDetailsData = () => ({
+/* -------------------------
+   Dados — Stats & Estratégia (hardcoded em inglês)
+--------------------------*/
+const StatDetailsData = {
   savings: {
     icon: "fa-piggy-bank",
     title: "Cumulative Savings Delivered",
@@ -56,9 +65,9 @@ const getStatDetailsData = () => ({
       "Time zone coordination for 24/7 project execution"
     ]
   }
-});
+};
 
-const getStrategyDetailsData = () => ({
+const StrategyDetailsData = {
   1: {
     title: "Stand Design & Merchandising",
     subtitle: "Creating immersive brand experiences",
@@ -221,10 +230,13 @@ const getStrategyDetailsData = () => ({
       }
     ]
   }
-});
+};
 
+/* -------------------------
+   Modais — Stats
+--------------------------*/
 function openStatModal(key) {
-  const data = getStatDetailsData()[key];
+  const data = StatDetailsData[key];
   if (!data) return;
 
   $('#statModalIcon').className = `fas ${data.icon}`;
@@ -242,8 +254,11 @@ function closeStatModal() {
   document.body.style.overflow = 'auto';
 }
 
+/* -------------------------
+   Modais — Estratégia
+--------------------------*/
 function openStrategyModal(num) {
-  const data = getStrategyDetailsData()[num];
+  const data = StrategyDetailsData[num];
   if (!data) return;
 
   $('#strategyDetailIcon').className = `fas ${data.icon}`;
@@ -277,11 +292,13 @@ function closeStrategyModal() {
   }
 
   overlay.scrollTop = 0;
-
   overlay.classList.remove('active');
   document.body.style.overflow = 'auto';
 }
 
+/* -------------------------
+   Galerias — Animação das bolinhas
+--------------------------*/
 function updateCardDots(card, idx) {
   const dots = card.querySelectorAll('.gallery-dot');
   dots.forEach((dot, i) => {
@@ -363,6 +380,9 @@ function goToProjectSlide(idx) {
   }
 }
 
+/* -------------------------
+   Galerias de Projetos
+--------------------------*/
 function setupCardAutoSlide(card) {
   const container = card.querySelector('.gallery-main');
   if (!container) return;
@@ -485,6 +505,9 @@ function closeProjectGallery() {
   }
 }
 
+/* -------------------------
+   Mobile Enhancements
+--------------------------*/
 function initMobileEnhancements() {
   const isTouch = window.matchMedia('(pointer: coarse)').matches;
   if (!isTouch) return;
@@ -565,28 +588,9 @@ function enhanceProjectGalleries() {
   });
 }
 
-function initVolunteerEnhancement() {
-  const section = $('#volunteering');
-  if (!section) return;
-  if (section.querySelector('.volunteer-hero-image')) return;
-
-  const header = section.querySelector('.section-header');
-  if (!header) return;
-
-  const hero = document.createElement('div');
-  hero.className = 'volunteer-hero-image animate-on-scroll visible';
-  hero.innerHTML = '<img src="./gadsdenstatecommunitycollege.jpg" alt="Gadsden State Community College" onerror="this.style.display='none'" />';
-  header.after(hero);
-}
-
-function fixGadsdenImages() {
-  $$('.cert-logo img').forEach(img => {
-    if (img.src.includes('Gadsden') || img.alt.includes('Gadsden')) {
-      img.onerror = function () { this.src = './gadsdenstatecommunitycollege_logo.jpg'; };
-    }
-  });
-}
-
+/* -------------------------
+   Inicialização
+--------------------------*/
 function initScrollAnimations() {
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
@@ -735,26 +739,15 @@ function initParticles() {
   }
 }
 
-function hideLoading() {
-  const loading = $('#loading');
-  if (!loading) return;
-  loading.classList.add('hidden');
-  setTimeout(() => loading.remove(), 400);
-}
-
 function initLoading() {
   const loading = $('#loading');
   if (!loading) return;
-
-  // Hide loading after 1.2 seconds regardless of window.onload
-  setTimeout(() => {
-    hideLoading();
-  }, 1200);
-
-  // Fallback: ensure loading is hidden even if something goes wrong
-  setTimeout(() => {
-    hideLoading();
-  }, 3000);
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      loading.classList.add('hidden');
+      setTimeout(() => loading.remove(), 400);
+    }, 1200);
+  });
 }
 
 function initSmoothAnchors() {
@@ -770,82 +763,6 @@ function initSmoothAnchors() {
   });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  initLoading();
-  initNavbarScroll();
-  initScrollAnimations();
-  initParticles();
-  initSmoothAnchors();
-  initTradeTabs();
-  initLightbox();
-  enhanceProjectGalleries();
-  $$('.project-card').forEach(setupCardAutoSlide);
-  initVolunteerEnhancement();
-  fixGadsdenImages();
-  initMobileEnhancements();
-
-  on(document, 'click', (e) => {
-    if (e.target?.id === 'statModalOverlay') closeStatModal();
-    if (e.target?.id === 'strategyDetailOverlay') closeStrategyModal();
-  });
-  on(document, 'keydown', (e) => {
-    if (e.key === 'Escape') {
-      closeStatModal();
-      closeStrategyModal();
-    }
-  });
-
-try {
-    const cursor = document.getElementById('cursor');
-    const cursorFollower = document.getElementById('cursorFollower');
-
-    if (cursor && cursorFollower) {
-        let mouseX = 0, mouseY = 0;
-        let cursorX = 0, cursorY = 0;
-        let followerX = 0, followerY = 0;
-
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-        });
-
-        function animateCursor() {
-            cursorX += (mouseX - cursorX) * 0.15;
-            cursorY += (mouseY - cursorY) * 0.15;
-
-            followerX += (mouseX - followerX) * 0.08;
-            followerY += (mouseY - followerY) * 0.08;
-
-            cursor.style.left = cursorX + 'px';
-            cursor.style.top = cursorY + 'px';
-            cursorFollower.style.left = followerX + 'px';
-            cursorFollower.style.top = followerY + 'px';
-
-            requestAnimationFrame(animateCursor);
-        }
-
-        animateCursor();
-
-        document.querySelectorAll('a, button, .project-card, .stat-box, .strategy-item').forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
-                cursor.style.borderColor = 'var(--gold-light)';
-                cursorFollower.style.transform = 'translate(-50%, -50%) scale(1.5)';
-            });
-            el.addEventListener('mouseleave', () => {
-                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-                cursor.style.borderColor = 'var(--gold)';
-                cursorFollower.style.transform = 'translate(-50%, -50%) scale(1)';
-            });
-        });
-    }
-} catch(e) { console.log('Cursor init error:', e); }
-
-console.log('Portfolio JS initialized');
-
-  initStatModals();
-});
-
 function initStatModals() {
   document.querySelectorAll('.stat-box').forEach(box => {
     box.style.cursor = 'pointer';
@@ -856,36 +773,16 @@ function initStatModals() {
       }
     });
   });
-
-  console.log('Stat modals initialized');
 }
 
-window.openStatModal        = openStatModal;
-window.closeStatModal       = closeStatModal;
-window.openStrategyModal    = openStrategyModal;
-window.closeStrategyModal   = closeStrategyModal;
-window.openLightbox         = openLightbox;
-window.closeLightbox        = closeLightbox;
-window.changeProjectSlide   = changeProjectSlide;
-window.goToProjectSlide     = goToProjectSlide;
-window.closeProjectGallery  = closeProjectGallery;
-window.scrollToTop          = scrollToTop;
-
-document.addEventListener('keydown', (e)=>{
-  if(e.key==='Escape'){
-    try{ closeStatModal(); }catch(_){ }
-    try{ closeStrategyModal(); }catch(_){ }
-  }
-});
-
-document.addEventListener('DOMContentLoaded', () => {
+function initStrategyModals() {
   document.querySelectorAll('.strategy-item[data-strategy]').forEach(el => {
     el.addEventListener('click', () => {
       const n = Number(el.getAttribute('data-strategy'));
-      if (!isNaN(n)) { window.openStrategyModal(n); }
+      if (!isNaN(n)) { openStrategyModal(n); }
     });
   });
-});
+}
 
 function initTradeDuoFromExisting(){
   const sec = document.getElementById('trade-shows');
@@ -945,39 +842,6 @@ function initMobileTimelineLogos(){
   });
 }
 
-document.addEventListener('DOMContentLoaded', ()=>{
-  try{ initTradeDuoFromExisting(); }catch(e){}
-  try{ initMobileTimelineLogos(); }catch(e){}
-});
-
-document.addEventListener('click',function(e){const gm=e.target.closest('.project-card .gallery-main');if(!gm)return;const card=gm.closest('.project-card');openProjectGalleryFromCard(card);});
-
-const TRADE_GALLERIES={
-  blaupunkt:[
-    './Blaupunkt_Illumiation_booth_HK_Fair.png',
-    './Blaupunkt_Illumiation_booth_HK_Fair_1.png',
-    './Blaupunkt_Illumiation_booth_HK_Fair_2.png',
-    './Blaupunkt_Illumiation_booth_HK_Fair_3.png',
-    './Blaupunkt_Illumiation_booth_HK_Fair_4.png'
-  ],
-  ford:[
-    './Ford_lighting_solutions_HK_Intl.png',
-    './Ford_lighting_solutions_HK_Intl_1.png',
-    './Ford_lighting_solutions_HK_Intl_2.png'
-  ]
-};
-
-function openTradeGallery(brand){
-  savedScrollPosition = window.scrollY || document.documentElement.scrollTop || 0;
-
-  const images = (TRADE_GALLERIES[brand] || []).slice();
-  if(!images.length) return;
-
-  buildProjectSlides(images);
-  document.getElementById('projectGalleryModal').classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-
 function initTimelineMobileHeaders() {
   if (window.innerWidth > 1200) return;
 
@@ -1008,8 +872,101 @@ function initTimelineMobileHeaders() {
   });
 }
 
-window.addEventListener('load', initTimelineMobileHeaders);
-window.addEventListener('resize', () => {
-  clearTimeout(window.timelineResizeTimer);
-  window.timelineResizeTimer = setTimeout(initTimelineMobileHeaders, 250);
+/* -------------------------
+   Cursor Animation
+--------------------------*/
+function initCursor() {
+  try {
+    const cursor = document.getElementById('cursor');
+    const cursorFollower = document.getElementById('cursorFollower');
+
+    if (cursor && cursorFollower) {
+      let mouseX = 0, mouseY = 0;
+      let cursorX = 0, cursorY = 0;
+      let followerX = 0, followerY = 0;
+
+      document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+      });
+
+      function animateCursor() {
+        cursorX += (mouseX - cursorX) * 0.15;
+        cursorY += (mouseY - cursorY) * 0.15;
+        followerX += (mouseX - followerX) * 0.08;
+        followerY += (mouseY - followerY) * 0.08;
+
+        cursor.style.left = cursorX + 'px';
+        cursor.style.top = cursorY + 'px';
+        cursorFollower.style.left = followerX + 'px';
+        cursorFollower.style.top = followerY + 'px';
+
+        requestAnimationFrame(animateCursor);
+      }
+
+      animateCursor();
+
+      document.querySelectorAll('a, button, .project-card, .stat-box, .strategy-item').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
+          cursor.style.borderColor = 'var(--gold-light)';
+          cursorFollower.style.transform = 'translate(-50%, -50%) scale(1.5)';
+        });
+        el.addEventListener('mouseleave', () => {
+          cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+          cursor.style.borderColor = 'var(--gold)';
+          cursorFollower.style.transform = 'translate(-50%, -50%) scale(1)';
+        });
+      });
+    }
+  } catch(e) { console.log('Cursor init error:', e); }
+}
+
+/* -------------------------
+   DOM Ready
+--------------------------*/
+document.addEventListener('DOMContentLoaded', () => {
+  initLoading();
+  initNavbarScroll();
+  initScrollAnimations();
+  initParticles();
+  initSmoothAnchors();
+  initTradeTabs();
+  initLightbox();
+  enhanceProjectGalleries();
+  $$('.project-card').forEach(setupCardAutoSlide);
+  initMobileEnhancements();
+  initStatModals();
+  initStrategyModals();
+  initCursor();
+
+  try { initTradeDuoFromExisting(); } catch(e) {}
+  try { initMobileTimelineLogos(); } catch(e) {}
+  try { initTimelineMobileHeaders(); } catch(e) {}
+
+  on(document, 'click', (e) => {
+    if (e.target?.id === 'statModalOverlay') closeStatModal();
+    if (e.target?.id === 'strategyDetailOverlay') closeStrategyModal();
+  });
+
+  on(document, 'keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeStatModal();
+      closeStrategyModal();
+    }
+  });
+
+  console.log('✅ Portfolio JS inicializado - Google Translate ativo');
 });
+
+// Expor funções globais
+window.openStatModal        = openStatModal;
+window.closeStatModal       = closeStatModal;
+window.openStrategyModal    = openStrategyModal;
+window.closeStrategyModal   = closeStrategyModal;
+window.openLightbox         = openLightbox;
+window.closeLightbox        = closeLightbox;
+window.changeProjectSlide   = changeProjectSlide;
+window.goToProjectSlide     = goToProjectSlide;
+window.closeProjectGallery  = closeProjectGallery;
+window.scrollToTop          = scrollToTop;
