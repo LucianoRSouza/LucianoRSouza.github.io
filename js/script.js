@@ -1,3 +1,5 @@
+window.
+
 /* =========================================================
    Luciano Rodrigues — Portfolio JS (consolidado e limpo)
    ========================================================= */
@@ -5,7 +7,7 @@
 /* -------------------------
    Helpers / Estado Global
 --------------------------*/
-const PG_state = { images: [], index: 0, currentLang: 'en' };
+const PG_state = { imag, index: 0, currentLang: 'en' };
 const CardSlides = new Map();
 
 // NOVO: Variável para salvar posição de scroll
@@ -31,27 +33,9 @@ const getStatDetailsData = () => ({
         "Consolidated supplier base from 200+ to 80 key partners",
         "Zero-based budgeting approach for CAPEX projects saving 20% on average"
       ],
-      pt: [
-        "Iniciativas de strategic sourcing multi‑categoria em despesas diretas e indiretas",
-        "Negociação de prazos de pagamento favoráveis (60–90 dias) melhorando o cash flow",
-        "Modelos de should‑cost identificando oportunidades de 15–25% de redução de custos",
-        "Consolidação da base de fornecedores de 200+ para 80 parceiros‑chave",
-        "Orçamentação base‑zero para projetos CAPEX economizando ~20% em média"
-      ],
-      es: [
-        "Iniciativas de strategic sourcing multi‑categoría en gasto directo e indirecto",
-        "Negociación de plazos de pago favorables (60–90 días) mejorando el flujo de caja",
-        "Modelado should‑cost identificando oportunidades de reducción del 15–25%",
-        "Consolidación de la base de proveedores de 200+ a 80 socios clave",
-        "Presupuestación base‑cero para proyectos CAPEX ahorrando ~20% en promedio"
-      ],
-      fr: [
-        "Initiatives de sourcing stratégique multi‑catégories sur dépenses directes et indirectes",
-        "Négociation de conditions de paiement favorables (60–90 jours) améliorant la trésorerie",
-        "Modélisation should‑cost identifiant 15–25% d\'opportunités de réduction",
-        "Consolidation de la base fournisseurs de 200+ à 80 partenaires clés",
-        "Budget base‑zéro pour projets CAPEX économisant ~20% en moyenne"
-      ]
+      ,
+      ,
+      
     }
   },
   rfps: {
@@ -66,27 +50,9 @@ const getStatDetailsData = () => ({
         "Cross-functional evaluation committees (Engineering, Finance, Legal, Operations)",
         "Average cycle time reduction from 45 to 28 days while improving compliance"
       ],
-      pt: [
-        "Desenho ponta‑a‑ponta de RFI/RFP/RFQ com anexos técnicos (A1/A2)",
-        "Matrizes de scoring ponderado: técnico (40%), comercial (35%) e ESG (25%)",
-        "Integração com plataforma de e‑procurement com trilhas de auditoria",
-        "Comitês de avaliação multifuncionais (Engenharia, Finanças, Jurídico, Operações)",
-        "Redução do ciclo médio de 45 para 28 dias com mais compliance"
-      ],
-      es: [
-        "Diseño integral RFI/RFP/RFQ con anexos técnicos (A1/A2)",
-        "Matrices de ponderación: técnico (40%), comercial (35%) y ESG (25%)",
-        "Integración con plataforma de e‑procurement con trazabilidad completa",
-        "Comités de evaluación multifuncionales (Ingeniería, Finanzas, Legal, Operaciones)",
-        "Reducción del ciclo promedio de 45 a 28 días con mayor cumplimiento"
-      ],
-      fr: [
-        "Conception bout‑à‑bout RFI/RFP/RFQ avec annexes techniques (A1/A2)",
-        "Matrices de pondération : technique (40%), commercial (35%), ESG (25%)",
-        "Intégration à la plateforme d\'e‑procurement avec traçabilité complète",
-        "Comités d\'évaluation interfonctionnels (Ingénierie, Finance, Juridique, Opérations)",
-        "Réduction du cycle moyen de 45 à 28 jours avec meilleur compliance"
-      ]
+      ,
+      ,
+      
     }
   },
   projects: {
@@ -101,27 +67,9 @@ const getStatDetailsData = () => ({
         "Quality system implementations (ISO 9001, compliance frameworks)",
         "Cross-border logistics optimization and customs compliance"
       ],
-      pt: [
-        "Desenvolvimento de produto do conceito à produção em massa",
-        "Lançamentos licenciados (Blaupunkt, Spear & Jackson, Pininfarina)",
-        "Auditorias fabris e avaliação de capacidades na Ásia",
-        "Implementação de sistemas de qualidade (ISO 9001, frameworks de compliance)",
-        "Otimização logística transfronteiriça e conformidade aduaneira"
-      ],
-      es: [
-        "Desarrollo de producto del concepto a producción masiva",
-        "Lanzamientos licenciados (Blaupunkt, Spear & Jackson, Pininfarina)",
-        "Auditorías de fábrica y evaluación de capacidades en Asia",
-        "Implementación de sistemas de calidad (ISO 9001, marcos de compliance)",
-        "Optimización logística transfronteriza y cumplimiento aduanero"
-      ],
-      fr: [
-        "Développement produit du concept à la production de masse",
-        "Lancements sous licence (Blaupunkt, Spear & Jackson, Pininfarina)",
-        "Audits d\'usines et évaluation des capacités en Asie",
-        "Mise en place de systèmes qualité (ISO 9001, cadres de conformité)",
-        "Optimisation logistique transfrontalière et conformité douanière"
-      ]
+      ,
+      ,
+      
     }
   },
   regions: {
@@ -136,27 +84,9 @@ const getStatDetailsData = () => ({
         "Multi-cultural negotiation experience and local market knowledge",
         "Time zone coordination for 24/7 project execution"
       ],
-      pt: [
-        "Europa: Portugal, Espanha, Alemanha, Reino Unido, Países Baixos, Itália, França",
-        "LATAM: Brasil, Argentina, Chile, Colômbia, México, Peru, Uruguai",
-        "Ásia: China, Hong Kong, Taiwan, Vietname, Índia, Coreia do Sul",
-        "Negociação multicultural e conhecimento de mercados locais",
-        "Coordenação de fuso horário para execução 24/7"
-      ],
-      es: [
-        "Europa: Portugal, España, Alemania, Reino Unido, Países Bajos, Italia, Francia",
-        "LATAM: Brasil, Argentina, Chile, Colombia, México, Perú, Uruguay",
-        "Asia: China, Hong Kong, Taiwán, Vietnam, India, Corea del Sur",
-        "Experiencia de negociación multicultural y conocimiento local",
-        "Coordinación de husos horarios para ejecución 24/7"
-      ],
-      fr: [
-        "Europe : Portugal, Espagne, Allemagne, Royaume‑Uni, Pays‑Bas, Italie, France",
-        "LATAM : Brésil, Argentine, Chili, Colombie, Mexique, Pérou, Uruguay",
-        "Asie : Chine, Hong Kong, Taïwan, Viêt Nam, Inde, Corée du Sud",
-        "Expérience de négociation multiculturelle et connaissance des marchés locaux",
-        "Coordination des fuseaux horaires pour exécution 24/7"
-      ]
+      ,
+      ,
+      
     }
   }
 });
@@ -189,16 +119,7 @@ const getStrategyDetailsData = () => ({
           ]
         }
       ],
-      pt: [
-        {
-          title: "Abordagem Estratégica",
-          items: [
-            "Co-criação do conceito do stand com Marketing alinhado ao posicionamento da marca",
-            "Otimização do fluxo de tráfego para máximo engajamento de visitantes",
-            "Hierarquia de exibição de produtos destacando SKUs principais e novos lançamentos",
-            "Iluminação e merchandising visual para percepção premium da marca",
-            "Estações de demonstração interativas para experiência prática do produto"
-          ]
+      
         },
         {
           title: "Execução Técnica",
@@ -211,16 +132,7 @@ const getStrategyDetailsData = () => ({
           ]
         }
       ],
-      es: [
-        {
-          title: "Enfoque Estratégico",
-          items: [
-            "Co-creación del concepto de stand con Marketing alineado al posicionamiento de marca",
-            "Optimización del flujo de tráfico para máximo compromiso de visitantes",
-            "Jerarquía de exhibición de productos destacando SKUs principales y nuevos lanzamientos",
-            "Iluminación y merchandising visual para percepción premium de marca",
-            "Estaciones de demostración interactivas para experiencia práctica del producto"
-          ]
+      
         },
         {
           title: "Ejecución Técnica",
@@ -233,16 +145,7 @@ const getStrategyDetailsData = () => ({
           ]
         }
       ],
-      fr: [
-        {
-          title: "Approche Stratégique",
-          items: [
-            "Co-création du concept de stand avec le Marketing aligné sur le positionnement de la marque",
-            "Optimisation du flux de trafic pour un engagement maximal des visiteurs",
-            "Hiérarchie d'affichage des produits mettant en avant les SKU phares et les nouveautés",
-            "Éclairage et merchandising visuel pour une perception premium de la marque",
-            "Stations de démonstration interactives pour une expérience produit hands-on"
-          ]
+      
         },
         {
           title: "Exécution Technique",
@@ -284,16 +187,7 @@ const getStrategyDetailsData = () => ({
           ]
         }
       ],
-      pt: [
-        {
-          title: "Planejamento Pré-Evento",
-          items: [
-            "Desenvolvimento de lista de alvos: 200+ prospectos qualificados por feira",
-            "Sistema de agendamento de reuniões com lembretes automatizados",
-            "Briefing da equipe de vendas com sessões de conhecimento de produto",
-            "Pitch decks personalizados por segmento de cliente",
-            "Critérios de pontuação de leads definidos (orçamento, cronograma, autoridade)"
-          ]
+      
         },
         {
           title: "Execução no Local",
@@ -306,16 +200,7 @@ const getStrategyDetailsData = () => ({
           ]
         }
       ],
-      es: [
-        {
-          title: "Planificación Pre-Evento",
-          items: [
-            "Desarrollo de lista de objetivos: 200+ prospectos calificados por feria",
-            "Sistema de programación de reuniones con recordatorios automatizados",
-            "Briefing del equipo de ventas con sesiones de conocimiento de producto",
-            "Pitch decks personalizados por segmento de cliente",
-            "Criterios de puntuación de leads definidos (presupuesto, cronograma, autoridad)"
-          ]
+      
         },
         {
           title: "Ejecución en Sitio",
@@ -328,16 +213,7 @@ const getStrategyDetailsData = () => ({
           ]
         }
       ],
-      fr: [
-        {
-          title: "Planification Pré-Événement",
-          items: [
-            "Développement de liste cible: 200+ prospects qualifiés par salon",
-            "Système de planification de réunions avec rappels automatisés",
-            "Briefing de l'équipe commerciale avec sessions de connaissance produit",
-            "Pitch decks personnalisés par segment client",
-            "Critères de scoring des leads définis (budget, calendrier, autorité)"
-          ]
+      
         },
         {
           title: "Exécution sur Site",
@@ -379,16 +255,7 @@ const getStrategyDetailsData = () => ({
           ]
         }
       ],
-      pt: [
-        {
-          title: "Desenvolvimento de Parcerias",
-          items: [
-            "Qualificação inicial: estabilidade financeira, capacidade, certificações",
-            "Negociações de term sheet: MOQ, prazos de pagamento, cláusulas de exclusividade",
-            "Framework de preços com quebras de volume e rebates anuais",
-            "Acordos de qualidade definindo taxas de defeito e ações corretivas",
-            "Proteção de PI e frameworks de NDA para desenvolvimento de novos produtos"
-          ]
+      
         },
         {
           title: "Framework Contratual",
@@ -401,16 +268,7 @@ const getStrategyDetailsData = () => ({
           ]
         }
       ],
-      es: [
-        {
-          title: "Desarrollo de Alianzas",
-          items: [
-            "Calificación inicial: estabilidad financiera, capacidad, certificaciones",
-            "Negociaciones de hoja de términos: MOQ, plazos de pago, cláusulas de exclusividad",
-            "Marco de precios con descuentos por volumen y rebates anuales",
-            "Acuerdos de calidad definiendo tasas de defecto y acciones correctivas",
-            "Protección de PI y marcos de NDA para desarrollo de nuevos productos"
-          ]
+      
         },
         {
           title: "Marco Contractual",
@@ -423,16 +281,7 @@ const getStrategyDetailsData = () => ({
           ]
         }
       ],
-      fr: [
-        {
-          title: "Développement de Partenariats",
-          items: [
-            "Qualification initiale: stabilité financière, capacité, certifications",
-            "Négociations de term sheet: MOQ, conditions de paiement, clauses d'exclusivité",
-            "Cadre de prix avec ruptures de volume et rebates annuels",
-            "Accords de qualité définissant les taux de défaut et actions correctives",
-            "Protection de PI et cadres de NDA pour développement de nouveaux produits"
-          ]
+      
         },
         {
           title: "Cadre Contractuel",
@@ -474,16 +323,7 @@ const getStrategyDetailsData = () => ({
           ]
         }
       ],
-      pt: [
-        {
-          title: "Inteligência de Mercado",
-          items: [
-            "Scouting de tecnologia em 50+ stands de fornecedores por feira",
-            "Desmontagem de produtos concorrentes e comparação de features",
-            "Benchmark de custos para especificações similares",
-            "Mapeamento de tendências de inovação (IoT, sustentabilidade, features inteligentes)",
-            "Análise de panorama de patentes para liberdade de operação"
-          ]
+      
         },
         {
           title: "Avaliação Técnica",
@@ -496,16 +336,7 @@ const getStrategyDetailsData = () => ({
           ]
         }
       ],
-      es: [
-        {
-          title: "Inteligencia de Mercado",
-          items: [
-            "Scouting de tecnología en 50+ stands de proveedores por feria",
-            "Desmontaje de productos competitivos y comparación de características",
-            "Benchmark de costos para especificaciones similares",
-            "Mapeo de tendencias de innovación (IoT, sostenibilidad, características inteligentes)",
-            "Análisis de panorama de patentes para libertad de operación"
-          ]
+      
         },
         {
           title: "Evaluación Técnica",
@@ -518,16 +349,7 @@ const getStrategyDetailsData = () => ({
           ]
         }
       ],
-      fr: [
-        {
-          title: "Intelligence Marché",
-          items: [
-            "Veille technologique sur 50+ stands fournisseurs par salon",
-            "Démontage de produits concurrents et comparaison de fonctionnalités",
-            "Benchmark de coûts pour spécifications similaires",
-            "Cartographie des tendances d'innovation (IoT, durabilité, fonctionnalités intelligentes)",
-            "Analyse de paysage de brevets pour liberté d'exploitation"
-          ]
+      
         },
         {
           title: "Évaluation Technique",
@@ -569,16 +391,7 @@ const getStrategyDetailsData = () => ({
           ]
         }
       ],
-      pt: [
-        {
-          title: "Framework de Auditoria",
-          items: [
-            "Verificação do sistema de gestão de qualidade ISO 9001",
-            "Análise de capacidade produtiva (linhas, turnos, utilização)",
-            "Registros de manutenção de equipamentos e certificados de calibração",
-            "Avaliação de habilidades da força de trabalho e programas de treinamento",
-            "Conformidade ambiental e práticas de gestão de resíduos"
-          ]
+      
         },
         {
           title: "Avaliação de Riscos",
@@ -591,16 +404,7 @@ const getStrategyDetailsData = () => ({
           ]
         }
       ],
-      es: [
-        {
-          title: "Marco de Auditoría",
-          items: [
-            "Verificación del sistema de gestión de calidad ISO 9001",
-            "Análisis de capacidad productiva (líneas, turnos, utilización)",
-            "Registros de mantenimiento de equipos y certificados de calibración",
-            "Evaluación de habilidades de la fuerza laboral y programas de capacitación",
-            "Cumplimiento ambiental y prácticas de gestión de residuos"
-          ]
+      
         },
         {
           title: "Evaluación de Riesgos",
@@ -613,16 +417,7 @@ const getStrategyDetailsData = () => ({
           ]
         }
       ],
-      fr: [
-        {
-          title: "Cadre d'Audit",
-          items: [
-            "Vérification du système de management qualité ISO 9001",
-            "Analyse de capacité de production (lignes, équipes, utilisation)",
-            "Registres de maintenance équipements et certificats d'étalonnage",
-            "Évaluation des compétences de la main-d'œuvre et programmes de formation",
-            "Conformité environnementale et prátiques de gestion des déchets"
-          ]
+      
         },
         {
           title: "Évaluation des Risques",
@@ -664,16 +459,7 @@ const getStrategyDetailsData = () => ({
           ]
         }
       ],
-      pt: [
-        {
-          title: "Gestão de Pipeline",
-          items: [
-            "Categorização de leads: Hot (imediato), Warm (3 meses), Cold (nutrição)",
-            "Integração com CRM com sequências automatizadas de acompanhamento",
-            "Estimativa de valor de oportunidade e pontuação de probabilidade de ganho",
-            "Handover multifuncional para equipes de vendas regionais",
-            "Reuniões semanais de revisão de pipeline para primeiros 30 dias"
-          ]
+      
         },
         {
           title: "Métricas de Performance",
@@ -686,16 +472,7 @@ const getStrategyDetailsData = () => ({
           ]
         }
       ],
-      es: [
-        {
-          title: "Gestión de Pipeline",
-          items: [
-            "Categorización de leads: Hot (inmediato), Warm (3 meses), Cold (nutrición)",
-            "Integración con CRM con secuencias automatizadas de seguimiento",
-            "Estimación de valor de oportunidad y puntuación de probabilidad de ganancia",
-            "Handover multifuncional a equipos de ventas regionales",
-            "Reuniones semanales de revisión de pipeline para primeros 30 días"
-          ]
+      
         },
         {
           title: "Métricas de Rendimiento",
@@ -708,16 +485,7 @@ const getStrategyDetailsData = () => ({
           ]
         }
       ],
-      fr: [
-        {
-          title: "Gestion du Pipeline",
-          items: [
-            "Catégorisation des leads: Hot (immédiat), Warm (3 mois), Cold (nurturing)",
-            "Intégration CRM avec séquences de suivi automatisées",
-            "Estimation de valeur d'opportunité et scoring de probabilité de gain",
-            "Passation interfonctionnelle aux équipes commerciales régionales",
-            "Réunions hebdomadaires de revue de pipeline pour les 30 premiers jours"
-          ]
+      
         },
         {
           title: "Métriques de Performance",
@@ -1285,7 +1053,10 @@ function initParticles() {
   }
 }
 
-;
+function translateAll(lang) {
+  PG_state.currentLang = lang;
+  document.documentElement.lang = lang;
+  const dict = (window.I18N && window.I18N[lang]) || (window.I18N && window.I18N['en']) || {};
   $$('[data-i18n]').forEach(el => {
     const path = el.dataset.i18n;
     const value = path?.split('.').reduce((acc, key) => (acc && acc[key] !== undefined ? acc[key] : undefined), dict);
@@ -1294,14 +1065,33 @@ function initParticles() {
   setTimeout(updateTimelineSpy, 100);
 }
 
+function markActiveLang(lang) {
+  $$('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
+}
 
-
- catch(e) {}
+function initLangSwitcher() {
+  const switcher = $('#langSwitcher');
+  if (!switcher) return;
+  on(switcher, 'click', (e) => {
+    const btn = e.target.closest('.lang-btn');
+    if (!btn) return;
+    const lang = btn.dataset.lang;
+    if (!lang) return;
+    translateAll(lang);
+    markActiveLang(lang);
+    try { localStorage.setItem('lang', lang); } catch(e) {}
     showToast(`Translated to ${lang.toUpperCase()}`);
   });
 }
 
- catch(e) {
+function initI18N() {
+  try {
+    const stored = localStorage.getItem('lang');
+    const browser = (navigator.language || 'en').slice(0, 2).toLowerCase();
+    const initial = stored || (['en', 'pt', 'es', 'fr'].includes(browser) ? browser : 'en');
+    translateAll(initial);
+    markActiveLang(initial);
+  } catch(e) {
     translateAll('en');
     markActiveLang('en');
   }
@@ -1338,8 +1128,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initParticles();
   initSmoothAnchors();
 
-  
-  
+  initLangSwitcher();
+  initI18N();
 
   initTradeTabs();
   initLightbox();
