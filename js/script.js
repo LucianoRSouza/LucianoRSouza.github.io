@@ -1,4 +1,4 @@
-window.I18N = {};
+
 
 /* =========================================================
    Luciano Rodrigues — Portfolio JS (consolidado e limpo)
@@ -740,14 +740,14 @@ const getStrategyDetailsData = () => ({
    Modais — Stats (com tradução dinâmica)
 --------------------------*/
 function openStatModal(key) {
-  const lang = PG_state.currentLang || 'en';
+  const lang = "en" || 'en';
   const data = getStatDetailsData()[key];
   if (!data) return;
   
   $('#statModalIcon').className = `fas ${data.icon}`;
-  $('#statModalTitle').textContent = data.title[lang] || data.title.en;
+  $('#statModalTitle').textContent = data.title.en || data.title.en;
   $('#statModalValue').textContent = data.value;
-  $('#statModalDetails').innerHTML = (data.details[lang] || data.details.en).map(it => `<li>${it}</li>`).join('');
+  $('#statModalDetails').innerHTML = (data.details.en || data.details.en).map(it => `<li>${it}</li>`).join('');
   $('#statModalOverlay').classList.add('active');
   document.body.style.overflow = 'hidden';
 }
@@ -763,15 +763,15 @@ function closeStatModal() {
    Modais — Estratégia (com tradução dinâmica)
 --------------------------*/
 function openStrategyModal(num) {
-  const lang = PG_state.currentLang || 'en';
+  const lang = "en" || 'en';
   const data = getStrategyDetailsData()[num];
   if (!data) return;
   
   $('#strategyDetailIcon').className = `fas ${data.icon}`;
-  $('#strategyDetailTitle').textContent = data.title[lang] || data.title.en;
-  $('#strategyDetailSubtitle').textContent = data.subtitle[lang] || data.subtitle.en;
+  $('#strategyDetailTitle').textContent = data.title.en || data.title.en;
+  $('#strategyDetailSubtitle').textContent = data.subtitle.en || data.subtitle.en;
   
-  const sections = data.sections[lang] || data.sections.en;
+  const sections = data.sections.en || data.sections.en;
   const body = sections.map(sec => {
     const items = sec.items.map(li => `<li>${li}</li>`).join('');
     return `<div class="strategy-detail-section"><h4><i class="fas fa-chevron-right"></i> ${sec.title}</h4><ul>${items}</ul></div>`;
@@ -1288,9 +1288,6 @@ function initParticles() {
 }
 
 
-function markActiveLang(lang) {
-  $$('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
-}
 
     showToast(`Translated to ${lang.toUpperCase()}`);
   });
