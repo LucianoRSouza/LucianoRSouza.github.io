@@ -1285,6 +1285,272 @@ function initParticles() {
   }
 }
 
+;
+  $$('[data-i18n]').forEach(el => {
+    const path = el.dataset.i18n;
+    const value = path?.split('.').reduce((acc, key) => (acc && acc[key] !== undefined ? acc[key] : undefined), dict);
+    if (value !== undefined) el.textContent = value;
+  });
+  setTimeout(updateTimelineSpy, 100);
+}
+
+
+
+ catch(e) {}
+    showToast(`Translated to ${lang.toUpperCase()}`);
+  });
+}
+
+ catch(e) {
+    translateAll('en');
+    markActiveLang('en');
+  }
+}
+
+function initLoading() {
+  const loading = $('#loading');
+  if (!loading) return;
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      loading.classList.add('hidden');
+      setTimeout(() => loading.remove(), 400);
+    }, 1200);
+  });
+}
+
+function initSmoothAnchors() {
+  $$('a[href^="#"]').forEach(a => {
+    on(a, 'click', (e) => {
+      const href = a.getAttribute('href');
+      if (!href || href === '#') return;
+      const target = $(href);
+      if (!target) return;
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  initLoading();
+  initNavbarScroll();
+  initScrollAnimations();
+  initParticles();
+  initSmoothAnchors();
+
+  
+  
+
+  initTradeTabs();
+  initLightbox();
+
+  enhanceProjectGalleries();
+  $$('.project-card').forEach(setupCardAutoSlide);
+
+  initVolunteerEnhancement();
+  fixGadsdenImages();
+
+  initMobileEnhancements();
+
+  on(document, 'click', (e) => {
+    if (e.target?.id === 'statModalOverlay') closeStatModal();
+    if (e.target?.id === 'strategyDetailOverlay') closeStrategyModal();
+  });
+  on(document, 'keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeStatModal();
+      closeStrategyModal();
+    }
+  });
+
+  // Cursor animation
+try {
+    const cursor = document.getElementById('cursor');
+    const cursorFollower = document.getElementById('cursorFollower');
+
+    if (cursor && cursorFollower) {
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+        let followerX = 0, followerY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function animateCursor() {
+            // Smooth follow for main cursor
+            cursorX += (mouseX - cursorX) * 0.15;
+            cursorY += (mouseY - cursorY) * 0.15;
+
+            // Slower follow for follower
+            followerX += (mouseX - followerX) * 0.08;
+            followerY += (mouseY - followerY) * 0.08;
+
+            cursor.style.left = cursorX + 'px';
+            cursor.style.top = cursorY + 'px';
+            cursorFollower.style.left = followerX + 'px';
+            cursorFollower.style.top = followerY + 'px';
+
+            requestAnimationFrame(animateCursor);
+        }
+
+        animateCursor();
+
+        // Hover effects
+        document.querySelectorAll('a, button, .project-card, .stat-box, .strategy-item').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                cursor.style.borderColor = 'var(--gold-light)';
+                cursorFollower.style.transform = 'translate(-50%, -50%) scale(1.5)';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+                cursor.style.borderColor = 'var(--gold)';
+                cursorFollower.style.transform = 'translate(-50%, -50%) scale(1)';
+            });
+        });
+    }
+} catch(e) { console.log('Cursor init error:', e); }
+
+console.log('✅ Portfolio JS (consolidado) inicializado');
+  
+  initStatModals();
+});
+
+function initStatModals() {
+  document.querySelectorAll('.stat-box').forEach(box => {
+    box.style.cursor = 'pointer';
+    box.addEventListener('click', function(e) {
+      const statKey = this.dataset.stat;
+      if (statKey) {
+        openStatModal(statKey);
+      }
+    });
+  });
+  
+  console.log('✅ Stat modals initialized');
+}
+
+window.openStatModal        = openStatModal;
+window.closeStatModal       = closeStatModal;
+window.openStrategyModal    = openStrategyModal;
+window.closeStrategyModal   = closeStrategyModal;
+window.openLightbox         = openLightbox;
+window.closeLightbox        = closeLightbox;
+window.changeProjectSlide   = changeProjectSlide;
+window.goToProjectSlide     = goToProjectSlide;
+window.closeProjectGallery  = closeProjectGallery;
+window.scrollToTop          = scrollToTop;
+
+document.addEventListener('keydown', (e)=>{
+  if(e.key==='Escape'){
+    try{ closeStatModal(); }catch(_){ }
+    try{ closeStrategyModal(); }catch(_){ }
+  }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.strategy-item[data-strategy]').forEach(el => {
+    el.addEventListener('click', () => {
+      const n = Number(el.getAttribute('data-strategy'));
+      if (!isNaN(n)) { window.openStrategyModal(n); }
+    });
+  });
+});
+
+function initTradeDuoFromExisting(){
+  const sec = document.getElementById('trade-shows');
+  if(!sec) return;
+  const blau = document.querySelector('#gallery-blaupunkt .gallery-item img');
+  const ford = document.querySelector('#gallery-ford .gallery-item img');
+  const blauSrc = blau ? blau.getAttribute('src') : '';
+  const fordSrc = ford ? ford.getAttribute('src') : '';
+  if(!blauSrc || !fordSrc) return;
+  if(sec.querySelector('.trade-duo')) return;
+  
+  const duo = document.createElement('div');
+  duo.className = 'trade-duo';
+  duo.innerHTML = `
+    <div class="brand-card" data-brand="blaupunkt">
+      <div class="brand-head"><h4>Blaupunkt</h4><i class="fas fa-images" style="color:var(--gold);"></i></div>
+      <div class="brand-body"><img src="${blauSrc}" alt="Blaupunkt cover"/></div>
+    </div>
+    <div class="brand-card" data-brand="ford">
+      <div class="brand-head"><h4>Ford Lighting</h4><i class="fas fa-images" style="color:var(--gold);"></i></div>
+      <div class="brand-body"><img src="${fordSrc}" alt="Ford cover"/></div>
+    </div>`;
+  const tabs = sec.querySelector('.gallery-tabs');
+  sec.insertBefore(duo, tabs);
+  
+  const openBrand = (brand)=>{
+    savedScrollPosition = window.scrollY || document.documentElement.scrollTop || 0;
+    
+    const panel = document.getElementById(brand==='blaupunkt' ? 'gallery-blaupunkt' : 'gallery-ford');
+    if(!panel) return;
+    const imgs = Array.from(panel.querySelectorAll('.gallery-item img')).map(i=> i.getAttribute('src')).filter(Boolean);
+    if(!imgs.length) return;
+    
+    buildProjectSlides(imgs);
+    const modal = document.getElementById('projectGalleryModal');
+    if(modal){ 
+      modal.classList.add('active'); 
+      document.body.style.overflow='hidden'; 
+    }
+  };
+  
+  duo.querySelector('[data-brand="blaupunkt"]').addEventListener('click', ()=> openBrand('blaupunkt'));
+  duo.querySelector('[data-brand="ford"]').addEventListener('click', ()=> openBrand('ford'));
+}
+
+function initMobileTimelineLogos(){
+  if(!window.matchMedia('(max-width: 1200px)').matches) return;
+  document.querySelectorAll('.timeline-item').forEach(item=>{
+    if(item.querySelector('.mobile-company-logo')) return;
+    const logo = item.getAttribute('data-logo');
+    if(!logo) return;
+    const img = document.createElement('img');
+    img.className = 'mobile-company-logo';
+    img.alt = 'Company logo';
+    img.src = logo;
+    item.appendChild(img);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', ()=>{
+  try{ initTradeDuoFromExisting(); }catch(e){}
+  try{ initMobileTimelineLogos(); }catch(e){}
+});
+
+document.addEventListener('DOMContentLoaded',function(){try{var l=localStorage.getItem('lang')||document.documentElement.lang||'en';if(typeof translateAll==='function'){translateAll(l);}}catch(e){}});
+
+document.addEventListener('click',function(e){const gm=e.target.closest('.project-card .gallery-main');if(!gm)return;const card=gm.closest('.project-card');openProjectGalleryFromCard(card);});
+
+const TRADE_GALLERIES={
+  blaupunkt:[
+    './Blaupunkt_Illumiation_booth_HK_Fair.png',
+    './Blaupunkt_Illumiation_booth_HK_Fair_1.png',
+    './Blaupunkt_Illumiation_booth_HK_Fair_2.png',
+    './Blaupunkt_Illumiation_booth_HK_Fair_3.png',
+    './Blaupunkt_Illumiation_booth_HK_Fair_4.png'
+  ],
+  ford:[
+    './Ford_lighting_solutions_HK_Intl.png',
+    './Ford_lighting_solutions_HK_Intl_1.png',
+    './Ford_lighting_solutions_HK_Intl_2.png'
+  ]
+};
+
+function openTradeGallery(brand){
+  savedScrollPosition = window.scrollY || document.documentElement.scrollTop || 0;
+  
+  const images = (TRADE_GALLERIES[brand] || []).slice();
+  if(!images.length) return;
+  
+  buildProjectSlides(images);
+  document.getElementById('projectGalleryModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
 /* -------------------------
    TIMELINE MOBILE - ADICIONAR HEADERS COM LOGO E DATA
    -------------------------*/
