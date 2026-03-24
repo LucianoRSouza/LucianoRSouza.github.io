@@ -1,4 +1,4 @@
-
+/* I18N removed */
 
 /* =========================================================
    Luciano Rodrigues — Portfolio JS (consolidado e limpo)
@@ -745,9 +745,9 @@ function openStatModal(key) {
   if (!data) return;
   
   $('#statModalIcon').className = `fas ${data.icon}`;
-  $('#statModalTitle').textContent = data.title.en || data.title.en;
+  $('#statModalTitle').textContent = data.title[lang] || data.title.en;
   $('#statModalValue').textContent = data.value;
-  $('#statModalDetails').innerHTML = (data.details.en || data.details.en).map(it => `<li>${it}</li>`).join('');
+  $('#statModalDetails').innerHTML = (data.details[lang] || data.details.en).map(it => `<li>${it}</li>`).join('');
   $('#statModalOverlay').classList.add('active');
   document.body.style.overflow = 'hidden';
 }
@@ -768,10 +768,10 @@ function openStrategyModal(num) {
   if (!data) return;
   
   $('#strategyDetailIcon').className = `fas ${data.icon}`;
-  $('#strategyDetailTitle').textContent = data.title.en || data.title.en;
-  $('#strategyDetailSubtitle').textContent = data.subtitle.en || data.subtitle.en;
+  $('#strategyDetailTitle').textContent = data.title[lang] || data.title.en;
+  $('#strategyDetailSubtitle').textContent = data.subtitle[lang] || data.subtitle.en;
   
-  const sections = data.sections.en || data.sections.en;
+  const sections = data.sections[lang] || data.sections.en;
   const body = sections.map(sec => {
     const items = sec.items.map(li => `<li>${li}</li>`).join('');
     return `<div class="strategy-detail-section"><h4><i class="fas fa-chevron-right"></i> ${sec.title}</h4><ul>${items}</ul></div>`;
@@ -1287,12 +1287,16 @@ function initParticles() {
   }
 }
 
+/*translateAll removed*/
 
+/*markActiveLang removed*/
 
+/*initLangSwitcher removed*/
     showToast(`Translated to ${lang.toUpperCase()}`);
   });
 }
 
+/*initI18N removed*/
 }
 
 function initLoading() {
@@ -1326,8 +1330,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initParticles();
   initSmoothAnchors();
 
-  
-  
+  /*initLangSwitcher call removed*/
+  /*initI18N call removed*/
 
   initTradeTabs();
   initLightbox();
@@ -1510,7 +1514,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
   try{ initMobileTimelineLogos(); }catch(e){}
 });
 
-document.addEventListener('DOMContentLoaded',function(){try{var l=localStorage.getItem('lang')||document.documentElement.lang||'en';if(typeof translateAll==='function'){}}catch(e){}});
+document.addEventListener('DOMContentLoaded',function(){try{var l=localStorage.getItem('lang')||document.documentElement.lang||'en';if(typeof translateAll==='function'){/*translateAll call removed*/}}catch(e){}});
 
 document.addEventListener('click',function(e){const gm=e.target.closest('.project-card .gallery-main');if(!gm)return;const card=gm.closest('.project-card');openProjectGalleryFromCard(card);});
 
