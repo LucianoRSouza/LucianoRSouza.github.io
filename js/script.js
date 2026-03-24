@@ -5,7 +5,7 @@ window.I18N = {
       title: 'Luciano Rodrigues de Souza',
       subtitle: 'AI-Driven Procurement & Operations Leader · Strategic Transformation',
       desc: 'I connect governance, technical rigor, and AI to deliver measurable outcomes: transparent tenders, reliable partners, and resilient operations across Europe, LATAM, and Asia.',
-      badges: { top: 'Top Performer 2025', middle: 'AI Specialist', bottom: 'Trusted Leader' },
+      badg
       stats: {
         savings: 'Cumulative Savings',
         savings_note: 'Across multi-category negotiations',
@@ -119,13 +119,12 @@ window.I18N = {
     }
   },
   
-  pt: {
-    nav: { about: 'Sobre', experience: 'Experiência', projects: 'Projetos', tradeshows: 'Feiras', certs: 'Certificações', contact: 'Contato' },
+  
     hero: {
       title: 'Luciano Rodrigues de Souza',
       subtitle: 'Procurement & Operações orientados por IA · Transformação Estratégica',
       desc: 'Conecto governança, rigor técnico e IA para gerar resultados mensuráveis: tenders transparentes, parceiros confiáveis e operações resilientes na Europa, LATAM e Ásia.',
-      badges: { top: 'Top Performer 2025', middle: 'Especialista em IA', bottom: 'Líder de Confiança' },
+      badg
       stats: {
         savings: 'Poupança Acumulada',
         savings_note: 'Em negociações multi-categoria',
@@ -239,13 +238,12 @@ window.I18N = {
     }
   },
   
-  es: {
-    nav: { about: 'Acerca', experience: 'Experiencia', projects: 'Proyectos', tradeshows: 'Ferias', certs: 'Certificaciones', contact: 'Contacto' },
+  
     hero: {
       title: 'Luciano Rodrigues de Souza',
       subtitle: 'Líder en Procurement y Operaciones con IA · Transformación Estratégica',
       desc: 'Conecto gobernanza, rigor técnico e IA para generar resultados medibles: licitaciones transparentes, socios confiables y operaciones resilientes en Europa, LATAM y Asia.',
-      badges: { top: 'Top Performer 2025', middle: 'Especialista en IA', bottom: 'Líder de Confianza' },
+      badg
       stats: {
         savings: 'Ahorro Acumulado',
         savings_note: 'En negociaciones multi-categoría',
@@ -313,13 +311,12 @@ window.I18N = {
     }
   },
   
-  fr: {
-    nav: { about: 'À propos', experience: 'Expérience', projects: 'Projets', tradeshows: 'Salons', certs: 'Certifications', contact: 'Contact' },
+  
     hero: {
       title: 'Luciano Rodrigues de Souza',
       subtitle: 'Leader en Approvisionnement et Opérations IA · Transformation Stratégique',
       desc: 'Je connecte la gouvernance, la rigueur technique et l\'IA pour livrer des résultats mesurables: appels d\'offres transparents, partenaires fiables et opérations résilientes en Europe, LATAM et Asie.',
-      badges: { top: 'Top Performer 2025', middle: 'Spécialiste IA', bottom: 'Leader de Confiance' },
+      badg
       stats: {
         savings: 'Économies Cumulées',
         savings_note: 'Dans les négociations multi-catégories',
