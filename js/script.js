@@ -1,7 +1,4 @@
-window.I18N = {
-  en: {
-    nav: { about: 'About', experience: 'Experience', projects: 'Projects', tradeshows: 'Trade Shows', certs: 'Certifications', contact: 'Contact' }
-};
+window.I18N = {};
 
 /* =========================================================
    Luciano Rodrigues — Portfolio JS (consolidado e limpo)
@@ -1290,48 +1287,15 @@ function initParticles() {
   }
 }
 
-function translateAll(lang) {
-  PG_state.currentLang = lang;
-  document.documentElement.lang = lang;
-  const dict = (window.I18N && window.I18N[lang]) || (window.I18N && window.I18N['en']) || {};
-  $$('[data-i18n]').forEach(el => {
-    const path = el.dataset.i18n;
-    const value = path?.split('.').reduce((acc, key) => (acc && acc[key] !== undefined ? acc[key] : undefined), dict);
-    if (value !== undefined) el.textContent = value;
-  });
-  setTimeout(updateTimelineSpy, 100);
-}
 
 function markActiveLang(lang) {
   $$('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
 }
 
-function initLangSwitcher() {
-  const switcher = $('#langSwitcher');
-  if (!switcher) return;
-  on(switcher, 'click', (e) => {
-    const btn = e.target.closest('.lang-btn');
-    if (!btn) return;
-    const lang = btn.dataset.lang;
-    if (!lang) return;
-    translateAll(lang);
-    markActiveLang(lang);
-    try { localStorage.setItem('lang', lang); } catch(e) {}
     showToast(`Translated to ${lang.toUpperCase()}`);
   });
 }
 
-function initI18N() {
-  try {
-    const stored = localStorage.getItem('lang');
-    const browser = (navigator.language || 'en').slice(0, 2).toLowerCase();
-    const initial = stored || (['en', 'pt', 'es', 'fr'].includes(browser) ? browser : 'en');
-    translateAll(initial);
-    markActiveLang(initial);
-  } catch(e) {
-    translateAll('en');
-    markActiveLang('en');
-  }
 }
 
 function initLoading() {
@@ -1365,8 +1329,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initParticles();
   initSmoothAnchors();
 
-  initLangSwitcher();
-  initI18N();
+  
+  
 
   initTradeTabs();
   initLightbox();
