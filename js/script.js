@@ -615,33 +615,29 @@ function updateTimelineSpy() {
   const indicators = $$('.indicator-dot');
   if (!logoImg) return;
 
+  // Encontrar qual item está mais centralizado na tela
   let activeIndex = 0;
-  const windowHeight = window.innerHeight;
-  const midTop = windowHeight * 0.55;
-  const midBottom = windowHeight * 0.45;
+  let minDistance = Infinity;
+  const windowCenter = window.innerHeight / 2;
 
   items.forEach((item, idx) => {
     const r = item.getBoundingClientRect();
-    const itemMid = r.top + r.height / 2;
-    if (itemMid > midBottom && itemMid < midTop) {
+    const itemCenter = r.top + r.height / 2;
+    const distance = Math.abs(itemCenter - windowCenter);
+
+    if (distance < minDistance) {
+      minDistance = distance;
       activeIndex = idx;
-      item.classList.add('active');
-    } else {
-      item.classList.remove('active');
     }
+
+    // Remover active de todos primeiro
+    item.classList.remove('active');
   });
 
-  // Verifica se o último item está visível
-  const lastIndex = items.length - 1;
-  const lastItem = items[lastIndex];
-  const lastItemRect = lastItem?.getBoundingClientRect();
-  if (lastItemRect && lastItemRect.top < windowHeight * 0.7 && lastItemRect.bottom > 0) {
-    activeIndex = lastIndex;
-    items.forEach((item, idx) => {
-      item.classList.toggle('active', idx === lastIndex);
-    });
-  }
+  // Adicionar active apenas no item mais próximo do centro
+  items[activeIndex].classList.add('active');
 
+  // Atualizar logo
   const activeItem = items[activeIndex];
   if (activeItem) {
     const newLogo = activeItem.getAttribute('data-logo');
@@ -654,6 +650,8 @@ function updateTimelineSpy() {
       }, 160);
     }
   }
+
+  // Atualizar indicadores
   indicators.forEach((dot, idx) => dot.classList.toggle('active', idx === activeIndex));
 }
 
