@@ -30,16 +30,19 @@ button{border:0;background:none;cursor:pointer}
 .loading-progress{height:100%;background:var(--gold);animation:loading 1.8s ease forwards}
 @keyframes loading{to{width:100%}}
 
-/* Google Translate Widget Styling */
-.lang-switcher{position:fixed;top:100px;right:20px;z-index:1200;background:rgba(255,255,255,.96);padding:12px;border-radius:15px;box-shadow:0 10px 30px rgba(0,0,0,.18);backdrop-filter:blur(10px);border:1px solid rgba(212,175,55,.22);min-width:140px}
+/* Google Translate Widget - VERSÃO MINIMALISTA TRANSPARENTE */
+.lang-switcher{position:fixed;top:100px;right:20px;z-index:1200;background:rgba(255,255,255,.75);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(212,175,55,.25);box-shadow:0 4px 20px rgba(0,0,0,.1);padding:6px;border-radius:14px;opacity:0.85;transition:opacity .3s ease,background .3s ease;min-width:auto;width:auto;height:auto}
+.lang-switcher:hover{opacity:1;background:rgba(255,255,255,.95)}
 
 /* Esconder elementos do Google Translate que não queremos */
 .goog-te-banner-frame.skiptranslate{display:none!important}
 .goog-logo-link{display:none!important}
 .goog-te-gadget span{display:none!important}
 .goog-te-gadget{height:auto!important;overflow:visible!important}
-.goog-te-gadget .goog-te-combo{margin:0!important;padding:8px 12px!important;border-radius:10px!important;border:2px solid var(--gold)!important;background:var(--white)!important;color:var(--navy)!important;font-family:'Inter',sans-serif!important;font-weight:600!important;font-size:14px!important;cursor:pointer!important;outline:none!important}
-.goog-te-gadget .goog-te-combo:hover{border-color:var(--gold-light)!important;box-shadow:0 4px 12px rgba(212,175,55,.2)!important}
+
+/* Estilo do select do Google Translate - MINIMALISTA */
+.goog-te-gadget .goog-te-combo{margin:0!important;padding:4px 8px!important;border-radius:10px!important;border:1px solid rgba(212,175,55,.4)!important;background:rgba(255,255,255,.9)!important;color:var(--navy)!important;font-family:'Inter',sans-serif!important;font-weight:600!important;font-size:11px!important;cursor:pointer!important;outline:none!important;width:auto!important;min-width:80px!important;height:auto!important}
+.goog-te-gadget .goog-te-combo:hover{border-color:var(--gold)!important;box-shadow:0 2px 8px rgba(212,175,55,.2)!important}
 
 /* Remove o banner do topo */
 body{top:0!important}
@@ -190,7 +193,7 @@ section{padding:6rem var(--container-pad);position:relative}
 .lightbox-close{position:absolute;top:28px;right:46px;color:#fff;font-size:2.8rem;cursor:pointer;transition:all .25s ease}
 .lightbox-close:hover{color:var(--gold);transform:rotate(90deg)scale(1.06)}
 
-/* Trade Shows */
+/* Trade Shows - DESIGN ORIGINAL RESTAURADO */
 .trade-shows{background:linear-gradient(180deg,var(--cream)0%,var(--white)100%)}
 .gallery-tabs{display:flex;justify-content:center;gap:1rem;margin-bottom:2.4rem;flex-wrap:wrap}
 .gallery-tab{padding:.95rem 1.8rem;background:var(--white);border:2px solid transparent;border-radius:999px;font-weight:700;color:var(--text);box-shadow:0 4px 14px rgba(0,0,0,.06);transition:all .25s ease;cursor:pointer}
@@ -214,7 +217,7 @@ section{padding:6rem var(--container-pad);position:relative}
 .strategy-item i{width:50px;height:50px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--navy);font-size:1.2rem;flex-shrink:0}
 .strategy-item p{color:var(--navy);font-weight:600;font-size:.95rem}
 
-/* Certifications */
+/* Certifications - BLOCO EM DESTAQUE CENTRALIZADO E MENOR */
 .certs{background:var(--navy);color:var(--white);position:relative;overflow:hidden}
 .certs::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(212,175,55,.06)0%,transparent 70%);animation:rotate-slow 40s linear infinite}
 .certs .section-header h2{color:#fff}
@@ -235,12 +238,15 @@ section{padding:6rem var(--container-pad);position:relative}
 .ai-application strong{color:var(--gold);display:block;margin-bottom:.5rem}
 .ai-application ul{margin:0;padding-left:1.2rem}
 .ai-application li{color:rgba(255,255,255,.9);margin:.45rem 0;line-height:1.5}
-.framework-highlight{grid-column:1 / -1;background:linear-gradient(135deg,rgba(212,175,55,.16),rgba(212,175,55,.06));border:2px solid var(--gold);display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center;padding:2.5rem}
-.framework-content h3{font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--gold);margin-bottom:.6rem}
-.framework-content p{color:rgba(255,255,255,.92);line-height:1.7;margin-bottom:.8rem}
-.framework-image{position:relative;height:300px;background:var(--navy-light);border-radius:14px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+
+/* Framework Highlight - CENTRALIZADO E MENOR */
+.framework-highlight{grid-column:1 / -1;background:linear-gradient(135deg,rgba(212,175,55,.16),rgba(212,175,55,.06));border:2px solid var(--gold);display:flex;flex-direction:column;align-items:center;text-align:center;padding:2rem;max-width:800px;margin:0 auto 1.8rem;border-radius:18px}
+.framework-content{width:100%}
+.framework-content h3{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--gold);margin-bottom:.6rem}
+.framework-content p{color:rgba(255,255,255,.92);line-height:1.7;margin-bottom:.8rem;font-size:.95rem}
+.framework-image{position:relative;height:200px;width:100%;max-width:400px;background:var(--navy-light);border-radius:14px;overflow:hidden;display:flex;align-items:center;justify-content:center;margin:1rem auto 0}
 .framework-image img{max-width:100%;max-height:100%;object-fit:contain;padding:1rem}
-.cert-badge{display:inline-flex;align-items:center;gap:.5rem;padding:.45rem .9rem;background:rgba(212,175,55,.22);border-radius:999px;font-size:.86rem}
+.cert-badge{display:inline-flex;align-items:center;gap:.5rem;padding:.45rem .9rem;background:rgba(212,175,55,.22);border-radius:999px;font-size:.86rem;margin-top:.5rem}
 
 /* Volunteering */
 .volunteer-section{background:linear-gradient(135deg,var(--cream)0%,var(--white)100%);padding:6rem var(--container-pad)}
@@ -352,12 +358,12 @@ footer{background:var(--navy);color:#fff;text-align:center;padding:2.4rem var(--
 .timeline-item::before,.timeline-content::before{display:none}
 .timeline-content{margin-left:0}
 .about-grid{grid-template-columns:1fr}
-.framework-highlight{grid-template-columns:1fr}
+.framework-highlight{max-width:90%}
 }
 
 @media(max-width:980px){
 nav.navbar{box-shadow:0 6px 22px rgba(0,0,0,.26)}
-.lang-switcher{top:84px;right:16px}
+.lang-switcher{top:84px;right:16px;padding:5px}
 }
 
 @media(max-width:768px){
@@ -380,12 +386,16 @@ nav.navbar{box-shadow:0 6px 22px rgba(0,0,0,.26)}
 .projects-grid{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
 .ml-metrics{grid-template-columns:1fr}
 .contact-grid{grid-template-columns:1fr}
+.framework-highlight{padding:1.5rem}
+.framework-image{height:150px}
 }
 
 @media(max-width:540px){
 .hero .subtitle{font-size:1.02rem}
 .hero-description{font-size:.98rem}
 .stat-number{font-size:1.4rem}
+.lang-switcher{top:70px;right:10px;padding:4px}
+.goog-te-gadget .goog-te-combo{padding:3px 6px!important;font-size:10px!important;min-width:70px!important}
 }
 
 @media(max-width:420px){
