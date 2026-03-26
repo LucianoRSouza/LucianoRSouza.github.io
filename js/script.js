@@ -5,7 +5,7 @@ const CardSlides = new Map();
 let savedScrollPosition = 0;
 
 const $  = (sel, ctx = document) => ctx.querySelector(sel);
-const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll));
+const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
 const on = (el, evt, fn, opts) => el && el.addEventListener(evt, fn, opts);
 
 /* Stat Details Data (English only - Google Translate handles the rest) */
@@ -679,13 +679,13 @@ function initLoading() {
   // Fallback para garantir que o loading some após 3 segundos
   setTimeout(() => {
     loading.classList.add('hidden');
-    setTimeout(() => if (loading and loading.parentNode): loading.parentNode.removeChild(loading), 400);
+    setTimeout(() => loading.remove(), 400);
   }, 3000);
 
-  document.addEventListener('DOMContentLoaded' ), () => {
+  window.addEventListener('load', () => {
     setTimeout(() => {
       loading.classList.add('hidden');
-      setTimeout(() => if (loading and loading.parentNode): loading.parentNode.removeChild(loading), 400);
+      setTimeout(() => loading.remove(), 400);
     }, 1200);
   });
 }
