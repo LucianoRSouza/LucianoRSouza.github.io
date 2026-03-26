@@ -18,6 +18,7 @@ button{border:0;background:none;cursor:pointer}
 /* Animations */
 @keyframes fadeInUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fadeInScale{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
 @keyframes pulse-glow{0%,100%{box-shadow:0 0 16px rgba(212,175,55,.28)}50%{box-shadow:0 0 34px rgba(212,175,55,.55)}}
 @keyframes rotate-slow{from{transform:rotate(0)}to{transform:rotate(360deg)}}
@@ -31,21 +32,14 @@ button{border:0;background:none;cursor:pointer}
 @keyframes loading{to{width:100%}}
 
 /* Google Translate Widget - VERSÃO MINIMALISTA TRANSPARENTE */
-/* O container agora está no HTML com label "Tradutor" */
 #google_translate_element{display:inline-block}
 .goog-te-gadget{margin:0!important}
-
-/* Esconder elementos do Google Translate que não queremos */
 .goog-te-banner-frame.skiptranslate{display:none!important}
 .goog-logo-link{display:none!important}
 .goog-te-gadget span{display:none!important}
 .goog-te-gadget{height:auto!important;overflow:visible!important}
-
-/* Estilo do select do Google Translate - MINIMALISTA */
 .goog-te-gadget .goog-te-combo{margin:0!important;padding:4px 8px!important;border-radius:10px!important;border:1px solid rgba(212,175,55,.4)!important;background:rgba(255,255,255,.9)!important;color:var(--navy)!important;font-family:'Inter',sans-serif!important;font-weight:600!important;font-size:11px!important;cursor:pointer!important;outline:none!important;width:auto!important;min-width:80px!important;height:auto!important}
 .goog-te-gadget .goog-te-combo:hover{border-color:var(--gold)!important;box-shadow:0 2px 8px rgba(212,175,55,.2)!important}
-
-/* Remove o banner do topo */
 body{top:0!important}
 
 /* Navbar */
@@ -194,31 +188,54 @@ section{padding:6rem var(--container-pad);position:relative}
 .lightbox-close{position:absolute;top:28px;right:46px;color:#fff;font-size:2.8rem;cursor:pointer;transition:all .25s ease}
 .lightbox-close:hover{color:var(--gold);transform:rotate(90deg)scale(1.06)}
 
-/* Trade Shows - ESTRUTURA ORIGINAL RESTAURADA */
+/* ============================================
+   TRADE SHOWS - LAYOUT ORIGINAL RESTAURADO
+   ============================================ */
+
+/* Seção de Feiras */
 .trade-shows{background:linear-gradient(180deg,var(--cream)0%,var(--white)100%)}
+
+/* Tabs de navegação */
 .gallery-tabs{display:flex;justify-content:center;gap:1rem;margin-bottom:2.4rem;flex-wrap:wrap}
 .gallery-tab{padding:.95rem 1.8rem;background:var(--white);border:2px solid transparent;border-radius:999px;font-weight:700;color:var(--text);box-shadow:0 4px 14px rgba(0,0,0,.06);transition:all .25s ease;cursor:pointer}
 .gallery-tab:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px);box-shadow:0 10px 24px rgba(212,175,55,.18)}
 .gallery-tab.active{background:var(--gold);color:var(--navy);border-color:var(--gold);transform:none}
+
+/* Conteúdo das tabs */
 .gallery-content{display:none;animation:fadeIn .4s ease}
 .gallery-content.active{display:block}
-.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem}
-.gallery-item{position:relative;border-radius:18px;overflow:hidden;box-shadow:0 12px 28px rgba(0,0,0,.12);cursor:pointer;transition:transform .25s ease,box-shadow .25s ease;border:3px solid var(--gold);aspect-ratio:4/3;height:auto;min-height:350px;background:linear-gradient(135deg,rgba(15,21,56,.06),rgba(15,21,56,.12));display:flex;align-items:center;justify-content:center}
+
+/* Grid de galeria - Layout original */
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;max-width:1400px;margin:0 auto}
+
+/* Items da galeria - Cards com borda dourada */
+.gallery-item{position:relative;border-radius:18px;overflow:hidden;box-shadow:0 12px 28px rgba(0,0,0,.12);cursor:pointer;transition:transform .25s ease,box-shadow .25s ease;border:3px solid var(--gold);aspect-ratio:4/3;height:auto;min-height:280px;background:linear-gradient(135deg,rgba(15,21,56,.06),rgba(15,21,56,.12));display:flex;align-items:center;justify-content:center}
 .gallery-item:hover{transform:translateY(-8px);box-shadow:0 24px 50px rgba(0,0,0,.22)}
+
+/* Imagens preenchem o container */
 .gallery-item img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;transition:transform .5s ease}
 .gallery-item:hover img{transform:scale(1.05)}
+
+/* Overlay no hover */
 .gallery-item .gallery-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(15,21,56,.95) 0%,transparent 60%);display:flex;flex-direction:column;justify-content:flex-end;padding:1.6rem;opacity:0;transition:opacity .28s ease;pointer-events:none}
 .gallery-item:hover .gallery-overlay{opacity:1}
+
+.gallery-overlay h4{color:var(--gold);font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:0.5rem}
+.gallery-overlay p{color:rgba(255,255,255,.9);font-size:0.9rem;line-height:1.5}
+
+/* Bloco de estratégia */
 .trade-show-strategy{max-width:1200px;margin:4rem auto 0;padding:3rem;background:var(--white);border-radius:22px;box-shadow:var(--shadow-1);border:2px solid rgba(212,175,55,.2)}
 .trade-show-strategy h3{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--navy);margin-bottom:1.5rem;text-align:center}
 .trade-show-strategy>p{color:var(--text-light);line-height:1.8;margin-bottom:2rem;text-align:center;max-width:900px;margin-left:auto;margin-right:auto}
+
+/* Grid de estratégia */
 .strategy-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin-top:2rem}
 .strategy-item{display:flex;align-items:center;gap:1rem;padding:1.2rem;background:linear-gradient(135deg,var(--cream),var(--white));border-radius:14px;border:2px solid transparent;transition:all .25s ease;cursor:pointer}
 .strategy-item:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 10px 24px rgba(212,175,55,.15)}
 .strategy-item i{width:50px;height:50px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--navy);font-size:1.2rem;flex-shrink:0}
 .strategy-item p{color:var(--navy);font-weight:600;font-size:.95rem}
 
-/* Certifications - BLOCO EM DESTAQUE CENTRALIZADO E MENOR */
+/* Certifications */
 .certs{background:var(--navy);color:var(--white);position:relative;overflow:hidden}
 .certs::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(212,175,55,.06)0%,transparent 70%);animation:rotate-slow 40s linear infinite}
 .certs .section-header h2{color:#fff}
@@ -240,16 +257,12 @@ section{padding:6rem var(--container-pad);position:relative}
 .ai-application ul{margin:0;padding-left:1.2rem}
 .ai-application li{color:rgba(255,255,255,.9);margin:.45rem 0;line-height:1.5}
 
-/* Framework Highlight - CENTRALIZADO E MENOR */
-/* Framework Highlight - FORMATO ORIGINAL HORIZONTAL */
+/* Framework Highlight */
 .framework-highlight{grid-column:1 / -1;background:linear-gradient(135deg,rgba(212,175,55,.16),rgba(212,175,55,.06));border:2px solid var(--gold);display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center;padding:2.5rem;max-width:1000px;margin:0 auto 1.8rem;border-radius:18px}
 .framework-content{width:100%}
-.framework-content h3{font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--gold);margin-bottom:.6rem}
-.framework-content p{color:rgba(255,255,255,.92);line-height:1.7;margin-bottom:.8rem}
 .framework-content h3{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--gold);margin-bottom:.6rem}
 .framework-content p{color:rgba(255,255,255,.92);line-height:1.7;margin-bottom:.8rem;font-size:.95rem}
 .framework-image{position:relative;height:300px;background:var(--navy-light);border-radius:14px;overflow:hidden;display:flex;align-items:center;justify-content:center}
-.framework-image img{max-width:100%;max-height:100%;object-fit:contain;padding:1rem}
 .framework-image img{max-width:100%;max-height:100%;object-fit:contain;padding:1rem}
 .cert-badge{display:inline-flex;align-items:center;gap:.5rem;padding:.45rem .9rem;background:rgba(212,175,55,.22);border-radius:999px;font-size:.86rem;margin-top:.5rem}
 
@@ -364,12 +377,10 @@ footer{background:var(--navy);color:#fff;text-align:center;padding:2.4rem var(--
 .timeline-item::before,.timeline-content::before{display:none}
 .timeline-content{margin-left:0}
 .about-grid{grid-template-columns:1fr}
-
 }
 
 @media(max-width:980px){
 nav.navbar{box-shadow:0 6px 22px rgba(0,0,0,.26)}
-.lang-switcher{top:84px;right:16px;padding:5px}
 }
 
 @media(max-width:768px){
@@ -384,24 +395,29 @@ nav.navbar{box-shadow:0 6px 22px rgba(0,0,0,.26)}
 .timeline-item{margin-bottom:2.2rem}
 .timeline-description{font-size:.98rem}
 .strategy-grid{grid-template-columns:1fr}
-.gallery-grid{grid-template-columns:1fr}
-.gallery-item{min-height:280px}
+
+/* Trade Shows Mobile */
+.gallery-grid{grid-template-columns:1fr;gap:1rem;padding:0 1rem}
+.gallery-item{min-height:250px;aspect-ratio:16/10}
+.trade-show-strategy{padding:2rem 1.5rem;margin:3rem 1rem 0}
+
 .gallery-slider{height:360px}
 .gallery-controls{gap:1rem;padding:1rem}
 .gallery-btn{width:42px;height:42px}
 .projects-grid{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
 .ml-metrics{grid-template-columns:1fr}
 .contact-grid{grid-template-columns:1fr}
-
-
 }
 
 @media(max-width:540px){
 .hero .subtitle{font-size:1.02rem}
 .hero-description{font-size:.98rem}
 .stat-number{font-size:1.4rem}
-.lang-switcher{top:70px;right:10px;padding:4px}
-.goog-te-gadget .goog-te-combo{padding:3px 6px!important;font-size:10px!important;min-width:70px!important}
+
+/* Trade Shows Mobile Pequeno */
+.gallery-item{min-height:220px}
+.gallery-tabs{gap:0.5rem}
+.gallery-tab{padding:0.7rem 1.2rem;font-size:0.9rem}
 }
 
 @media(max-width:420px){
@@ -422,14 +438,12 @@ a,button,.project-card,.repo-item,.contact-link,.social-link,.gallery-item,.gall
 /* Utilities */
 .hidden{display:none !important}
 .visually-hidden{position:absolute !important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
-.center{display:flex;align-items:center;justify-content:center}
-.text-center{text-align:center}
 
 /* Print */
 @media print{
 *{background:#fff !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}
 a[href]::after{content:"(" attr(href)")";font-size:.9em}
-nav,.lang-switcher,.cursor,.cursor-follower,.scroll-top,.toast,.lightbox,.project-gallery-modal{display:none !important}
+nav,.cursor,.cursor-follower,.scroll-top,.toast,.lightbox,.project-gallery-modal{display:none !important}
 section{padding:1.2cm .8cm}
 .project-gallery,.gallery-main,.gallery-overlay{display:none !important}
 .timeline-item::before,.timeline-content::before{display:none !important}
