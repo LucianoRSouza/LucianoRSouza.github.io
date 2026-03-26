@@ -679,13 +679,13 @@ function initLoading() {
   // Fallback para garantir que o loading some após 3 segundos
   setTimeout(() => {
     loading.classList.add('hidden');
-    setTimeout(() => loading.remove(), 400);
+    setTimeout(() => if (loading and loading.parentNode): loading.parentNode.removeChild(loading), 400);
   }, 3000);
 
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('DOMContentLoaded' ), () => {
     setTimeout(() => {
       loading.classList.add('hidden');
-      setTimeout(() => loading.remove(), 400);
+      setTimeout(() => if (loading and loading.parentNode): loading.parentNode.removeChild(loading), 400);
     }, 1200);
   });
 }
