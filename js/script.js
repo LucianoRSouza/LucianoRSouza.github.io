@@ -1,5 +1,4 @@
-window.I18N = {
-  en: {
+window.I18N = { en:{
     nav: { about: 'About', experience: 'Experience', projects: 'Projects', tradeshows: 'Trade Shows', certs: 'Certifications', contact: 'Contact' },
     hero: {
       title: 'Luciano Rodrigues de Souza',
@@ -118,203 +117,6 @@ window.I18N = {
       location: 'Location'
     }
   },
-  
-  pt: {
-    nav: { about: 'Sobre', experience: 'Experiência', projects: 'Projetos', tradeshows: 'Feiras', certs: 'Certificações', contact: 'Contato' },
-    hero: {
-      title: 'Luciano Rodrigues de Souza',
-      subtitle: 'Procurement & Operações orientados por IA · Transformação Estratégica',
-      desc: 'Conecto governança, rigor técnico e IA para gerar resultados mensuráveis: tenders transparentes, parceiros confiáveis e operações resilientes na Europa, LATAM e Ásia.',
-      badges: { top: 'Top Performer 2025', middle: 'Especialista em IA', bottom: 'Líder de Confiança' },
-      stats: {
-        savings: 'Poupança Acumulada',
-        savings_note: 'Em negociações multi-categoria',
-        rfps: 'RFP/RFQ Conduzidos',
-        rfps_note: 'Com anexos técnicos e scoring ponderado',
-        projects: 'Portfólio de Projetos',
-        projects_note: 'Do conceito à produção auditada',
-        regions: 'Países',
-        regions_note: 'Europa · LATAM · Ásia'
-      }
-    },
-    cta: { connect: 'Vamos Conversar', journey: 'Ver Trajetória' },
-    about: {
-      title: 'Filosofia de Liderança',
-      subtitle: 'Das operações na LATAM à estratégia global de procurement',
-      heading: 'Transformação pela Colaboração',
-      body: {
-        1: 'Desenho sistemas de procurement escaláveis: playbooks de RFI/RFP e BidMaps até governança, auditorias e desenvolvimento de fornecedores. Resultado: velocidade com controle — decisões mais rápidas, menos risco e responsabilidades claras.',
-        2: 'Liderança transversal (Engenharia, ESG, Jurídico, Finanças, Operações) aliada a dados e IA. Foco em: requisitos claros, transparência de mercado e resultados mensuráveis.'
-      },
-      philosophy: '"Não apenas otimizo cadeias de suprimento — construo coalizões multifuncionais que transformam a forma de pensar procurement."',
-      points: {
-        1: 'Arquitetura de Processos: tender kits, scoring ponderado, compliance-by-design',
-        2: 'IA & Analytics: RFPs inteligentes, parsing de propostas, forecasting, inventário',
-        3: 'Estratégia de Fornecedores: auditorias, mapeamento de capacidades, dual-sourcing',
-        4: 'Confiança em Stakeholders: dashboards transparentes, SLAs e governança pós-contrato'
-      },
-      lang: { pt: 'Português (Nativo)', en: 'Inglês (Nativo)', es: 'Espanhol (Prof.)', fr: 'Francês (Prof.)' }
-    },
-    timeline: {
-      title: 'Trajetória Profissional',
-      subtitle: '15+ anos de liderança progressiva',
-      level: { senior: 'Nível Sênior', director: 'Diretoria', manager: 'Gestão', growth: 'Expansão' }
-    },
-    projects: {
-      title: 'Projetos em Destaque',
-      subtitle: 'Excelência em desenvolvimento de produto e inovação com IA',
-      view_gallery: 'Ver Galeria'
-    },
-    tradeshows: {
-      title: 'Feiras & Expos Internacionais',
-      subtitle: 'Expositor e comprador estratégico em mercados globais',
-      strategy: {
-        title: 'Estratégia & Execução de Feiras',
-        desc: 'Além do stand: co-crio com Marketing a jornada ponta a ponta — design, narrativa e assets; orquestro reuniões, qualifico leads e conduzo o pipeline pós-feira. Em paralelo, negocio com parceiros, faço benchmark de tecnologias e audito fábricas.',
-        pillars: {
-          1: 'Design de Stand & Merchandising',
-          2: 'Reuniões & Captação de Leads',
-          3: 'Negociações & Parcerias',
-          4: 'Descoberta Tecnológica',
-          5: 'Auditorias de Fábrica',
-          6: 'Pipeline, ROI & Governança'
-        }
-      }
-    },
-    certs: {
-      title: 'Certificações & Educação',
-      subtitle: 'Aprendizado contínuo em IA, Data Science e Procurement'
-    },
-    framework: {
-      title: 'Framework Estratégico de Procurement orientado por IA',
-      desc: 'Framework executivo one-page que mostra como IA, dados e alinhamento operacional elevam a performance de procurement.',
-      badge: 'Metodologia Proprietária'
-    },
-    ibm: {
-      apply: { title: 'Aplicações em Procurement:' },
-      genai: {
-        subtitle: 'Fundamentos em IA Generativa',
-        desc: 'Fundamentos de LLMs, prompt engineering e ética; aplicação prática em fluxos de procurement.',
-        point1: 'Leitura de Contratos: extração de cláusulas e riscos',
-        point2: 'RFPs Inteligentes: specs/SoW automáticos, horas poupadas',
-        point3: 'Comunicação com Fornecedores: templates consistentes',
-        point4: 'Inteligência de Mercado: comparação de propostas'
-      },
-      llms: {
-        subtitle: 'Introdução a LLMs',
-        desc: 'Transformers, tokenização e prompting; padrões de extração e suporte à decisão.',
-        point1: 'Inteligência de Documentos',
-        point2: 'Forecasting assistido por LLM',
-        point3: 'Compliance vs. políticas',
-        point4: 'Assistente interno de procurement'
-      }
-    },
-    umd: { subtitle: 'IA e Empoderamento de Carreira', desc: 'Aplicações de IA em estratégia de negócios e automação de fluxos de procurement.' },
-    mit: { subtitle: 'Supply Chain Analytics', desc: 'Metodologias avançadas de analytics para otimização e forecasting da cadeia de suprimentos.' },
-    harvard: { subtitle: 'Tomada de Decisão em Liderança', desc: 'Frameworks de decisão baseados em evidências e pensamento estratégico para líderes.' },
-    esl: {
-      school: 'Gadsden State Community College',
-      subtitle: 'Diploma — ESL (Inglês como 2ª Língua)',
-      desc: 'Inglês acadêmico: comunicação, escrita e apresentações.'
-    },
-    vol: {
-      title: 'Voluntariado & Impacto Comunitário',
-      subtitle: 'Retribuindo através da educação e mentoria',
-      position: 'Instrutor de Matemática & Inglês',
-      school: 'Gadsden State Community College',
-      desc: 'Aulas de matemática e inglês para alunos com necessidade de apoio acadêmico. Desenvolvi planos de aprendizado personalizados, mentorei populações diversas de estudantes e contribuí para iniciativas de educação comunitária. Esta experiência fortaleceu minhas habilidades de comunicação, paciência e capacidade de explicar conceitos complexos — habilidades que aplico atualmente em treinamento de procurement e liderança de equipes multifuncionais.'
-    },
-    github: {
-      title: 'Projetos de GitHub & Data Science',
-      subtitle: 'Transformando procurement com código e insights',
-      tagline: 'Entusiasta de Python usando data science para decisões em procurement.',
-      metrics: { accuracy: 'Acurácia de Previsão', cost: 'Redução de Custo', stockout: 'Redução de Ruptura' },
-      cta: 'Ver Todos os Repositórios'
-    },
-    contact: {
-      title: 'Vamos Conversar',
-      subtitle: 'Pronto para transformar sua estratégia de procurement?',
-      email: 'Email',
-      location: 'Localização'
-    }
-  },
-  
-  es: {
-    nav: { about: 'Acerca', experience: 'Experiencia', projects: 'Proyectos', tradeshows: 'Ferias', certs: 'Certificaciones', contact: 'Contacto' },
-    hero: {
-      title: 'Luciano Rodrigues de Souza',
-      subtitle: 'Líder en Procurement y Operaciones con IA · Transformación Estratégica',
-      desc: 'Conecto gobernanza, rigor técnico e IA para generar resultados medibles: licitaciones transparentes, socios confiables y operaciones resilientes en Europa, LATAM y Asia.',
-      badges: { top: 'Top Performer 2025', middle: 'Especialista en IA', bottom: 'Líder de Confianza' },
-      stats: {
-        savings: 'Ahorro Acumulado',
-        savings_note: 'En negociaciones multi-categoría',
-        rfps: 'RFP/RFQ Dirigidos',
-        rfps_note: 'Con anexos técnicos y scoring ponderado',
-        projects: 'Portafolio de Proyectos',
-        projects_note: 'Del concepto a la producción auditada',
-        regions: 'Países',
-        regions_note: 'Europa · LATAM · Asia'
-      }
-    },
-    cta: { connect: 'Conectemos', journey: 'Ver Trayectoria' },
-    about: {
-      title: 'Filosofía de Liderazgo',
-      subtitle: 'De operaciones LATAM a estrategia global de procurement',
-      heading: 'Transformación mediante la Colaboración',
-      body: {
-        1: 'Diseño sistemas de procurement escalables: playbooks de RFI/RFP y BidMaps hasta gobernanza, auditorías y desarrollo de proveedores. Resultado: velocidad con control — decisiones más rápidas, menos riesgo y responsabilidades claras.',
-        2: 'Mi estilo de liderazgo combina facilitación multifuncional (Ingeniería, ESG, Legal, Finanzas, Operaciones) con datos e IA. Me enfoco en: requisitos claros, transparencia de mercado y resultados medibles.'
-      },
-      philosophy: '"No solo optimizo cadenas de suministro — construyo coaliciones multifuncionales que transforman cómo las organizaciones piensan sobre procurement."',
-      points: {
-        1: 'Arquitectura de Procesos: tender kits, scoring ponderado, compliance-by-design',
-        2: 'IA & Analytics: RFPs inteligentes, parsing de propuestas, forecasting, inventario',
-        3: 'Estrategia de Proveedores: auditorías, mapeo de capacidades, dual-sourcing',
-        4: 'Confianza de Stakeholders: dashboards transparentes, SLAs y gobernanza post-contrato'
-      },
-      lang: { pt: 'Portugués (Nativo)', en: 'Inglés (Nativo)', es: 'Español (Prof.)', fr: 'Francés (Prof.)' }
-    },
-    timeline: {
-      title: 'Trayectoria Profissional',
-      subtitle: '15+ años de liderazgo progresivo',
-      level: { senior: 'Nivel Senior', director: 'Dirección', manager: 'Gestión', growth: 'Expansión' }
-    },
-    projects: {
-      title: 'Proyectos Destacados',
-      subtitle: 'Excelencia en desarrollo de producto e innovación con IA',
-      view_gallery: 'Ver Galería'
-    },
-    tradeshows: {
-      title: 'Ferias y Exposiciones Globales',
-      subtitle: 'Expositor y comprador estratégico en mercados mundiales',
-      strategy: {
-        title: 'Estrategia y Ejecución de Ferias',
-        desc: 'Más allá del stand: co-creo con Marketing el journey de punta a punta — diseño, narrativa y assets; orquestro reuniones, califico leads y ejecuto el pipeline post-feria. En paralelo, negocio con socios actuales y nuevos, hago benchmark de tecnologías y audito fábricas.',
-        pillars: {
-          1: 'Diseño de Stand & Merchandising',
-          2: 'Orquestación de Reuniones & Captación',
-          3: 'Negociaciones y Alianzas',
-          4: 'Descubrimiento Tecnológico',
-          5: 'Auditorías y Mapeo de Capacidades',
-          6: 'Pipeline Post-Feria, ROI y Gobernanza'
-        }
-      }
-    },
-    certs: {
-      title: 'Certificaciones y Educación',
-      subtitle: 'Aprendizaje continuo en IA, Data Science y Procurement'
-    },
-    contact: {
-      title: 'Conectemos',
-      subtitle: '¿Listo para transformar tu estrategia de compras?',
-      email: 'Email',
-      location: 'Ubicación'
-    }
-  },
-  
-  fr: {
-    nav: { about: 'À propos', experience: 'Expérience', projects: 'Projets', tradeshows: 'Salons', certs: 'Certifications', contact: 'Contact' },
     hero: {
       title: 'Luciano Rodrigues de Souza',
       subtitle: 'Leader en Approvisionnement et Opérations IA · Transformation Stratégique',
@@ -1675,48 +1477,15 @@ function initParticles() {
   }
 }
 
-function translateAll(lang) {
-  PG_state.currentLang = lang;
-  document.documentElement.lang = lang;
-  const dict = (window.I18N && window.I18N[lang]) || (window.I18N && window.I18N['en']) || {};
-  $$('[data-i18n]').forEach(el => {
-    const path = el.dataset.i18n;
-    const value = path?.split('.').reduce((acc, key) => (acc && acc[key] !== undefined ? acc[key] : undefined), dict);
-    if (value !== undefined) el.textContent = value;
-  });
-  setTimeout(updateTimelineSpy, 100);
-}
 
 function markActiveLang(lang) {
   $$('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
 }
 
-function initLangSwitcher() {
-  const switcher = $('#langSwitcher');
-  if (!switcher) return;
-  on(switcher, 'click', (e) => {
-    const btn = e.target.closest('.lang-btn');
-    if (!btn) return;
-    const lang = btn.dataset.lang;
-    if (!lang) return;
-    translateAll(lang);
-    markActiveLang(lang);
-    try { localStorage.setItem('lang', lang); } catch(e) {}
     showToast(`Translated to ${lang.toUpperCase()}`);
   });
 }
 
-function initI18N() {
-  try {
-    const stored = localStorage.getItem('lang');
-    const browser = (navigator.language || 'en').slice(0, 2).toLowerCase();
-    const initial = stored || (['en', 'pt', 'es', 'fr'].includes(browser) ? browser : 'en');
-    translateAll(initial);
-    markActiveLang(initial);
-  } catch(e) {
-    translateAll('en');
-    markActiveLang('en');
-  }
 }
 
 function initLoading() {
