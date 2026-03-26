@@ -617,12 +617,13 @@ function updateTimelineSpy() {
 
   let activeIndex = 0;
   const windowHeight = window.innerHeight;
-  const midTop = windowHeight * 0.62;
-  const midBottom = windowHeight * 0.38;
+  const midTop = windowHeight * 0.55;
+  const midBottom = windowHeight * 0.45;
 
   items.forEach((item, idx) => {
     const r = item.getBoundingClientRect();
-    if (r.top < midTop && r.bottom > midBottom) {
+    const itemMid = r.top + r.height / 2;
+    if (itemMid > midBottom && itemMid < midTop) {
       activeIndex = idx;
       item.classList.add('active');
     } else {
@@ -630,10 +631,16 @@ function updateTimelineSpy() {
     }
   });
 
+  // Verifica se o último item está visível
   const lastIndex = items.length - 1;
   const lastItem = items[lastIndex];
   const lastItemRect = lastItem?.getBoundingClientRect();
-  if (lastItemRect && lastItemRect.top < windowHeight * 0.8) activeIndex = lastIndex;
+  if (lastItemRect && lastItemRect.top < windowHeight * 0.7 && lastItemRect.bottom > 0) {
+    activeIndex = lastIndex;
+    items.forEach((item, idx) => {
+      item.classList.toggle('active', idx === lastIndex);
+    });
+  }
 
   const activeItem = items[activeIndex];
   if (activeItem) {
@@ -825,6 +832,15 @@ document.addEventListener('DOMContentLoaded', () => {
   initCursor();
   initStatModals();
   initStrategyItems();
+
+  // Garantir que cliques nos projetos abram a galeria
+  $$('.project-card').forEach(card => {
+    card.addEventListener('click', function(e) {
+      // Não abre se estiver clicando em um link ou botão dentro do card
+      if (e.target.closest('a') || e.target.closest('button')) return;
+      openProjectGalleryFromCard(this);
+    });
+  });
 
   on(document, 'click', (e) => {
     if (e.target?.id === 'statModalOverlay') closeStatModal();
