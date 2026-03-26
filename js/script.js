@@ -849,3 +849,5 @@ window.changeProjectSlide = changeProjectSlide;
 window.goToProjectSlide = goToProjectSlide;
 window.closeProjectGallery = closeProjectGallery;
 window.scrollToTop = scrollToTop;
+window.openProjectGalleryFromCard = openProjectGalleryFromCard;
+window.updateCardDots = updateCardDots;
