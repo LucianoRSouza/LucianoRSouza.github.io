@@ -424,3 +424,7 @@ section{padding:1.2cm .8cm}
 @media(prefers-reduced-motion:reduce){
 *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto !important}
 }
+
+/* Google Translate isolation fix */
+body > .skiptranslate, .skiptranslate iframe { display:none !important;}
+#google_translate_element { visibility: visible !important;}
