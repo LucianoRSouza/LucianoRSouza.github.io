@@ -585,17 +585,38 @@ function closeLightbox() {
   }
 }
 
+/* ============================================
+   TRADE SHOWS TABS - LAYOUT ORIGINAL
+   ============================================ */
 function initTradeTabs() {
   const tabs = $$('.gallery-tab');
   if (!tabs.length) return;
+
   tabs.forEach(btn => {
     on(btn, 'click', () => {
-      tabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
+      // Remove active de todas as tabs
+      tabs.forEach(t => { 
+        t.classList.remove('active'); 
+        t.setAttribute('aria-selected', 'false'); 
+      });
+
+      // Adiciona active na tab clicada
       btn.classList.add('active');
       btn.setAttribute('aria-selected', 'true');
+
+      // Esconde todos os conteúdos
       $$('.gallery-content').forEach(gc => gc.classList.remove('active'));
+
+      // Mostra o conteúdo correspondente
       const panel = $('#' + btn.dataset.target);
-      panel?.classList.add('active');
+      if (panel) {
+        panel.classList.add('active');
+        // Re-trigger animations for new panel
+        panel.querySelectorAll('.animate-on-scroll').forEach(el => {
+          el.classList.remove('visible');
+          setTimeout(() => el.classList.add('visible'), 50);
+        });
+      }
     });
   });
 }
@@ -615,7 +636,6 @@ function updateTimelineSpy() {
   const indicators = $$('.indicator-dot');
   if (!logoImg) return;
 
-  // Encontrar qual item está mais centralizado na tela
   let activeIndex = 0;
   let minDistance = Infinity;
   const windowCenter = window.innerHeight / 2;
@@ -629,15 +649,11 @@ function updateTimelineSpy() {
       minDistance = distance;
       activeIndex = idx;
     }
-
-    // Remover active de todos primeiro
     item.classList.remove('active');
   });
 
-  // Adicionar active apenas no item mais próximo do centro
   items[activeIndex].classList.add('active');
 
-  // Atualizar logo
   const activeItem = items[activeIndex];
   if (activeItem) {
     const newLogo = activeItem.getAttribute('data-logo');
@@ -650,8 +666,6 @@ function updateTimelineSpy() {
       }, 160);
     }
   }
-
-  // Atualizar indicadores
   indicators.forEach((dot, idx) => dot.classList.toggle('active', idx === activeIndex));
 }
 
@@ -677,17 +691,10 @@ function initParticles() {
   }
 }
 
-/* ============================================
-   LOADING SCREEN - CORREÇÃO DEFINITIVA
-   ============================================ */
-
 function hideLoading() {
   const loading = $('#loading');
   if (!loading) return;
-
-  // Verifica se já está escondido
   if (loading.classList.contains('hidden')) return;
-
   loading.classList.add('hidden');
   setTimeout(() => {
     if (loading.parentNode) loading.remove();
@@ -697,11 +704,7 @@ function hideLoading() {
 function initLoading() {
   const loading = $('#loading');
   if (!loading) return;
-
-  // ESTRATÉGIA 1: Fallback de 2 segundos (independente de tudo)
   setTimeout(hideLoading, 2000);
-
-  // ESTRATÉGIA 2: Quando DOM estiver pronto
   if (document.readyState === 'complete' || document.readyState === 'interactive') {
     setTimeout(hideLoading, 500);
   } else {
@@ -709,30 +712,19 @@ function initLoading() {
       setTimeout(hideLoading, 500);
     });
   }
-
-  // ESTRATÉGIA 3: Quando tudo carregar (imagens, etc)
   window.addEventListener('load', () => {
     hideLoading();
   });
-
-  // ESTRATÉGIA 4: MutationObserver - detecta quando Google Translate modifica o DOM
   if (window.MutationObserver) {
     let attempts = 0;
     const observer = new MutationObserver((mutations) => {
       attempts++;
-      // Se houver muitas mutações (Google Translate ativo), esconde mais cedo
       if (attempts > 10 || document.querySelector('.goog-te-menu-frame')) {
         hideLoading();
         observer.disconnect();
       }
     });
-
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true
-    });
-
-    // Para o observer após 3 segundos
+    observer.observe(document.body, { childList: true, subtree: true });
     setTimeout(() => observer.disconnect(), 3000);
   }
 }
@@ -817,7 +809,7 @@ function initStrategyItems() {
 
 // Initialize Everything
 document.addEventListener('DOMContentLoaded', () => {
-  initLoading(); // PRIMEIRO - esconde loading
+  initLoading();
   initNavbarScroll();
   initScrollAnimations();
   initParticles();
@@ -831,10 +823,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initStatModals();
   initStrategyItems();
 
-  // Garantir que cliques nos projetos abram a galeria
   $$('.project-card').forEach(card => {
     card.addEventListener('click', function(e) {
-      // Não abre se estiver clicando em um link ou botão dentro do card
       if (e.target.closest('a') || e.target.closest('button')) return;
       openProjectGalleryFromCard(this);
     });
