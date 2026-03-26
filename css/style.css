@@ -194,7 +194,7 @@ section{padding:6rem var(--container-pad);position:relative}
 .lightbox-close{position:absolute;top:28px;right:46px;color:#fff;font-size:2.8rem;cursor:pointer;transition:all .25s ease}
 .lightbox-close:hover{color:var(--gold);transform:rotate(90deg)scale(1.06)}
 
-/* Trade Shows - DESIGN ORIGINAL RESTAURADO */
+/* Trade Shows - ESTRUTURA ORIGINAL RESTAURADA */
 .trade-shows{background:linear-gradient(180deg,var(--cream)0%,var(--white)100%)}
 .gallery-tabs{display:flex;justify-content:center;gap:1rem;margin-bottom:2.4rem;flex-wrap:wrap}
 .gallery-tab{padding:.95rem 1.8rem;background:var(--white);border:2px solid transparent;border-radius:999px;font-weight:700;color:var(--text);box-shadow:0 4px 14px rgba(0,0,0,.06);transition:all .25s ease;cursor:pointer}
