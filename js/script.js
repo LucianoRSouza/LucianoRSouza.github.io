@@ -682,7 +682,7 @@ function initLoading() {
     setTimeout(() => loading.remove(), 400);
   }, 3000);
 
-  window.addEventListener('load', () => {
+  document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
       loading.classList.add('hidden');
       setTimeout(() => loading.remove(), 400);
