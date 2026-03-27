@@ -44,21 +44,10 @@ function googleTranslateElementInit() {
 
 
 <style>
-.project-card[data-gallery="blaupunkt-fair"],
-.project-card[data-gallery="ford-fair"]{
- position:relative!important;height:auto!important;width:auto!important;overflow:visible!important;
- background:none!important;border:none!important;box-shadow:none!important;padding:0!important;margin:0 auto!important;
-}
-.project-card[data-gallery="blaupunkt-fair"] > *,
-.project-card[data-gallery="ford-fair"] > *{position:relative!important;z-index:2!important;}
-.project-card[data-gallery="blaupunkt-fair"],
-.project-card[data-gallery="ford-fair"]{display:flex!important;flex-direction:column!important;align-items:center!important;}
-.project-card[data-gallery="blaupunkt-fair"] .gold-frame:hover,
-.project-card[data-gallery="ford-fair"] .gold-frame:hover{transform:scale(1.02);transition:.25s ease-in-out;}
-.project-card[data-gallery="blaupunkt-fair"] .gallery-overlay,
-.project-card[data-gallery="ford-fair"] .gallery-overlay{opacity:0;}
-.project-card[data-gallery="blaupunkt-fair"] .gallery-main:hover .gallery-overlay,
-.project-card[data-gallery="ford-fair"] .gallery-main:hover .gallery-overlay{opacity:1;}
+.projects .project-card, .projects .project-card * { pointer-events:auto!important; }
+.projects .project-card .gallery-overlay{opacity:0!important;}
+.projects .project-card .gallery-main:hover .gallery-overlay{opacity:1!important;}
+.projects .project-card{background:initial!important;border:initial!important;box-shadow:initial!important;padding:initial!important;}
 </style>
 </head>
 <body>
