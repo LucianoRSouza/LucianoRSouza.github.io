@@ -26,16 +26,44 @@ function googleTranslateElementInit() {
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async defer></script>
 
 <style>
-.project-card:hover, .project-card:hover * {
- background:none!important; filter:none!important; transform:none!important; box-shadow:none!important;
+/* Disable hover effects from project-card globally */
+.project-card:hover,
+.project-card:hover * {
+    background: none !important;
+    filter: none !important;
+    transform: none !important;
+    box-shadow: none !important;
 }
-.project-card{pointer-events:none!important;}
-.project-card *{pointer-events:none!important;}
-.gold-frame, .gold-frame *{pointer-events:auto!important;}
-.gallery-overlay{pointer-events:none!important;}
-.gallery-overlay i, .gallery-overlay span{pointer-events:none!important;}
-.gold-frame:hover{transform:scale(1.015);transition:.2s ease-in-out;}
+.project-card { pointer-events: none !important; }
+.project-card .gold-frame { pointer-events: auto !important; }
+.gold-frame:hover {
+    transform: scale(1.02);
+    transition: 0.25s ease-in-out;
+}
 </style>
+
+
+<style>
+/* fixes hover issues for fair cards */
+.project-card[data-gallery="blaupunkt-fair"], .project-card[data-gallery="ford-fair"] {
+ pointer-events:auto!important;
+}
+.project-card[data-gallery="blaupunkt-fair"] *, .project-card[data-gallery="ford-fair"] *{
+ pointer-events:none!important;
+}
+.project-card[data-gallery="blaupunkt-fair"] .gold-frame, .project-card[data-gallery="ford-fair"] .gold-frame,
+.project-card[data-gallery="blaupunkt-fair"] .gold-frame *, .project-card[data-gallery="ford-fair"] .gold-frame *{
+ pointer-events:auto!important;
+}
+.project-card[data-gallery="blaupunkt-fair"].hover, .project-card[data-gallery="ford-fair"].hover{
+ background:none!important; box-shadow:none!important; filter:none!important;
+}
+.project-card[data-gallery="blaupunkt-fair"] .gold-frame:hover,
+.project-card[data-gallery="ford-fair"] .gold-frame:hover{
+ transform:scale(1.02); transition:.25s ease-in-out;
+}
+</style>
+
 </head>
 <body>
 <div class="cursor" id="cursor"></div>
@@ -524,30 +552,31 @@ function googleTranslateElementInit() {
 </section>
 
 <section aria-label="Trade Shows & Exhibitions" class="trade-shows" id="trade-shows">
-    <div class="section-header animate-on-scroll">
-        <h2>Trade Shows & Global Exhibitions</h2>
-        <p>Exhibitor and strategic buyer across worldwide markets</p>
-    </div>
-    <h3 class="trade-title" style="text-align:center; margin-bottom: 2rem;">Blaupunkt</h3>
-    <div class="gallery-grid">
-        <div class="gallery-item trade-show-item animate-on-scroll" onclick="openLightbox(this)">Blaupunkt_Illumiation_booth_HK_Fair.png<div class="gallery-overlay"><h4>Blaupunkt Illumination Booth</h4><p>Hong Kong International Lighting Fair — premium brand experience.</p></div></div>
-    </div>
-    <h3 class="trade-title" style="text-align:center; margin: 4rem 0 2rem;">Ford Lighting</h3>
-    <div class="gallery-grid">
-        <div class="gallery-item trade-show-item animate-on-scroll" onclick="openLightbox(this)">Ford_lighting_solutions_HK_Intl.png<div class="gallery-overlay"><h4>Hong Kong International Lighting Fair</h4><p>Booth planning, merchandising, and buyer meetings.</p></div></div>
-    </div>
-    <div class="trade-show-strategy">
-        <h3><i aria-hidden="true" class="fas fa-handshake" style="color: var(--gold); margin-right: 10px;"></i>Trade Show Strategy & Execution</h3>
-        <p>Beyond the booth: I co-create with Marketing the end-to-end journey — stand design, narrative & assets; orchestrate meetings, capture qualified leads, and run the post-fair pipeline to real outcomes. In parallel, I negotiate with partners, benchmark technologies, and audit factories for capability & compliance.</p>
-        <div class="strategy-grid">
-            <div class="strategy-item" data-strategy="1"><i class="fas fa-drafting-compass"></i><p>Stand Design & Merchandising</p></div>
-            <div class="strategy-item" data-strategy="2"><i class="fas fa-calendar-check"></i><p>Meetings Orchestration & Lead Capture</p></div>
-            <div class="strategy-item" data-strategy="3"><i class="fas fa-handshake-angle"></i><p>Negotiations & Partnering</p></div>
-            <div class="strategy-item" data-strategy="4"><i class="fas fa-microchip"></i><p>Tech Discovery & Benchmark</p></div>
-            <div class="strategy-item" data-strategy="5"><i class="fas fa-industry"></i><p>Factory Audits & Capability Mapping</p></div>
-            <div class="strategy-item" data-strategy="6"><i class="fas fa-chart-line"></i><p>Post-Fair Pipeline, ROI & Governance</p></div>
-        </div>
-    </div>
+<div class="section-header animate-on-scroll"><h2>Trade Shows & Global Exhibitions</h2><p>Exhibitor and strategic buyer across worldwide markets</p></div>
+<h3 class="trade-title" style="text-align:center; margin-bottom: 2rem;">Blaupunkt</h3>
+<div class="project-card" data-gallery="blaupunkt-fair" data-images="Blaupunkt_Illumiation_booth_HK_Fair.png,Blaupunkt_Illumiation_booth_HK_Fair_1.png,Blaupunkt_Illumiation_booth_HK_Fair_2.png,Blaupunkt_Illumiation_booth_HK_Fair_3.png,Blaupunkt_Illumiation_booth_HK_Fair_4.png" style="all:unset;display:block;">
+<div class="gold-frame" style="max-width:800px;margin:0 auto;border-radius:25px;border:3px solid var(--gold);overflow:hidden;cursor:pointer;" onclick="openProjectGallery('blaupunkt-fair')">
+<div class="project-gallery" style="all:unset;display:block;"><div class="gallery-main" style="all:unset;display:block;"><img src="Blaupunkt_Illumiation_booth_HK_Fair.png" style="width:100%;height:auto;object-fit:cover;"><div class="gallery-overlay"><i class="fas fa-images"></i><span>View Gallery</span></div></div></div>
+</div>
+</div>
+<h3 class="trade-title" style="text-align:center; margin: 4rem 0 2rem;">Ford Lighting</h3>
+<div class="project-card" data-gallery="ford-fair" data-images="Ford_lighting_solutions_HK_Intl.png,Ford_lighting_solutions_HK_Intl_1.png,Ford_lighting_solutions_HK_Intl_2.png" style="all:unset;display:block;">
+<div class="gold-frame" style="max-width:800px;margin:0 auto;border-radius:25px;border:3px solid var(--gold);overflow:hidden;cursor:pointer;" onclick="openProjectGallery('ford-fair')">
+<div class="project-gallery" style="all:unset;display:block;"><div class="gallery-main" style="all:unset;display:block;"><img src="Ford_lighting_solutions_HK_Intl.png" style="width:100%;height:auto;object-fit:cover;"><div class="gallery-overlay"><i class="fas fa-images"></i><span>View Gallery</span></div></div></div>
+</div>
+</div>
+<div class="trade-show-strategy">
+<h3><i class="fas fa-handshake" style="color: var(--gold); margin-right: 10px;"></i>Trade Show Strategy & Execution</h3>
+<p>Beyond the booth: I co-create with Marketing the end-to-end journey — stand design, narrative & assets; orchestrate meetings, capture qualified leads, and run the post-fair pipeline to real outcomes. In parallel, I negotiate with partners, benchmark technologies, and audit factories for capability & compliance.</p>
+<div class="strategy-grid">
+ <div class="strategy-item" data-strategy="1"><i class="fas fa-drafting-compass"></i><p>Stand Design & Merchandising</p></div>
+ <div class="strategy-item" data-strategy="2"><i class="fas fa-calendar-check"></i><p>Meetings Orchestration & Lead Capture</p></div>
+ <div class="strategy-item" data-strategy="3"><i class="fas fa-handshake-angle"></i><p>Negotiations & Partnering</p></div>
+ <div class="strategy-item" data-strategy="4"><i class="fas fa-microchip"></i><p>Tech Discovery & Benchmark</p></div>
+ <div class="strategy-item" data-strategy="5"><i class="fas fa-industry"></i><p>Factory Audits & Capability Mapping</p></div>
+ <div class="strategy-item" data-strategy="6"><i class="fas fa-chart-line"></i><p>Post‑Fair Pipeline, ROI & Governance</p></div>
+</div>
+</div>
 </section>
 
 <section aria-label="Certifications & Education" class="certs" id="certs">
