@@ -44,24 +44,31 @@ function googleTranslateElementInit() {
 
 
 <style>
+.projects .project-card, .projects .project-card * { pointer-events:auto!important; }
+.projects .project-card .gallery-overlay{opacity:0!important;}
+.projects .project-card .gallery-main:hover .gallery-overlay{opacity:1!important;}
+.projects .project-card{background:initial!important;border:initial!important;box-shadow:initial!important;padding:initial!important;}
+</style>
+
+<style>
+/* V21: Mobile translator reposition */
 @media(max-width:768px){
-  [style*='Tradutor']{top:40px!important;right:20px!important;}
+  .translator-box, [style*='Tradutor']{top:40px!important;right:20px!important;}
 }
-/* restore timeline logos left */
-.timeline-item .timeline-content{position:relative;}
-.timeline-item::before{
+/* V21: Restore timeline logos safely using HTML img inside content */
+.timeline-item .timeline-company::before{display:none!important;}
+/* Add logo box inside timeline-item */
+.timeline-item[data-logo] .timeline-content{padding-top:3.5rem;}
+.timeline-item[data-logo] .timeline-content::after{
  content:"";
  position:absolute;
- left:-80px;
- top:0;
+ top:-2.6rem;
+ left:0.5rem;
  width:60px;height:60px;
  background-size:contain;
  background-repeat:no-repeat;
+ background-image: attr(data-logo url);
 }
-.timeline-item[data-company="details"]::before{background-image:url('Details_Symbol.jpg');}
-.timeline-item[data-company="skn-global"]::before{background-image:url('SKN_Global.png');}
-.timeline-item[data-company="skn-europe"]::before{background-image:url('SKN_Global.png');}
-.timeline-item[data-company="skn-brasil"]::before{background-image:url('SKN_Brasil.png');}
 </style>
 </head>
 <body>
