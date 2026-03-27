@@ -25,51 +25,10 @@ function googleTranslateElementInit() {
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async defer></script>
 
-<style>
-/* Disable hover effects from project-card globally */
-.project-card:hover,
-.project-card:hover * {
-    background: none !important;
-    filter: none !important;
-    transform: none !important;
-    box-shadow: none !important;
-}
-.project-card { pointer-events: none !important; }
-.project-card .gold-frame { pointer-events: auto !important; }
-.gold-frame:hover {
-    transform: scale(1.02);
-    transition: 0.25s ease-in-out;
-}
-</style>
 
 
-<style>
-.projects .project-card, .projects .project-card * { pointer-events:auto!important; }
-.projects .project-card .gallery-overlay{opacity:0!important;}
-.projects .project-card .gallery-main:hover .gallery-overlay{opacity:1!important;}
-.projects .project-card{background:initial!important;border:initial!important;box-shadow:initial!important;padding:initial!important;}
-</style>
 
-<style>
-/* V21: Mobile translator reposition */
-@media(max-width:768px){
-  .translator-box, [style*='Tradutor']{top:40px!important;right:20px!important;}
-}
-/* V21: Restore timeline logos safely using HTML img inside content */
-.timeline-item .timeline-company::before{display:none!important;}
-/* Add logo box inside timeline-item */
-.timeline-item[data-logo] .timeline-content{padding-top:3.5rem;}
-.timeline-item[data-logo] .timeline-content::after{
- content:"";
- position:absolute;
- top:-2.6rem;
- left:0.5rem;
- width:60px;height:60px;
- background-size:contain;
- background-repeat:no-repeat;
- background-image: attr(data-logo url);
-}
-</style>
+
 </head>
 <body>
 <div class="cursor" id="cursor"></div>
