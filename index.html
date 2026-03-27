@@ -44,14 +44,27 @@ function googleTranslateElementInit() {
 
 
 <style>
-.project-card[data-gallery="blaupunkt-fair"], .project-card[data-gallery="ford-fair"]{background:none!important;box-shadow:none!important;border:none!important;padding:0!important;}
-.project-card[data-gallery="blaupunkt-fair"] *, .project-card[data-gallery="ford-fair"] *{pointer-events:none!important;}
-.project-card[data-gallery="blaupunkt-fair"] .gold-frame, .project-card[data-gallery="ford-fair"] .gold-frame,
-.project-card[data-gallery="blaupunkt-fair"] .gold-frame *, .project-card[data-gallery="ford-fair"] .gold-frame *{pointer-events:auto!important;}
+/* restrict fixes only to fairs */
+.project-card[data-gallery="blaupunkt-fair"],
+.project-card[data-gallery="ford-fair"]{
+ background:none!important;box-shadow:none!important;border:none!important;padding:0!important;
+}
+.project-card[data-gallery="blaupunkt-fair"] * ,
+.project-card[data-gallery="ford-fair"] * { pointer-events:none!important; }
+.project-card[data-gallery="blaupunkt-fair"] .gold-frame,
+.project-card[data-gallery="ford-fair"] .gold-frame,
+.project-card[data-gallery="blaupunkt-fair"] .gold-frame * ,
+.project-card[data-gallery="ford-fair"] .gold-frame * {
+ pointer-events:auto!important;
+}
 .project-card[data-gallery="blaupunkt-fair"] .gold-frame:hover,
-.project-card[data-gallery="ford-fair"] .gold-frame:hover{transform:scale(1.02);transition:.25s ease-in-out;}
-.project-card .gallery-overlay{opacity:0;}
-.project-card .gallery-main:hover .gallery-overlay{opacity:1;}
+.project-card[data-gallery="ford-fair"] .gold-frame:hover{
+ transform:scale(1.02);transition:.25s ease-in-out;
+}
+.project-card[data-gallery="blaupunkt-fair"] .gallery-overlay,
+.project-card[data-gallery="ford-fair"] .gallery-overlay{opacity:0;}
+.project-card[data-gallery="blaupunkt-fair"] .gallery-main:hover .gallery-overlay,
+.project-card[data-gallery="ford-fair"] .gallery-main:hover .gallery-overlay{opacity:1;}
 </style>
 </head>
 <body>
@@ -543,15 +556,15 @@ function googleTranslateElementInit() {
 <section aria-label="Trade Shows & Exhibitions" class="trade-shows" id="trade-shows">
 <div class="section-header animate-on-scroll"><h2>Trade Shows & Global Exhibitions</h2><p>Exhibitor and strategic buyer across worldwide markets</p></div>
 <h3 class="trade-title" style="text-align:center; margin-bottom: 2rem;">Blaupunkt</h3>
-<div class="project-card" data-gallery="blaupunkt-fair" data-images="Blaupunkt_Illumiation_booth_HK_Fair.png,Blaupunkt_Illumiation_booth_HK_Fair_1.png,Blaupunkt_Illumiation_booth_HK_Fair_2.png,Blaupunkt_Illumiation_booth_HK_Fair_3.png,Blaupunkt_Illumiation_booth_HK_Fair_4.png" style="background:none!important;box-shadow:none!important;border:none!important;display:block;">
+<div class="project-card" data-gallery="blaupunkt-fair" data-images="Blaupunkt_Illumiation_booth_HK_Fair.png,Blaupunkt_Illumiation_booth_HK_Fair_1.png,Blaupunkt_Illumiation_booth_HK_Fair_2.png,Blaupunkt_Illumiation_booth_HK_Fair_3.png,Blaupunkt_Illumiation_booth_HK_Fair_4.png" style="all:unset;display:block;">
 <div class="gold-frame" style="max-width:800px;margin:0 auto;border-radius:25px;border:3px solid var(--gold);overflow:hidden;cursor:pointer;" onclick="openProjectGallery('blaupunkt-fair')">
-<div class="project-gallery" style="background:none!important;box-shadow:none!important;border:none!important;display:block;"><div class="gallery-main" style="background:none!important;box-shadow:none!important;border:none!important;display:block;"><img src="Blaupunkt_Illumiation_booth_HK_Fair.png" style="width:100%;height:auto;object-fit:cover;"><div class="gallery-overlay"><i class="fas fa-images"></i><span>View Gallery</span></div></div></div>
+<div class="project-gallery" style="all:unset;display:block;"><div class="gallery-main" style="all:unset;display:block;"><img src="Blaupunkt_Illumiation_booth_HK_Fair.png" style="width:100%;height:auto;object-fit:cover;"><div class="gallery-overlay"><i class="fas fa-images"></i><span>View Gallery</span></div></div></div>
 </div>
 </div>
 <h3 class="trade-title" style="text-align:center; margin: 4rem 0 2rem;">Ford Lighting</h3>
-<div class="project-card" data-gallery="ford-fair" data-images="Ford_lighting_solutions_HK_Intl.png,Ford_lighting_solutions_HK_Intl_1.png,Ford_lighting_solutions_HK_Intl_2.png" style="background:none!important;box-shadow:none!important;border:none!important;display:block;">
+<div class="project-card" data-gallery="ford-fair" data-images="Ford_lighting_solutions_HK_Intl.png,Ford_lighting_solutions_HK_Intl_1.png,Ford_lighting_solutions_HK_Intl_2.png" style="all:unset;display:block;">
 <div class="gold-frame" style="max-width:800px;margin:0 auto;border-radius:25px;border:3px solid var(--gold);overflow:hidden;cursor:pointer;" onclick="openProjectGallery('ford-fair')">
-<div class="project-gallery" style="background:none!important;box-shadow:none!important;border:none!important;display:block;"><div class="gallery-main" style="background:none!important;box-shadow:none!important;border:none!important;display:block;"><img src="Ford_lighting_solutions_HK_Intl.png" style="width:100%;height:auto;object-fit:cover;"><div class="gallery-overlay"><i class="fas fa-images"></i><span>View Gallery</span></div></div></div>
+<div class="project-gallery" style="all:unset;display:block;"><div class="gallery-main" style="all:unset;display:block;"><img src="Ford_lighting_solutions_HK_Intl.png" style="width:100%;height:auto;object-fit:cover;"><div class="gallery-overlay"><i class="fas fa-images"></i><span>View Gallery</span></div></div></div>
 </div>
 </div>
 <div class="trade-show-strategy">
