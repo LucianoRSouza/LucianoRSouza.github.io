@@ -440,3 +440,19 @@ section{padding:1.2cm .8cm}
 @media(prefers-reduced-motion:reduce){
 *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto !important}
 }
+
+
+/* V21 overrides */
+
+/* V21 mobile translator */
+@media(max-width:768px){
+  .translator-box, [style*='Tradutor']{top:40px!important;right:20px!important;}
+}
+/* V21 timeline logos */
+.timeline-item[data-logo] .timeline-content{position:relative;padding-top:3.5rem;}
+.timeline-item[data-logo] .timeline-content::after{
+ content:"";
+ position:absolute;top:-2.6rem;left:0.5rem;width:60px;height:60px;
+ background-size:contain;background-repeat:no-repeat;
+ background-image: attr(data-logo url);
+}
