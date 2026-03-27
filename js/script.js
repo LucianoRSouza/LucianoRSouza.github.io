@@ -1,916 +1,867 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>Luciano Rodrigues — AI-Driven Procurement Leader</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
-<link href="favicon.ico" rel="icon"/>
-<meta content="Luciano Rodrigues — AI-Driven Procurement Leader" property="og:title"/>
-<meta content="AI-powered procurement, strategic operations, and product development leadership." property="og:description"/>
-<meta content="website" property="og:type"/>
-<meta content="Photo_Luciano_início.jpg" property="og:image"/>
-<link href="css/style.css" rel="stylesheet"/>
-<!-- Google Translate Script -->
-<script type="text/javascript">
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement({
-    pageLanguage: 'en',
-    includedLanguages: 'en,pt,es,fr,it,de,zh-CN,ja,ko,ar,hi',
-    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-    autoDisplay: false
-  }, 'google_translate_element');
+/* Luciano Rodrigues Portfolio - Google Translate Optimized */
+
+const PG_state = { images: [], index: 0 };
+const CardSlides = new Map();
+let savedScrollPosition = 0;
+
+const $  = (sel, ctx = document) => ctx.querySelector(sel);
+const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
+const on = (el, evt, fn, opts) => el && el.addEventListener(evt, fn, opts);
+
+/* Stat Details Data */
+const StatDetailsData = {
+  savings: {
+    icon: "fa-piggy-bank",
+    title: "Cumulative Savings Delivered",
+    value: "€1M+",
+    details: [
+      "Multi-category strategic sourcing initiatives across direct and indirect spend",
+      "Negotiated favorable payment terms (60-90 days) improving cash flow",
+      "Implemented should-cost modeling identifying 15-25% cost reduction opportunities",
+      "Consolidated supplier base from 200+ to 80 key partners",
+      "Zero-based budgeting approach for CAPEX projects saving 20% on average"
+    ]
+  },
+  rfps: {
+    icon: "fa-file-contract",
+    title: "Strategic Tenders Led",
+    value: "120+",
+    details: [
+      "End-to-end RFI/RFP/RFQ process design with technical annexes (A1/A2)",
+      "Weighted scoring matrices balancing technical (40%), commercial (35%), and ESG (25%) criteria",
+      "E-procurement platform integration with full audit trails",
+      "Cross-functional evaluation committees (Engineering, Finance, Legal, Operations)",
+      "Average cycle time reduction from 45 to 28 days while improving compliance"
+    ]
+  },
+  projects: {
+    icon: "fa-project-diagram",
+    title: "Project Portfolio Value",
+    value: "€10M+",
+    details: [
+      "New product development from concept to mass production",
+      "Licensed portfolio launches (Blaupunkt, Spear & Jackson, Pininfarina)",
+      "Factory audits and supplier capability assessments across Asia",
+      "Quality system implementations (ISO 9001, compliance frameworks)",
+      "Cross-border logistics optimization and customs compliance"
+    ]
+  },
+  regions: {
+    icon: "fa-globe",
+    title: "Global Operations Coverage",
+    value: "20+",
+    details: [
+      "Europe: Portugal, Spain, Germany, UK, Netherlands, Italy, France",
+      "LATAM: Brazil, Argentina, Chile, Colombia, Mexico, Peru, Uruguay",
+      "Asia: China, Hong Kong, Taiwan, Vietnam, India, South Korea",
+      "Multi-cultural negotiation experience and local market knowledge",
+      "Time zone coordination for 24/7 project execution"
+    ]
+  }
+};
+
+const StrategyDetailsData = {
+  1: {
+    title: "Stand Design & Merchandising",
+    subtitle: "Creating immersive brand experiences",
+    icon: "fa-drafting-compass",
+    sections: [
+      {
+        title: "Strategic Approach",
+        items: [
+          "Co-created booth concept with Marketing aligning to brand positioning",
+          "Traffic flow optimization for maximum visitor engagement",
+          "Product display hierarchy highlighting hero SKUs and new launches",
+          "Lighting and visual merchandising for premium brand perception",
+          "Interactive demo stations for hands-on product experience"
+        ]
+      },
+      {
+        title: "Technical Execution",
+        items: [
+          "3D renderings and mockups approved 60 days prior to event",
+          "Modular stand components for reusability across fairs",
+          "Digital signage integration with real-time product catalogs",
+          "Storage and logistics planning for 500+ SKU displays",
+          "On-site supervision during build-up and dismantling"
+        ]
+      }
+    ]
+  },
+  2: {
+    title: "Meetings Orchestration & Lead Capture",
+    subtitle: "Maximizing ROI through structured engagement",
+    icon: "fa-calendar-check",
+    sections: [
+      {
+        title: "Pre-Event Planning",
+        items: [
+          "Target list development: 200+ qualified prospects per fair",
+          "Meeting scheduling system with automated reminders",
+          "Sales team briefing with product knowledge sessions",
+          "Customized pitch decks by customer segment",
+          "Lead scoring criteria defined (budget, timeline, authority)"
+        ]
+      },
+      {
+        title: "On-Site Execution",
+        items: [
+          "Structured 30-minute meeting slots with clear agendas",
+          "Real-time lead capture via CRM mobile app",
+          "Immediate follow-up emails sent within 4 hours",
+          "Meeting notes standardized for pipeline visibility",
+          "Daily team huddles to adjust strategy based on feedback"
+        ]
+      }
+    ]
+  },
+  3: {
+    title: "Negotiations & Partnering",
+    subtitle: "Building strategic supplier relationships",
+    icon: "fa-handshake-angle",
+    sections: [
+      {
+        title: "Partnership Development",
+        items: [
+          "Initial qualification: financial stability, capacity, certifications",
+          "Term sheet negotiations: MOQ, payment terms, exclusivity clauses",
+          "Pricing framework with volume breaks and annual rebates",
+          "Quality agreements defining defect rates and corrective actions",
+          "IP protection and NDA frameworks for new product development"
+        ]
+      },
+      {
+        title: "Contractual Framework",
+        items: [
+          "Master Service Agreements (MSA) with standardized terms",
+          "Statement of Work (SoW) templates for project-based work",
+          "Service Level Agreements (SLA) with penalty/incentive clauses",
+          "Force majeure and business continuity provisions",
+          "Exit clauses and knowledge transfer obligations"
+        ]
+      }
+    ]
+  },
+  4: {
+    title: "Tech Discovery & Benchmark",
+    subtitle: "Staying ahead of market innovation",
+    icon: "fa-microchip",
+    sections: [
+      {
+        title: "Market Intelligence",
+        items: [
+          "Technology scouting across 50+ supplier booths per fair",
+          "Competitive product teardowns and feature comparison",
+          "Cost benchmarking for similar specifications",
+          "Innovation trend mapping (IoT, sustainability, smart features)",
+          "Patent landscape analysis for freedom to operate"
+        ]
+      },
+      {
+        title: "Technical Evaluation",
+        items: [
+          "Sample collection for lab testing and validation",
+          "Engineering team consultations on technical feasibility",
+          "Prototype review and design for manufacturing (DFM) feedback",
+          "Certification requirements assessment (CE, FCC, ANATEL)",
+          "Roadmap alignment with supplier R&D investments"
+        ]
+      }
+    ]
+  },
+  5: {
+    title: "Factory Audits & Capability Mapping",
+    subtitle: "Ensuring operational excellence",
+    icon: "fa-industry",
+    sections: [
+      {
+        title: "Audit Framework",
+        items: [
+          "ISO 9001 quality management system verification",
+          "Production capacity analysis (lines, shifts, utilization)",
+          "Equipment maintenance records and calibration certificates",
+          "Workforce skill assessment and training programs",
+          "Environmental compliance and waste management practices"
+        ]
+      },
+      {
+        title: "Risk Assessment",
+        items: [
+          "Financial health check (credit reports, payment history)",
+          "Supply chain resilience (dual sourcing, buffer stock)",
+          "Social compliance audits (SA8000, BSCI standards)",
+          "Cybersecurity protocols for data-sharing partnerships",
+          "Business continuity planning and disaster recovery"
+        ]
+      }
+    ]
+  },
+  6: {
+    title: "Post-Fair Pipeline, ROI & Governance",
+    subtitle: "Converting leads into revenue",
+    icon: "fa-chart-line",
+    sections: [
+      {
+        title: "Pipeline Management",
+        items: [
+          "Lead categorization: Hot (immediate), Warm (3 months), Cold (nurture)",
+          "CRM integration with automated follow-up sequences",
+          "Opportunity value estimation and win probability scoring",
+          "Cross-functional handover to regional sales teams",
+          "Weekly pipeline review meetings for first 30 days"
+        ]
+      },
+      {
+        title: "Performance Metrics",
+        items: [
+          "Cost per lead calculation (stand cost ÷ qualified leads)",
+          "Conversion rate tracking from lead to order",
+          "Average deal size comparison vs. non-fair customers",
+          "Time-to-close analysis identifying bottlenecks",
+          "Annual ROI reporting for marketing budget justification"
+        ]
+      }
+    ]
+  }
+};
+
+function openStatModal(key) {
+  const data = StatDetailsData[key];
+  if (!data) return;
+
+  $('#statModalIcon').className = `fas ${data.icon}`;
+  $('#statModalTitle').textContent = data.title;
+  $('#statModalValue').textContent = data.value;
+  $('#statModalDetails').innerHTML = data.details.map(it => `<li>${it}</li>`).join('');
+  $('#statModalOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
 }
-</script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async defer></script>
 
+function closeStatModal() {
+  const overlay = $('#statModalOverlay');
+  if (!overlay) return;
+  overlay.classList.remove('active');
+  document.body.style.overflow = 'auto';
+}
 
+function openStrategyModal(num) {
+  const data = StrategyDetailsData[num];
+  if (!data) return;
 
+  $('#strategyDetailIcon').className = `fas ${data.icon}`;
+  $('#strategyDetailTitle').textContent = data.title;
+  $('#strategyDetailSubtitle').textContent = data.subtitle;
 
+  const body = data.sections.map(sec => {
+    const items = sec.items.map(li => `<li>${li}</li>`).join('');
+    return `<div class="strategy-detail-section"><h4><i class="fas fa-chevron-right"></i> ${sec.title}</h4><ul>${items}</ul></div>`;
+  }).join('');
 
-</head>
-<body>
-<div class="cursor" id="cursor"></div>
-<div class="cursor-follower" id="cursorFollower"></div>
+  $('#strategyDetailBody').innerHTML = body;
+  $('#strategyDetailOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
 
-<!-- Loading Screen com Fallback -->
-<div class="loading" id="loading">
-<div class="loading-logo">LR.</div>
-<div class="loading-bar"><div class="loading-progress"></div></div>
-</div>
+function closeStrategyModal() {
+  const overlay = $('#strategyDetailOverlay');
+  if (!overlay) return;
 
-<!-- Language Switcher -->
-<div class="translator-box" style="position:fixed;top:100px;right:20px;z-index:1200;background:rgba(255,255,255,.75);backdrop-filter:blur(12px);border:1px solid rgba(212,175,55,.25);box-shadow:0 4px 20px rgba(0,0,0,.1);padding:8px 12px;border-radius:14px;opacity:0.85;transition:opacity .3s ease;display:flex;align-items:center;gap:8px;">
-  <span style="font-size:11px;font-weight:600;color:var(--navy);text-transform:uppercase;letter-spacing:0.5px;">Tradutor</span>
-  <div id="google_translate_element" style="display:inline-block;"></div>
-</div>
+  const card = overlay.querySelector('.strategy-detail-card');
+  const body = overlay.querySelector('.strategy-detail-body');
+  if (card) { card.scrollTop = 0; card.scrollTo(0, 0); }
+  if (body) { body.scrollTop = 0; body.scrollTo(0, 0); }
+  overlay.scrollTop = 0;
 
-<nav aria-label="Primary" class="navbar" id="navbar">
-<a class="logo" href="#"><i class="fas fa-crown"></i> LR.</a>
-<ul class="nav-links">
-<li><a href="#about">About</a></li>
-<li><a href="#timeline">Experience</a></li>
-<li><a href="#projects">Projects</a></li>
-<li><a href="#trade-shows">Trade Shows</a></li>
-<li><a href="#certs">Certifications</a></li>
-<li><a href="#contact">Contact</a></li>
-</ul>
-</nav>
+  overlay.classList.remove('active');
+  document.body.style.overflow = 'auto';
+}
 
-<section aria-label="Hero" class="hero" id="home">
-<div class="hero-particles" id="particles"></div>
-<div class="hero-container">
-<div class="hero-content">
-<h1>Luciano Rodrigues de Souza</h1>
-<p class="subtitle">AI-Driven Procurement & Operations Leader · Strategic Transformation</p>
-<p class="hero-description">
-          I connect governance, technical rigor, and AI to deliver measurable outcomes: transparent tenders, reliable partners, and resilient operations across Europe, LATAM, and Asia.
-        </p>
-<div aria-label="Key metrics" class="hero-stats">
-<div aria-label="Cumulative savings delivered" class="stat-box" data-stat="savings" tabindex="0">
-<i aria-hidden="true" class="fas fa-piggy-bank stat-icon"></i>
-<span class="stat-number" id="statSavings">€1M+</span>
-<span class="stat-label">Cumulative Savings</span>
-<small class="stat-note">Across multi-category negotiations</small>
-</div>
-<div aria-label="Strategic tenders led" class="stat-box" data-stat="rfps" tabindex="0">
-<i aria-hidden="true" class="fas fa-file-contract stat-icon"></i>
-<span class="stat-number" id="statRFPs">120+</span>
-<span class="stat-label">RFP/RFQ Led</span>
-<small class="stat-note">With technical annexes & weighted scoring</small>
-</div>
-<div aria-label="Project value managed" class="stat-box" data-stat="projects" tabindex="0">
-<i aria-hidden="true" class="fas fa-project-diagram stat-icon"></i>
-<span class="stat-number" id="statProjects">€10M+</span>
-<span class="stat-label">Project Portfolio</span>
-<small class="stat-note">From concept to audited mass production</small>
-</div>
-<div aria-label="Regions served" class="stat-box" data-stat="regions" tabindex="0">
-<i aria-hidden="true" class="fas fa-globe stat-icon"></i>
-<span class="stat-number" id="statRegions">20+</span>
-<span class="stat-label">Countries</span>
-<small class="stat-note">Europe · LATAM · Asia</small>
-</div>
-</div>
-<div class="hero-buttons">
-<a class="btn btn-primary" href="#contact">
-<i class="fas fa-paper-plane"></i>
-<span>Let's Connect</span>
-</a>
-<a class="btn btn-secondary" href="#timeline">
-<i class="fas fa-road"></i>
-<span>View Journey</span>
-</a>
-</div>
-</div>
-<div class="hero-image-wrapper">
-<div class="hero-image gold-frame">
-<img alt="Portrait of Luciano Rodrigues de Souza" src="Photo_Luciano_início.jpg"/>
-</div>
-<div class="floating-badge badge-top">
-<i aria-hidden="true" class="fas fa-award"></i>
-<span>Top Performer 2025</span>
-</div>
-<div class="floating-badge badge-middle">
-<i aria-hidden="true" class="fas fa-brain"></i>
-<span>AI Specialist</span>
-</div>
-<div class="floating-badge badge-bottom">
-<i aria-hidden="true" class="fas fa-handshake"></i>
-<span>Trusted Leader</span>
-</div>
-</div>
-</div>
-</section>
-
-<section aria-label="About" class="about" id="about">
-<div class="section-header animate-on-scroll">
-<h2>Leadership Philosophy</h2>
-<p>From LATAM operations to global procurement strategy</p>
-</div>
-<div class="about-grid">
-<div class="about-image animate-on-scroll delay-1 gold-frame">
-<img alt="About Luciano — travel and work context" src="Foto_About_Me.jpg"/>
-</div>
-<div class="about-content animate-on-scroll delay-2">
-<h3>Transformation Through Collaboration</h3>
-<p>
-          I design procurement systems that scale: from RFI/RFP playbooks and BidMaps to governance, audits, and supplier development.
-          The result is speed with control — faster decisions, lower risk, and clearer accountability.
-        </p>
-<p>
-          My leadership style blends cross‑functional facilitation (Engineering, ESG, Legal, Finance, Operations) with data and AI.
-          I focus on three pillars: clarity of requirements, market transparency, and measurable outcomes.
-        </p>
-<div class="leadership-philosophy">
-          "I don't just optimize supply chains — I build cross‑functional coalitions that transform how organizations think about procurement."
-        </div>
-<ul class="about-bullets">
-<li><strong>Process Architecture:</strong> tender kits, weighted scoring, compliance‑by‑design</li>
-<li><strong>AI & Analytics:</strong> smart RFPs, proposal parsing, forecasting, inventory optimization</li>
-<li><strong>Supplier Strategy:</strong> audits, capability mapping, dual‑sourcing & continuity</li>
-<li><strong>Stakeholder Trust:</strong> transparent dashboards, SLAs, and post‑award governance</li>
-</ul>
-<div class="languages-grid">
-<div class="lang-item"><i aria-hidden="true" class="fas fa-check-circle"></i><span>Portuguese (Native)</span></div>
-<div class="lang-item"><i aria-hidden="true" class="fas fa-check-circle"></i><span>English (Native)</span></div>
-<div class="lang-item"><i aria-hidden="true" class="fas fa-check-circle"></i><span>Spanish (Professional)</span></div>
-<div class="lang-item"><i aria-hidden="true" class="fas fa-check-circle"></i><span>French (Professional)</span></div>
-</div>
-</div>
-</div>
-</section>
-
-<section aria-label="Professional Journey" class="timeline" id="timeline">
-<div class="section-header animate-on-scroll">
-<h2>Professional Journey</h2>
-<p>15+ years of progressive leadership</p>
-</div>
-<div class="timeline-container timeline--compact-logo">
-<div class="timeline-logo-sticky">
-<div aria-label="Company logo" class="company-logo-display" id="current-logo">
-<img alt="Company Logo" id="logo-img" src="Details_Symbol.jpg" style="width:100%;max-width:150px;height:150px;object-fit:contain;margin-bottom:1rem;"/>
-<div aria-hidden="true" class="logo-indicator">
-<span class="indicator-dot active" data-index="0"></span>
-<span class="indicator-dot" data-index="1"></span>
-<span class="indicator-dot" data-index="2"></span>
-<span class="indicator-dot" data-index="3"></span>
-</div>
-</div>
-</div>
-<div class="timeline-items" id="timelineItems">
-<div class="timeline-item active" data-company="details" data-index="0" data-logo="Details_Symbol.jpg">
-<div class="timeline-date">
-<span class="date-range">2025–Present</span>
-<span class="date-level">Senior Level</span>
-</div>
-<div class="timeline-content">
-<h3 class="timeline-title">Senior Buyer — Strategic Procurement & Operations</h3>
-<div class="timeline-company">
-<i aria-hidden="true" class="fas fa-building"></i>
-<span>Details Hospitality, Portugal</span>
-</div>
-<p class="timeline-description">
-              Leading a company‑wide procurement transformation across hotel & leisure assets, unifying governance, technical rigor, and AI‑enabled decisioning.
-            </p>
-<div class="achievement-box">
-<strong><i aria-hidden="true" class="fas fa-trophy"></i>
-<span>Key Achievements</span>:</strong>
-<ul>
-<li>Designed end‑to‑end RFI/RFP/RFQ playbooks with technical annexes (A1/A2), weighted scoring and audit‑ready trails.</li>
-<li>Built the BidMap & dashboards (KPIs technical/financial) for transparent award decisions and faster stakeholder alignment.</li>
-<li>Integrated Primavera ↔ e‑procurement for full traceability; standardized templates, clauses and contracting packs.</li>
-<li>Onboarded new assets (e.g., Monte Rei, Els Club, San Lourenzo) with compliance‑by‑design and service continuity.</li>
-<li>Delivered measurable savings & ROI while maintaining service quality across HVAC, SCIE/Fire drills, Legionella, energy, laundry, F&B and marketing services.</li>
-</ul>
-</div>
-<div class="skills-tags">
-<span class="skill-tag">AI Strategy</span>
-<span class="skill-tag">Process Architecture</span>
-<span class="skill-tag">KPIs & Dashboards</span>
-<span class="skill-tag">Contract Negotiation</span>
-</div>
-</div>
-</div>
-<div class="timeline-item" data-company="skn-global" data-index="1" data-logo="SKN_Global.png">
-<div class="timeline-date">
-<span class="date-range">2022–2025</span>
-<span class="date-level">Director Level</span>
-</div>
-<div class="timeline-content">
-<h3 class="timeline-title">Director of International Expansion</h3>
-<div class="timeline-company">
-<i aria-hidden="true" class="fas fa-globe-europe"></i>
-<span>SKN Global — EU & Asia</span>
-</div>
-<p class="timeline-description">Led multi‑country go‑to‑market and premium portfolio development, orchestrating engineering, marketing and supply partners.</p>
-<div class="achievement-box">
-<strong><i aria-hidden="true" class="fas fa-trophy"></i>
-<span>Key Achievements</span>:</strong>
-<ul>
-<li>Managed €10M+ multi‑category pipeline; opened distribution channels across 5+ European markets.</li>
-<li>Drove supplier qualification and factory audits; negotiated MOQs, tooling and warranty frameworks.</li>
-<li>Co‑led trade show strategy (design, merch, meetings calendar, lead capture & post‑fair pipeline).</li>
-</ul>
-</div>
-<div class="skills-tags">
-<span class="skill-tag">Global Expansion</span>
-<span class="skill-tag">Brand & Licensing</span>
-<span class="skill-tag">Supplier Audits</span>
-</div>
-</div>
-</div>
-<div class="timeline-item" data-company="skn-europe" data-index="2" data-logo="SKN_Global.png">
-<div class="timeline-date">
-<span class="date-range">2018–2022</span>
-<span class="date-level">Manager Level</span>
-</div>
-<div class="timeline-content">
-<h3 class="timeline-title">International Product & Licensing Manager</h3>
-<div class="timeline-company">
-<i aria-hidden="true" class="fas fa-industry"></i>
-<span>SKN Global — Europe</span>
-</div>
-<p class="timeline-description">Built licensed portfolios end‑to‑end (e.g., Blaupunkt Tools), aligning R&D, certification and mass production for EU markets.</p>
-<div class="achievement-box">
-<strong><i aria-hidden="true" class="fas fa-trophy"></i>
-<span>Key Achievements</span>:</strong>
-<ul>
-<li>Launched complete Blaupunkt tools & garden lines with CE conformity and production line inspections.</li>
-<li>Deployed analytics stack (Python/Streamlit/Plotly/SQL) for portfolio and quality KPIs.</li>
-<li>Structured licensing contracts & performance guarantees with EU partners.</li>
-</ul>
-</div>
-<div class="skills-tags">
-<span class="skill-tag">Product Development</span>
-<span class="skill-tag">Quality Systems</span>
-<span class="skill-tag">Data Analytics</span>
-</div>
-</div>
-</div>
-<div class="timeline-item" data-company="skn-brasil" data-index="3" data-logo="SKN_Brasil.png">
-<div class="timeline-date">
-<span class="date-range">2011–2018</span>
-<span class="date-level">Growth Phase</span>
-</div>
-<div class="timeline-content">
-<h3 class="timeline-title">Product & Import Manager → LATAM Area Manager</h3>
-<div class="timeline-company">
-<i aria-hidden="true" class="fas fa-map-marker-alt"></i>
-<span>SKN do Brasil — Rio de Janeiro</span>
-</div>
-<p class="timeline-description">Career growth from import analyst to LATAM leadership, building distributor networks and launching portfolios.</p>
-<div class="achievement-box">
-<strong><i aria-hidden="true" class="fas fa-trophy"></i>
-<span>Key Achievements</span>:</strong>
-<ul>
-<li>Distributor network across 12 LATAM countries; Ford Lighting expansion.</li>
-<li>Representation at Hong Kong International Lighting Fair; OEM negotiations & regional certifications.</li>
-<li>End‑to‑end import, compliance and logistics time‑to‑market.</li>
-</ul>
-</div>
-<div class="skills-tags">
-<span class="skill-tag">LATAM Expansion</span>
-<span class="skill-tag">Trade Shows</span>
-<span class="skill-tag">Import/Export</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-
-<section aria-label="Featured Projects" class="projects" id="projects">
-<div class="section-header animate-on-scroll">
-<h2>Featured Projects</h2>
-<p>Product development excellence and AI innovation portfolio</p>
-</div>
-<div class="projects-grid" id="projectsGrid">
-<div class="project-card animate-on-scroll" data-autoslide="true" data-gallery="blaupunkt" data-images="Blaupunkt_Tools.png,Blaupunkt_Illumiation_booth_HK_Fair.png,Blaupunkt_Illumiation_booth_HK_Fair_1.png,Blaupunkt_Illumiation_booth_HK_Fair_2.png,Blaupunkt_Illumiation_booth_HK_Fair_3.png,Blaupunkt_Illumiation_booth_HK_Fair_4.png" data-interval="2500">
-<div class="project-gallery">
-<div class="gallery-main">
-<img alt="Blaupunkt" src="Blaupunkt_Tools.png"/>
-<div class="gallery-overlay">
-<i aria-hidden="true" class="fas fa-images"></i>
-<span>View Gallery</span>
-</div>
-</div>
-</div>
-<div class="project-content">
-<h3>Blaupunkt</h3>
-<p>Creation and launch of a complete tools line for the European market — from concept, BOM & compliance to production.</p>
-<div class="project-highlights">
-<strong>Scope:</strong> DIY & power tools · <strong>Markets:</strong> EU
-          </div>
-<div class="project-tags">
-<span class="project-tag">Product Development</span>
-<span class="project-tag">Licensing</span>
-<span class="project-tag">EU Compliance</span>
-</div>
-</div>
-</div>
-<div class="project-card animate-on-scroll" data-autoslide="true" data-gallery="blaupunkt-power" data-images="Blaupunkt_Power_Tools.png" data-interval="2500">
-<div class="project-gallery">
-<div class="gallery-main">
-<img alt="Blaupunkt Power Tools" src="Blaupunkt_Power_Tools.png"/>
-<div class="gallery-overlay">
-<i aria-hidden="true" class="fas fa-images"></i>
-<span>View Gallery</span>
-</div>
-</div>
-</div>
-<div class="project-content">
-<h3>Blaupunkt Power Tools Line</h3>
-<p>Professional-grade drills, saws, sanders with technical specs, audits and safety certifications.</p>
-<div class="project-highlights">
-<strong>Innovation:</strong> Pro grade · <strong>Audits:</strong> Line inspections
-          </div>
-<div class="project-tags">
-<span class="project-tag">Power Tools</span>
-<span class="project-tag">Factory Audits</span>
-<span class="project-tag">Quality Control</span>
-</div>
-</div>
-</div>
-<div class="project-card animate-on-scroll" data-autoslide="true" data-gallery="blaupunkt-garden" data-images="Blaupunkt_Garden_Tools.png" data-interval="2500">
-<div class="project-gallery">
-<div class="gallery-main">
-<img alt="Blaupunkt Garden Tools" src="Blaupunkt_Garden_Tools.png"/>
-<div class="gallery-overlay">
-<i aria-hidden="true" class="fas fa-images"></i>
-<span>View Gallery</span>
-</div>
-</div>
-</div>
-<div class="project-content">
-<h3>Blaupunkt Garden Tools</h3>
-<p>Outdoor equipment (chainsaws, trimmers) with complete documentation and safety compliance.</p>
-<div class="project-highlights">
-<strong>Products:</strong> Chainsaws, trimmers · <strong>Focus:</strong> Safety & compliance
-          </div>
-<div class="project-tags">
-<span class="project-tag">Garden</span>
-<span class="project-tag">Outdoor</span>
-<span class="project-tag">CE Certified</span>
-</div>
-</div>
-</div>
-<div class="project-card animate-on-scroll" data-autoslide="true" data-gallery="spear-jackson" data-images="S&J_Cast_Irons_2.jpg,S&J_Cast_Irons_3.jpg,S&J_Cast_Irons_4.jpg,S&J_Cast_Irons_5.jpg,S&J_Cast_Irons_6.jpg,S&J_Cast_Irons_7.jpg" data-interval="2500">
-<div class="project-gallery">
-<div class="gallery-main">
-<img alt="Spear & Jackson Cast Irons" src="S&J_Cast_Irons_2.jpg"/>
-<div class="gallery-overlay">
-<i aria-hidden="true" class="fas fa-images"></i>
-<span>View Gallery</span>
-</div>
-</div>
-</div>
-<div class="project-content">
-<h3>Spear & Jackson Cast Irons</h3>
-<p>Premium enameled cast iron cookware for a British heritage brand (est. 1760).</p>
-<div class="project-highlights">
-<strong>Heritage:</strong> UK brand · <strong>Category:</strong> Cookware
-          </div>
-<div class="project-tags">
-<span class="project-tag">Cookware</span>
-<span class="project-tag">Premium</span>
-<span class="project-tag">UK Brand</span>
-</div>
-</div>
-</div>
-<div class="project-card animate-on-scroll" data-autoslide="true" data-gallery="pininfarina" data-images="Pininfarina_BBQ.jpg,Pininfarina_BBQ_1.jpg" data-interval="2500">
-<div class="project-gallery">
-<div class="gallery-main">
-<img alt="Pininfarina Essenza Collection" src="Pininfarina_BBQ.jpg"/>
-<div class="gallery-overlay">
-<i aria-hidden="true" class="fas fa-images"></i>
-<span>View Gallery</span>
-</div>
-</div>
-</div>
-<div class="project-content">
-<h3>Pininfarina Essenza Collection</h3>
-<p>Premium outdoor cooking appliances with Italian design and global coordination (EU/Asia).</p>
-<div class="project-highlights">
-<strong>Design:</strong> Italian automotive · <strong>Value:</strong> €10M+ portfolio
-          </div>
-<div class="project-tags">
-<span class="project-tag">Luxury</span>
-<span class="project-tag">Italian Design</span>
-<span class="project-tag">Global Coordination</span>
-</div>
-</div>
-</div>
-<div class="project-card animate-on-scroll" data-autoslide="true" data-gallery="nks-estrelas" data-images="NKS_Estrelas.png,NKS_Estrelas_1.png,NKS_Estrelas_2.png,NKS_Estrelas_3.png,NKS_Estrelas_4.png,NKS_Estrelas_5.png" data-interval="2500">
-<div class="project-gallery">
-<div class="gallery-main">
-<img alt="NKS Estrelas Product Line" src="NKS_Estrelas.png"/>
-<div class="gallery-overlay">
-<i aria-hidden="true" class="fas fa-images"></i>
-<span>View Gallery</span>
-</div>
-</div>
-</div>
-<div class="project-content">
-<h3>NKS Estrelas Product Line</h3>
-<p>Consumer electronics & home appliances for the Brazilian market with full lifecycle management.</p>
-<div class="project-highlights">
-<strong>Market:</strong> Brazil · <strong>Category:</strong> Electronics
-          </div>
-<div class="project-tags">
-<span class="project-tag">Electronics</span>
-<span class="project-tag">Brazilian Market</span>
-<span class="project-tag">Product Launch</span>
-</div>
-</div>
-</div>
-<div class="project-card animate-on-scroll" data-autoslide="true" data-gallery="nks-audio" data-images="NKS_Audio.png,NKS_Audio_1.png,NKS_Audio_2.png,NKS_Audio_3.png,NKS_Audio_4.png,NKS_Audio_5.png,NKS_Audio_6.png,NKS_Audio_7.png" data-interval="2500">
-<div class="project-gallery">
-<div class="gallery-main">
-<img alt="NKS Audio Systems" src="NKS_Audio.png"/>
-<div class="gallery-overlay">
-<i aria-hidden="true" class="fas fa-images"></i>
-<span>View Gallery</span>
-</div>
-</div>
-</div>
-<div class="project-content">
-<h3>NKS Audio Systems</h3>
-<p>Professional & consumer audio: speakers, sound systems and headphones (ANATEL compliance).</p>
-<div class="project-highlights">
-<strong>Products:</strong> Speakers & systems · <strong>Compliance:</strong> ANATEL
-          </div>
-<div class="project-tags">
-<span class="project-tag">Audio</span>
-<span class="project-tag">Acoustic Engineering</span>
-<span class="project-tag">ANATEL</span>
-</div>
-</div>
-</div>
-<div class="project-card animate-on-scroll" data-autoslide="true" data-gallery="nks-maisvc" data-images="NKS_Mais_Vc.png,NKS_Mais_Vc_1.png,NKS_Mais_Vc_2.png,NKS_Mais_Vc_3.png,NKS_Mais_Vc_4.png" data-interval="2500">
-<div class="project-gallery">
-<div class="gallery-main">
-<img alt="NKS Mais Você Collection" src="NKS_Mais_Vc.png"/>
-<div class="gallery-overlay">
-<i aria-hidden="true" class="fas fa-images"></i>
-<span>View Gallery</span>
-</div>
-</div>
-</div>
-<div class="project-content">
-<h3>NKS Mais Você Collection</h3>
-<p>Beauty & personal care line with INMETRO certification tailored to Brazilian retail.</p>
-<div class="project-highlights">
-<strong>Category:</strong> Personal care · <strong>Features:</strong> INMETRO
-          </div>
-<div class="project-tags">
-<span class="project-tag">Beauty Care</span>
-<span class="project-tag">INMETRO</span>
-<span class="project-tag">Retail</span>
-</div>
-</div>
-</div>
-<div class="project-card animate-on-scroll" data-autoslide="false" data-gallery="ml-portfolio" data-images="" data-interval="2800">
-<div class="project-image" style="background: linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%); display:flex;align-items:center;justify-content:center;height:250px;">
-<div style="text-align:center;color:#d4af37;">
-<i class="fas fa-brain" style="font-size:3.4rem;display:block;margin-bottom:10px;"></i>
-<div style="font-size:0.9rem;opacity:0.85;">Machine Learning Portfolio</div>
-<div style="width:120px;height:2px;background:#d4af37;margin:10px auto;"></div>
-<div style="font-size:0.8rem;opacity:0.65;">Forecasting · Optimization · Uplift</div>
-</div>
-</div>
-<div class="project-content">
-<h3>AI & ML Projects (Selected)</h3>
-<p>Consolidated portfolio: sales forecasting, inventory optimization, promotion uplift, price elasticity, anomaly/quality detection, churn & CLV.</p>
-<div class="project-highlights">
-<strong>Stack:</strong> Python · scikit‑learn · XGBoost · LightGBM · Statsmodels · Streamlit
-          </div>
-<div class="project-tags">
-<span class="project-tag">Predictive Analytics</span>
-<span class="project-tag">Optimization</span>
-<span class="project-tag">MLOps-lite</span>
-</div>
-</div>
-</div>
-</div>
-</section>
-
-<section aria-label="Trade Shows & Exhibitions" class="trade-shows" id="trade-shows">
-<div class="section-header animate-on-scroll"><h2>Trade Shows & Global Exhibitions</h2><p>Exhibitor and strategic buyer across worldwide markets</p></div>
-<h3 class="trade-title" style="text-align:center; margin-bottom: 2rem;">Blaupunkt</h3>
-<div class="project-card" data-gallery="blaupunkt-fair" data-images="Blaupunkt_Illumiation_booth_HK_Fair.png,Blaupunkt_Illumiation_booth_HK_Fair_1.png,Blaupunkt_Illumiation_booth_HK_Fair_2.png,Blaupunkt_Illumiation_booth_HK_Fair_3.png,Blaupunkt_Illumiation_booth_HK_Fair_4.png" style="all:unset;display:block;">
-<div class="gold-frame" style="max-width:800px;margin:0 auto;border-radius:25px;border:3px solid var(--gold);overflow:hidden;cursor:pointer;" onclick="openProjectGallery('blaupunkt-fair')">
-<div class="project-gallery" style="all:unset;display:block;"><div class="gallery-main" style="all:unset;display:block;"><img src="Blaupunkt_Illumiation_booth_HK_Fair.png" style="width:100%;height:auto;object-fit:cover;"><div class="gallery-overlay"><i class="fas fa-images"></i><span>View Gallery</span></div></div></div>
-</div>
-</div>
-<h3 class="trade-title" style="text-align:center; margin: 4rem 0 2rem;">Ford Lighting</h3>
-<div class="project-card" data-gallery="ford-fair" data-images="Ford_lighting_solutions_HK_Intl.png,Ford_lighting_solutions_HK_Intl_1.png,Ford_lighting_solutions_HK_Intl_2.png" style="all:unset;display:block;">
-<div class="gold-frame" style="max-width:800px;margin:0 auto;border-radius:25px;border:3px solid var(--gold);overflow:hidden;cursor:pointer;" onclick="openProjectGallery('ford-fair')">
-<div class="project-gallery" style="all:unset;display:block;"><div class="gallery-main" style="all:unset;display:block;"><img src="Ford_lighting_solutions_HK_Intl.png" style="width:100%;height:auto;object-fit:cover;"><div class="gallery-overlay"><i class="fas fa-images"></i><span>View Gallery</span></div></div></div>
-</div>
-</div>
-<div class="trade-show-strategy">
-<h3><i class="fas fa-handshake" style="color: var(--gold); margin-right: 10px;"></i>Trade Show Strategy & Execution</h3>
-<p>Beyond the booth: I co-create with Marketing the end-to-end journey — stand design, narrative & assets; orchestrate meetings, capture qualified leads, and run the post-fair pipeline to real outcomes. In parallel, I negotiate with partners, benchmark technologies, and audit factories for capability & compliance.</p>
-<div class="strategy-grid">
- <div class="strategy-item" data-strategy="1"><i class="fas fa-drafting-compass"></i><p>Stand Design & Merchandising</p></div>
- <div class="strategy-item" data-strategy="2"><i class="fas fa-calendar-check"></i><p>Meetings Orchestration & Lead Capture</p></div>
- <div class="strategy-item" data-strategy="3"><i class="fas fa-handshake-angle"></i><p>Negotiations & Partnering</p></div>
- <div class="strategy-item" data-strategy="4"><i class="fas fa-microchip"></i><p>Tech Discovery & Benchmark</p></div>
- <div class="strategy-item" data-strategy="5"><i class="fas fa-industry"></i><p>Factory Audits & Capability Mapping</p></div>
- <div class="strategy-item" data-strategy="6"><i class="fas fa-chart-line"></i><p>Post‑Fair Pipeline, ROI & Governance</p></div>
-</div>
-</div>
-</section>
-
-<section aria-label="Certifications & Education" class="certs" id="certs">
-<div class="section-header animate-on-scroll">
-<h2>Certifications & Education</h2>
-<p>Continuous learning in AI, Data Science, and Strategic Procurement</p>
-</div>
-<div class="certs-grid">
-<div class="cert-card framework-highlight animate-on-scroll">
-<div class="framework-content">
-<div class="cert-icon" style="width:60px;height:60px;background:rgba(212,175,55,0.2);border-radius:15px;display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem;">
-<i aria-hidden="true" class="fas fa-star" style="font-size:1.8rem;color:var(--gold);"></i>
-</div>
-<h3>AI‑Driven Strategic Procurement Framework</h3>
-<p>One‑page executive framework on how AI, data, and operational alignment elevate procurement performance.</p>
-<div class="cert-badge">
-<i aria-hidden="true" class="fas fa-check-circle"></i>
-<span>Proprietary Methodology</span>
-</div>
-</div>
-<div class="framework-image">
-<img alt="AI Framework" onerror="this.parentElement.style.display='none'" src="AI_Driven_Strategic_Procurement_Framework.png"/>
-</div>
-</div>
-<div class="cert-card animate-on-scroll">
-<div class="cert-header">
-<div class="cert-logo">
-<img alt="IBM Generative AI" onerror="this.style.display='none'" src="Digital_Sticker_Foundations_in_Generative_AI.png"/>
-</div>
-<div class="cert-title-group">
-<h4>IBM SkillsBuild</h4>
-<div class="cert-subtitle">Foundations in Generative AI</div>
-<span class="cert-date"><i aria-hidden="true" class="fas fa-calendar"></i> 2025</span>
-</div>
-</div>
-<p>LLM fundamentals, prompt engineering and ethical deployment; practical use in procurement workflows.</p>
-<div class="ai-application">
-<strong><i aria-hidden="true" class="fas fa-lightbulb"></i> How I Apply This in Procurement:</strong>
-<ul>
-<li><strong>Contract Parsing:</strong> clause extraction & risk flags</li>
-<li><strong>Smart RFPs:</strong> auto‑draft specs/SoW; save hours weekly</li>
-<li><strong>Supplier Comms:</strong> consistent, data‑aware templates</li>
-<li><strong>Market Intel:</strong> proposal comparison & insights</li>
-</ul>
-</div>
-</div>
-<div class="cert-card animate-on-scroll">
-<div class="cert-header">
-<div class="cert-logo">
-<img alt="IBM LLMs" onerror="this.style.display='none'" src="Digital_Sticker_Introduction_to_Large_Language_Models.png"/>
-</div>
-<div class="cert-title-group">
-<h4>IBM SkillsBuild</h4>
-<div class="cert-subtitle">Introduction to Large Language Models</div>
-<span class="cert-date"><i aria-hidden="true" class="fas fa-calendar"></i> 2025</span>
-</div>
-</div>
-<p>Transformer architecture, tokenization and prompting; patterns for data extraction and decision support.</p>
-<div class="ai-application">
-<strong><i aria-hidden="true" class="fas fa-lightbulb"></i> How I Apply This in Procurement:</strong>
-<ul>
-<li><strong>Doc Intelligence:</strong> quotes/specs parsing</li>
-<li><strong>Forecasting Assist:</strong> LLM‑augmented demand signals</li>
-<li><strong>Compliance:</strong> policy checks vs. contracts</li>
-<li><strong>Knowledge Ops:</strong> internal procurement assistant</li>
-</ul>
-</div>
-</div>
-<div class="cert-card animate-on-scroll">
-<div class="cert-header">
-<div class="cert-logo">
-<img alt="University of Maryland" onerror="this.style.display='none'" src="Maryland_University.png"/>
-</div>
-<div class="cert-title-group">
-<h4>University of Maryland</h4>
-<div class="cert-subtitle">AI and Career Empowerment</div>
-<span class="cert-date"><i aria-hidden="true" class="fas fa-calendar"></i> Feb 2026</span>
-</div>
-</div>
-<p>AI applications in business strategy and automation of procurement workflows.</p>
-<div class="ai-application">
-<strong><i aria-hidden="true" class="fas fa-lightbulb"></i> Applications:</strong>
-<ul>
-<li><strong>Career Strategy:</strong> Leveraging AI for professional growth and networking optimization</li>
-<li><strong>Workflow Automation:</strong> Implementing AI-driven process improvements in procurement operations</li>
-<li><strong>Strategic Planning:</strong> Using predictive analytics for long-term business planning</li>
-<li><strong>Skill Development:</strong> Continuous learning pathways enhanced by AI recommendations</li>
-</ul>
-</div>
-</div>
-<div class="cert-card animate-on-scroll">
-<div class="cert-header">
-<div class="cert-logo">
-<img alt="MIT Sloan" onerror="this.style.display='none'" src="MIT.png"/>
-</div>
-<div class="cert-title-group">
-<h4>MIT Sloan School of Management</h4>
-<div class="cert-subtitle">Supply Chain Analytics</div>
-<span class="cert-date"><i aria-hidden="true" class="fas fa-calendar"></i> 2025</span>
-</div>
-</div>
-<p>Advanced analytics methodologies for supply chain optimization and forecasting.</p>
-<div class="ai-application">
-<strong><i aria-hidden="true" class="fas fa-lightbulb"></i> Applications:</strong>
-<ul>
-<li><strong>Demand Forecasting:</strong> Statistical models for accurate demand prediction</li>
-<li><strong>Inventory Optimization:</strong> Dynamic safety stock and reorder point calculations</li>
-<li><strong>Network Design:</strong> Optimization of distribution networks and logistics</li>
-<li><strong>Risk Analytics:</strong> Supply chain risk assessment and mitigation strategies</li>
-</ul>
-</div>
-</div>
-<div class="cert-card animate-on-scroll">
-<div class="cert-header">
-<div class="cert-logo">
-<img alt="Harvard University" onerror="this.style.display='none'" src="Harvard_University.png"/>
-</div>
-<div class="cert-title-group">
-<h4>Harvard University</h4>
-<div class="cert-subtitle">Decision‑Making in Leadership</div>
-<span class="cert-date"><i aria-hidden="true" class="fas fa-calendar"></i> 2023</span>
-</div>
-</div>
-<p>Evidence‑based decision frameworks and strategic thinking for leaders.</p>
-<div class="ai-application">
-<strong><i aria-hidden="true" class="fas fa-lightbulb"></i> Applications:</strong>
-<ul>
-<li><strong>Strategic Decisions:</strong> Frameworks for complex procurement negotiations</li>
-<li><strong>Stakeholder Management:</strong> Evidence-based approaches to cross-functional leadership</li>
-<li><strong>Risk Assessment:</strong> Structured evaluation of supplier and market risks</li>
-<li><strong>Change Management:</strong> Leading organizational transformation with data-driven insights</li>
-</ul>
-</div>
-</div>
-<div class="cert-card animate-on-scroll">
-<div class="cert-header">
-<div class="cert-logo">
-<img alt="Gadsden State Community College" onerror="this.src='gadsdenstatecommunitycollege.jpg'" src="gadsdenstatecommunitycollege_logo.jpg"/>
-</div>
-<div class="cert-title-group">
-<h4>Gadsden State Community College</h4>
-<div class="cert-subtitle">Diploma — ESL (English as a Second Language)</div>
-<span class="cert-date"><i aria-hidden="true" class="fas fa-calendar"></i> 1999–2000</span>
-</div>
-</div>
-<p>Academic English program with communication, writing and presentation skills.</p>
-<div class="ai-application">
-<strong><i aria-hidden="true" class="fas fa-lightbulb"></i> Skills Acquired:</strong>
-<ul>
-<li><strong>Academic Writing:</strong> Research papers, essays, and technical documentation</li>
-<li><strong>Public Speaking:</strong> Presentation skills and professional communication</li>
-<li><strong>Cross-Cultural Communication:</strong> Navigating international business contexts</li>
-<li><strong>Critical Reading:</strong> Analysis of complex texts and contracts</li>
-</ul>
-</div>
-</div>
-</div>
-</section>
-
-<section aria-label="Volunteering" class="volunteer-section" id="volunteering">
-<div class="section-header animate-on-scroll">
-<h2>Volunteering & Community Impact</h2>
-<p>Giving back through education and mentorship</p>
-</div>
-<div class="volunteer-hero-image animate-on-scroll visible">
-<img alt="Gadsden State Community College" src="gadsdenstatecommunitycollege.jpg"/>
-</div>
-<div class="volunteer-card animate-on-scroll delay-1">
-<div class="volunteer-logo">
-  <img src="gadsdenstatecommunitycollege_logo.jpg" alt="Gadsden State Community College" onerror="this.src='gadsdenstatecommunitycollege.jpg'">
-</div>
-<h3>Mathematics & English Instructor</h3>
-<div class="school">Gadsden State Community College</div>
-<div class="period">1999–2000</div>
-<div class="description">
-        Mathematics and English tutoring for students in need of academic support. Developed personalized learning plans, 
-        mentored diverse student populations, and contributed to community education initiatives. This experience strengthened 
-        my communication skills, patience, and ability to explain complex concepts — skills I now apply in procurement training 
-        and cross-functional team leadership.
-      </div>
-</div>
-</section>
-
-<section aria-label="GitHub & Data Science Projects" class="github" id="github">
-<div class="section-header animate-on-scroll">
-<h2>GitHub & Data Science Projects</h2>
-<p>Transforming procurement through code, algorithms, and data-driven insights</p>
-</div>
-<div class="github-card animate-on-scroll delay-1">
-<i class="fab fa-github github-icon"></i>
-<h3 style="font-family: 'Playfair Display', serif; margin-bottom: 1rem; font-size: 2rem;">github.com/LucianoRSouza</h3>
-<p style="color: var(--text-light); margin-bottom: 2rem; font-size: 1.1rem;">Python enthusiast leveraging data science to revolutionize procurement decision-making.</p>
-<div class="ml-metrics">
-<div class="metric-box">
-<span class="metric-value">95%</span>
-<span class="metric-label">Prediction Accuracy</span>
-</div>
-<div class="metric-box">
-<span class="metric-value">30%</span>
-<span class="metric-label">Cost Reduction</span>
-</div>
-<div class="metric-box">
-<span class="metric-value">85%</span>
-<span class="metric-label">Stockout Reduction</span>
-</div>
-</div>
-<div class="repo-list" id="repoList"></div>
-<a class="btn btn-primary" href="https://github.com/LucianoRSouza" rel="noopener noreferrer" target="_blank">
-<i class="fab fa-github"></i>
-<span>View All Repositories</span>
-</a>
-</div>
-</section>
-
-<section aria-label="Contact" class="contact" id="contact">
-<div class="section-header animate-on-scroll">
-<h2>Let's Connect</h2>
-<p>Ready to transform your procurement strategy?</p>
-</div>
-<div class="contact-container">
-<div class="contact-grid animate-on-scroll delay-1">
-<div class="contact-card">
-<div class="contact-icon"><i class="fas fa-envelope"></i></div>
-<h3>Email</h3>
-<p>luciano.vlap@gmail.com</p>
-</div>
-<div class="contact-card">
-<div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
-<h3>Location</h3>
-<p>Lisbon, Portugal</p>
-</div>
-</div>
-<div class="contact-links animate-on-scroll delay-2">
-<a class="contact-link" href="https://www.linkedin.com/in/luciano-rodrigues-541a2544/" rel="noopener noreferrer" target="_blank">
-<i class="fab fa-linkedin"></i> LinkedIn
-        </a>
-<a class="contact-link" href="https://github.com/LucianoRSouza" rel="noopener noreferrer" target="_blank">
-<i class="fab fa-github"></i> GitHub
-        </a>
-<a class="contact-link" href="mailto:luciano.vlap@gmail.com">
-<i class="fas fa-envelope"></i> Email Me
-        </a>
-</div>
-</div>
-</section>
-
-<footer>
-<div class="footer-content">
-<p>Luciano Rodrigues de Souza</p>
-<p>AI-Driven Procurement Leader · Strategic Operations · Data Science</p>
-<div class="social-links">
-<a aria-label="LinkedIn" class="social-link" href="https://www.linkedin.com/in/luciano-rodrigues-541a2544/" rel="noopener noreferrer" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-<a aria-label="GitHub" class="social-link" href="https://github.com/LucianoRSouza" rel="noopener noreferrer" target="_blank"><i class="fab fa-github"></i></a>
-<a aria-label="Email" class="social-link" href="mailto:luciano.vlap@gmail.com"><i class="fas fa-envelope"></i></a>
-</div>
-<p style="opacity: 0.6; font-size: 0.9rem;">© 2026 Luciano Rodrigues. All rights reserved.</p>
-</div>
-</footer>
-
-<div class="stat-modal-overlay" id="statModalOverlay">
-<div class="stat-modal">
-<button class="stat-modal-close" onclick="closeStatModal()">×</button>
-<div class="stat-modal-icon"><i class="fas" id="statModalIcon"></i></div>
-<h3 id="statModalTitle"></h3>
-<span class="stat-modal-value" id="statModalValue"></span>
-<div class="stat-modal-details">
-<ul id="statModalDetails"></ul>
-</div>
-</div>
-</div>
-
-<div class="strategy-detail-overlay" id="strategyDetailOverlay">
-<div class="strategy-detail-card">
-<div class="strategy-detail-header">
-<button class="strategy-detail-close" onclick="closeStrategyModal()">×</button>
-<i class="fas fa-2x" id="strategyDetailIcon" style="color: var(--gold); margin-bottom: 1rem;"></i>
-<h3 id="strategyDetailTitle"></h3>
-<p id="strategyDetailSubtitle"></p>
-</div>
-<div class="strategy-detail-body" id="strategyDetailBody"></div>
-</div>
-</div>
-
-<div aria-label="Image preview" aria-modal="true" class="lightbox" id="lightbox" role="dialog">
-<span aria-label="Close" class="lightbox-close" id="lightboxClose" onclick="closeLightbox()">×</span>
-<img alt="Gallery Image" id="lightbox-img" src=""/>
-</div>
-
-<div aria-label="Project gallery" aria-modal="true" class="project-gallery-modal" id="projectGalleryModal" role="dialog">
-<div class="gallery-modal-content">
-<span aria-label="Close" class="gallery-close" id="galleryClose" onclick="closeProjectGallery()">×</span>
-<div class="gallery-slider" id="gallerySlider"></div>
-<div class="gallery-controls">
-<button aria-label="Previous" class="gallery-btn prev" id="galleryPrev" onclick="changeProjectSlide(-1)"><i class="fas fa-chevron-left"></i></button>
-<div class="gallery-dots" id="galleryDots"></div>
-<button aria-label="Next" class="gallery-btn next" id="galleryNext" onclick="changeProjectSlide(1)"><i class="fas fa-chevron-right"></i></button>
-</div>
-</div>
-</div>
-
-<button aria-label="Scroll to top" class="scroll-top" id="scrollTop" onclick="scrollToTop()">
-<i class="fas fa-arrow-up"></i>
-</button>
-
-<div aria-live="polite" class="toast" id="toast" role="status"></div>
-
-<!-- Inline Loading Fix - Garante que o loading some mesmo com Google Translate -->
-<script>
-(function() {
-  // Remove loading screen após 2 segundos máximo
-  setTimeout(function() {
-    var loading = document.getElementById('loading');
-    if (loading) {
-      loading.classList.add('hidden');
-      setTimeout(function() {
-        if (loading.parentNode) loading.parentNode.removeChild(loading);
-      }, 400);
+function updateCardDots(card, idx) {
+  const dots = card.querySelectorAll('.gallery-dot');
+  dots.forEach((dot, i) => {
+    if (i === idx) {
+      dot.classList.add('active');
+      dot.style.transform = 'scale(1.4)';
+      dot.style.background = 'var(--gold)';
+      dot.style.boxShadow = '0 0 10px rgba(212, 175, 55, 0.6)';
+    } else {
+      dot.classList.remove('active');
+      dot.style.transform = 'scale(1)';
+      dot.style.background = 'rgba(255, 255, 255, 0.5)';
+      dot.style.boxShadow = 'none';
     }
-  }, 2000);
+  });
+}
 
-  // Backup: esconde imediatamente se página já carregou
-  if (document.readyState === 'complete') {
-    var loading = document.getElementById('loading');
-    if (loading) {
-      loading.classList.add('hidden');
-      setTimeout(function() {
-        if (loading.parentNode) loading.parentNode.removeChild(loading);
-      }, 400);
+function changeProjectSlide(dir) {
+  if (!PG_state.images.length) return;
+  const modal = document.getElementById('projectGalleryModal');
+  if (!modal) return;
+  const slides = modal.querySelectorAll('.gallery-slide');
+  const dots = modal.querySelectorAll('.gallery-dot');
+
+  if (slides[PG_state.index]) slides[PG_state.index].classList.remove('active');
+  if (dots[PG_state.index]) {
+    dots[PG_state.index].classList.remove('active');
+    dots[PG_state.index].style.transform = 'scale(1)';
+    dots[PG_state.index].style.background = 'rgba(212, 175, 55, 0.34)';
+    dots[PG_state.index].style.boxShadow = 'none';
+  }
+
+  PG_state.index = (PG_state.index + dir + PG_state.images.length) % PG_state.images.length;
+
+  if (slides[PG_state.index]) slides[PG_state.index].classList.add('active');
+  if (dots[PG_state.index]) {
+    dots[PG_state.index].classList.add('active');
+    dots[PG_state.index].style.transform = 'scale(1.4)';
+    dots[PG_state.index].style.background = 'var(--gold)';
+    dots[PG_state.index].style.boxShadow = '0 0 15px rgba(212, 175, 55, 0.6)';
+  }
+}
+
+function goToProjectSlide(idx) {
+  if (!PG_state.images.length) return;
+  const modal = document.getElementById('projectGalleryModal');
+  if (!modal) return;
+  const slides = modal.querySelectorAll('.gallery-slide');
+  const dots = modal.querySelectorAll('.gallery-dot');
+
+  if (slides[PG_state.index]) slides[PG_state.index].classList.remove('active');
+  if (dots[PG_state.index]) {
+    dots[PG_state.index].classList.remove('active');
+    dots[PG_state.index].style.transform = 'scale(1)';
+    dots[PG_state.index].style.background = 'rgba(212, 175, 55, 0.34)';
+    dots[PG_state.index].style.boxShadow = 'none';
+  }
+
+  PG_state.index = idx;
+
+  if (slides[PG_state.index]) slides[PG_state.index].classList.add('active');
+  if (dots[PG_state.index]) {
+    dots[PG_state.index].classList.add('active');
+    dots[PG_state.index].style.transform = 'scale(1.4)';
+    dots[PG_state.index].style.background = 'var(--gold)';
+    dots[PG_state.index].style.boxShadow = '0 0 15px rgba(212, 175, 55, 0.6)';
+  }
+}
+
+function setupCardAutoSlide(card) {
+  const container = card.querySelector('.gallery-main');
+  if (!container) return;
+
+  let images = [];
+  const csv = card.getAttribute('data-images') || '';
+  if (csv.trim()) {
+    images = csv.split(',').map(s => s.trim()).filter(Boolean);
+  } else {
+    const main = container.querySelector('img');
+    if (main?.src) images = [main.src];
+  }
+  if (!images.length) return;
+
+  const imgEl = container.querySelector('img');
+  const auto = card.getAttribute('data-autoslide') === 'true';
+  const interval = Math.max(1200, parseInt(card.getAttribute('data-interval'), 10) || 2500);
+
+  const state = { images, idx: 0, timer: null, interval, imgEl, paused: false };
+  CardSlides.set(card, state);
+
+  function tick() {
+    if (state.paused || !auto || state.images.length <= 1) return;
+    state.idx = (state.idx + 1) % state.images.length;
+    state.imgEl.style.opacity = '0';
+    setTimeout(() => {
+      state.imgEl.src = state.images[state.idx];
+      state.imgEl.onload = () => { state.imgEl.style.opacity = '1'; };
+      updateCardDots(card, state.idx);
+    }, 160);
+  }
+  function start() {
+    stop();
+    if (auto && state.images.length > 1) state.timer = setInterval(tick, state.interval);
+  }
+  function stop() {
+    if (state.timer) { clearInterval(state.timer); state.timer = null; }
+  }
+
+  on(card, 'mouseenter', () => { state.paused = true; });
+  on(card, 'mouseleave', () => { state.paused = false; });
+
+  const clickable = card.querySelector('.gallery-overlay') || container;
+  on(clickable, 'click', (e) => {
+    e.stopPropagation();
+    openProjectGalleryFromCard(card);
+  });
+
+  start();
+}
+
+function openProjectGalleryFromCard(card) {
+  savedScrollPosition = window.scrollY || document.documentElement.scrollTop || 0;
+  const modal = $('#projectGalleryModal');
+  if (!modal) return;
+
+  let images = [];
+  const csv = card.getAttribute('data-images') || '';
+  if (csv.trim()) {
+    images = csv.split(',').map(s => s.trim()).filter(Boolean);
+  } else {
+    const main = card.querySelector('.gallery-main img');
+    if (main?.src) images = [main.src];
+  }
+  if (!images.length) return;
+
+  buildProjectSlides(images);
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function buildProjectSlides(images) {
+  const slider = $('#gallerySlider');
+  const dotsContainer = $('#galleryDots');
+  if (!slider || !dotsContainer) return;
+
+  slider.innerHTML = '';
+  dotsContainer.innerHTML = '';
+
+  images.forEach((src, idx) => {
+    const slide = document.createElement('div');
+    slide.className = 'gallery-slide' + (idx === 0 ? ' active' : '');
+    const img = document.createElement('img');
+    img.alt = 'Project image ' + (idx + 1);
+    img.src = src;
+    slide.appendChild(img);
+    slider.appendChild(slide);
+
+    const dot = document.createElement('div');
+    dot.className = 'gallery-dot' + (idx === 0 ? ' active' : '');
+    if (idx === 0) {
+      dot.style.transform = 'scale(1.4)';
+      dot.style.background = 'var(--gold)';
+      dot.style.boxShadow = '0 0 15px rgba(212, 175, 55, 0.6)';
+    }
+    dot.addEventListener('click', () => goToProjectSlide(idx));
+    dotsContainer.appendChild(dot);
+  });
+
+  PG_state.images = images.slice();
+  PG_state.index = 0;
+}
+
+function closeProjectGallery() {
+  const modal = $('#projectGalleryModal');
+  if (modal) {
+    modal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+    if (savedScrollPosition > 0) {
+      setTimeout(() => {
+        window.scrollTo({ top: savedScrollPosition, behavior: 'instant' });
+        savedScrollPosition = 0;
+      }, 10);
     }
   }
-})();
-</script>
+}
 
-<script src="js/script.js"></script>
-<script>
-// FORCE LOADING HIDE - Fallback para garantir que o loading desapareça
-(function() {
-  var loading = document.getElementById('loading');
+function initMobileEnhancements() {
+  const isTouch = window.matchMedia('(pointer: coarse)').matches;
+  if (!isTouch) return;
+
+  $$('.stat-box, .strategy-item, .project-card, .gallery-item').forEach(el => {
+    on(el, 'touchstart', function(){ this.style.transform = 'scale(0.98)'; }, { passive: true });
+    on(el, 'touchend', function(){ this.style.transform = ''; }, { passive: true });
+  });
+
+  $$('.project-card').forEach(card => {
+    let startX = 0, currentX = 0;
+    const gallery = card.querySelector('.gallery-main');
+    if (!gallery) return;
+
+    on(gallery, 'touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+    on(gallery, 'touchmove', e => { currentX = e.touches[0].clientX; }, { passive: true });
+    on(gallery, 'touchend', () => {
+      const diff = startX - currentX;
+      if (Math.abs(diff) > 50) {
+        const state = CardSlides.get(card);
+        if (state && state.images.length > 1) {
+          state.idx = diff > 0 
+            ? (state.idx + 1) % state.images.length
+            : (state.idx - 1 + state.images.length) % state.images.length;
+          state.imgEl.style.opacity = '0';
+          setTimeout(() => {
+            state.imgEl.src = state.images[state.idx];
+            state.imgEl.onload = () => { state.imgEl.style.opacity = '1'; };
+            updateCardDots(card, state.idx);
+          }, 160);
+        }
+      }
+    }, { passive: true });
+  });
+}
+
+function enhanceProjectGalleries() {
+  const map = {
+    "blaupunkt": ["Blaupunkt_Tools.png","Blaupunkt_Illumiation_booth_HK_Fair.png","Blaupunkt_Illumiation_booth_HK_Fair_1.png","Blaupunkt_Illumiation_booth_HK_Fair_2.png","Blaupunkt_Illumiation_booth_HK_Fair_3.png","Blaupunkt_Illumiation_booth_HK_Fair_4.png"],
+    "blaupunkt-power": ["Blaupunkt_Power_Tools.png"],
+    "blaupunkt-garden": ["Blaupunkt_Garden_Tools.png"]
+  };
+
+  Object.keys(map).forEach(key => {
+    const card = document.querySelector(`.project-card[data-gallery="${key}"]`);
+    if (!card) return;
+    const images = map[key];
+    card.setAttribute('data-images', images.join(','));
+
+    const gallery = card.querySelector('.project-gallery');
+    if (gallery && !gallery.querySelector('.gallery-dots')) {
+      const dots = document.createElement('div');
+      dots.className = 'gallery-dots';
+      images.forEach((_, i) => {
+        const dot = document.createElement('div');
+        dot.className = `gallery-dot ${i === 0 ? 'active' : ''}`;
+        if (i === 0) {
+          dot.style.transform = 'scale(1.4)';
+          dot.style.background = 'var(--gold)';
+          dot.style.boxShadow = '0 0 10px rgba(212, 175, 55, 0.6)';
+        }
+        dots.appendChild(dot);
+      });
+      gallery.appendChild(dots);
+    }
+  });
+}
+
+function initScrollAnimations() {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+  $$('.animate-on-scroll').forEach(el => io.observe(el));
+}
+
+function initNavbarScroll() {
+  const navbar = $('#navbar');
+  const scrollTopBtn = $('#scrollTop');
+  const onScroll = () => {
+    const y = window.scrollY || document.documentElement.scrollTop;
+    navbar?.classList.toggle('scrolled', y > 50);
+    scrollTopBtn?.classList.toggle('visible', y > 600);
+    updateTimelineSpy();
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+}
+
+function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+
+function initLightbox() {
+  const lb = $('#lightbox');
+  const lbImg = $('#lightbox-img');
+  if (!lb || !lbImg) return;
+  on(lb, 'click', (e) => { if (e.target === lb) closeLightbox(); });
+  on(document, 'keydown', (e) => { if (lb.classList.contains('active') && e.key === 'Escape') closeLightbox(); });
+}
+
+function openLightbox(el) {
+  savedScrollPosition = window.scrollY || document.documentElement.scrollTop || 0;
+  const lb = $('#lightbox');
+  const lbImg = $('#lightbox-img');
+  if (!lb || !lbImg) return;
+  const img = el?.querySelector?.('img');
+  if (!img?.src) return;
+  lbImg.src = img.src;
+  lb.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  const lb = $('#lightbox');
+  if (!lb) return;
+  lb.classList.remove('active');
+  document.body.style.overflow = 'auto';
+  if (savedScrollPosition > 0) {
+    setTimeout(() => {
+      window.scrollTo({ top: savedScrollPosition, behavior: 'instant' });
+      savedScrollPosition = 0;
+    }, 10);
+  }
+}
+
+function initTradeTabs() {
+  const tabs = $$('.gallery-tab');
+  if (!tabs.length) return;
+  tabs.forEach(btn => {
+    on(btn, 'click', () => {
+      tabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      $$('.gallery-content').forEach(gc => gc.classList.remove('active'));
+      const panel = $('#' + btn.dataset.target);
+      panel?.classList.add('active');
+    });
+  });
+}
+
+function showToast(message = '') {
+  const t = $('#toast');
+  if (!t) return;
+  t.textContent = message;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+function updateTimelineSpy() {
+  const items = $$('.timeline-item');
+  if (!items.length) return;
+  const logoImg = $('#logo-img');
+  const indicators = $$('.indicator-dot');
+  if (!logoImg) return;
+
+  // Encontrar qual item está mais centralizado na tela
+  let activeIndex = 0;
+  let minDistance = Infinity;
+  const windowCenter = window.innerHeight / 2;
+
+  items.forEach((item, idx) => {
+    const r = item.getBoundingClientRect();
+    const itemCenter = r.top + r.height / 2;
+    const distance = Math.abs(itemCenter - windowCenter);
+
+    if (distance < minDistance) {
+      minDistance = distance;
+      activeIndex = idx;
+    }
+
+    // Remover active de todos primeiro
+    item.classList.remove('active');
+  });
+
+  // Adicionar active apenas no item mais próximo do centro
+  items[activeIndex].classList.add('active');
+
+  // Atualizar logo
+  const activeItem = items[activeIndex];
+  if (activeItem) {
+    const newLogo = activeItem.getAttribute('data-logo');
+    const currentSrc = logoImg.getAttribute('src');
+    if (newLogo && newLogo !== currentSrc) {
+      logoImg.style.opacity = '0';
+      setTimeout(() => {
+        logoImg.src = newLogo;
+        logoImg.onload = () => { logoImg.style.opacity = '1'; };
+      }, 160);
+    }
+  }
+
+  // Atualizar indicadores
+  indicators.forEach((dot, idx) => dot.classList.toggle('active', idx === activeIndex));
+}
+
+function initParticles() {
+  const container = $('#particles');
+  if (!container) return;
+  const count = 26;
+  for (let i = 0; i < count; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = Math.random() * 100 + '%';
+    p.style.top = Math.random() * 100 + '%';
+    const s = Math.max(3, Math.min(6, 3 + Math.random() * 4));
+    p.style.width = p.style.height = s + 'px';
+    p.style.opacity = (0.22 + Math.random() * 0.35).toFixed(2);
+    p.style.animationDelay = (Math.random() * 5).toFixed(2) + 's';
+    p.style.animationDuration = (4 + Math.random() * 5).toFixed(2) + 's';
+    p.style.position = 'absolute';
+    p.style.background = 'var(--gold)';
+    p.style.borderRadius = '50%';
+    p.style.pointerEvents = 'none';
+    container.appendChild(p);
+  }
+}
+
+/* ============================================
+   LOADING SCREEN - CORREÇÃO DEFINITIVA
+   ============================================ */
+
+function hideLoading() {
+  const loading = $('#loading');
   if (!loading) return;
 
-  // Método 1: Após 2 segundos
-  setTimeout(function() {
-    loading.classList.add('hidden');
-    setTimeout(function() { loading.remove(); }, 400);
-  }, 2000);
+  // Verifica se já está escondido
+  if (loading.classList.contains('hidden')) return;
 
-  // Método 2: Quando DOM estiver pronto
+  loading.classList.add('hidden');
+  setTimeout(() => {
+    if (loading.parentNode) loading.remove();
+  }, 400);
+}
+
+function initLoading() {
+  const loading = $('#loading');
+  if (!loading) return;
+
+  // ESTRATÉGIA 1: Fallback de 2 segundos (independente de tudo)
+  setTimeout(hideLoading, 2000);
+
+  // ESTRATÉGIA 2: Quando DOM estiver pronto
   if (document.readyState === 'complete' || document.readyState === 'interactive') {
-    setTimeout(function() {
-      loading.classList.add('hidden');
-      setTimeout(function() { loading.remove(); }, 400);
-    }, 500);
+    setTimeout(hideLoading, 500);
   } else {
-    document.addEventListener('DOMContentLoaded', function() {
-      setTimeout(function() {
-        loading.classList.add('hidden');
-        setTimeout(function() { loading.remove(); }, 400);
-      }, 800);
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(hideLoading, 500);
     });
   }
 
-  // Método 3: Quando window load (backup)
-  window.addEventListener('load', function() {
-    setTimeout(function() {
-      loading.classList.add('hidden');
-      setTimeout(function() { loading.remove(); }, 400);
-    }, 300);
+  // ESTRATÉGIA 3: Quando tudo carregar (imagens, etc)
+  window.addEventListener('load', () => {
+    hideLoading();
   });
-})();
-</script>
-</body>
-</html>
+
+  // ESTRATÉGIA 4: MutationObserver - detecta quando Google Translate modifica o DOM
+  if (window.MutationObserver) {
+    let attempts = 0;
+    const observer = new MutationObserver((mutations) => {
+      attempts++;
+      // Se houver muitas mutações (Google Translate ativo), esconde mais cedo
+      if (attempts > 10 || document.querySelector('.goog-te-menu-frame')) {
+        hideLoading();
+        observer.disconnect();
+      }
+    });
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+
+    // Para o observer após 3 segundos
+    setTimeout(() => observer.disconnect(), 3000);
+  }
+}
+
+function initSmoothAnchors() {
+  $$('a[href^="#"]').forEach(a => {
+    on(a, 'click', (e) => {
+      const href = a.getAttribute('href');
+      if (!href || href === '#') return;
+      const target = $(href);
+      if (!target) return;
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+}
+
+function initCursor() {
+  try {
+    const cursor = document.getElementById('cursor');
+    const cursorFollower = document.getElementById('cursorFollower');
+    if (!cursor || !cursorFollower) return;
+
+    let mouseX = 0, mouseY = 0;
+    let cursorX = 0, cursorY = 0;
+    let followerX = 0, followerY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    function animateCursor() {
+      cursorX += (mouseX - cursorX) * 0.15;
+      cursorY += (mouseY - cursorY) * 0.15;
+      followerX += (mouseX - followerX) * 0.08;
+      followerY += (mouseY - followerY) * 0.08;
+
+      cursor.style.left = cursorX + 'px';
+      cursor.style.top = cursorY + 'px';
+      cursorFollower.style.left = followerX + 'px';
+      cursorFollower.style.top = followerY + 'px';
+
+      requestAnimationFrame(animateCursor);
+    }
+
+    animateCursor();
+
+    document.querySelectorAll('a, button, .project-card, .stat-box, .strategy-item').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
+        cursor.style.borderColor = 'var(--gold-light)';
+        cursorFollower.style.transform = 'translate(-50%, -50%) scale(1.5)';
+      });
+      el.addEventListener('mouseleave', () => {
+        cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+        cursor.style.borderColor = 'var(--gold)';
+        cursorFollower.style.transform = 'translate(-50%, -50%) scale(1)';
+      });
+    });
+  } catch(e) { console.log('Cursor init error:', e); }
+}
+
+function initStatModals() {
+  document.querySelectorAll('.stat-box').forEach(box => {
+    box.style.cursor = 'pointer';
+    box.addEventListener('click', function() {
+      const statKey = this.dataset.stat;
+      if (statKey) openStatModal(statKey);
+    });
+  });
+}
+
+function initStrategyItems() {
+  document.querySelectorAll('.strategy-item[data-strategy]').forEach(el => {
+    el.addEventListener('click', () => {
+      const n = Number(el.getAttribute('data-strategy'));
+      if (!isNaN(n)) openStrategyModal(n);
+    });
+  });
+}
+
+// Initialize Everything
+document.addEventListener('DOMContentLoaded', () => {
+  initLoading(); // PRIMEIRO - esconde loading
+  initNavbarScroll();
+  initScrollAnimations();
+  initParticles();
+  initSmoothAnchors();
+  initTradeTabs();
+  initLightbox();
+  enhanceProjectGalleries();
+  $$('.project-card').forEach(setupCardAutoSlide);
+  initMobileEnhancements();
+  initCursor();
+  initStatModals();
+  initStrategyItems();
+
+  // Garantir que cliques nos projetos abram a galeria
+  $$('.project-card').forEach(card => {
+    card.addEventListener('click', function(e) {
+      // Não abre se estiver clicando em um link ou botão dentro do card
+      if (e.target.closest('a') || e.target.closest('button')) return;
+      openProjectGalleryFromCard(this);
+    });
+  });
+
+  on(document, 'click', (e) => {
+    if (e.target?.id === 'statModalOverlay') closeStatModal();
+    if (e.target?.id === 'strategyDetailOverlay') closeStrategyModal();
+  });
+  on(document, 'keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeStatModal();
+      closeStrategyModal();
+    }
+  });
+});
+
+// Expose functions globally
+window.openStatModal = openStatModal;
+window.closeStatModal = closeStatModal;
+window.openStrategyModal = openStrategyModal;
+window.closeStrategyModal = closeStrategyModal;
+window.openLightbox = openLightbox;
+window.closeLightbox = closeLightbox;
+window.changeProjectSlide = changeProjectSlide;
+window.goToProjectSlide = goToProjectSlide;
+window.closeProjectGallery = closeProjectGallery;
+window.scrollToTop = scrollToTop;
+window.openProjectGalleryFromCard = openProjectGalleryFromCard;
+window.updateCardDots = updateCardDots;
