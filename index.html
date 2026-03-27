@@ -44,23 +44,17 @@ function googleTranslateElementInit() {
 
 
 <style>
-/* restrict fixes only to fairs */
 .project-card[data-gallery="blaupunkt-fair"],
 .project-card[data-gallery="ford-fair"]{
- background:none!important;box-shadow:none!important;border:none!important;padding:0!important;
+ position:relative!important;height:auto!important;width:auto!important;overflow:visible!important;
+ background:none!important;border:none!important;box-shadow:none!important;padding:0!important;margin:0 auto!important;
 }
-.project-card[data-gallery="blaupunkt-fair"] * ,
-.project-card[data-gallery="ford-fair"] * { pointer-events:none!important; }
-.project-card[data-gallery="blaupunkt-fair"] .gold-frame,
-.project-card[data-gallery="ford-fair"] .gold-frame,
-.project-card[data-gallery="blaupunkt-fair"] .gold-frame * ,
-.project-card[data-gallery="ford-fair"] .gold-frame * {
- pointer-events:auto!important;
-}
+.project-card[data-gallery="blaupunkt-fair"] > *,
+.project-card[data-gallery="ford-fair"] > *{position:relative!important;z-index:2!important;}
+.project-card[data-gallery="blaupunkt-fair"],
+.project-card[data-gallery="ford-fair"]{display:flex!important;flex-direction:column!important;align-items:center!important;}
 .project-card[data-gallery="blaupunkt-fair"] .gold-frame:hover,
-.project-card[data-gallery="ford-fair"] .gold-frame:hover{
- transform:scale(1.02);transition:.25s ease-in-out;
-}
+.project-card[data-gallery="ford-fair"] .gold-frame:hover{transform:scale(1.02);transition:.25s ease-in-out;}
 .project-card[data-gallery="blaupunkt-fair"] .gallery-overlay,
 .project-card[data-gallery="ford-fair"] .gallery-overlay{opacity:0;}
 .project-card[data-gallery="blaupunkt-fair"] .gallery-main:hover .gallery-overlay,
