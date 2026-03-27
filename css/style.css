@@ -452,17 +452,14 @@ section{padding:1.2cm .8cm}
 @media(max-width:1200px){.timeline-item[data-logo] .timeline-content{padding-top:4rem;}
 .timeline-item[data-logo] .timeline-content::after{content:"";position:absolute;top:-3rem;left:0;width:60px;height:60px;background-size:contain;background-repeat:no-repeat;background-image:attr(data-logo url);} }
 
-/* V25 overrides */
+/* V26 overrides */
 
-/* V25 translator smaller */
-.translator-box{position:fixed;top:90px;right:14px;z-index:1500;background:rgba(255,255,255,.7);padding:4px 8px;border-radius:12px;max-width:120px;}
-@media(max-width:768px){.translator-box{top:6px!important;right:6px!important;max-width:90px;padding:3px 6px;}}
-/* V25 timeline mobile logos */
-@media(max-width:1200px){.timeline-item[data-logo] .timeline-content{position:relative;padding-top:4rem!important;}
-.timeline-item[data-logo] .timeline-content::after{content:"";position:absolute;top:-3.1rem;left:0;width:52px;height:52px;background-size:contain;background-repeat:no-repeat;background-image:attr(data-logo url);} }
-/* V25 fix fairs spacing */
-.trade-shows .project-card{all:unset;display:block;width:100%;}
-.trade-shows .gold-frame{max-width:800px;margin:0 auto;border-radius:25px;border:3px solid var(--gold);overflow:hidden;cursor:pointer;}
-/* V25 gallery one click */
-.project-card{pointer-events:auto!important;}
-.project-card *{pointer-events:auto!important;}
+/* V26 translator refined */
+.translator-box{position:fixed;top:90px;right:10px;z-index:1600;background:rgba(255,255,255,.65);padding:3px 6px;border-radius:10px;max-width:85px;display:flex;align-items:center;gap:4px;border:1px solid rgba(212,175,55,.35);} 
+.translator-box span{font-size:9px!important;letter-spacing:.5px;} 
+@media(max-width:768px){.translator-box{top:6px!important;right:6px!important;max-width:72px!important;padding:2px 5px;border-radius:8px;}}
+/* V26 timeline logos */
+@media(max-width:1200px){.timeline-item[data-logo] .timeline-content{position:relative;padding-top:4.2rem!important;} .timeline-item[data-logo] .timeline-content::after{content:"";position:absolute;top:-3.2rem;left:0;width:52px;height:52px;background-size:contain;background-repeat:no-repeat;background-image:attr(data-logo url);display:block!important;}} 
+/* V26 gallery one-click */
+.project-card, .project-card *{pointer-events:auto!important;} 
+.project-card .gallery-overlay{pointer-events:none!important;} 
