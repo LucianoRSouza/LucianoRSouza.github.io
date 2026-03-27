@@ -441,13 +441,13 @@ section{padding:1.2cm .8cm}
 *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto !important}
 }
 
-/* V22 overrides */
+/* V23 */
 
-/* V22 translator mobile */
-.translator-box{position:fixed;top:100px;right:20px;z-index:1200;}
-@media(max-width:768px){.translator-box{top:40px!important;right:20px!important;}}
-/* V22 fix fairs */
-.project-card[data-gallery="blaupunkt-fair"],.project-card[data-gallery="ford-fair"]{all:unset;display:block;}
-/* timeline logos mobile */
-@media(max-width:1200px){.timeline-item[data-logo] .timeline-content{position:relative;padding-top:3.5rem;}
-.timeline-item[data-logo] .timeline-content::after{content:"";position:absolute;top:-2.6rem;left:0;width:60px;height:60px;background-size:contain;background-repeat:no-repeat;background-image: attr(data-logo url);}}
+/* V23 translator */
+.translator-box{position:fixed;top:90px;right:20px;z-index:1500;background:rgba(255,255,255,.75);padding:8px 12px;border-radius:14px;}
+@media(max-width:768px){.translator-box{top:10px!important;right:10px!important;}}
+/* V23 fairs fix */
+.project-card[data-gallery]{cursor:pointer;}
+/* V23 timeline mobile logos */
+@media(max-width:1200px){.timeline-item[data-logo] .timeline-content{padding-top:4rem;}
+.timeline-item[data-logo] .timeline-content::after{content:"";position:absolute;top:-3rem;left:0;width:60px;height:60px;background-size:contain;background-repeat:no-repeat;background-image:attr(data-logo url);} }
