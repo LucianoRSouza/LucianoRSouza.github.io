@@ -467,14 +467,16 @@ section{padding:1.2cm .8cm}
 .project-card{pointer-events:auto!important;}
 .project-card *{pointer-events:auto!important;}
 
-/* Mobile Timeline Logos — V29 */
+/* Mobile Timeline Logos — V30 */
 @media (max-width: 1200px){
-  .timeline-item[data-logo] .timeline-content::after{content:none!important;background-image:none!important;}
-  .timeline-item[data-logo] .timeline-content{position:relative;padding-top:3.2rem!important;}
-  .timeline-item[data-logo] .timeline-content::before{
-    content:"";position:absolute;top:-2rem;left:0;width:42px;height:42px;
-    background:#fff var(--logo) center/contain no-repeat;
-    border-radius:10px;border:2px solid var(--gold);
-    box-shadow:0 3px 10px rgba(0,0,0,0.15);
+  .timeline-item[data-logo] .timeline-content::after{
+    content:"";position:absolute;top:-3rem;left:0;width:42px;height:42px;
+    background-size:contain;background-repeat:no-repeat;background-position:center;
+    border-radius:10px;background-color:#fff;border:2px solid var(--gold);
+    box-shadow:0 6px 16px rgba(0,0,0,0.15);
   }
+  .timeline-item[data-logo="Details_Symbol.jpg"] .timeline-content::after{background-image:url("Details_Symbol.jpg");}
+  .timeline-item[data-logo="SKN_Global.png"] .timeline-content::after{background-image:url("SKN_Global.png");}
+  .timeline-item[data-logo="SKN_Brasil.png"] .timeline-content::after{background-image:url("SKN_Brasil.png");}
+  .timeline-item[data-logo] .timeline-content{padding-top:4rem!important;position:relative;}
 }
