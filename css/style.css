@@ -480,3 +480,8 @@ section{padding:1.2cm .8cm}
   .timeline-item[data-logo="SKN_Brasil.png"] .timeline-content::after{background-image:url("../SKN_Brasil.png");}
   .timeline-item[data-logo] .timeline-content{padding-top:5.3rem!important;position:relative;}
 }
+
+.certificate-modal-overlay{position:fixed;inset:0;background:rgba(15,21,56,0.92);backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;z-index:5000;}
+.certificate-modal-overlay.active{display:flex;}
+.certificate-modal{background:#fff;border-radius:20px;padding:20px;max-width:900px;width:90%;position:relative;border:3px solid var(--gold);} 
+.certificate-close{position:absolute;top:15px;right:15px;background:#fff;border:2px solid var(--gold);font-size:24px;border-radius:50%;width:40px;height:40px;cursor:pointer;}
