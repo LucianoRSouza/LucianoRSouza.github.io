@@ -865,3 +865,6 @@ window.closeProjectGallery = closeProjectGallery;
 window.scrollToTop = scrollToTop;
 window.openProjectGalleryFromCard = openProjectGalleryFromCard;
 window.updateCardDots = updateCardDots;
+
+function openCertificate(file){const m=document.getElementById('certificateModal');const img=document.getElementById('certificateImg');const pdf=document.getElementById('certificatePDF');if(file.endsWith('.pdf')){img.style.display='none';pdf.style.display='block';pdf.src=file;}else{pdf.style.display='none';img.style.display='block';img.src=file;}m.classList.add('active');}
+function closeCertificateModal(){document.getElementById('certificateModal').classList.remove('active');}
