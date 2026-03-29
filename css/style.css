@@ -1,482 +1,956 @@
-/* Luciano Rodrigues Portfolio - Optimized CSS with Google Translate */
-
-:root{--navy:#0f1538;--navy-light:#1a2344;--gold:#d4af37;--gold-light:#e5c158;--gold-subtle:#c9a227;--cream:#f8f6f0;--white:#ffffff;--text:#2c3e50;--text-light:#5a6c7d;--container-pad:5%;--radius-xl:30px;--radius-lg:25px;--radius-md:20px;--radius-sm:15px;--shadow-1:0 10px 30px rgba(0,0,0,.08);--shadow-2:0 20px 40px rgba(0,0,0,.15);--shadow-3:0 30px 60px rgba(0,0,0,.25)}
-
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--text);background:var(--cream);line-height:1.6;overflow-x:hidden}
-img{display:block;max-width:100%;height:auto}
-ul{list-style:none}
-a{text-decoration:none;color:inherit}
-button{border:0;background:none;cursor:pointer}
-
-/* Custom Cursor */
-.cursor{width:18px;height:18px;border:2px solid var(--gold);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transition:transform .12s ease,background .12s ease,border-color .12s ease;transform:translate(-50%,-50%)}
-.cursor-follower{width:40px;height:40px;background:rgba(212,175,55,.12);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transition:transform .25s ease;transform:translate(-50%,-50%)}
-@media(pointer:coarse){.cursor,.cursor-follower{display:none}body{cursor:auto}}
-
-/* Animations */
-@keyframes fadeInUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
-@keyframes fadeInScale{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
-@keyframes pulse-glow{0%,100%{box-shadow:0 0 16px rgba(212,175,55,.28)}50%{box-shadow:0 0 34px rgba(212,175,55,.55)}}
-@keyframes rotate-slow{from{transform:rotate(0)}to{transform:rotate(360deg)}}
-
-/* Loading Screen */
-.loading{position:fixed;inset:0;background:var(--navy);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;transition:opacity .4s ease}
-.loading.hidden{opacity:0;pointer-events:none}
-.loading-logo{font-family:'Playfair Display',serif;font-size:2.8rem;color:var(--gold);margin-bottom:1.4rem;animation:pulse-glow 2s infinite}
-.loading-bar{width:200px;height:3px;background:rgba(255,255,255,.12);border-radius:3px;overflow:hidden}
-.loading-progress{height:100%;background:var(--gold);animation:loading 1.8s ease forwards}
-@keyframes loading{to{width:100%}}
-
-/* Google Translate Widget - VERSÃO MINIMALISTA TRANSPARENTE */
-/* O container agora está no HTML com label "Tradutor" */
-#google_translate_element{display:inline-block}
-.goog-te-gadget{margin:0!important}
-
-/* Esconder elementos do Google Translate que não queremos */
-.goog-te-banner-frame.skiptranslate{display:none!important}
-.goog-logo-link{display:none!important}
-.goog-te-gadget span{display:none!important}
-.goog-te-gadget{height:auto!important;overflow:visible!important}
-
-/* Estilo do select do Google Translate - MINIMALISTA */
-.goog-te-gadget .goog-te-combo{margin:0!important;padding:4px 8px!important;border-radius:10px!important;border:1px solid rgba(212,175,55,.4)!important;background:rgba(255,255,255,.9)!important;color:var(--navy)!important;font-family:'Inter',sans-serif!important;font-weight:600!important;font-size:11px!important;cursor:pointer!important;outline:none!important;width:auto!important;min-width:80px!important;height:auto!important}
-.goog-te-gadget .goog-te-combo:hover{border-color:var(--gold)!important;box-shadow:0 2px 8px rgba(212,175,55,.2)!important}
-
-/* Remove o banner do topo */
-body{top:0!important}
-
-/* Navbar */
-nav.navbar{position:fixed;inset:0 0 auto 0;background:rgba(15,21,56,.95);backdrop-filter:blur(18px);z-index:1000;padding:1rem var(--container-pad);display:flex;align-items:center;justify-content:space-between;transition:padding .25s ease,box-shadow .25s ease;box-shadow:0 6px 26px rgba(0,0,0,.28)}
-nav.navbar.scrolled{padding:.7rem var(--container-pad)}
-nav .logo{display:flex;align-items:center;gap:10px;font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--gold)}
-.nav-links{display:flex;gap:2.2rem}
-.nav-links a{color:var(--white);position:relative;font-weight:500;transition:color .2s ease}
-.nav-links a::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:2px;background:var(--gold);transition:width .25s ease}
-.nav-links a:hover{color:var(--gold)}
-.nav-links a:hover::after{width:100%}
-@media(max-width:980px){.nav-links{display:none}}
-
-/* Hero */
-.hero{min-height:100vh;display:flex;align-items:center;padding:120px var(--container-pad) 84px;background:linear-gradient(135deg,var(--navy)0%,var(--navy-light)56%,#0a0e2e 100%);color:var(--white);position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(212,175,55,.10)0%,transparent 70%);animation:rotate-slow 36s linear infinite}
-.hero-particles{position:absolute;inset:0;overflow:hidden;pointer-events:none}
-.hero-container{max-width:1400px;margin:0 auto;display:grid;gap:4rem;align-items:center;position:relative;z-index:1;grid-template-columns:1.2fr 1fr}
-.hero-content h1{font-family:'Playfair Display',serif;font-size:3.3rem;line-height:1.1;margin-bottom:.8rem;background:linear-gradient(135deg,var(--white)0%,var(--gold-light)100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:fadeInUp .9s ease both}
-.hero .subtitle{font-size:1.18rem;color:var(--gold);margin-bottom:1.2rem;animation:fadeInUp .9s ease .12s both;font-weight:300;letter-spacing:1.6px}
-.hero-description{font-size:1.06rem;opacity:.92;margin-bottom:2rem;line-height:1.8;animation:fadeInUp .9s ease .22s both}
-.hero-stats{display:flex;gap:1.2rem;margin-bottom:2.1rem;flex-wrap:wrap;animation:fadeInUp .9s ease .32s both}
-.stat-box{background:rgba(255,255,255,.06);padding:1.2rem;border-radius:18px;text-align:center;border:1px solid rgba(212,175,55,.24);transition:all .28s ease;cursor:pointer;min-width:150px;flex:1;position:relative;overflow:hidden}
-.stat-box:hover{transform:translateY(-8px)scale(1.03);background:rgba(212,175,55,.12);border-color:var(--gold);box-shadow:0 18px 38px rgba(212,175,55,.22)}
-.stat-icon{font-size:1.9rem;color:var(--gold);margin-bottom:.35rem}
-.stat-number{display:block;font-size:2rem;font-weight:800;color:var(--gold)}
-.stat-label{font-size:.82rem;opacity:.85;text-transform:uppercase;letter-spacing:.8px}
-.stat-note{display:block;margin-top:.3rem;font-size:.72rem;opacity:.7}
-.hero-buttons{display:flex;gap:.9rem;flex-wrap:wrap;animation:fadeInUp .9s ease .42s both}
-.btn{padding:.95rem 2.2rem;border-radius:999px;font-weight:700;display:inline-flex;align-items:center;gap:.7rem;transition:transform .22s ease,box-shadow .22s ease,background .22s ease,color .22s ease;border:2px solid transparent;color:var(--navy);background:var(--gold);box-shadow:0 10px 28px rgba(212,175,55,.28);cursor:pointer;text-decoration:none}
-.btn i{font-size:1rem}
-.btn:hover{transform:translateY(-6px);box-shadow:0 18px 44px rgba(212,175,55,.36)}
-.btn.secondary{background:transparent;color:var(--white);border-color:rgba(255,255,255,.32)}
-.btn.secondary:hover{background:var(--white);color:var(--navy)}
-.hero-image-wrapper{position:relative;animation:fadeInScale .9s ease .28s both}
-
-/* Gold Frames */
-.hero-image{width:100%;max-width:420px;border-radius:20px;position:relative;background:linear-gradient(135deg,var(--gold)0%,var(--gold-light)50%,var(--gold-subtle)100%);padding:3px;box-shadow:0 20px 50px rgba(0,0,0,.3),0 0 0 1px rgba(212,175,55,.2);overflow:hidden}
-.hero-image::before{content:'';position:absolute;inset:0;border-radius:20px;padding:1px;background:linear-gradient(135deg,rgba(255,255,255,.4)0%,transparent 50%,rgba(255,255,255,.2)100%);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;opacity:.6}
-.hero-image img{width:100%;height:auto;display:block;border-radius:17px;position:relative;z-index:1}
-
-.about-image{position:relative;border-radius:20px;background:linear-gradient(135deg,var(--gold)0%,var(--gold-light)50%,var(--gold-subtle)100%);padding:3px;box-shadow:0 20px 50px rgba(0,0,0,.2),0 0 0 1px rgba(212,175,55,.15);overflow:hidden;display:inline-block}
-.about-image::before{content:'';position:absolute;inset:0;border-radius:20px;padding:1px;background:linear-gradient(135deg,rgba(255,255,255,.4)0%,transparent 50%,rgba(255,255,255,.2)100%);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;opacity:.6;z-index:2}
-.about-image img{width:100%;height:auto;display:block;border-radius:17px;position:relative;z-index:1}
-
-.floating-badge{position:absolute;background:rgba(255,255,255,.10);backdrop-filter:blur(10px);padding:.9rem 1.2rem;border-radius:14px;border:1px solid rgba(212,175,55,.26);display:flex;align-items:center;gap:.6rem;animation:float 4s ease-in-out infinite;font-size:.9rem;opacity:.95;z-index:2}
-.floating-badge i{color:var(--gold);font-size:1.1rem}
-.badge-top{top:8%;right:5%}
-.badge-middle{top:44%;right:2%}
-.badge-bottom{bottom:16%;right:8%}
-
-/* Sections */
-section{padding:6rem var(--container-pad);position:relative}
-.section-header{text-align:center;margin-bottom:3.4rem}
-.section-header h2{font-family:'Playfair Display',serif;font-size:2.6rem;color:var(--navy);margin-bottom:.8rem;position:relative;display:inline-block}
-.section-header h2::after{content:'';position:absolute;left:50%;bottom:-12px;transform:translateX(-50%);width:80px;height:4px;background:linear-gradient(90deg,var(--gold),var(--gold-light));border-radius:2px}
-.section-header p{color:var(--text-light)}
-.animate-on-scroll{opacity:0;transform:translateY(32px);transition:opacity .6s ease,transform .6s ease}
-.animate-on-scroll.visible{opacity:1;transform:translateY(0)}
-
-/* About */
-.about{background:var(--white)}
-.about-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1.5fr;gap:4.2rem;align-items:center}
-.about-image img{border-radius:17px;box-shadow:none;display:block}
-.leadership-philosophy{background:linear-gradient(135deg,rgba(212,175,55,.12),rgba(212,175,55,.06));border-left:4px solid var(--gold);padding:1.2rem 1.2rem 1.2rem 1.1rem;border-radius:0 14px 14px 0;margin:1.4rem 0;font-style:italic;color:var(--navy);font-family:'Playfair Display',serif;font-size:1.06rem}
-.about-bullets{margin-top:1.1rem;display:grid;gap:.5rem}
-.about-bullets li strong{color:var(--navy)}
-.languages-grid{display:flex;gap:.8rem;margin-top:1.3rem;flex-wrap:wrap}
-.lang-item{display:flex;align-items:center;gap:.45rem;padding:.65rem 1rem;background:linear-gradient(135deg,var(--cream),var(--white));border-radius:22px;font-size:.9rem;border:2px solid transparent;transition:all .22s ease}
-.lang-item:hover{border-color:var(--gold);transform:translateY(-3px)}
-
-/* Timeline */
-.timeline{background:linear-gradient(180deg,var(--cream)0%,var(--white)100%)}
-.timeline-container{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:260px 1fr;gap:2.6rem}
-.timeline--compact-logo .company-logo-display img{max-width:130px;height:130px;object-fit:contain}
-.timeline-logo-sticky{position:sticky;top:140px;height:fit-content}
-.company-logo-display{background:var(--white);padding:1.6rem;border-radius:22px;box-shadow:0 14px 32px rgba(212,175,55,.18);border:3px solid var(--gold);text-align:center;transition:transform .3s ease}
-.company-logo-display:hover{transform:translateY(-4px)}
-.company-logo-display img{width:100%;max-width:150px;height:150px;object-fit:contain;margin:0 auto 1rem}
-.logo-indicator{display:flex;justify-content:center;gap:8px}
-.indicator-dot{width:10px;height:10px;border-radius:50%;background:rgba(212,175,55,.34);transition:transform .2s ease,background .2s ease}
-.indicator-dot.active{background:var(--gold);transform:scale(1.18)}
-.timeline-items{position:relative}
-.timeline-item{display:grid;grid-template-columns:150px 1fr;gap:1.6rem;margin-bottom:3.2rem;opacity:.45;transition:opacity .35s ease}
-.timeline-item.active{opacity:1}
-.timeline-item::before{content:'';position:absolute;left:150px;top:0;bottom:-3.2rem;width:3px;background:linear-gradient(180deg,var(--gold),transparent)}
-.timeline-date{text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:.4rem}
-.date-range{font-weight:800;color:var(--gold);font-size:1.05rem}
-.date-level{font-size:.84rem;color:var(--text-light);padding:.25rem .7rem;background:rgba(212,175,55,.12);border-radius:16px;border:1px solid rgba(212,175,55,.2)}
-.timeline-content{background:var(--white);padding:2rem;border-radius:18px;box-shadow:var(--shadow-1);margin-left:1.6rem;position:relative;border:2px solid transparent;transition:border-color .25s ease,box-shadow .25s ease,transform .25s ease}
-.timeline-item.active .timeline-content{border-color:var(--gold);box-shadow:0 16px 36px rgba(212,175,55,.22);transform:scale(1.012)}
-.timeline-content::before{content:'';position:absolute;left:-12px;top:28px;width:22px;height:22px;background:var(--gold);border-radius:50%;border:5px solid var(--white);box-shadow:0 0 0 3px var(--gold)}
-.timeline-item.active .timeline-content::before{transform:scale(1.18);background:var(--navy);box-shadow:0 0 0 3px var(--navy)}
-.timeline-title{font-family:'Playfair Display',serif;font-size:1.45rem;color:var(--navy);margin-bottom:.4rem}
-.timeline-company{color:var(--gold);font-weight:800;margin-bottom:.8rem;font-size:1.04rem;display:flex;align-items:center;gap:.5rem}
-.timeline-description{color:var(--text-light)}
-.achievement-box{background:linear-gradient(135deg,rgba(212,175,55,.12),rgba(212,175,55,.06));border-left:5px solid var(--gold);padding:1.1rem;border-radius:0 14px 14px 0;margin:1.1rem 0}
-.achievement-box strong{color:var(--navy);display:block;margin-bottom:.4rem}
-.achievement-box ul{margin-left:1rem;margin-top:.4rem}
-.skills-tags{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.8rem}
-.skill-tag{padding:.35rem .9rem;background:rgba(212,175,55,.12);border-radius:18px;font-size:.84rem;color:var(--navy);transition:all .18s ease}
-.skill-tag:hover{background:var(--gold);color:var(--white);transform:scale(1.08)}
-
-/* Projects */
-.projects{background:var(--white)}
-.projects-grid{max-width:1400px;margin:0 auto;display:grid;gap:2.2rem;grid-template-columns:repeat(auto-fit,minmax(340px,1fr))}
-.project-card{background:var(--white);border-radius:22px;overflow:hidden;transition:transform .28s ease,box-shadow .28s ease,border-color .28s ease;box-shadow:var(--shadow-1);border:1px solid rgba(0,0,0,.05);position:relative;cursor:pointer}
-.project-card:hover{transform:translateY(-10px);box-shadow:var(--shadow-2)}
-.project-gallery{position:relative;height:250px;overflow:hidden}
-.gallery-main{position:relative;width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(15,21,56,.08),rgba(15,21,56,.14));cursor:pointer}
-.gallery-main img{width:100%;height:100%;object-fit:contain;transition:opacity .3s ease,transform .6s ease}
-.project-card:hover .gallery-main img{transform:none}
-.gallery-overlay{position:absolute;inset:0;background:rgba(15,21,56,.72);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.4rem;opacity:0;transition:opacity .28s ease;pointer-events:none}
-.gallery-overlay i{font-size:2.6rem;color:var(--gold)}
-.gallery-overlay span{font-weight:700;letter-spacing:.4px}
-.project-card:hover .gallery-overlay{opacity:1}
-.project-content{padding:1.6rem}
-.project-content h3{font-family:'Playfair Display',serif;color:var(--navy);margin-bottom:.55rem;font-size:1.25rem}
-.project-content p{color:var(--text-light);line-height:1.65}
-.project-highlights{margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(0,0,0,.08);color:var(--text)}
-.project-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem}
-.project-tag{padding:.35rem .9rem;background:var(--cream);border-radius:999px;font-size:.85rem;border:1px solid transparent;transition:all .22s ease}
-.project-tag:hover{background:var(--gold);color:var(--navy);border-color:var(--gold);transform:translateY(-2px)}
-
-/* Project Gallery Modal */
-.project-gallery-modal{position:fixed;inset:0;background:rgba(0,0,0,.94);z-index:4000;display:none;align-items:center;justify-content:center;padding:2rem}
-.project-gallery-modal.active{display:flex}
-.gallery-modal-content{position:relative;max-width:960px;width:100%;background:var(--white);border-radius:18px;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,.5)}
-.gallery-close{position:absolute;top:18px;right:18px;width:46px;height:46px;border-radius:50%;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;font-size:2rem;color:#fff;cursor:pointer;z-index:10;transition:all .25s ease}
-.gallery-close:hover{background:var(--gold);color:var(--navy);transform:rotate(90deg)}
-.gallery-slider{position:relative;height:520px;background:var(--navy);overflow:hidden}
-.gallery-slide{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .35s ease}
-.gallery-slide.active{opacity:1}
-.gallery-slide img{max-width:100%;max-height:100%;object-fit:contain}
-.gallery-controls{display:flex;align-items:center;justify-content:center;gap:1.4rem;padding:1.2rem;background:var(--white)}
-.gallery-btn{width:48px;height:48px;border-radius:50%;border:2px solid var(--gold);background:transparent;color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:1.1rem;transition:all .22s ease;cursor:pointer}
-.gallery-btn:hover{background:var(--gold);color:var(--navy);transform:scale(1.06)}
-.gallery-dots{display:flex;gap:10px}
-.gallery-dot{width:12px;height:12px;border-radius:50%;background:rgba(212,175,55,.34);cursor:pointer;transition:all .3s cubic-bezier(.34,1.56,.64,1)}
-.gallery-dot.active{background:var(--gold);transform:scale(1.4);box-shadow:0 0 15px rgba(212,175,55,.6)}
-
-/* Lightbox */
-.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:3000;display:none;align-items:center;justify-content:center;padding:2rem}
-.lightbox.active{display:flex}
-.lightbox img{max-width:92%;max-height:92%;object-fit:contain;border-radius:14px;box-shadow:0 20px 46px rgba(0,0,0,.5)}
-.lightbox-close{position:absolute;top:28px;right:46px;color:#fff;font-size:2.8rem;cursor:pointer;transition:all .25s ease}
-.lightbox-close:hover{color:var(--gold);transform:rotate(90deg)scale(1.06)}
-
-/* Trade Shows - DESIGN ORIGINAL RESTAURADO */
-.trade-shows{background:linear-gradient(180deg,var(--cream)0%,var(--white)100%)}
-.gallery-tabs{display:flex;justify-content:center;gap:1rem;margin-bottom:2.4rem;flex-wrap:wrap}
-.gallery-tab{padding:.95rem 1.8rem;background:var(--white);border:2px solid transparent;border-radius:999px;font-weight:700;color:var(--text);box-shadow:0 4px 14px rgba(0,0,0,.06);transition:all .25s ease;cursor:pointer}
-.gallery-tab:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px);box-shadow:0 10px 24px rgba(212,175,55,.18)}
-.gallery-tab.active{background:var(--gold);color:var(--navy);border-color:var(--gold);transform:none}
-.gallery-content{display:none;animation:fadeIn .4s ease}
-.gallery-content.active{display:block}
-.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem}
-.gallery-item{position:relative;border-radius:18px;overflow:hidden;box-shadow:0 12px 28px rgba(0,0,0,.12);cursor:pointer;transition:transform .25s ease,box-shadow .25s ease;border:3px solid var(--gold);aspect-ratio:4/3;height:auto;min-height:350px;background:linear-gradient(135deg,rgba(15,21,56,.06),rgba(15,21,56,.12));display:flex;align-items:center;justify-content:center}
-.gallery-item:hover{transform:translateY(-8px);box-shadow:0 24px 50px rgba(0,0,0,.22)}
-.gallery-item img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;transition:transform .5s ease}
-.gallery-item:hover img{transform:scale(1.05)}
-.gallery-item .gallery-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(15,21,56,.95) 0%,transparent 60%);display:flex;flex-direction:column;justify-content:flex-end;padding:1.6rem;opacity:0;transition:opacity .28s ease;pointer-events:none}
-.gallery-item:hover .gallery-overlay{opacity:1}
-.trade-show-strategy{max-width:1200px;margin:4rem auto 0;padding:3rem;background:var(--white);border-radius:22px;box-shadow:var(--shadow-1);border:2px solid rgba(212,175,55,.2)}
-.trade-show-strategy h3{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--navy);margin-bottom:1.5rem;text-align:center}
-.trade-show-strategy>p{color:var(--text-light);line-height:1.8;margin-bottom:2rem;text-align:center;max-width:900px;margin-left:auto;margin-right:auto}
-.strategy-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin-top:2rem}
-.strategy-item{display:flex;align-items:center;gap:1rem;padding:1.2rem;background:linear-gradient(135deg,var(--cream),var(--white));border-radius:14px;border:2px solid transparent;transition:all .25s ease;cursor:pointer}
-.strategy-item:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 10px 24px rgba(212,175,55,.15)}
-.strategy-item i{width:50px;height:50px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--navy);font-size:1.2rem;flex-shrink:0}
-.strategy-item p{color:var(--navy);font-weight:600;font-size:.95rem}
-
-/* Certifications - BLOCO EM DESTAQUE CENTRALIZADO E MENOR */
-.certs{background:var(--navy);color:var(--white);position:relative;overflow:hidden}
-.certs::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(212,175,55,.06)0%,transparent 70%);animation:rotate-slow 40s linear infinite}
-.certs .section-header h2{color:#fff}
-.certs .section-header p{color:rgba(255,255,255,.82)}
-.certs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:1.8rem;max-width:1400px;margin:0 auto;position:relative;z-index:1}
-.cert-card{background:rgba(255,255,255,.06);padding:1.6rem;border-radius:18px;border:1px solid rgba(212,175,55,.22);backdrop-filter:blur(10px);transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease;display:flex;flex-direction:column}
-.cert-card:hover{transform:translateY(-8px);border-color:var(--gold);box-shadow:0 18px 36px rgba(212,175,55,.18);background:rgba(255,255,255,.08)}
-.cert-header{display:flex;align-items:flex-start;gap:1rem;margin-bottom:1rem}
-.cert-logo{width:78px;height:78px;background:#fff;border-radius:14px;padding:10px;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(0,0,0,.22);flex-shrink:0;overflow:hidden}
-.cert-logo img{width:100%;height:100%;object-fit:contain}
-.cert-title-group{flex:1}
-.cert-card h4{color:var(--gold);margin-bottom:.25rem;font-size:1.15rem}
-.cert-subtitle{color:rgba(255,255,255,.78);font-size:.92rem;margin-bottom:.25rem}
-.cert-date{color:var(--gold);font-size:.9rem}
-.cert-date i{margin-right:6px}
-.cert-card>p{color:rgba(255,255,255,.88);line-height:1.65;margin-bottom:1rem}
-.ai-application{margin-top:.8rem;padding:1rem;border-radius:14px;background:rgba(255,255,255,.06);border-left:4px solid var(--gold)}
-.ai-application strong{color:var(--gold);display:block;margin-bottom:.5rem}
-.ai-application ul{margin:0;padding-left:1.2rem}
-.ai-application li{color:rgba(255,255,255,.9);margin:.45rem 0;line-height:1.5}
-
-/* Framework Highlight - CENTRALIZADO E MENOR */
-/* Framework Highlight - FORMATO ORIGINAL HORIZONTAL */
-.framework-highlight{grid-column:1 / -1;background:linear-gradient(135deg,rgba(212,175,55,.16),rgba(212,175,55,.06));border:2px solid var(--gold);display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center;padding:2.5rem;max-width:1000px;margin:0 auto 1.8rem;border-radius:18px}
-.framework-content{width:100%}
-.framework-content h3{font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--gold);margin-bottom:.6rem}
-.framework-content p{color:rgba(255,255,255,.92);line-height:1.7;margin-bottom:.8rem}
-.framework-content h3{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--gold);margin-bottom:.6rem}
-.framework-content p{color:rgba(255,255,255,.92);line-height:1.7;margin-bottom:.8rem;font-size:.95rem}
-.framework-image{position:relative;height:300px;background:var(--navy-light);border-radius:14px;overflow:hidden;display:flex;align-items:center;justify-content:center}
-.framework-image img{max-width:100%;max-height:100%;object-fit:contain;padding:1rem}
-.framework-image img{max-width:100%;max-height:100%;object-fit:contain;padding:1rem}
-.cert-badge{display:inline-flex;align-items:center;gap:.5rem;padding:.45rem .9rem;background:rgba(212,175,55,.22);border-radius:999px;font-size:.86rem;margin-top:.5rem}
-
-/* Volunteering */
-.volunteer-section{background:linear-gradient(135deg,var(--cream)0%,var(--white)100%);padding:6rem var(--container-pad)}
-.volunteer-section .section-header h2{color:var(--navy)}
-.volunteer-section .section-header p{color:var(--text-light)}
-.volunteer-hero-image{max-width:1000px;margin:0 auto 3rem;border-radius:24px;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,.2);border:5px solid var(--gold);position:relative}
-.volunteer-hero-image::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(15,21,56,.8));pointer-events:none}
-.volunteer-hero-image img{width:100%;height:auto;display:block;object-fit:cover}
-.volunteer-card{max-width:800px;margin:0 auto;background:var(--white);padding:3rem;border-radius:22px;box-shadow:var(--shadow-2);border:2px solid var(--gold);text-align:center;position:relative;overflow:hidden}
-.volunteer-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--gold),var(--gold-light))}
-.volunteer-logo{width:100px;height:100px;border-radius:16px;overflow:hidden;margin:0 auto 1.2rem;border:3px solid var(--gold);background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 22px rgba(0,0,0,.15)}
-.volunteer-logo img{width:100%;height:100%;object-fit:contain}
-.volunteer-card h3{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--navy);margin-bottom:1rem}
-.volunteer-card .school{font-size:1.2rem;color:var(--gold);font-weight:700;margin-bottom:.5rem}
-.volunteer-card .period{color:var(--text-light);font-size:.9rem;margin-bottom:1.5rem}
-.volunteer-card .description{color:var(--text);line-height:1.8;max-width:600px;margin:0 auto}
-
-/* GitHub */
-.github{background:var(--cream)}
-.github .section-header p{color:var(--text-light)}
-.github-card{background:#fff;padding:2.6rem;border-radius:26px;max-width:1000px;margin:0 auto;text-align:center;box-shadow:0 18px 54px rgba(0,0,0,.12);position:relative;overflow:hidden;transition:transform .22s ease,box-shadow .22s ease}
-.github-card:hover{transform:translateY(-6px);box-shadow:0 26px 72px rgba(0,0,0,.16)}
-.github-icon{font-size:4.6rem;color:var(--navy);margin-bottom:1rem;transition:transform .5s ease,color .5s ease;display:inline-block}
-.github-card:hover .github-icon{transform:rotate(360deg)scale(1.06);color:var(--gold)}
-.ml-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin:1.4rem 0 1.8rem}
-.metric-box{background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;padding:1.1rem;border-radius:14px;text-align:center}
-.metric-value{display:block;font-size:1.8rem;font-weight:800;color:var(--gold)}
-.metric-label{font-size:.9rem;opacity:.9;margin-top:.3rem}
-.repo-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin:1.6rem 0;text-align:left}
-.repo-item{padding:1.1rem;background:var(--cream);border-radius:14px;border-left:4px solid var(--gold);transition:transform .18s ease,background .18s ease,box-shadow .18s ease;cursor:pointer;position:relative;overflow:hidden}
-.repo-item:hover{transform:translateX(8px);background:#fff;box-shadow:0 12px 28px rgba(0,0,0,.12);border-left-width:8px}
-.repo-item h4{color:var(--navy);margin-bottom:.25rem;font-size:1.05rem}
-.repo-item p{color:var(--text-light);font-size:.92rem}
-
-/* Contact */
-.contact{background:#fff}
-.contact-container{max-width:900px;margin:0 auto;text-align:center}
-.contact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem;margin-top:1.6rem}
-.contact-card{background:var(--cream);padding:1.6rem;border-radius:18px;border:2px solid transparent;transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease}
-.contact-card:hover{border-color:var(--gold);transform:translateY(-6px);box-shadow:0 18px 36px rgba(212,175,55,.18)}
-.contact-icon{width:66px;height:66px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-size:1.6rem;color:var(--navy)}
-.contact-links{display:flex;justify-content:center;gap:1rem;margin-top:1.6rem;flex-wrap:wrap}
-.contact-link{display:flex;align-items:center;gap:.6rem;padding:.9rem 1.4rem;background:var(--cream);border-radius:999px;color:var(--text);font-weight:700;border:2px solid transparent;transition:all .22s ease}
-.contact-link:hover{background:var(--gold);color:var(--navy);transform:translateY(-4px)scale(1.04);border-color:var(--gold)}
-
-/* Footer */
-footer{background:var(--navy);color:#fff;text-align:center;padding:2.4rem var(--container-pad)}
-.footer-content{max-width:800px;margin:0 auto}
-.footer-content>p:first-child{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--gold);margin-bottom:1rem}
-.footer-content>p:nth-child(2){opacity:.8;margin-bottom:2rem}
-.social-links{display:flex;justify-content:center;gap:1rem;margin:1.4rem 0}
-.social-link{width:48px;height:48px;background:rgba(255,255,255,.12);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.2rem;border:1px solid rgba(212,175,55,.26);transition:all .2s ease}
-.social-link:hover{background:var(--gold);color:var(--navy);transform:translateY(-4px)scale(1.06);border-color:var(--gold)}
-
-/* Toast */
-.toast{position:fixed;left:50%;bottom:110px;transform:translateX(-50%)translateY(120px);background:var(--navy);color:var(--gold);padding:1rem 2rem;border-radius:999px;font-weight:800;border:1px solid rgba(212,175,55,.26);z-index:9999;opacity:0;transition:transform .28s ease,opacity .28s ease}
-.toast.show{opacity:1;transform:translateX(-50%)translateY(0)}
-
-/* Scroll Top */
-.scroll-top{position:fixed;right:32px;bottom:34px;width:56px;height:56px;border-radius:50%;border:none;background:var(--gold);color:var(--navy);display:flex;align-items:center;justify-content:center;box-shadow:0 12px 28px rgba(212,175,55,.34);font-size:1.3rem;z-index:980;opacity:0;visibility:hidden;transition:all .24s ease;cursor:pointer}
-.scroll-top.visible{opacity:1;visibility:visible}
-.scroll-top:hover{transform:translateY(-8px)scale(1.06)}
-
-/* Modals */
-.stat-modal-overlay{position:fixed;inset:0;background:rgba(15,21,56,.95);backdrop-filter:blur(10px);z-index:5000;display:none;align-items:center;justify-content:center;padding:2rem;opacity:0;transition:opacity .3s ease}
-.stat-modal-overlay.active{display:flex;opacity:1}
-.stat-modal{background:var(--white);border-radius:24px;padding:2.5rem;max-width:560px;width:100%;position:relative;transform:translateY(30px) scale(.95);transition:transform .35s cubic-bezier(.34,1.56,.64,1);border:3px solid var(--gold);box-shadow:0 30px 60px rgba(0,0,0,.4)}
-.stat-modal-overlay.active .stat-modal{transform:translateY(0) scale(1)}
-.stat-modal-close{position:absolute;top:16px;right:16px;width:44px;height:44px;border-radius:50%;background:var(--cream);border:2px solid var(--gold);color:var(--navy);font-size:1.5rem;cursor:pointer;transition:all .2s ease;display:flex;align-items:center;justify-content:center}
-.stat-modal-close:hover{background:var(--gold);transform:rotate(90deg)}
-.stat-modal-icon{width:80px;height:80px;background:linear-gradient(135deg,var(--gold),var(--gold-light));border-radius:20px;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;font-size:2.2rem;color:var(--navy)}
-.stat-modal h3{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--navy);text-align:center;margin-bottom:.5rem}
-.stat-modal-value{font-size:3rem;font-weight:800;color:var(--gold);text-align:center;display:block;margin-bottom:1.5rem}
-.stat-modal-details{color:var(--text);line-height:1.8}
-.stat-modal-details ul{list-style:none;padding:0;margin:0}
-.stat-modal-details li{padding:.7rem 0 .7rem 1.8rem;position:relative;border-bottom:1px solid rgba(212,175,55,.15);font-size:.95rem}
-.stat-modal-details li:last-child{border-bottom:none}
-.stat-modal-details li::before{content:'\2713';position:absolute;left:0;color:var(--gold);font-weight:700;font-size:1.1rem}
-
-.strategy-detail-overlay{position:fixed;inset:0;background:rgba(15,21,56,.96);backdrop-filter:blur(10px);z-index:5000;display:none;align-items:center;justify-content:center;padding:2rem;opacity:0;transition:opacity .3s ease}
-.strategy-detail-overlay.active{display:flex;opacity:1}
-.strategy-detail-card{background:var(--white);border-radius:24px;max-width:720px;width:100%;max-height:90vh;overflow-y:auto;position:relative;transform:translateY(40px);transition:transform .35s cubic-bezier(.34,1.56,.64,1);border:3px solid var(--gold);box-shadow:0 30px 60px rgba(0,0,0,.5)}
-.strategy-detail-overlay.active .strategy-detail-card{transform:translateY(0)}
-.strategy-detail-header{background:linear-gradient(135deg,var(--navy),var(--navy-light));padding:2rem;color:#fff;position:relative;position:sticky;top:0;z-index:3}
-.strategy-detail-header h3{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--gold);margin-bottom:.5rem}
-.strategy-detail-header p{opacity:.9;font-size:1rem;margin:0}
-.strategy-detail-close{position:absolute;top:1.2rem;right:1.2rem;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.15);border:2px solid var(--gold);color:var(--gold);font-size:1.4rem;cursor:pointer;transition:all .2s ease;display:flex;align-items:center;justify-content:center}
-.strategy-detail-close:hover{background:var(--gold);color:var(--navy);transform:rotate(90deg)}
-.strategy-detail-body{padding:2rem}
-.strategy-detail-section{margin-bottom:1.6rem;padding:1.2rem;background:linear-gradient(135deg,rgba(212,175,55,.08),rgba(212,175,55,.02));border-radius:16px;border-left:5px solid var(--gold)}
-.strategy-detail-body h4{color:var(--navy);font-size:1.1rem;margin:.6rem 0;display:flex;align-items:center;gap:.5rem}
-.strategy-detail-body h4 i{color:var(--gold)}
-.strategy-detail-body ul{padding-left:1.5rem;color:var(--text);line-height:1.9;margin:0}
-.strategy-detail-body li{margin:.5rem 0}
-
-/* Project Card Dots */
-.project-card .gallery-dots{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:3}
-.project-card .gallery-dot{width:8px;height:8px;background:rgba(255,255,255,.5);border-radius:50%;transition:all .3s cubic-bezier(.34,1.56,.64,1)}
-.project-card .gallery-dot.active{background:var(--gold);transform:scale(1.4);box-shadow:0 0 10px rgba(212,175,55,.6)}
-
-/* Responsive */
-@media(max-width:1200px){
-.framework-highlight{grid-template-columns:1fr;padding:1.5rem}
-.hero-container{grid-template-columns:1fr;text-align:center}
-.hero-stats{justify-content:center}
-.floating-badge{display:none}
-.timeline-container{grid-template-columns:1fr}
-.timeline-logo-sticky{display:none}
-.timeline-item{grid-template-columns:1fr;opacity:1}
-.timeline-item::before,.timeline-content::before{display:none}
-.timeline-content{margin-left:0}
-.about-grid{grid-template-columns:1fr}
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Luciano Rodrigues — AI-Driven Procurement Leader</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+<link href="favicon.ico" rel="icon"/>
+<meta content="Luciano Rodrigues — AI-Driven Procurement Leader" property="og:title"/>
+<meta content="AI-powered procurement, strategic operations, and product development leadership." property="og:description"/>
+<meta content="website" property="og:type"/>
+<meta content="Photo_Luciano_início.jpg" property="og:image"/>
+<link href="css/style.css" rel="stylesheet"/>
+<!-- Google Translate Script -->
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'en',
+    includedLanguages: 'en,pt,es,fr,it,de,zh-CN,ja,ko,ar,hi',
+    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+    autoDisplay: false
+  }, 'google_translate_element');
 }
-
-@media(max-width:980px){
-nav.navbar{box-shadow:0 6px 22px rgba(0,0,0,.26)}
-.lang-switcher{top:84px;right:16px;padding:5px}
-}
-
-@media(max-width:768px){
-.hero-content h1{font-size:2.2rem}
-.hero{padding:104px var(--container-pad) 64px}
-.hero-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:.8rem}
-.stat-box{min-width:auto;padding:1rem .8rem}
-.stat-number{font-size:1.6rem}
-.stat-modal-overlay{padding:1rem;align-items:flex-end}
-.stat-modal{max-width:100%;width:calc(100vw - 2rem);max-height:85vh;overflow-y:auto;margin:0;border-radius:20px 20px 0 0;padding:1.5rem}
-.stat-modal-close{top:12px;right:12px;width:40px;height:40px}
-.timeline-item{margin-bottom:2.2rem}
-.timeline-description{font-size:.98rem}
-.strategy-grid{grid-template-columns:1fr}
-.gallery-grid{grid-template-columns:1fr}
-.gallery-item{min-height:280px}
-.gallery-slider{height:360px}
-.gallery-controls{gap:1rem;padding:1rem}
-.gallery-btn{width:42px;height:42px}
-.projects-grid{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
-.ml-metrics{grid-template-columns:1fr}
-.contact-grid{grid-template-columns:1fr}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async defer></script>
 
 
-}
 
-@media(max-width:540px){
-.hero .subtitle{font-size:1.02rem}
-.hero-description{font-size:.98rem}
-.stat-number{font-size:1.4rem}
-.lang-switcher{top:70px;right:10px;padding:4px}
-.goog-te-gadget .goog-te-combo{padding:3px 6px!important;font-size:10px!important;min-width:70px!important}
-}
 
-@media(max-width:420px){
-.project-gallery{height:220px}
-}
 
-/* Accessibility */
-:focus{outline:none}
-:focus-visible{outline:3px solid var(--gold);outline-offset:2px;transition:outline-offset .15s ease}
-a,button,.project-card,.repo-item,.contact-link,.social-link,.gallery-item,.gallery-main,.stat-box{-webkit-tap-highlight-color:rgba(0,0,0,0)}
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-follower" id="cursorFollower"></div>
 
-/* Scrollbar */
-*::-webkit-scrollbar{width:10px;height:10px}
-*::-webkit-scrollbar-track{background:rgba(0,0,0,.06)}
-*::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--gold),var(--gold-light));border-radius:999px;border:2px solid rgba(0,0,0,0)}
-*::-webkit-scrollbar-thumb:hover{filter:brightness(.95)}
+<!-- Loading Screen com Fallback -->
+<div class="loading" id="loading">
+<div class="loading-logo">LR.</div>
+<div class="loading-bar"><div class="loading-progress"></div></div>
+</div>
 
-/* Utilities */
-.hidden{display:none !important}
-.visually-hidden{position:absolute !important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
-.center{display:flex;align-items:center;justify-content:center}
-.text-center{text-align:center}
+<!-- Language Switcher -->
+<div class="translator-box">
+  <span style="font-size:11px;font-weight:600;color:var(--navy);text-transform:uppercase;letter-spacing:0.5px;">Tradutor</span>
+  <div id="google_translate_element" style="display:inline-block;"></div>
+</div>
 
-/* Print */
-@media print{
-*{background:#fff !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}
-a[href]::after{content:"(" attr(href)")";font-size:.9em}
-nav,.lang-switcher,.cursor,.cursor-follower,.scroll-top,.toast,.lightbox,.project-gallery-modal{display:none !important}
-section{padding:1.2cm .8cm}
-.project-gallery,.gallery-main,.gallery-overlay{display:none !important}
-.timeline-item::before,.timeline-content::before{display:none !important}
-.framework-image img{max-height:10cm;object-fit:contain}
-}
+<nav aria-label="Primary" class="navbar" id="navbar">
+<a class="logo" href="#"><i class="fas fa-crown"></i> LR.</a>
+<ul class="nav-links">
+<li><a href="#about">About</a></li>
+<li><a href="#timeline">Experience</a></li>
+<li><a href="#projects">Projects</a></li>
+<li><a href="#trade-shows">Trade Shows</a></li>
+<li><a href="#certs">Certifications</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
 
-/* Reduced Motion */
-@media(prefers-reduced-motion:reduce){
-*{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto !important}
-}
+<section aria-label="Hero" class="hero" id="home">
+<div class="hero-particles" id="particles"></div>
+<div class="hero-container">
+<div class="hero-content">
+<h1>Luciano Rodrigues de Souza</h1>
+<p class="subtitle">AI-Driven Procurement & Operations Leader · Strategic Transformation</p>
+<p class="hero-description">
+          I connect governance, technical rigor, and AI to deliver measurable outcomes: transparent tenders, reliable partners, and resilient operations across Europe, LATAM, and Asia.
+        </p>
+<div aria-label="Key metrics" class="hero-stats">
+<div aria-label="Cumulative savings delivered" class="stat-box" data-stat="savings" tabindex="0">
+<i aria-hidden="true" class="fas fa-piggy-bank stat-icon"></i>
+<span class="stat-number" id="statSavings">€1M+</span>
+<span class="stat-label">Cumulative Savings</span>
+<small class="stat-note">Across multi-category negotiations</small>
+</div>
+<div aria-label="Strategic tenders led" class="stat-box" data-stat="rfps" tabindex="0">
+<i aria-hidden="true" class="fas fa-file-contract stat-icon"></i>
+<span class="stat-number" id="statRFPs">120+</span>
+<span class="stat-label">RFP/RFQ Led</span>
+<small class="stat-note">With technical annexes & weighted scoring</small>
+</div>
+<div aria-label="Project value managed" class="stat-box" data-stat="projects" tabindex="0">
+<i aria-hidden="true" class="fas fa-project-diagram stat-icon"></i>
+<span class="stat-number" id="statProjects">€10M+</span>
+<span class="stat-label">Project Portfolio</span>
+<small class="stat-note">From concept to audited mass production</small>
+</div>
+<div aria-label="Regions served" class="stat-box" data-stat="regions" tabindex="0">
+<i aria-hidden="true" class="fas fa-globe stat-icon"></i>
+<span class="stat-number" id="statRegions">20+</span>
+<span class="stat-label">Countries</span>
+<small class="stat-note">Europe · LATAM · Asia</small>
+</div>
+</div>
+<div class="hero-buttons">
+<a class="btn btn-primary" href="#contact">
+<i class="fas fa-paper-plane"></i>
+<span>Let's Connect</span>
+</a>
+<a class="btn btn-secondary" href="#timeline">
+<i class="fas fa-road"></i>
+<span>View Journey</span>
+</a>
+</div>
+</div>
+<div class="hero-image-wrapper">
+<div class="hero-image gold-frame">
+<img alt="Portrait of Luciano Rodrigues de Souza" src="Photo_Luciano_início.jpg"/>
+</div>
+<div class="floating-badge badge-top">
+<i aria-hidden="true" class="fas fa-award"></i>
+<span>Top Performer 2025</span>
+</div>
+<div class="floating-badge badge-middle">
+<i aria-hidden="true" class="fas fa-brain"></i>
+<span>AI Specialist</span>
+</div>
+<div class="floating-badge badge-bottom">
+<i aria-hidden="true" class="fas fa-handshake"></i>
+<span>Trusted Leader</span>
+</div>
+</div>
+</div>
+</section>
 
-/* V23 */
+<section aria-label="About" class="about" id="about">
+<div class="section-header animate-on-scroll">
+<h2>Leadership Philosophy</h2>
+<p>From LATAM operations to global procurement strategy</p>
+</div>
+<div class="about-grid">
+<div class="about-image animate-on-scroll delay-1 gold-frame">
+<img alt="About Luciano — travel and work context" src="Foto_About_Me.jpg"/>
+</div>
+<div class="about-content animate-on-scroll delay-2">
+<h3>Transformation Through Collaboration</h3>
+<p>
+          I design procurement systems that scale: from RFI/RFP playbooks and BidMaps to governance, audits, and supplier development.
+          The result is speed with control — faster decisions, lower risk, and clearer accountability.
+        </p>
+<p>
+          My leadership style blends cross‑functional facilitation (Engineering, ESG, Legal, Finance, Operations) with data and AI.
+          I focus on three pillars: clarity of requirements, market transparency, and measurable outcomes.
+        </p>
+<div class="leadership-philosophy">
+          "I don't just optimize supply chains — I build cross‑functional coalitions that transform how organizations think about procurement."
+        </div>
+<ul class="about-bullets">
+<li><strong>Process Architecture:</strong> tender kits, weighted scoring, compliance‑by‑design</li>
+<li><strong>AI & Analytics:</strong> smart RFPs, proposal parsing, forecasting, inventory optimization</li>
+<li><strong>Supplier Strategy:</strong> audits, capability mapping, dual‑sourcing & continuity</li>
+<li><strong>Stakeholder Trust:</strong> transparent dashboards, SLAs, and post‑award governance</li>
+</ul>
+<div class="languages-grid">
+<div class="lang-item"><i aria-hidden="true" class="fas fa-check-circle"></i><span>Portuguese (Native)</span></div>
+<div class="lang-item"><i aria-hidden="true" class="fas fa-check-circle"></i><span>English (Native)</span></div>
+<div class="lang-item"><i aria-hidden="true" class="fas fa-check-circle"></i><span>Spanish (Professional)</span></div>
+<div class="lang-item"><i aria-hidden="true" class="fas fa-check-circle"></i><span>French (Professional)</span></div>
+</div>
+</div>
+</div>
+</section>
 
-/* V23 translator */
-.translator-box{position:fixed;top:90px;right:20px;z-index:1500;background:rgba(255,255,255,.75);padding:8px 12px;border-radius:14px;}
-@media(max-width:768px){.translator-box{top:10px!important;right:10px!important;}}
-/* V23 fairs fix */
-.project-card[data-gallery]{cursor:pointer;}
-/* V23 timeline mobile logos */
-@media(max-width:1200px){.timeline-item[data-logo] .timeline-content{padding-top:4rem;}
-.timeline-item[data-logo] .timeline-content::after{content:"";position:absolute;top:-3rem;left:0;width:60px;height:60px;background-size:contain;background-repeat:no-repeat;background-image:attr(data-logo url);} }
+<section aria-label="Professional Journey" class="timeline" id="timeline">
+<div class="section-header animate-on-scroll">
+<h2>Professional Journey</h2>
+<p>15+ years of progressive leadership</p>
+</div>
+<div class="timeline-container timeline--compact-logo">
+<div class="timeline-logo-sticky">
+<div aria-label="Company logo" class="company-logo-display" id="current-logo">
+<img alt="Company Logo" id="logo-img" src="Details_Symbol.jpg" style="width:100%;max-width:150px;height:150px;object-fit:contain;margin-bottom:1rem;"/>
+<div aria-hidden="true" class="logo-indicator">
+<span class="indicator-dot active" data-index="0"></span>
+<span class="indicator-dot" data-index="1"></span>
+<span class="indicator-dot" data-index="2"></span>
+<span class="indicator-dot" data-index="3"></span>
+</div>
+</div>
+</div>
+<div class="timeline-items" id="timelineItems">
+<div class="timeline-item active" data-company="details" data-index="0" data-logo="Details_Symbol.jpg">
+<div class="timeline-date">
+<span class="date-range">2025–Present</span>
+<span class="date-level">Senior Level</span>
+</div>
+<div class="timeline-content">
+<h3 class="timeline-title">Senior Buyer — Strategic Procurement & Operations</h3>
+<div class="timeline-company">
+<i aria-hidden="true" class="fas fa-building"></i>
+<span>Details Hospitality, Portugal</span>
+</div>
+<p class="timeline-description">
+              Leading a company‑wide procurement transformation across hotel & leisure assets, unifying governance, technical rigor, and AI‑enabled decisioning.
+            </p>
+<div class="achievement-box">
+<strong><i aria-hidden="true" class="fas fa-trophy"></i>
+<span>Key Achievements</span>:</strong>
+<ul>
+<li>Designed end‑to‑end RFI/RFP/RFQ playbooks with technical annexes (A1/A2), weighted scoring and audit‑ready trails.</li>
+<li>Built the BidMap & dashboards (KPIs technical/financial) for transparent award decisions and faster stakeholder alignment.</li>
+<li>Integrated Primavera ↔ e‑procurement for full traceability; standardized templates, clauses and contracting packs.</li>
+<li>Onboarded new assets (e.g., Monte Rei, Els Club, San Lourenzo) with compliance‑by‑design and service continuity.</li>
+<li>Delivered measurable savings & ROI while maintaining service quality across HVAC, SCIE/Fire drills, Legionella, energy, laundry, F&B and marketing services.</li>
+</ul>
+</div>
+<div class="skills-tags">
+<span class="skill-tag">AI Strategy</span>
+<span class="skill-tag">Process Architecture</span>
+<span class="skill-tag">KPIs & Dashboards</span>
+<span class="skill-tag">Contract Negotiation</span>
+</div>
+</div>
+</div>
+<div class="timeline-item" data-company="skn-global" data-index="1" data-logo="SKN_Global.png">
+<div class="timeline-date">
+<span class="date-range">2022–2025</span>
+<span class="date-level">Director Level</span>
+</div>
+<div class="timeline-content">
+<h3 class="timeline-title">Director of International Expansion</h3>
+<div class="timeline-company">
+<i aria-hidden="true" class="fas fa-globe-europe"></i>
+<span>SKN Global — EU & Asia</span>
+</div>
+<p class="timeline-description">Led multi‑country go‑to‑market and premium portfolio development, orchestrating engineering, marketing and supply partners.</p>
+<div class="achievement-box">
+<strong><i aria-hidden="true" class="fas fa-trophy"></i>
+<span>Key Achievements</span>:</strong>
+<ul>
+<li>Managed €10M+ multi‑category pipeline; opened distribution channels across 5+ European markets.</li>
+<li>Drove supplier qualification and factory audits; negotiated MOQs, tooling and warranty frameworks.</li>
+<li>Co‑led trade show strategy (design, merch, meetings calendar, lead capture & post‑fair pipeline).</li>
+</ul>
+</div>
+<div class="skills-tags">
+<span class="skill-tag">Global Expansion</span>
+<span class="skill-tag">Brand & Licensing</span>
+<span class="skill-tag">Supplier Audits</span>
+</div>
+</div>
+</div>
+<div class="timeline-item" data-company="skn-europe" data-index="2" data-logo="SKN_Global.png">
+<div class="timeline-date">
+<span class="date-range">2018–2022</span>
+<span class="date-level">Manager Level</span>
+</div>
+<div class="timeline-content">
+<h3 class="timeline-title">International Product & Licensing Manager</h3>
+<div class="timeline-company">
+<i aria-hidden="true" class="fas fa-industry"></i>
+<span>SKN Global — Europe</span>
+</div>
+<p class="timeline-description">Built licensed portfolios end‑to‑end (e.g., Blaupunkt Tools), aligning R&D, certification and mass production for EU markets.</p>
+<div class="achievement-box">
+<strong><i aria-hidden="true" class="fas fa-trophy"></i>
+<span>Key Achievements</span>:</strong>
+<ul>
+<li>Launched complete Blaupunkt tools & garden lines with CE conformity and production line inspections.</li>
+<li>Deployed analytics stack (Python/Streamlit/Plotly/SQL) for portfolio and quality KPIs.</li>
+<li>Structured licensing contracts & performance guarantees with EU partners.</li>
+</ul>
+</div>
+<div class="skills-tags">
+<span class="skill-tag">Product Development</span>
+<span class="skill-tag">Quality Systems</span>
+<span class="skill-tag">Data Analytics</span>
+</div>
+</div>
+</div>
+<div class="timeline-item" data-company="skn-brasil" data-index="3" data-logo="SKN_Brasil.png">
+<div class="timeline-date">
+<span class="date-range">2011–2018</span>
+<span class="date-level">Growth Phase</span>
+</div>
+<div class="timeline-content">
+<h3 class="timeline-title">Product & Import Manager → LATAM Area Manager</h3>
+<div class="timeline-company">
+<i aria-hidden="true" class="fas fa-map-marker-alt"></i>
+<span>SKN do Brasil — Rio de Janeiro</span>
+</div>
+<p class="timeline-description">Career growth from import analyst to LATAM leadership, building distributor networks and launching portfolios.</p>
+<div class="achievement-box">
+<strong><i aria-hidden="true" class="fas fa-trophy"></i>
+<span>Key Achievements</span>:</strong>
+<ul>
+<li>Distributor network across 12 LATAM countries; Ford Lighting expansion.</li>
+<li>Representation at Hong Kong International Lighting Fair; OEM negotiations & regional certifications.</li>
+<li>End‑to‑end import, compliance and logistics time‑to‑market.</li>
+</ul>
+</div>
+<div class="skills-tags">
+<span class="skill-tag">LATAM Expansion</span>
+<span class="skill-tag">Trade Shows</span>
+<span class="skill-tag">Import/Export</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
 
-/* V25 overrides */
+<section aria-label="Featured Projects" class="projects" id="projects">
+<div class="section-header animate-on-scroll">
+<h2>Featured Projects</h2>
+<p>Product development excellence and AI innovation portfolio</p>
+</div>
+<div class="projects-grid" id="projectsGrid">
+<div class="project-card animate-on-scroll" data-autoslide="true" data-gallery="blaupunkt" data-images="Blaupunkt_Tools.png,Blaupunkt_Illumiation_booth_HK_Fair.png,Blaupunkt_Illumiation_booth_HK_Fair_1.png,Blaupunkt_Illumiation_booth_HK_Fair_2.png,Blaupunkt_Illumiation_booth_HK_Fair_3.png,Blaupunkt_Illumiation_booth_HK_Fair_4.png" data-interval="2500">
+<div class="project-gallery">
+<div class="gallery-main">
+<img alt="Blaupunkt" src="Blaupunkt_Tools.png"/>
+<div class="gallery-overlay">
+<i aria-hidden="true" class="fas fa-images"></i>
+<span>View Gallery</span>
+</div>
+</div>
+</div>
+<div class="project-content">
+<h3>Blaupunkt</h3>
+<p>Creation and launch of a complete tools line for the European market — from concept, BOM & compliance to production.</p>
+<div class="project-highlights">
+<strong>Scope:</strong> DIY & power tools · <strong>Markets:</strong> EU
+          </div>
+<div class="project-tags">
+<span class="project-tag">Product Development</span>
+<span class="project-tag">Licensing</span>
+<span class="project-tag">EU Compliance</span>
+</div>
+</div>
+</div>
+<div class="project-card animate-on-scroll" data-autoslide="true" data-gallery="blaupunkt-power" data-images="Blaupunkt_Power_Tools.png" data-interval="2500">
+<div class="project-gallery">
+<div class="gallery-main">
+<img alt="Blaupunkt Power Tools" src="Blaupunkt_Power_Tools.png"/>
+<div class="gallery-overlay">
+<i aria-hidden="true" class="fas fa-images"></i>
+<span>View Gallery</span>
+</div>
+</div>
+</div>
+<div class="project-content">
+<h3>Blaupunkt Power Tools Line</h3>
+<p>Professional-grade drills, saws, sanders with technical specs, audits and safety certifications.</p>
+<div class="project-highlights">
+<strong>Innovation:</strong> Pro grade · <strong>Audits:</strong> Line inspections
+          </div>
+<div class="project-tags">
+<span class="project-tag">Power Tools</span>
+<span class="project-tag">Factory Audits</span>
+<span class="project-tag">Quality Control</span>
+</div>
+</div>
+</div>
+<div class="project-card animate-on-scroll" data-autoslide="true" data-gallery="blaupunkt-garden" data-images="Blaupunkt_Garden_Tools.png" data-interval="2500">
+<div class="project-gallery">
+<div class="gallery-main">
+<img alt="Blaupunkt Garden Tools" src="Blaupunkt_Garden_Tools.png"/>
+<div class="gallery-overlay">
+<i aria-hidden="true" class="fas fa-images"></i>
+<span>View Gallery</span>
+</div>
+</div>
+</div>
+<div class="project-content">
+<h3>Blaupunkt Garden Tools</h3>
+<p>Outdoor equipment (chainsaws, trimmers) with complete documentation and safety compliance.</p>
+<div class="project-highlights">
+<strong>Products:</strong> Chainsaws, trimmers · <strong>Focus:</strong> Safety & compliance
+          </div>
+<div class="project-tags">
+<span class="project-tag">Garden</span>
+<span class="project-tag">Outdoor</span>
+<span class="project-tag">CE Certified</span>
+</div>
+</div>
+</div>
+<div class="project-card animate-on-scroll" data-autoslide="true" data-gallery="spear-jackson" data-images="S&J_Cast_Irons_2.jpg,S&J_Cast_Irons_3.jpg,S&J_Cast_Irons_4.jpg,S&J_Cast_Irons_5.jpg,S&J_Cast_Irons_6.jpg,S&J_Cast_Irons_7.jpg" data-interval="2500">
+<div class="project-gallery">
+<div class="gallery-main">
+<img alt="Spear & Jackson Cast Irons" src="S&J_Cast_Irons_2.jpg"/>
+<div class="gallery-overlay">
+<i aria-hidden="true" class="fas fa-images"></i>
+<span>View Gallery</span>
+</div>
+</div>
+</div>
+<div class="project-content">
+<h3>Spear & Jackson Cast Irons</h3>
+<p>Premium enameled cast iron cookware for a British heritage brand (est. 1760).</p>
+<div class="project-highlights">
+<strong>Heritage:</strong> UK brand · <strong>Category:</strong> Cookware
+          </div>
+<div class="project-tags">
+<span class="project-tag">Cookware</span>
+<span class="project-tag">Premium</span>
+<span class="project-tag">UK Brand</span>
+</div>
+</div>
+</div>
+<div class="project-card animate-on-scroll" data-autoslide="true" data-gallery="pininfarina" data-images="Pininfarina_BBQ.jpg,Pininfarina_BBQ_1.jpg" data-interval="2500">
+<div class="project-gallery">
+<div class="gallery-main">
+<img alt="Pininfarina Essenza Collection" src="Pininfarina_BBQ.jpg"/>
+<div class="gallery-overlay">
+<i aria-hidden="true" class="fas fa-images"></i>
+<span>View Gallery</span>
+</div>
+</div>
+</div>
+<div class="project-content">
+<h3>Pininfarina Essenza Collection</h3>
+<p>Premium outdoor cooking appliances with Italian design and global coordination (EU/Asia).</p>
+<div class="project-highlights">
+<strong>Design:</strong> Italian automotive · <strong>Value:</strong> €10M+ portfolio
+          </div>
+<div class="project-tags">
+<span class="project-tag">Luxury</span>
+<span class="project-tag">Italian Design</span>
+<span class="project-tag">Global Coordination</span>
+</div>
+</div>
+</div>
+<div class="project-card animate-on-scroll" data-autoslide="true" data-gallery="nks-estrelas" data-images="NKS_Estrelas.png,NKS_Estrelas_1.png,NKS_Estrelas_2.png,NKS_Estrelas_3.png,NKS_Estrelas_4.png,NKS_Estrelas_5.png" data-interval="2500">
+<div class="project-gallery">
+<div class="gallery-main">
+<img alt="NKS Estrelas Product Line" src="NKS_Estrelas.png"/>
+<div class="gallery-overlay">
+<i aria-hidden="true" class="fas fa-images"></i>
+<span>View Gallery</span>
+</div>
+</div>
+</div>
+<div class="project-content">
+<h3>NKS Estrelas Product Line</h3>
+<p>Consumer electronics & home appliances for the Brazilian market with full lifecycle management.</p>
+<div class="project-highlights">
+<strong>Market:</strong> Brazil · <strong>Category:</strong> Electronics
+          </div>
+<div class="project-tags">
+<span class="project-tag">Electronics</span>
+<span class="project-tag">Brazilian Market</span>
+<span class="project-tag">Product Launch</span>
+</div>
+</div>
+</div>
+<div class="project-card animate-on-scroll" data-autoslide="true" data-gallery="nks-audio" data-images="NKS_Audio.png,NKS_Audio_1.png,NKS_Audio_2.png,NKS_Audio_3.png,NKS_Audio_4.png,NKS_Audio_5.png,NKS_Audio_6.png,NKS_Audio_7.png" data-interval="2500">
+<div class="project-gallery">
+<div class="gallery-main">
+<img alt="NKS Audio Systems" src="NKS_Audio.png"/>
+<div class="gallery-overlay">
+<i aria-hidden="true" class="fas fa-images"></i>
+<span>View Gallery</span>
+</div>
+</div>
+</div>
+<div class="project-content">
+<h3>NKS Audio Systems</h3>
+<p>Professional & consumer audio: speakers, sound systems and headphones (ANATEL compliance).</p>
+<div class="project-highlights">
+<strong>Products:</strong> Speakers & systems · <strong>Compliance:</strong> ANATEL
+          </div>
+<div class="project-tags">
+<span class="project-tag">Audio</span>
+<span class="project-tag">Acoustic Engineering</span>
+<span class="project-tag">ANATEL</span>
+</div>
+</div>
+</div>
+<div class="project-card animate-on-scroll" data-autoslide="true" data-gallery="nks-maisvc" data-images="NKS_Mais_Vc.png,NKS_Mais_Vc_1.png,NKS_Mais_Vc_2.png,NKS_Mais_Vc_3.png,NKS_Mais_Vc_4.png" data-interval="2500">
+<div class="project-gallery">
+<div class="gallery-main">
+<img alt="NKS Mais Você Collection" src="NKS_Mais_Vc.png"/>
+<div class="gallery-overlay">
+<i aria-hidden="true" class="fas fa-images"></i>
+<span>View Gallery</span>
+</div>
+</div>
+</div>
+<div class="project-content">
+<h3>NKS Mais Você Collection</h3>
+<p>Beauty & personal care line with INMETRO certification tailored to Brazilian retail.</p>
+<div class="project-highlights">
+<strong>Category:</strong> Personal care · <strong>Features:</strong> INMETRO
+          </div>
+<div class="project-tags">
+<span class="project-tag">Beauty Care</span>
+<span class="project-tag">INMETRO</span>
+<span class="project-tag">Retail</span>
+</div>
+</div>
+</div>
+<div class="project-card animate-on-scroll" data-autoslide="false" data-gallery="ml-portfolio" data-images="" data-interval="2800">
+<div class="project-image" style="background: linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%); display:flex;align-items:center;justify-content:center;height:250px;">
+<div style="text-align:center;color:#d4af37;">
+<i class="fas fa-brain" ></i>
+<div style="font-size:0.9rem;opacity:0.85;">Machine Learning Portfolio</div>
+<div style="width:120px;height:2px;background:#d4af37;margin:10px auto;"></div>
+<div style="font-size:0.8rem;opacity:0.65;">Forecasting · Optimization · Uplift</div>
+</div>
+</div>
+<div class="project-content">
+<h3>AI & ML Projects (Selected)</h3>
+<p>Consolidated portfolio: sales forecasting, inventory optimization, promotion uplift, price elasticity, anomaly/quality detection, churn & CLV.</p>
+<div class="project-highlights">
+<strong>Stack:</strong> Python · scikit‑learn · XGBoost · LightGBM · Statsmodels · Streamlit
+          </div>
+<div class="project-tags">
+<span class="project-tag">Predictive Analytics</span>
+<span class="project-tag">Optimization</span>
+<span class="project-tag">MLOps-lite</span>
+</div>
+</div>
+</div>
+</div>
+</section>
 
-/* V25 translator smaller */
-.translator-box{position:fixed;top:90px;right:14px;z-index:1500;background:rgba(255,255,255,.7);padding:4px 8px;border-radius:12px;max-width:120px;}
-@media(max-width:768px){.translator-box{top:6px!important;right:6px!important;max-width:90px;padding:3px 6px;}}
-/* V25 timeline mobile logos */
-@media(max-width:1200px){.timeline-item[data-logo] .timeline-content{position:relative;padding-top:4rem!important;}
-.timeline-item[data-logo] .timeline-content::after{content:"";position:absolute;top:-3.1rem;left:0;width:52px;height:52px;background-size:contain;background-repeat:no-repeat;background-image:attr(data-logo url);} }
-/* V25 fix fairs spacing */
-.trade-shows .project-card{all:unset;display:block;width:100%;}
-.trade-shows .gold-frame{max-width:800px;margin:0 auto;border-radius:25px;border:3px solid var(--gold);overflow:hidden;cursor:pointer;}
-/* V25 gallery one click */
-.project-card{pointer-events:auto!important;}
-.project-card *{pointer-events:auto!important;}
+<section aria-label="Trade Shows & Exhibitions" class="trade-shows" id="trade-shows">
+<div class="section-header animate-on-scroll"><h2>Trade Shows & Global Exhibitions</h2><p>Exhibitor and strategic buyer across worldwide markets</p></div>
+<h3 class="trade-title" style="text-align:center; margin-bottom: 2rem;">Blaupunkt</h3>
+<div class="project-card" data-gallery="blaupunkt-fair" data-images="Blaupunkt_Illumiation_booth_HK_Fair.png,Blaupunkt_Illumiation_booth_HK_Fair_1.png,Blaupunkt_Illumiation_booth_HK_Fair_2.png,Blaupunkt_Illumiation_booth_HK_Fair_3.png,Blaupunkt_Illumiation_booth_HK_Fair_4.png" >
+<div class="gold-frame" style="max-width:800px;margin:0 auto;border-radius:25px;border:3px solid var(--gold);overflow:hidden;cursor:pointer;" onclick="openProjectGallery('blaupunkt-fair')">
+<div class="project-gallery" ><div class="gallery-main" ><img src="Blaupunkt_Illumiation_booth_HK_Fair.png" style="width:100%;height:auto;object-fit:cover;"><div class="gallery-overlay"><i class="fas fa-images"></i><span>View Gallery</span></div></div></div>
+</div>
+</div>
+<h3 class="trade-title" style="text-align:center; margin: 4rem 0 2rem;">Ford Lighting</h3>
+<div class="project-card" data-gallery="ford-fair" data-images="Ford_lighting_solutions_HK_Intl.png,Ford_lighting_solutions_HK_Intl_1.png,Ford_lighting_solutions_HK_Intl_2.png" >
+<div class="gold-frame" style="max-width:800px;margin:0 auto;border-radius:25px;border:3px solid var(--gold);overflow:hidden;cursor:pointer;" onclick="openProjectGallery('ford-fair')">
+<div class="project-gallery" ><div class="gallery-main" ><img src="Ford_lighting_solutions_HK_Intl.png" style="width:100%;height:auto;object-fit:cover;"><div class="gallery-overlay"><i class="fas fa-images"></i><span>View Gallery</span></div></div></div>
+</div>
+</div>
+<div class="trade-show-strategy">
+<h3><i class="fas fa-handshake" style="color: var(--gold); margin-right: 10px;"></i>Trade Show Strategy & Execution</h3>
+<p>Beyond the booth: I co-create with Marketing the end-to-end journey — stand design, narrative & assets; orchestrate meetings, capture qualified leads, and run the post-fair pipeline to real outcomes. In parallel, I negotiate with partners, benchmark technologies, and audit factories for capability & compliance.</p>
+<div class="strategy-grid">
+ <div class="strategy-item" data-strategy="1"><i class="fas fa-drafting-compass"></i><p>Stand Design & Merchandising</p></div>
+ <div class="strategy-item" data-strategy="2"><i class="fas fa-calendar-check"></i><p>Meetings Orchestration & Lead Capture</p></div>
+ <div class="strategy-item" data-strategy="3"><i class="fas fa-handshake-angle"></i><p>Negotiations & Partnering</p></div>
+ <div class="strategy-item" data-strategy="4"><i class="fas fa-microchip"></i><p>Tech Discovery & Benchmark</p></div>
+ <div class="strategy-item" data-strategy="5"><i class="fas fa-industry"></i><p>Factory Audits & Capability Mapping</p></div>
+ <div class="strategy-item" data-strategy="6"><i class="fas fa-chart-line"></i><p>Post‑Fair Pipeline, ROI & Governance</p></div>
+</div>
+</div>
+</section>
 
-/* Mobile Timeline Logos — V36 (fine alignment) */
-@media (max-width: 1200px){
-  .timeline-item[data-logo] .timeline-content::after{
-    content:"";position:absolute;top:-5.2rem;left:0;width:58px;height:58px;
-    background-size:contain;background-repeat:no-repeat;background-position:center;
-    border-radius:10px;background-color:#fff;border:2px solid var(--gold);
-    box-shadow:0 6px 16px rgba(0,0,0,0.15);
+<section aria-label="Certifications & Education" class="certs" id="certs">
+<div class="section-header animate-on-scroll">
+<h2>Certifications & Education</h2>
+<p>Continuous learning in AI, Data Science, and Strategic Procurement</p>
+</div>
+
+<div class="certs-grid">
+
+<!-- NEW 1: Ethical Considerations for GenAI -->
+<div class="cert-card animate-on-scroll">
+ <div class="cert-header">
+  <div class="cert-logo"><img src="Digital sticker_Ethical Considerations for Generative AI.png"></div>
+  <div class="cert-title-group"><h4>IBM SkillsBuild</h4><div class="cert-subtitle">Ethical Considerations for Generative AI</div><span class="cert-date">2026</span></div>
+ </div>
+ <p>Governance principles, fairness frameworks and responsible AI deployment; ethical guidance for real‑world decision making.</p>
+ <div class="ai-application"><strong>How I Apply This in Procurement:</strong><ul>
+  <li>AI Governance: risk & compliance mapping</li>
+  <li>Bias Mitigation</li>
+  <li>Transparency Controls</li>
+  <li>Responsible Automation</li>
+  <li>Ethical Supplier Checks</li>
+ </ul></div>
+ <a onclick="openCertificate('Ethic_Gen_AI_Cert.jpg')">View Certificate</a>
+</div>
+
+<!-- NEW 2: Getting Started with GenAI -->
+<div class="cert-card animate-on-scroll">
+ <div class="cert-header">
+  <div class="cert-logo"><img src="getting-started-with-generative-ai.png"></div>
+  <div class="cert-title-group"><h4>IBM SkillsBuild</h4><div class="cert-subtitle">Getting Started with Generative AI</div><span class="cert-date">2026</span></div>
+ </div>
+ <p>Core foundations of generative AI concepts, capabilities and practical use cases.</p>
+ <div class="ai-application"><strong>How I Apply This in Procurement:</strong><ul>
+  <li>AI Opportunity Mapping</li>
+  <li>Workflow Augmentation</li>
+  <li>AI-Assisted Insights</li>
+  <li>Template Generation</li>
+  <li>Market Research</li>
+ </ul></div>
+ <a onclick="openCertificate('Gen AI Certificate.pdf')">View Certificate</a>
+</div>
+
+<!-- ORIGINAL CARDS FROM V37 BELOW THIS LINE -->
+
+<div class="cert-card framework-highlight animate-on-scroll">
+<div class="framework-content">
+<div class="cert-icon" style="width:60px;height:60px;background:rgba(212,175,55,0.2);border-radius:15px;display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem;">
+<i aria-hidden="true" class="fas fa-star" style="font-size:1.8rem;color:var(--gold);"></i>
+</div>
+<h3>AI‑Driven Strategic Procurement Framework</h3>
+<p>One‑page executive framework on how AI, data, and operational alignment elevate procurement performance.</p>
+<div class="cert-badge">
+<i aria-hidden="true" class="fas fa-check-circle"></i>
+<span>Proprietary Methodology</span>
+</div>
+</div>
+<div class="framework-image">
+<img alt="AI Framework" onerror="this.parentElement.style.display='none'" src="AI_Driven_Strategic_Procurement_Framework.png"/>
+</div>
+</div>
+<div class="cert-card animate-on-scroll">
+<div class="cert-header">
+<div class="cert-logo">
+<img alt="IBM Generative AI" onerror="this.style.display='none'" src="Digital_Sticker_Foundations_in_Generative_AI.png"/>
+</div>
+<div class="cert-title-group">
+<h4>IBM SkillsBuild</h4>
+<div class="cert-subtitle">Foundations in Generative AI</div>
+<span class="cert-date"><i aria-hidden="true" class="fas fa-calendar"></i> 2025</span>
+</div>
+</div>
+<p>LLM fundamentals, prompt engineering and ethical deployment; practical use in procurement workflows.</p>
+<div class="ai-application">
+<strong><i aria-hidden="true" class="fas fa-lightbulb"></i> How I Apply This in Procurement:</strong>
+<ul>
+<li><strong>Contract Parsing:</strong> clause extraction & risk flags</li>
+<li><strong>Smart RFPs:</strong> auto‑draft specs/SoW; save hours weekly</li>
+<li><strong>Supplier Comms:</strong> consistent, data‑aware templates</li>
+<li><strong>Market Intel:</strong> proposal comparison & insights</li>
+</ul>
+</div>
+</div>
+<div class="cert-card animate-on-scroll">
+<div class="cert-header">
+<div class="cert-logo">
+<img alt="IBM LLMs" onerror="this.style.display='none'" src="Digital_Sticker_Introduction_to_Large_Language_Models.png"/>
+</div>
+<div class="cert-title-group">
+<h4>IBM SkillsBuild</h4>
+<div class="cert-subtitle">Introduction to Large Language Models</div>
+<span class="cert-date"><i aria-hidden="true" class="fas fa-calendar"></i> 2025</span>
+</div>
+</div>
+<p>Transformer architecture, tokenization and prompting; patterns for data extraction and decision support.</p>
+<div class="ai-application">
+<strong><i aria-hidden="true" class="fas fa-lightbulb"></i> How I Apply This in Procurement:</strong>
+<ul>
+<li><strong>Doc Intelligence:</strong> quotes/specs parsing</li>
+<li><strong>Forecasting Assist:</strong> LLM‑augmented demand signals</li>
+<li><strong>Compliance:</strong> policy checks vs. contracts</li>
+<li><strong>Knowledge Ops:</strong> internal procurement assistant</li>
+</ul>
+</div>
+</div>
+<div class="cert-card animate-on-scroll">
+<div class="cert-header">
+<div class="cert-logo">
+<img alt="University of Maryland" onerror="this.style.display='none'" src="Maryland_University.png"/>
+</div>
+<div class="cert-title-group">
+<h4>University of Maryland</h4>
+<div class="cert-subtitle">AI and Career Empowerment</div>
+<span class="cert-date"><i aria-hidden="true" class="fas fa-calendar"></i> Feb 2026</span>
+</div>
+</div>
+<p>AI applications in business strategy and automation of procurement workflows.</p>
+<div class="ai-application">
+<strong><i aria-hidden="true" class="fas fa-lightbulb"></i> Applications:</strong>
+<ul>
+<li><strong>Career Strategy:</strong> Leveraging AI for professional growth and networking optimization</li>
+<li><strong>Workflow Automation:</strong> Implementing AI-driven process improvements in procurement operations</li>
+<li><strong>Strategic Planning:</strong> Using predictive analytics for long-term business planning</li>
+<li><strong>Skill Development:</strong> Continuous learning pathways enhanced by AI recommendations</li>
+</ul>
+</div>
+</div>
+<div class="cert-card animate-on-scroll">
+<div class="cert-header">
+<div class="cert-logo">
+<img alt="MIT Sloan" onerror="this.style.display='none'" src="MIT.png"/>
+</div>
+<div class="cert-title-group">
+<h4>MIT Sloan School of Management</h4>
+<div class="cert-subtitle">Supply Chain Analytics</div>
+<span class="cert-date"><i aria-hidden="true" class="fas fa-calendar"></i> 2025</span>
+</div>
+</div>
+<p>Advanced analytics methodologies for supply chain optimization and forecasting.</p>
+<div class="ai-application">
+<strong><i aria-hidden="true" class="fas fa-lightbulb"></i> Applications:</strong>
+<ul>
+<li><strong>Demand Forecasting:</strong> Statistical models for accurate demand prediction</li>
+<li><strong>Inventory Optimization:</strong> Dynamic safety stock and reorder point calculations</li>
+<li><strong>Network Design:</strong> Optimization of distribution networks and logistics</li>
+<li><strong>Risk Analytics:</strong> Supply chain risk assessment and mitigation strategies</li>
+</ul>
+</div>
+</div>
+<div class="cert-card animate-on-scroll">
+<div class="cert-header">
+<div class="cert-logo">
+<img alt="Harvard University" onerror="this.style.display='none'" src="Harvard_University.png"/>
+</div>
+<div class="cert-title-group">
+<h4>Harvard University</h4>
+<div class="cert-subtitle">Decision‑Making in Leadership</div>
+<span class="cert-date"><i aria-hidden="true" class="fas fa-calendar"></i> 2023</span>
+</div>
+</div>
+<p>Evidence‑based decision frameworks and strategic thinking for leaders.</p>
+<div class="ai-application">
+<strong><i aria-hidden="true" class="fas fa-lightbulb"></i> Applications:</strong>
+<ul>
+<li><strong>Strategic Decisions:</strong> Frameworks for complex procurement negotiations</li>
+<li><strong>Stakeholder Management:</strong> Evidence-based approaches to cross-functional leadership</li>
+<li><strong>Risk Assessment:</strong> Structured evaluation of supplier and market risks</li>
+<li><strong>Change Management:</strong> Leading organizational transformation with data-driven insights</li>
+</ul>
+</div>
+</div>
+<div class="cert-card animate-on-scroll">
+<div class="cert-header">
+<div class="cert-logo">
+<img alt="Gadsden State Community College" onerror="this.src='gadsdenstatecommunitycollege.jpg'" src="gadsdenstatecommunitycollege_logo.jpg"/>
+</div>
+<div class="cert-title-group">
+<h4>Gadsden State Community College</h4>
+<div class="cert-subtitle">Diploma — ESL (English as a Second Language)</div>
+<span class="cert-date"><i aria-hidden="true" class="fas fa-calendar"></i> 1999–2000</span>
+</div>
+</div>
+<p>Academic English program with communication, writing and presentation skills.</p>
+<div class="ai-application">
+<strong><i aria-hidden="true" class="fas fa-lightbulb"></i> Skills Acquired:</strong>
+<ul>
+<li><strong>Academic Writing:</strong> Research papers, essays, and technical documentation</li>
+<li><strong>Public Speaking:</strong> Presentation skills and professional communication</li>
+<li><strong>Cross-Cultural Communication:</strong> Navigating international business contexts</li>
+<li><strong>Critical Reading:</strong> Analysis of complex texts and contracts</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+</div>
+</section>
+
+<section aria-label="Volunteering" class="volunteer-section" id="volunteering">
+<div class="section-header animate-on-scroll">
+<h2>Volunteering & Community Impact</h2>
+<p>Giving back through education and mentorship</p>
+</div>
+<div class="volunteer-hero-image animate-on-scroll visible">
+<img alt="Gadsden State Community College" src="gadsdenstatecommunitycollege.jpg"/>
+</div>
+<div class="volunteer-card animate-on-scroll delay-1">
+<div class="volunteer-logo">
+  <img src="gadsdenstatecommunitycollege_logo.jpg" alt="Gadsden State Community College" onerror="this.src='gadsdenstatecommunitycollege.jpg'">
+</div>
+<h3>Mathematics & English Instructor</h3>
+<div class="school">Gadsden State Community College</div>
+<div class="period">1999–2000</div>
+<div class="description">
+        Mathematics and English tutoring for students in need of academic support. Developed personalized learning plans, 
+        mentored diverse student populations, and contributed to community education initiatives. This experience strengthened 
+        my communication skills, patience, and ability to explain complex concepts — skills I now apply in procurement training 
+        and cross-functional team leadership.
+      </div>
+</div>
+</section>
+
+<section aria-label="GitHub & Data Science Projects" class="github" id="github">
+<div class="section-header animate-on-scroll">
+<h2>GitHub & Data Science Projects</h2>
+<p>Transforming procurement through code, algorithms, and data-driven insights</p>
+</div>
+<div class="github-card animate-on-scroll delay-1">
+<i class="fab fa-github github-icon"></i>
+<h3 style="font-family: 'Playfair Display', serif; margin-bottom: 1rem; font-size: 2rem;">github.com/LucianoRSouza</h3>
+<p style="color: var(--text-light); margin-bottom: 2rem; font-size: 1.1rem;">Python enthusiast leveraging data science to revolutionize procurement decision-making.</p>
+<div class="ml-metrics">
+<div class="metric-box">
+<span class="metric-value">95%</span>
+<span class="metric-label">Prediction Accuracy</span>
+</div>
+<div class="metric-box">
+<span class="metric-value">30%</span>
+<span class="metric-label">Cost Reduction</span>
+</div>
+<div class="metric-box">
+<span class="metric-value">85%</span>
+<span class="metric-label">Stockout Reduction</span>
+</div>
+</div>
+<div class="repo-list" id="repoList"></div>
+<a class="btn btn-primary" href="https://github.com/LucianoRSouza" rel="noopener noreferrer" target="_blank">
+<i class="fab fa-github"></i>
+<span>View All Repositories</span>
+</a>
+</div>
+</section>
+
+<section aria-label="Contact" class="contact" id="contact">
+<div class="section-header animate-on-scroll">
+<h2>Let's Connect</h2>
+<p>Ready to transform your procurement strategy?</p>
+</div>
+<div class="contact-container">
+<div class="contact-grid animate-on-scroll delay-1">
+<div class="contact-card">
+<div class="contact-icon"><i class="fas fa-envelope"></i></div>
+<h3>Email</h3>
+<p>luciano.vlap@gmail.com</p>
+</div>
+<div class="contact-card">
+<div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+<h3>Location</h3>
+<p>Lisbon, Portugal</p>
+</div>
+</div>
+<div class="contact-links animate-on-scroll delay-2">
+<a class="contact-link" href="https://www.linkedin.com/in/luciano-rodrigues-541a2544/" rel="noopener noreferrer" target="_blank">
+<i class="fab fa-linkedin"></i> LinkedIn
+        </a>
+<a class="contact-link" href="https://github.com/LucianoRSouza" rel="noopener noreferrer" target="_blank">
+<i class="fab fa-github"></i> GitHub
+        </a>
+<a class="contact-link" href="mailto:luciano.vlap@gmail.com">
+<i class="fas fa-envelope"></i> Email Me
+        </a>
+</div>
+</div>
+</section>
+
+<footer>
+<div class="footer-content">
+<p>Luciano Rodrigues de Souza</p>
+<p>AI-Driven Procurement Leader · Strategic Operations · Data Science</p>
+<div class="social-links">
+<a aria-label="LinkedIn" class="social-link" href="https://www.linkedin.com/in/luciano-rodrigues-541a2544/" rel="noopener noreferrer" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+<a aria-label="GitHub" class="social-link" href="https://github.com/LucianoRSouza" rel="noopener noreferrer" target="_blank"><i class="fab fa-github"></i></a>
+<a aria-label="Email" class="social-link" href="mailto:luciano.vlap@gmail.com"><i class="fas fa-envelope"></i></a>
+</div>
+<p style="opacity: 0.6; font-size: 0.9rem;">© 2026 Luciano Rodrigues. All rights reserved.</p>
+</div>
+</footer>
+
+<div class="stat-modal-overlay" id="statModalOverlay">
+<div class="stat-modal">
+<button class="stat-modal-close" onclick="closeStatModal()">×</button>
+<div class="stat-modal-icon"><i class="fas" id="statModalIcon"></i></div>
+<h3 id="statModalTitle"></h3>
+<span class="stat-modal-value" id="statModalValue"></span>
+<div class="stat-modal-details">
+<ul id="statModalDetails"></ul>
+</div>
+</div>
+</div>
+
+<div class="strategy-detail-overlay" id="strategyDetailOverlay">
+<div class="strategy-detail-card">
+<div class="strategy-detail-header">
+<button class="strategy-detail-close" onclick="closeStrategyModal()">×</button>
+<i class="fas fa-2x" id="strategyDetailIcon" style="color: var(--gold); margin-bottom: 1rem;"></i>
+<h3 id="strategyDetailTitle"></h3>
+<p id="strategyDetailSubtitle"></p>
+</div>
+<div class="strategy-detail-body" id="strategyDetailBody"></div>
+</div>
+</div>
+
+<div aria-label="Image preview" aria-modal="true" class="lightbox" id="lightbox" role="dialog">
+<span aria-label="Close" class="lightbox-close" id="lightboxClose" onclick="closeLightbox()">×</span>
+<img alt="Gallery Image" id="lightbox-img" src=""/>
+</div>
+
+<div aria-label="Project gallery" aria-modal="true" class="project-gallery-modal" id="projectGalleryModal" role="dialog">
+<div class="gallery-modal-content">
+<span aria-label="Close" class="gallery-close" id="galleryClose" onclick="closeProjectGallery()">×</span>
+<div class="gallery-slider" id="gallerySlider"></div>
+<div class="gallery-controls">
+<button aria-label="Previous" class="gallery-btn prev" id="galleryPrev" onclick="changeProjectSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+<div class="gallery-dots" id="galleryDots"></div>
+<button aria-label="Next" class="gallery-btn next" id="galleryNext" onclick="changeProjectSlide(1)"><i class="fas fa-chevron-right"></i></button>
+</div>
+</div>
+</div>
+
+<button aria-label="Scroll to top" class="scroll-top" id="scrollTop" onclick="scrollToTop()">
+<i class="fas fa-arrow-up"></i>
+</button>
+
+<div aria-live="polite" class="toast" id="toast" role="status"></div>
+
+<!-- Inline Loading Fix - Garante que o loading some mesmo com Google Translate -->
+<script>
+(function() {
+  // Remove loading screen após 2 segundos máximo
+  setTimeout(function() {
+    var loading = document.getElementById('loading');
+    if (loading) {
+      loading.classList.add('hidden');
+      setTimeout(function() {
+        if (loading.parentNode) loading.parentNode.removeChild(loading);
+      }, 400);
+    }
+  }, 2000);
+
+  // Backup: esconde imediatamente se página já carregou
+  if (document.readyState === 'complete') {
+    var loading = document.getElementById('loading');
+    if (loading) {
+      loading.classList.add('hidden');
+      setTimeout(function() {
+        if (loading.parentNode) loading.parentNode.removeChild(loading);
+      }, 400);
+    }
   }
-  .timeline-item[data-logo="Details_Symbol.jpg"] .timeline-content::after{background-image:url("../Details_Symbol.jpg");}
-  .timeline-item[data-logo="SKN_Global.png"] .timeline-content::after{background-image:url("../SKN_Global.png");}
-  .timeline-item[data-logo="SKN_Brasil.png"] .timeline-content::after{background-image:url("../SKN_Brasil.png");}
-  .timeline-item[data-logo] .timeline-content{padding-top:5.3rem!important;position:relative;}
-}
+})();
+</script>
+
+<script src="js/script.js"></script>
+<script>
+// FORCE LOADING HIDE - Fallback para garantir que o loading desapareça
+(function() {
+  var loading = document.getElementById('loading');
+  if (!loading) return;
+
+  // Método 1: Após 2 segundos
+  setTimeout(function() {
+    loading.classList.add('hidden');
+    setTimeout(function() { loading.remove(); }, 400);
+  }, 2000);
+
+  // Método 2: Quando DOM estiver pronto
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    setTimeout(function() {
+      loading.classList.add('hidden');
+      setTimeout(function() { loading.remove(); }, 400);
+    }, 500);
+  } else {
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(function() {
+        loading.classList.add('hidden');
+        setTimeout(function() { loading.remove(); }, 400);
+      }, 800);
+    });
+  }
+
+  // Método 3: Quando window load (backup)
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      loading.classList.add('hidden');
+      setTimeout(function() { loading.remove(); }, 400);
+    }, 300);
+  });
+})();
+</script>
+</body>
+</html>
