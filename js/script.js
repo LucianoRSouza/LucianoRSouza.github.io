@@ -871,3 +871,86 @@ window.updateCardDots = updateCardDots;
 function openCertModal(imgSrc,title){const o=document.getElementById('certModalOverlay');const i=document.getElementById('certModalImg');const t=document.getElementById('certModalTitle');if(!o||!i||!t)return;i.src=imgSrc;t.textContent=title;o.classList.add('active');document.body.style.overflow='hidden';document.addEventListener('keydown',certEsc)}
 function closeCertModal(){const o=document.getElementById('certModalOverlay');if(!o)return;o.classList.remove('active');document.body.style.overflow='auto';document.removeEventListener('keydown',certEsc);setTimeout(()=>{const i=document.getElementById('certModalImg');if(i)i.src=''},300)}
 function certEsc(e){if(e.key==='Escape')closeCertModal()}
+
+
+/* Article Modal Functions */
+const articleContent = {
+  'ai-contracts': `<h2>How LLMs Are Revolutionizing Contract Analysis</h2>
+    <p><strong>Published:</strong> January 2026 | <strong>Reading time:</strong> 5 minutes</p>
+    <h3>The Challenge</h3>
+    <p>Legal review of procurement contracts traditionally takes days or even weeks. Legal teams must manually scan hundreds of pages to identify key clauses, risks, and compliance issues. This bottleneck delays critical business decisions and increases exposure to legal risks.</p>
+    <h3>The Solution</h3>
+    <p>Large Language Models (LLMs) like GPT-4 can now analyze contracts in minutes, extracting key information with remarkable accuracy. At Details Hospitality, I implemented an LLM-based contract parser that:</p>
+    <ul>
+    <li>Automatically extracts key clauses (termination, liability, payment terms)</li>
+    <li>Identifies missing standard protections</li>
+    <li>Flags unusual or high-risk language</li>
+    <li>Generates executive summaries for stakeholder review</li>
+    </ul>
+    <h3>Results</h3>
+    <p>Contract review time reduced by 80%, from an average of 3 days to 4 hours. Risk detection improved to near 100% for standard clause omissions. Legal team satisfaction increased significantly as they could focus on strategic analysis rather than manual document review.</p>
+    <h3>Technical Implementation</h3>
+    <p>The solution uses OpenAI's API with carefully crafted prompts that include domain-specific knowledge about hospitality procurement. LangChain handles document chunking for long contracts, and Streamlit provides an intuitive interface for the legal team.</p>`,
+
+  'smart-rfp': `<h2>Building Smart RFPs: From Days to Hours</h2>
+    <p><strong>Published:</strong> December 2025 | <strong>Reading time:</strong> 4 minutes</p>
+    <h3>The Traditional RFP Problem</h3>
+    <p>Creating a comprehensive Request for Proposal traditionally requires procurement professionals to manually compile technical specifications, evaluation criteria, and contractual terms. This process is repetitive, error-prone, and consumes valuable time that could be spent on strategic supplier engagement.</p>
+    <h3>AI-Powered RFP Generation</h3>
+    <p>By leveraging historical RFP data and LLMs, I developed a system that generates complete RFP documents from simple inputs:</p>
+    <ul>
+    <li>Category selection (e.g., HVAC maintenance, F&B supplies)</li>
+    <li>Basic requirements and constraints</li>
+    <li>Budget range and timeline</li>
+    </ul>
+    <p>The system automatically generates:</p>
+    <ul>
+    <li>Technical specifications based on category standards</li>
+    <li>Weighted scoring matrices</li>
+    <li>Standard contractual clauses</li>
+    <li>Compliance requirements</li>
+    </ul>
+    <h3>Impact</h3>
+    <p>RFP preparation time reduced by 60%, from 5 days to 2 days on average. More importantly, standardization improved proposal comparability, leading to better supplier selection decisions and an additional 15% in savings through improved competition.</p>`,
+
+  'make-or-buy': `<h2>The Make-or-Buy Decision Framework</h2>
+    <p><strong>Published:</strong> November 2025 | <strong>Reading time:</strong> 6 minutes</p>
+    <h3>Beyond Simple Cost Comparison</h3>
+    <p>The classic make-or-buy decision often relies solely on unit cost comparison. However, this approach misses critical factors like capacity constraints, quality control, intellectual property risks, and strategic alignment.</p>
+    <h3>A Multi-Dimensional Framework</h3>
+    <p>At Details Hospitality, I developed a comprehensive framework that evaluates make-or-buy decisions across five dimensions:</p>
+    <ul>
+    <li><strong>Financial:</strong> Total cost of ownership, not just unit price</li>
+    <li><strong>Operational:</strong> Capacity, flexibility, and service levels</li>
+    <li><strong>Strategic:</strong> Core competency alignment and competitive advantage</li>
+    <li><strong>Risk:</strong> Supply chain resilience and compliance exposure</li>
+    <li><strong>Capability:</strong> Internal expertise and technology requirements</li>
+    </ul>
+    <h3>Case Study: In-House Laundry</h3>
+    <p>Applying this framework to the laundry operation decision revealed that while outsourcing appeared 20% cheaper on a per-unit basis, internal operation provided better control over quality and turnaround times—critical factors for guest satisfaction in luxury hospitality.</p>
+    <h3>The Tool</h3>
+    <p>I built an interactive Excel model with Power BI dashboards that allows scenario modeling and sensitivity analysis, enabling data-driven discussions with stakeholders rather than gut-feel decisions.</p>`
+};
+
+function openArticleModal(articleId) {
+  const overlay = document.getElementById('articleModalOverlay');
+  const content = document.getElementById('articleModalContent');
+  if (!overlay || !content) return;
+
+  content.innerHTML = articleContent[articleId] || '<p>Article content loading...</p>';
+  overlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  document.addEventListener('keydown', handleArticleEsc);
+}
+
+function closeArticleModal() {
+  const overlay = document.getElementById('articleModalOverlay');
+  if (!overlay) return;
+  overlay.classList.remove('active');
+  document.body.style.overflow = 'auto';
+  document.removeEventListener('keydown', handleArticleEsc);
+}
+
+function handleArticleEsc(e) {
+  if (e.key === 'Escape') closeArticleModal();
+}
