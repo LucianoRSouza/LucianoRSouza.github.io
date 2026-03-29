@@ -11,7 +11,7 @@
 <meta content="AI-powered procurement, strategic operations, and product development leadership." property="og:description"/>
 <meta content="website" property="og:type"/>
 <meta content="Photo_Luciano_início.jpg" property="og:image"/>
-<link href="css/style.css" rel="stylesheet"/>
+<link href="./style.css" rel="stylesheet"/>
 <!-- Google Translate Script -->
 <script type="text/javascript">
 function googleTranslateElementInit() {
@@ -24,11 +24,6 @@ function googleTranslateElementInit() {
 }
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async defer></script>
-
-
-
-
-
 </head>
 <body>
 <div class="cursor" id="cursor"></div>
@@ -552,43 +547,8 @@ function googleTranslateElementInit() {
 
 <div class="certs-grid">
 
-<!-- NEW 1: Ethical Considerations for GenAI -->
-<div class="cert-card animate-on-scroll">
- <div class="cert-header">
-  <div class="cert-logo"><img src="Digital sticker_Ethical Considerations for Generative AI.png"></div>
-  <div class="cert-title-group"><h4>IBM SkillsBuild</h4><div class="cert-subtitle">Ethical Considerations for Generative AI</div><span class="cert-date">2026</span></div>
- </div>
- <p>Governance principles, fairness frameworks and responsible AI deployment; ethical guidance for real‑world decision making.</p>
- <div class="ai-application"><strong>How I Apply This in Procurement:</strong><ul>
-  <li>AI Governance: risk & compliance mapping</li>
-  <li>Bias Mitigation</li>
-  <li>Transparency Controls</li>
-  <li>Responsible Automation</li>
-  <li>Ethical Supplier Checks</li>
- </ul></div>
- <a onclick="openCertificate('Ethic_Gen_AI_Cert.jpg')">View Certificate</a>
-</div>
-
-<!-- NEW 2: Getting Started with GenAI -->
-<div class="cert-card animate-on-scroll">
- <div class="cert-header">
-  <div class="cert-logo"><img src="getting-started-with-generative-ai.png"></div>
-  <div class="cert-title-group"><h4>IBM SkillsBuild</h4><div class="cert-subtitle">Getting Started with Generative AI</div><span class="cert-date">2026</span></div>
- </div>
- <p>Core foundations of generative AI concepts, capabilities and practical use cases.</p>
- <div class="ai-application"><strong>How I Apply This in Procurement:</strong><ul>
-  <li>AI Opportunity Mapping</li>
-  <li>Workflow Augmentation</li>
-  <li>AI-Assisted Insights</li>
-  <li>Template Generation</li>
-  <li>Market Research</li>
- </ul></div>
- <a onclick="openCertificate('Gen AI Certificate.pdf')">View Certificate</a>
-</div>
-
-<!-- ORIGINAL CARDS FROM V37 BELOW THIS LINE -->
-
-<div class="cert-card framework-highlight animate-on-scroll">
+<!-- AI-Driven Strategic Procurement Framework - EM DESTAQUE COM MODAL -->
+<div class="cert-card framework-highlight animate-on-scroll" onclick="openCertificateModal('AI_Driven_Strategic_Procurement_Framework.png', 'AI-Driven Strategic Procurement Framework')">
 <div class="framework-content">
 <div class="cert-icon" style="width:60px;height:60px;background:rgba(212,175,55,0.2);border-radius:15px;display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem;">
 <i aria-hidden="true" class="fas fa-star" style="font-size:1.8rem;color:var(--gold);"></i>
@@ -599,12 +559,55 @@ function googleTranslateElementInit() {
 <i aria-hidden="true" class="fas fa-check-circle"></i>
 <span>Proprietary Methodology</span>
 </div>
+<div class="view-cert-btn">
+<i class="fas fa-expand"></i> Click to View Framework
+</div>
 </div>
 <div class="framework-image">
 <img alt="AI Framework" onerror="this.parentElement.style.display='none'" src="AI_Driven_Strategic_Procurement_Framework.png"/>
 </div>
 </div>
-<div class="cert-card animate-on-scroll">
+
+<!-- Ethical Considerations for Generative AI - COM MODAL -->
+<div class="cert-card animate-on-scroll cert-clickable" onclick="openCertificateModal('Ethic_Gen_AI_Cert.jpg', 'Ethical Considerations for Generative AI')">
+<div class="cert-header">
+<div class="cert-logo"><img src="Digital sticker_Ethical Considerations for Generative AI.png"></div>
+<div class="cert-title-group"><h4>IBM SkillsBuild</h4><div class="cert-subtitle">Ethical Considerations for Generative AI</div><span class="cert-date">2026</span></div>
+</div>
+<p>Governance principles, fairness frameworks and responsible AI deployment; ethical guidance for real‑world decision making.</p>
+<div class="ai-application"><strong>How I Apply This in Procurement:</strong><ul>
+<li>AI Governance: risk & compliance mapping</li>
+<li>Bias Mitigation</li>
+<li>Transparency Controls</li>
+<li>Responsible Automation</li>
+<li>Ethical Supplier Checks</li>
+</ul></div>
+<div class="view-cert-btn">
+<i class="fas fa-certificate"></i> View Certificate
+</div>
+</div>
+
+<!-- Getting Started with GenAI - COM MODAL -->
+<div class="cert-card animate-on-scroll cert-clickable" onclick="openCertificateModal('Gen AI Certificate.pdf', 'Getting Started with Generative AI')">
+<div class="cert-header">
+<div class="cert-logo"><img src="getting-started-with-generative-ai.png"></div>
+<div class="cert-title-group"><h4>IBM SkillsBuild</h4><div class="cert-subtitle">Getting Started with Generative AI</div><span class="cert-date">2026</span></div>
+</div>
+<p>Core foundations of generative AI concepts, capabilities and practical use cases.</p>
+<div class="ai-application"><strong>How I Apply This in Procurement:</strong><ul>
+<li>AI Opportunity Mapping</li>
+<li>Workflow Augmentation</li>
+<li>AI-Assisted Insights</li>
+<li>Template Generation</li>
+<li>Market Research</li>
+</ul></div>
+<div class="view-cert-btn">
+<i class="fas fa-certificate"></i> View Certificate
+</div>
+</div>
+
+<!-- Foundations in Generative AI - COM MODAL -->
+<div class="cert-card animate-on-scroll cert-clickable" onclick="openCertificateModal('Foundations_in_Gen_AI_Certificate.jpg', 'Foundations in Generative AI')">
 <div class="cert-header">
 <div class="cert-logo">
 <img alt="IBM Generative AI" onerror="this.style.display='none'" src="Digital_Sticker_Foundations_in_Generative_AI.png"/>
@@ -625,8 +628,13 @@ function googleTranslateElementInit() {
 <li><strong>Market Intel:</strong> proposal comparison & insights</li>
 </ul>
 </div>
+<div class="view-cert-btn">
+<i class="fas fa-certificate"></i> View Certificate
 </div>
-<div class="cert-card animate-on-scroll">
+</div>
+
+<!-- Introduction to LLMs - COM MODAL -->
+<div class="cert-card animate-on-scroll cert-clickable" onclick="openCertificateModal('AI_LLM_Certificate.jpg', 'Introduction to Large Language Models')">
 <div class="cert-header">
 <div class="cert-logo">
 <img alt="IBM LLMs" onerror="this.style.display='none'" src="Digital_Sticker_Introduction_to_Large_Language_Models.png"/>
@@ -647,8 +655,13 @@ function googleTranslateElementInit() {
 <li><strong>Knowledge Ops:</strong> internal procurement assistant</li>
 </ul>
 </div>
+<div class="view-cert-btn">
+<i class="fas fa-certificate"></i> View Certificate
 </div>
-<div class="cert-card animate-on-scroll">
+</div>
+
+<!-- University of Maryland - COM MODAL -->
+<div class="cert-card animate-on-scroll cert-clickable" onclick="openCertificateModal('AI_and_Career_Empowerment_Certificate.jpg', 'AI and Career Empowerment')">
 <div class="cert-header">
 <div class="cert-logo">
 <img alt="University of Maryland" onerror="this.style.display='none'" src="Maryland_University.png"/>
@@ -669,8 +682,13 @@ function googleTranslateElementInit() {
 <li><strong>Skill Development:</strong> Continuous learning pathways enhanced by AI recommendations</li>
 </ul>
 </div>
+<div class="view-cert-btn">
+<i class="fas fa-certificate"></i> View Certificate
 </div>
-<div class="cert-card animate-on-scroll">
+</div>
+
+<!-- MIT Sloan - COM MODAL -->
+<div class="cert-card animate-on-scroll cert-clickable" onclick="openCertificateModal('MIT_Supply_Chain_Certificate.jpg', 'Supply Chain Analytics')">
 <div class="cert-header">
 <div class="cert-logo">
 <img alt="MIT Sloan" onerror="this.style.display='none'" src="MIT.png"/>
@@ -691,8 +709,13 @@ function googleTranslateElementInit() {
 <li><strong>Risk Analytics:</strong> Supply chain risk assessment and mitigation strategies</li>
 </ul>
 </div>
+<div class="view-cert-btn">
+<i class="fas fa-certificate"></i> View Certificate
 </div>
-<div class="cert-card animate-on-scroll">
+</div>
+
+<!-- Harvard - COM MODAL -->
+<div class="cert-card animate-on-scroll cert-clickable" onclick="openCertificateModal('Harvard_Decision_Making_Certificate.jpg', 'Decision-Making in Leadership')">
 <div class="cert-header">
 <div class="cert-logo">
 <img alt="Harvard University" onerror="this.style.display='none'" src="Harvard_University.png"/>
@@ -713,8 +736,13 @@ function googleTranslateElementInit() {
 <li><strong>Change Management:</strong> Leading organizational transformation with data-driven insights</li>
 </ul>
 </div>
+<div class="view-cert-btn">
+<i class="fas fa-certificate"></i> View Certificate
 </div>
-<div class="cert-card animate-on-scroll">
+</div>
+
+<!-- Gadsden State - COM MODAL -->
+<div class="cert-card animate-on-scroll cert-clickable" onclick="openCertificateModal('Gadsden_State_ESL_Certificate.jpg', 'ESL Diploma')">
 <div class="cert-header">
 <div class="cert-logo">
 <img alt="Gadsden State Community College" onerror="this.src='gadsdenstatecommunitycollege.jpg'" src="gadsdenstatecommunitycollege_logo.jpg"/>
@@ -735,9 +763,11 @@ function googleTranslateElementInit() {
 <li><strong>Critical Reading:</strong> Analysis of complex texts and contracts</li>
 </ul>
 </div>
+<div class="view-cert-btn">
+<i class="fas fa-certificate"></i> View Certificate
 </div>
 </div>
-</section>
+
 </div>
 </section>
 
@@ -865,6 +895,22 @@ function googleTranslateElementInit() {
 </div>
 </div>
 
+<!-- Certificate Modal - NOVO -->
+<div class="certificate-modal-overlay" id="certificateModalOverlay">
+<div class="certificate-modal">
+<button class="certificate-modal-close" onclick="closeCertificateModal()">×</button>
+<h3 id="certificateModalTitle"></h3>
+<div class="certificate-modal-content">
+<img id="certificateModalImg" src="" alt="Certificate"/>
+</div>
+<div class="certificate-modal-actions">
+<a id="certificateDownloadLink" href="#" target="_blank" class="btn btn-primary">
+<i class="fas fa-download"></i> Download Certificate
+</a>
+</div>
+</div>
+</div>
+
 <div aria-label="Image preview" aria-modal="true" class="lightbox" id="lightbox" role="dialog">
 <span aria-label="Close" class="lightbox-close" id="lightboxClose" onclick="closeLightbox()">×</span>
 <img alt="Gallery Image" id="lightbox-img" src=""/>
@@ -915,7 +961,7 @@ function googleTranslateElementInit() {
 })();
 </script>
 
-<script src="js/script.js"></script>
+<script src="./script.js"></script>
 <script>
 // FORCE LOADING HIDE - Fallback para garantir que o loading desapareça
 (function() {
