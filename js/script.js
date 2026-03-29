@@ -815,6 +815,76 @@ function initStrategyItems() {
   });
 }
 
+
+/* ============================================
+   CERTIFICATE MODAL FUNCTIONS - NOVO
+   ============================================ */
+
+function openCertificateModal(imageSrc, title) {
+  const overlay = document.getElementById('certificateModalOverlay');
+  const img = document.getElementById('certificateModalImg');
+  const titleEl = document.getElementById('certificateModalTitle');
+  const downloadLink = document.getElementById('certificateDownloadLink');
+
+  if (!overlay || !img || !titleEl) return;
+
+  // Definir conteúdo
+  img.src = imageSrc;
+  titleEl.textContent = title;
+
+  // Configurar link de download
+  if (downloadLink) {
+    downloadLink.href = imageSrc;
+    downloadLink.download = imageSrc.split('/').pop() || 'certificate';
+  }
+
+  // Mostrar modal
+  overlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
+
+  // Adicionar listener para fechar com ESC
+  document.addEventListener('keydown', handleCertificateEsc);
+}
+
+function closeCertificateModal() {
+  const overlay = document.getElementById('certificateModalOverlay');
+  if (!overlay) return;
+
+  overlay.classList.remove('active');
+  document.body.style.overflow = 'auto';
+
+  // Remover listener do ESC
+  document.removeEventListener('keydown', handleCertificateEsc);
+
+  // Limpar imagem após animação
+  setTimeout(() => {
+    const img = document.getElementById('certificateModalImg');
+    if (img) img.src = '';
+  }, 300);
+}
+
+function handleCertificateEsc(e) {
+  if (e.key === 'Escape') {
+    closeCertificateModal();
+  }
+}
+
+// Fechar modal ao clicar fora
+function initCertificateModal() {
+  const overlay = document.getElementById('certificateModalOverlay');
+  if (overlay) {
+    overlay.addEventListener('click', function(e) {
+      if (e.target === overlay) {
+        closeCertificateModal();
+      }
+    });
+  }
+}
+
+// Expor funções globalmente
+window.openCertificateModal = openCertificateModal;
+window.closeCertificateModal = closeCertificateModal;
+
 // Initialize Everything
 document.addEventListener('DOMContentLoaded', () => {
   initLoading(); // PRIMEIRO - esconde loading
