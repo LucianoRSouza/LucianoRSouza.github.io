@@ -867,10 +867,7 @@ window.openProjectGalleryFromCard = openProjectGalleryFromCard;
 window.updateCardDots = updateCardDots;
 
 
-/* ============================================
-   CERTIFICATE MODAL FUNCTIONS
-   ============================================ */
-
+/* Certificate Modal Functions */
 function openCertificateModal(imageSrc,title){const overlay=document.getElementById('certificateModalOverlay');const img=document.getElementById('certificateModalImg');const titleEl=document.getElementById('certificateModalTitle');if(!overlay||!img||!titleEl)return;img.src=imageSrc;titleEl.textContent=title;overlay.classList.add('active');document.body.style.overflow='hidden';document.addEventListener('keydown',handleCertEsc)}
 function closeCertificateModal(){const overlay=document.getElementById('certificateModalOverlay');if(!overlay)return;overlay.classList.remove('active');document.body.style.overflow='auto';document.removeEventListener('keydown',handleCertEsc);setTimeout(()=>{const img=document.getElementById('certificateModalImg');if(img)img.src=''},300)}
 function handleCertEsc(e){if(e.key==='Escape')closeCertificateModal()}
