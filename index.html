@@ -550,8 +550,7 @@ function googleTranslateElementInit() {
 <p>Continuous learning in AI, Data Science, and Strategic Procurement</p>
 </div>
 
-<div class="certs-grid">
-<div class="cert-card framework-highlight animate-on-scroll" onclick="openCertificateModal('AI_Driven_Strategic_Procurement_Framework.png', 'AI-Driven Strategic Procurement Framework')" style="cursor:pointer;">
+<div class="certs-grid"><div class="cert-card framework-highlight animate-on-scroll" onclick="openCertModal('AI_Driven_Strategic_Procurement_Framework.png', 'AI-Driven Strategic Procurement Framework')" style="cursor:pointer;">
 <div class="framework-content">
 <div class="cert-icon" style="width:60px;height:60px;background:rgba(212,175,55,0.2);border-radius:15px;display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem;">
 <i aria-hidden="true" class="fas fa-star" style="font-size:1.8rem;color:var(--gold);"></i>
@@ -563,20 +562,46 @@ function googleTranslateElementInit() {
 <span>Proprietary Methodology</span>
 </div>
 </div>
-
-<div class="cert-card animate-on-scroll" onclick="openCertificateModal('Ethic_Gen_AI_Cert.jpg', 'Ethical Considerations for Generative AI')" style="cursor:pointer;">
+<div class="framework-image">
+<img alt="AI Framework" onerror="this.parentElement.style.display='none'" src="AI_Driven_Strategic_Procurement_Framework.png"/>
+</div>
+</div>
+<div class="cert-card animate-on-scroll" onclick="openCertModal('Ethic_Gen_AI_Cert.jpg', 'Ethical Considerations for Generative AI')" style="cursor:pointer;">
  <div class="cert-header">
   <div class="cert-logo"><img src="Digital sticker_Ethical Considerations for Generative AI.png"></div>
   <div class="cert-title-group"><h4>IBM SkillsBuild</h4><div class="cert-subtitle">Ethical Considerations for Generative AI</div><span class="cert-date">2026</span></div>
+ </div>
+ <p>Governance principles, fairness frameworks and responsible AI deployment; ethical guidance for real‑world decision making.</p>
+ <div class="ai-application"><strong>How I Apply This in Procurement:</strong><ul>
+  <li>AI Governance: risk & compliance mapping</li>
+  <li>Bias Mitigation</li>
+  <li>Transparency Controls</li>
+  <li>Responsible Automation</li>
+  <li>Ethical Supplier Checks</li>
+ </ul></div>
+ <a onclick="openCertificate('Ethic_Gen_AI_Cert.jpg')">View Certificate</a>
 </div>
 
-<div class="cert-card animate-on-scroll" onclick="openCertificateModal('Gen AI Certificate.jpg', 'Getting Started with Generative AI')" style="cursor:pointer;">
+<!-- NEW 2: Getting Started with GenAI -->
+<div class="cert-card animate-on-scroll" onclick="openCertModal('Gen AI Certificate.jpg', 'Getting Started with Generative AI')" style="cursor:pointer;">
  <div class="cert-header">
   <div class="cert-logo"><img src="getting-started-with-generative-ai.png"></div>
   <div class="cert-title-group"><h4>IBM SkillsBuild</h4><div class="cert-subtitle">Getting Started with Generative AI</div><span class="cert-date">2026</span></div>
+ </div>
+ <p>Core foundations of generative AI concepts, capabilities and practical use cases.</p>
+ <div class="ai-application"><strong>How I Apply This in Procurement:</strong><ul>
+  <li>AI Opportunity Mapping</li>
+  <li>Workflow Augmentation</li>
+  <li>AI-Assisted Insights</li>
+  <li>Template Generation</li>
+  <li>Market Research</li>
+ </ul></div>
+ <a onclick="openCertificate('Gen AI Certificate.pdf')">View Certificate</a>
 </div>
 
-<div class="cert-card animate-on-scroll" onclick="openCertificateModal('Foundations_in_Gen_AI_Certificate.jpg', 'Foundations in Generative AI')" style="cursor:pointer;">
+<!-- ORIGINAL CARDS FROM V37 BELOW THIS LINE -->
+
+<div class="cert-card animate-on-scroll">
 <div class="cert-header">
 <div class="cert-logo">
 <img alt="IBM Generative AI" onerror="this.style.display='none'" src="Digital_Sticker_Foundations_in_Generative_AI.png"/>
@@ -587,8 +612,18 @@ function googleTranslateElementInit() {
 <span class="cert-date"><i aria-hidden="true" class="fas fa-calendar"></i> 2025</span>
 </div>
 </div>
-
-<div class="cert-card animate-on-scroll" onclick="openCertificateModal('AI_LLM_Certificate.jpg', 'Introduction to Large Language Models')" style="cursor:pointer;">
+<p>LLM fundamentals, prompt engineering and ethical deployment; practical use in procurement workflows.</p>
+<div class="ai-application">
+<strong><i aria-hidden="true" class="fas fa-lightbulb"></i> How I Apply This in Procurement:</strong>
+<ul>
+<li><strong>Contract Parsing:</strong> clause extraction & risk flags</li>
+<li><strong>Smart RFPs:</strong> auto‑draft specs/SoW; save hours weekly</li>
+<li><strong>Supplier Comms:</strong> consistent, data‑aware templates</li>
+<li><strong>Market Intel:</strong> proposal comparison & insights</li>
+</ul>
+</div>
+</div>
+<div class="cert-card animate-on-scroll">
 <div class="cert-header">
 <div class="cert-logo">
 <img alt="IBM LLMs" onerror="this.style.display='none'" src="Digital_Sticker_Introduction_to_Large_Language_Models.png"/>
@@ -599,7 +634,17 @@ function googleTranslateElementInit() {
 <span class="cert-date"><i aria-hidden="true" class="fas fa-calendar"></i> 2025</span>
 </div>
 </div>
-
+<p>Transformer architecture, tokenization and prompting; patterns for data extraction and decision support.</p>
+<div class="ai-application">
+<strong><i aria-hidden="true" class="fas fa-lightbulb"></i> How I Apply This in Procurement:</strong>
+<ul>
+<li><strong>Doc Intelligence:</strong> quotes/specs parsing</li>
+<li><strong>Forecasting Assist:</strong> LLM‑augmented demand signals</li>
+<li><strong>Compliance:</strong> policy checks vs. contracts</li>
+<li><strong>Knowledge Ops:</strong> internal procurement assistant</li>
+</ul>
+</div>
+</div>
 <div class="cert-card animate-on-scroll">
 <div class="cert-header">
 <div class="cert-logo">
@@ -611,7 +656,17 @@ function googleTranslateElementInit() {
 <span class="cert-date"><i aria-hidden="true" class="fas fa-calendar"></i> Feb 2026</span>
 </div>
 </div>
-
+<p>AI applications in business strategy and automation of procurement workflows.</p>
+<div class="ai-application">
+<strong><i aria-hidden="true" class="fas fa-lightbulb"></i> Applications:</strong>
+<ul>
+<li><strong>Career Strategy:</strong> Leveraging AI for professional growth and networking optimization</li>
+<li><strong>Workflow Automation:</strong> Implementing AI-driven process improvements in procurement operations</li>
+<li><strong>Strategic Planning:</strong> Using predictive analytics for long-term business planning</li>
+<li><strong>Skill Development:</strong> Continuous learning pathways enhanced by AI recommendations</li>
+</ul>
+</div>
+</div>
 <div class="cert-card animate-on-scroll">
 <div class="cert-header">
 <div class="cert-logo">
@@ -623,7 +678,17 @@ function googleTranslateElementInit() {
 <span class="cert-date"><i aria-hidden="true" class="fas fa-calendar"></i> 2025</span>
 </div>
 </div>
-
+<p>Advanced analytics methodologies for supply chain optimization and forecasting.</p>
+<div class="ai-application">
+<strong><i aria-hidden="true" class="fas fa-lightbulb"></i> Applications:</strong>
+<ul>
+<li><strong>Demand Forecasting:</strong> Statistical models for accurate demand prediction</li>
+<li><strong>Inventory Optimization:</strong> Dynamic safety stock and reorder point calculations</li>
+<li><strong>Network Design:</strong> Optimization of distribution networks and logistics</li>
+<li><strong>Risk Analytics:</strong> Supply chain risk assessment and mitigation strategies</li>
+</ul>
+</div>
+</div>
 <div class="cert-card animate-on-scroll">
 <div class="cert-header">
 <div class="cert-logo">
@@ -635,7 +700,17 @@ function googleTranslateElementInit() {
 <span class="cert-date"><i aria-hidden="true" class="fas fa-calendar"></i> 2023</span>
 </div>
 </div>
-
+<p>Evidence‑based decision frameworks and strategic thinking for leaders.</p>
+<div class="ai-application">
+<strong><i aria-hidden="true" class="fas fa-lightbulb"></i> Applications:</strong>
+<ul>
+<li><strong>Strategic Decisions:</strong> Frameworks for complex procurement negotiations</li>
+<li><strong>Stakeholder Management:</strong> Evidence-based approaches to cross-functional leadership</li>
+<li><strong>Risk Assessment:</strong> Structured evaluation of supplier and market risks</li>
+<li><strong>Change Management:</strong> Leading organizational transformation with data-driven insights</li>
+</ul>
+</div>
+</div>
 <div class="cert-card animate-on-scroll">
 <div class="cert-header">
 <div class="cert-logo">
@@ -645,6 +720,17 @@ function googleTranslateElementInit() {
 <h4>Gadsden State Community College</h4>
 <div class="cert-subtitle">Diploma — ESL (English as a Second Language)</div>
 <span class="cert-date"><i aria-hidden="true" class="fas fa-calendar"></i> 1999–2000</span>
+</div>
+</div>
+<p>Academic English program with communication, writing and presentation skills.</p>
+<div class="ai-application">
+<strong><i aria-hidden="true" class="fas fa-lightbulb"></i> Skills Acquired:</strong>
+<ul>
+<li><strong>Academic Writing:</strong> Research papers, essays, and technical documentation</li>
+<li><strong>Public Speaking:</strong> Presentation skills and professional communication</li>
+<li><strong>Cross-Cultural Communication:</strong> Navigating international business contexts</li>
+<li><strong>Critical Reading:</strong> Analysis of complex texts and contracts</li>
+</ul>
 </div>
 </div>
 </div>
@@ -863,17 +949,15 @@ function googleTranslateElementInit() {
   });
 })();
 </script>
-
 <!-- Certificate Modal -->
-<div class="certificate-modal-overlay" id="certificateModalOverlay" onclick="if(event.target===this)closeCertificateModal()">
-<div class="certificate-modal">
-<button class="certificate-modal-close" onclick="closeCertificateModal()">×</button>
-<h3 id="certificateModalTitle"></h3>
-<div class="certificate-modal-content">
-<img id="certificateModalImg" src="" alt="Certificate"/>
+<div class="cert-modal-overlay" id="certModalOverlay" onclick="if(event.target===this)closeCertModal()">
+<div class="cert-modal">
+<button class="cert-modal-close" onclick="closeCertModal()">×</button>
+<h3 id="certModalTitle"></h3>
+<div class="cert-modal-content">
+<img id="certModalImg" src="" alt="Certificate"/>
 </div>
 </div>
 </div>
-
 </body>
 </html>
