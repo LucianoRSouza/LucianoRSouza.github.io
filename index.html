@@ -11,7 +11,7 @@
 <meta content="AI-powered procurement, strategic operations, and product development leadership." property="og:description"/>
 <meta content="website" property="og:type"/>
 <meta content="Photo_Luciano_início.jpg" property="og:image"/>
-<link href="css/style.css" rel="stylesheet"/>
+<link href="./style.css" rel="stylesheet"/>
 <!-- Google Translate Script -->
 <script type="text/javascript">
 function googleTranslateElementInit() {
@@ -29,6 +29,84 @@ function googleTranslateElementInit() {
 
 
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Luciano Rodrigues de Souza",
+  "alternateName": "Luciano Rodrigues",
+  "jobTitle": "AI-Driven Procurement & Operations Leader",
+  "description": "Strategic procurement leader with 15+ years of experience in AI-driven operations, global supply chain management, and digital transformation across Europe, LATAM, and Asia.",
+  "url": "https://lucianorodrigues.github.io",
+  "image": "https://lucianorodrigues.github.io/Photo_Luciano_início.jpg",
+  "sameAs": [
+    "https://www.linkedin.com/in/luciano-rodrigues-541a2544/",
+    "https://github.com/LucianoRSouza"
+  ],
+  "worksFor": {
+    "@type": "Organization",
+    "name": "Details Hospitality",
+    "location": {
+      "@type": "Place",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Lisbon",
+        "addressCountry": "Portugal"
+      }
+    }
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Lisbon",
+    "addressCountry": "Portugal"
+  },
+  "knowsAbout": [
+    "Strategic Procurement",
+    "AI & Machine Learning",
+    "Supply Chain Management",
+    "Operations Excellence",
+    "Contract Negotiation",
+    "Global Trade Shows",
+    "Product Development",
+    "Data Analytics",
+    "Process Optimization"
+  ],
+  "hasCredential": [
+    {
+      "@type": "EducationalOccupationalCredential",
+      "credentialCategory": "Certificate",
+      "name": "Foundations in Generative AI",
+      "recognizedBy": {
+        "@type": "Organization",
+        "name": "IBM SkillsBuild"
+      }
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "credentialCategory": "Certificate",
+      "name": "Supply Chain Analytics",
+      "recognizedBy": {
+        "@type": "Organization",
+        "name": "MIT Sloan School of Management"
+      }
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "credentialCategory": "Certificate",
+      "name": "Decision-Making in Leadership",
+      "recognizedBy": {
+        "@type": "Organization",
+        "name": "Harvard University"
+      }
+    }
+  ],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://lucianorodrigues.github.io"
+  }
+}
+</script>
+<meta name="theme-color" content="#0f1538">
 </head>
 <body>
 <div class="cursor" id="cursor"></div>
@@ -45,6 +123,9 @@ function googleTranslateElementInit() {
   <span style="font-size:11px;font-weight:600;color:var(--navy);text-transform:uppercase;letter-spacing:0.5px;">Tradutor</span>
   <div id="google_translate_element" style="display:inline-block;"></div>
 </div>
+<button class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle dark mode">
+  <i class="fas fa-moon"></i>
+</button>
 
 <nav aria-label="Primary" class="navbar" id="navbar">
 <a class="logo" href="#"><i class="fas fa-crown"></i> LR.</a>
@@ -62,7 +143,8 @@ function googleTranslateElementInit() {
 <div class="hero-particles" id="particles"></div>
 <div class="hero-container">
 <div class="hero-content">
-<h1>Luciano Rodrigues de Souza</h1>
+<div class="hire-badge">Available for hire</div>
+        <h1>Luciano Rodrigues de Souza</h1>
 <p class="subtitle">AI-Driven Procurement & Operations Leader · Strategic Transformation</p>
 <p class="hero-description">
           I connect governance, technical rigor, and AI to deliver measurable outcomes: transparent tenders, reliable partners, and resilient operations across Europe, LATAM, and Asia.
@@ -70,25 +152,25 @@ function googleTranslateElementInit() {
 <div aria-label="Key metrics" class="hero-stats">
 <div aria-label="Cumulative savings delivered" class="stat-box" data-stat="savings" tabindex="0">
 <i aria-hidden="true" class="fas fa-piggy-bank stat-icon"></i>
-<span class="stat-number" id="statSavings">€1M+</span>
+<span class="stat-number" id="statSavings" data-counter="true" data-target="1" data-prefix="€" data-suffix="M+">€1M+</span>
 <span class="stat-label">Cumulative Savings</span>
 <small class="stat-note">Across multi-category negotiations</small>
 </div>
 <div aria-label="Strategic tenders led" class="stat-box" data-stat="rfps" tabindex="0">
 <i aria-hidden="true" class="fas fa-file-contract stat-icon"></i>
-<span class="stat-number" id="statRFPs">120+</span>
+<span class="stat-number" id="statRFPs" data-counter="true" data-target="120" data-suffix="+">120+</span>
 <span class="stat-label">RFP/RFQ Led</span>
 <small class="stat-note">With technical annexes & weighted scoring</small>
 </div>
 <div aria-label="Project value managed" class="stat-box" data-stat="projects" tabindex="0">
 <i aria-hidden="true" class="fas fa-project-diagram stat-icon"></i>
-<span class="stat-number" id="statProjects">€10M+</span>
+<span class="stat-number" id="statProjects" data-counter="true" data-target="10" data-prefix="€" data-suffix="M+">€10M+</span>
 <span class="stat-label">Project Portfolio</span>
 <small class="stat-note">From concept to audited mass production</small>
 </div>
 <div aria-label="Regions served" class="stat-box" data-stat="regions" tabindex="0">
 <i aria-hidden="true" class="fas fa-globe stat-icon"></i>
-<span class="stat-number" id="statRegions">20+</span>
+<span class="stat-number" id="statRegions" data-counter="true" data-target="20" data-suffix="+">20+</span>
 <span class="stat-label">Countries</span>
 <small class="stat-note">Europe · LATAM · Asia</small>
 </div>
@@ -1070,6 +1152,31 @@ function googleTranslateElementInit() {
 
 </section>
 
+<section aria-label="Newsletter" class="newsletter" id="newsletter">
+<div class="section-header animate-on-scroll">
+<h2>Stay Updated</h2>
+<p>Subscribe to receive insights on AI, procurement innovation, and operational excellence</p>
+</div>
+<div class="newsletter-container">
+<form class="newsletter-form" id="newsletterForm">
+<div class="newsletter-input-wrapper">
+<i class="fas fa-envelope newsletter-input-icon"></i>
+<input type="email" class="newsletter-input" id="newsletterEmail" placeholder="Enter your email address" required autocomplete="email">
+</div>
+<button type="submit" class="newsletter-btn" id="newsletterBtn">
+<i class="fas fa-paper-plane"></i>
+Subscribe
+</button>
+</form>
+<div class="newsletter-success" id="newsletterSuccess">
+<i class="fas fa-check-circle"></i> Thank you for subscribing! Check your inbox for confirmation.
+</div>
+<p class="newsletter-privacy">
+<i class="fas fa-lock"></i> We respect your privacy. Unsubscribe at any time.
+</p>
+</div>
+</section>
+
 <footer>
 <div class="footer-content">
 <p>Luciano Rodrigues de Souza</p>
@@ -1157,7 +1264,7 @@ function googleTranslateElementInit() {
 })();
 </script>
 
-<script src="js/script.js"></script>
+<script src="./script.js"></script>
 <script>
 // FORCE LOADING HIDE - Fallback para garantir que o loading desapareça
 (function() {
