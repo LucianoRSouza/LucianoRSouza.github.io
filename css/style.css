@@ -1,6 +1,6 @@
-/* Luciano Rodrigues Portfolio - Optimized CSS with Google Translate */
+/* Luciano Rodrigues Portfolio - Optimized CSS with Animated Counters & Availability Badge */
 
-:root{--navy:#0f1538;--navy-light:#1a2344;--gold:#d4af37;--gold-light:#e5c158;--gold-subtle:#c9a227;--cream:#f8f6f0;--white:#ffffff;--text:#2c3e50;--text-light:#5a6c7d;--container-pad:5%;--radius-xl:30px;--radius-lg:25px;--radius-md:20px;--radius-sm:15px;--shadow-1:0 10px 30px rgba(0,0,0,.08);--shadow-2:0 20px 40px rgba(0,0,0,.15);--shadow-3:0 30px 60px rgba(0,0,0,.25)}
+:root{--navy:#0f1538;--navy-light:#1a2344;--gold:#d4af37;--gold-light:#e5c158;--gold-subtle:#c9a227;--cream:#f8f6f0;--white:#ffffff;--text:#2c3e50;--text-light:#5a6c7d;--container-pad:5%;--radius-xl:30px;--radius-lg:25px;--radius-md:20px;--radius-sm:15px;--shadow-1:0 10px 30px rgba(0,0,0,.08);--shadow-2:0 20px 40px rgba(0,0,0,.15);--shadow-3:0 30px 60px rgba(0,0,0,.25);--success:#10b981;--success-light:#34d399}
 
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -22,6 +22,15 @@ button{border:0;background:none;cursor:pointer}
 @keyframes pulse-glow{0%,100%{box-shadow:0 0 16px rgba(212,175,55,.28)}50%{box-shadow:0 0 34px rgba(212,175,55,.55)}}
 @keyframes rotate-slow{from{transform:rotate(0)}to{transform:rotate(360deg)}}
 
+/* Availability Badge - Elegante e Sutil */
+.availability-badge{position:fixed;top:90px;right:20px;z-index:1501;display:flex;align-items:center;gap:8px;padding:8px 16px;background:rgba(255,255,255,.95);border-radius:999px;border:2px solid var(--success);box-shadow:0 4px 15px rgba(16,185,129,.2);backdrop-filter:blur(10px);transition:all .3s ease;cursor:pointer}
+.availability-badge:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(16,185,129,.3)}
+.availability-pulse{width:8px;height:8px;background:var(--success);border-radius:50%;animation:pulse-availability 2s infinite;flex-shrink:0}
+@keyframes pulse-availability{0%{box-shadow:0 0 0 0 rgba(16,185,129,.7)}70%{box-shadow:0 0 0 10px rgba(16,185,129,0)}100%{box-shadow:0 0 0 0 rgba(16,185,129,0)}}
+.availability-text{font-size:11px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.5px;white-space:nowrap}
+@media(max-width:768px){.availability-badge{top:70px;right:10px;padding:6px 12px}.availability-text{font-size:10px}}
+@media(max-width:480px){.availability-badge{display:none}}
+
 /* Loading Screen */
 .loading{position:fixed;inset:0;background:var(--navy);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;transition:opacity .4s ease}
 .loading.hidden{opacity:0;pointer-events:none}
@@ -30,22 +39,15 @@ button{border:0;background:none;cursor:pointer}
 .loading-progress{height:100%;background:var(--gold);animation:loading 1.8s ease forwards}
 @keyframes loading{to{width:100%}}
 
-/* Google Translate Widget - VERSÃO MINIMALISTA TRANSPARENTE */
-/* O container agora está no HTML com label "Tradutor" */
+/* Google Translate Widget */
 #google_translate_element{display:inline-block}
 .goog-te-gadget{margin:0!important}
-
-/* Esconder elementos do Google Translate que não queremos */
 .goog-te-banner-frame.skiptranslate{display:none!important}
 .goog-logo-link{display:none!important}
 .goog-te-gadget span{display:none!important}
 .goog-te-gadget{height:auto!important;overflow:visible!important}
-
-/* Estilo do select do Google Translate - MINIMALISTA */
 .goog-te-gadget .goog-te-combo{margin:0!important;padding:4px 8px!important;border-radius:10px!important;border:1px solid rgba(212,175,55,.4)!important;background:rgba(255,255,255,.9)!important;color:var(--navy)!important;font-family:'Inter',sans-serif!important;font-weight:600!important;font-size:11px!important;cursor:pointer!important;outline:none!important;width:auto!important;min-width:80px!important;height:auto!important}
 .goog-te-gadget .goog-te-combo:hover{border-color:var(--gold)!important;box-shadow:0 2px 8px rgba(212,175,55,.2)!important}
-
-/* Remove o banner do topo */
 body{top:0!important}
 
 /* Navbar */
@@ -72,6 +74,7 @@ nav .logo{display:flex;align-items:center;gap:10px;font-family:'Playfair Display
 .stat-box:hover{transform:translateY(-8px)scale(1.03);background:rgba(212,175,55,.12);border-color:var(--gold);box-shadow:0 18px 38px rgba(212,175,55,.22)}
 .stat-icon{font-size:1.9rem;color:var(--gold);margin-bottom:.35rem}
 .stat-number{display:block;font-size:2rem;font-weight:800;color:var(--gold)}
+.stat-number .counter{display:inline}
 .stat-label{font-size:.82rem;opacity:.85;text-transform:uppercase;letter-spacing:.8px}
 .stat-note{display:block;margin-top:.3rem;font-size:.72rem;opacity:.7}
 .hero-buttons{display:flex;gap:.9rem;flex-wrap:wrap;animation:fadeInUp .9s ease .42s both}
@@ -194,7 +197,7 @@ section{padding:6rem var(--container-pad);position:relative}
 .lightbox-close{position:absolute;top:28px;right:46px;color:#fff;font-size:2.8rem;cursor:pointer;transition:all .25s ease}
 .lightbox-close:hover{color:var(--gold);transform:rotate(90deg)scale(1.06)}
 
-/* Trade Shows - DESIGN ORIGINAL RESTAURADO */
+/* Trade Shows */
 .trade-shows{background:linear-gradient(180deg,var(--cream)0%,var(--white)100%)}
 .gallery-tabs{display:flex;justify-content:center;gap:1rem;margin-bottom:2.4rem;flex-wrap:wrap}
 .gallery-tab{padding:.95rem 1.8rem;background:var(--white);border:2px solid transparent;border-radius:999px;font-weight:700;color:var(--text);box-shadow:0 4px 14px rgba(0,0,0,.06);transition:all .25s ease;cursor:pointer}
@@ -218,7 +221,7 @@ section{padding:6rem var(--container-pad);position:relative}
 .strategy-item i{width:50px;height:50px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--navy);font-size:1.2rem;flex-shrink:0}
 .strategy-item p{color:var(--navy);font-weight:600;font-size:.95rem}
 
-/* Certifications - BLOCO EM DESTAQUE CENTRALIZADO E MENOR */
+/* Certifications */
 .certs{background:var(--navy);color:var(--white);position:relative;overflow:hidden}
 .certs::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(212,175,55,.06)0%,transparent 70%);animation:rotate-slow 40s linear infinite}
 .certs .section-header h2{color:#fff}
@@ -240,8 +243,7 @@ section{padding:6rem var(--container-pad);position:relative}
 .ai-application ul{margin:0;padding-left:1.2rem}
 .ai-application li{color:rgba(255,255,255,.9);margin:.45rem 0;line-height:1.5}
 
-/* Framework Highlight - CENTRALIZADO E MENOR */
-/* Framework Highlight - FORMATO ORIGINAL HORIZONTAL */
+/* Framework Highlight */
 .framework-highlight{grid-column:1 / -1;background:linear-gradient(135deg,rgba(212,175,55,.16),rgba(212,175,55,.06));border:2px solid var(--gold);display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center;padding:2.5rem;max-width:1000px;margin:0 auto 1.8rem;border-radius:18px}
 .framework-content{width:100%}
 .framework-content h3{font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--gold);margin-bottom:.6rem}
@@ -364,7 +366,7 @@ footer{background:var(--navy);color:#fff;text-align:center;padding:2.4rem var(--
 .timeline-item::before,.timeline-content::before{display:none}
 .timeline-content{margin-left:0}
 .about-grid{grid-template-columns:1fr}
-
+.availability-badge{top:80px}
 }
 
 @media(max-width:980px){
@@ -392,8 +394,8 @@ nav.navbar{box-shadow:0 6px 22px rgba(0,0,0,.26)}
 .projects-grid{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
 .ml-metrics{grid-template-columns:1fr}
 .contact-grid{grid-template-columns:1fr}
-
-
+.availability-badge{top:70px;right:10px;padding:6px 12px}
+.availability-text{font-size:10px}
 }
 
 @media(max-width:540px){
@@ -402,6 +404,7 @@ nav.navbar{box-shadow:0 6px 22px rgba(0,0,0,.26)}
 .stat-number{font-size:1.4rem}
 .lang-switcher{top:70px;right:10px;padding:4px}
 .goog-te-gadget .goog-te-combo{padding:3px 6px!important;font-size:10px!important;min-width:70px!important}
+.availability-badge{display:none}
 }
 
 @media(max-width:420px){
@@ -429,7 +432,7 @@ a,button,.project-card,.repo-item,.contact-link,.social-link,.gallery-item,.gall
 @media print{
 *{background:#fff !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}
 a[href]::after{content:"(" attr(href)")";font-size:.9em}
-nav,.lang-switcher,.cursor,.cursor-follower,.scroll-top,.toast,.lightbox,.project-gallery-modal{display:none !important}
+nav,.lang-switcher,.cursor,.cursor-follower,.scroll-top,.toast,.lightbox,.project-gallery-modal,.availability-badge{display:none !important}
 section{padding:1.2cm .8cm}
 .project-gallery,.gallery-main,.gallery-overlay{display:none !important}
 .timeline-item::before,.timeline-content::before{display:none !important}
@@ -442,32 +445,23 @@ section{padding:1.2cm .8cm}
 }
 
 /* V23 */
-
-/* V23 translator */
 .translator-box{position:fixed;top:90px;right:20px;z-index:1500;background:rgba(255,255,255,.75);padding:8px 12px;border-radius:14px;}
 @media(max-width:768px){.translator-box{top:10px!important;right:10px!important;}}
-/* V23 fairs fix */
 .project-card[data-gallery]{cursor:pointer;}
-/* V23 timeline mobile logos */
 @media(max-width:1200px){.timeline-item[data-logo] .timeline-content{padding-top:4rem;}
 .timeline-item[data-logo] .timeline-content::after{content:"";position:absolute;top:-3rem;left:0;width:60px;height:60px;background-size:contain;background-repeat:no-repeat;background-image:attr(data-logo url);} }
 
 /* V25 overrides */
-
-/* V25 translator smaller */
 .translator-box{position:fixed;top:90px;right:14px;z-index:1500;background:rgba(255,255,255,.7);padding:4px 8px;border-radius:12px;max-width:120px;}
 @media(max-width:768px){.translator-box{top:6px!important;right:6px!important;max-width:90px;padding:3px 6px;}}
-/* V25 timeline mobile logos */
 @media(max-width:1200px){.timeline-item[data-logo] .timeline-content{position:relative;padding-top:4rem!important;}
 .timeline-item[data-logo] .timeline-content::after{content:"";position:absolute;top:-3.1rem;left:0;width:52px;height:52px;background-size:contain;background-repeat:no-repeat;background-image:attr(data-logo url);} }
-/* V25 fix fairs spacing */
 .trade-shows .project-card{all:unset;display:block;width:100%;}
 .trade-shows .gold-frame{max-width:800px;margin:0 auto;border-radius:25px;border:3px solid var(--gold);overflow:hidden;cursor:pointer;}
-/* V25 gallery one click */
 .project-card{pointer-events:auto!important;}
 .project-card *{pointer-events:auto!important;}
 
-/* Mobile Timeline Logos — V36 (fine alignment) */
+/* Mobile Timeline Logos — V36 */
 @media (max-width: 1200px){
   .timeline-item[data-logo] .timeline-content::after{
     content:"";position:absolute;top:-5.2rem;left:0;width:58px;height:58px;
@@ -480,7 +474,6 @@ section{padding:1.2cm .8cm}
   .timeline-item[data-logo="SKN_Brasil.png"] .timeline-content::after{background-image:url("../SKN_Brasil.png");}
   .timeline-item[data-logo] .timeline-content{padding-top:5.3rem!important;position:relative;}
 }
-
 
 /* Cert Modal */
 .cert-modal-overlay{position:fixed;inset:0;background:rgba(15,21,56,.96);backdrop-filter:blur(10px);z-index:6000;display:none;align-items:center;justify-content:center;padding:2rem;opacity:0;transition:opacity .3s ease}
@@ -501,11 +494,7 @@ section{padding:1.2cm .8cm}
 .cert-modal-close{top:12px;right:12px;width:40px;height:40px}
 }
 
-
-/* ============================================
-   TESTIMONIALS SECTION
-   ============================================ */
-
+/* Testimonials */
 .testimonials{background:linear-gradient(180deg,var(--cream)0%,var(--white)100%);padding:6rem var(--container-pad)}
 .testimonials-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:2rem}
 .testimonial-card{background:var(--white);padding:2rem;border-radius:20px;box-shadow:var(--shadow-1);border:2px solid transparent;transition:all .25s ease;position:relative}
@@ -519,10 +508,7 @@ section{padding:1.2cm .8cm}
 .testimonial-date{margin-top:1rem;color:var(--text-light);font-size:.85rem;text-align:right}
 @media(max-width:768px){.testimonials-grid{grid-template-columns:1fr}}
 
-/* ============================================
-   BLOG SECTION
-   ============================================ */
-
+/* Blog */
 .blog{background:var(--white);padding:6rem var(--container-pad)}
 .blog-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
 .blog-card{background:var(--white);border-radius:20px;overflow:hidden;box-shadow:var(--shadow-1);border:1px solid rgba(0,0,0,.05);transition:all .28s ease;cursor:pointer}
@@ -552,10 +538,7 @@ section{padding:1.2cm .8cm}
 .article-modal-content li{margin:.5rem 0}
 @media(max-width:768px){.article-modal-overlay{padding:1rem;align-items:center}.article-modal{width:calc(100vw - 2rem);border-radius:20px}.article-modal-content{padding:1.5rem}}
 
-/* ============================================
-   GITHUB SHOWCASE SECTION
-   ============================================ */
-
+/* GitHub Showcase */
 .github-showcase{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-bottom:3rem}
 .project-showcase-card{background:var(--white);border-radius:20px;padding:2rem;box-shadow:var(--shadow-1);border:2px solid transparent;transition:all .25s ease;display:flex;flex-direction:column}
 .project-showcase-card:hover{border-color:var(--gold);transform:translateY(-6px);box-shadow:var(--shadow-2)}
@@ -576,10 +559,7 @@ section{padding:1.2cm .8cm}
 .github-cta p{color:rgba(255,255,255,.8);margin-bottom:1.5rem}
 @media(max-width:980px){.github-showcase{grid-template-columns:1fr}}
 
-/* ============================================
-   CONTACT CTA SECTION
-   ============================================ */
-
+/* Contact CTA */
 .contact-cta-grid{max-width:1100px;margin:0 auto 3rem;display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
 .contact-cta-card{background:var(--white);padding:2.5rem 2rem;border-radius:20px;text-align:center;box-shadow:var(--shadow-1);border:2px solid transparent;transition:all .25s ease}
 .contact-cta-card:hover{border-color:var(--gold);transform:translateY(-8px);box-shadow:var(--shadow-2)}
