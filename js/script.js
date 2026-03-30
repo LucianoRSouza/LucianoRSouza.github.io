@@ -1,4 +1,4 @@
-/* Luciano Rodrigues Portfolio - Google Translate Optimized */
+/* Luciano Rodrigues Portfolio - Google Translate Optimized with Animated Counters */
 
 const PG_state = { images: [], index: 0 };
 const CardSlides = new Map();
@@ -7,6 +7,63 @@ let savedScrollPosition = 0;
 const $  = (sel, ctx = document) => ctx.querySelector(sel);
 const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
 const on = (el, evt, fn, opts) => el && el.addEventListener(evt, fn, opts);
+
+/* ============================================
+   ANIMATED COUNTERS
+   ============================================ */
+
+class AnimatedCounter {
+  constructor(element, options = {}) {
+    this.element = element;
+    this.target = parseInt(element.dataset.target) || 0;
+    this.prefix = element.dataset.prefix || '';
+    this.suffix = element.dataset.suffix || '';
+    this.duration = options.duration || 2000;
+    this.startTime = null;
+    this.started = false;
+
+    // Create intersection observer
+    this.observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !this.started) {
+          this.start();
+        }
+      });
+    }, { threshold: 0.5 });
+
+    this.observer.observe(element);
+  }
+
+  start() {
+    this.started = true;
+    this.startTime = performance.now();
+    this.animate();
+  }
+
+  animate(currentTime = performance.now()) {
+    const elapsed = currentTime - this.startTime;
+    const progress = Math.min(elapsed / this.duration, 1);
+
+    // Easing function (ease-out-expo)
+    const easeOut = 1 - Math.pow(1 - progress, 3);
+    const current = Math.floor(easeOut * this.target);
+
+    this.element.textContent = this.prefix + current.toLocaleString() + this.suffix;
+
+    if (progress < 1) {
+      requestAnimationFrame((time) => this.animate(time));
+    } else {
+      this.element.textContent = this.prefix + this.target.toLocaleString() + this.suffix;
+    }
+  }
+}
+
+function initCounters() {
+  const counters = document.querySelectorAll('.counter');
+  counters.forEach(counter => {
+    new AnimatedCounter(counter, { duration: 2000 });
+  });
+}
 
 /* Stat Details Data */
 const StatDetailsData = {
@@ -615,7 +672,6 @@ function updateTimelineSpy() {
   const indicators = $$('.indicator-dot');
   if (!logoImg) return;
 
-  // Encontrar qual item está mais centralizado na tela
   let activeIndex = 0;
   let minDistance = Infinity;
   const windowCenter = window.innerHeight / 2;
@@ -630,14 +686,11 @@ function updateTimelineSpy() {
       activeIndex = idx;
     }
 
-    // Remover active de todos primeiro
     item.classList.remove('active');
   });
 
-  // Adicionar active apenas no item mais próximo do centro
   items[activeIndex].classList.add('active');
 
-  // Atualizar logo
   const activeItem = items[activeIndex];
   if (activeItem) {
     const newLogo = activeItem.getAttribute('data-logo');
@@ -651,7 +704,6 @@ function updateTimelineSpy() {
     }
   }
 
-  // Atualizar indicadores
   indicators.forEach((dot, idx) => dot.classList.toggle('active', idx === activeIndex));
 }
 
@@ -677,15 +729,10 @@ function initParticles() {
   }
 }
 
-/* ============================================
-   LOADING SCREEN - CORREÇÃO DEFINITIVA
-   ============================================ */
-
 function hideLoading() {
   const loading = $('#loading');
   if (!loading) return;
 
-  // Verifica se já está escondido
   if (loading.classList.contains('hidden')) return;
 
   loading.classList.add('hidden');
@@ -698,10 +745,8 @@ function initLoading() {
   const loading = $('#loading');
   if (!loading) return;
 
-  // ESTRATÉGIA 1: Fallback de 2 segundos (independente de tudo)
   setTimeout(hideLoading, 2000);
 
-  // ESTRATÉGIA 2: Quando DOM estiver pronto
   if (document.readyState === 'complete' || document.readyState === 'interactive') {
     setTimeout(hideLoading, 500);
   } else {
@@ -710,17 +755,14 @@ function initLoading() {
     });
   }
 
-  // ESTRATÉGIA 3: Quando tudo carregar (imagens, etc)
   window.addEventListener('load', () => {
     hideLoading();
   });
 
-  // ESTRATÉGIA 4: MutationObserver - detecta quando Google Translate modifica o DOM
   if (window.MutationObserver) {
     let attempts = 0;
     const observer = new MutationObserver((mutations) => {
       attempts++;
-      // Se houver muitas mutações (Google Translate ativo), esconde mais cedo
       if (attempts > 10 || document.querySelector('.goog-te-menu-frame')) {
         hideLoading();
         observer.disconnect();
@@ -732,7 +774,6 @@ function initLoading() {
       subtree: true
     });
 
-    // Para o observer após 3 segundos
     setTimeout(() => observer.disconnect(), 3000);
   }
 }
@@ -817,7 +858,7 @@ function initStrategyItems() {
 
 // Initialize Everything
 document.addEventListener('DOMContentLoaded', () => {
-  initLoading(); // PRIMEIRO - esconde loading
+  initLoading();
   initNavbarScroll();
   initScrollAnimations();
   initParticles();
@@ -830,11 +871,10 @@ document.addEventListener('DOMContentLoaded', () => {
   initCursor();
   initStatModals();
   initStrategyItems();
+  initCounters(); // NEW: Initialize animated counters
 
-  // Garantir que cliques nos projetos abram a galeria
   $$('.project-card').forEach(card => {
     card.addEventListener('click', function(e) {
-      // Não abre se estiver clicando em um link ou botão dentro do card
       if (e.target.closest('a') || e.target.closest('button')) return;
       openProjectGalleryFromCard(this);
     });
@@ -866,12 +906,10 @@ window.scrollToTop = scrollToTop;
 window.openProjectGalleryFromCard = openProjectGalleryFromCard;
 window.updateCardDots = updateCardDots;
 
-
 /* Cert Modal Functions */
 function openCertModal(imgSrc,title){const o=document.getElementById('certModalOverlay');const i=document.getElementById('certModalImg');const t=document.getElementById('certModalTitle');if(!o||!i||!t)return;i.src=imgSrc;t.textContent=title;o.classList.add('active');document.body.style.overflow='hidden';document.addEventListener('keydown',certEsc)}
 function closeCertModal(){const o=document.getElementById('certModalOverlay');if(!o)return;o.classList.remove('active');document.body.style.overflow='auto';document.removeEventListener('keydown',certEsc);setTimeout(()=>{const i=document.getElementById('certModalImg');if(i)i.src=''},300)}
 function certEsc(e){if(e.key==='Escape')closeCertModal()}
-
 
 /* Article Modal Functions */
 const articleContent = {
