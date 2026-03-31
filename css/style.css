@@ -1136,29 +1136,377 @@ body.dark-mode .skill-tag:hover {
   margin: 0 auto !important;
 }
 
-.github-btn {
-  background: var(--gold) !important;
-  color: var(--navy) !important;
-  padding: 1rem 2.5rem !important;
-  font-size: 1.1rem !important;
-  font-weight: 700 !important;
-  box-shadow: 0 10px 30px rgba(212,175,55,0.3) !important;
-  border-radius: 50px !important;
-}
 
-.github-btn:hover {
-  transform: translateY(-3px) !important;
-  box-shadow: 0 15px 40px rgba(212,175,55,0.4) !important;
-}
+
+
 
 @media (max-width: 768px) {
-  .github-interactive {
-    padding: 2rem 1rem !important;
-  }
+  
 
   .github-interactive .btn {
     width: 100% !important;
     max-width: 280px !important;
     justify-content: center !important;
+  }
+}
+
+/* ============================================
+   DARK MODE GLOBAL FIX - Todos os textos
+   ============================================ */
+
+/* Forçar cor clara em TODOS os parágrafos e textos no dark mode */
+body.dark-mode p,
+body.dark-mode li,
+body.dark-mode span:not(.stat-number):not(.impact-value):not(.github-stat-value):not(.metric-number),
+body.dark-mode div:not(.gallery-overlay):not(.loading):not(.loading-bar):not(.loading-progress) {
+  color: #e8e6e1;
+}
+
+/* Títulos em dourado */
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6 {
+  color: var(--gold);
+}
+
+/* Cards e boxes específicos */
+body.dark-mode .lang-item,
+body.dark-mode .skill-tag,
+body.dark-mode .project-tag {
+  background: rgba(212, 175, 55, 0.15);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+body.dark-mode .lang-item span,
+body.dark-mode .skill-tag,
+body.dark-mode .project-tag {
+  color: var(--gold-light) !important;
+}
+
+body.dark-mode .lang-item:hover,
+body.dark-mode .skill-tag:hover,
+body.dark-mode .project-tag:hover {
+  background: var(--gold);
+  color: var(--navy) !important;
+}
+
+body.dark-mode .lang-item:hover span,
+body.dark-mode .skill-tag:hover,
+body.dark-mode .project-tag:hover {
+  color: var(--navy) !important;
+}
+
+/* About bullets */
+body.dark-mode .about-bullets li {
+  color: #e8e6e1 !important;
+}
+
+body.dark-mode .about-bullets li strong {
+  color: var(--gold-light) !important;
+}
+
+/* Achievement boxes */
+body.dark-mode .achievement-box {
+  background: rgba(212, 175, 55, 0.1);
+  border-left-color: var(--gold);
+}
+
+body.dark-mode .achievement-box strong {
+  color: var(--gold-light) !important;
+}
+
+body.dark-mode .achievement-box li {
+  color: #e8e6e1 !important;
+}
+
+/* AI Application boxes */
+body.dark-mode .ai-application {
+  background: rgba(212, 175, 55, 0.08);
+  border-color: rgba(212, 175, 55, 0.3);
+}
+
+body.dark-mode .ai-application strong {
+  color: var(--gold-light) !important;
+}
+
+body.dark-mode .ai-application li {
+  color: #e8e6e1 !important;
+}
+
+/* Strategy detail sections */
+body.dark-mode .strategy-detail-section {
+  background: rgba(212, 175, 55, 0.08);
+  border-color: rgba(212, 175, 55, 0.3);
+}
+
+body.dark-mode .strategy-detail-section h4 {
+  color: var(--gold-light) !important;
+}
+
+body.dark-mode .strategy-detail-section li {
+  color: #e8e6e1 !important;
+}
+
+/* Timeline */
+body.dark-mode .timeline-company {
+  color: var(--gold-light) !important;
+}
+
+body.dark-mode .date-level {
+  background: rgba(212, 175, 55, 0.15);
+  border-color: rgba(212, 175, 55, 0.3);
+  color: var(--gold-light) !important;
+}
+
+/* Showcase */
+body.dark-mode .showcase-content p {
+  color: #e8e6e1 !important;
+}
+
+body.dark-mode .tech-tag {
+  background: rgba(212, 175, 55, 0.15);
+  border-color: rgba(212, 175, 55, 0.3);
+  color: var(--gold-light) !important;
+}
+
+body.dark-mode .metric-desc {
+  color: #a0a8b8 !important;
+}
+
+/* Blog */
+body.dark-mode .blog-category {
+  background: rgba(212, 175, 55, 0.15);
+  color: var(--gold-light) !important;
+}
+
+body.dark-mode .blog-meta {
+  color: #a0a8b8 !important;
+}
+
+/* Contact */
+body.dark-mode .contact-intro p {
+  color: #a0a8b8 !important;
+}
+
+body.dark-mode .contact-info-item {
+  color: #e8e6e1 !important;
+}
+
+body.dark-mode .contact-info-item a {
+  color: var(--gold-light) !important;
+}
+
+/* Footer */
+body.dark-mode footer p {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Newsletter */
+body.dark-mode .newsletter-input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Modais */
+body.dark-mode .stat-modal-details li {
+  color: #e8e6e1 !important;
+}
+
+body.dark-mode .stat-modal-details li::before {
+  color: var(--gold);
+}
+
+/* Project highlights */
+body.dark-mode .project-highlights {
+  color: #a0a8b8 !important;
+}
+
+/* Gallery overlay */
+body.dark-mode .gallery-overlay {
+  background: rgba(15, 21, 56, 0.85);
+}
+
+body.dark-mode .gallery-overlay span {
+  color: #fff !important;
+}
+
+/* Hero */
+body.dark-mode .hero-description {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+body.dark-mode .stat-box .stat-label,
+body.dark-mode .stat-box .stat-note {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+/* Floating badges */
+body.dark-mode .floating-badge {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(212, 175, 55, 0.4);
+}
+
+body.dark-mode .floating-badge span {
+  color: #fff !important;
+}
+
+body.dark-mode .floating-badge i {
+  color: var(--gold);
+}
+
+/* ============================================
+   GITHUB SECTION - BOTÃO CENTRALIZADO
+   ============================================ */
+
+.github-interactive {
+  background: linear-gradient(135deg, var(--navy), var(--navy-light));
+  border-radius: 24px;
+  padding: 3rem 2rem;
+  text-align: center;
+  color: #fff;
+  max-width: 800px;
+  margin: 0 auto 2rem;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid var(--gold);
+}
+
+.github-interactive::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(212,175,55,0.1) 0%, transparent 70%);
+  animation: rotate-slow 40s linear infinite;
+}
+
+.github-interactive > * {
+  position: relative;
+  z-index: 1;
+}
+
+.github-interactive > i {
+  font-size: 4rem;
+  color: var(--gold);
+  margin-bottom: 1.5rem;
+  display: inline-block;
+  transition: transform 0.5s ease;
+}
+
+.github-interactive:hover > i {
+  transform: rotate(360deg) scale(1.1);
+}
+
+.github-interactive h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.github-interactive > p {
+  color: rgba(255,255,255,0.85) !important;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+}
+
+.github-stats-row {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin: 2rem 0;
+  flex-wrap: wrap;
+}
+
+.github-stat {
+  text-align: center;
+}
+
+.github-stat-value {
+  display: block;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--gold);
+}
+
+.github-stat-label {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.7);
+}
+
+/* CONTAINER DO BOTÃO - CENTRALIZADO */
+.github-btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+  width: 100%;
+}
+
+/* BOTÃO PRINCIPAL */
+.github-btn-main {
+  background: var(--gold) !important;
+  color: var(--navy) !important;
+  padding: 1rem 2.5rem !important;
+  font-size: 1.1rem !important;
+  font-weight: 700 !important;
+  border-radius: 50px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.7rem !important;
+  box-shadow: 0 10px 30px rgba(212,175,55,0.3) !important;
+  transition: all 0.3s ease !important;
+  text-decoration: none !important;
+  border: none !important;
+  cursor: pointer !important;
+}
+
+.github-btn-main:hover {
+  transform: translateY(-3px) scale(1.02) !important;
+  box-shadow: 0 15px 40px rgba(212,175,55,0.5) !important;
+  background: var(--gold-light) !important;
+}
+
+.github-btn-main i {
+  font-size: 1.2rem;
+}
+
+.github-btn-main span {
+  color: var(--navy) !important;
+  font-weight: 700 !important;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .github-interactive {
+    padding: 2rem 1rem !important;
+    margin: 0 1rem 2rem !important;
+  }
+
+  .github-interactive h3 {
+    font-size: 1.5rem;
+  }
+
+  .github-stats-row {
+    gap: 2rem;
+  }
+
+  .github-stat-value {
+    font-size: 1.5rem;
+  }
+
+  .github-btn-container {
+    padding: 0 1rem;
+  }
+
+  .github-btn-main {
+    width: 100% !important;
+    max-width: 300px !important;
+    justify-content: center !important;
+    padding: 1rem 2rem !important;
   }
 }
