@@ -1068,3 +1068,97 @@ body.dark-mode .impact-label{
     touch-action:manipulation;
   }
 }
+
+/* DARK MODE EXTRA FIXES - Contraste */
+
+body.dark-mode .volunteer-card,
+body.dark-mode .volunteer-card h3,
+body.dark-mode .volunteer-card .school,
+body.dark-mode .volunteer-card .period,
+body.dark-mode .volunteer-card .description {
+  color: var(--dark-text) !important;
+}
+
+body.dark-mode .volunteer-card .school {
+  color: var(--gold) !important;
+}
+
+body.dark-mode .volunteer-card .description {
+  color: var(--dark-text-secondary) !important;
+}
+
+body.dark-mode .section-header h2 {
+  color: var(--gold) !important;
+}
+
+body.dark-mode .about-content h3,
+body.dark-mode .about-content p,
+body.dark-mode .leadership-philosophy {
+  color: var(--dark-text) !important;
+}
+
+body.dark-mode .about-bullets li {
+  color: var(--dark-text-secondary) !important;
+}
+
+body.dark-mode .stat-box .stat-label,
+body.dark-mode .stat-box .stat-note {
+  color: rgba(255,255,255,0.8) !important;
+}
+
+body.dark-mode .floating-badge {
+  background: rgba(255,255,255,0.1);
+  color: var(--dark-text);
+}
+
+body.dark-mode .hero-description {
+  color: rgba(255,255,255,0.9) !important;
+}
+
+body.dark-mode .subtitle {
+  color: var(--gold-light) !important;
+}
+
+body.dark-mode .skill-tag {
+  background: rgba(212,175,55,0.2);
+  color: var(--gold-light);
+}
+
+body.dark-mode .project-tag:hover,
+body.dark-mode .skill-tag:hover {
+  background: var(--gold);
+  color: var(--navy);
+}
+
+/* GITHUB BUTTON CENTER FIX */
+.github-interactive .btn {
+  display: inline-flex !important;
+  margin: 0 auto !important;
+}
+
+.github-btn {
+  background: var(--gold) !important;
+  color: var(--navy) !important;
+  padding: 1rem 2.5rem !important;
+  font-size: 1.1rem !important;
+  font-weight: 700 !important;
+  box-shadow: 0 10px 30px rgba(212,175,55,0.3) !important;
+  border-radius: 50px !important;
+}
+
+.github-btn:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 15px 40px rgba(212,175,55,0.4) !important;
+}
+
+@media (max-width: 768px) {
+  .github-interactive {
+    padding: 2rem 1rem !important;
+  }
+
+  .github-interactive .btn {
+    width: 100% !important;
+    max-width: 280px !important;
+    justify-content: center !important;
+  }
+}
