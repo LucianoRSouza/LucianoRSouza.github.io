@@ -1219,3 +1219,85 @@ function animateHeroStat(element) {
 document.addEventListener('DOMContentLoaded', () => {
   setTimeout(initHeroCounters, 500);
 });
+
+/* ============================================
+   MOBILE GALLERY ONE-TAP FIX - 2026
+   ============================================ */
+
+function initMobileGalleryFix() {
+  // Verificar se é mobile
+  const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
+  if (!isTouchDevice) return;
+
+  // Selecionar todos os cards de projeto e galerias
+  const projectCards = document.querySelectorAll('.project-card');
+  const galleryItems = document.querySelectorAll('.gallery-item, .trade-shows .gold-frame');
+
+  projectCards.forEach(card => {
+    const galleryMain = card.querySelector('.gallery-main');
+    if (!galleryMain) return;
+
+    // Remover handlers antigos para evitar duplicação
+    galleryMain.removeEventListener('touchend', handleGalleryTouch);
+
+    // Adicionar novo handler
+    galleryMain.addEventListener('touchend', handleGalleryTouch, { passive: false });
+
+    // Também adicionar ao card inteiro se tiver data-gallery
+    if (card.hasAttribute('data-gallery')) {
+      card.removeEventListener('touchend', handleCardTouch);
+      card.addEventListener('touchend', handleCardTouch, { passive: false });
+    }
+  });
+
+  // Trade shows galleries
+  galleryItems.forEach(item => {
+    item.removeEventListener('touchend', handleGalleryTouch);
+    item.addEventListener('touchend', handleGalleryTouch, { passive: false });
+  });
+}
+
+function handleGalleryTouch(e) {
+  e.preventDefault();
+  e.stopPropagation();
+
+  const card = e.currentTarget.closest('.project-card') || e.currentTarget;
+  if (card) {
+    openProjectGalleryFromCard(card);
+  }
+}
+
+function handleCardTouch(e) {
+  e.preventDefault();
+  e.stopPropagation();
+
+  const card = e.currentTarget;
+  if (card && card.hasAttribute('data-gallery')) {
+    openProjectGalleryFromCard(card);
+  }
+}
+
+// Inicializar quando DOM estiver pronto
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(initMobileGalleryFix, 500);
+});
+
+// Também adicionar cursor pointer para indicar clicabilidade
+document.head.insertAdjacentHTML('beforeend', `
+  <style>
+    @media (hover: none) and (pointer: coarse) {
+      .project-card .gallery-main,
+      .gallery-item,
+      .trade-shows .gold-frame {
+        cursor: pointer !important;
+        -webkit-tap-highlight-color: transparent !important;
+      }
+
+      .project-card .gallery-main:active,
+      .gallery-item:active,
+      .trade-shows .gold-frame:active {
+        opacity: 0.8;
+      }
+    }
+  </style>
+`);
