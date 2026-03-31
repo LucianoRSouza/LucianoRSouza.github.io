@@ -1,367 +1,3 @@
-/* Luciano Rodrigues Portfolio - Complete Dark Mode Edition */
-
-:root{
-  --navy:#0f1538;
-  --navy-light:#1a2344;
-  --gold:#d4af37;
-  --gold-light:#e5c158;
-  --gold-subtle:#c9a227;
-  --cream:#f8f6f0;
-  --white:#ffffff;
-  --text:#2c3e50;
-  --text-light:#5a6c7d;
-  --container-pad:5%;
-  --radius-xl:30px;
-  --radius-lg:25px;
-  --radius-md:20px;
-  --radius-sm:15px;
-  --shadow-1:0 10px 30px rgba(0,0,0,.08);
-  --shadow-2:0 20px 40px rgba(0,0,0,.15);
-  --shadow-3:0 30px 60px rgba(0,0,0,.25);
-
-  /* Dark Mode Variables */
-  --dark-bg:#0a0e27;
-  --dark-surface:#12183a;
-  --dark-elevated:#1a2344;
-  --dark-border:rgba(212,175,55,0.15);
-  --dark-text:#e8e6e1;
-  --dark-text-secondary:#a0a8b8;
-}
-
-/* Dark Mode Class */
-body.dark-mode{
-  background:var(--dark-bg);
-  color:var(--dark-text);
-}
-
-body.dark-mode .cream,
-body.dark-mode section.about,
-body.dark-mode section.timeline,
-body.dark-mode section.trade-shows,
-body.dark-mode section.testimonials,
-body.dark-mode section.volunteer-section,
-body.dark-mode section.github,
-body.dark-mode section.blog{
-  background:var(--dark-bg);
-}
-
-body.dark-mode section.projects,
-body.dark-mode section.certs,
-body.dark-mode section.contact{
-  background:var(--dark-surface);
-}
-
-body.dark-mode .section-header p,
-body.dark-mode .timeline-description,
-body.dark-mode .project-content p,
-body.dark-mode .testimonial-author span,
-body.dark-mode .blog-content>p,
-body.dark-mode .contact-cta-card p{
-  color:var(--dark-text-secondary);
-}
-
-body.dark-mode .project-card,
-body.dark-mode .testimonial-card,
-body.dark-mode .blog-card,
-body.dark-mode .contact-cta-card,
-body.dark-mode .volunteer-card,
-body.dark-mode .timeline-content,
-body.dark-mode .cert-card{
-  background:var(--dark-elevated);
-  border-color:var(--dark-border);
-}
-
-body.dark-mode .project-tag,
-body.dark-mode .skill-tag,
-body.dark-mode .lang-item{
-  background:rgba(212,175,55,0.1);
-}
-
-body.dark-mode .stat-box{
-  background:rgba(255,255,255,0.05);
-}
-
-body.dark-mode .hero-description,
-body.dark-mode .about-content p,
-body.dark-mode .leadership-philosophy{
-  color:var(--dark-text);
-}
-
-body.dark-mode .about-bullets li,
-body.dark-mode .achievement-box,
-body.dark-mode .ai-application{
-  color:var(--dark-text);
-}
-
-/* Dark Mode Toggle Button */
-.dark-mode-toggle{
-  position:fixed;
-  top:90px;
-  right:140px;
-  z-index:1501;
-  width:44px;
-  height:44px;
-  border-radius:50%;
-  background:rgba(255,255,255,0.9);
-  border:2px solid var(--gold);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  cursor:pointer;
-  transition:all 0.3s ease;
-  box-shadow:0 4px 15px rgba(0,0,0,0.15);
-}
-
-.dark-mode-toggle:hover{
-  transform:scale(1.1) rotate(15deg);
-  background:var(--gold);
-}
-
-.dark-mode-toggle i{
-  font-size:1.2rem;
-  color:var(--navy);
-}
-
-body.dark-mode .dark-mode-toggle{
-  background:var(--dark-elevated);
-  border-color:var(--gold);
-}
-
-body.dark-mode .dark-mode-toggle i{
-  color:var(--gold);
-}
-
-@media(max-width:768px){
-  .dark-mode-toggle{
-    top:6px;
-    right:100px;
-    width:38px;
-    height:38px;
-  }
-}
-
-/* Counter Animation Styles */
-.counter-value{
-  display:inline-block;
-  font-variant-numeric:tabular-nums;
-}
-
-.counter-suffix{
-  display:inline-block;
-}
-
-/* Animated Badge - Let's Build Together */
-.build-badge{
-  position:fixed;
-  bottom:100px;
-  right:30px;
-  z-index:998;
-  background:linear-gradient(135deg,var(--gold),var(--gold-light));
-  color:var(--navy);
-  padding:12px 20px;
-  border-radius:50px;
-  font-weight:700;
-  font-size:0.9rem;
-  display:flex;
-  align-items:center;
-  gap:8px;
-  box-shadow:0 8px 25px rgba(212,175,55,0.4);
-  animation:pulse-badge 2s infinite;
-  cursor:pointer;
-  transition:all 0.3s ease;
-  text-decoration:none;
-}
-
-.build-badge:hover{
-  transform:translateY(-3px) scale(1.05);
-  box-shadow:0 12px 35px rgba(212,175,55,0.5);
-}
-
-.build-badge i{
-  font-size:1rem;
-}
-
-@keyframes pulse-badge{
-  0%,100%{box-shadow:0 8px 25px rgba(212,175,55,0.4)}
-  50%{box-shadow:0 8px 35px rgba(212,175,55,0.6)}
-}
-
-@media(max-width:768px){
-  .build-badge{
-    bottom:80px;
-    right:15px;
-    padding:10px 16px;
-    font-size:0.8rem;
-  }
-}
-
-/* Newsletter Section */
-.newsletter{
-  background:linear-gradient(135deg,var(--navy),var(--navy-light));
-  padding:4rem var(--container-pad);
-  position:relative;
-  overflow:hidden;
-}
-
-.newsletter::before{
-  content:'';
-  position:absolute;
-  top:-50%;
-  left:-50%;
-  width:200%;
-  height:200%;
-  background:radial-gradient(circle,rgba(212,175,55,0.08)0%,transparent 70%);
-  animation:rotate-slow 40s linear infinite;
-}
-
-.newsletter-container{
-  max-width:800px;
-  margin:0 auto;
-  text-align:center;
-  position:relative;
-  z-index:1;
-}
-
-.newsletter h2{
-  font-family:'Playfair Display',serif;
-  color:var(--gold);
-  font-size:2rem;
-  margin-bottom:0.5rem;
-}
-
-.newsletter>p{
-  color:rgba(255,255,255,0.85);
-  margin-bottom:2rem;
-  font-size:1.1rem;
-}
-
-.newsletter-form{
-  display:flex;
-  gap:1rem;
-  justify-content:center;
-  flex-wrap:wrap;
-}
-
-.newsletter-input{
-  flex:1;
-  min-width:280px;
-  max-width:400px;
-  padding:14px 20px;
-  border-radius:50px;
-  border:2px solid rgba(212,175,55,0.3);
-  background:rgba(255,255,255,0.1);
-  color:#fff;
-  font-size:1rem;
-  transition:all 0.3s ease;
-}
-
-.newsletter-input::placeholder{
-  color:rgba(255,255,255,0.6);
-}
-
-.newsletter-input:focus{
-  outline:none;
-  border-color:var(--gold);
-  background:rgba(255,255,255,0.15);
-}
-
-.newsletter-btn{
-  padding:14px 28px;
-  border-radius:50px;
-  background:var(--gold);
-  color:var(--navy);
-  font-weight:700;
-  border:none;
-  cursor:pointer;
-  display:flex;
-  align-items:center;
-  gap:8px;
-  transition:all 0.3s ease;
-}
-
-.newsletter-btn:hover{
-  transform:translateY(-2px);
-  box-shadow:0 8px 20px rgba(212,175,55,0.3);
-}
-
-.newsletter-features{
-  display:flex;
-  justify-content:center;
-  gap:2rem;
-  margin-top:1.5rem;
-  flex-wrap:wrap;
-}
-
-.newsletter-features span{
-  color:rgba(255,255,255,0.7);
-  font-size:0.85rem;
-  display:flex;
-  align-items:center;
-  gap:6px;
-}
-
-.newsletter-features i{
-  color:var(--gold);
-}
-
-@media(max-width:600px){
-  .newsletter-form{
-    flex-direction:column;
-    align-items:center;
-  }
-  .newsletter-input{
-    min-width:100%;
-  }
-}
-
-/* Impact Widget */
-.impact-widget{
-  background:linear-gradient(135deg,rgba(212,175,55,0.15),rgba(212,175,55,0.05));
-  border:2px solid var(--gold);
-  border-radius:20px;
-  padding:1.5rem 2rem;
-  display:flex;
-  justify-content:center;
-  gap:3rem;
-  flex-wrap:wrap;
-  margin:2rem auto;
-  max-width:900px;
-}
-
-.impact-item{
-  text-align:center;
-}
-
-.impact-value{
-  display:block;
-  font-size:2rem;
-  font-weight:800;
-  color:var(--gold);
-  font-variant-numeric:tabular-nums;
-}
-
-.impact-label{
-  font-size:0.85rem;
-  color:var(--text-light);
-  text-transform:uppercase;
-  letter-spacing:0.5px;
-}
-
-body.dark-mode .impact-label{
-  color:var(--dark-text-secondary);
-}
-
-@media(max-width:768px){
-  .impact-widget{
-    gap:1.5rem;
-    padding:1.2rem;
-  }
-  .impact-value{
-    font-size:1.6rem;
-  }
-}
-
-/* Original CSS abaixo - MANTIDO INTEIRO */
 /* Luciano Rodrigues Portfolio - Optimized CSS with Google Translate */
 
 :root{--navy:#0f1538;--navy-light:#1a2344;--gold:#d4af37;--gold-light:#e5c158;--gold-subtle:#c9a227;--cream:#f8f6f0;--white:#ffffff;--text:#2c3e50;--text-light:#5a6c7d;--container-pad:5%;--radius-xl:30px;--radius-lg:25px;--radius-md:20px;--radius-sm:15px;--shadow-1:0 10px 30px rgba(0,0,0,.08);--shadow-2:0 20px 40px rgba(0,0,0,.15);--shadow-3:0 30px 60px rgba(0,0,0,.25)}
@@ -956,3 +592,248 @@ section{padding:1.2cm .8cm}
 .contact-info-item a{color:var(--navy);font-weight:600;transition:color .2s ease}
 .contact-info-item a:hover{color:var(--gold)}
 @media(max-width:900px){.contact-cta-grid{grid-template-columns:1fr;max-width:500px}}
+
+/* DARK MODE TEXT CONTRAST FIXES - 2026 */
+body.dark-mode .project-content h3,
+body.dark-mode .testimonial-author h4,
+body.dark-mode .blog-card h3,
+body.dark-mode .contact-cta-card h3,
+body.dark-mode .volunteer-card h3,
+body.dark-mode .timeline-title,
+body.dark-mode .cert-card h4,
+body.dark-mode .showcase-header h3,
+body.dark-mode .strategy-detail-header h3,
+body.dark-mode .stat-modal h3,
+body.dark-mode .article-modal-content h2,
+body.dark-mode .article-modal-content h3 {
+  color: var(--gold) !important;
+}
+
+body.dark-mode .project-content p,
+body.dark-mode .testimonial-content p,
+body.dark-mode .blog-content > p,
+body.dark-mode .contact-cta-card p,
+body.dark-mode .volunteer-card .description,
+body.dark-mode .timeline-description,
+body.dark-mode .cert-card > p,
+body.dark-mode .showcase-content p,
+body.dark-mode .strategy-detail-body,
+body.dark-mode .stat-modal-details,
+body.dark-mode .article-modal-content p,
+body.dark-mode .article-modal-content li {
+  color: #e8e6e1 !important;
+  opacity: 0.95;
+}
+
+body.dark-mode .testimonial-author span,
+body.dark-mode .blog-meta,
+body.dark-mode .project-highlights,
+body.dark-mode .cert-subtitle,
+body.dark-mode .cert-date,
+body.dark-mode .metric-desc,
+body.dark-mode .impact-label,
+body.dark-mode .newsletter-features span {
+  color: #a0a8b8 !important;
+}
+
+body.dark-mode .project-tag,
+body.dark-mode .tech-tag,
+body.dark-mode .blog-category {
+  background: rgba(212, 175, 55, 0.15);
+  color: var(--gold-light);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+body.dark-mode .achievement-box,
+body.dark-mode .ai-application,
+body.dark-mode .strategy-detail-section {
+  background: rgba(212, 175, 55, 0.08);
+  border-color: rgba(212, 175, 55, 0.3);
+}
+
+body.dark-mode .achievement-box strong,
+body.dark-mode .ai-application strong,
+body.dark-mode .strategy-detail-body h4 {
+  color: var(--gold-light);
+}
+
+body.dark-mode .stat-modal-value {
+  color: var(--gold);
+  text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+}
+
+body.dark-mode .counter-value,
+body.dark-mode .impact-value {
+  color: var(--gold-light);
+}
+
+/* MOBILE GALLERY ONE-TAP FIX - 2026 */
+.project-card,
+.gallery-item,
+.trade-shows .gold-frame {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.project-card .gallery-main,
+.gallery-item img,
+.trade-shows .gallery-main {
+  pointer-events: auto;
+  touch-action: manipulation;
+}
+
+/* GitHub CTA Centered */
+.github-cta {
+  text-align: center;
+}
+
+.github-cta .btn {
+  margin: 0 auto;
+  display: inline-flex;
+}
+
+/* Enhanced GitHub Button */
+.github-showcase {
+  margin-bottom: 2rem;
+}
+
+.github-interactive {
+  background: linear-gradient(135deg, var(--navy), var(--navy-light));
+  border-radius: 24px;
+  padding: 3rem;
+  text-align: center;
+  color: #fff;
+  max-width: 800px;
+  margin: 0 auto 2rem;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid var(--gold);
+}
+
+.github-interactive::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(212,175,55,0.1) 0%, transparent 70%);
+  animation: rotate-slow 40s linear infinite;
+}
+
+.github-interactive > * {
+  position: relative;
+  z-index: 1;
+}
+
+.github-interactive i {
+  font-size: 4rem;
+  color: var(--gold);
+  margin-bottom: 1.5rem;
+  display: inline-block;
+  transition: transform 0.5s ease;
+}
+
+.github-interactive:hover i {
+  transform: rotate(360deg) scale(1.1);
+}
+
+.github-interactive h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.github-interactive p {
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+}
+
+.github-stats-row {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin: 2rem 0;
+  flex-wrap: wrap;
+}
+
+.github-stat {
+  text-align: center;
+}
+
+.github-stat-value {
+  display: block;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--gold);
+}
+
+.github-stat-label {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.7);
+}
+
+.github-interactive .btn {
+  background: var(--gold);
+  color: var(--navy);
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+  box-shadow: 0 10px 30px rgba(212,175,55,0.3);
+}
+
+.github-interactive .btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(212,175,55,0.4);
+}
+
+@media (max-width: 768px) {
+  .github-interactive {
+    padding: 2rem 1.5rem;
+  }
+
+  .github-interactive h3 {
+    font-size: 1.5rem;
+  }
+
+  .github-stats-row {
+    gap: 2rem;
+  }
+
+  .github-stat-value {
+    font-size: 1.5rem;
+  }
+}
+
+/* MOBILE GALLERY ONE-TAP FIX - 2026 */
+.project-card,
+.gallery-item,
+.trade-shows .gold-frame,
+.project-gallery,
+.gallery-main {
+  touch-action: manipulation !important;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.project-card .gallery-main,
+.gallery-item,
+.trade-shows .gallery-main {
+  cursor: pointer;
+  -webkit-touch-callout: none;
+  user-select: none;
+}
+
+/* Remove 300ms delay em mobile */
+@media (hover: none) and (pointer: coarse) {
+  .project-card,
+  .gallery-item,
+  .trade-shows .gold-frame {
+    touch-action: manipulation;
+  }
+
+  .project-card:active,
+  .gallery-item:active,
+  .trade-shows .gold-frame:active {
+    transform: scale(0.98);
+  }
+}
