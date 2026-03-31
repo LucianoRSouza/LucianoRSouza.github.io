@@ -1510,3 +1510,89 @@ body.dark-mode .floating-badge i {
     padding: 1rem 2rem !important;
   }
 }
+
+/* CONTACT SECTION - Let's build something together text fix */
+body.dark-mode .contact-intro h3 {
+  color: var(--gold) !important;
+}
+
+body.dark-mode .contact-intro p {
+  color: #e8e6e1 !important;
+}
+
+/* Garantir que textos em strong sejam visíveis */
+body.dark-mode strong {
+  color: var(--gold-light) !important;
+}
+
+/* Timeline company names */
+body.dark-mode .timeline-company {
+  color: var(--gold) !important;
+}
+
+/* Date ranges */
+body.dark-mode .date-range {
+  color: var(--gold-light) !important;
+}
+
+/* Fix para textos em spans dentro de elementos específicos */
+body.dark-mode .contact-cta-card h3,
+body.dark-mode .contact-cta-card p {
+  color: #e8e6e1 !important;
+}
+
+body.dark-mode .contact-cta-card .cta-icon {
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+}
+
+body.dark-mode .contact-cta-card .cta-icon i {
+  color: var(--navy) !important;
+}
+
+/* MOBILE BUTTONS POSITION FIX */
+@media (max-width: 768px) {
+  .build-badge {
+    bottom: 90px !important;
+    right: 15px !important;
+    padding: 10px 16px !important;
+    font-size: 0.8rem !important;
+    z-index: 997 !important;
+  }
+
+  .scroll-top {
+    bottom: 25px !important;
+    right: 25px !important;
+    width: 50px !important;
+    height: 50px !important;
+    z-index: 998 !important;
+  }
+
+  /* Ajustar translator no mobile */
+  .translator-box {
+    top: 70px !important;
+    right: 10px !important;
+  }
+
+  /* Ajustar dark mode toggle no mobile */
+  .dark-mode-toggle {
+    top: 70px !important;
+    right: 100px !important;
+  }
+}
+
+/* Para telas muito pequenas */
+@media (max-width: 380px) {
+  .build-badge {
+    bottom: 85px !important;
+    right: 10px !important;
+    padding: 8px 12px !important;
+    font-size: 0.75rem !important;
+  }
+
+  .scroll-top {
+    bottom: 20px !important;
+    right: 20px !important;
+    width: 45px !important;
+    height: 45px !important;
+  }
+}
