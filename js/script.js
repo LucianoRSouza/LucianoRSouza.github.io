@@ -954,3 +954,200 @@ function closeArticleModal() {
 function handleArticleEsc(e) {
   if (e.key === 'Escape') closeArticleModal();
 }
+
+
+/* ============================================
+   DARK MODE - 2026
+   ============================================ */
+
+function initDarkMode() {
+  const toggle = document.getElementById('darkModeToggle');
+  const icon = document.getElementById('darkModeIcon');
+  const body = document.body;
+
+  if (!toggle || !icon) return;
+
+  // Check localStorage
+  const savedMode = localStorage.getItem('darkMode');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+  if (savedMode === 'true' || (savedMode === null && prefersDark)) {
+    body.classList.add('dark-mode');
+    icon.classList.remove('fa-moon');
+    icon.classList.add('fa-sun');
+  }
+
+  toggle.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+    const isDark = body.classList.contains('dark-mode');
+
+    if (isDark) {
+      icon.classList.remove('fa-moon');
+      icon.classList.add('fa-sun');
+    } else {
+      icon.classList.remove('fa-sun');
+      icon.classList.add('fa-moon');
+    }
+
+    localStorage.setItem('darkMode', isDark);
+  });
+}
+
+/* ============================================
+   ANIMATED COUNTERS - 2026
+   ============================================ */
+
+function initCounters() {
+  const counters = document.querySelectorAll('[data-counter]');
+  if (!counters.length) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounter(entry.target);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  counters.forEach(counter => observer.observe(counter));
+}
+
+function animateCounter(element) {
+  const target = parseInt(element.getAttribute('data-counter'), 10);
+  const prefix = element.getAttribute('data-prefix') || '';
+  const suffix = element.getAttribute('data-suffix') || '';
+  const duration = 2000;
+  const steps = 60;
+  const stepTime = duration / steps;
+  let current = 0;
+
+  const timer = setInterval(() => {
+    current += target / steps;
+    if (current >= target) {
+      current = target;
+      clearInterval(timer);
+    }
+    const formatted = Math.floor(current).toLocaleString('en-US');
+    element.textContent = prefix + formatted + suffix;
+  }, stepTime);
+}
+
+/* ============================================
+   MODAL SCROLL RESET - 2026
+   ============================================ */
+
+// Sobrescrever funções de modal para resetar scroll
+const originalOpenArticleModal = window.openArticleModal;
+window.openArticleModal = function(articleId) {
+  const overlay = document.getElementById('articleModalOverlay');
+  const content = document.getElementById('articleModalContent');
+  if (!overlay || !content) return;
+
+  content.innerHTML = articleContent[articleId] || '<p>Article content loading...</p>';
+  overlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  document.addEventListener('keydown', handleArticleEsc);
+
+  // RESET SCROLL
+  setTimeout(() => {
+    content.scrollTop = 0;
+  }, 50);
+};
+
+const originalOpenStrategyModal = window.openStrategyModal;
+window.openStrategyModal = function(num) {
+  const data = StrategyDetailsData[num];
+  if (!data) return;
+
+  document.getElementById('strategyDetailIcon').className = `fas ${data.icon}`;
+  document.getElementById('strategyDetailTitle').textContent = data.title;
+  document.getElementById('strategyDetailSubtitle').textContent = data.subtitle;
+
+  const body = data.sections.map(sec => {
+    const items = sec.items.map(li => `<li>${li}</li>`).join('');
+    return `<div class="strategy-detail-section"><h4><i class="fas fa-chevron-right"></i> ${sec.title}</h4><ul>${items}</ul></div>`;
+  }).join('');
+
+  document.getElementById('strategyDetailBody').innerHTML = body;
+  document.getElementById('strategyDetailOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+
+  // RESET SCROLL
+  setTimeout(() => {
+    const card = document.querySelector('.strategy-detail-card');
+    const bodyEl = document.querySelector('.strategy-detail-body');
+    if (card) card.scrollTop = 0;
+    if (bodyEl) bodyEl.scrollTop = 0;
+  }, 50);
+};
+
+const originalOpenCertModal = window.openCertModal;
+window.openCertModal = function(imgSrc, title) {
+  const o = document.getElementById('certModalOverlay');
+  const i = document.getElementById('certModalImg');
+  const t = document.getElementById('certModalTitle');
+  if (!o || !i || !t) return;
+
+  i.src = imgSrc;
+  t.textContent = title;
+  o.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  document.addEventListener('keydown', certEsc);
+
+  // RESET SCROLL
+  setTimeout(() => {
+    const content = o.querySelector('.cert-modal-content');
+    if (content) content.scrollTop = 0;
+  }, 50);
+}
+
+/* ============================================
+   NEWSLETTER HANDLER - 2026
+   ============================================ */
+
+function handleNewsletterSubmit(event) {
+  event.preventDefault();
+  const form = event.target;
+  const email = form.querySelector('input[type="email"]').value;
+  const btn = form.querySelector('button');
+
+  // Validar email
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailPattern.test(email)) {
+    showToast('Please enter a valid email address');
+    return;
+  }
+
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i><span>Subscribing...</span>';
+  btn.disabled = true;
+
+  setTimeout(() => {
+    // Criar mensagem de sucesso
+    const successMsg = document.createElement('div');
+    successMsg.innerHTML = `
+      <div style="background:linear-gradient(135deg,rgba(40,167,69,0.9),rgba(40,167,69,0.7));color:white;padding:20px;border-radius:12px;margin-top:20px;text-align:center;animation:fadeInUp 0.5s ease;">
+        <i class="fas fa-check-circle" style="font-size:2rem;margin-bottom:10px;display:block;"></i>
+        <strong style="font-size:1.1rem;display:block;margin-bottom:8px;">Welcome aboard!</strong>
+        <span style="opacity:0.9;">You've joined <strong>Procurement, Data & Operations</strong>.<br>Check your inbox for a confirmation email.</span>
+      </div>
+    `;
+
+    form.parentNode.insertBefore(successMsg, form.nextSibling);
+    form.style.display = 'none';
+
+    showToast('Successfully subscribed!');
+    console.log('Newsletter subscription:', email);
+  }, 1500);
+}
+
+window.handleNewsletterSubmit = handleNewsletterSubmit;
+
+/* ============================================
+   INITIALIZE ALL - 2026
+   ============================================ */
+
+document.addEventListener('DOMContentLoaded', () => {
+  initDarkMode();
+  initCounters();
+});
