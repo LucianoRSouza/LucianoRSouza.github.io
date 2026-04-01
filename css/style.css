@@ -1834,3 +1834,44 @@ body.dark-mode p, body.dark-mode li, body.dark-mode span{color:#e8e6e1!important
 .stat-modal-details li, .strategy-detail-body li, .article-modal-content p{color:#e8e6e1!important;}
 /* Hero stats fix */
 .stat-number{color:var(--gold)!important;}
+/* ===============================
+   FIX FINAL – Translator + Dark Mode
+   Tamanho menor, delicados, iguais
+   =============================== */
+
+.translator-box,
+.dark-mode-toggle {
+  position: fixed !important;
+  top: 70px !important;
+
+  width: 32px !important;   /* ✅ MENOR */
+  height: 32px !important;  /* ✅ MENOR */
+  border-radius: 50% !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  /* ✅ Glassmorphism stealth mais delicado */
+  background: rgba(255,255,255,0.06) !important;
+  backdrop-filter: blur(6px) !important;
+
+  /* ✅ Borda mais sutil */
+  border: 1.5px solid rgba(212,175,55,0.25) !important;
+
+  /* ✅ Sombra reduzida (mais delicada) */
+  box-shadow: 0 2px 10px rgba(0,0,0,0.10) !important;
+
+  cursor: pointer;
+  transition: all .25s ease !important;
+}
+
+/* ✅ Botão do Dark Mode fica um pouco mais à direita */
+.dark-mode-toggle {
+  right: 10px !important;
+}
+
+/* ✅ Botão do Tradutor fica mais próximo do Dark Mode */
+.translator-box {
+  right: 48px !important;
+}
