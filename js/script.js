@@ -1178,68 +1178,18 @@ function animateHeroStat(element) {
   const hasPlus = text.includes('+');
   const hasM = text.includes('M');
 
-  // Extrair número diretamente do texto (dinâmico)
-  const numericValue = parseInt(text.replace(/[^0-9]/g, ''), 10);
-  let target = numericValue;
+  // Extrair número
+  let target = 0;
+  if (hasM) {
+    target = 1; // 1M
+  } else if (text.includes('120')) {
+    target = 120;
+  } else if (text.includes('10')) {
+    target = 10;
+  } else if (text.includes('20')) {
+    target = 20;
+  }
 
-  const duration = 4000;
-  const steps = 80;
-  const stepTime = duration / steps;
-
-  let current = 0;
-
-  const timer = setInterval(() => {
-    current += target / steps;
-
-    if (current >= target) {
-      current = target;
-      clearInterval(timer);
-    }
-
-    let result = '';
-    if (hasEuro) result += '€';
-
-    if (hasM) {
-      result += current.toFixed(current < 1 ? 1 : 0) + 'M';
-    } else {
-      result += Math.floor(current);
-    }
-
-    if (hasPlus) result += '+';
-
-    element.textContent = result;
-
-  }, stepTime);
-}
-
-  const duration = 4000;
-  const steps = 80;
-  const stepTime = duration / steps;
-
-  let current = 0;
-
-  const timer = setInterval(() => {
-    current += target / steps;
-    if (current >= target) {
-      current = target;
-      clearInterval(timer);
-    }
-
-    let result = '';
-    if (hasEuro) result += '€';
-
-    if (hasM) {
-      result += current.toFixed(current < 1 ? 1 : 0) + 'M';
-    } else {
-      result += Math.floor(current);
-    }
-
-    if (hasPlus) result += '+';
-
-    element.textContent = result;
-
-  }, stepTime);
-}
   const duration = 4000;
   const steps = 80;
   const stepTime = duration / steps;
