@@ -1570,54 +1570,53 @@ body.dark-mode .contact-cta-card .cta-icon i {
   }
 
   /* ✅ Translator FIX (stealth glass, redondo, tamanho equalizado) */
-  .translator-box {
-    position: fixed !important;
-    top: 70px !important;
-    right: 60px !important;
+ /* TRANSLATOR – versão final */
+.translator-box {
+  position: fixed !important;
+  top: 72px !important;
+  right: 52px !important;
 
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 50% !important;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 
-    /* Glassmorphism stealth */
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(8px);
+  background: rgba(255,255,255,0.12) !important;
+  backdrop-filter: blur(6px) !important;
 
-    border: 2px solid rgba(212, 175, 55, 0.35);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  border: 1px solid rgba(255,255,255,0.25) !important;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12) !important;
 
-    cursor: pointer;
-    transition: all .3s ease;
-  }
+  cursor: pointer;
+  transition: all .25s ease !important;
+}
 
   /* ✅ Dark Mode button FIX (igual ao translator + shift right) */
-  .dark-mode-toggle {
-    position: fixed !important;
-    top: 70px !important;
-    right: 10px !important;
+  /* DARK MODE – versão final */
+.dark-mode-toggle {
+  position: fixed !important;
+  top: 72px !important;
+  right: 12px !important; /* ✅ mais perto do translator */
 
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 50% !important;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 
-    /* Glassmorphism stealth */
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(8px);
+  background: rgba(255,255,255,0.12) !important;
+  backdrop-filter: blur(6px) !important;
 
-    border: 2px solid rgba(212, 175, 55, 0.35);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  border: 1px solid rgba(255,255,255,0.25) !important;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12) !important;
 
-    cursor: pointer;
-    transition: all .3s ease;
-  }
+  cursor: pointer;
+  transition: all .25s ease !important;
 }
 
 /* ===========================================================
@@ -1874,4 +1873,17 @@ body.dark-mode p, body.dark-mode li, body.dark-mode span{color:#e8e6e1!important
 /* ✅ Botão do Tradutor fica mais próximo do Dark Mode */
 .translator-box {
   right: 48px !important;
+}
+/* =========================================
+   WRAPPER FINAL PARA DARK MODE + TRANSLATOR
+   ========================================= */
+.nav-floating-controls {
+  position: fixed;
+  top: 72px;
+  right: 16px;
+
+  display: flex;
+  align-items: center;
+  gap: 8px; /* distância perfeita */
+  z-index: 2000;
 }
