@@ -1193,6 +1193,34 @@ function animateHeroStat(element) {
   const duration = 4000;
   const steps = 80;
   const stepTime = duration / steps;
+
+  let current = 0;
+
+  const timer = setInterval(() => {
+    current += target / steps;
+    if (current >= target) {
+      current = target;
+      clearInterval(timer);
+    }
+
+    let result = '';
+    if (hasEuro) result += '€';
+
+    if (hasM) {
+      result += current.toFixed(current < 1 ? 1 : 0) + 'M';
+    } else {
+      result += Math.floor(current);
+    }
+
+    if (hasPlus) result += '+';
+
+    element.textContent = result;
+
+  }, stepTime);
+}
+  const duration = 4000;
+  const steps = 80;
+  const stepTime = duration / steps;
   let current = 0;
 
   const timer = setInterval(() => {
