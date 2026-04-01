@@ -13,7 +13,7 @@ const StatDetailsData = {
   savings: {
     icon: "fa-piggy-bank",
     title: "Cumulative Savings Delivered",
-    value: "€10M+",
+    value: "€1M+",
     details: [
       "Multi-category strategic sourcing initiatives across direct and indirect spend",
       "Negotiated favorable payment terms (60-90 days) improving cash flow",
