@@ -1568,16 +1568,49 @@ body.dark-mode .contact-cta-card .cta-icon i {
   }
 
   /* Ajustar translator no mobile */
-  .translator-box {
-    top: 70px !important;
-    right: 10px !important;
-  }
+ .translator-box {
+  position: relative !important;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Glassmorphism stealth */
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(8px);
+
+  border: 2px solid rgba(212,175,55,0.35);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0 !important;
+}
 
   /* Ajustar dark mode toggle no mobile */
   .dark-mode-toggle {
-    top: 70px !important;
-    right: 100px !important;
-  }
+  position: relative !important;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-left: 6px; /* move o botão um pouco para a direita */
+
+  /* Glassmorphism stealth */
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(8px);
+
+  border: 2px solid rgba(212,175,55,0.35);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0 !important;
 }
 
 /* Para telas muito pequenas */
