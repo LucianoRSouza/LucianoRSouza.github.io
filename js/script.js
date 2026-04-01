@@ -1173,53 +1173,22 @@ function initHeroCounters() {
 }
 
 function animateHeroStat(element) {
-  const text = element.textContent.trim(); // Ex: "€1M+" ou "€10M+"
-  const hasEuro = text.includes("€");
-  const hasPlus = text.includes("+");
-  const hasM = text.includes("M");
+  const text = element.textContent;
+  const hasEuro = text.includes('€');
+  const hasPlus = text.includes('+');
+  const hasM = text.includes('M');
 
-  // Extrai o número real do texto:
-  // "€10M+" → 10
-  // "€1M+" → 1
-  const numericValue = parseInt(text.replace(/[^0-9]/g, ""), 10);
-
-  // O target agora é sempre o número real extraído
-  const target = numericValue;
-
-  const duration = 4000;
-  const steps = 80;
-  const stepTime = duration / steps;
-
-  let current = 0;
-
-  const timer = setInterval(() => {
-    current += target / steps;
-
-    if (current >= target) {
-      current = target;
-      clearInterval(timer);
-    }
-
-    let result = "";
-    if (hasEuro) result += "€";
-
-    // Se for milhões, adiciona o "M"
-    if (hasM) {
-      result += current.toFixed(current < 1 ? 1 : 0) + "M";
-    } else {
-      result += Math.floor(current);
-    }
-
-    if (hasPlus) result += "+";
-
-    element.textContent = result;
-  }, stepTime);
-}
-
-// Inicializar hero counters no DOMContentLoaded
-document.addEventListener("DOMContentLoaded", () => {
-  setTimeout(initHeroCounters, 500);
-});
+  // Extrair número
+  let target = 0;
+  if (hasM) {
+    target = 1; // 1M
+  } else if (text.includes('120')) {
+    target = 120;
+  } else if (text.includes('10')) {
+    target = 10;
+  } else if (text.includes('20')) {
+    target = 20;
+  }
 
   const duration = 4000;
   const steps = 80;
