@@ -1549,10 +1549,11 @@ body.dark-mode .contact-cta-card .cta-icon i {
 }
 
 /* ===========================================================
-   MOBILE BUTTONS POSITION FIX
+   MOBILE BUTTONS – versão final
    =========================================================== */
 @media (max-width: 768px) {
 
+  /* Build badge */
   .build-badge {
     bottom: 90px !important;
     right: 15px !important;
@@ -1561,6 +1562,7 @@ body.dark-mode .contact-cta-card .cta-icon i {
     z-index: 997 !important;
   }
 
+  /* Scroll top */
   .scroll-top {
     bottom: 25px !important;
     right: 25px !important;
@@ -1569,64 +1571,63 @@ body.dark-mode .contact-cta-card .cta-icon i {
     z-index: 998 !important;
   }
 
-/* ✅ TRANSLATOR – versão final */
-.translator-box {
-  position: fixed !important;
-  top: 72px !important;      /* mesma altura do dark mode */
-  right: 54px !important;    /* fica imediatamente à esquerda do dark mode */
+  /* ✅ TRADUTOR – alinhado com o logo LR no mobile */
+  .translator-box {
+    position: fixed !important;
+    top: 22px !important;       /* mesma linha do LR */
+    right: 60px !important;     /* fica à esquerda do dark mode */
 
-  min-width: 82px !important;   /* ~20% maior */
-  height: 34px !important;
-  padding: 0 10px !important;
+    min-width: 78px !important;
+    height: 34px !important;
+    padding: 0 10px !important;
 
-  border-radius: 18px !important;
+    border-radius: 18px !important;
 
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
 
-  /* Vidro suave e delicado */
-  background: rgba(255,255,255,0.10) !important;
-  backdrop-filter: blur(8px) !important;
+    background: rgba(255,255,255,0.10) !important;
+    backdrop-filter: blur(8px) !important;
 
-  border: 1px solid rgba(255,255,255,0.22) !important;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.10) !important;
+    border: 1px solid rgba(255,255,255,0.22) !important;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.10) !important;
 
-  cursor: pointer;
-  transition: all .25s ease !important;
-}
+    cursor: pointer;
+    transition: all .25s ease !important;
+  }
 
-.translator-label {
-  font-size: 0.78rem !important;
-  color: #ffffff !important;
-  font-weight: 500 !important;
-  letter-spacing: 0.3px !important;
-}
+  .translator-label {
+    font-size: 0.78rem !important;
+    color: #ffffff !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.3px !important;
+  }
 
+  /* ✅ DARK MODE – alinhado com LR e com o Tradutor */
+  .dark-mode-toggle {
+    position: fixed !important;
+    top: 22px !important;      /* mesma linha que o LR */
+    right: 14px !important;    /* imediatamente à direita do Tradutor */
 
-/* ✅ DARK MODE – versão final */
-.dark-mode-toggle {
-  position: fixed !important;
-  top: 72px !important;
-  right: 14px !important;   /* alinhado com o tradutor */
+    width: 34px !important;
+    height: 34px !important;
+    border-radius: 50% !important;
 
-  width: 34px !important;   /* ~20% maior */
-  height: 34px !important;
-  border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
 
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
+    background: rgba(255,255,255,0.10) !important;
+    backdrop-filter: blur(8px) !important;
 
-  /* Vidro suave */
-  background: rgba(255,255,255,0.10) !important;
-  backdrop-filter: blur(8px) !important;
+    border: 1px solid rgba(255,255,255,0.22) !important;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.10) !important;
 
-  border: 1px solid rgba(255,255,255,0.22) !important;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.10) !important;
+    cursor: pointer;
+    transition: all .25s ease !important;
+  }
 
-  cursor: pointer;
-  transition: all .25s ease !important;
 }
 /* ===========================================================
    VERY SMALL DEVICES FIX (<= 380px)
