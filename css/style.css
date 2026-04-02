@@ -1547,88 +1547,95 @@ body.dark-mode .contact-cta-card .cta-icon {
 body.dark-mode .contact-cta-card .cta-icon i {
   color: var(--navy) !important;
 }
-
-/* ===========================================================
-   MOBILE BUTTONS – versão final
-   =========================================================== */
-@media (max-width: 768px) {
-
-  /* Build badge */
-  .build-badge {
-    bottom: 90px !important;
-    right: 15px !important;
-    padding: 10px 16px !important;
-    font-size: 0.8rem !important;
-    z-index: 997 !important;
-  }
-
-  /* Scroll top */
-  .scroll-top {
-    bottom: 25px !important;
-    right: 25px !important;
-    width: 50px !important;
-    height: 50px !important;
-    z-index: 998 !important;
-  }
-
-  /* ✅ TRADUTOR – alinhado com o logo LR no mobile */
-  .translator-box {
-    position: fixed !important;
-    top: 22px !important;       /* mesma linha do LR */
-    right: 60px !important;     /* fica à esquerda do dark mode */
-
-    min-width: 78px !important;
-    height: 34px !important;
-    padding: 0 10px !important;
-
-    border-radius: 18px !important;
-
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-
-    background: rgba(255,255,255,0.10) !important;
-    backdrop-filter: blur(8px) !important;
-
-    border: 1px solid rgba(255,255,255,0.22) !important;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.10) !important;
-
-    cursor: pointer;
-    transition: all .25s ease !important;
-  }
-
-  .translator-label {
-    font-size: 0.78rem !important;
-    color: #ffffff !important;
-    font-weight: 500 !important;
-    letter-spacing: 0.3px !important;
-  }
-
-  /* ✅ DARK MODE – alinhado com LR e com o Tradutor */
-  .dark-mode-toggle {
-    position: fixed !important;
-    top: 22px !important;      /* mesma linha que o LR */
-    right: 14px !important;    /* imediatamente à direita do Tradutor */
-
-    width: 34px !important;
-    height: 34px !important;
-    border-radius: 50% !important;
-
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-
-    background: rgba(255,255,255,0.10) !important;
-    backdrop-filter: blur(8px) !important;
-
-    border: 1px solid rgba(255,255,255,0.22) !important;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.10) !important;
-
-    cursor: pointer;
-    transition: all .25s ease !important;
-  }
-
-}
+1551 /* ===========================================================
+1552    MOBILE + DESKTOP BUTTONS – versão final DEFINITIVA
+1553    =========================================================== */
+1554 @media (max-width: 768px) {
+1555
+1556   /* Botão inferior (build badge) */
+1557   .build-badge {
+1558     bottom: 90px !important;
+1559     right: 15px !important;
+1560     padding: 10px 16px !important;
+1561     font-size: 0.8rem !important;
+1562     z-index: 997 !important;
+1563   }
+1564
+1565   /* Botão subir ao topo */
+1566   .scroll-top {
+1567     bottom: 25px !important;
+1568     right: 25px !important;
+1569     width: 50px !important;
+1570     height: 50px !important;
+1571     z-index: 998 !important;
+1572   }
+1573
+1574   /* ✅ TRADUTOR – MOBILE (final) */
+1575   .translator-box {
+1576     position: fixed !important;
+1577     top: 22px !important;        /* alinhado ao LR */
+1578     right: 60px !important;      /* à esquerda do dark mode */
+1579
+1580     min-width: 78px !important;
+1581     height: 34px !important;
+1582     padding: 0 12px !important;
+1583
+1584     border-radius: 18px !important;
+1585
+1586     display: flex !important;
+1587     align-items: center !important;
+1588     justify-content: center !important;
+1589
+1590     background: rgba(255,255,255,0.12) !important;
+1591     backdrop-filter: blur(10px) !important;
+1592
+1593     border: 1px solid rgba(255,255,255,0.28) !important;
+1594     box-shadow: 0 2px 5px rgba(0,0,0,0.14) !important;
+1595
+1596     cursor: pointer;
+1597     transition: all .25s ease !important;
+1598   }
+1599
+1600   .translator-label {
+1601     font-size: 0.80rem !important;
+1602     color: #ffffff !important;
+1603     font-weight: 500 !important;
+1604     letter-spacing: 0.4px !important;
+1605     display: inline-block !important;
+1606     opacity: 1 !important;
+1607   }
+1608
+1609   /* ✅ DARK MODE – MOBILE (final) */
+1610   .dark-mode-toggle {
+1611     position: fixed !important;
+1612     top: 22px !important;      /* alinhado ao LR */
+1613     right: 14px !important;    /* ao lado do Tradutor */
+1614
+1615     width: 36px !important;
+1616     height: 36px !important;
+1617     border-radius: 50% !important;
+1618
+1619     display: flex !important;
+1620     align-items: center !important;
+1621     justify-content: center !important;
+1622
+1623     background: rgba(255,255,255,0.12) !important;
+1624     backdrop-filter: blur(10px) !important;
+1625
+1626     border: 1px solid rgba(255,255,255,0.28) !important;
+1627     box-shadow: 0 2px 5px rgba(0,0,0,0.14) !important;
+1628
+1629     cursor: pointer;
+1630     transition: all .25s ease !important;
+1631   }
+1632
+1633   /* ✅ LUA VISÍVEL */
+1634   .dark-mode-toggle i {
+1635     color: #ffffff !important;
+1636     font-size: 1.1rem !important;
+1637   }
+1638 }
+``
 /* ===========================================================
    VERY SMALL DEVICES FIX (<= 380px)
    =========================================================== */
