@@ -1569,56 +1569,65 @@ body.dark-mode .contact-cta-card .cta-icon i {
     z-index: 998 !important;
   }
 
-  /* ✅ Translator FIX (stealth glass, redondo, tamanho equalizado) */
- /* TRANSLATOR – versão final */
+/* ✅ TRANSLATOR – versão final */
 .translator-box {
   position: fixed !important;
-  top: 72px !important;
-  right: 52px !important;
+  top: 72px !important;      /* mesma altura do dark mode */
+  right: 54px !important;    /* fica imediatamente à esquerda do dark mode */
 
-  width: 28px !important;
-  height: 28px !important;
-  border-radius: 50% !important;
+  min-width: 82px !important;   /* ~20% maior */
+  height: 34px !important;
+  padding: 0 10px !important;
+
+  border-radius: 18px !important;
 
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
 
-  background: rgba(255,255,255,0.12) !important;
-  backdrop-filter: blur(6px) !important;
+  /* Vidro suave e delicado */
+  background: rgba(255,255,255,0.10) !important;
+  backdrop-filter: blur(8px) !important;
 
-  border: 1px solid rgba(255,255,255,0.25) !important;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.12) !important;
+  border: 1px solid rgba(255,255,255,0.22) !important;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.10) !important;
 
   cursor: pointer;
   transition: all .25s ease !important;
 }
 
-  /* ✅ Dark Mode button FIX (igual ao translator + shift right) */
-  /* DARK MODE – versão final */
+.translator-label {
+  font-size: 0.78rem !important;
+  color: #ffffff !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.3px !important;
+}
+
+
+/* ✅ DARK MODE – versão final */
 .dark-mode-toggle {
   position: fixed !important;
   top: 72px !important;
-  right: 12px !important; /* ✅ mais perto do translator */
+  right: 14px !important;   /* alinhado com o tradutor */
 
-  width: 28px !important;
-  height: 28px !important;
+  width: 34px !important;   /* ~20% maior */
+  height: 34px !important;
   border-radius: 50% !important;
 
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
 
-  background: rgba(255,255,255,0.12) !important;
-  backdrop-filter: blur(6px) !important;
+  /* Vidro suave */
+  background: rgba(255,255,255,0.10) !important;
+  backdrop-filter: blur(8px) !important;
 
-  border: 1px solid rgba(255,255,255,0.25) !important;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.12) !important;
+  border: 1px solid rgba(255,255,255,0.22) !important;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.10) !important;
 
   cursor: pointer;
   transition: all .25s ease !important;
 }
-
 /* ===========================================================
    VERY SMALL DEVICES FIX (<= 380px)
    =========================================================== */
