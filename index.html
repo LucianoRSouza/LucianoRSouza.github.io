@@ -70,14 +70,15 @@ function googleTranslateElementInit() {
 <div class="loading-bar"><div class="loading-progress"></div></div>
 </div>
 
-<!-- Language Switcher -->
-<div class="translator-box">
-    <span class="translator-label">Tradução</span>
+<!-- Navigation Controls -->
+<div class="nav-controls">
+  <div class="translator-box">
+    <div id="google_translate_element"></div>
+  </div>
+  <button class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle dark mode">
+    <i class="fas fa-moon" id="darkModeIcon"></i>
+  </button>
 </div>
-<!-- Dark Mode Toggle -->
-<button class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle dark mode">
-  <i class="fas fa-moon" id="darkModeIcon"></i>
-</button>
 
 
 <nav aria-label="Primary" class="navbar" id="navbar">
@@ -104,7 +105,7 @@ function googleTranslateElementInit() {
 <div aria-label="Key metrics" class="hero-stats">
 <div aria-label="Cumulative savings delivered" class="stat-box" data-stat="savings" tabindex="0">
 <i aria-hidden="true" class="fas fa-piggy-bank stat-icon"></i>
-<span class="stat-number" id="statSavings">€1M+</span>
+<span class="stat-number" id="statSavings">€10M+</span>
 <span class="stat-label">Cumulative Savings</span>
 <small class="stat-note">Across multi-category negotiations</small>
 </div>
