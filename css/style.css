@@ -444,14 +444,20 @@ section{padding:1.2cm .8cm}
    TRANSLATOR + DARK MODE BUTTONS (Versão Limpa e Final)
    ============================================ */
 
-.translator-box {
+/* Container fixo para ambos os botões */
+.top-buttons {
   position: fixed;
   top: 90px;
-  right: 205px;           /* Ajustado para ficar mais à direita */
+  right: 150px;       /* Posição no desktop */
+  display: flex;
+  align-items: center;
+  gap: 12px;          /* Espaço entre os botões */
   z-index: 1501;
 }
 
-#translateBtn {
+/* Estilo compartilhado para os botões */
+.translator-toggle,
+.dark-mode-toggle {
   width: 44px;
   height: 44px;
   border-radius: 50%;
@@ -465,72 +471,67 @@ section{padding:1.2cm .8cm}
   box-shadow: 0 4px 15px rgba(0,0,0,0.15);
   color: var(--navy);
   font-size: 1.25rem;
+  padding: 0 8px; /* garante que o texto do tradutor não fique colado */
 }
 
-#translateBtn:hover {
+/* Hover dos botões */
+.translator-toggle:hover,
+.dark-mode-toggle:hover {
   transform: scale(1.1);
   background: var(--gold);
   color: var(--navy);
 }
 
-/* Dark Mode Toggle */
-.dark-mode-toggle {
-  position: fixed;
-  top: 90px;
-  right: 150px;           /* Bem próximo do botão de tradução */
-  z-index: 1501;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.9);
-  border: 2px solid var(--gold);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-}
-
-.dark-mode-toggle:hover {
-  transform: scale(1.1);
-  background: var(--gold);
-}
-
+/* Ícone do dark mode */
 .dark-mode-toggle i {
   font-size: 1.25rem;
   color: var(--navy);
 }
 
-/* Dark Mode support para ambos os botões */
-body.dark-mode #translateBtn,
+/* Dark mode support */
+body.dark-mode .translator-toggle,
 body.dark-mode .dark-mode-toggle {
   background: var(--dark-elevated);
   color: var(--gold);
 }
 
-body.dark-mode #translateBtn:hover,
+body.dark-mode .translator-toggle:hover,
 body.dark-mode .dark-mode-toggle:hover {
   background: var(--gold);
   color: var(--navy);
 }
 
+/* Ajuste do select do Google Translate */
+#google_translate_element select {
+  background: transparent;
+  border: none;
+  color: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  appearance: none; /* remove setinha padrão do browser */
+}
+
 /* Mobile */
 @media (max-width: 768px) {
-  .translator-box { 
-    right: 118px; 
-    top: 8px; 
+  .top-buttons {
+    top: 8px;
+    right: 10px;    /* distancia da borda */
+    gap: 10px;      /* espaço maior entre os botões para evitar sobreposição */
   }
-  .dark-mode-toggle { 
-    right: 68px; 
-    top: 8px; 
-  }
-  
-  #translateBtn, 
+
+  .translator-toggle, 
   .dark-mode-toggle {
     width: 38px;
     height: 38px;
     font-size: 1.15rem;
+    padding: 0 6px;
+  }
+
+  /* Opcional: esconde o texto do tradutor no mobile */
+  .translator-toggle span {
+    display: none;
   }
 }
 /* Mobile Timeline Logos — V36 (fine alignment) */
