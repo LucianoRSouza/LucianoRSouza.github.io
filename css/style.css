@@ -444,10 +444,11 @@ section{padding:1.2cm .8cm}
    TRANSLATOR BUTTON - Mesmo estilo do Dark Mode
    ============================================ */
 
+/* TRANSLATOR BUTTON - Mesmo visual do Dark Mode */
 .translator-box {
   position: fixed;
   top: 90px;
-  right: 200px;           /* Ajuste esta distância se necessário */
+  right: 200px;
   z-index: 1501;
 }
 
@@ -473,6 +474,29 @@ section{padding:1.2cm .8cm}
   color: var(--navy);
 }
 
+/* Dark Mode */
+body.dark-mode #translateBtn {
+  background: var(--dark-elevated);
+  color: var(--gold);
+}
+
+body.dark-mode #translateBtn:hover {
+  background: var(--gold);
+  color: var(--navy);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .translator-box { 
+    top: 6px; 
+    right: 110px; 
+  }
+  #translateBtn {
+    width: 38px;
+    height: 38px;
+    font-size: 1.1rem;
+  }
+}
 /* Dark Mode support */
 body.dark-mode #translateBtn {
   background: var(--dark-elevated);
