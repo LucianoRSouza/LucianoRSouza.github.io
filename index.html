@@ -70,10 +70,13 @@ function googleTranslateElementInit() {
 <div class="loading-bar"><div class="loading-progress"></div></div>
 </div>
 
-<!-- Language Switcher -->
-<div class="translator-box">
-  <span style="font-size:11px;font-weight:600;color:var(--navy);text-transform:uppercase;letter-spacing:0.5px;">Translator</span>
-  <div id="google_translate_element" style="display:inline-block;"></div>
+<!-- Language Switcher - Novo design igual ao dark mode -->
+<div class="translator-box" id="translatorBox">
+  <button id="translateToggle" aria-label="Toggle language translator">
+    <i class="fas fa-globe"></i>
+    <span id="translateLabel">Translate</span>
+  </button>
+  <div id="google_translate_element" style="display: none;"></div> <!-- Escondido visualmente -->
 </div>
 <!-- Dark Mode Toggle -->
 <button class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle dark mode">
