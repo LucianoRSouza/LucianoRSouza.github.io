@@ -1220,33 +1220,37 @@ document.addEventListener('DOMContentLoaded', () => {
   setTimeout(initHeroCounters, 500);
 });
 // ============================================
-// GOOGLE TRANSLATE CUSTOM BUTTON
+// GOOGLE TRANSLATE - BOTÃO PERSONALIZADO (Versão Final)
 // ============================================
 
 document.addEventListener('DOMContentLoaded', () => {
   const translateBtn = document.getElementById('translateBtn');
   
-  if (translateBtn) {
-    translateBtn.addEventListener('click', function() {
-      let combo = document.querySelector('#google_translate_element .goog-te-combo');
-      
-      if (combo) {
-        combo.focus();
-        
-        // Força a abertura do menu de idiomas
-        setTimeout(() => {
-          if (combo) {
-            combo.dispatchEvent(new Event('mousedown'));
-            combo.dispatchEvent(new Event('click'));
-          }
-        }, 150);
-      } else {
-        // Caso o Google Translate ainda não tenha carregado
-        setTimeout(() => {
-          combo = document.querySelector('#google_translate_element .goog-te-combo');
-          if (combo) combo.focus();
-        }, 1200);
-      }
-    });
+  if (!translateBtn) {
+    console.warn('Botão de tradução não encontrado');
+    return;
   }
+
+  translateBtn.addEventListener('click', () => {
+    console.log('Botão de tradução clicado');   // ← para debug
+
+    const select = document.querySelector('#google_translate_element select.goog-te-combo');
+    
+    if (select) {
+      console.log('Select encontrado, tentando abrir...');
+      select.focus();
+      
+      setTimeout(() => {
+        select.dispatchEvent(new Event('change', { bubbles: true }));
+        select.dispatchEvent(new Event('mousedown', { bubbles: true }));
+        select.dispatchEvent(new Event('click', { bubbles: true }));
+      }, 100);
+    } else {
+      console.warn('Select do Google Translate não encontrado ainda. Tentando novamente...');
+      setTimeout(() => {
+        const retrySelect = document.querySelector('#google_translate_element select.goog-te-combo');
+        if (retrySelect) retrySelect.focus();
+      }, 1500);
+    }
+  });
 });
