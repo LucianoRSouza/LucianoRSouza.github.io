@@ -1219,3 +1219,34 @@ function animateHeroStat(element) {
 document.addEventListener('DOMContentLoaded', () => {
   setTimeout(initHeroCounters, 500);
 });
+// ============================================
+// GOOGLE TRANSLATE CUSTOM BUTTON
+// ============================================
+
+document.addEventListener('DOMContentLoaded', () => {
+  const translateBtn = document.getElementById('translateBtn');
+  
+  if (translateBtn) {
+    translateBtn.addEventListener('click', function() {
+      let combo = document.querySelector('#google_translate_element .goog-te-combo');
+      
+      if (combo) {
+        combo.focus();
+        
+        // Força a abertura do menu de idiomas
+        setTimeout(() => {
+          if (combo) {
+            combo.dispatchEvent(new Event('mousedown'));
+            combo.dispatchEvent(new Event('click'));
+          }
+        }, 150);
+      } else {
+        // Caso o Google Translate ainda não tenha carregado
+        setTimeout(() => {
+          combo = document.querySelector('#google_translate_element .goog-te-combo');
+          if (combo) combo.focus();
+        }, 1200);
+      }
+    });
+  }
+});
