@@ -1220,7 +1220,9 @@ document.addEventListener('DOMContentLoaded', () => {
   setTimeout(initHeroCounters, 500);
 });
 
-
+/* ============================================
+   MOBILE GALLERY ONE-TAP FIX - 2026
+   ============================================ */
 
 function initMobileGalleryFix() {
   // Verificar se é mobile
@@ -1299,73 +1301,3 @@ document.head.insertAdjacentHTML('beforeend', `
     }
   </style>
 `);
-
-/* ============================================
-   MOBILE GALLERY - TAP INTENCIONAL (menos sensível)
-   ============================================ */
-
-function initMobileGalleryFix() {
-  const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
-  if (!isTouchDevice) return;
-
-  const projectCards = document.querySelectorAll('.project-card');
-
-  projectCards.forEach(card => {
-    let touchStartY = 0;
-    let touchEndY = 0;
-    let touchStartTime = 0;
-
-    card.addEventListener('touchstart', (e) => {
-      touchStartY = e.touches[0].clientY;
-      touchStartTime = Date.now();
-    }, { passive: true });
-
-    card.addEventListener('touchend', (e) => {
-      touchEndY = e.changedTouches[0].clientY;
-      const touchDuration = Date.now() - touchStartTime;
-      const verticalDistance = Math.abs(touchEndY - touchStartY);
-
-      // Só abre se:
-      // 1. Toque foi rápido (menos de 200ms)
-      // 2. Não houve scroll vertical significativo (menos de 10px)
-      if (touchDuration < 200 && verticalDistance < 10) {
-        // Verificar se tem galeria
-        if (card.hasAttribute('data-gallery') || card.querySelector('.gallery-main')) {
-          e.preventDefault();
-          openProjectGalleryFromCard(card);
-        }
-      }
-    }, { passive: false });
-  });
-
-  // Trade shows
-  const tradeItems = document.querySelectorAll('.trade-shows .gold-frame, .trade-shows .project-card');
-  tradeItems.forEach(item => {
-    let touchStartY = 0;
-    let touchStartTime = 0;
-
-    item.addEventListener('touchstart', (e) => {
-      touchStartY = e.touches[0].clientY;
-      touchStartTime = Date.now();
-    }, { passive: true });
-
-    item.addEventListener('touchend', (e) => {
-      const touchEndY = e.changedTouches[0].clientY;
-      const touchDuration = Date.now() - touchStartTime;
-      const verticalDistance = Math.abs(touchEndY - touchStartY);
-
-      if (touchDuration < 200 && verticalDistance < 10) {
-        const galleryId = item.getAttribute('data-gallery') || item.closest('[data-gallery]')?.getAttribute('data-gallery');
-        if (galleryId) {
-          e.preventDefault();
-          openProjectGallery(galleryId);
-        }
-      }
-    }, { passive: false });
-  });
-}
-
-// Inicializar
-document.addEventListener('DOMContentLoaded', () => {
-  setTimeout(initMobileGalleryFix, 800);
-});
