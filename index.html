@@ -76,8 +76,15 @@ function googleTranslateElementInit() {
     <i class="fas fa-globe"></i>
   </button>
   
-  <!-- Elemento oficial do Google Translate (deve existir apenas uma vez) -->
-  <div id="google_translate_element"></div>
+  <!-- Google Translate oculto visualmente, mas funcional -->
+  <div id="google_translate_element" 
+       style="position: absolute; 
+              opacity: 0; 
+              width: 1px; 
+              height: 1px; 
+              overflow: hidden; 
+              pointer-events: none;">
+  </div>
 </div>
 <!-- Dark Mode Toggle -->
 <button class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle dark mode">
