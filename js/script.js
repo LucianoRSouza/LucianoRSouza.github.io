@@ -1220,53 +1220,33 @@ document.addEventListener('DOMContentLoaded', () => {
   setTimeout(initHeroCounters, 500);
 });
 // ============================================
-// GOOGLE TRANSLATE BUTTON - Versão Final 2026
+// GOOGLE TRANSLATE BUTTON - Versão Final
 // ============================================
 
 document.addEventListener('DOMContentLoaded', () => {
-    const translateBtn = document.getElementById('translateBtn');
-    const container = document.getElementById('google_translate_element');
+  const translateBtn = document.getElementById('translateBtn');
+  
+  if (!translateBtn) {
+    console.warn('Botão de tradução não encontrado');
+    return;
+  }
 
-    if (!translateBtn || !container) {
-        console.warn('❌ Translate button ou container não encontrados.');
-        return;
+  translateBtn.addEventListener('click', () => {
+    console.log('✅ Botão de tradução clicado');
+
+    // Procura o select do Google Translate
+    const select = document.querySelector('#google_translate_element select.goog-te-combo');
+    
+    if (select) {
+      console.log('Select encontrado - tentando abrir o menu');
+      select.focus();
+      
+      // Força a abertura do dropdown
+      setTimeout(() => {
+        select.dispatchEvent(new Event('change', { bubbles: true }));
+      }, 100);
+    } else {
+      console.warn('Select do Google Translate ainda não carregou');
     }
-
-    // Tenta pegar o select do Google Translate
-    function getGoogleSelect() {
-        return container.querySelector('select.goog-te-combo');
-    }
-
-    // Função que exibe o select por alguns milissegundos e força a abertura do dropdown
-    function openTranslateMenu() {
-        const select = getGoogleSelect();
-
-        if (!select) {
-            console.warn('⏳ Select ainda não carregou... tentando novamente.');
-            setTimeout(openTranslateMenu, 300);
-            return;
-        }
-
-        console.log('✅ Select encontrado! Abrindo menu...');
-
-        // Temporariamente habilita interação
-        container.style.opacity = "1";
-        container.style.pointerEvents = "auto";
-
-        // Força o clique real
-        select.focus();
-        select.click();
-
-        // Após abrir o menu, volta ao invisível
-        setTimeout(() => {
-            container.style.opacity = "0";
-            container.style.pointerEvents = "none";
-        }, 800);
-    }
-
-    // Evento do botão
-    translateBtn.addEventListener('click', () => {
-        console.log('🌍 Botão de tradução clicado');
-        openTranslateMenu();
-    });
+  });
 });
