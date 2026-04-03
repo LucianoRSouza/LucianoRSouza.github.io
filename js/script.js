@@ -1220,27 +1220,33 @@ document.addEventListener('DOMContentLoaded', () => {
   setTimeout(initHeroCounters, 500);
 });
 // ============================================
-// GOOGLE TRANSLATE - BOTÃO PERSONALIZADO
+// GOOGLE TRANSLATE BUTTON - Versão Final
 // ============================================
 
 document.addEventListener('DOMContentLoaded', () => {
   const translateBtn = document.getElementById('translateBtn');
   
-  if (!translateBtn) return;
+  if (!translateBtn) {
+    console.warn('Botão de tradução não encontrado');
+    return;
+  }
 
   translateBtn.addEventListener('click', () => {
-    console.log('Botão tradução clicado');
+    console.log('✅ Botão de tradução clicado');
 
+    // Procura o select do Google Translate
     const select = document.querySelector('#google_translate_element select.goog-te-combo');
     
     if (select) {
-      console.log('Select encontrado');
+      console.log('Select encontrado - tentando abrir o menu');
       select.focus();
+      
+      // Força a abertura do dropdown
       setTimeout(() => {
         select.dispatchEvent(new Event('change', { bubbles: true }));
       }, 100);
     } else {
-      console.warn('Select não encontrado ainda');
+      console.warn('Select do Google Translate ainda não carregou');
     }
   });
 });
