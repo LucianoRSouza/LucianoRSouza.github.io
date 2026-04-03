@@ -35,6 +35,24 @@ button{border:0;background:none;cursor:pointer}
 #google_translate_element{display:inline-block}
 .goog-te-gadget{margin:0!important}
 
+/* Google Translate completamente escondido, mas funcional */
+#google_translate_element {
+    position: fixed !important;
+    top: -2000px !important;   /* joga o widget fora da tela */
+    left: -2000px !important;
+    width: auto !important;
+    height: auto !important;
+    opacity: 1 !important;     /* precisa ser 1 para o Google inicializar */
+    pointer-events: none !important;
+}
+
+/* Remove logo, link e textos do Google */
+.goog-te-gadget img,
+.goog-te-gadget span,
+.goog-logo-link {
+    display: none !important;
+}
+
 /* Esconder elementos do Google Translate que não queremos */
 .goog-te-banner-frame.skiptranslate{display:none!important}
 .goog-logo-link{display:none!important}
