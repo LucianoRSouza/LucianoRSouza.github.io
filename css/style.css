@@ -1782,13 +1782,14 @@ body.dark-mode .goog-te-gadget .goog-te-combo {
 
 
 /* ============================================
-   CORREÇÕES V40 - BOTÕES E MODAIS
+   CORREÇÕES BOTÕES - TRANSLATOR & DARK MODE
+   Mais sutis e transparentes
    ============================================ */
 
-/* Container para agrupar os botões - ALINHADO COM LR */
+/* Container para agrupar os botões - TOPO DIREITO */
 .nav-controls {
   position: fixed;
-  top: 24px;
+  top: 90px;
   right: 20px;
   z-index: 1500;
   display: flex;
@@ -1796,7 +1797,7 @@ body.dark-mode .goog-te-gadget .goog-te-combo {
   gap: 8px;
 }
 
-/* Translator Box - com texto "Tradutor" */
+/* Translator Box - mais sutil e transparente */
 .translator-box {
   position: relative !important;
   top: auto !important;
@@ -1805,32 +1806,23 @@ body.dark-mode .goog-te-gadget .goog-te-combo {
   align-items: center;
   justify-content: center;
   background: rgba(255, 255, 255, 0.15);
-  padding: 0 14px;
+  padding: 6px 10px;
   border-radius: 50px;
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  border: 1px solid rgba(212, 175, 55, 0.4);
+  border: 1px solid rgba(212, 175, 55, 0.3);
   backdrop-filter: blur(10px);
   transition: all 0.3s ease;
   height: 36px;
-  cursor: pointer;
+  min-width: 36px;
 }
 
 .translator-box:hover {
-  background: rgba(212, 175, 55, 0.2);
-  border-color: rgba(212, 175, 55, 0.6);
-  box-shadow: 0 4px 15px rgba(212,175,55,0.2);
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(212, 175, 55, 0.5);
+  box-shadow: 0 4px 15px rgba(212,175,55,0.15);
 }
 
-.translator-label {
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--navy);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  white-space: nowrap;
-}
-
-/* Dark Mode Toggle */
+/* Dark Mode Toggle - mais sutil e transparente */
 .dark-mode-toggle {
   position: relative !important;
   top: auto !important;
@@ -1839,7 +1831,7 @@ body.dark-mode .goog-te-gadget .goog-te-combo {
   height: 36px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(212, 175, 55, 0.4);
+  border: 1px solid rgba(212, 175, 55, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1852,49 +1844,51 @@ body.dark-mode .goog-te-gadget .goog-te-combo {
 
 .dark-mode-toggle:hover {
   background: rgba(212, 175, 55, 0.2);
-  border-color: rgba(212, 175, 55, 0.6);
-  transform: scale(1.1);
+  border-color: rgba(212, 175, 55, 0.5);
+  transform: scale(1.1) rotate(15deg);
   box-shadow: 0 4px 15px rgba(212,175,55,0.2);
 }
 
 .dark-mode-toggle i {
   font-size: 1rem;
   color: var(--navy);
+  opacity: 0.8;
+}
+
+/* Dark mode para os botões */
+body.dark-mode .translator-box,
+body.dark-mode .dark-mode-toggle {
+  background: rgba(26, 35, 68, 0.4);
+  border-color: rgba(212, 175, 55, 0.3);
+}
+
+body.dark-mode .translator-box:hover,
+body.dark-mode .dark-mode-toggle:hover {
+  background: rgba(212, 175, 55, 0.15);
+  border-color: rgba(212, 175, 55, 0.5);
 }
 
 body.dark-mode .dark-mode-toggle i {
-  color: var(--gold) !important;
+  color: var(--gold);
+  opacity: 0.9;
 }
 
-body.dark-mode .translator-box {
-  background: rgba(26, 35, 68, 0.4);
-  border-color: rgba(212, 175, 55, 0.4);
+/* Esconder label do tradutor */
+.translator-box > span {
+  display: none !important;
 }
 
-body.dark-mode .translator-label {
-  color: var(--gold-light);
-}
-
-body.dark-mode .dark-mode-toggle {
-  background: rgba(26, 35, 68, 0.4);
-  border-color: rgba(212, 175, 55, 0.4);
-}
-
-/* MOBILE - Alinhado com o LR */
+/* MOBILE - Botões no topo junto ao navbar */
 @media (max-width: 768px) {
   .nav-controls {
-    top: 18px;
-    right: 15px;
+    top: 16px;
+    right: 80px;
     gap: 6px;
   }
 
   .translator-box {
     height: 32px;
-    padding: 0 10px;
-  }
-
-  .translator-label {
-    font-size: 10px;
+    padding: 5px 8px;
   }
 
   .dark-mode-toggle {
@@ -1909,18 +1903,14 @@ body.dark-mode .dark-mode-toggle {
 
 @media (max-width: 480px) {
   .nav-controls {
-    top: 16px;
-    right: 12px;
+    top: 14px;
+    right: 70px;
     gap: 5px;
   }
 
   .translator-box {
     height: 30px;
-    padding: 0 8px;
-  }
-
-  .translator-label {
-    font-size: 9px;
+    padding: 4px 6px;
   }
 
   .dark-mode-toggle {
@@ -1934,16 +1924,13 @@ body.dark-mode .dark-mode-toggle {
 }
 
 /* ============================================
-   MODAIS - SEMPRE LEGÍVEIS (FUNDO CLARO)
+   CORREÇÕES DE CONTRASTE - MODAIS NO DARK MODE
    ============================================ */
 
-.stat-modal-overlay {
-  background: rgba(15, 21, 56, 0.95) !important;
-}
-
+/* Modal de estatísticas - garantir texto legível */
 .stat-modal {
-  background: var(--white) !important;
-  border: 3px solid var(--gold);
+  background: var(--white);
+  color: var(--text);
 }
 
 .stat-modal h3 {
@@ -1958,13 +1945,13 @@ body.dark-mode .dark-mode-toggle {
   color: var(--text) !important;
 }
 
-.strategy-detail-overlay {
-  background: rgba(15, 21, 56, 0.96) !important;
+/* Strategy Detail Modal */
+.strategy-detail-card {
+  background: var(--white);
 }
 
-.strategy-detail-card {
-  background: var(--white) !important;
-  border: 3px solid var(--gold);
+.strategy-detail-header {
+  background: linear-gradient(135deg, var(--navy), var(--navy-light));
 }
 
 .strategy-detail-header h3 {
@@ -1976,7 +1963,11 @@ body.dark-mode .dark-mode-toggle {
 }
 
 .strategy-detail-body {
-  background: var(--white) !important;
+  color: var(--text);
+}
+
+.strategy-detail-section {
+  background: linear-gradient(135deg, rgba(212,175,55,0.08), rgba(212,175,55,0.02));
 }
 
 .strategy-detail-section h4 {
@@ -1987,92 +1978,50 @@ body.dark-mode .dark-mode-toggle {
   color: var(--text) !important;
 }
 
-.cert-modal-overlay {
-  background: rgba(15, 21, 56, 0.96) !important;
+body.dark-mode .strategy-detail-card {
+  background: var(--dark-surface);
 }
 
-.cert-modal {
-  background: #fff !important;
-  border: 3px solid var(--gold);
+body.dark-mode .strategy-detail-section {
+  background: rgba(212, 175, 55, 0.08);
 }
 
-.cert-modal h3 {
+body.dark-mode .strategy-detail-section h4 {
+  color: var(--gold) !important;
+}
+
+body.dark-mode .strategy-detail-section li {
+  color: #e8e6e1 !important;
+}
+
+/* ============================================
+   CORREÇÃO TRADE SHOW STRATEGY - DARK MODE
+   ============================================ */
+
+/* Garantir que o texto da estratégia seja legível */
+.trade-show-strategy {
+  background: var(--white);
+}
+
+.trade-show-strategy h3 {
   color: var(--navy) !important;
 }
 
-.article-modal-overlay {
-  background: rgba(15, 21, 56, 0.96) !important;
-}
-
-.article-modal {
-  background: #fff !important;
-  border: 3px solid var(--gold);
-}
-
-.article-modal-content h2,
-.article-modal-content h3 {
-  color: var(--navy) !important;
-}
-
-.article-modal-content p,
-.article-modal-content li {
+.trade-show-strategy > p {
   color: var(--text) !important;
 }
 
-/* ============================================
-   SEÇÃO CONTACT - SEMPRE FUNDO ESCURO
-   ============================================ */
-
-section.contact,
-.contact {
-  background: linear-gradient(135deg, #0f1538 0%, #1a2344 100%) !important;
+.strategy-item {
+  background: linear-gradient(135deg, var(--cream), var(--white));
 }
 
-.contact .section-header h2 {
-  color: var(--gold) !important;
+.strategy-item p {
+  color: var(--navy) !important;
 }
 
-.contact .section-header p {
-  color: rgba(255, 255, 255, 0.85) !important;
-}
-
-.contact-intro h3 {
-  color: var(--gold) !important;
-}
-
-.contact-intro p {
-  color: #e8e6e1 !important;
-  opacity: 1 !important;
-}
-
-.contact-cta-card {
-  background: rgba(255, 255, 255, 0.1) !important;
-  border: 1px solid rgba(212, 175, 55, 0.3) !important;
-}
-
-.contact-cta-card h3 {
-  color: var(--gold) !important;
-}
-
-.contact-cta-card p {
-  color: #e8e6e1 !important;
-}
-
-.contact-info-item {
-  color: #e8e6e1 !important;
-}
-
-.contact-info-item a {
-  color: var(--gold-light) !important;
-}
-
-/* ============================================
-   TRADE SHOW STRATEGY - DARK MODE
-   ============================================ */
-
+/* Dark mode específico para trade show */
 body.dark-mode .trade-show-strategy {
   background: var(--dark-elevated);
-  border-color: rgba(212, 175, 55, 0.3);
 }
 
 body.dark-mode .trade-show-strategy h3 {
@@ -2092,16 +2041,501 @@ body.dark-mode .strategy-item p {
   color: #e8e6e1 !important;
 }
 
+body.dark-mode .strategy-item:hover {
+  border-color: var(--gold);
+}
+
 /* ============================================
-   NEWSLETTER
+   FRASE DO FINAL - SEMPRE VISÍVEL
+   Cor do dark mode aplicada sempre
    ============================================ */
 
-.newsletter h2,
+/* Forçar a seção contact a ter fundo escuro sempre */
+.contact {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%) !important;
+}
+
+/* Todos os textos da seção contact em cor clara */
+.contact .section-header h2 {
+  color: var(--gold) !important;
+}
+
+.contact .section-header p {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+/* A frase específica do final */
+.contact-intro h3 {
+  color: var(--gold) !important;
+}
+
+.contact-intro p {
+  color: #e8e6e1 !important;
+  opacity: 1 !important;
+}
+
+/* Contact CTA Cards no modo claro */
+.contact-cta-card {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.contact-cta-card h3 {
+  color: var(--gold) !important;
+}
+
+.contact-cta-card p {
+  color: #e8e6e1 !important;
+}
+
+.contact-info-item {
+  color: #e8e6e1 !important;
+}
+
+.contact-info-item a {
+  color: var(--gold-light) !important;
+}
+
+/* ============================================
+   BOTÕES MOBILE - SCROLL TOP E BUILD
+   ============================================ */
+
+/* Scroll to top - canto inferior direito */
+.scroll-top {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: none;
+  background: var(--gold);
+  color: var(--navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(212,175,55,0.3);
+  font-size: 1.2rem;
+  z-index: 998;
+  opacity: 0;
+  visibility: hidden;
+  transition: all .24s ease;
+  cursor: pointer;
+}
+
+.scroll-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Build badge - acima do scroll */
+.build-badge {
+  position: fixed;
+  right: 20px;
+  bottom: 75px;
+  z-index: 997;
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  color: var(--navy);
+  padding: 10px 18px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 6px 20px rgba(212,175,55,0.3);
+  animation: pulse-badge 2s infinite;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .scroll-top {
+    right: 15px;
+    bottom: 15px;
+    width: 42px;
+    height: 42px;
+    font-size: 1.1rem;
+  }
+
+  .build-badge {
+    right: 15px;
+    bottom: 65px;
+    padding: 8px 14px;
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .scroll-top {
+    right: 10px;
+    bottom: 10px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .build-badge {
+    right: 10px;
+    bottom: 58px;
+    padding: 7px 12px;
+    font-size: 0.7rem;
+  }
+}
+
+/* ============================================
+   CORREÇÕES GLOBAIS DE CONTRASTE DARK MODE
+   ============================================ */
+
+/* Forçar todos os textos a serem legíveis no dark mode */
+body.dark-mode,
+body.dark-mode p,
+body.dark-mode li,
+body.dark-mode span:not(.stat-number):not(.impact-value):not(.github-stat-value):not(.metric-number),
+body.dark-mode div {
+  color: #e8e6e1;
+}
+
+/* Títulos em dourado */
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6 {
+  color: var(--gold);
+}
+
+/* Seções específicas */
+body.dark-mode .section-header p,
+body.dark-mode .timeline-description,
+body.dark-mode .project-content p,
+body.dark-mode .cert-card > p,
+body.dark-mode .testimonial-content p,
+body.dark-mode .blog-content > p,
+body.dark-mode .volunteer-card .description,
+body.dark-mode .about-content p,
+body.dark-mode .leadership-philosophy {
+  color: #e8e6e1 !important;
+}
+
+/* Cards no dark mode */
+body.dark-mode .project-card,
+body.dark-mode .testimonial-card,
+body.dark-mode .blog-card,
+body.dark-mode .contact-cta-card,
+body.dark-mode .volunteer-card,
+body.dark-mode .timeline-content {
+  background: var(--dark-elevated);
+  border-color: var(--dark-border);
+}
+
+body.dark-mode .project-content h3,
+body.dark-mode .testimonial-author h4,
+body.dark-mode .blog-card h3,
+body.dark-mode .contact-cta-card h3,
+body.dark-mode .timeline-title {
+  color: var(--gold) !important;
+}
+
+body.dark-mode .testimonial-author span,
+body.dark-mode .blog-meta,
+body.dark-mode .project-highlights {
+  color: #a0a8b8 !important;
+}
+
+/* Fix para strong */
+body.dark-mode strong {
+  color: var(--gold-light) !important;
+}
+
+/* Achievement boxes */
+body.dark-mode .achievement-box {
+  background: rgba(212, 175, 55, 0.1);
+  border-left-color: var(--gold);
+}
+
+body.dark-mode .achievement-box strong {
+  color: var(--gold-light) !important;
+}
+
+body.dark-mode .achievement-box li {
+  color: #e8e6e1 !important;
+}
+
+/* AI Application boxes */
+body.dark-mode .ai-application {
+  background: rgba(212, 175, 55, 0.08);
+  border-color: rgba(212, 175, 55, 0.3);
+}
+
+body.dark-mode .ai-application strong {
+  color: var(--gold-light) !important;
+}
+
+body.dark-mode .ai-application li {
+  color: #e8e6e1 !important;
+}
+
+/* Skills tags */
+body.dark-mode .skill-tag {
+  background: rgba(212, 175, 55, 0.2);
+  color: var(--gold-light) !important;
+}
+
+body.dark-mode .skill-tag:hover {
+  background: var(--gold);
+  color: var(--navy) !important;
+}
+
+/* Project tags */
+body.dark-mode .project-tag {
+  background: rgba(212, 175, 55, 0.15);
+  border-color: rgba(212, 175, 55, 0.3);
+  color: var(--gold-light) !important;
+}
+
+body.dark-mode .project-tag:hover {
+  background: var(--gold);
+  color: var(--navy) !important;
+}
+
+/* Lang items */
+body.dark-mode .lang-item {
+  background: rgba(212, 175, 55, 0.15);
+  border-color: rgba(212, 175, 55, 0.3);
+}
+
+body.dark-mode .lang-item span {
+  color: var(--gold-light) !important;
+}
+
+/* Showcase cards */
+body.dark-mode .project-showcase-card {
+  background: var(--dark-elevated);
+  border-color: var(--dark-border);
+}
+
+body.dark-mode .project-showcase-card h3 {
+  color: var(--gold) !important;
+}
+
+body.dark-mode .project-showcase-card p {
+  color: #e8e6e1 !important;
+}
+
+body.dark-mode .tech-tag {
+  background: rgba(212, 175, 55, 0.15);
+  border-color: rgba(212, 175, 55, 0.3);
+  color: var(--gold-light) !important;
+}
+
+body.dark-mode .metric-desc {
+  color: #a0a8b8 !important;
+}
+
+/* Blog */
+body.dark-mode .blog-category {
+  background: rgba(212, 175, 55, 0.15);
+  color: var(--gold-light) !important;
+}
+
+body.dark-mode .blog-meta {
+  color: #a0a8b8 !important;
+}
+
+/* Footer */
+body.dark-mode footer p {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Hero stats */
+body.dark-mode .stat-box .stat-label,
+body.dark-mode .stat-box .stat-note {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+body.dark-mode .hero-description {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+body.dark-mode .subtitle {
+  color: var(--gold-light) !important;
+}
+
+/* Floating badges */
+body.dark-mode .floating-badge {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(212, 175, 55, 0.4);
+}
+
+body.dark-mode .floating-badge span {
+  color: #fff !important;
+}
+
+/* Volunteer card */
+body.dark-mode .volunteer-card h3,
+body.dark-mode .volunteer-card .school,
+body.dark-mode .volunteer-card .period,
+body.dark-mode .volunteer-card .description {
+  color: #e8e6e1 !important;
+}
+
+body.dark-mode .volunteer-card .school {
+  color: var(--gold) !important;
+}
+
+body.dark-mode .volunteer-card .period {
+  color: #a0a8b8 !important;
+}
+
+/* About content */
+body.dark-mode .about-content h3 {
+  color: var(--gold) !important;
+}
+
+body.dark-mode .about-bullets li {
+  color: #e8e6e1 !important;
+}
+
+body.dark-mode .about-bullets li strong {
+  color: var(--gold-light) !important;
+}
+
+/* Framework highlight */
+body.dark-mode .framework-content h3 {
+  color: var(--gold) !important;
+}
+
+body.dark-mode .framework-content p {
+  color: rgba(255, 255, 255, 0.92) !important;
+}
+
+/* GitHub interactive */
+body.dark-mode .github-interactive h3 {
+  color: #fff !important;
+}
+
+body.dark-mode .github-interactive > p {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+body.dark-mode .github-stat-label {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* Newsletter */
+body.dark-mode .newsletter-input {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(212, 175, 55, 0.3);
+  color: #fff;
+}
+
+body.dark-mode .newsletter-features span {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* Cert cards */
+body.dark-mode .cert-card h4 {
+  color: var(--gold) !important;
+}
+
+body.dark-mode .cert-subtitle {
+  color: rgba(255, 255, 255, 0.78) !important;
+}
+
+body.dark-mode .cert-date {
+  color: var(--gold-light) !important;
+}
+
+/* Impact widget */
+body.dark-mode .impact-label {
+  color: #a0a8b8 !important;
+}
+
+/* Timeline */
+body.dark-mode .date-range {
+  color: var(--gold-light) !important;
+}
+
+body.dark-mode .timeline-company {
+  color: var(--gold) !important;
+}
+
+body.dark-mode .date-level {
+  background: rgba(212, 175, 55, 0.15);
+  border-color: rgba(212, 175, 55, 0.3);
+  color: var(--gold-light) !important;
+}
+
+/* ============================================
+   NEWSLETTER - TEXTO SEMPRE VISÍVEL
+   ============================================ */
+
 .newsletter > p,
-.newsletter-features span {
-  color: rgba(255, 255, 255, 0.95) !important;
+.newsletter h2,
+body.dark-mode .newsletter > p,
+body.dark-mode .newsletter h2 {
+  color: rgba(255,255,255,0.95) !important;
 }
 
 .newsletter-input::placeholder {
-  color: rgba(255, 255, 255, 0.6) !important;
+  color: rgba(255,255,255,0.6) !important;
+}
+
+body.dark-mode .newsletter-input::placeholder {
+  color: rgba(255,255,255,0.6) !important;
+}
+
+/* ============================================
+   CERT MODAL - CORREÇÕES
+   ============================================ */
+
+.cert-modal {
+  background: #fff;
+}
+
+.cert-modal h3 {
+  color: var(--navy) !important;
+}
+
+body.dark-mode .cert-modal {
+  background: var(--dark-surface);
+}
+
+body.dark-mode .cert-modal h3 {
+  color: var(--gold) !important;
+}
+
+/* ============================================
+   ARTICLE MODAL - CORREÇÕES
+   ============================================ */
+
+.article-modal {
+  background: #fff;
+}
+
+.article-modal-content h2,
+.article-modal-content h3 {
+  color: var(--navy) !important;
+}
+
+.article-modal-content p,
+.article-modal-content li {
+  color: var(--text) !important;
+}
+
+body.dark-mode .article-modal {
+  background: var(--dark-surface);
+}
+
+body.dark-mode .article-modal-content h2,
+body.dark-mode .article-modal-content h3 {
+  color: var(--gold) !important;
+}
+
+body.dark-mode .article-modal-content p,
+body.dark-mode .article-modal-content li {
+  color: #e8e6e1 !important;
 }
