@@ -71,13 +71,10 @@ function googleTranslateElementInit() {
 </div>
 
 <!-- Language Switcher -->
-<button class="translator-toggle" id="translatorToggle" aria-label="Translate">
-    <i class="fas fa-language"></i>
+<button class="translator-toggle" aria-label="Toggle translator">
+  <span>Translator</span>
+  <div id="google_translate_element"></div>
 </button>
-
-<div class="translator-dropdown" id="translatorDropdown">
-    <div id="google_translate_element"></div>
-</div>
 <!-- Dark Mode Toggle -->
 <button class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle dark mode">
   <i class="fas fa-moon" id="darkModeIcon"></i>
