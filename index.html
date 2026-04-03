@@ -77,14 +77,15 @@ function googleTranslateElementInit() {
   </button>
   
   <!-- Google Translate oculto visualmente, mas funcional -->
-  <div id="google_translate_element" 
-       style="position: absolute; 
-              opacity: 0; 
-              width: 1px; 
-              height: 1px; 
-              overflow: hidden; 
-              pointer-events: none;">
-  </div>
+ <div id="google_translate_element"
+     style="position: fixed;
+            top: -2000px;
+            left: -2000px;
+            opacity: 1;
+            pointer-events: none;
+            width: auto;
+            height: auto;">
+</div>
 </div>
 <!-- Dark Mode Toggle -->
 <button class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle dark mode">
