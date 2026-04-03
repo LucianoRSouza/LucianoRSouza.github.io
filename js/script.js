@@ -1232,33 +1232,32 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    // Função que tenta obter o select real do Google
+    // Tenta pegar o select do Google Translate
     function getGoogleSelect() {
         return container.querySelector('select.goog-te-combo');
     }
 
-    // Função principal: exibe o select temporariamente e força o dropdown a abrir
+    // Função que exibe o select por alguns milissegundos e força a abertura do dropdown
     function openTranslateMenu() {
         const select = getGoogleSelect();
 
         if (!select) {
-            console.warn('⏳ Select ainda não carregou... tentando novamente');
-            // Tenta por 4 segundos até o Google finalmente criar o select
-            setTimeout(openTranslateMenu, 400);
+            console.warn('⏳ Select ainda não carregou... tentando novamente.');
+            setTimeout(openTranslateMenu, 300);
             return;
         }
 
         console.log('✅ Select encontrado! Abrindo menu...');
 
-        // Deixa o select temporariamente visível e clicável
+        // Temporariamente habilita interação
         container.style.opacity = "1";
         container.style.pointerEvents = "auto";
 
-        // Foca e simula CLIQUE REAL (isso abre o dropdown)
+        // Força o clique real
         select.focus();
         select.click();
 
-        // Após abrir, esconde novamente
+        // Após abrir o menu, volta ao invisível
         setTimeout(() => {
             container.style.opacity = "0";
             container.style.pointerEvents = "none";
@@ -1271,4 +1270,3 @@ document.addEventListener('DOMContentLoaded', () => {
         openTranslateMenu();
     });
 });
-``
