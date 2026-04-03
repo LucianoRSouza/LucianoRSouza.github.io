@@ -1779,16 +1779,3 @@ body.dark-mode .goog-te-gadget .goog-te-combo {
     right: 8px;
   }
 }
-
-
-/* Overrides Final Fixes */
-.scroll-top{right:20px!important;bottom:20px!important;}
-.build-badge{right:20px!important;bottom:90px!important;}
-/* Dark mode text contrast fixes */
-body.dark-mode p, body.dark-mode li, body.dark-mode span{color:#e8e6e1!important;}
-/* Newsletter text fix */
-.newsletter>p{color:rgba(255,255,255,0.9)!important;}
-/* Modal text contrast */
-.stat-modal-details li, .strategy-detail-body li, .article-modal-content p{color:#e8e6e1!important;}
-/* Hero stats fix */
-.stat-number{color:var(--gold)!important;}
