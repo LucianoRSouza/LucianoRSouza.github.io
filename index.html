@@ -70,21 +70,14 @@ function googleTranslateElementInit() {
 <div class="loading-bar"><div class="loading-progress"></div></div>
 </div>
 
-<!-- Language Switcher - Botão bonito igual ao Dark Mode -->
-<div class="translator-box" id="translatorBox">
+<!-- Language Switcher -->
+<div class="translator-box">
   <button id="translateBtn" aria-label="Change language">
     <i class="fas fa-globe"></i>
   </button>
   
-  <!-- Este div precisa existir e ficar "quase invisível", mas não escondido com display:none -->
-  <div id="google_translate_element" 
-       style="position: absolute; 
-              opacity: 0.01; 
-              width: 1px; 
-              height: 1px; 
-              overflow: hidden; 
-              z-index: -1;">
-  </div>
+  <!-- Elemento do Google Translate – mantemos visível mas quase invisível -->
+  <div id="google_translate_element" style="position:absolute; left:-9999px; opacity:0; width:1px; height:1px; overflow:hidden;"></div>
 </div>
 <!-- Dark Mode Toggle -->
 <button class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle dark mode">
