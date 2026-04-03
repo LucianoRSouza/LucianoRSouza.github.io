@@ -32,21 +32,62 @@ button{border:0;background:none;cursor:pointer}
 
 /* Google Translate Widget - VERSÃO MINIMALISTA TRANSPARENTE */
 /* O container agora está no HTML com label "Tradutor" */
-#google_translate_element{display:inline-block}
-.goog-te-gadget{margin:0!important}
 
-/* Esconder elementos do Google Translate que não queremos */
-.goog-te-banner-frame.skiptranslate{display:none!important}
-.goog-logo-link{display:none!important}
-.goog-te-gadget span{display:none!important}
-.goog-te-gadget{height:auto!important;overflow:visible!important}
+/* ✅ CORRETO — container fora da tela e funcional */
+#google_translate_element {
+  position: fixed !important;
+  top: -2000px !important;
+  left: -2000px !important;
+  opacity: 1 !important;         /* precisa ser 1 para o Google inicializar */
+  pointer-events: none !important;
+  width: auto !important;
+  height: auto !important;
+}
+
+/* Mantém margens do gadget zeradas */
+.goog-te-gadget {
+  margin: 0 !important;
+}
+
+/* Remove elementos visuais do Google */
+.goog-te-banner-frame.skiptranslate { 
+  display: none !important; 
+}
+.goog-logo-link { 
+  display: none !important; 
+}
+.goog-te-gadget span { 
+  display: none !important; 
+}
+
+/* ✅ REMOVIDO o bloco errado que quebrava o widget */
+/* (antes havia um .goog-te-gadget { height:auto; overflow:visible } ) */
 
 /* Estilo do select do Google Translate - MINIMALISTA */
-.goog-te-gadget .goog-te-combo{margin:0!important;padding:4px 8px!important;border-radius:10px!important;border:1px solid rgba(212,175,55,.4)!important;background:rgba(255,255,255,.9)!important;color:var(--navy)!important;font-family:'Inter',sans-serif!important;font-weight:600!important;font-size:11px!important;cursor:pointer!important;outline:none!important;width:auto!important;min-width:80px!important;height:auto!important}
-.goog-te-gadget .goog-te-combo:hover{border-color:var(--gold)!important;box-shadow:0 2px 8px rgba(212,175,55,.2)!important}
+.goog-te-gadget .goog-te-combo {
+  margin: 0 !important;
+  padding: 4px 8px !important;
+  border-radius: 10px !important;
+  border: 1px solid rgba(212,175,55,.4) !important;
+  background: rgba(255,255,255,.9) !important;
+  color: var(--navy) !important;
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 11px !important;
+  cursor: pointer !important;
+  outline: none !important;
+  width: auto !important;
+  min-width: 80px !important;
+  height: auto !important;
+}
+
+.goog-te-gadget .goog-te-combo:hover {
+  border-color: var(--gold) !important;
+  box-shadow: 0 2px 8px rgba(212,175,55,.2) !important;
+}
 
 /* Remove o banner do topo */
-body{top:0!important}
+body { top: 0 !important; }
 
 /* Navbar */
 nav.navbar{position:fixed;inset:0 0 auto 0;background:rgba(15,21,56,.95);backdrop-filter:blur(18px);z-index:1000;padding:1rem var(--container-pad);display:flex;align-items:center;justify-content:space-between;transition:padding .25s ease,box-shadow .25s ease;box-shadow:0 6px 26px rgba(0,0,0,.28)}
