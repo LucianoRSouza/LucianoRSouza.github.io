@@ -441,13 +441,13 @@ section{padding:1.2cm .8cm}
 *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto !important}
 }
 /* ============================================
-   TRANSLATOR + DARK MODE BUTTONS
+   TRANSLATOR + DARK MODE BUTTONS (Versão Limpa e Final)
    ============================================ */
 
 .translator-box {
   position: fixed;
   top: 90px;
-  right: 190px;           /* Mais perto do dark mode */
+  right: 205px;           /* Ajustado para ficar mais à direita */
   z-index: 1501;
 }
 
@@ -473,11 +473,11 @@ section{padding:1.2cm .8cm}
   color: var(--navy);
 }
 
-/* Dark Mode Toggle - mantendo igual */
+/* Dark Mode Toggle */
 .dark-mode-toggle {
   position: fixed;
   top: 90px;
-  right: 130px;           /* Mais à direita, perto do tradutor */
+  right: 150px;           /* Bem próximo do botão de tradução */
   z-index: 1501;
   width: 44px;
   height: 44px;
@@ -502,7 +502,7 @@ section{padding:1.2cm .8cm}
   color: var(--navy);
 }
 
-/* Dark Mode para ambos */
+/* Dark Mode support para ambos os botões */
 body.dark-mode #translateBtn,
 body.dark-mode .dark-mode-toggle {
   background: var(--dark-elevated);
@@ -517,84 +517,20 @@ body.dark-mode .dark-mode-toggle:hover {
 
 /* Mobile */
 @media (max-width: 768px) {
-  .translator-box { right: 115px; top: 8px; }
-  .dark-mode-toggle { right: 65px; top: 8px; }
-  
-  #translateBtn, .dark-mode-toggle {
-    width: 38px;
-    height: 38px;
-    font-size: 1.15rem;
-  }
-}
-/* Dark Mode support */
-body.dark-mode #translateBtn {
-  background: var(--dark-elevated);
-  color: var(--gold);
-}
-
-body.dark-mode #translateBtn:hover {
-  background: var(--gold);
-  color: var(--navy);
-}
-
-/* Mobile adjustments */
-@media (max-width: 768px) {
-  .translator-box {
-    top: 8px;
-    right: 120px;
-  }
-  
-  #translateBtn {
-    width: 38px;
-    height: 38px;
-    font-size: 1.15rem;
-  }
-}
-/* Dark Mode */
-body.dark-mode #translateBtn {
-  background: var(--dark-elevated);
-  color: var(--gold);
-}
-
-body.dark-mode #translateBtn:hover {
-  background: var(--gold);
-  color: var(--navy);
-}
-
-/* Mobile */
-@media (max-width: 768px) {
   .translator-box { 
-    top: 6px; 
-    right: 110px; 
+    right: 118px; 
+    top: 8px; 
   }
-  #translateBtn {
-    width: 38px;
-    height: 38px;
-    font-size: 1.1rem;
-  }
-}
-/* Dark Mode support */
-body.dark-mode #translateBtn {
-  background: var(--dark-elevated);
-  color: var(--gold);
-}
-
-body.dark-mode #translateBtn:hover {
-  background: var(--gold);
-  color: var(--navy);
-}
-
-/* Mobile adjustments */
-@media (max-width: 768px) {
-  .translator-box {
-    top: 6px;
-    right: 110px;           /* Deixa espaço para o botão dark mode */
+  .dark-mode-toggle { 
+    right: 68px; 
+    top: 8px; 
   }
   
-  #translateBtn {
+  #translateBtn, 
+  .dark-mode-toggle {
     width: 38px;
     height: 38px;
-    font-size: 1.1rem;
+    font-size: 1.15rem;
   }
 }
 /* Mobile Timeline Logos — V36 (fine alignment) */
