@@ -1220,33 +1220,54 @@ document.addEventListener('DOMContentLoaded', () => {
   setTimeout(initHeroCounters, 500);
 });
 // ============================================
-// GOOGLE TRANSLATE BUTTON - Versão Final
+// GOOGLE TRANSLATE BUTTON - Versão Final 2026
 // ============================================
 
 document.addEventListener('DOMContentLoaded', () => {
-  const translateBtn = document.getElementById('translateBtn');
-  
-  if (!translateBtn) {
-    console.warn('Botão de tradução não encontrado');
-    return;
-  }
+    const translateBtn = document.getElementById('translateBtn');
+    const container = document.getElementById('google_translate_element');
 
-  translateBtn.addEventListener('click', () => {
-    console.log('✅ Botão de tradução clicado');
-
-    // Procura o select do Google Translate
-    const select = document.querySelector('#google_translate_element select.goog-te-combo');
-    
-    if (select) {
-      console.log('Select encontrado - tentando abrir o menu');
-      select.focus();
-      
-      // Força a abertura do dropdown
-      setTimeout(() => {
-        select.dispatchEvent(new Event('change', { bubbles: true }));
-      }, 100);
-    } else {
-      console.warn('Select do Google Translate ainda não carregou');
+    if (!translateBtn || !container) {
+        console.warn('❌ Translate button ou container não encontrados.');
+        return;
     }
-  });
+
+    function getGoogleSelect() {
+        return container.querySelector('select.goog-te-combo');
+    }
+
+    function openTranslateMenu(attempt = 1) {
+        const select = getGoogleSelect();
+
+        // Se o Google ainda não criou o select, tenta novamente
+        if (!select) {
+            if (attempt <= 15) {  // tenta por até ~1.5s
+                console.warn(`⏳ Select não disponível ainda... tentativa ${attempt}`);
+                return setTimeout(() => openTranslateMenu(attempt + 1), 100);
+            }
+            console.error("❌ Google Translate não inicializou.");
+            return;
+        }
+
+        console.log('✅ Select encontrado - abrindo dropdown...');
+
+        // Temporariamente torna o widget clicável
+        container.style.pointerEvents = "auto";
+        container.style.opacity = "1";
+
+        // Força o clique real no select
+        select.focus();
+        select.click();
+
+        // Esconde novamente depois que o dropdown abre
+        setTimeout(() => {
+            container.style.pointerEvents = "none";
+            container.style.opacity = "0";
+        }, 700);
+    }
+
+    translateBtn.addEventListener('click', () => {
+        console.log('🌍 Botão de tradução clicado');
+        openTranslateMenu();
+    });
 });
