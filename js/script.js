@@ -1232,40 +1232,44 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
+    /** Obtém o <select> criado pelo Google */
     function getGoogleSelect() {
         return container.querySelector('select.goog-te-combo');
     }
 
+    /** Abre o menu do Google Translate, aguardando carregamento se necessário */
     function openTranslateMenu(attempt = 1) {
         const select = getGoogleSelect();
 
-        // Se o Google ainda não criou o select, tenta novamente
+        // Ainda não carregou? tenta de novo.
         if (!select) {
-            if (attempt <= 15) {  // tenta por até ~1.5s
-                console.warn(`⏳ Select não disponível ainda... tentativa ${attempt}`);
-                return setTimeout(() => openTranslateMenu(attempt + 1), 100);
+            if (attempt <= 25) {
+                console.log(`⏳ Aguardando Google Translate... tentativa ${attempt}`);
+                return setTimeout(() => openTranslateMenu(attempt + 1), 120);
             }
-            console.error("❌ Google Translate não inicializou.");
+            console.error("❌ Google Translate não carregou o select.");
             return;
         }
 
-        console.log('✅ Select encontrado - abrindo dropdown...');
+        // --- Select carregado, abrir dropdown ---
+        console.log('✅ Select encontrado — abrindo dropdown...');
 
-        // Temporariamente torna o widget clicável
+        // Permite clique temporário
         container.style.pointerEvents = "auto";
         container.style.opacity = "1";
 
-        // Força o clique real no select
+        // Força clique real para abrir o dropdown
         select.focus();
         select.click();
 
-        // Esconde novamente depois que o dropdown abre
+        // Reesconde o widget depois que o menu abre
         setTimeout(() => {
             container.style.pointerEvents = "none";
             container.style.opacity = "0";
         }, 700);
     }
 
+    /** Evento do botão */
     translateBtn.addEventListener('click', () => {
         console.log('🌍 Botão de tradução clicado');
         openTranslateMenu();
