@@ -32,18 +32,18 @@ button{border:0;background:none;cursor:pointer}
 
 /* Google Translate Widget - VERSÃO MINIMALISTA TRANSPARENTE */
 /* O container agora está no HTML com label "Tradutor" */
-
-
+#google_translate_element{display:inline-block}
+.goog-te-gadget{margin:0!important}
 
 /* Esconder elementos do Google Translate que não queremos */
 .goog-te-banner-frame.skiptranslate{display:none!important}
 .goog-logo-link{display:none!important}
-
-
+.goog-te-gadget span{display:none!important}
+.goog-te-gadget{height:auto!important;overflow:visible!important}
 
 /* Estilo do select do Google Translate - MINIMALISTA */
-
-
+.goog-te-gadget .goog-te-combo{margin:0!important;padding:4px 8px!important;border-radius:10px!important;border:1px solid rgba(212,175,55,.4)!important;background:rgba(255,255,255,.9)!important;color:var(--navy)!important;font-family:'Inter',sans-serif!important;font-weight:600!important;font-size:11px!important;cursor:pointer!important;outline:none!important;width:auto!important;min-width:80px!important;height:auto!important}
+.goog-te-gadget .goog-te-combo:hover{border-color:var(--gold)!important;box-shadow:0 2px 8px rgba(212,175,55,.2)!important}
 
 /* Remove o banner do topo */
 body{top:0!important}
@@ -401,7 +401,7 @@ nav.navbar{box-shadow:0 6px 22px rgba(0,0,0,.26)}
 .hero-description{font-size:.98rem}
 .stat-number{font-size:1.4rem}
 .lang-switcher{top:70px;right:10px;padding:4px}
-
+.goog-te-gadget .goog-te-combo{padding:3px 6px!important;font-size:10px!important;min-width:70px!important}
 }
 
 @media(max-width:420px){
@@ -443,9 +443,9 @@ section{padding:1.2cm .8cm}
 
 /* V23 */
 
-
-
-@media(max-width:768px){}
+/* V23 translator */
+.translator-box{position:fixed;top:90px;right:20px;z-index:1500;background:rgba(255,255,255,.75);padding:8px 12px;border-radius:14px;}
+@media(max-width:768px){.translator-box{top:10px!important;right:10px!important;}}
 /* V23 fairs fix */
 .project-card[data-gallery]{cursor:pointer;}
 /* V23 timeline mobile logos */
@@ -455,8 +455,8 @@ section{padding:1.2cm .8cm}
 /* V25 overrides */
 
 /* V25 translator smaller */
-
-@media(max-width:768px){}
+.translator-box{position:fixed;top:90px;right:14px;z-index:1500;background:rgba(255,255,255,.7);padding:4px 8px;border-radius:12px;max-width:120px;}
+@media(max-width:768px){.translator-box{top:6px!important;right:6px!important;max-width:90px;padding:3px 6px;}}
 /* V25 timeline mobile logos */
 @media(max-width:1200px){.timeline-item[data-logo] .timeline-content{position:relative;padding-top:4rem!important;}
 .timeline-item[data-logo] .timeline-content::after{content:"";position:absolute;top:-3.1rem;left:0;width:52px;height:52px;background-size:contain;background-repeat:no-repeat;background-image:attr(data-logo url);} }
@@ -1594,188 +1594,5 @@ body.dark-mode .contact-cta-card .cta-icon i {
     right: 20px !important;
     width: 45px !important;
     height: 45px !important;
-  }
-}
-
-/* ============================================
-   LIGHT MODE TEXT FIXES - Garantir visibilidade
-   ============================================ */
-
-/* Garantir que no light mode os textos estejam escuros */
-body:not(.dark-mode) .newsletter > p,
-body:not(.dark-mode) .newsletter h2 {
-  color: rgba(255,255,255,0.9) !important;
-}
-
-body:not(.dark-mode) .newsletter-input::placeholder {
-  color: rgba(255,255,255,0.6) !important;
-}
-
-/* Trade Show Strategy textos */
-body:not(.dark-mode) .trade-show-strategy > p {
-  color: var(--text-light) !important;
-}
-
-body:not(.dark-mode) .strategy-item p {
-  color: var(--navy) !important;
-}
-
-/* GitHub Showcase cards - no light mode */
-body:not(.dark-mode) .project-showcase-card {
-  background: var(--white);
-}
-
-body:not(.dark-mode) .project-showcase-card h3 {
-  color: var(--navy) !important;
-}
-
-body:not(.dark-mode) .project-showcase-card p {
-  color: var(--text-light) !important;
-}
-
-body:not(.dark-mode) .tech-tag {
-  background: var(--cream);
-  color: var(--navy) !important;
-  border: 1px solid rgba(212,175,55,0.3);
-}
-
-body:not(.dark-mode) .metric-desc {
-  color: var(--text-light) !important;
-}
-
-/* Strategy items no light mode */
-body:not(.dark-mode) .strategy-item {
-  background: linear-gradient(135deg, var(--cream), var(--white));
-}
-
-body:not(.dark-mode) .strategy-item:hover {
-  background: var(--white);
-}
-
-body:not(.dark-mode) .strategy-item p {
-  color: var(--navy) !important;
-}
-
-/* ============================================
-   GOOGLE TRANSLATE - DESIGN INTEGRADO 2026
-   ============================================ */
-
-.translator-box {
-  position: fixed;
-  top: 90px;
-  right: 20px;
-  z-index: 1500;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(255, 255, 255, 0.95);
-  padding: 8px 16px;
-  border-radius: 50px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-  border: 2px solid var(--gold);
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
-}
-
-.translator-box:hover {
-  box-shadow: 0 6px 25px rgba(212,175,55,0.25);
-  transform: translateY(-2px);
-}
-
-.translator-box::before {
-  content: '0ac';
-  font-family: 'Font Awesome 6 Free';
-  font-weight: 900;
-  color: var(--gold);
-  font-size: 1rem;
-}
-
-.translator-box > span {
-  display: none !important; /* Esconder label "Tradutor" */
-}
-
-/* Estilizar o select do Google Translate */
-.goog-te-gadget {
-  margin: 0 !important;
-}
-
-.goog-te-gadget .goog-te-combo {
-  margin: 0 !important;
-  padding: 6px 12px !important;
-  border-radius: 25px !important;
-  border: none !important;
-  background: transparent !important;
-  color: var(--navy) !important;
-  font-family: 'Inter', sans-serif !important;
-  font-weight: 600 !important;
-  font-size: 13px !important;
-  cursor: pointer !important;
-  outline: none !important;
-  width: auto !important;
-  min-width: 100px !important;
-  appearance: none !important;
-  -webkit-appearance: none !important;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23d4af37' d='M6 8L1 3h10z'/%3E%3C/svg%3E") !important;
-  background-repeat: no-repeat !important;
-  background-position: right 8px center !important;
-  padding-right: 28px !important;
-}
-
-.goog-te-gadget .goog-te-combo:hover {
-  background: rgba(212,175,55,0.1) !important;
-}
-
-.goog-te-gadget .goog-te-combo:focus {
-  background: rgba(212,175,55,0.15) !important;
-}
-
-/* Esconder elementos do Google que não queremos */
-.goog-te-banner-frame.skiptranslate {
-  display: none !important;
-}
-
-.goog-logo-link {
-  display: none !important;
-}
-
-.goog-te-gadget span {
-  display: none !important;
-}
-
-body {
-  top: 0 !important;
-}
-
-/* Dark mode para translator */
-body.dark-mode .translator-box {
-  background: rgba(26, 35, 68, 0.95);
-  border-color: var(--gold);
-}
-
-body.dark-mode .goog-te-gadget .goog-te-combo {
-  color: var(--gold-light) !important;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23e5c158' d='M6 8L1 3h10z'/%3E%3C/svg%3E") !important;
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-  .translator-box {
-    top: 70px;
-    right: 10px;
-    padding: 6px 12px;
-  }
-
-  .goog-te-gadget .goog-te-combo {
-    font-size: 12px !important;
-    min-width: 90px !important;
-    padding: 4px 10px !important;
-    padding-right: 24px !important;
-  }
-}
-
-@media (max-width: 480px) {
-  .translator-box {
-    top: 65px;
-    right: 8px;
   }
 }
