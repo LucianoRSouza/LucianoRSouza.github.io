@@ -72,21 +72,22 @@ function googleTranslateElementInit() {
 
 <!-- Language Switcher -->
 <div class="translator-box">
+
   <button id="translateBtn" aria-label="Change language">
     <i class="fas fa-globe"></i>
   </button>
-  
-  <!-- Google Translate oculto visualmente, mas funcional -->
- <div id="google_translate_element"
-     style="position: fixed;
-            top: -2000px;
-            left: -2000px;
-            opacity: 1;
-            pointer-events: auto;
-            width: auto;
-            height: auto;">
-</div>
-</div>
+
+  <div id="google_translate_element"
+       style="position: fixed;
+              top: -2000px;
+              left: -2000px;
+              opacity: 1;
+              pointer-events: auto;
+              width: auto;
+              height: auto;">
+  </div>
+
+</div> <!-- ✅ Fecha somente a translator-box -->
 <!-- Dark Mode Toggle -->
 <button class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle dark mode">
   <i class="fas fa-moon" id="darkModeIcon"></i>
