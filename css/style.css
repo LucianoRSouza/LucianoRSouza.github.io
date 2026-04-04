@@ -1638,3 +1638,20 @@ body.dark-mode .floating-badge i {
 }
   }
 }
+/* ✅ Correção definitiva Google Translate */
+html, body {
+    overflow-y: visible !important;
+}
+
+#google_translate_element * {
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.goog-te-banner-frame {
+    display: none !important;
+}
+
+body {
+    top: 0 !important;
+}
