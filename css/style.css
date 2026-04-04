@@ -1610,27 +1610,27 @@ body.dark-mode .floating-badge i {
     padding: 0 1rem;
   }
 
-  .github-btn-main {
+.github-btn-main {
     width: 100% !important;
     max-width: 300px !important;
     justify-content: center !important;
     padding: 1rem 2rem !important;
+}
 
-    /* Botão do tradutor */
 .translator-toggle {
-  display: inline-flex;           /* Para alinhar texto e o select do Google */
-  align-items: center;
-  justify-content: center;
-  gap: 5px;                       /* Espaço entre texto e select */
-  background-color: var(--navy);  /* Mesma cor do botão dark mode */
-  color: #fff;
-  border: 1px solid var(--navy);
-  border-radius: 8px;
-  padding: 6px 12px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    background-color: var(--navy);
+    color: #fff;
+    border: 1px solid var(--navy);
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
 }
 
 .translator-toggle:hover {
