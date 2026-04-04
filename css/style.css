@@ -1643,13 +1643,17 @@ html, body {
     overflow-y: visible !important;
 }
 
-
-#google_translate_element {
-    visibility: visible !important;   /* 👈 obrigatório */
-    opacity: 0 !important;            /* invisível mas "existindo" */
+/* Widget invisível mas funcional */
+#google_translate_element_container {
+    opacity: 0 !important;          /* invisível */
     pointer-events: none !important;
     position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
+    top: 10px !important;            /* precisa estar dentro da viewport */
+    left: 10px !important;           /* precisa estar dentro da viewport */
     z-index: -1 !important;
+}
+
+#google_translate_element {
+    visibility: visible !important;
+    opacity: 1 !important;           /* importantíssimo */
 }
