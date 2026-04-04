@@ -1646,13 +1646,13 @@ html, body {
   position: fixed !important;
   top: 10px !important;
   left: 10px !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-  z-index: 9999 !important; /* ✅ TEM de estar ACIMA, não abaixo */
+  opacity: 0 !important;           /* invisível */
+  pointer-events: none !important; /* não interage com o usuário */
+  z-index: 9999 !important;        /* acima de tudo para o Google montar */
 }
 
 #google_translate_element {
   opacity: 1 !important;
   visibility: visible !important;
-  pointer-events: auto !important; /* ✅ precisa permitir clique interno */
+  pointer-events: auto !important; /* o Google PRECISA disso */
 }
