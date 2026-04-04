@@ -1636,8 +1636,6 @@ body.dark-mode .floating-badge i {
 .translator-toggle:hover {
   background-color: #1a1a2e; /* cor mais escura no hover, mesma lógica do dark mode */
 }
-  }
-}
 /* ✅ Correção definitiva Google Translate */
 html, body {
     overflow-y: visible !important;
@@ -1645,15 +1643,16 @@ html, body {
 
 /* Widget invisível mas funcional */
 #google_translate_element_container {
-    opacity: 0 !important;          /* invisível */
-    pointer-events: none !important;
-    position: fixed !important;
-    top: 10px !important;            /* precisa estar dentro da viewport */
-    left: 10px !important;           /* precisa estar dentro da viewport */
-    z-index: -1 !important;
+  position: fixed !important;
+  top: 10px !important;
+  left: 10px !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  z-index: 9999 !important; /* ✅ TEM de estar ACIMA, não abaixo */
 }
 
 #google_translate_element {
-    visibility: visible !important;
-    opacity: 1 !important;           /* importantíssimo */
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important; /* ✅ precisa permitir clique interno */
 }
