@@ -1219,59 +1219,36 @@ function animateHeroStat(element) {
 document.addEventListener('DOMContentLoaded', () => {
   setTimeout(initHeroCounters, 500);
 });
-// ============================================
-// GOOGLE TRANSLATE BUTTON - Versão Final 2026
-// ============================================
-
+// =============================
+// GOOGLE TRANSLATE BUTTON (CORRIGIDO)
+// =============================
 document.addEventListener('DOMContentLoaded', () => {
+
     const translateBtn = document.getElementById('translateBtn');
     const container = document.getElementById('google_translate_element');
 
-    if (!translateBtn || !container) {
-        console.warn('❌ Translate button ou container não encontrados.');
-        return;
-    }
-
-    /** Obtém o <select> criado pelo Google */
+    // Localiza o <select> criado pelo Google
     function getGoogleSelect() {
         return container.querySelector('select.goog-te-combo');
     }
 
-    /** Abre o menu do Google Translate, aguardando carregamento se necessário */
+    // Tenta abrir o menu até aparecer
     function openTranslateMenu(attempt = 1) {
         const select = getGoogleSelect();
 
-        // Ainda não carregou? tenta de novo.
+        // Ainda não carregou → tenta até 40 vezes
         if (!select) {
-            if (attempt <= 25) {
-                console.log(`⏳ Aguardando Google Translate... tentativa ${attempt}`);
-                return setTimeout(() => openTranslateMenu(attempt + 1), 120);
+            if (attempt <= 40) {
+                return setTimeout(() => openTranslateMenu(attempt + 1), 150);
             }
-            console.error("❌ Google Translate não carregou o select.");
+            console.error("❌ Google Translate combo box not found.");
             return;
         }
 
-        // --- Select carregado, abrir dropdown ---
-        console.log('✅ Select encontrado — abrindo dropdown...');
-
-        // Permite clique temporário
-        container.style.pointerEvents = "auto";
-        container.style.opacity = "1";
-
-        // Força clique real para abrir o dropdown
+        // Carregou → força abrir o dropdown
         select.focus();
         select.click();
-
-        // Reesconde o widget depois que o menu abre
-        setTimeout(() => {
-            container.style.pointerEvents = "none";
-            container.style.opacity = "0";
-        }, 700);
     }
 
-    /** Evento do botão */
-    translateBtn.addEventListener('click', () => {
-        console.log('🌍 Botão de tradução clicado');
-        openTranslateMenu();
-    });
+    translateBtn.addEventListener('click', openTranslateMenu);
 });
