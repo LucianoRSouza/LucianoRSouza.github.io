@@ -1864,18 +1864,18 @@ body.dark-mode .metric-desc {
 
 
 /* ============================================
-   CORREÇÕES FINAIS - DROPDOWN COMPACTO + MOBILE
+   CORREÇÕES FINAIS - DROPDOWN LIMPO + MOBILE
    ============================================ */
 
-/* 1. DROPDOWN COMPACTO COM LABEL "Translator" */
+/* 1. DROPDOWN SÓ O QUADRADINHO DO G - SEM ESPAÇO */
 .google-g-ball {
   display: none !important;
 }
 
-/* Container do dropdown - MAIS COMPACTO */
+/* Container SUPER COMPACTO */
 #google_translate_element {
   position: absolute !important;
-  top: 50px !important;
+  top: 48px !important;
   right: 0 !important;
   opacity: 0 !important;
   visibility: hidden !important;
@@ -1884,11 +1884,12 @@ body.dark-mode .metric-desc {
   transform: translateY(-10px) !important;
   background: white !important;
   border: 2px solid #d4af37 !important;
-  border-radius: 10px !important;
+  border-radius: 8px !important;
   box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
-  padding: 6px 8px !important;
-  min-width: 100px !important;
-  max-width: 120px !important;
+  padding: 4px !important;
+  min-width: auto !important;
+  width: auto !important;
+  display: inline-block !important;
 }
 
 #google_translate_element.visible {
@@ -1898,24 +1899,13 @@ body.dark-mode .metric-desc {
   transform: translateY(0) !important;
 }
 
-/* Label "Translator" acima do select */
-#google_translate_element::before {
-  content: 'Translator' !important;
-  display: block !important;
-  font-family: 'Inter', sans-serif !important;
-  font-size: 11px !important;
-  font-weight: 600 !important;
-  color: #0f1538 !important;
-  margin-bottom: 4px !important;
-  text-align: center !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.5px !important;
-}
+/* SEM LABEL - REMOVIDO */
 
-/* Select compacto */
+/* Select bem compacto */
 #google_translate_element .goog-te-combo {
-  width: 100% !important;
-  padding: 6px 8px !important;
+  width: auto !important;
+  min-width: 80px !important;
+  padding: 4px 8px !important;
   border-radius: 6px !important;
   border: 1px solid #d4af37 !important;
   background: white !important;
@@ -1926,39 +1916,43 @@ body.dark-mode .metric-desc {
   cursor: pointer !important;
   outline: none !important;
   margin: 0 !important;
-  min-height: 28px !important;
+  height: auto !important;
+  line-height: 1.2 !important;
 }
 
-/* Esconder elementos desnecessários */
+/* Esconder TUDO que não é necessário */
 #google_translate_element .goog-te-gadget span,
 #google_translate_element .goog-logo-link,
 #google_translate_element .goog-te-banner-frame,
-#google_translate_element .goog-te-gadget > span {
+#google_translate_element .goog-te-gadget > span,
+#google_translate_element .goog-te-menu-value span {
   display: none !important;
 }
 
-/* 2. MOBILE - DESCIDO 1PX PARA FICAR ALINHADO */
+/* Gadget limpo */
+#google_translate_element .goog-te-gadget {
+  margin: 0 !important;
+  padding: 0 !important;
+  display: block !important;
+}
+
+/* 2. MOBILE - DESCIDO MAIS UM POUCO */
 @media(max-width:768px){
   .nav-controls {
-    top: 15px !important;
+    top: 18px !important;
     right: 12px !important;
   }
 
   #google_translate_element {
-    top: 42px !important;
+    top: 40px !important;
     right: 0 !important;
-    min-width: 90px !important;
-    padding: 5px 6px !important;
-  }
-
-  #google_translate_element::before {
-    font-size: 10px !important;
-    margin-bottom: 3px !important;
+    padding: 3px !important;
+    border-radius: 6px !important;
   }
 
   #google_translate_element .goog-te-combo {
     font-size: 11px !important;
-    padding: 5px 6px !important;
-    min-height: 26px !important;
+    padding: 3px 6px !important;
+    min-width: 70px !important;
   }
 }
