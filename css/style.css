@@ -1966,44 +1966,47 @@ body.dark-mode .metric-desc {
 
 
 
+
+
 /* ============================================
-   CORREÇÃO DEFINITIVA - FRAME COMPACTO + POSIÇÃO
+   CORREÇÃO DEFINITIVA - FRAME MINÚSCULO ABAIXO DO GLOBO
    ============================================ */
 
-/* Frame SUPER COMPACTO - só o tamanho do G */
+/* Frame MINÚSCULO - só o G */
 #google_translate_element {
-  width: 50px !important;
-  min-width: 50px !important;
-  max-width: 50px !important;
-  padding: 2px !important;
-  left: auto !important;
-  right: 85px !important; /* Posicionado debaixo do botão globo */
-  top: 52px !important;
+  width: 36px !important;
+  min-width: 36px !important;
+  max-width: 36px !important;
+  height: 36px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  left: 8px !important; /* ABAIXO do botão do globo */
+  top: 55px !important;
+  overflow: hidden !important;
 }
 
-/* Select compacto */
+/* Select que ocupa tudo */
 #google_translate_element .goog-te-combo {
-  width: 46px !important;
-  min-width: 46px !important;
-  padding: 2px 4px !important;
-  font-size: 11px !important;
+  width: 100% !important;
+  height: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  font-size: 0 !important; /* Esconde o texto */
+  color: transparent !important;
+  cursor: pointer !important;
 }
 
 /* Mobile */
 @media(max-width:768px){
   #google_translate_element {
-    width: 45px !important;
-    min-width: 45px !important;
-    max-width: 45px !important;
-    padding: 2px !important;
-    right: 75px !important;
-    top: 45px !important;
-  }
-
-  #google_translate_element .goog-te-combo {
-    width: 41px !important;
-    min-width: 41px !important;
-    padding: 2px 3px !important;
-    font-size: 10px !important;
+    width: 32px !important;
+    min-width: 32px !important;
+    max-width: 32px !important;
+    height: 32px !important;
+    left: 6px !important;
+    top: 48px !important;
+    padding: 0 !important;
   }
 }
