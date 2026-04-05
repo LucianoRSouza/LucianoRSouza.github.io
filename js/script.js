@@ -1018,7 +1018,7 @@ function animateCounter(element) {
   const prefix = element.getAttribute('data-prefix') || '';
   const suffix = element.getAttribute('data-suffix') || '';
   const duration = 4000; // 4 segundos
-  const steps = 80;
+  const steps = 100; // Mais steps para animação mais suave
   const stepTime = duration / steps;
   let current = 0;
 
@@ -1029,13 +1029,8 @@ function animateCounter(element) {
       clearInterval(timer);
     }
 
-    // Formatação especial para K (milhares)
-    let displayValue;
-    if (suffix === 'K') {
-      displayValue = Math.floor(current);
-    } else {
-      displayValue = Math.floor(current).toLocaleString('en-US');
-    }
+    // Formatação: sempre mostrar número inteiro
+    const displayValue = Math.floor(current);
 
     element.textContent = prefix + displayValue + suffix;
   }, stepTime);
@@ -1231,39 +1226,153 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 /* ============================================
-   TRANSLATOR BUTTON FUNCTIONALITY - BOLINHA G
+   TRANSLATOR BUTTON FUNCTIONALITY - BOLINHA G REDONDA
    ============================================ */
 
 document.addEventListener('DOMContentLoaded', function() {
   const translatorBtn = document.getElementById('translatorBtn');
   const translateElement = document.getElementById('google_translate_element');
 
+  // Criar a bolinha G visualmente
+  function createGoogleBall() {
+    if (!translateElement) return;
+
+    // Verificar se já existe
+    if (translateElement.querySelector('.google-g-ball')) return;
+
+    // Criar elemento da bolinha G
+    const gBall = document.createElement('div');
+    gBall.className = 'google-g-ball';
+    gBall.innerHTML = 'G';
+    gBall.style.cssText = `
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 44px;
+      height: 44px;
+      background: white;
+      border: 2px solid #d4af37;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Product Sans', 'Roboto', Arial, sans-serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      background: linear-gradient(135deg, #4285F4 0%, #EA4335 33%, #FBBC05 66%, #34A853 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      z-index: 1;
+      pointer-events: none;
+    `;
+
+    translateElement.appendChild(gBall);
+
+    // Ajustar o select para ficar por cima mas invisível
+    const select = translateElement.querySelector('.goog-te-combo');
+    if (select) {
+      select.style.cssText = `
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 44px;
+        height: 44px;
+        opacity: 0;
+        cursor: pointer;
+        z-index: 2;
+      `;
+
+      // Quando o select receber foco, expandir
+      select.addEventListener('focus', function() {
+        gBall.style.opacity = '0';
+        gBall.style.transform = 'scale(0.5)';
+
+        this.style.cssText = `
+          position: absolute;
+          top: 50px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 160px;
+          height: auto;
+          opacity: 1;
+          padding: 8px 12px;
+          border-radius: 10px;
+          border: 2px solid #d4af37;
+          background: white;
+          color: #0f1538;
+          font-family: 'Inter', sans-serif;
+          font-weight: 600;
+          font-size: 13px;
+          box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+          z-index: 10;
+        `;
+      });
+
+      // Quando perder foco, voltar à bolinha
+      select.addEventListener('blur', function() {
+        setTimeout(() => {
+          gBall.style.opacity = '1';
+          gBall.style.transform = 'scale(1)';
+
+          this.style.cssText = `
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 44px;
+            height: 44px;
+            opacity: 0;
+            cursor: pointer;
+            z-index: 2;
+          `;
+
+          // Fechar o dropdown
+          translateElement.classList.remove('visible');
+        }, 200);
+      });
+
+      // Ao mudar idioma
+      select.addEventListener('change', function() {
+        setTimeout(() => {
+          translateElement.classList.remove('visible');
+          gBall.style.opacity = '1';
+          gBall.style.transform = 'scale(1)';
+
+          this.style.cssText = `
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 44px;
+            height: 44px;
+            opacity: 0;
+            cursor: pointer;
+            z-index: 2;
+          `;
+        }, 500);
+      });
+    }
+  }
+
+  // Criar a bolinha após um delay para garantir que o Google Translate carregou
+  setTimeout(createGoogleBall, 1000);
+  setTimeout(createGoogleBall, 2000);
+
   if (translatorBtn && translateElement) {
     translatorBtn.addEventListener('click', function(e) {
       e.stopPropagation();
 
-      // Toggle visibility do container do Google Translate
+      // Toggle visibility
       translateElement.classList.toggle('visible');
 
-      // Adicionar classe active para animação
       if (translateElement.classList.contains('visible')) {
-        translateElement.classList.add('active');
-
-        // Tentar focar no select após a animação
-        setTimeout(function() {
-          const select = translateElement.querySelector('.goog-te-combo');
-          if (select) {
-            select.style.opacity = '1';
-            select.style.width = '140px';
-            select.style.minWidth = '140px';
-            select.style.height = 'auto';
-            select.style.position = 'static';
-            select.style.marginTop = '50px';
-            select.focus();
-          }
-        }, 300);
-      } else {
-        translateElement.classList.remove('active');
+        // Focar no select para abrir
+        const select = translateElement.querySelector('.goog-te-combo');
+        if (select) {
+          select.focus();
+        }
       }
     });
 
@@ -1271,17 +1380,6 @@ document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener('click', function(e) {
       if (!translatorBtn.contains(e.target) && !translateElement.contains(e.target)) {
         translateElement.classList.remove('visible');
-        translateElement.classList.remove('active');
-      }
-    });
-
-    // Fechar ao selecionar idioma
-    translateElement.addEventListener('change', function(e) {
-      if (e.target.classList.contains('goog-te-combo')) {
-        setTimeout(function() {
-          translateElement.classList.remove('visible');
-          translateElement.classList.remove('active');
-        }, 500);
       }
     });
 
@@ -1289,7 +1387,6 @@ document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape' && translateElement.classList.contains('visible')) {
         translateElement.classList.remove('visible');
-        translateElement.classList.remove('active');
       }
     });
   }
