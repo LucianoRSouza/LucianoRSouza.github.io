@@ -8,7 +8,7 @@
   "@id": "https://lucianorodrigues.github.io/#person",
   "name": "Luciano Rodrigues de Souza",
   "jobTitle": "AI-Driven Procurement & Operations Leader",
-  "description": "Strategic procurement leader specializing in AI-powered sourcing, process automation, and operational excellence. 15+ years delivering €1M+ savings across Europe, LATAM and Asia.",
+  "description": "Strategic procurement leader specializing in AI-powered sourcing, process automation, and operational excellence. 15+ years delivering €10M+ savings across Europe, LATAM and Asia.",
   "url": "https://lucianorodrigues.github.io",
   "image": "https://lucianorodrigues.github.io/Photo_Luciano_início.jpg",
   "email": "mailto:luciano.vlap@gmail.com",
@@ -41,7 +41,7 @@
 <meta content="AI-powered procurement, strategic operations, and product development leadership." property="og:description"/>
 <meta content="website" property="og:type"/>
 <meta content="Photo_Luciano_início.jpg" property="og:image"/>
-<link href="css/style.css" rel="stylesheet"/>
+<link href="./style.css" rel="stylesheet"/>
 <!-- Google Translate Script -->
 <script type="text/javascript">
 function googleTranslateElementInit() {
@@ -53,17 +53,14 @@ function googleTranslateElementInit() {
   }, 'google_translate_element');
 }
 </script>
-<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async defer></script>
+
+
+
 
 
 </head>
 <body>
-
-  <!-- Widget original do Google (invisível mas funcional) -->
-  <div id="google_translate_element_container">
-      <div id="google_translate_element"></div>
-  </div>
-
 <div class="cursor" id="cursor"></div>
 <div class="cursor-follower" id="cursorFollower"></div>
 
@@ -73,18 +70,16 @@ function googleTranslateElementInit() {
 <div class="loading-bar"><div class="loading-progress"></div></div>
 </div>
 
-<!-- Language Switcher -->
-<div class="translator-box">
-
-  <button id="translateBtn" aria-label="Change language">
-    <i class="fas fa-globe"></i>
+<!-- Nav Controls: Translator + Dark Mode -->
+<div class="nav-controls">
+  <button class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle dark mode">
+    <i class="fas fa-moon" id="darkModeIcon"></i>
   </button>
-
-</div> <!-- ✅ Fecha somente a translator-box -->
-<!-- Dark Mode Toggle -->
-<button class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle dark mode">
-  <i class="fas fa-moon" id="darkModeIcon"></i>
-</button>
+  <div class="translator-box">
+    <span style="font-size:11px;font-weight:600;color:var(--navy);text-transform:uppercase;letter-spacing:0.5px;">Tradutor</span>
+    <div id="google_translate_element" style="display:inline-block;"></div>
+  </div>
+</div>
 
 
 <nav aria-label="Primary" class="navbar" id="navbar">
@@ -111,9 +106,9 @@ function googleTranslateElementInit() {
 <div aria-label="Key metrics" class="hero-stats">
 <div aria-label="Cumulative savings delivered" class="stat-box" data-stat="savings" tabindex="0">
 <i aria-hidden="true" class="fas fa-piggy-bank stat-icon"></i>
-<span class="stat-number" id="statSavings">€1M+</span>
+<span class="stat-number" id="statSavings">€10M+</span>
 <span class="stat-label">Cumulative Savings</span>
-<small class="stat-note">Across multi-category negotiations</small>
+<small class="stat-note">Across strategic sourcing initiatives</small>
 </div>
 <div aria-label="Strategic tenders led" class="stat-box" data-stat="rfps" tabindex="0">
 <i aria-hidden="true" class="fas fa-file-contract stat-icon"></i>
@@ -1075,15 +1070,15 @@ function googleTranslateElementInit() {
 </div>
 
 
-<section aria-label="Contact" class="contact" id="contact">
+<section aria-label="Contact" class="contact always-navy" id="contact">
 <div class="section-header animate-on-scroll">
 <h2>Let's Work Together</h2>
 <p>How can I help transform your procurement operations?</p>
 </div>
 
 <div class="contact-intro animate-on-scroll" style="text-align:center; max-width:700px; margin:0 auto 3rem;">
-<h3 style="font-family:'Playfair Display',serif; color:var(--navy); font-size:1.8rem; margin-bottom:1rem;">Let's build something together</h3>
-<p style="color:var(--text-light); font-size:1.1rem; line-height:1.7;">
+<h3 style="font-family:'Playfair Display',serif; color:var(--gold); font-size:1.8rem; margin-bottom:1rem;">Let's build something together</h3>
+<p style="color:#e8e6e1; font-size:1.1rem; line-height:1.7;">
   Whether you're looking to transform procurement operations, implement AI-driven solutions, 
   or optimize your supply chain — I'm here to help turn challenges into measurable results.
 </p>
@@ -1231,7 +1226,7 @@ function googleTranslateElementInit() {
 })();
 </script>
 
-<script src="js/script.js"></script>
+<script src="./script.js"></script>
 <script>
 // FORCE LOADING HIDE - Fallback para garantir que o loading desapareça
 (function() {
@@ -1244,20 +1239,20 @@ function googleTranslateElementInit() {
     setTimeout(function() { loading.remove(); }, 400);
   }, 2000);
 
- // Método 2: Quando DOM estiver pronto
-if (document.readyState === 'complete' || document.readyState === 'interactive') {
-  setTimeout(function() {
-    loading.classList.add('hidden');
-    setTimeout(function() { loading.remove(); }, 400);
-  }, 500);
-} else {
-  document.addEventListener('DOMContentLoaded', function() {
+  // Método 2: Quando DOM estiver pronto
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
     setTimeout(function() {
       loading.classList.add('hidden');
       setTimeout(function() { loading.remove(); }, 400);
-    }, 800);
-  });
-}
+    }, 500);
+  } else {
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(function() {
+        loading.classList.add('hidden');
+        setTimeout(function() { loading.remove(); }, 400);
+      }, 800);
+    });
+  }
 
   // Método 3: Quando window load (backup)
   window.addEventListener('load', function() {
