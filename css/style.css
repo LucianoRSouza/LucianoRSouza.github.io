@@ -1964,20 +1964,46 @@ body.dark-mode .metric-desc {
 }
 
 
+
+
 /* ============================================
-   CORREÇÃO DEFINITIVA - POSIÇÃO DO DROPDOWN
+   CORREÇÃO DEFINITIVA - FRAME COMPACTO + POSIÇÃO
    ============================================ */
 
-/* Desktop - Frame com G DE BAIXO DO BOTÃO GLOBO */
+/* Frame SUPER COMPACTO - só o tamanho do G */
 #google_translate_element {
-  left: -90px !important;
+  width: 50px !important;
+  min-width: 50px !important;
+  max-width: 50px !important;
+  padding: 2px !important;
+  left: auto !important;
+  right: 85px !important; /* Posicionado debaixo do botão globo */
   top: 52px !important;
 }
 
-/* Mobile - Frame com G DE BAIXO DO BOTÃO GLOBO */
+/* Select compacto */
+#google_translate_element .goog-te-combo {
+  width: 46px !important;
+  min-width: 46px !important;
+  padding: 2px 4px !important;
+  font-size: 11px !important;
+}
+
+/* Mobile */
 @media(max-width:768px){
   #google_translate_element {
-    left: -80px !important;
+    width: 45px !important;
+    min-width: 45px !important;
+    max-width: 45px !important;
+    padding: 2px !important;
+    right: 75px !important;
     top: 45px !important;
+  }
+
+  #google_translate_element .goog-te-combo {
+    width: 41px !important;
+    min-width: 41px !important;
+    padding: 2px 3px !important;
+    font-size: 10px !important;
   }
 }
