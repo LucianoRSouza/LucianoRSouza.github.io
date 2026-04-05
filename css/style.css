@@ -1872,11 +1872,12 @@ body.dark-mode .metric-desc {
   display: none !important;
 }
 
-/* Container SUPER COMPACTO */
+/* Container SUPER COMPACTO - ABAIXO DO BOTÃO GLOBO */
 #google_translate_element {
   position: absolute !important;
-  top: 48px !important;
-  right: 0 !important;
+  top: 50px !important;
+  left: 50% !important;
+  transform: translateX(-50%) translateY(-10px) !important;
   opacity: 0 !important;
   visibility: hidden !important;
   transition: all 0.3s ease !important;
@@ -1896,7 +1897,7 @@ body.dark-mode .metric-desc {
   opacity: 1 !important;
   visibility: visible !important;
   pointer-events: auto !important;
-  transform: translateY(0) !important;
+  transform: translateX(-50%) translateY(0) !important;
 }
 
 /* SEM LABEL - REMOVIDO */
@@ -1944,8 +1945,9 @@ body.dark-mode .metric-desc {
   }
 
   #google_translate_element {
-    top: 40px !important;
-    right: 0 !important;
+    top: 42px !important;
+    left: 50% !important;
+    transform: translateX(-50%) translateY(-10px) !important;
     padding: 3px !important;
     border-radius: 6px !important;
   }
