@@ -1861,3 +1861,49 @@ body.dark-mode .metric-desc {
 .project-showcase-card h3 {
   color: var(--navy) !important;
 }
+
+
+/* ============================================
+   CORREÇÕES FINAIS - FORÇADAS
+   ============================================ */
+
+/* 1. REMOVER FRAME RETANGULAR DO GOOGLE TRANSLATE - FORÇADO */
+#google_translate_element {
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: visible !important;
+  pointer-events: none !important;
+}
+
+#google_translate_element.visible {
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  pointer-events: none !important;
+}
+
+#google_translate_element .goog-te-gadget {
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* A bolinha G é o único elemento visível */
+.google-g-ball {
+  background: white !important;
+  border: 2px solid #d4af37 !important;
+  border-radius: 50% !important;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15) !important;
+}
+
+/* 2. MOBILE - BOTÕES MAIS ABAIXO - FORÇADO */
+@media(max-width:768px){
+  .nav-controls {
+    top: 32px !important;
+    right: 15px !important;
+  }
+}
