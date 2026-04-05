@@ -1551,7 +1551,7 @@ body.dark-mode .contact.always-navy .section-header h2{color:var(--gold)!importa
 @media(max-width:768px){.scroll-top{right:15px;bottom:15px;width:50px;height:50px}.build-badge{right:15px;bottom:75px;padding:10px 16px;font-size:.8rem}}
 
 /* ============================================
-   NAV CONTROLS - ESTILO PRINT
+   NAV CONTROLS - ESTILO PRINT (sem box)
    ============================================ */
 
 .nav-controls {
@@ -1562,6 +1562,10 @@ body.dark-mode .contact.always-navy .section-header h2{color:var(--gold)!importa
   display: flex;
   align-items: center;
   gap: 12px;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
 }
 
 .nav-btn {
@@ -1760,4 +1764,100 @@ body.dark-mode .strategy-item p {
 body.dark-mode .strategy-item:hover {
   background: rgba(212, 175, 55, 0.15);
   border-color: var(--gold);
+}
+
+/* ============================================
+   TRANSLATOR DROPDOWN - FUNCIONAL
+   ============================================ */
+
+#google_translate_element {
+  position: absolute !important;
+  top: 55px !important;
+  right: 0 !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transition: all 0.3s ease !important;
+  background: white !important;
+  padding: 10px !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3) !important;
+  border: 2px solid var(--gold) !important;
+  z-index: 9999 !important;
+  min-width: 140px !important;
+}
+
+#google_translate_element.visible {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+
+/* Esconder todos os elementos do Google exceto o select */
+.goog-te-banner-frame,
+.goog-logo-link,
+.goog-te-gadget span,
+.goog-te-menu-value span:first-child,
+.goog-te-menu-value span:nth-child(3),
+.goog-te-menu-value span:last-child {
+  display: none !important;
+}
+
+.goog-te-gadget {
+  height: auto !important;
+  overflow: visible !important;
+  margin: 0 !important;
+  font-size: 0 !important;
+}
+
+.goog-te-gadget .goog-te-combo {
+  margin: 0 !important;
+  padding: 8px 12px !important;
+  border-radius: 8px !important;
+  border: 1px solid var(--gold) !important;
+  background: white !important;
+  color: var(--navy) !important;
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  cursor: pointer !important;
+  outline: none !important;
+  min-width: 120px !important;
+  display: block !important;
+}
+
+/* ============================================
+   PROJECT CARDS - DARK MODE FIX
+   ============================================ */
+
+body.dark-mode .project-showcase-card {
+  background: var(--dark-elevated);
+  border-color: var(--dark-border);
+}
+
+body.dark-mode .project-showcase-card h3 {
+  color: var(--gold) !important;
+}
+
+body.dark-mode .showcase-content p {
+  color: #e8e6e1 !important;
+}
+
+body.dark-mode .tech-tag {
+  background: rgba(212, 175, 55, 0.15);
+  border-color: rgba(212, 175, 55, 0.3);
+  color: var(--gold-light) !important;
+}
+
+body.dark-mode .metric-desc {
+  color: #a0a8b8 !important;
+}
+
+/* Forçar texto escuro nos cards de projetos no modo claro */
+.project-showcase-card .showcase-content p,
+.project-showcase-card .tech-tag {
+  color: var(--text) !important;
+}
+
+.project-showcase-card h3 {
+  color: var(--navy) !important;
 }
