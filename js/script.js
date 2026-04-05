@@ -1232,7 +1232,16 @@ document.addEventListener('DOMContentLoaded', function() {
   if (translatorBtn && translateElement) {
     translatorBtn.addEventListener('click', function(e) {
       e.stopPropagation();
+      // Toggle visibility do container do Google Translate
       translateElement.classList.toggle('visible');
+
+      // Tentar focar no select se existir
+      setTimeout(function() {
+        const select = translateElement.querySelector('.goog-te-combo');
+        if (select && translateElement.classList.contains('visible')) {
+          select.focus();
+        }
+      }, 100);
     });
 
     // Fechar ao clicar fora
@@ -1240,6 +1249,13 @@ document.addEventListener('DOMContentLoaded', function() {
       if (!translatorBtn.contains(e.target) && !translateElement.contains(e.target)) {
         translateElement.classList.remove('visible');
       }
+    });
+
+    // Fechar ao selecionar idioma
+    translateElement.addEventListener('change', function() {
+      setTimeout(function() {
+        translateElement.classList.remove('visible');
+      }, 500);
     });
   }
 });
