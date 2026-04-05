@@ -1864,46 +1864,64 @@ body.dark-mode .metric-desc {
 
 
 /* ============================================
-   CORREÇÕES FINAIS - FORÇADAS
+   CORREÇÕES FINAIS - VERSÃO LIMPA
    ============================================ */
 
-/* 1. REMOVER FRAME RETANGULAR DO GOOGLE TRANSLATE - FORÇADO */
+/* 1. BOLINHA DO G - FUNDO TRANSPARENTE, SÓ O G COLORIDO */
 #google_translate_element {
   background: none !important;
   border: none !important;
   box-shadow: none !important;
-  border-radius: 0 !important;
   padding: 0 !important;
   margin: 0 !important;
   overflow: visible !important;
-  pointer-events: none !important;
 }
 
 #google_translate_element.visible {
   background: none !important;
   border: none !important;
   box-shadow: none !important;
-  pointer-events: none !important;
 }
 
-#google_translate_element .goog-te-gadget {
-  background: none !important;
-  border: none !important;
-  box-shadow: none !important;
-}
-
-/* A bolinha G é o único elemento visível */
+/* A bolinha G - Container circular com borda dourada, fundo transparente */
 .google-g-ball {
-  background: white !important;
+  width: 44px !important;
+  height: 44px !important;
+  background: transparent !important;
   border: 2px solid #d4af37 !important;
   border-radius: 50% !important;
   box-shadow: 0 4px 15px rgba(0,0,0,0.15) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-family: 'Product Sans', 'Roboto', Arial, sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 1.5rem !important;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  position: relative !important;
+  z-index: 100 !important;
 }
 
-/* 2. MOBILE - BOTÕES MAIS ABAIXO - FORÇADO */
+/* O texto G com cores do Google */
+.google-g-ball {
+  color: #4285F4 !important;
+  background: linear-gradient(135deg, #4285F4 0%, #EA4335 33%, #FBBC05 66%, #34A853 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+/* 2. MOBILE - SUBIDO PARA ALINHAR COM LR */
 @media(max-width:768px){
   .nav-controls {
-    top: 32px !important;
+    top: 16px !important;
     right: 15px !important;
+  }
+
+  .google-g-ball {
+    width: 38px !important;
+    height: 38px !important;
+    font-size: 1.3rem !important;
   }
 }
