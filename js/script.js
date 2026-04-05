@@ -1219,3 +1219,27 @@ function animateHeroStat(element) {
 document.addEventListener('DOMContentLoaded', () => {
   setTimeout(initHeroCounters, 500);
 });
+
+
+/* ============================================
+   TRANSLATOR BUTTON FUNCTIONALITY
+   ============================================ */
+
+document.addEventListener('DOMContentLoaded', function() {
+  const translatorBtn = document.getElementById('translatorBtn');
+  const translateElement = document.getElementById('google_translate_element');
+
+  if (translatorBtn && translateElement) {
+    translatorBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      translateElement.classList.toggle('visible');
+    });
+
+    // Fechar ao clicar fora
+    document.addEventListener('click', function(e) {
+      if (!translatorBtn.contains(e.target) && !translateElement.contains(e.target)) {
+        translateElement.classList.remove('visible');
+      }
+    });
+  }
+});
