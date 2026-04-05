@@ -1017,7 +1017,7 @@ function animateCounter(element) {
   const target = parseInt(element.getAttribute('data-counter'), 10);
   const prefix = element.getAttribute('data-prefix') || '';
   const suffix = element.getAttribute('data-suffix') || '';
-  const duration = 4000; // 4 segundos (2 a mais)
+  const duration = 4000; // 4 segundos
   const steps = 80;
   const stepTime = duration / steps;
   let current = 0;
@@ -1028,8 +1028,16 @@ function animateCounter(element) {
       current = target;
       clearInterval(timer);
     }
-    const formatted = Math.floor(current).toLocaleString('en-US');
-    element.textContent = prefix + formatted + suffix;
+
+    // Formatação especial para K (milhares)
+    let displayValue;
+    if (suffix === 'K') {
+      displayValue = Math.floor(current);
+    } else {
+      displayValue = Math.floor(current).toLocaleString('en-US');
+    }
+
+    element.textContent = prefix + displayValue + suffix;
   }, stepTime);
 }
 
@@ -1177,15 +1185,16 @@ function animateHeroStat(element) {
   const hasEuro = text.includes('€');
   const hasPlus = text.includes('+');
   const hasM = text.includes('M');
+  const isProjects = element.id === 'statProjects';
 
   // Extrair número
   let target = 0;
-  if (hasM) {
-    target = 1; // 1M
+  if (isProjects && hasM) {
+    target = 10; // 10M para Project Portfolio
+  } else if (hasM) {
+    target = 1; // 1M para outros
   } else if (text.includes('120')) {
     target = 120;
-  } else if (text.includes('10')) {
-    target = 10;
   } else if (text.includes('20')) {
     target = 20;
   }
@@ -1205,7 +1214,7 @@ function animateHeroStat(element) {
     let result = '';
     if (hasEuro) result += '€';
     if (hasM) {
-      result += current.toFixed(current < 1 ? 1 : 0) + 'M';
+      result += Math.floor(current) + 'M';
     } else {
       result += Math.floor(current);
     }
@@ -1222,7 +1231,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 /* ============================================
-   TRANSLATOR BUTTON FUNCTIONALITY
+   TRANSLATOR BUTTON FUNCTIONALITY - BOLINHA G
    ============================================ */
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -1232,30 +1241,56 @@ document.addEventListener('DOMContentLoaded', function() {
   if (translatorBtn && translateElement) {
     translatorBtn.addEventListener('click', function(e) {
       e.stopPropagation();
+
       // Toggle visibility do container do Google Translate
       translateElement.classList.toggle('visible');
 
-      // Tentar focar no select se existir
-      setTimeout(function() {
-        const select = translateElement.querySelector('.goog-te-combo');
-        if (select && translateElement.classList.contains('visible')) {
-          select.focus();
-        }
-      }, 100);
+      // Adicionar classe active para animação
+      if (translateElement.classList.contains('visible')) {
+        translateElement.classList.add('active');
+
+        // Tentar focar no select após a animação
+        setTimeout(function() {
+          const select = translateElement.querySelector('.goog-te-combo');
+          if (select) {
+            select.style.opacity = '1';
+            select.style.width = '140px';
+            select.style.minWidth = '140px';
+            select.style.height = 'auto';
+            select.style.position = 'static';
+            select.style.marginTop = '50px';
+            select.focus();
+          }
+        }, 300);
+      } else {
+        translateElement.classList.remove('active');
+      }
     });
 
     // Fechar ao clicar fora
     document.addEventListener('click', function(e) {
       if (!translatorBtn.contains(e.target) && !translateElement.contains(e.target)) {
         translateElement.classList.remove('visible');
+        translateElement.classList.remove('active');
       }
     });
 
     // Fechar ao selecionar idioma
-    translateElement.addEventListener('change', function() {
-      setTimeout(function() {
+    translateElement.addEventListener('change', function(e) {
+      if (e.target.classList.contains('goog-te-combo')) {
+        setTimeout(function() {
+          translateElement.classList.remove('visible');
+          translateElement.classList.remove('active');
+        }, 500);
+      }
+    });
+
+    // Fechar ao pressionar Escape
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && translateElement.classList.contains('visible')) {
         translateElement.classList.remove('visible');
-      }, 500);
+        translateElement.classList.remove('active');
+      }
     });
   }
 });
