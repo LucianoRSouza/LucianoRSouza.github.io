@@ -1511,8 +1511,7 @@ body.dark-mode .floating-badge i {
   }
 }
 
-
-/* NAV CONTROLS - Translator + Dark Mode */
+/* NAV CONTROLS */
 .nav-controls{position:fixed;top:90px;right:14px;z-index:1501;display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.9);padding:8px 12px;border-radius:14px;box-shadow:0 4px 15px rgba(0,0,0,.15);border:1px solid rgba(212,175,55,.3)}
 .nav-controls .dark-mode-toggle{position:static!important;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.9);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s ease}
 .nav-controls .dark-mode-toggle:hover{transform:scale(1.1) rotate(15deg);background:var(--gold)}
@@ -1520,7 +1519,6 @@ body.dark-mode .floating-badge i {
 .nav-controls .translator-box{position:static!important;background:transparent!important;padding:0!important;border:none!important;box-shadow:none!important;display:flex;flex-direction:column;align-items:flex-start}
 @media(max-width:768px){.nav-controls{top:6px!important;right:6px!important;padding:6px 8px;gap:8px}.nav-controls .dark-mode-toggle{width:38px;height:38px}.nav-controls .dark-mode-toggle i{font-size:1rem}.nav-controls .translator-box{max-width:90px}.nav-controls .translator-box span{font-size:9px!important}.nav-controls .goog-te-gadget .goog-te-combo{padding:3px 6px!important;font-size:10px!important;min-width:70px!important}}
 .dark-mode-toggle:not(.nav-controls .dark-mode-toggle),.translator-box:not(.nav-controls .translator-box){display:none!important}
-
 
 /* DARK MODE FIXES */
 body.dark-mode,body.dark-mode p,body.dark-mode li,body.dark-mode span:not(.stat-number):not(.impact-value):not(.github-stat-value):not(.metric-number){color:#e8e6e1}
@@ -1546,7 +1544,6 @@ body.dark-mode .achievement-box li,body.dark-mode .ai-application li,body.dark-m
 .contact.always-navy .contact-info-item a{color:var(--gold-light)!important}
 body.dark-mode .contact.always-navy{background:var(--navy)!important}
 body.dark-mode .contact.always-navy .section-header h2{color:var(--gold)!important}
-
 
 /* BUTTON POSITIONS */
 .scroll-top{right:20px;bottom:20px;width:56px;height:56px;z-index:980}
