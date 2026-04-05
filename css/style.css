@@ -1946,7 +1946,7 @@ body.dark-mode .metric-desc {
 
   #google_translate_element {
     top: 42px !important;
-    left: -50px !important; /* Movido para esquerda, debaixo do globo */
+    left: -70px !important; /* Movido mais para esquerda, debaixo do globo */
     transform: translateY(-10px) !important;
     padding: 3px !important;
     border-radius: 6px !important;
