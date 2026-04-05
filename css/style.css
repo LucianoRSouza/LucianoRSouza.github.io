@@ -4,7 +4,7 @@
 
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--text);background:var(--cream);line-height:1.6;overflow-x:hidden;overflow-y:auto;}
+body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--text);background:var(--cream);line-height:1.6;overflow-x:hidden}
 img{display:block;max-width:100%;height:auto}
 ul{list-style:none}
 a{text-decoration:none;color:inherit}
@@ -32,62 +32,21 @@ button{border:0;background:none;cursor:pointer}
 
 /* Google Translate Widget - VERSÃO MINIMALISTA TRANSPARENTE */
 /* O container agora está no HTML com label "Tradutor" */
+#google_translate_element{display:inline-block}
+.goog-te-gadget{margin:0!important}
 
-/* ✅ CORRETO — container fora da tela e funcional */
-#google_translate_element {
-  position: fixed !important;
-  top: -2000px !important;
-  left: -2000px !important;
-  opacity: 1 !important;         /* precisa ser 1 para o Google inicializar */
-  pointer-events: none !important;
-  width: auto !important;
-  height: auto !important;
-}
-
-/* Mantém margens do gadget zeradas */
-.goog-te-gadget {
-  margin: 0 !important;
-}
-
-/* Remove elementos visuais do Google */
-.goog-te-banner-frame.skiptranslate { 
-  display: none !important; 
-}
-.goog-logo-link { 
-  display: none !important; 
-}
-.goog-te-gadget span { 
-  display: none !important; 
-}
-
-/* ✅ REMOVIDO o bloco errado que quebrava o widget */
-/* (antes havia um .goog-te-gadget { height:auto; overflow:visible } ) */
+/* Esconder elementos do Google Translate que não queremos */
+.goog-te-banner-frame.skiptranslate{display:none!important}
+.goog-logo-link{display:none!important}
+.goog-te-gadget span{display:none!important}
+.goog-te-gadget{height:auto!important;overflow:visible!important}
 
 /* Estilo do select do Google Translate - MINIMALISTA */
-.goog-te-gadget .goog-te-combo {
-  margin: 0 !important;
-  padding: 4px 8px !important;
-  border-radius: 10px !important;
-  border: 1px solid rgba(212,175,55,.4) !important;
-  background: rgba(255,255,255,.9) !important;
-  color: var(--navy) !important;
-  font-family: 'Inter', sans-serif !important;
-  font-weight: 600 !important;
-  font-size: 11px !important;
-  cursor: pointer !important;
-  outline: none !important;
-  width: auto !important;
-  min-width: 80px !important;
-  height: auto !important;
-}
-
-.goog-te-gadget .goog-te-combo:hover {
-  border-color: var(--gold) !important;
-  box-shadow: 0 2px 8px rgba(212,175,55,.2) !important;
-}
+.goog-te-gadget .goog-te-combo{margin:0!important;padding:4px 8px!important;border-radius:10px!important;border:1px solid rgba(212,175,55,.4)!important;background:rgba(255,255,255,.9)!important;color:var(--navy)!important;font-family:'Inter',sans-serif!important;font-weight:600!important;font-size:11px!important;cursor:pointer!important;outline:none!important;width:auto!important;min-width:80px!important;height:auto!important}
+.goog-te-gadget .goog-te-combo:hover{border-color:var(--gold)!important;box-shadow:0 2px 8px rgba(212,175,55,.2)!important}
 
 /* Remove o banner do topo */
-body { top: 0 !important; }
+body{top:0!important}
 
 /* Navbar */
 nav.navbar{position:fixed;inset:0 0 auto 0;background:rgba(15,21,56,.95);backdrop-filter:blur(18px);z-index:1000;padding:1rem var(--container-pad);display:flex;align-items:center;justify-content:space-between;transition:padding .25s ease,box-shadow .25s ease;box-shadow:0 6px 26px rgba(0,0,0,.28)}
@@ -481,99 +440,135 @@ section{padding:1.2cm .8cm}
 @media(prefers-reduced-motion:reduce){
 *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto !important}
 }
+
+/* V23 */
+
+/* DEPRECATED: /* V23 translator */
+.translator-box{position:fixed;top:90px;right:20px;z-index:1500;background:rgba(255,255,255,.75);padding:8px 12px;border-radius:14px;}
+@media(max-width:768px){.translator-box{top:10px!important;right:10px!important;}} */
+/* V23 fairs fix */
+.project-card[data-gallery]{cursor:pointer;}
+/* V23 timeline mobile logos */
+@media(max-width:1200px){.timeline-item[data-logo] .timeline-content{padding-top:4rem;}
+.timeline-item[data-logo] .timeline-content::after{content:"";position:absolute;top:-3rem;left:0;width:60px;height:60px;background-size:contain;background-repeat:no-repeat;background-image:attr(data-logo url);} }
+
+/* V25 overrides */
+
+
 /* ============================================
-   TRANSLATOR + DARK MODE BUTTONS (Versão Limpa e Final)
+   NAV CONTROLS - Translator + Dark Mode Grouped
    ============================================ */
 
-.translator-box {
+.nav-controls {
   position: fixed;
   top: 90px;
-  right: 205px;           /* Ajustado para ficar mais à direita */
+  right: 14px;
   z-index: 1501;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 8px 12px;
+  border-radius: 14px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(212, 175, 55, 0.3);
 }
 
-#translateBtn {
+.nav-controls .dark-mode-toggle {
+  position: static !important;
+  top: auto !important;
+  right: auto !important;
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.9);
+  background: rgba(255, 255, 255, 0.9);
   border: 2px solid var(--gold);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-  color: var(--navy);
-  font-size: 1.25rem;
+  box-shadow: none;
+  z-index: auto;
 }
 
-#translateBtn:hover {
-  transform: scale(1.1);
+.nav-controls .dark-mode-toggle:hover {
+  transform: scale(1.1) rotate(15deg);
   background: var(--gold);
+}
+
+.nav-controls .dark-mode-toggle i {
+  font-size: 1.2rem;
   color: var(--navy);
 }
 
-/* Dark Mode Toggle */
-.dark-mode-toggle {
-  position: fixed;
-  top: 90px;
-  right: 150px;           /* Bem próximo do botão de tradução */
-  z-index: 1501;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.9);
-  border: 2px solid var(--gold);
+.nav-controls .translator-box {
+  position: static !important;
+  top: auto !important;
+  right: auto !important;
+  background: transparent !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  max-width: none !important;
+  box-shadow: none !important;
+  border: none !important;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  flex-direction: column;
+  align-items: flex-start;
 }
 
-.dark-mode-toggle:hover {
-  transform: scale(1.1);
-  background: var(--gold);
-}
-
-.dark-mode-toggle i {
-  font-size: 1.25rem;
-  color: var(--navy);
-}
-
-/* Dark Mode support para ambos os botões */
-body.dark-mode #translateBtn,
-body.dark-mode .dark-mode-toggle {
-  background: var(--dark-elevated);
-  color: var(--gold);
-}
-
-body.dark-mode #translateBtn:hover,
-body.dark-mode .dark-mode-toggle:hover {
-  background: var(--gold);
-  color: var(--navy);
-}
-
-/* Mobile */
+/* Mobile adjustments for nav-controls */
 @media (max-width: 768px) {
-  .translator-box { 
-    right: 118px; 
-    top: 8px; 
+  .nav-controls {
+    top: 6px !important;
+    right: 6px !important;
+    padding: 6px 8px;
+    gap: 8px;
   }
-  .dark-mode-toggle { 
-    right: 68px; 
-    top: 8px; 
-  }
-  
-  #translateBtn, 
-  .dark-mode-toggle {
+
+  .nav-controls .dark-mode-toggle {
     width: 38px;
     height: 38px;
-    font-size: 1.15rem;
+  }
+
+  .nav-controls .dark-mode-toggle i {
+    font-size: 1rem;
+  }
+
+  .nav-controls .translator-box {
+    max-width: 90px;
+  }
+
+  .nav-controls .translator-box span {
+    font-size: 9px !important;
+  }
+
+  .nav-controls .goog-te-gadget .goog-te-combo {
+    padding: 3px 6px !important;
+    font-size: 10px !important;
+    min-width: 70px !important;
   }
 }
+
+/* Hide old standalone elements */
+.dark-mode-toggle:not(.nav-controls .dark-mode-toggle),
+.translator-box:not(.nav-controls .translator-box) {
+  display: none !important;
+}
+
+/* V25 translator smaller - DEPRECATED, use .nav-controls */
+/* DEPRECATED: .translator-box{position:fixed;top:90px;right:14px;z-index:1500;background:rgba(255,255,255,.7);padding:4px 8px;border-radius:12px;max-width:120px;}
+@media(max-width:768px){.translator-box{top:6px!important;right:6px!important;max-width:90px;padding:3px 6px;}} */
+/* V25 timeline mobile logos */
+@media(max-width:1200px){.timeline-item[data-logo] .timeline-content{position:relative;padding-top:4rem!important;}
+.timeline-item[data-logo] .timeline-content::after{content:"";position:absolute;top:-3.1rem;left:0;width:52px;height:52px;background-size:contain;background-repeat:no-repeat;background-image:attr(data-logo url);} }
+/* V25 fix fairs spacing */
+.trade-shows .project-card{all:unset;display:block;width:100%;}
+.trade-shows .gold-frame{max-width:800px;margin:0 auto;border-radius:25px;border:3px solid var(--gold);overflow:hidden;cursor:pointer;}
+/* V25 gallery one click */
+.project-card{pointer-events:auto!important;}
+.project-card *{pointer-events:auto!important;}
+
 /* Mobile Timeline Logos — V36 (fine alignment) */
 @media (max-width: 1200px){
   .timeline-item[data-logo] .timeline-content::after{
@@ -1610,49 +1605,233 @@ body.dark-mode .floating-badge i {
     padding: 0 1rem;
   }
 
-.github-btn-main {
+  .github-btn-main {
     width: 100% !important;
     max-width: 300px !important;
     justify-content: center !important;
     padding: 1rem 2rem !important;
+  }
 }
 
-.translator-toggle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    background-color: var(--navy);
-    color: #fff;
-    border: 1px solid var(--navy);
-    border-radius: 8px;
-    padding: 6px 12px;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
+
+/* ============================================
+   DARK MODE COMPREHENSIVE FIXES - 2026
+   ============================================ */
+
+/* Force light text on all elements in dark mode */
+body.dark-mode,
+body.dark-mode *,
+body.dark-mode p,
+body.dark-mode li,
+body.dark-mode span,
+body.dark-mode div,
+body.dark-mode a:not(.btn):not(.contact-link):not(.social-link) {
+  color: #e8e6e1;
 }
 
-.translator-toggle:hover {
-  background-color: #1a1a2e; /* cor mais escura no hover, mesma lógica do dark mode */
-}
-/* ✅ Correção definitiva Google Translate */
-html, body {
-    overflow-y: visible !important;
-}
-
-/* Widget invisível mas funcional */
-#google_translate_element_container {
-  position: fixed !important;
-  top: 10px !important;
-  left: 10px !important;
-  opacity: 0 !important;           /* invisível */
-  pointer-events: none !important; /* não interage com o usuário */
-  z-index: 9999 !important;        /* acima de tudo para o Google montar */
+/* Titles in gold */
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6 {
+  color: var(--gold);
 }
 
-#google_translate_element {
-  opacity: 1 !important;
-  visibility: visible !important;
-  pointer-events: auto !important; /* o Google PRECISA disso */
+/* Specific element overrides */
+body.dark-mode .section-header p,
+body.dark-mode .timeline-description,
+body.dark-mode .cert-card > p,
+body.dark-mode .project-content p,
+body.dark-mode .testimonial-content p,
+body.dark-mode .blog-content > p,
+body.dark-mode .contact-cta-card p,
+body.dark-mode .volunteer-card .description,
+body.dark-mode .about-content p,
+body.dark-mode .hero-description {
+  color: #e8e6e1 !important;
+}
+
+/* Subtitles and secondary text */
+body.dark-mode .subtitle,
+body.dark-mode .testimonial-author span,
+body.dark-mode .blog-meta,
+body.dark-mode .project-highlights,
+body.dark-mode .cert-subtitle,
+body.dark-mode .cert-date,
+body.dark-mode .date-level,
+body.dark-mode .metric-desc,
+body.dark-mode .impact-label {
+  color: #a0a8b8 !important;
+}
+
+/* Cards and containers */
+body.dark-mode .project-card,
+body.dark-mode .testimonial-card,
+body.dark-mode .blog-card,
+body.dark-mode .contact-cta-card,
+body.dark-mode .volunteer-card,
+body.dark-mode .timeline-content,
+body.dark-mode .cert-card,
+body.dark-mode .stat-modal,
+body.dark-mode .strategy-detail-card {
+  background: var(--dark-elevated);
+  border-color: var(--dark-border);
+}
+
+/* Tags and badges */
+body.dark-mode .skill-tag,
+body.dark-mode .project-tag,
+body.dark-mode .tech-tag,
+body.dark-mode .lang-item,
+body.dark-mode .blog-category {
+  background: rgba(212, 175, 55, 0.15);
+  border-color: rgba(212, 175, 55, 0.3);
+  color: var(--gold-light) !important;
+}
+
+body.dark-mode .skill-tag:hover,
+body.dark-mode .project-tag:hover,
+body.dark-mode .lang-item:hover {
+  background: var(--gold);
+  color: var(--navy) !important;
+}
+
+/* Achievement and AI boxes */
+body.dark-mode .achievement-box,
+body.dark-mode .ai-application,
+body.dark-mode .strategy-detail-section {
+  background: rgba(212, 175, 55, 0.08);
+  border-color: rgba(212, 175, 55, 0.3);
+}
+
+body.dark-mode .achievement-box strong,
+body.dark-mode .ai-application strong,
+body.dark-mode .strategy-detail-section h4 {
+  color: var(--gold-light) !important;
+}
+
+body.dark-mode .achievement-box li,
+body.dark-mode .ai-application li,
+body.dark-mode .strategy-detail-section li {
+  color: #e8e6e1 !important;
+}
+
+/* Contact section always navy - independent of dark mode */
+.contact.always-navy {
+  background: var(--navy) !important;
+}
+
+.contact.always-navy .section-header h2 {
+  color: #fff !important;
+}
+
+.contact.always-navy .section-header p {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.contact.always-navy .contact-intro h3 {
+  color: var(--gold) !important;
+}
+
+.contact.always-navy .contact-intro p {
+  color: #e8e6e1 !important;
+}
+
+.contact.always-navy .contact-cta-card {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(212, 175, 55, 0.3);
+}
+
+.contact.always-navy .contact-cta-card h3 {
+  color: var(--gold) !important;
+}
+
+.contact.always-navy .contact-cta-card p {
+  color: #e8e6e1 !important;
+}
+
+.contact.always-navy .cta-icon {
+  background: var(--gold);
+  color: var(--navy);
+}
+
+.contact.always-navy .contact-info-item {
+  color: #e8e6e1 !important;
+}
+
+.contact.always-navy .contact-info-item a {
+  color: var(--gold-light) !important;
+}
+
+.contact.always-navy .contact-info-item i {
+  color: var(--gold);
+}
+
+/* Dark mode overrides for always-navy contact */
+body.dark-mode .contact.always-navy {
+  background: var(--navy) !important;
+}
+
+body.dark-mode .contact.always-navy .section-header h2 {
+  color: var(--gold) !important;
+}
+
+body.dark-mode .contact.always-navy .section-header p {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+
+/* ============================================
+   BUTTON POSITION FIXES - Mobile & Desktop
+   ============================================ */
+
+/* Scroll to top - bottom right */
+.scroll-top {
+  right: 20px;
+  bottom: 20px;
+  width: 56px;
+  height: 56px;
+}
+
+/* Build badge - above scroll-to-top */
+.build-badge {
+  right: 20px;
+  bottom: 85px;
+  z-index: 998;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .scroll-top {
+    right: 15px;
+    bottom: 15px;
+    width: 50px;
+    height: 50px;
+  }
+
+  .build-badge {
+    right: 15px;
+    bottom: 75px;
+    padding: 10px 16px;
+    font-size: 0.8rem;
+  }
+}
+
+/* Ensure proper z-index stacking */
+.scroll-top {
+  z-index: 980;
+}
+
+.build-badge {
+  z-index: 997;
+}
+
+.nav-controls {
+  z-index: 1501;
+}
+
+.navbar {
+  z-index: 1000;
 }
