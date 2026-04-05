@@ -1181,11 +1181,14 @@ function animateHeroStat(element) {
   const hasPlus = text.includes('+');
   const hasM = text.includes('M');
   const isProjects = element.id === 'statProjects';
+  const isSavings = element.id === 'statSavings';
 
   // Extrair número
   let target = 0;
   if (isProjects && hasM) {
     target = 10; // 10M para Project Portfolio
+  } else if (isSavings && hasM) {
+    target = 1; // 1M para Savings, mas vamos animar em escala
   } else if (hasM) {
     target = 1; // 1M para outros
   } else if (text.includes('120')) {
@@ -1195,7 +1198,7 @@ function animateHeroStat(element) {
   }
 
   const duration = 4000;
-  const steps = 80;
+  const steps = 100;
   const stepTime = duration / steps;
   let current = 0;
 
@@ -1208,11 +1211,19 @@ function animateHeroStat(element) {
 
     let result = '';
     if (hasEuro) result += '€';
+
     if (hasM) {
-      result += Math.floor(current) + 'M';
+      // Para valores em milhões, mostrar com decimal durante a animação
+      if (current < 1 && current > 0) {
+        result += current.toFixed(1);
+      } else {
+        result += Math.floor(current);
+      }
+      result += 'M';
     } else {
       result += Math.floor(current);
     }
+
     if (hasPlus) result += '+';
 
     element.textContent = result;
