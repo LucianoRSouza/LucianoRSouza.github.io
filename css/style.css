@@ -1897,7 +1897,7 @@ body.dark-mode .metric-desc {
   opacity: 1 !important;
   visibility: visible !important;
   pointer-events: auto !important;
-  transform: translateX(-50%) translateY(0) !important;
+  transform: translateY(0) !important;
 }
 
 /* SEM LABEL - REMOVIDO */
@@ -1960,5 +1960,24 @@ body.dark-mode .metric-desc {
     font-size: 11px !important;
     padding: 3px 6px !important;
     min-width: 70px !important;
+  }
+}
+
+
+/* ============================================
+   CORREÇÃO DEFINITIVA - POSIÇÃO DO DROPDOWN
+   ============================================ */
+
+/* Desktop - Frame com G DE BAIXO DO BOTÃO GLOBO */
+#google_translate_element {
+  left: -90px !important;
+  top: 52px !important;
+}
+
+/* Mobile - Frame com G DE BAIXO DO BOTÃO GLOBO */
+@media(max-width:768px){
+  #google_translate_element {
+    left: -80px !important;
+    top: 45px !important;
   }
 }
