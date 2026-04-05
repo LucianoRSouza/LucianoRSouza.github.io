@@ -443,9 +443,9 @@ section{padding:1.2cm .8cm}
 
 /* V23 */
 
-/* DEPRECATED: /* V23 translator */
+/* V23 translator */
 .translator-box{position:fixed;top:90px;right:20px;z-index:1500;background:rgba(255,255,255,.75);padding:8px 12px;border-radius:14px;}
-@media(max-width:768px){.translator-box{top:10px!important;right:10px!important;}} */
+@media(max-width:768px){.translator-box{top:10px!important;right:10px!important;}}
 /* V23 fairs fix */
 .project-card[data-gallery]{cursor:pointer;}
 /* V23 timeline mobile logos */
@@ -454,111 +454,9 @@ section{padding:1.2cm .8cm}
 
 /* V25 overrides */
 
-
-/* ============================================
-   NAV CONTROLS - Translator + Dark Mode Grouped
-   ============================================ */
-
-.nav-controls {
-  position: fixed;
-  top: 90px;
-  right: 14px;
-  z-index: 1501;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: rgba(255, 255, 255, 0.9);
-  padding: 8px 12px;
-  border-radius: 14px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-  border: 1px solid rgba(212, 175, 55, 0.3);
-}
-
-.nav-controls .dark-mode-toggle {
-  position: static !important;
-  top: auto !important;
-  right: auto !important;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.9);
-  border: 2px solid var(--gold);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: none;
-  z-index: auto;
-}
-
-.nav-controls .dark-mode-toggle:hover {
-  transform: scale(1.1) rotate(15deg);
-  background: var(--gold);
-}
-
-.nav-controls .dark-mode-toggle i {
-  font-size: 1.2rem;
-  color: var(--navy);
-}
-
-.nav-controls .translator-box {
-  position: static !important;
-  top: auto !important;
-  right: auto !important;
-  background: transparent !important;
-  padding: 0 !important;
-  border-radius: 0 !important;
-  max-width: none !important;
-  box-shadow: none !important;
-  border: none !important;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-/* Mobile adjustments for nav-controls */
-@media (max-width: 768px) {
-  .nav-controls {
-    top: 6px !important;
-    right: 6px !important;
-    padding: 6px 8px;
-    gap: 8px;
-  }
-
-  .nav-controls .dark-mode-toggle {
-    width: 38px;
-    height: 38px;
-  }
-
-  .nav-controls .dark-mode-toggle i {
-    font-size: 1rem;
-  }
-
-  .nav-controls .translator-box {
-    max-width: 90px;
-  }
-
-  .nav-controls .translator-box span {
-    font-size: 9px !important;
-  }
-
-  .nav-controls .goog-te-gadget .goog-te-combo {
-    padding: 3px 6px !important;
-    font-size: 10px !important;
-    min-width: 70px !important;
-  }
-}
-
-/* Hide old standalone elements */
-.dark-mode-toggle:not(.nav-controls .dark-mode-toggle),
-.translator-box:not(.nav-controls .translator-box) {
-  display: none !important;
-}
-
-/* V25 translator smaller - DEPRECATED, use .nav-controls */
-/* DEPRECATED: .translator-box{position:fixed;top:90px;right:14px;z-index:1500;background:rgba(255,255,255,.7);padding:4px 8px;border-radius:12px;max-width:120px;}
-@media(max-width:768px){.translator-box{top:6px!important;right:6px!important;max-width:90px;padding:3px 6px;}} */
+/* V25 translator smaller */
+.translator-box{position:fixed;top:90px;right:14px;z-index:1500;background:rgba(255,255,255,.7);padding:4px 8px;border-radius:12px;max-width:120px;}
+@media(max-width:768px){.translator-box{top:6px!important;right:6px!important;max-width:90px;padding:3px 6px;}}
 /* V25 timeline mobile logos */
 @media(max-width:1200px){.timeline-item[data-logo] .timeline-content{position:relative;padding-top:4rem!important;}
 .timeline-item[data-logo] .timeline-content::after{content:"";position:absolute;top:-3.1rem;left:0;width:52px;height:52px;background-size:contain;background-repeat:no-repeat;background-image:attr(data-logo url);} }
@@ -1614,224 +1512,43 @@ body.dark-mode .floating-badge i {
 }
 
 
-/* ============================================
-   DARK MODE COMPREHENSIVE FIXES - 2026
-   ============================================ */
-
-/* Force light text on all elements in dark mode */
-body.dark-mode,
-body.dark-mode *,
-body.dark-mode p,
-body.dark-mode li,
-body.dark-mode span,
-body.dark-mode div,
-body.dark-mode a:not(.btn):not(.contact-link):not(.social-link) {
-  color: #e8e6e1;
-}
-
-/* Titles in gold */
-body.dark-mode h1,
-body.dark-mode h2,
-body.dark-mode h3,
-body.dark-mode h4,
-body.dark-mode h5,
-body.dark-mode h6 {
-  color: var(--gold);
-}
-
-/* Specific element overrides */
-body.dark-mode .section-header p,
-body.dark-mode .timeline-description,
-body.dark-mode .cert-card > p,
-body.dark-mode .project-content p,
-body.dark-mode .testimonial-content p,
-body.dark-mode .blog-content > p,
-body.dark-mode .contact-cta-card p,
-body.dark-mode .volunteer-card .description,
-body.dark-mode .about-content p,
-body.dark-mode .hero-description {
-  color: #e8e6e1 !important;
-}
-
-/* Subtitles and secondary text */
-body.dark-mode .subtitle,
-body.dark-mode .testimonial-author span,
-body.dark-mode .blog-meta,
-body.dark-mode .project-highlights,
-body.dark-mode .cert-subtitle,
-body.dark-mode .cert-date,
-body.dark-mode .date-level,
-body.dark-mode .metric-desc,
-body.dark-mode .impact-label {
-  color: #a0a8b8 !important;
-}
-
-/* Cards and containers */
-body.dark-mode .project-card,
-body.dark-mode .testimonial-card,
-body.dark-mode .blog-card,
-body.dark-mode .contact-cta-card,
-body.dark-mode .volunteer-card,
-body.dark-mode .timeline-content,
-body.dark-mode .cert-card,
-body.dark-mode .stat-modal,
-body.dark-mode .strategy-detail-card {
-  background: var(--dark-elevated);
-  border-color: var(--dark-border);
-}
-
-/* Tags and badges */
-body.dark-mode .skill-tag,
-body.dark-mode .project-tag,
-body.dark-mode .tech-tag,
-body.dark-mode .lang-item,
-body.dark-mode .blog-category {
-  background: rgba(212, 175, 55, 0.15);
-  border-color: rgba(212, 175, 55, 0.3);
-  color: var(--gold-light) !important;
-}
-
-body.dark-mode .skill-tag:hover,
-body.dark-mode .project-tag:hover,
-body.dark-mode .lang-item:hover {
-  background: var(--gold);
-  color: var(--navy) !important;
-}
-
-/* Achievement and AI boxes */
-body.dark-mode .achievement-box,
-body.dark-mode .ai-application,
-body.dark-mode .strategy-detail-section {
-  background: rgba(212, 175, 55, 0.08);
-  border-color: rgba(212, 175, 55, 0.3);
-}
-
-body.dark-mode .achievement-box strong,
-body.dark-mode .ai-application strong,
-body.dark-mode .strategy-detail-section h4 {
-  color: var(--gold-light) !important;
-}
-
-body.dark-mode .achievement-box li,
-body.dark-mode .ai-application li,
-body.dark-mode .strategy-detail-section li {
-  color: #e8e6e1 !important;
-}
-
-/* Contact section always navy - independent of dark mode */
-.contact.always-navy {
-  background: var(--navy) !important;
-}
-
-.contact.always-navy .section-header h2 {
-  color: #fff !important;
-}
-
-.contact.always-navy .section-header p {
-  color: rgba(255, 255, 255, 0.8) !important;
-}
-
-.contact.always-navy .contact-intro h3 {
-  color: var(--gold) !important;
-}
-
-.contact.always-navy .contact-intro p {
-  color: #e8e6e1 !important;
-}
-
-.contact.always-navy .contact-cta-card {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(212, 175, 55, 0.3);
-}
-
-.contact.always-navy .contact-cta-card h3 {
-  color: var(--gold) !important;
-}
-
-.contact.always-navy .contact-cta-card p {
-  color: #e8e6e1 !important;
-}
-
-.contact.always-navy .cta-icon {
-  background: var(--gold);
-  color: var(--navy);
-}
-
-.contact.always-navy .contact-info-item {
-  color: #e8e6e1 !important;
-}
-
-.contact.always-navy .contact-info-item a {
-  color: var(--gold-light) !important;
-}
-
-.contact.always-navy .contact-info-item i {
-  color: var(--gold);
-}
-
-/* Dark mode overrides for always-navy contact */
-body.dark-mode .contact.always-navy {
-  background: var(--navy) !important;
-}
-
-body.dark-mode .contact.always-navy .section-header h2 {
-  color: var(--gold) !important;
-}
-
-body.dark-mode .contact.always-navy .section-header p {
-  color: rgba(255, 255, 255, 0.8) !important;
-}
+/* NAV CONTROLS - Translator + Dark Mode */
+.nav-controls{position:fixed;top:90px;right:14px;z-index:1501;display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.9);padding:8px 12px;border-radius:14px;box-shadow:0 4px 15px rgba(0,0,0,.15);border:1px solid rgba(212,175,55,.3)}
+.nav-controls .dark-mode-toggle{position:static!important;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.9);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s ease}
+.nav-controls .dark-mode-toggle:hover{transform:scale(1.1) rotate(15deg);background:var(--gold)}
+.nav-controls .dark-mode-toggle i{font-size:1.2rem;color:var(--navy)}
+.nav-controls .translator-box{position:static!important;background:transparent!important;padding:0!important;border:none!important;box-shadow:none!important;display:flex;flex-direction:column;align-items:flex-start}
+@media(max-width:768px){.nav-controls{top:6px!important;right:6px!important;padding:6px 8px;gap:8px}.nav-controls .dark-mode-toggle{width:38px;height:38px}.nav-controls .dark-mode-toggle i{font-size:1rem}.nav-controls .translator-box{max-width:90px}.nav-controls .translator-box span{font-size:9px!important}.nav-controls .goog-te-gadget .goog-te-combo{padding:3px 6px!important;font-size:10px!important;min-width:70px!important}}
+.dark-mode-toggle:not(.nav-controls .dark-mode-toggle),.translator-box:not(.nav-controls .translator-box){display:none!important}
 
 
-/* ============================================
-   BUTTON POSITION FIXES - Mobile & Desktop
-   ============================================ */
+/* DARK MODE FIXES */
+body.dark-mode,body.dark-mode p,body.dark-mode li,body.dark-mode span:not(.stat-number):not(.impact-value):not(.github-stat-value):not(.metric-number){color:#e8e6e1}
+body.dark-mode h1,body.dark-mode h2,body.dark-mode h3,body.dark-mode h4,body.dark-mode h5,body.dark-mode h6{color:var(--gold)}
+body.dark-mode .section-header p,body.dark-mode .timeline-description,body.dark-mode .cert-card>p,body.dark-mode .project-content p,body.dark-mode .testimonial-content p,body.dark-mode .blog-content>p,body.dark-mode .contact-cta-card p,body.dark-mode .volunteer-card .description,body.dark-mode .about-content p,body.dark-mode .hero-description{color:#e8e6e1!important}
+body.dark-mode .subtitle,body.dark-mode .testimonial-author span,body.dark-mode .blog-meta,body.dark-mode .project-highlights,body.dark-mode .cert-subtitle,body.dark-mode .cert-date,body.dark-mode .date-level,body.dark-mode .metric-desc,body.dark-mode .impact-label{color:#a0a8b8!important}
+body.dark-mode .project-card,body.dark-mode .testimonial-card,body.dark-mode .blog-card,body.dark-mode .contact-cta-card,body.dark-mode .volunteer-card,body.dark-mode .timeline-content,body.dark-mode .cert-card,body.dark-mode .stat-modal,body.dark-mode .strategy-detail-card{background:var(--dark-elevated);border-color:var(--dark-border)}
+body.dark-mode .skill-tag,body.dark-mode .project-tag,body.dark-mode .tech-tag,body.dark-mode .lang-item,body.dark-mode .blog-category{background:rgba(212,175,55,.15);border-color:rgba(212,175,55,.3);color:var(--gold-light)!important}
+body.dark-mode .skill-tag:hover,body.dark-mode .project-tag:hover,body.dark-mode .lang-item:hover{background:var(--gold);color:var(--navy)!important}
+body.dark-mode .achievement-box,body.dark-mode .ai-application,body.dark-mode .strategy-detail-section{background:rgba(212,175,55,.08);border-color:rgba(212,175,55,.3)}
+body.dark-mode .achievement-box strong,body.dark-mode .ai-application strong,body.dark-mode .strategy-detail-section h4{color:var(--gold-light)!important}
+body.dark-mode .achievement-box li,body.dark-mode .ai-application li,body.dark-mode .strategy-detail-section li{color:#e8e6e1!important}
+.contact.always-navy{background:var(--navy)!important}
+.contact.always-navy .section-header h2{color:#fff!important}
+.contact.always-navy .section-header p{color:rgba(255,255,255,.8)!important}
+.contact.always-navy .contact-intro h3{color:var(--gold)!important}
+.contact.always-navy .contact-intro p{color:#e8e6e1!important}
+.contact.always-navy .contact-cta-card{background:rgba(255,255,255,.06);border-color:rgba(212,175,55,.3)}
+.contact.always-navy .contact-cta-card h3{color:var(--gold)!important}
+.contact.always-navy .contact-cta-card p{color:#e8e6e1!important}
+.contact.always-navy .cta-icon{background:var(--gold);color:var(--navy)}
+.contact.always-navy .contact-info-item{color:#e8e6e1!important}
+.contact.always-navy .contact-info-item a{color:var(--gold-light)!important}
+body.dark-mode .contact.always-navy{background:var(--navy)!important}
+body.dark-mode .contact.always-navy .section-header h2{color:var(--gold)!important}
 
-/* Scroll to top - bottom right */
-.scroll-top {
-  right: 20px;
-  bottom: 20px;
-  width: 56px;
-  height: 56px;
-}
 
-/* Build badge - above scroll-to-top */
-.build-badge {
-  right: 20px;
-  bottom: 85px;
-  z-index: 998;
-}
-
-/* Mobile adjustments */
-@media (max-width: 768px) {
-  .scroll-top {
-    right: 15px;
-    bottom: 15px;
-    width: 50px;
-    height: 50px;
-  }
-
-  .build-badge {
-    right: 15px;
-    bottom: 75px;
-    padding: 10px 16px;
-    font-size: 0.8rem;
-  }
-}
-
-/* Ensure proper z-index stacking */
-.scroll-top {
-  z-index: 980;
-}
-
-.build-badge {
-  z-index: 997;
-}
-
-.nav-controls {
-  z-index: 1501;
-}
-
-.navbar {
-  z-index: 1000;
-}
+/* BUTTON POSITIONS */
+.scroll-top{right:20px;bottom:20px;width:56px;height:56px;z-index:980}
+.build-badge{right:20px;bottom:85px;z-index:997}
+@media(max-width:768px){.scroll-top{right:15px;bottom:15px;width:50px;height:50px}.build-badge{right:15px;bottom:75px;padding:10px 16px;font-size:.8rem}}
