@@ -1968,24 +1968,28 @@ body.dark-mode .metric-desc {
 
 
 
+
+
 /* ============================================
-   CORREÇÃO DEFINITIVA - FRAME MINÚSCULO ABAIXO DO GLOBO
+   CORREÇÃO DEFINITIVA - FRAME EXATO DO TAMANHO DO G
    ============================================ */
 
-/* Frame MINÚSCULO - só o G */
+/* Frame EXATO - do tamanho do quadrado do G */
 #google_translate_element {
-  width: 36px !important;
-  min-width: 36px !important;
-  max-width: 36px !important;
-  height: 36px !important;
+  width: 28px !important;
+  min-width: 28px !important;
+  max-width: 28px !important;
+  height: 28px !important;
   padding: 0 !important;
   margin: 0 !important;
-  left: 8px !important; /* ABAIXO do botão do globo */
-  top: 55px !important;
+  left: 12px !important;
+  top: 58px !important;
   overflow: hidden !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
-/* Select que ocupa tudo */
 #google_translate_element .goog-te-combo {
   width: 100% !important;
   height: 100% !important;
@@ -1993,7 +1997,7 @@ body.dark-mode .metric-desc {
   margin: 0 !important;
   border: none !important;
   background: transparent !important;
-  font-size: 0 !important; /* Esconde o texto */
+  font-size: 0 !important;
   color: transparent !important;
   cursor: pointer !important;
 }
@@ -2001,12 +2005,12 @@ body.dark-mode .metric-desc {
 /* Mobile */
 @media(max-width:768px){
   #google_translate_element {
-    width: 32px !important;
-    min-width: 32px !important;
-    max-width: 32px !important;
-    height: 32px !important;
-    left: 6px !important;
-    top: 48px !important;
+    width: 26px !important;
+    min-width: 26px !important;
+    max-width: 26px !important;
+    height: 26px !important;
+    left: 10px !important;
+    top: 50px !important;
     padding: 0 !important;
   }
 }
