@@ -1,567 +1,1404 @@
-/**
- * Luciano Rodrigues Portfolio - Main JavaScript
- * Version: 2.0.0
- * Date: 2026-04-06
- * 
- * Features:
- * - Modular architecture using IIFE pattern
- * - Intersection Observer for scroll animations
- * - Event delegation for performance
- * - Custom cursor with requestAnimationFrame
- * - Lazy loading with native loading attribute
- * - Dark mode with localStorage persistence
- * - Counter animations with Intersection Observer
- */
+/* Luciano Rodrigues Portfolio - Google Translate Optimized */
 
-(function() {
-  'use strict';
+const PG_state = { images: [], index: 0 };
+const CardSlides = new Map();
+let savedScrollPosition = 0;
 
-  // ============================================
-  // CONFIGURATION
-  // ============================================
-  const CONFIG = {
-    animation: {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px',
-      duration: 600
-    },
-    cursor: {
-      enabled: !window.matchMedia('(pointer: coarse)').matches,
-      smoothness: 0.15
-    },
-    counter: {
-      duration: 2000,
-      easing: 'easeOutExpo'
-    }
-  };
+const $  = (sel, ctx = document) => ctx.querySelector(sel);
+const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
+const on = (el, evt, fn, opts) => el && el.addEventListener(evt, fn, opts);
 
-  // ============================================
-  // UTILITY FUNCTIONS
-  // ============================================
-  const Utils = {
-    /**
-     * Debounce function to limit execution rate
-     * @param {Function} func - Function to debounce
-     * @param {number} wait - Milliseconds to wait
-     * @returns {Function}
-     */
-    debounce(func, wait = 100) {
-      let timeout;
-      return function executedFunction(...args) {
-        const later = () => {
-          clearTimeout(timeout);
-          func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-      };
-    },
+/* Stat Details Data */
+const StatDetailsData = {
+  savings: {
+    icon: "fa-piggy-bank",
+    title: "Cumulative Savings Delivered",
+    value: "€1M+",
+    details: [
+      "Multi-category strategic sourcing initiatives across direct and indirect spend",
+      "Negotiated favorable payment terms (60-90 days) improving cash flow",
+      "Implemented should-cost modeling identifying 15-25% cost reduction opportunities",
+      "Consolidated supplier base from 200+ to 80 key partners",
+      "Zero-based budgeting approach for CAPEX projects saving 20% on average"
+    ]
+  },
+  rfps: {
+    icon: "fa-file-contract",
+    title: "Strategic Tenders Led",
+    value: "120+",
+    details: [
+      "End-to-end RFI/RFP/RFQ process design with technical annexes (A1/A2)",
+      "Weighted scoring matrices balancing technical (40%), commercial (35%), and ESG (25%) criteria",
+      "E-procurement platform integration with full audit trails",
+      "Cross-functional evaluation committees (Engineering, Finance, Legal, Operations)",
+      "Average cycle time reduction from 45 to 28 days while improving compliance"
+    ]
+  },
+  projects: {
+    icon: "fa-project-diagram",
+    title: "Project Portfolio Value",
+    value: "€10M+",
+    details: [
+      "New product development from concept to mass production",
+      "Licensed portfolio launches (Blaupunkt, Spear & Jackson, Pininfarina)",
+      "Factory audits and supplier capability assessments across Asia",
+      "Quality system implementations (ISO 9001, compliance frameworks)",
+      "Cross-border logistics optimization and customs compliance"
+    ]
+  },
+  regions: {
+    icon: "fa-globe",
+    title: "Global Operations Coverage",
+    value: "20+",
+    details: [
+      "Europe: Portugal, Spain, Germany, UK, Netherlands, Italy, France",
+      "LATAM: Brazil, Argentina, Chile, Colombia, Mexico, Peru, Uruguay",
+      "Asia: China, Hong Kong, Taiwan, Vietnam, India, South Korea",
+      "Multi-cultural negotiation experience and local market knowledge",
+      "Time zone coordination for 24/7 project execution"
+    ]
+  }
+};
 
-    /**
-     * Throttle function to limit execution rate
-     * @param {Function} func - Function to throttle
-     * @param {number} limit - Milliseconds between executions
-     * @returns {Function}
-     */
-    throttle(func, limit = 100) {
-      let inThrottle;
-      return function executedFunction(...args) {
-        if (!inThrottle) {
-          func(...args);
-          inThrottle = true;
-          setTimeout(() => inThrottle = false, limit);
-        }
-      };
-    },
-
-    /**
-     * Easing function for animations
-     * @param {number} t - Time (0-1)
-     * @returns {number}
-     */
-    easeOutExpo(t) {
-      return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
-    },
-
-    /**
-     * Animate number counter
-     * @param {HTMLElement} element - Element to animate
-     * @param {number} target - Target value
-     * @param {number} duration - Animation duration
-     * @param {string} prefix - Prefix for number
-     * @param {string} suffix - Suffix for number
-     */
-    animateCounter(element, target, duration, prefix = '', suffix = '') {
-      const startTime = performance.now();
-      const startValue = 0;
-
-      const updateCounter = (currentTime) => {
-        const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        const easedProgress = this.easeOutExpo(progress);
-        const currentValue = Math.floor(startValue + (target - startValue) * easedProgress);
-
-        element.textContent = `${prefix}${currentValue}${suffix}`;
-
-        if (progress < 1) {
-          requestAnimationFrame(updateCounter);
-        }
-      };
-
-      requestAnimationFrame(updateCounter);
-    }
-  };
-
-  // ============================================
-  // LOADING SCREEN MODULE
-  // ============================================
-  const LoadingModule = (function() {
-    const loading = document.getElementById('loading');
-
-    function init() {
-      if (!loading) return;
-
-      // Hide loading screen after content loads
-      const hideLoading = () => {
-        loading.classList.add('hidden');
-        document.body.style.overflow = '';
-      };
-
-      // Fallback timeout to ensure loading screen hides
-      setTimeout(hideLoading, 2000);
-
-      // Hide when page is fully loaded
-      if (document.readyState === 'complete') {
-        hideLoading();
-      } else {
-        window.addEventListener('load', hideLoading, { once: true });
+const StrategyDetailsData = {
+  1: {
+    title: "Stand Design & Merchandising",
+    subtitle: "Creating immersive brand experiences",
+    icon: "fa-drafting-compass",
+    sections: [
+      {
+        title: "Strategic Approach",
+        items: [
+          "Co-created booth concept with Marketing aligning to brand positioning",
+          "Traffic flow optimization for maximum visitor engagement",
+          "Product display hierarchy highlighting hero SKUs and new launches",
+          "Lighting and visual merchandising for premium brand perception",
+          "Interactive demo stations for hands-on product experience"
+        ]
+      },
+      {
+        title: "Technical Execution",
+        items: [
+          "3D renderings and mockups approved 60 days prior to event",
+          "Modular stand components for reusability across fairs",
+          "Digital signage integration with real-time product catalogs",
+          "Storage and logistics planning for 500+ SKU displays",
+          "On-site supervision during build-up and dismantling"
+        ]
       }
+    ]
+  },
+  2: {
+    title: "Meetings Orchestration & Lead Capture",
+    subtitle: "Maximizing ROI through structured engagement",
+    icon: "fa-calendar-check",
+    sections: [
+      {
+        title: "Pre-Event Planning",
+        items: [
+          "Target list development: 200+ qualified prospects per fair",
+          "Meeting scheduling system with automated reminders",
+          "Sales team briefing with product knowledge sessions",
+          "Customized pitch decks by customer segment",
+          "Lead scoring criteria defined (budget, timeline, authority)"
+        ]
+      },
+      {
+        title: "On-Site Execution",
+        items: [
+          "Structured 30-minute meeting slots with clear agendas",
+          "Real-time lead capture via CRM mobile app",
+          "Immediate follow-up emails sent within 4 hours",
+          "Meeting notes standardized for pipeline visibility",
+          "Daily team huddles to adjust strategy based on feedback"
+        ]
+      }
+    ]
+  },
+  3: {
+    title: "Negotiations & Partnering",
+    subtitle: "Building strategic supplier relationships",
+    icon: "fa-handshake-angle",
+    sections: [
+      {
+        title: "Partnership Development",
+        items: [
+          "Initial qualification: financial stability, capacity, certifications",
+          "Term sheet negotiations: MOQ, payment terms, exclusivity clauses",
+          "Pricing framework with volume breaks and annual rebates",
+          "Quality agreements defining defect rates and corrective actions",
+          "IP protection and NDA frameworks for new product development"
+        ]
+      },
+      {
+        title: "Contractual Framework",
+        items: [
+          "Master Service Agreements (MSA) with standardized terms",
+          "Statement of Work (SoW) templates for project-based work",
+          "Service Level Agreements (SLA) with penalty/incentive clauses",
+          "Force majeure and business continuity provisions",
+          "Exit clauses and knowledge transfer obligations"
+        ]
+      }
+    ]
+  },
+  4: {
+    title: "Tech Discovery & Benchmark",
+    subtitle: "Staying ahead of market innovation",
+    icon: "fa-microchip",
+    sections: [
+      {
+        title: "Market Intelligence",
+        items: [
+          "Technology scouting across 50+ supplier booths per fair",
+          "Competitive product teardowns and feature comparison",
+          "Cost benchmarking for similar specifications",
+          "Innovation trend mapping (IoT, sustainability, smart features)",
+          "Patent landscape analysis for freedom to operate"
+        ]
+      },
+      {
+        title: "Technical Evaluation",
+        items: [
+          "Sample collection for lab testing and validation",
+          "Engineering team consultations on technical feasibility",
+          "Prototype review and design for manufacturing (DFM) feedback",
+          "Certification requirements assessment (CE, FCC, ANATEL)",
+          "Roadmap alignment with supplier R&D investments"
+        ]
+      }
+    ]
+  },
+  5: {
+    title: "Factory Audits & Capability Mapping",
+    subtitle: "Ensuring operational excellence",
+    icon: "fa-industry",
+    sections: [
+      {
+        title: "Audit Framework",
+        items: [
+          "ISO 9001 quality management system verification",
+          "Production capacity analysis (lines, shifts, utilization)",
+          "Equipment maintenance records and calibration certificates",
+          "Workforce skill assessment and training programs",
+          "Environmental compliance and waste management practices"
+        ]
+      },
+      {
+        title: "Risk Assessment",
+        items: [
+          "Financial health check (credit reports, payment history)",
+          "Supply chain resilience (dual sourcing, buffer stock)",
+          "Social compliance audits (SA8000, BSCI standards)",
+          "Cybersecurity protocols for data-sharing partnerships",
+          "Business continuity planning and disaster recovery"
+        ]
+      }
+    ]
+  },
+  6: {
+    title: "Post-Fair Pipeline, ROI & Governance",
+    subtitle: "Converting leads into revenue",
+    icon: "fa-chart-line",
+    sections: [
+      {
+        title: "Pipeline Management",
+        items: [
+          "Lead categorization: Hot (immediate), Warm (3 months), Cold (nurture)",
+          "CRM integration with automated follow-up sequences",
+          "Opportunity value estimation and win probability scoring",
+          "Cross-functional handover to regional sales teams",
+          "Weekly pipeline review meetings for first 30 days"
+        ]
+      },
+      {
+        title: "Performance Metrics",
+        items: [
+          "Cost per lead calculation (stand cost ÷ qualified leads)",
+          "Conversion rate tracking from lead to order",
+          "Average deal size comparison vs. non-fair customers",
+          "Time-to-close analysis identifying bottlenecks",
+          "Annual ROI reporting for marketing budget justification"
+        ]
+      }
+    ]
+  }
+};
+
+function openStatModal(key) {
+  const data = StatDetailsData[key];
+  if (!data) return;
+
+  $('#statModalIcon').className = `fas ${data.icon}`;
+  $('#statModalTitle').textContent = data.title;
+  $('#statModalValue').textContent = data.value;
+  $('#statModalDetails').innerHTML = data.details.map(it => `<li>${it}</li>`).join('');
+  $('#statModalOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeStatModal() {
+  const overlay = $('#statModalOverlay');
+  if (!overlay) return;
+  overlay.classList.remove('active');
+  document.body.style.overflow = 'auto';
+}
+
+function openStrategyModal(num) {
+  const data = StrategyDetailsData[num];
+  if (!data) return;
+
+  $('#strategyDetailIcon').className = `fas ${data.icon}`;
+  $('#strategyDetailTitle').textContent = data.title;
+  $('#strategyDetailSubtitle').textContent = data.subtitle;
+
+  const body = data.sections.map(sec => {
+    const items = sec.items.map(li => `<li>${li}</li>`).join('');
+    return `<div class="strategy-detail-section"><h4><i class="fas fa-chevron-right"></i> ${sec.title}</h4><ul>${items}</ul></div>`;
+  }).join('');
+
+  $('#strategyDetailBody').innerHTML = body;
+  $('#strategyDetailOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeStrategyModal() {
+  const overlay = $('#strategyDetailOverlay');
+  if (!overlay) return;
+
+  const card = overlay.querySelector('.strategy-detail-card');
+  const body = overlay.querySelector('.strategy-detail-body');
+  if (card) { card.scrollTop = 0; card.scrollTo(0, 0); }
+  if (body) { body.scrollTop = 0; body.scrollTo(0, 0); }
+  overlay.scrollTop = 0;
+
+  overlay.classList.remove('active');
+  document.body.style.overflow = 'auto';
+}
+
+function updateCardDots(card, idx) {
+  const dots = card.querySelectorAll('.gallery-dot');
+  dots.forEach((dot, i) => {
+    if (i === idx) {
+      dot.classList.add('active');
+      dot.style.transform = 'scale(1.4)';
+      dot.style.background = 'var(--gold)';
+      dot.style.boxShadow = '0 0 10px rgba(212, 175, 55, 0.6)';
+    } else {
+      dot.classList.remove('active');
+      dot.style.transform = 'scale(1)';
+      dot.style.background = 'rgba(255, 255, 255, 0.5)';
+      dot.style.boxShadow = 'none';
+    }
+  });
+}
+
+function changeProjectSlide(dir) {
+  if (!PG_state.images.length) return;
+  const modal = document.getElementById('projectGalleryModal');
+  if (!modal) return;
+  const slides = modal.querySelectorAll('.gallery-slide');
+  const dots = modal.querySelectorAll('.gallery-dot');
+
+  if (slides[PG_state.index]) slides[PG_state.index].classList.remove('active');
+  if (dots[PG_state.index]) {
+    dots[PG_state.index].classList.remove('active');
+    dots[PG_state.index].style.transform = 'scale(1)';
+    dots[PG_state.index].style.background = 'rgba(212, 175, 55, 0.34)';
+    dots[PG_state.index].style.boxShadow = 'none';
+  }
+
+  PG_state.index = (PG_state.index + dir + PG_state.images.length) % PG_state.images.length;
+
+  if (slides[PG_state.index]) slides[PG_state.index].classList.add('active');
+  if (dots[PG_state.index]) {
+    dots[PG_state.index].classList.add('active');
+    dots[PG_state.index].style.transform = 'scale(1.4)';
+    dots[PG_state.index].style.background = 'var(--gold)';
+    dots[PG_state.index].style.boxShadow = '0 0 15px rgba(212, 175, 55, 0.6)';
+  }
+}
+
+function goToProjectSlide(idx) {
+  if (!PG_state.images.length) return;
+  const modal = document.getElementById('projectGalleryModal');
+  if (!modal) return;
+  const slides = modal.querySelectorAll('.gallery-slide');
+  const dots = modal.querySelectorAll('.gallery-dot');
+
+  if (slides[PG_state.index]) slides[PG_state.index].classList.remove('active');
+  if (dots[PG_state.index]) {
+    dots[PG_state.index].classList.remove('active');
+    dots[PG_state.index].style.transform = 'scale(1)';
+    dots[PG_state.index].style.background = 'rgba(212, 175, 55, 0.34)';
+    dots[PG_state.index].style.boxShadow = 'none';
+  }
+
+  PG_state.index = idx;
+
+  if (slides[PG_state.index]) slides[PG_state.index].classList.add('active');
+  if (dots[PG_state.index]) {
+    dots[PG_state.index].classList.add('active');
+    dots[PG_state.index].style.transform = 'scale(1.4)';
+    dots[PG_state.index].style.background = 'var(--gold)';
+    dots[PG_state.index].style.boxShadow = '0 0 15px rgba(212, 175, 55, 0.6)';
+  }
+}
+
+function setupCardAutoSlide(card) {
+  const container = card.querySelector('.gallery-main');
+  if (!container) return;
+
+  let images = [];
+  const csv = card.getAttribute('data-images') || '';
+  if (csv.trim()) {
+    images = csv.split(',').map(s => s.trim()).filter(Boolean);
+  } else {
+    const main = container.querySelector('img');
+    if (main?.src) images = [main.src];
+  }
+  if (!images.length) return;
+
+  const imgEl = container.querySelector('img');
+  const auto = card.getAttribute('data-autoslide') === 'true';
+  const interval = Math.max(1200, parseInt(card.getAttribute('data-interval'), 10) || 2500);
+
+  const state = { images, idx: 0, timer: null, interval, imgEl, paused: false };
+  CardSlides.set(card, state);
+
+  function tick() {
+    if (state.paused || !auto || state.images.length <= 1) return;
+    state.idx = (state.idx + 1) % state.images.length;
+    state.imgEl.style.opacity = '0';
+    setTimeout(() => {
+      state.imgEl.src = state.images[state.idx];
+      state.imgEl.onload = () => { state.imgEl.style.opacity = '1'; };
+      updateCardDots(card, state.idx);
+    }, 160);
+  }
+  function start() {
+    stop();
+    if (auto && state.images.length > 1) state.timer = setInterval(tick, state.interval);
+  }
+  function stop() {
+    if (state.timer) { clearInterval(state.timer); state.timer = null; }
+  }
+
+  on(card, 'mouseenter', () => { state.paused = true; });
+  on(card, 'mouseleave', () => { state.paused = false; });
+
+  const clickable = card.querySelector('.gallery-overlay') || container;
+  on(clickable, 'click', (e) => {
+    e.stopPropagation();
+    openProjectGalleryFromCard(card);
+  });
+
+  start();
+}
+
+function openProjectGalleryFromCard(card) {
+  savedScrollPosition = window.scrollY || document.documentElement.scrollTop || 0;
+  const modal = $('#projectGalleryModal');
+  if (!modal) return;
+
+  let images = [];
+  const csv = card.getAttribute('data-images') || '';
+  if (csv.trim()) {
+    images = csv.split(',').map(s => s.trim()).filter(Boolean);
+  } else {
+    const main = card.querySelector('.gallery-main img');
+    if (main?.src) images = [main.src];
+  }
+  if (!images.length) return;
+
+  buildProjectSlides(images);
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function buildProjectSlides(images) {
+  const slider = $('#gallerySlider');
+  const dotsContainer = $('#galleryDots');
+  if (!slider || !dotsContainer) return;
+
+  slider.innerHTML = '';
+  dotsContainer.innerHTML = '';
+
+  images.forEach((src, idx) => {
+    const slide = document.createElement('div');
+    slide.className = 'gallery-slide' + (idx === 0 ? ' active' : '');
+    const img = document.createElement('img');
+    img.alt = 'Project image ' + (idx + 1);
+    img.src = src;
+    slide.appendChild(img);
+    slider.appendChild(slide);
+
+    const dot = document.createElement('div');
+    dot.className = 'gallery-dot' + (idx === 0 ? ' active' : '');
+    if (idx === 0) {
+      dot.style.transform = 'scale(1.4)';
+      dot.style.background = 'var(--gold)';
+      dot.style.boxShadow = '0 0 15px rgba(212, 175, 55, 0.6)';
+    }
+    dot.addEventListener('click', () => goToProjectSlide(idx));
+    dotsContainer.appendChild(dot);
+  });
+
+  PG_state.images = images.slice();
+  PG_state.index = 0;
+}
+
+function closeProjectGallery() {
+  const modal = $('#projectGalleryModal');
+  if (modal) {
+    modal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+    if (savedScrollPosition > 0) {
+      setTimeout(() => {
+        window.scrollTo({ top: savedScrollPosition, behavior: 'instant' });
+        savedScrollPosition = 0;
+      }, 10);
+    }
+  }
+}
+
+function initMobileEnhancements() {
+  const isTouch = window.matchMedia('(pointer: coarse)').matches;
+  if (!isTouch) return;
+
+  $$('.stat-box, .strategy-item, .project-card, .gallery-item').forEach(el => {
+    on(el, 'touchstart', function(){ this.style.transform = 'scale(0.98)'; }, { passive: true });
+    on(el, 'touchend', function(){ this.style.transform = ''; }, { passive: true });
+  });
+
+  $$('.project-card').forEach(card => {
+    let startX = 0, currentX = 0;
+    const gallery = card.querySelector('.gallery-main');
+    if (!gallery) return;
+
+    on(gallery, 'touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+    on(gallery, 'touchmove', e => { currentX = e.touches[0].clientX; }, { passive: true });
+    on(gallery, 'touchend', () => {
+      const diff = startX - currentX;
+      if (Math.abs(diff) > 50) {
+        const state = CardSlides.get(card);
+        if (state && state.images.length > 1) {
+          state.idx = diff > 0 
+            ? (state.idx + 1) % state.images.length
+            : (state.idx - 1 + state.images.length) % state.images.length;
+          state.imgEl.style.opacity = '0';
+          setTimeout(() => {
+            state.imgEl.src = state.images[state.idx];
+            state.imgEl.onload = () => { state.imgEl.style.opacity = '1'; };
+            updateCardDots(card, state.idx);
+          }, 160);
+        }
+      }
+    }, { passive: true });
+  });
+}
+
+function enhanceProjectGalleries() {
+  const map = {
+    "blaupunkt": ["Blaupunkt_Tools.png","Blaupunkt_Illumiation_booth_HK_Fair.png","Blaupunkt_Illumiation_booth_HK_Fair_1.png","Blaupunkt_Illumiation_booth_HK_Fair_2.png","Blaupunkt_Illumiation_booth_HK_Fair_3.png","Blaupunkt_Illumiation_booth_HK_Fair_4.png"],
+    "blaupunkt-power": ["Blaupunkt_Power_Tools.png"],
+    "blaupunkt-garden": ["Blaupunkt_Garden_Tools.png"]
+  };
+
+  Object.keys(map).forEach(key => {
+    const card = document.querySelector(`.project-card[data-gallery="${key}"]`);
+    if (!card) return;
+    const images = map[key];
+    card.setAttribute('data-images', images.join(','));
+
+    const gallery = card.querySelector('.project-gallery');
+    if (gallery && !gallery.querySelector('.gallery-dots')) {
+      const dots = document.createElement('div');
+      dots.className = 'gallery-dots';
+      images.forEach((_, i) => {
+        const dot = document.createElement('div');
+        dot.className = `gallery-dot ${i === 0 ? 'active' : ''}`;
+        if (i === 0) {
+          dot.style.transform = 'scale(1.4)';
+          dot.style.background = 'var(--gold)';
+          dot.style.boxShadow = '0 0 10px rgba(212, 175, 55, 0.6)';
+        }
+        dots.appendChild(dot);
+      });
+      gallery.appendChild(dots);
+    }
+  });
+}
+
+function initScrollAnimations() {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+  $$('.animate-on-scroll').forEach(el => io.observe(el));
+}
+
+function initNavbarScroll() {
+  const navbar = $('#navbar');
+  const scrollTopBtn = $('#scrollTop');
+  const onScroll = () => {
+    const y = window.scrollY || document.documentElement.scrollTop;
+    navbar?.classList.toggle('scrolled', y > 50);
+    scrollTopBtn?.classList.toggle('visible', y > 600);
+    updateTimelineSpy();
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+}
+
+function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+
+function initLightbox() {
+  const lb = $('#lightbox');
+  const lbImg = $('#lightbox-img');
+  if (!lb || !lbImg) return;
+  on(lb, 'click', (e) => { if (e.target === lb) closeLightbox(); });
+  on(document, 'keydown', (e) => { if (lb.classList.contains('active') && e.key === 'Escape') closeLightbox(); });
+}
+
+function openLightbox(el) {
+  savedScrollPosition = window.scrollY || document.documentElement.scrollTop || 0;
+  const lb = $('#lightbox');
+  const lbImg = $('#lightbox-img');
+  if (!lb || !lbImg) return;
+  const img = el?.querySelector?.('img');
+  if (!img?.src) return;
+  lbImg.src = img.src;
+  lb.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  const lb = $('#lightbox');
+  if (!lb) return;
+  lb.classList.remove('active');
+  document.body.style.overflow = 'auto';
+  if (savedScrollPosition > 0) {
+    setTimeout(() => {
+      window.scrollTo({ top: savedScrollPosition, behavior: 'instant' });
+      savedScrollPosition = 0;
+    }, 10);
+  }
+}
+
+function initTradeTabs() {
+  const tabs = $$('.gallery-tab');
+  if (!tabs.length) return;
+  tabs.forEach(btn => {
+    on(btn, 'click', () => {
+      tabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      $$('.gallery-content').forEach(gc => gc.classList.remove('active'));
+      const panel = $('#' + btn.dataset.target);
+      panel?.classList.add('active');
+    });
+  });
+}
+
+function showToast(message = '') {
+  const t = $('#toast');
+  if (!t) return;
+  t.textContent = message;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+function updateTimelineSpy() {
+  const items = $$('.timeline-item');
+  if (!items.length) return;
+  const logoImg = $('#logo-img');
+  const indicators = $$('.indicator-dot');
+  if (!logoImg) return;
+
+  // Encontrar qual item está mais centralizado na tela
+  let activeIndex = 0;
+  let minDistance = Infinity;
+  const windowCenter = window.innerHeight / 2;
+
+  items.forEach((item, idx) => {
+    const r = item.getBoundingClientRect();
+    const itemCenter = r.top + r.height / 2;
+    const distance = Math.abs(itemCenter - windowCenter);
+
+    if (distance < minDistance) {
+      minDistance = distance;
+      activeIndex = idx;
     }
 
-    return { init };
-  })();
+    // Remover active de todos primeiro
+    item.classList.remove('active');
+  });
 
-  // ============================================
-  // CUSTOM CURSOR MODULE
-  // ============================================
-  const CursorModule = (function() {
+  // Adicionar active apenas no item mais próximo do centro
+  items[activeIndex].classList.add('active');
+
+  // Atualizar logo
+  const activeItem = items[activeIndex];
+  if (activeItem) {
+    const newLogo = activeItem.getAttribute('data-logo');
+    const currentSrc = logoImg.getAttribute('src');
+    if (newLogo && newLogo !== currentSrc) {
+      logoImg.style.opacity = '0';
+      setTimeout(() => {
+        logoImg.src = newLogo;
+        logoImg.onload = () => { logoImg.style.opacity = '1'; };
+      }, 160);
+    }
+  }
+
+  // Atualizar indicadores
+  indicators.forEach((dot, idx) => dot.classList.toggle('active', idx === activeIndex));
+}
+
+function initParticles() {
+  const container = $('#particles');
+  if (!container) return;
+  const count = 26;
+  for (let i = 0; i < count; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = Math.random() * 100 + '%';
+    p.style.top = Math.random() * 100 + '%';
+    const s = Math.max(3, Math.min(6, 3 + Math.random() * 4));
+    p.style.width = p.style.height = s + 'px';
+    p.style.opacity = (0.22 + Math.random() * 0.35).toFixed(2);
+    p.style.animationDelay = (Math.random() * 5).toFixed(2) + 's';
+    p.style.animationDuration = (4 + Math.random() * 5).toFixed(2) + 's';
+    p.style.position = 'absolute';
+    p.style.background = 'var(--gold)';
+    p.style.borderRadius = '50%';
+    p.style.pointerEvents = 'none';
+    container.appendChild(p);
+  }
+}
+
+/* ============================================
+   LOADING SCREEN - CORREÇÃO DEFINITIVA
+   ============================================ */
+
+function hideLoading() {
+  const loading = $('#loading');
+  if (!loading) return;
+
+  // Verifica se já está escondido
+  if (loading.classList.contains('hidden')) return;
+
+  loading.classList.add('hidden');
+  setTimeout(() => {
+    if (loading.parentNode) loading.remove();
+  }, 400);
+}
+
+function initLoading() {
+  const loading = $('#loading');
+  if (!loading) return;
+
+  // ESTRATÉGIA 1: Fallback de 2 segundos (independente de tudo)
+  setTimeout(hideLoading, 2000);
+
+  // ESTRATÉGIA 2: Quando DOM estiver pronto
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    setTimeout(hideLoading, 500);
+  } else {
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(hideLoading, 500);
+    });
+  }
+
+  // ESTRATÉGIA 3: Quando tudo carregar (imagens, etc)
+  window.addEventListener('load', () => {
+    hideLoading();
+  });
+
+  // ESTRATÉGIA 4: MutationObserver - detecta quando Google Translate modifica o DOM
+  if (window.MutationObserver) {
+    let attempts = 0;
+    const observer = new MutationObserver((mutations) => {
+      attempts++;
+      // Se houver muitas mutações (Google Translate ativo), esconde mais cedo
+      if (attempts > 10 || document.querySelector('.goog-te-menu-frame')) {
+        hideLoading();
+        observer.disconnect();
+      }
+    });
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+
+    // Para o observer após 3 segundos
+    setTimeout(() => observer.disconnect(), 3000);
+  }
+}
+
+function initSmoothAnchors() {
+  $$('a[href^="#"]').forEach(a => {
+    on(a, 'click', (e) => {
+      const href = a.getAttribute('href');
+      if (!href || href === '#') return;
+      const target = $(href);
+      if (!target) return;
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+}
+
+function initCursor() {
+  try {
     const cursor = document.getElementById('cursor');
-    const follower = document.getElementById('cursorFollower');
+    const cursorFollower = document.getElementById('cursorFollower');
+    if (!cursor || !cursorFollower) return;
 
     let mouseX = 0, mouseY = 0;
     let cursorX = 0, cursorY = 0;
     let followerX = 0, followerY = 0;
-    let rafId = null;
-    let isActive = false;
 
-    function updateCursor() {
-      if (!isActive) return;
-
-      // Smooth interpolation
-      cursorX += (mouseX - cursorX) * CONFIG.cursor.smoothness;
-      cursorY += (mouseY - cursorY) * CONFIG.cursor.smoothness;
-      followerX += (mouseX - followerX) * (CONFIG.cursor.smoothness * 0.5);
-      followerY += (mouseY - followerY) * (CONFIG.cursor.smoothness * 0.5);
-
-      cursor.style.transform = `translate(${cursorX}px, ${cursorY}px) translate(-50%, -50%)`;
-      follower.style.transform = `translate(${followerX}px, ${followerY}px) translate(-50%, -50%)`;
-
-      rafId = requestAnimationFrame(updateCursor);
-    }
-
-    function handleMouseMove(e) {
+    document.addEventListener('mousemove', (e) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
+    });
 
-      if (!isActive) {
-        isActive = true;
-        updateCursor();
-      }
+    function animateCursor() {
+      cursorX += (mouseX - cursorX) * 0.15;
+      cursorY += (mouseY - cursorY) * 0.15;
+      followerX += (mouseX - followerX) * 0.08;
+      followerY += (mouseY - followerY) * 0.08;
+
+      cursor.style.left = cursorX + 'px';
+      cursor.style.top = cursorY + 'px';
+      cursorFollower.style.left = followerX + 'px';
+      cursorFollower.style.top = followerY + 'px';
+
+      requestAnimationFrame(animateCursor);
     }
 
-    function handleMouseEnter(e) {
-      if (e.target.matches('a, button, [role="button"], .stat-box')) {
-        follower.classList.add('hover');
-      }
-    }
+    animateCursor();
 
-    function handleMouseLeave(e) {
-      if (e.target.matches('a, button, [role="button"], .stat-box')) {
-        follower.classList.remove('hover');
-      }
-    }
-
-    function init() {
-      if (!CONFIG.cursor.enabled || !cursor || !follower) return;
-
-      document.addEventListener('mousemove', handleMouseMove, { passive: true });
-
-      // Use event delegation for hover effects
-      document.addEventListener('mouseenter', handleMouseEnter, true);
-      document.addEventListener('mouseleave', handleMouseLeave, true);
-
-      // Cleanup on visibility change
-      document.addEventListener('visibilitychange', () => {
-        if (document.hidden && rafId) {
-          cancelAnimationFrame(rafId);
-          isActive = false;
-        }
+    document.querySelectorAll('a, button, .project-card, .stat-box, .strategy-item').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
+        cursor.style.borderColor = 'var(--gold-light)';
+        cursorFollower.style.transform = 'translate(-50%, -50%) scale(1.5)';
       });
-    }
-
-    return { init };
-  })();
-
-  // ============================================
-  // NAVIGATION MODULE
-  // ============================================
-  const NavigationModule = (function() {
-    const navbar = document.getElementById('navbar');
-    const scrollTopBtn = document.getElementById('scrollTop');
-
-    function handleScroll() {
-      const scrollY = window.scrollY;
-
-      // Navbar background
-      if (navbar) {
-        navbar.classList.toggle('scrolled', scrollY > 50);
-      }
-
-      // Scroll to top button
-      if (scrollTopBtn) {
-        scrollTopBtn.classList.toggle('visible', scrollY > 500);
-      }
-    }
-
-    function handleNavClick(e) {
-      const link = e.target.closest('a[href^="#"]');
-      if (!link) return;
-
-      e.preventDefault();
-      const targetId = link.getAttribute('href');
-      const target = document.querySelector(targetId);
-
-      if (target) {
-        const offset = navbar ? navbar.offsetHeight + 20 : 80;
-        const targetPosition = target.getBoundingClientRect().top + window.scrollY - offset;
-
-        window.scrollTo({
-          top: targetPosition,
-          behavior: 'smooth'
-        });
-      }
-    }
-
-    function scrollToTop() {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
+      el.addEventListener('mouseleave', () => {
+        cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+        cursor.style.borderColor = 'var(--gold)';
+        cursorFollower.style.transform = 'translate(-50%, -50%) scale(1)';
       });
+    });
+  } catch(e) { console.log('Cursor init error:', e); }
+}
+
+function initStatModals() {
+  document.querySelectorAll('.stat-box').forEach(box => {
+    box.style.cursor = 'pointer';
+    box.addEventListener('click', function() {
+      const statKey = this.dataset.stat;
+      if (statKey) openStatModal(statKey);
+    });
+  });
+}
+
+function initStrategyItems() {
+  document.querySelectorAll('.strategy-item[data-strategy]').forEach(el => {
+    el.addEventListener('click', () => {
+      const n = Number(el.getAttribute('data-strategy'));
+      if (!isNaN(n)) openStrategyModal(n);
+    });
+  });
+}
+
+// Initialize Everything
+document.addEventListener('DOMContentLoaded', () => {
+  initLoading(); // PRIMEIRO - esconde loading
+  initNavbarScroll();
+  initScrollAnimations();
+  initParticles();
+  initSmoothAnchors();
+  initTradeTabs();
+  initLightbox();
+  enhanceProjectGalleries();
+  $$('.project-card').forEach(setupCardAutoSlide);
+  initMobileEnhancements();
+  initCursor();
+  initStatModals();
+  initStrategyItems();
+
+  // Garantir que cliques nos projetos abram a galeria
+  $$('.project-card').forEach(card => {
+    card.addEventListener('click', function(e) {
+      // Não abre se estiver clicando em um link ou botão dentro do card
+      if (e.target.closest('a') || e.target.closest('button')) return;
+      openProjectGalleryFromCard(this);
+    });
+  });
+
+  on(document, 'click', (e) => {
+    if (e.target?.id === 'statModalOverlay') closeStatModal();
+    if (e.target?.id === 'strategyDetailOverlay') closeStrategyModal();
+  });
+  on(document, 'keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeStatModal();
+      closeStrategyModal();
+    }
+  });
+});
+
+// Expose functions globally
+window.openStatModal = openStatModal;
+window.closeStatModal = closeStatModal;
+window.openStrategyModal = openStrategyModal;
+window.closeStrategyModal = closeStrategyModal;
+window.openLightbox = openLightbox;
+window.closeLightbox = closeLightbox;
+window.changeProjectSlide = changeProjectSlide;
+window.goToProjectSlide = goToProjectSlide;
+window.closeProjectGallery = closeProjectGallery;
+window.scrollToTop = scrollToTop;
+window.openProjectGalleryFromCard = openProjectGalleryFromCard;
+window.updateCardDots = updateCardDots;
+
+
+/* Cert Modal Functions */
+function openCertModal(imgSrc,title){const o=document.getElementById('certModalOverlay');const i=document.getElementById('certModalImg');const t=document.getElementById('certModalTitle');if(!o||!i||!t)return;i.src=imgSrc;t.textContent=title;o.classList.add('active');document.body.style.overflow='hidden';document.addEventListener('keydown',certEsc)}
+function closeCertModal(){const o=document.getElementById('certModalOverlay');if(!o)return;o.classList.remove('active');document.body.style.overflow='auto';document.removeEventListener('keydown',certEsc);setTimeout(()=>{const i=document.getElementById('certModalImg');if(i)i.src=''},300)}
+function certEsc(e){if(e.key==='Escape')closeCertModal()}
+
+
+/* Article Modal Functions */
+const articleContent = {
+  'ai-contracts': `<h2>How LLMs Are Revolutionizing Contract Analysis</h2>
+    <p><strong>Published:</strong> January 2026 | <strong>Reading time:</strong> 5 minutes</p>
+    <h3>The Challenge</h3>
+    <p>Legal review of procurement contracts traditionally takes days or even weeks. Legal teams must manually scan hundreds of pages to identify key clauses, risks, and compliance issues. This bottleneck delays critical business decisions and increases exposure to legal risks.</p>
+    <h3>The Solution</h3>
+    <p>Large Language Models (LLMs) like GPT-4 can now analyze contracts in minutes, extracting key information with remarkable accuracy. At Details Hospitality, I implemented an LLM-based contract parser that:</p>
+    <ul>
+    <li>Automatically extracts key clauses (termination, liability, payment terms)</li>
+    <li>Identifies missing standard protections</li>
+    <li>Flags unusual or high-risk language</li>
+    <li>Generates executive summaries for stakeholder review</li>
+    </ul>
+    <h3>Results</h3>
+    <p>Contract review time reduced by 80%, from an average of 3 days to 4 hours. Risk detection improved to near 100% for standard clause omissions. Legal team satisfaction increased significantly as they could focus on strategic analysis rather than manual document review.</p>
+    <h3>Technical Implementation</h3>
+    <p>The solution uses OpenAI's API with carefully crafted prompts that include domain-specific knowledge about hospitality procurement. LangChain handles document chunking for long contracts, and Streamlit provides an intuitive interface for the legal team.</p>`,
+
+  'smart-rfp': `<h2>Building Smart RFPs: From Days to Hours</h2>
+    <p><strong>Published:</strong> December 2025 | <strong>Reading time:</strong> 4 minutes</p>
+    <h3>The Traditional RFP Problem</h3>
+    <p>Creating a comprehensive Request for Proposal traditionally requires procurement professionals to manually compile technical specifications, evaluation criteria, and contractual terms. This process is repetitive, error-prone, and consumes valuable time that could be spent on strategic supplier engagement.</p>
+    <h3>AI-Powered RFP Generation</h3>
+    <p>By leveraging historical RFP data and LLMs, I developed a system that generates complete RFP documents from simple inputs:</p>
+    <ul>
+    <li>Category selection (e.g., HVAC maintenance, F&B supplies)</li>
+    <li>Basic requirements and constraints</li>
+    <li>Budget range and timeline</li>
+    </ul>
+    <p>The system automatically generates:</p>
+    <ul>
+    <li>Technical specifications based on category standards</li>
+    <li>Weighted scoring matrices</li>
+    <li>Standard contractual clauses</li>
+    <li>Compliance requirements</li>
+    </ul>
+    <h3>Impact</h3>
+    <p>RFP preparation time reduced by 60%, from 5 days to 2 days on average. More importantly, standardization improved proposal comparability, leading to better supplier selection decisions and an additional 15% in savings through improved competition.</p>`,
+
+  'make-or-buy': `<h2>The Make-or-Buy Decision Framework</h2>
+    <p><strong>Published:</strong> November 2025 | <strong>Reading time:</strong> 6 minutes</p>
+    <h3>Beyond Simple Cost Comparison</h3>
+    <p>The classic make-or-buy decision often relies solely on unit cost comparison. However, this approach misses critical factors like capacity constraints, quality control, intellectual property risks, and strategic alignment.</p>
+    <h3>A Multi-Dimensional Framework</h3>
+    <p>At Details Hospitality, I developed a comprehensive framework that evaluates make-or-buy decisions across five dimensions:</p>
+    <ul>
+    <li><strong>Financial:</strong> Total cost of ownership, not just unit price</li>
+    <li><strong>Operational:</strong> Capacity, flexibility, and service levels</li>
+    <li><strong>Strategic:</strong> Core competency alignment and competitive advantage</li>
+    <li><strong>Risk:</strong> Supply chain resilience and compliance exposure</li>
+    <li><strong>Capability:</strong> Internal expertise and technology requirements</li>
+    </ul>
+    <h3>Case Study: In-House Laundry</h3>
+    <p>Applying this framework to the laundry operation decision revealed that while outsourcing appeared 20% cheaper on a per-unit basis, internal operation provided better control over quality and turnaround times—critical factors for guest satisfaction in luxury hospitality.</p>
+    <h3>The Tool</h3>
+    <p>I built an interactive Excel model with Power BI dashboards that allows scenario modeling and sensitivity analysis, enabling data-driven discussions with stakeholders rather than gut-feel decisions.</p>`
+};
+
+function openArticleModal(articleId) {
+  const overlay = document.getElementById('articleModalOverlay');
+  const content = document.getElementById('articleModalContent');
+  if (!overlay || !content) return;
+
+  content.innerHTML = articleContent[articleId] || '<p>Article content loading...</p>';
+  overlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  document.addEventListener('keydown', handleArticleEsc);
+}
+
+function closeArticleModal() {
+  const overlay = document.getElementById('articleModalOverlay');
+  if (!overlay) return;
+  overlay.classList.remove('active');
+  document.body.style.overflow = 'auto';
+  document.removeEventListener('keydown', handleArticleEsc);
+}
+
+function handleArticleEsc(e) {
+  if (e.key === 'Escape') closeArticleModal();
+}
+
+
+/* ============================================
+   DARK MODE - 2026
+   ============================================ */
+
+function initDarkMode() {
+  const toggle = document.getElementById('darkModeToggle');
+  const icon = document.getElementById('darkModeIcon');
+  const body = document.body;
+
+  if (!toggle || !icon) return;
+
+  // Check localStorage
+  const savedMode = localStorage.getItem('darkMode');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+  if (savedMode === 'true' || (savedMode === null && prefersDark)) {
+    body.classList.add('dark-mode');
+    icon.classList.remove('fa-moon');
+    icon.classList.add('fa-sun');
+  }
+
+  toggle.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+    const isDark = body.classList.contains('dark-mode');
+
+    if (isDark) {
+      icon.classList.remove('fa-moon');
+      icon.classList.add('fa-sun');
+    } else {
+      icon.classList.remove('fa-sun');
+      icon.classList.add('fa-moon');
     }
 
-    function init() {
-      // Throttled scroll handler
-      window.addEventListener('scroll', Utils.throttle(handleScroll, 100), { passive: true });
+    localStorage.setItem('darkMode', isDark);
+  });
+}
 
-      // Event delegation for nav links
-      document.addEventListener('click', handleNavClick);
+/* ============================================
+   ANIMATED COUNTERS - 2026
+   ============================================ */
 
-      // Scroll to top button
-      if (scrollTopBtn) {
-        scrollTopBtn.addEventListener('click', scrollToTop);
+function initCounters() {
+  const counters = document.querySelectorAll('[data-counter]');
+  if (!counters.length) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounter(entry.target);
+        observer.unobserve(entry.target);
       }
+    });
+  }, { threshold: 0.5 });
 
-      // Initial check
-      handleScroll();
+  counters.forEach(counter => observer.observe(counter));
+}
+
+function animateCounter(element) {
+  const target = parseInt(element.getAttribute('data-counter'), 10);
+  const prefix = element.getAttribute('data-prefix') || '';
+  const suffix = element.getAttribute('data-suffix') || '';
+  const duration = 4000; // 4 segundos
+  const steps = 100; // Mais steps para animação mais suave
+  const stepTime = duration / steps;
+  let current = 0;
+
+  const timer = setInterval(() => {
+    current += target / steps;
+    if (current >= target) {
+      current = target;
+      clearInterval(timer);
     }
 
-    return { init };
-  })();
+    // Formatação: sempre mostrar número inteiro
+    const displayValue = Math.floor(current);
 
-  // ============================================
-  // SCROLL ANIMATIONS MODULE (Intersection Observer)
-  // ============================================
-  const ScrollAnimationsModule = (function() {
-    let observer = null;
+    element.textContent = prefix + displayValue + suffix;
+  }, stepTime);
+}
 
-    function handleIntersection(entries) {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
+/* ============================================
+   MODAL SCROLL RESET - 2026
+   ============================================ */
 
-          // Handle counter animations
-          const counters = entry.target.querySelectorAll('[data-counter]');
-          counters.forEach(counter => {
-            const target = parseInt(counter.dataset.counter, 10);
-            const prefix = counter.dataset.prefix || '';
-            const suffix = counter.dataset.suffix || '';
-            Utils.animateCounter(counter, target, CONFIG.counter.duration, prefix, suffix);
-          });
+// Sobrescrever funções de modal para resetar scroll
+const originalOpenArticleModal = window.openArticleModal;
+window.openArticleModal = function(articleId) {
+  const overlay = document.getElementById('articleModalOverlay');
+  const content = document.getElementById('articleModalContent');
+  if (!overlay || !content) return;
 
-          // Unobserve after animation
-          observer.unobserve(entry.target);
-        }
-      });
-    }
+  content.innerHTML = articleContent[articleId] || '<p>Article content loading...</p>';
+  overlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  document.addEventListener('keydown', handleArticleEsc);
 
-    function init() {
-      const animatedElements = document.querySelectorAll('.animate-on-scroll');
-      if (animatedElements.length === 0) return;
+  // RESET SCROLL
+  setTimeout(() => {
+    content.scrollTop = 0;
+  }, 50);
+};
 
-      observer = new IntersectionObserver(handleIntersection, {
-        threshold: CONFIG.animation.threshold,
-        rootMargin: CONFIG.animation.rootMargin
-      });
+const originalOpenStrategyModal = window.openStrategyModal;
+window.openStrategyModal = function(num) {
+  const data = StrategyDetailsData[num];
+  if (!data) return;
 
-      animatedElements.forEach(el => observer.observe(el));
-    }
+  document.getElementById('strategyDetailIcon').className = `fas ${data.icon}`;
+  document.getElementById('strategyDetailTitle').textContent = data.title;
+  document.getElementById('strategyDetailSubtitle').textContent = data.subtitle;
 
-    return { init };
-  })();
+  const body = data.sections.map(sec => {
+    const items = sec.items.map(li => `<li>${li}</li>`).join('');
+    return `<div class="strategy-detail-section"><h4><i class="fas fa-chevron-right"></i> ${sec.title}</h4><ul>${items}</ul></div>`;
+  }).join('');
 
-  // ============================================
-  // TIMELINE MODULE
-  // ============================================
-  const TimelineModule = (function() {
-    const logoImg = document.getElementById('logo-img');
-    const dots = document.querySelectorAll('.indicator-dot');
-    let observer = null;
+  document.getElementById('strategyDetailBody').innerHTML = body;
+  document.getElementById('strategyDetailOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
 
-    function updateActiveLogo(index, logoSrc) {
-      if (logoImg) {
-        logoImg.style.opacity = '0';
-        setTimeout(() => {
-          logoImg.src = logoSrc;
-          logoImg.style.opacity = '1';
-        }, 200);
+  // RESET SCROLL
+  setTimeout(() => {
+    const card = document.querySelector('.strategy-detail-card');
+    const bodyEl = document.querySelector('.strategy-detail-body');
+    if (card) card.scrollTop = 0;
+    if (bodyEl) bodyEl.scrollTop = 0;
+  }, 50);
+};
+
+const originalOpenCertModal = window.openCertModal;
+window.openCertModal = function(imgSrc, title) {
+  const o = document.getElementById('certModalOverlay');
+  const i = document.getElementById('certModalImg');
+  const t = document.getElementById('certModalTitle');
+  if (!o || !i || !t) return;
+
+  i.src = imgSrc;
+  t.textContent = title;
+  o.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  document.addEventListener('keydown', certEsc);
+
+  // RESET SCROLL
+  setTimeout(() => {
+    const content = o.querySelector('.cert-modal-content');
+    if (content) content.scrollTop = 0;
+  }, 50);
+}
+
+/* ============================================
+   NEWSLETTER HANDLER - 2026
+   ============================================ */
+
+function handleNewsletterSubmit(event) {
+  event.preventDefault();
+  const form = event.target;
+  const email = form.querySelector('input[type="email"]').value;
+  const btn = form.querySelector('button');
+
+  // Validar email
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailPattern.test(email)) {
+    showToast('Please enter a valid email address');
+    return;
+  }
+
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i><span>Subscribing...</span>';
+  btn.disabled = true;
+
+  setTimeout(() => {
+    // Criar mensagem de sucesso
+    const successMsg = document.createElement('div');
+    successMsg.innerHTML = `
+      <div style="background:linear-gradient(135deg,rgba(40,167,69,0.9),rgba(40,167,69,0.7));color:white;padding:20px;border-radius:12px;margin-top:20px;text-align:center;animation:fadeInUp 0.5s ease;">
+        <i class="fas fa-check-circle" style="font-size:2rem;margin-bottom:10px;display:block;"></i>
+        <strong style="font-size:1.1rem;display:block;margin-bottom:8px;">Welcome aboard!</strong>
+        <span style="opacity:0.9;">You've joined <strong>Procurement, Data & Operations</strong>.<br>Check your inbox for a confirmation email.</span>
+      </div>
+    `;
+
+    form.parentNode.insertBefore(successMsg, form.nextSibling);
+    form.style.display = 'none';
+
+    showToast('Successfully subscribed!');
+    console.log('Newsletter subscription:', email);
+  }, 1500);
+}
+
+window.handleNewsletterSubmit = handleNewsletterSubmit;
+
+/* ============================================
+   INITIALIZE ALL - 2026
+   ============================================ */
+
+document.addEventListener('DOMContentLoaded', () => {
+  initDarkMode();
+  initCounters();
+});
+
+/* ============================================
+   HERO STATS COUNTER ANIMATION - 2026
+   ============================================ */
+
+function initHeroCounters() {
+  const heroStats = document.querySelectorAll('.hero-stats .stat-number');
+  if (!heroStats.length) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateHeroStat(entry.target);
+        observer.unobserve(entry.target);
       }
+    });
+  }, { threshold: 0.5 });
 
-      dots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === index);
-      });
+  heroStats.forEach(stat => observer.observe(stat));
+}
+
+function animateHeroStat(element) {
+  const text = element.textContent;
+  const hasEuro = text.includes('€');
+  const hasPlus = text.includes('+');
+  const hasM = text.includes('M');
+  const isProjects = element.id === 'statProjects';
+  const isSavings = element.id === 'statSavings';
+
+  // Extrair número
+  let target = 0;
+  if (isProjects && hasM) {
+    target = 10; // 10M para Project Portfolio
+  } else if (isSavings && hasM) {
+    target = 1; // 1M para Savings, mas vamos animar em escala
+  } else if (hasM) {
+    target = 1; // 1M para outros
+  } else if (text.includes('120')) {
+    target = 120;
+  } else if (text.includes('20')) {
+    target = 20;
+  }
+
+  const duration = 4000;
+  const steps = 100;
+  const stepTime = duration / steps;
+  let current = 0;
+
+  const timer = setInterval(() => {
+    current += target / steps;
+    if (current >= target) {
+      current = target;
+      clearInterval(timer);
     }
 
-    function handleIntersection(entries) {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const item = entry.target;
-          const index = parseInt(item.dataset.index, 10);
-          const logoSrc = item.dataset.logo;
+    let result = '';
+    if (hasEuro) result += '€';
 
-          // Update active states
-          document.querySelectorAll('.timeline-item').forEach(el => {
-            el.classList.toggle('active', el === item);
-          });
-
-          updateActiveLogo(index, logoSrc);
-        }
-      });
-    }
-
-    function init() {
-      const timelineItems = document.querySelectorAll('.timeline-item');
-      if (timelineItems.length === 0) return;
-
-      observer = new IntersectionObserver(handleIntersection, {
-        threshold: 0.5,
-        rootMargin: '-20% 0px -20% 0px'
-      });
-
-      timelineItems.forEach(item => observer.observe(item));
-    }
-
-    return { init };
-  })();
-
-  // ============================================
-  // DARK MODE MODULE
-  // ============================================
-  const DarkModeModule = (function() {
-    const toggleBtn = document.getElementById('darkModeToggle');
-    const icon = document.getElementById('darkModeIcon');
-    const STORAGE_KEY = 'portfolio-theme';
-
-    function setTheme(theme) {
-      document.documentElement.setAttribute('data-theme', theme);
-      localStorage.setItem(STORAGE_KEY, theme);
-
-      if (icon) {
-        icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+    if (hasM) {
+      // Para valores em milhões, mostrar com decimal durante a animação
+      if (current < 1 && current > 0) {
+        result += current.toFixed(1);
+      } else {
+        result += Math.floor(current);
       }
+      result += 'M';
+    } else {
+      result += Math.floor(current);
     }
 
-    function toggleTheme() {
-      const currentTheme = document.documentElement.getAttribute('data-theme');
-      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      setTheme(newTheme);
-    }
+    if (hasPlus) result += '+';
 
-    function init() {
-      if (!toggleBtn) return;
+    element.textContent = result;
+  }, stepTime);
+}
 
-      // Check for saved preference or system preference
-      const savedTheme = localStorage.getItem(STORAGE_KEY);
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+// Inicializar hero counters no DOMContentLoaded
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(initHeroCounters, 500);
+});
 
-      if (savedTheme) {
-        setTheme(savedTheme);
-      } else if (prefersDark) {
-        setTheme('dark');
-      }
 
-      toggleBtn.addEventListener('click', toggleTheme);
+/* ============================================
+   TRANSLATOR BUTTON FUNCTIONALITY - BOLINHA G REDONDA
+   ============================================ */
 
-      // Listen for system theme changes
-      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-        if (!localStorage.getItem(STORAGE_KEY)) {
-          setTheme(e.matches ? 'dark' : 'light');
-        }
-      });
-    }
+document.addEventListener('DOMContentLoaded', function() {
+  const translatorBtn = document.getElementById('translatorBtn');
+  const translateElement = document.getElementById('google_translate_element');
 
-    return { init };
-  })();
+  // Criar a bolinha G visualmente
+  function createGoogleBall() {
+    if (!translateElement) return;
 
-  // ============================================
-  // TRANSLATOR MODULE
-  // ============================================
-  const TranslatorModule = (function() {
-    const translatorBtn = document.getElementById('translatorBtn');
-    const translatorDropdown = document.getElementById('google_translate_element');
+    // Verificar se já existe
+    if (translateElement.querySelector('.google-g-ball')) return;
 
-    function toggleTranslator() {
-      if (translatorDropdown) {
-        translatorDropdown.classList.toggle('active');
-      }
-    }
+    // Criar elemento da bolinha G
+    const gBall = document.createElement('div');
+    gBall.className = 'google-g-ball';
+    gBall.innerHTML = 'G';
+    gBall.style.cssText = `
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 44px;
+      height: 44px;
+      background: white;
+      border: 2px solid #d4af37;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Product Sans', 'Roboto', Arial, sans-serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      background: linear-gradient(135deg, #4285F4 0%, #EA4335 33%, #FBBC05 66%, #34A853 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      z-index: 1;
+      pointer-events: none;
+    `;
 
-    function init() {
-      if (!translatorBtn) return;
+    translateElement.appendChild(gBall);
 
-      translatorBtn.addEventListener('click', toggleTranslator);
-
-      // Close dropdown when clicking outside
-      document.addEventListener('click', (e) => {
-        if (!e.target.closest('.nav-controls') && translatorDropdown) {
-          translatorDropdown.classList.remove('active');
-        }
-      });
-    }
-
-    return { init };
-  })();
-
-  // ============================================
-  // STAT BOX MODULE
-  // ============================================
-  const StatBoxModule = (function() {
-    function handleClick(e) {
-      const statBox = e.target.closest('.stat-box');
-      if (!statBox) return;
-
-      const stat = statBox.dataset.stat;
-
-      // Create and show modal with stat details
-      const modal = document.createElement('div');
-      modal.className = 'stat-modal';
-      modal.innerHTML = `
-        <div class="stat-modal-content">
-          <button class="stat-modal-close">&times;</button>
-          <h3>${statBox.querySelector('.stat-label').textContent}</h3>
-          <p class="stat-modal-number">${statBox.querySelector('.stat-number').textContent}</p>
-          <p>${statBox.querySelector('.stat-note').textContent}</p>
-        </div>
+    // Ajustar o select para ficar por cima mas invisível
+    const select = translateElement.querySelector('.goog-te-combo');
+    if (select) {
+      select.style.cssText = `
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 44px;
+        height: 44px;
+        opacity: 0;
+        cursor: pointer;
+        z-index: 2;
       `;
 
-      document.body.appendChild(modal);
-      document.body.style.overflow = 'hidden';
+      // Quando o select receber foco, expandir
+      select.addEventListener('focus', function() {
+        gBall.style.opacity = '0';
+        gBall.style.transform = 'scale(0.5)';
 
-      // Close handlers
-      const closeModal = () => {
-        modal.remove();
-        document.body.style.overflow = '';
-      };
-
-      modal.querySelector('.stat-modal-close').addEventListener('click', closeModal);
-      modal.addEventListener('click', (e) => {
-        if (e.target === modal) closeModal();
+        this.style.cssText = `
+          position: absolute;
+          top: 50px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 160px;
+          height: auto;
+          opacity: 1;
+          padding: 8px 12px;
+          border-radius: 10px;
+          border: 2px solid #d4af37;
+          background: white;
+          color: #0f1538;
+          font-family: 'Inter', sans-serif;
+          font-weight: 600;
+          font-size: 13px;
+          box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+          z-index: 10;
+        `;
       });
 
-      // Animate in
-      requestAnimationFrame(() => {
-        modal.style.opacity = '1';
-        modal.querySelector('.stat-modal-content').style.transform = 'translateY(0)';
-      });
-    }
-
-    function init() {
-      document.addEventListener('click', handleClick);
-    }
-
-    return { init };
-  })();
-
-  // ============================================
-  // FORM MODULE
-  // ============================================
-  const FormModule = (function() {
-    function handleSubmit(e) {
-      const form = e.target;
-      const submitBtn = form.querySelector('button[type="submit"]');
-      const originalText = submitBtn.innerHTML;
-
-      // Show loading state
-      submitBtn.disabled = true;
-      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-
-      // Formspree handles the actual submission
-      // This is just for UX feedback
-      setTimeout(() => {
-        submitBtn.innerHTML = '<i class="fas fa-check"></i> Sent!';
-        submitBtn.style.background = '#27ae60';
-
+      // Quando perder foco, voltar à bolinha
+      select.addEventListener('blur', function() {
         setTimeout(() => {
-          submitBtn.disabled = false;
-          submitBtn.innerHTML = originalText;
-          submitBtn.style.background = '';
-          form.reset();
-        }, 2000);
-      }, 1000);
-    }
+          gBall.style.opacity = '1';
+          gBall.style.transform = 'scale(1)';
 
-    function init() {
-      const forms = document.querySelectorAll('form');
-      forms.forEach(form => {
-        form.addEventListener('submit', handleSubmit);
+          this.style.cssText = `
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 44px;
+            height: 44px;
+            opacity: 0;
+            cursor: pointer;
+            z-index: 2;
+          `;
+
+          // Fechar o dropdown
+          translateElement.classList.remove('visible');
+        }, 200);
+      });
+
+      // Ao mudar idioma
+      select.addEventListener('change', function() {
+        setTimeout(() => {
+          translateElement.classList.remove('visible');
+          gBall.style.opacity = '1';
+          gBall.style.transform = 'scale(1)';
+
+          this.style.cssText = `
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 44px;
+            height: 44px;
+            opacity: 0;
+            cursor: pointer;
+            z-index: 2;
+          `;
+        }, 500);
       });
     }
-
-    return { init };
-  })();
-
-  // ============================================
-  // INITIALIZATION
-  // ============================================
-  function init() {
-    // Initialize all modules
-    LoadingModule.init();
-    CursorModule.init();
-    NavigationModule.init();
-    ScrollAnimationsModule.init();
-    TimelineModule.init();
-    DarkModeModule.init();
-    TranslatorModule.init();
-    StatBoxModule.init();
-    FormModule.init();
-
-    console.log('🚀 Portfolio initialized successfully');
   }
 
-  // Start when DOM is ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
+  // Criar a bolinha após um delay para garantir que o Google Translate carregou
+  setTimeout(createGoogleBall, 1000);
+  setTimeout(createGoogleBall, 2000);
 
-})();
+  if (translatorBtn && translateElement) {
+    translatorBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+
+      // Toggle visibility
+      translateElement.classList.toggle('visible');
+
+      if (translateElement.classList.contains('visible')) {
+        // Focar no select para abrir
+        const select = translateElement.querySelector('.goog-te-combo');
+        if (select) {
+          select.focus();
+        }
+      }
+    });
+
+    // Fechar ao clicar fora
+    document.addEventListener('click', function(e) {
+      if (!translatorBtn.contains(e.target) && !translateElement.contains(e.target)) {
+        translateElement.classList.remove('visible');
+      }
+    });
+
+    // Fechar ao pressionar Escape
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && translateElement.classList.contains('visible')) {
+        translateElement.classList.remove('visible');
+      }
+    });
+  }
+});
