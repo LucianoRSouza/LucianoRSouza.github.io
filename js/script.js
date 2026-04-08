@@ -13,13 +13,13 @@ const StatDetailsData = {
   savings: {
     icon: "fa-piggy-bank",
     title: "Cumulative Savings Delivered",
-    value: "€1M+",
+    value: "€475K+",
     details: [
-      "Multi-category strategic sourcing initiatives across direct and indirect spend",
-      "Negotiated favorable payment terms (60-90 days) improving cash flow",
-      "Implemented should-cost modeling identifying 15-25% cost reduction opportunities",
-      "Consolidated supplier base from 200+ to 80 key partners",
-      "Zero-based budgeting approach for CAPEX projects saving 20% on average"
+      "€327K verified savings in 2025 across multi-category negotiations",
+      "€148K projected savings for 2026",
+      "GPL fuel optimization delivering €150K+ in last negotiation",
+      "Strategic procurement governance with measurable ROI",
+      "Multi-cluster cost reduction initiatives"
     ]
   },
   rfps: {
@@ -615,7 +615,6 @@ function updateTimelineSpy() {
   const indicators = $$('.indicator-dot');
   if (!logoImg) return;
 
-  // Encontrar qual item está mais centralizado na tela
   let activeIndex = 0;
   let minDistance = Infinity;
   const windowCenter = window.innerHeight / 2;
@@ -630,14 +629,11 @@ function updateTimelineSpy() {
       activeIndex = idx;
     }
 
-    // Remover active de todos primeiro
     item.classList.remove('active');
   });
 
-  // Adicionar active apenas no item mais próximo do centro
   items[activeIndex].classList.add('active');
 
-  // Atualizar logo
   const activeItem = items[activeIndex];
   if (activeItem) {
     const newLogo = activeItem.getAttribute('data-logo');
@@ -651,7 +647,6 @@ function updateTimelineSpy() {
     }
   }
 
-  // Atualizar indicadores
   indicators.forEach((dot, idx) => dot.classList.toggle('active', idx === activeIndex));
 }
 
@@ -677,17 +672,11 @@ function initParticles() {
   }
 }
 
-/* ============================================
-   LOADING SCREEN - CORREÇÃO DEFINITIVA
-   ============================================ */
-
+/* Loading Screen */
 function hideLoading() {
   const loading = $('#loading');
   if (!loading) return;
-
-  // Verifica se já está escondido
   if (loading.classList.contains('hidden')) return;
-
   loading.classList.add('hidden');
   setTimeout(() => {
     if (loading.parentNode) loading.remove();
@@ -697,11 +686,7 @@ function hideLoading() {
 function initLoading() {
   const loading = $('#loading');
   if (!loading) return;
-
-  // ESTRATÉGIA 1: Fallback de 2 segundos (independente de tudo)
   setTimeout(hideLoading, 2000);
-
-  // ESTRATÉGIA 2: Quando DOM estiver pronto
   if (document.readyState === 'complete' || document.readyState === 'interactive') {
     setTimeout(hideLoading, 500);
   } else {
@@ -709,30 +694,17 @@ function initLoading() {
       setTimeout(hideLoading, 500);
     });
   }
-
-  // ESTRATÉGIA 3: Quando tudo carregar (imagens, etc)
-  window.addEventListener('load', () => {
-    hideLoading();
-  });
-
-  // ESTRATÉGIA 4: MutationObserver - detecta quando Google Translate modifica o DOM
+  window.addEventListener('load', () => { hideLoading(); });
   if (window.MutationObserver) {
     let attempts = 0;
     const observer = new MutationObserver((mutations) => {
       attempts++;
-      // Se houver muitas mutações (Google Translate ativo), esconde mais cedo
       if (attempts > 10 || document.querySelector('.goog-te-menu-frame')) {
         hideLoading();
         observer.disconnect();
       }
     });
-
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true
-    });
-
-    // Para o observer após 3 segundos
+    observer.observe(document.body, { childList: true, subtree: true });
     setTimeout(() => observer.disconnect(), 3000);
   }
 }
@@ -815,9 +787,106 @@ function initStrategyItems() {
   });
 }
 
+/* Animated Counters */
+function initCounters() {
+  const counters = document.querySelectorAll('.impact-value[data-counter]');
+  
+  const observerOptions = {
+    threshold: 0.5,
+    rootMargin: '0px'
+  };
+
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const counter = entry.target;
+        const target = parseInt(counter.getAttribute('data-counter'));
+        const prefix = counter.getAttribute('data-prefix') || '';
+        const suffix = counter.getAttribute('data-suffix') || '';
+        animateCounter(counter, target, prefix, suffix);
+        counterObserver.unobserve(counter);
+      }
+    });
+  }, observerOptions);
+
+  counters.forEach(counter => counterObserver.observe(counter));
+}
+
+function animateCounter(element, target, prefix, suffix) {
+  const duration = 2000;
+  const start = 0;
+  const startTime = performance.now();
+
+  function update(currentTime) {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    
+    // Easing function (ease-out)
+    const easeOut = 1 - Math.pow(1 - progress, 3);
+    const current = Math.floor(start + (target - start) * easeOut);
+    
+    element.textContent = prefix + current + suffix;
+    
+    if (progress < 1) {
+      requestAnimationFrame(update);
+    } else {
+      element.textContent = prefix + target + suffix;
+    }
+  }
+
+  requestAnimationFrame(update);
+}
+
+/* Dark Mode */
+function initDarkMode() {
+  const toggle = document.getElementById('darkModeToggle');
+  const icon = document.getElementById('darkModeIcon');
+  const body = document.body;
+
+  if (!toggle || !icon) return;
+
+  const savedMode = localStorage.getItem('darkMode');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+  if (savedMode === 'true' || (savedMode === null && prefersDark)) {
+    body.classList.add('dark-mode');
+    icon.classList.remove('fa-moon');
+    icon.classList.add('fa-sun');
+  }
+
+  toggle.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+    const isDark = body.classList.contains('dark-mode');
+
+    if (isDark) {
+      icon.classList.remove('fa-moon');
+      icon.classList.add('fa-sun');
+    } else {
+      icon.classList.remove('fa-sun');
+      icon.classList.add('fa-moon');
+    }
+
+    localStorage.setItem('darkMode', isDark);
+  });
+}
+
+/* Translator Toggle */
+function initTranslator() {
+  const translatorBtn = document.getElementById('translatorBtn');
+  const translateElement = document.getElementById('google_translate_element');
+  
+  if (!translatorBtn || !translateElement) return;
+  
+  translatorBtn.addEventListener('click', () => {
+    const isVisible = translateElement.style.opacity === '1';
+    translateElement.style.opacity = isVisible ? '0' : '1';
+    translateElement.style.pointerEvents = isVisible ? 'none' : 'auto';
+  });
+}
+
 // Initialize Everything
 document.addEventListener('DOMContentLoaded', () => {
-  initLoading(); // PRIMEIRO - esconde loading
+  initLoading();
   initNavbarScroll();
   initScrollAnimations();
   initParticles();
@@ -830,11 +899,12 @@ document.addEventListener('DOMContentLoaded', () => {
   initCursor();
   initStatModals();
   initStrategyItems();
+  initCounters();
+  initDarkMode();
+  initTranslator();
 
-  // Garantir que cliques nos projetos abram a galeria
   $$('.project-card').forEach(card => {
     card.addEventListener('click', function(e) {
-      // Não abre se estiver clicando em um link ou botão dentro do card
       if (e.target.closest('a') || e.target.closest('button')) return;
       openProjectGalleryFromCard(this);
     });
@@ -866,12 +936,10 @@ window.scrollToTop = scrollToTop;
 window.openProjectGalleryFromCard = openProjectGalleryFromCard;
 window.updateCardDots = updateCardDots;
 
-
 /* Cert Modal Functions */
 function openCertModal(imgSrc,title){const o=document.getElementById('certModalOverlay');const i=document.getElementById('certModalImg');const t=document.getElementById('certModalTitle');if(!o||!i||!t)return;i.src=imgSrc;t.textContent=title;o.classList.add('active');document.body.style.overflow='hidden';document.addEventListener('keydown',certEsc)}
 function closeCertModal(){const o=document.getElementById('certModalOverlay');if(!o)return;o.classList.remove('active');document.body.style.overflow='auto';document.removeEventListener('keydown',certEsc);setTimeout(()=>{const i=document.getElementById('certModalImg');if(i)i.src=''},300)}
 function certEsc(e){if(e.key==='Escape')closeCertModal()}
-
 
 /* Article Modal Functions */
 const articleContent = {
@@ -954,451 +1022,3 @@ function closeArticleModal() {
 function handleArticleEsc(e) {
   if (e.key === 'Escape') closeArticleModal();
 }
-
-
-/* ============================================
-   DARK MODE - 2026
-   ============================================ */
-
-function initDarkMode() {
-  const toggle = document.getElementById('darkModeToggle');
-  const icon = document.getElementById('darkModeIcon');
-  const body = document.body;
-
-  if (!toggle || !icon) return;
-
-  // Check localStorage
-  const savedMode = localStorage.getItem('darkMode');
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-  if (savedMode === 'true' || (savedMode === null && prefersDark)) {
-    body.classList.add('dark-mode');
-    icon.classList.remove('fa-moon');
-    icon.classList.add('fa-sun');
-  }
-
-  toggle.addEventListener('click', () => {
-    body.classList.toggle('dark-mode');
-    const isDark = body.classList.contains('dark-mode');
-
-    if (isDark) {
-      icon.classList.remove('fa-moon');
-      icon.classList.add('fa-sun');
-    } else {
-      icon.classList.remove('fa-sun');
-      icon.classList.add('fa-moon');
-    }
-
-    localStorage.setItem('darkMode', isDark);
-  });
-}
-
-/* ============================================
-   ANIMATED COUNTERS - 2026
-   ============================================ */
-
-function initCounters() {
-  const counters = document.querySelectorAll('[data-counter]');
-  if (!counters.length) return;
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        animateCounter(entry.target);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.5 });
-
-  counters.forEach(counter => observer.observe(counter));
-}
-
-function animateCounter(element) {
-  const target = parseInt(element.getAttribute('data-counter'), 10);
-  const prefix = element.getAttribute('data-prefix') || '';
-  const suffix = element.getAttribute('data-suffix') || '';
-  const duration = 4000; // 4 segundos
-  const steps = 100; // Mais steps para animação mais suave
-  const stepTime = duration / steps;
-  let current = 0;
-
-  const timer = setInterval(() => {
-    current += target / steps;
-    if (current >= target) {
-      current = target;
-      clearInterval(timer);
-    }
-
-    // Formatação: sempre mostrar número inteiro
-    const displayValue = Math.floor(current);
-
-    element.textContent = prefix + displayValue + suffix;
-  }, stepTime);
-}
-
-/* ============================================
-   MODAL SCROLL RESET - 2026
-   ============================================ */
-
-// Sobrescrever funções de modal para resetar scroll
-const originalOpenArticleModal = window.openArticleModal;
-window.openArticleModal = function(articleId) {
-  const overlay = document.getElementById('articleModalOverlay');
-  const content = document.getElementById('articleModalContent');
-  if (!overlay || !content) return;
-
-  content.innerHTML = articleContent[articleId] || '<p>Article content loading...</p>';
-  overlay.classList.add('active');
-  document.body.style.overflow = 'hidden';
-  document.addEventListener('keydown', handleArticleEsc);
-
-  // RESET SCROLL
-  setTimeout(() => {
-    content.scrollTop = 0;
-  }, 50);
-};
-
-const originalOpenStrategyModal = window.openStrategyModal;
-window.openStrategyModal = function(num) {
-  const data = StrategyDetailsData[num];
-  if (!data) return;
-
-  document.getElementById('strategyDetailIcon').className = `fas ${data.icon}`;
-  document.getElementById('strategyDetailTitle').textContent = data.title;
-  document.getElementById('strategyDetailSubtitle').textContent = data.subtitle;
-
-  const body = data.sections.map(sec => {
-    const items = sec.items.map(li => `<li>${li}</li>`).join('');
-    return `<div class="strategy-detail-section"><h4><i class="fas fa-chevron-right"></i> ${sec.title}</h4><ul>${items}</ul></div>`;
-  }).join('');
-
-  document.getElementById('strategyDetailBody').innerHTML = body;
-  document.getElementById('strategyDetailOverlay').classList.add('active');
-  document.body.style.overflow = 'hidden';
-
-  // RESET SCROLL
-  setTimeout(() => {
-    const card = document.querySelector('.strategy-detail-card');
-    const bodyEl = document.querySelector('.strategy-detail-body');
-    if (card) card.scrollTop = 0;
-    if (bodyEl) bodyEl.scrollTop = 0;
-  }, 50);
-};
-
-const originalOpenCertModal = window.openCertModal;
-window.openCertModal = function(imgSrc, title) {
-  const o = document.getElementById('certModalOverlay');
-  const i = document.getElementById('certModalImg');
-  const t = document.getElementById('certModalTitle');
-  if (!o || !i || !t) return;
-
-  i.src = imgSrc;
-  t.textContent = title;
-  o.classList.add('active');
-  document.body.style.overflow = 'hidden';
-  document.addEventListener('keydown', certEsc);
-
-  // RESET SCROLL
-  setTimeout(() => {
-    const content = o.querySelector('.cert-modal-content');
-    if (content) content.scrollTop = 0;
-  }, 50);
-}
-
-/* ============================================
-   NEWSLETTER HANDLER - 2026
-   ============================================ */
-
-function handleNewsletterSubmit(event) {
-  event.preventDefault();
-  const form = event.target;
-  const email = form.querySelector('input[type="email"]').value;
-  const btn = form.querySelector('button');
-
-  // Validar email
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailPattern.test(email)) {
-    showToast('Please enter a valid email address');
-    return;
-  }
-
-  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i><span>Subscribing...</span>';
-  btn.disabled = true;
-
-  setTimeout(() => {
-    // Criar mensagem de sucesso
-    const successMsg = document.createElement('div');
-    successMsg.innerHTML = `
-      <div style="background:linear-gradient(135deg,rgba(40,167,69,0.9),rgba(40,167,69,0.7));color:white;padding:20px;border-radius:12px;margin-top:20px;text-align:center;animation:fadeInUp 0.5s ease;">
-        <i class="fas fa-check-circle" style="font-size:2rem;margin-bottom:10px;display:block;"></i>
-        <strong style="font-size:1.1rem;display:block;margin-bottom:8px;">Welcome aboard!</strong>
-        <span style="opacity:0.9;">You've joined <strong>Procurement, Data & Operations</strong>.<br>Check your inbox for a confirmation email.</span>
-      </div>
-    `;
-
-    form.parentNode.insertBefore(successMsg, form.nextSibling);
-    form.style.display = 'none';
-
-    showToast('Successfully subscribed!');
-    console.log('Newsletter subscription:', email);
-  }, 1500);
-}
-
-window.handleNewsletterSubmit = handleNewsletterSubmit;
-
-/* ============================================
-   INITIALIZE ALL - 2026
-   ============================================ */
-
-document.addEventListener('DOMContentLoaded', () => {
-  initDarkMode();
-  initCounters();
-});
-
-/* ============================================
-   HERO STATS COUNTER ANIMATION - 2026
-   ============================================ */
-
-function initHeroCounters() {
-  const heroStats = document.querySelectorAll('.hero-stats .stat-number');
-  if (!heroStats.length) return;
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        animateHeroStat(entry.target);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.5 });
-
-  heroStats.forEach(stat => observer.observe(stat));
-}
-
-function animateHeroStat(element) {
-  const text = element.textContent;
-  const hasEuro = text.includes('€');
-  const hasPlus = text.includes('+');
-  const hasM = text.includes('M');
-  const isProjects = element.id === 'statProjects';
-  const isSavings = element.id === 'statSavings';
-
-  // Extrair número
-  let target = 0;
-  if (isProjects && hasM) {
-    target = 10; // 10M para Project Portfolio
-  } else if (isSavings && hasM) {
-    target = 1; // 1M para Savings, mas vamos animar em escala
-  } else if (hasM) {
-    target = 1; // 1M para outros
-  } else if (text.includes('120')) {
-    target = 120;
-  } else if (text.includes('20')) {
-    target = 20;
-  }
-
-  const duration = 4000;
-  const steps = 100;
-  const stepTime = duration / steps;
-  let current = 0;
-
-  const timer = setInterval(() => {
-    current += target / steps;
-    if (current >= target) {
-      current = target;
-      clearInterval(timer);
-    }
-
-    let result = '';
-    if (hasEuro) result += '€';
-
-    if (hasM) {
-      // Para valores em milhões, mostrar com decimal durante a animação
-      if (current < 1 && current > 0) {
-        result += current.toFixed(1);
-      } else {
-        result += Math.floor(current);
-      }
-      result += 'M';
-    } else {
-      result += Math.floor(current);
-    }
-
-    if (hasPlus) result += '+';
-
-    element.textContent = result;
-  }, stepTime);
-}
-
-// Inicializar hero counters no DOMContentLoaded
-document.addEventListener('DOMContentLoaded', () => {
-  setTimeout(initHeroCounters, 500);
-});
-
-
-/* ============================================
-   TRANSLATOR BUTTON FUNCTIONALITY - BOLINHA G REDONDA
-   ============================================ */
-
-document.addEventListener('DOMContentLoaded', function() {
-  const translatorBtn = document.getElementById('translatorBtn');
-  const translateElement = document.getElementById('google_translate_element');
-
-  // Criar a bolinha G visualmente
-  function createGoogleBall() {
-    if (!translateElement) return;
-
-    // Verificar se já existe
-    if (translateElement.querySelector('.google-g-ball')) return;
-
-    // Criar elemento da bolinha G
-    const gBall = document.createElement('div');
-    gBall.className = 'google-g-ball';
-    gBall.innerHTML = 'G';
-    gBall.style.cssText = `
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 44px;
-      height: 44px;
-      background: white;
-      border: 2px solid #d4af37;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Product Sans', 'Roboto', Arial, sans-serif;
-      font-weight: 700;
-      font-size: 1.4rem;
-      background: linear-gradient(135deg, #4285F4 0%, #EA4335 33%, #FBBC05 66%, #34A853 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-      transition: all 0.3s ease;
-      cursor: pointer;
-      z-index: 1;
-      pointer-events: none;
-    `;
-
-    translateElement.appendChild(gBall);
-
-    // Ajustar o select para ficar por cima mas invisível
-    const select = translateElement.querySelector('.goog-te-combo');
-    if (select) {
-      select.style.cssText = `
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 44px;
-        height: 44px;
-        opacity: 0;
-        cursor: pointer;
-        z-index: 2;
-      `;
-
-      // Quando o select receber foco, expandir
-      select.addEventListener('focus', function() {
-        gBall.style.opacity = '0';
-        gBall.style.transform = 'scale(0.5)';
-
-        this.style.cssText = `
-          position: absolute;
-          top: 50px;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 160px;
-          height: auto;
-          opacity: 1;
-          padding: 8px 12px;
-          border-radius: 10px;
-          border: 2px solid #d4af37;
-          background: white;
-          color: #0f1538;
-          font-family: 'Inter', sans-serif;
-          font-weight: 600;
-          font-size: 13px;
-          box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-          z-index: 10;
-        `;
-      });
-
-      // Quando perder foco, voltar à bolinha
-      select.addEventListener('blur', function() {
-        setTimeout(() => {
-          gBall.style.opacity = '1';
-          gBall.style.transform = 'scale(1)';
-
-          this.style.cssText = `
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 44px;
-            height: 44px;
-            opacity: 0;
-            cursor: pointer;
-            z-index: 2;
-          `;
-
-          // Fechar o dropdown
-          translateElement.classList.remove('visible');
-        }, 200);
-      });
-
-      // Ao mudar idioma
-      select.addEventListener('change', function() {
-        setTimeout(() => {
-          translateElement.classList.remove('visible');
-          gBall.style.opacity = '1';
-          gBall.style.transform = 'scale(1)';
-
-          this.style.cssText = `
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 44px;
-            height: 44px;
-            opacity: 0;
-            cursor: pointer;
-            z-index: 2;
-          `;
-        }, 500);
-      });
-    }
-  }
-
-  // Criar a bolinha após um delay para garantir que o Google Translate carregou
-  setTimeout(createGoogleBall, 1000);
-  setTimeout(createGoogleBall, 2000);
-
-  if (translatorBtn && translateElement) {
-    translatorBtn.addEventListener('click', function(e) {
-      e.stopPropagation();
-
-      // Toggle visibility
-      translateElement.classList.toggle('visible');
-
-      if (translateElement.classList.contains('visible')) {
-        // Focar no select para abrir
-        const select = translateElement.querySelector('.goog-te-combo');
-        if (select) {
-          select.focus();
-        }
-      }
-    });
-
-    // Fechar ao clicar fora
-    document.addEventListener('click', function(e) {
-      if (!translatorBtn.contains(e.target) && !translateElement.contains(e.target)) {
-        translateElement.classList.remove('visible');
-      }
-    });
-
-    // Fechar ao pressionar Escape
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && translateElement.classList.contains('visible')) {
-        translateElement.classList.remove('visible');
-      }
-    });
-  }
-});
