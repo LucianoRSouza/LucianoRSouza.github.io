@@ -787,20 +787,30 @@ function initStrategyItems() {
   });
 }
 
-/* Animated Counters */
+/* Animated Counters - Todos os contadores do site */
 function initCounters() {
-  const counters = document.querySelectorAll('.impact-value[data-counter]');
+  // Seleciona todos os tipos de contadores
+  const counterSelectors = [
+    '.counter[data-target]',
+    '.stat-number[data-target]',
+    '.impact-value[data-target]',
+    '.strategy-stat-value[data-target]',
+    '.sustainability-value[data-target]',
+    '.sustainability-highlight-value[data-target]'
+  ];
+  
+  const allCounters = document.querySelectorAll(counterSelectors.join(', '));
   
   const observerOptions = {
-    threshold: 0.5,
-    rootMargin: '0px'
+    threshold: 0.3,
+    rootMargin: '0px 0px -50px 0px'
   };
 
   const counterObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         const counter = entry.target;
-        const target = parseInt(counter.getAttribute('data-counter'));
+        const target = parseInt(counter.getAttribute('data-target'));
         const prefix = counter.getAttribute('data-prefix') || '';
         const suffix = counter.getAttribute('data-suffix') || '';
         animateCounter(counter, target, prefix, suffix);
@@ -809,7 +819,7 @@ function initCounters() {
     });
   }, observerOptions);
 
-  counters.forEach(counter => counterObserver.observe(counter));
+  allCounters.forEach(counter => counterObserver.observe(counter));
 }
 
 function animateCounter(element, target, prefix, suffix) {
