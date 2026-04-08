@@ -67,11 +67,11 @@ function googleTranslateElementInit() {
 </div>
 
 <div class="nav-controls">
-  <button class="nav-btn translator-btn" id="translatorBtn" aria-label="Translate" title="Translate">
-    <i class="fas fa-globe"></i>
-  </button>
   <button class="nav-btn dark-mode-toggle" id="darkModeToggle" aria-label="Toggle dark mode">
     <i class="fas fa-moon" id="darkModeIcon"></i>
+  </button>
+  <button class="nav-btn translator-btn" id="translatorBtn" aria-label="Translate" title="Translate">
+    <i class="fas fa-globe"></i>
   </button>
   <div id="google_translate_element" style="position:absolute;top:60px;right:0;opacity:0;pointer-events:none;transition:opacity .3s;"></div>
 </div>
@@ -101,25 +101,25 @@ function googleTranslateElementInit() {
 <div aria-label="Key metrics" class="hero-stats">
 <div aria-label="Cumulative savings delivered" class="stat-box" data-stat="savings" tabindex="0">
 <i aria-hidden="true" class="fas fa-piggy-bank stat-icon"></i>
-<span class="stat-number" id="statSavings">€475K+</span>
+<span class="stat-number counter" data-target="475" data-prefix="€" data-suffix="K+">€0</span>
 <span class="stat-label">Cumulative Savings</span>
 <small class="stat-note">2025-2026 verified savings</small>
 </div>
 <div aria-label="Strategic tenders led" class="stat-box" data-stat="rfps" tabindex="0">
 <i aria-hidden="true" class="fas fa-file-contract stat-icon"></i>
-<span class="stat-number" id="statRFPs">120+</span>
+<span class="stat-number counter" data-target="120" data-prefix="" data-suffix="+">0</span>
 <span class="stat-label">RFP/RFQ Led</span>
 <small class="stat-note">With technical annexes & weighted scoring</small>
 </div>
 <div aria-label="Project value managed" class="stat-box" data-stat="projects" tabindex="0">
 <i aria-hidden="true" class="fas fa-project-diagram stat-icon"></i>
-<span class="stat-number" id="statProjects">€10M+</span>
+<span class="stat-number counter" data-target="10" data-prefix="€" data-suffix="M+">€0</span>
 <span class="stat-label">Project Portfolio</span>
 <small class="stat-note">From concept to audited mass production</small>
 </div>
 <div aria-label="Regions served" class="stat-box" data-stat="regions" tabindex="0">
 <i aria-hidden="true" class="fas fa-globe stat-icon"></i>
-<span class="stat-number" id="statRegions">20+</span>
+<span class="stat-number counter" data-target="20" data-prefix="" data-suffix="+">0</span>
 <span class="stat-label">Countries</span>
 <small class="stat-note">Europe · LATAM · Asia</small>
 </div>
@@ -127,15 +127,15 @@ function googleTranslateElementInit() {
 <!-- Impact Widget 2026 -->
 <div class="impact-widget animate-on-scroll">
   <div class="impact-item">
-    <span class="impact-value" data-counter="150" data-prefix="€" data-suffix="K">0</span>
+    <span class="impact-value counter" data-target="150" data-prefix="€" data-suffix="K">€0</span>
     <span class="impact-label">Savings 2026</span>
   </div>
   <div class="impact-item">
-    <span class="impact-value" data-counter="27" data-prefix="" data-suffix="%">0</span>
+    <span class="impact-value counter" data-target="27" data-prefix="" data-suffix="%">0</span>
     <span class="impact-label">Avg Reduction</span>
   </div>
   <div class="impact-item">
-    <span class="impact-value" data-counter="340" data-prefix="" data-suffix="%">0</span>
+    <span class="impact-value counter" data-target="340" data-prefix="" data-suffix="%">0</span>
     <span class="impact-label">ROI Achieved</span>
   </div>
 </div>
@@ -361,7 +361,7 @@ function googleTranslateElementInit() {
   <!-- Golf -->
   <div class="operation-card animate-on-scroll" data-gallery="golf">
     <div class="operation-image">
-      <img alt="Golf Infrastructure" src="img/golf_infrastructure_excellence.jpg"/>
+      <img alt="Golf Infrastructure" src="golf_infrastructure_excellence.jpg"/>
       <div class="operation-overlay">
         <i class="fas fa-golf-ball"></i>
       </div>
@@ -387,7 +387,7 @@ function googleTranslateElementInit() {
   <!-- Padel -->
   <div class="operation-card animate-on-scroll" data-gallery="padel">
     <div class="operation-image">
-      <img alt="Padel Facilities" src="img/hyatt_padel_premium_courts.jpg"/>
+      <img alt="Padel Facilities" src="hyatt_padel_premium_courts.jpg"/>
       <div class="operation-overlay">
         <i class="fas fa-table-tennis"></i>
       </div>
@@ -413,7 +413,7 @@ function googleTranslateElementInit() {
   <!-- Hospitality -->
   <div class="operation-card animate-on-scroll" data-gallery="hospitality">
     <div class="operation-image">
-      <img alt="Luxury Hospitality" src="img/hospitality_technical_modernization.jpg"/>
+      <img alt="Luxury Hospitality" src="hospitality_technical_modernization.jpg"/>
       <div class="operation-overlay">
         <i class="fas fa-hotel"></i>
       </div>
@@ -439,7 +439,7 @@ function googleTranslateElementInit() {
   <!-- Equestrian -->
   <div class="operation-card animate-on-scroll" data-gallery="equestrian">
     <div class="operation-image">
-      <img alt="Equestrian Facilities" src="img/equestrian_facilities_elite.jpg"/>
+      <img alt="Equestrian Facilities" src="equestrian_facilities_elite.jpg"/>
       <div class="operation-overlay">
         <i class="fas fa-horse-head"></i>
       </div>
@@ -465,7 +465,7 @@ function googleTranslateElementInit() {
   <!-- Garden -->
   <div class="operation-card animate-on-scroll" data-gallery="garden">
     <div class="operation-image">
-      <img alt="Garden Maintenance" src="img/garden_maintenance_luxury_operations.jpg"/>
+      <img alt="Garden Maintenance" src="garden_maintenance_luxury_operations.jpg"/>
       <div class="operation-overlay">
         <i class="fas fa-leaf"></i>
       </div>
@@ -491,7 +491,7 @@ function googleTranslateElementInit() {
   <!-- Asset Map -->
   <div class="operation-card animate-on-scroll" data-gallery="assetmap">
     <div class="operation-image">
-      <img alt="Asset Map" src="img/cluster_map_portugal_luxury.jpg"/>
+      <img alt="Asset Map" src="cluster_map_portugal_luxury.jpg"/>
       <div class="operation-overlay">
         <i class="fas fa-map-marked-alt"></i>
       </div>
@@ -530,22 +530,22 @@ function googleTranslateElementInit() {
 <!-- Strategy Stats Banner -->
 <div class="strategy-stats-banner animate-on-scroll">
   <div class="strategy-stat-item">
-    <span class="strategy-stat-value">€327K</span>
+    <span class="strategy-stat-value counter" data-target="327" data-prefix="€" data-suffix="K">€0</span>
     <span class="strategy-stat-label">2025 Savings</span>
   </div>
   <div class="strategy-stat-divider"></div>
   <div class="strategy-stat-item">
-    <span class="strategy-stat-value">€148K</span>
+    <span class="strategy-stat-value counter" data-target="148" data-prefix="€" data-suffix="K">€0</span>
     <span class="strategy-stat-label">2026 Savings</span>
   </div>
   <div class="strategy-stat-divider"></div>
   <div class="strategy-stat-item">
-    <span class="strategy-stat-value">€475K+</span>
+    <span class="strategy-stat-value counter" data-target="475" data-prefix="€" data-suffix="K+">€0</span>
     <span class="strategy-stat-label">Total Verified</span>
   </div>
   <div class="strategy-stat-divider"></div>
   <div class="strategy-stat-item">
-    <span class="strategy-stat-value">27%</span>
+    <span class="strategy-stat-value counter" data-target="27" data-prefix="" data-suffix="%">0</span>
     <span class="strategy-stat-label">Avg Reduction</span>
   </div>
 </div>
@@ -636,6 +636,7 @@ function googleTranslateElementInit() {
       <i class="fas fa-solar-panel"></i>
     </div>
     <h3>Solar Energy</h3>
+    <div class="sustainability-value counter" data-target="850" data-prefix="" data-suffix=" MWh">0</div>
     <p>Photovoltaic systems integration and optimization across hospitality assets for renewable energy generation.</p>
   </div>
 
@@ -646,6 +647,7 @@ function googleTranslateElementInit() {
       <i class="fas fa-tint"></i>
     </div>
     <h3>Water Treatment</h3>
+    <div class="sustainability-value counter" data-target="45" data-prefix="" data-suffix="%">0</div>
     <p>Advanced dosing systems and quality management with ALS, Biogerm, Aquateste partnerships.</p>
   </div>
 
@@ -656,7 +658,7 @@ function googleTranslateElementInit() {
       <i class="fas fa-gas-pump"></i>
     </div>
     <h3>GPL Optimization</h3>
-    <div class="sustainability-highlight-value">€150K+</div>
+    <div class="sustainability-highlight-value counter" data-target="150" data-prefix="€" data-suffix="K+">€0</div>
     <p>Last negotiation savings through strategic fuel contract management and cost optimization.</p>
   </div>
 
@@ -667,6 +669,7 @@ function googleTranslateElementInit() {
       <i class="fas fa-bolt"></i>
     </div>
     <h3>Energy Efficiency</h3>
+    <div class="sustainability-value counter" data-target="32" data-prefix="" data-suffix="%">0</div>
     <p>E-Cost initiatives and consumption reduction programs across all managed assets.</p>
   </div>
 </div>
@@ -674,7 +677,7 @@ function googleTranslateElementInit() {
 <!-- Sustainability Image -->
 <div class="sustainability-image-wrapper animate-on-scroll">
   <div class="gold-frame">
-    <img alt="Sustainability Water Energy Management" src="img/sustainability_water_energy_management.jpg"/>
+    <img alt="Sustainability Water Energy Management" src="sustainability_water_energy_management.jpg"/>
   </div>
 </div>
 </section>
@@ -924,264 +927,507 @@ function googleTranslateElementInit() {
 </div>
 </section>
 
-<!-- 9. CERTIFICATIONS -->
-<section aria-label="Certifications" class="certs" id="certs">
+<!-- 9. CERTIFICATIONS - RESTAURADO -->
+<section aria-label="Certifications & Education" class="certs" id="certs">
 <div class="section-header animate-on-scroll">
-<h2>Certifications & Credentials</h2>
-<p>Professional development and continuous learning</p>
+<h2>Certifications & Education</h2>
+<p>Continuous learning in AI, Data Science, and Strategic Procurement</p>
 </div>
+
 <div class="certs-grid">
-<div class="cert-card animate-on-scroll" onclick="openCertModal('Certificado_COBIT.jpg','COBIT 2019 Foundation')">
+<div class="cert-card framework-highlight animate-on-scroll" onclick="openCertModal('AI_Driven_Strategic_Procurement_Framework.png', 'AI-Driven Strategic Procurement Framework')" style="cursor:pointer;">
+<div class="framework-content">
+<div class="cert-icon" style="width:60px;height:60px;background:rgba(212,175,55,0.2);border-radius:15px;display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem;">
+<i aria-hidden="true" class="fas fa-star" style="font-size:1.8rem;color:var(--gold);"></i>
+</div>
+<h3>AI‑Driven Strategic Procurement Framework</h3>
+<p>One‑page executive framework on how AI, data, and operational alignment elevate procurement performance.</p>
+<div class="cert-badge">
+<i aria-hidden="true" class="fas fa-check-circle"></i>
+<span>Proprietary Methodology</span>
+</div>
+</div>
+<div class="framework-image">
+<img alt="AI Framework" onerror="this.parentElement.style.display='none'" src="AI_Driven_Strategic_Procurement_Framework.png"/>
+</div>
+</div>
+
+<div class="cert-card animate-on-scroll" onclick="openCertModal('Ethic_Gen_AI_Cert.jpg', 'Ethical Considerations for Generative AI')" style="cursor:pointer;">
+ <div class="cert-header">
+  <div class="cert-logo"><img src="Digital%20sticker_Ethical%20Considerations%20for%20Generative%20AI.png"></div>
+  <div class="cert-title-group"><h4>IBM SkillsBuild</h4><div class="cert-subtitle">Ethical Considerations for Generative AI</div><span class="cert-date">2026</span></div>
+ </div>
+ <p>Governance principles, fairness frameworks and responsible AI deployment; ethical guidance for real‑world decision making.</p>
+ <div class="ai-application"><strong>How I Apply This in Procurement:</strong><ul>
+  <li>AI Governance: risk & compliance mapping</li>
+  <li>Bias Mitigation</li>
+  <li>Transparency Controls</li>
+  <li>Responsible Automation</li>
+  <li>Ethical Supplier Checks</li>
+ </ul></div>
+</div>
+
+<div class="cert-card animate-on-scroll" onclick="openCertModal('Gen%20AI%20Certificate.jpg', 'Getting Started with Generative AI')" style="cursor:pointer;">
+ <div class="cert-header">
+  <div class="cert-logo"><img src="getting-started-with-generative-ai.png"></div>
+  <div class="cert-title-group"><h4>IBM SkillsBuild</h4><div class="cert-subtitle">Getting Started with Generative AI</div><span class="cert-date">2026</span></div>
+ </div>
+ <p>Core foundations of generative AI concepts, capabilities and practical use cases.</p>
+ <div class="ai-application"><strong>How I Apply This in Procurement:</strong><ul>
+  <li>AI Opportunity Mapping</li>
+  <li>Workflow Augmentation</li>
+  <li>AI-Assisted Insights</li>
+  <li>Template Generation</li>
+  <li>Market Research</li>
+ </ul></div>
+</div>
+
+<div class="cert-card animate-on-scroll" onclick="openCertModal('Foundations_in_Gen_AI_Certificate.jpg', 'Foundations in Generative AI')" style="cursor:pointer;">
 <div class="cert-header">
-<div class="cert-logo"><img alt="COBIT" src="COBIT.png"/></div>
-<div class="cert-title-group"><h4>COBIT 2019 Foundation</h4><div class="cert-subtitle">ISACA — Governance Framework</div></div>
+<div class="cert-logo">
+<img alt="IBM Generative AI" onerror="this.style.display='none'" src="Digital_Sticker_Foundations_in_Generative_AI.png"/>
 </div>
-<p>Enterprise IT governance and management framework for aligning business goals with technology.</p>
-<div class="ai-application"><strong>AI Application:</strong> Governance automation, risk-based prioritization, control mapping for AI systems.</div>
-<div class="cert-date"><i class="fas fa-calendar"></i> 2025</div>
+<div class="cert-title-group">
+<h4>IBM SkillsBuild</h4>
+<div class="cert-subtitle">Foundations in Generative AI</div>
+<span class="cert-date"><i aria-hidden="true" class="fas fa-calendar"></i> 2026</span>
 </div>
-<div class="cert-card animate-on-scroll" onclick="openCertModal('Certificado_ITIL.jpg','ITIL 4 Foundation')">
+</div>
+<p>LLM fundamentals, prompt engineering and ethical deployment; practical use in procurement workflows.</p>
+<div class="ai-application">
+<strong><i aria-hidden="true" class="fas fa-lightbulb"></i> How I Apply This in Procurement:</strong>
+<ul>
+<li><strong>Contract Parsing:</strong> clause extraction & risk flags</li>
+<li><strong>Smart RFPs:</strong> auto‑draft specs/SoW; save hours weekly</li>
+<li><strong>Supplier Comms:</strong> consistent, data‑aware templates</li>
+<li><strong>Market Intel:</strong> proposal comparison & insights</li>
+</ul>
+</div>
+</div>
+
+<div class="cert-card animate-on-scroll" onclick="openCertModal('AI_LLM_Certificate.jpg', 'Introduction to Large Language Models')" style="cursor:pointer;">
 <div class="cert-header">
-<div class="cert-logo"><img alt="ITIL" src="ITIL.png"/></div>
-<div class="cert-title-group"><h4>ITIL 4 Foundation</h4><div class="cert-subtitle">AXELOS — Service Management</div></div>
+<div class="cert-logo">
+<img alt="IBM LLMs" onerror="this.style.display='none'" src="Digital_Sticker_Introduction_to_Large_Language_Models.png"/>
 </div>
-<p>Service value system, guiding principles, and four dimensions model for modern IT service delivery.</p>
-<div class="ai-application"><strong>AI Application:</strong> Service desk automation, incident prediction, chatbot integration, SLA optimization.</div>
-<div class="cert-date"><i class="fas fa-calendar"></i> 2025</div>
+<div class="cert-title-group">
+<h4>IBM SkillsBuild</h4>
+<div class="cert-subtitle">Introduction to Large Language Models</div>
+<span class="cert-date"><i aria-hidden="true" class="fas fa-calendar"></i> 2026</span>
 </div>
-<div class="cert-card animate-on-scroll" onclick="openCertModal('Certificado_Scrum.jpg','Scrum Foundation Professional')">
+</div>
+<p>Transformer architecture, tokenization and prompting; patterns for data extraction and decision support.</p>
+<div class="ai-application">
+<strong><i aria-hidden="true" class="fas fa-lightbulb"></i> How I Apply This in Procurement:</strong>
+<ul>
+<li><strong>Doc Intelligence:</strong> quotes/specs parsing</li>
+<li><strong>Forecasting Assist:</strong> LLM‑augmented demand signals</li>
+<li><strong>Compliance:</strong> policy checks vs. contracts</li>
+<li><strong>Knowledge Ops:</strong> internal procurement assistant</li>
+</ul>
+</div>
+</div>
+
+<div class="cert-card animate-on-scroll">
 <div class="cert-header">
-<div class="cert-logo"><img alt="Scrum" src="Scrum.png"/></div>
-<div class="cert-title-group"><h4>Scrum Foundation Professional</h4><div class="cert-subtitle">CertiProf — Agile Methodology</div></div>
+<div class="cert-logo">
+<img alt="University of Maryland" onerror="this.style.display='none'" src="Maryland_University.png"/>
 </div>
-<p>Agile framework for iterative delivery, team collaboration, and adaptive planning in complex projects.</p>
-<div class="ai-application"><strong>AI Application:</strong> Sprint velocity prediction, backlog prioritization with ML, automated retrospectives.</div>
-<div class="cert-date"><i class="fas fa-calendar"></i> 2025</div>
+<div class="cert-title-group">
+<h4>University of Maryland</h4>
+<div class="cert-subtitle">AI and Career Empowerment</div>
+<span class="cert-date"><i aria-hidden="true" class="fas fa-calendar"></i> Feb 2026</span>
 </div>
-<div class="cert-card animate-on-scroll" onclick="openCertModal('Certificado_ISO_9001.jpg','ISO 9001:2015 Internal Auditor')">
+</div>
+<p>AI applications in business strategy and automation of procurement workflows.</p>
+<div class="ai-application">
+<strong><i aria-hidden="true" class="fas fa-lightbulb"></i> Applications:</strong>
+<ul>
+<li><strong>Career Strategy:</strong> Leveraging AI for professional growth and networking optimization</li>
+<li><strong>Workflow Automation:</strong> Implementing AI-driven process improvements in procurement operations</li>
+<li><strong>Strategic Planning:</strong> Using predictive analytics for long-term business planning</li>
+<li><strong>Skill Development:</strong> Continuous learning pathways enhanced by AI recommendations</li>
+</ul>
+</div>
+</div>
+
+<div class="cert-card animate-on-scroll">
 <div class="cert-header">
-<div class="cert-logo"><img alt="ISO 9001" src="ISO.png"/></div>
-<div class="cert-title-group"><h4>ISO 9001:2015 Internal Auditor</h4><div class="cert-subtitle">Quality Management Systems</div></div>
+<div class="cert-logo">
+<img alt="MIT Sloan" onerror="this.style.display='none'" src="MIT.png"/>
 </div>
-<p>Quality management principles, process approach, and audit techniques for continuous improvement.</p>
-<div class="ai-application"><strong>AI Application:</strong> Quality anomaly detection, automated audit sampling, predictive compliance monitoring.</div>
-<div class="cert-date"><i class="fas fa-calendar"></i> 2025</div>
+<div class="cert-title-group">
+<h4>MIT Sloan School of Management</h4>
+<div class="cert-subtitle">Supply Chain Analytics</div>
+<span class="cert-date"><i aria-hidden="true" class="fas fa-calendar"></i> 2025</span>
 </div>
-<div class="cert-card animate-on-scroll" onclick="openCertModal('Certificado_ISO_27001.jpg','ISO 27001:2022 Internal Auditor')">
+</div>
+<p>Advanced analytics methodologies for supply chain optimization and forecasting.</p>
+<div class="ai-application">
+<strong><i aria-hidden="true" class="fas fa-lightbulb"></i> Applications:</strong>
+<ul>
+<li><strong>Demand Forecasting:</strong> Statistical models for accurate demand prediction</li>
+<li><strong>Inventory Optimization:</strong> Dynamic safety stock and reorder point calculations</li>
+<li><strong>Network Design:</strong> Optimization of distribution networks and logistics</li>
+<li><strong>Risk Analytics:</strong> Supply chain risk assessment and mitigation strategies</li>
+</ul>
+</div>
+</div>
+
+<div class="cert-card animate-on-scroll">
 <div class="cert-header">
-<div class="cert-logo"><img alt="ISO 27001" src="ISO.png"/></div>
-<div class="cert-title-group"><h4>ISO 27001:2022 Internal Auditor</h4><div class="cert-subtitle">Information Security Management</div></div>
+<div class="cert-logo">
+<img alt="Harvard University" onerror="this.style.display='none'" src="Harvard_University.png"/>
 </div>
-<p>ISMS implementation, risk assessment, and security controls for protecting information assets.</p>
-<div class="ai-application"><strong>AI Application:</strong> Threat detection with ML, automated vulnerability assessment, security log analysis.</div>
-<div class="cert-date"><i class="fas fa-calendar"></i> 2025</div>
+<div class="cert-title-group">
+<h4>Harvard University</h4>
+<div class="cert-subtitle">Decision‑Making in Leadership</div>
+<span class="cert-date"><i aria-hidden="true" class="fas fa-calendar"></i> 2023</span>
 </div>
-<div class="cert-card animate-on-scroll" onclick="openCertModal('Certificado_ISO_31000.jpg','ISO 31000:2018 Risk Manager')">
+</div>
+<p>Evidence‑based decision frameworks and strategic thinking for leaders.</p>
+<div class="ai-application">
+<strong><i aria-hidden="true" class="fas fa-lightbulb"></i> Applications:</strong>
+<ul>
+<li><strong>Strategic Decisions:</strong> Frameworks for complex procurement negotiations</li>
+<li><strong>Stakeholder Management:</strong> Evidence-based approaches to cross-functional leadership</li>
+<li><strong>Risk Assessment:</strong> Structured evaluation of supplier and market risks</li>
+<li><strong>Change Management:</strong> Leading organizational transformation with data-driven insights</li>
+</ul>
+</div>
+</div>
+
+<div class="cert-card animate-on-scroll">
 <div class="cert-header">
-<div class="cert-logo"><img alt="ISO 31000" src="ISO.png"/></div>
-<div class="cert-title-group"><h4>ISO 31000:2018 Risk Manager</h4><div class="cert-subtitle">Enterprise Risk Management</div></div>
+<div class="cert-logo">
+<img alt="Gadsden State Community College" onerror="this.src='gadsdenstatecommunitycollege.jpg'" src="gadsdenstatecommunitycollege_logo.jpg"/>
 </div>
-<p>Risk management framework, assessment techniques, and treatment strategies for organizational resilience.</p>
-<div class="ai-application"><strong>AI Application:</strong> Risk prediction models, Monte Carlo simulations, automated risk monitoring dashboards.</div>
-<div class="cert-date"><i class="fas fa-calendar"></i> 2025</div>
+<div class="cert-title-group">
+<h4>Gadsden State Community College</h4>
+<div class="cert-subtitle">Diploma — ESL (English as a Second Language)</div>
+<span class="cert-date"><i aria-hidden="true" class="fas fa-calendar"></i> 1999–2000</span>
 </div>
-<div class="cert-card animate-on-scroll" onclick="openCertModal('Certificado_DPO.jpg','Data Protection Officer')">
-<div class="cert-header">
-<div class="cert-logo"><img alt="DPO" src="DPO.png"/></div>
-<div class="cert-title-group"><h4>Data Protection Officer (DPO)</h4><div class="cert-subtitle">LGPD & GDPR Compliance</div></div>
 </div>
-<p>Privacy regulations, data subject rights, breach notification, and cross-border data transfer requirements.</p>
-<div class="ai-application"><strong>AI Application:</strong> Automated data classification, privacy-preserving ML, consent management systems.</div>
-<div class="cert-date"><i class="fas fa-calendar"></i> 2025</div>
+<p>Academic English program with communication, writing and presentation skills.</p>
+<div class="ai-application">
+<strong><i aria-hidden="true" class="fas fa-lightbulb"></i> Skills Acquired:</strong>
+<ul>
+<li><strong>Academic Writing:</strong> Research papers, essays, and technical documentation</li>
+<li><strong>Public Speaking:</strong> Presentation skills and professional communication</li>
+<li><strong>Cross-Cultural Communication:</strong> Navigating international business contexts</li>
+<li><strong>Critical Reading:</strong> Analysis of complex texts and contracts</li>
+</ul>
 </div>
-<div class="cert-card animate-on-scroll" onclick="openCertModal('Certificado_Blockchain.jpg','Blockchain Business Professional')">
-<div class="cert-header">
-<div class="cert-logo"><img alt="Blockchain" src="Blockchain.png"/></div>
-<div class="cert-title-group"><h4>Blockchain Business Professional</h4><div class="cert-subtitle">Distributed Ledger Technology</div></div>
-</div>
-<p>Blockchain fundamentals, smart contracts, DeFi, and enterprise use cases for supply chain transparency.</p>
-<div class="ai-application"><strong>AI Application:</strong> Supply chain traceability, smart contract automation, fraud detection with on-chain analytics.</div>
-<div class="cert-date"><i class="fas fa-calendar"></i> 2025</div>
-</div>
-<div class="cert-card animate-on-scroll" onclick="openCertModal('Certificado_Google.jpg','Google Data Analytics Professional')">
-<div class="cert-header">
-<div class="cert-logo"><img alt="Google" src="Google.png"/></div>
-<div class="cert-title-group"><h4>Google Data Analytics Professional</h4><div class="cert-subtitle">Data-Driven Decision Making</div></div>
-</div>
-<p>Data collection, cleaning, analysis, and visualization for actionable business insights.</p>
-<div class="ai-application"><strong>AI Application:</strong> Predictive analytics, automated reporting, real-time dashboards, trend forecasting.</div>
-<div class="cert-date"><i class="fas fa-calendar"></i> 2025</div>
-</div>
-<div class="cert-card animate-on-scroll" onclick="openCertModal('Certificado_Microsoft.jpg','Microsoft Power BI Data Analyst')">
-<div class="cert-header">
-<div class="cert-logo"><img alt="Microsoft" src="Microsoft.png"/></div>
-<div class="cert-title-group"><h4>Microsoft Power BI Data Analyst</h4><div class="cert-subtitle">Business Intelligence & Visualization</div></div>
-</div>
-<p>Data modeling, DAX calculations, and interactive dashboard creation for enterprise reporting.</p>
-<div class="ai-application"><strong>AI Application:</strong> Self-service BI, automated insights, natural language queries, anomaly detection.</div>
-<div class="cert-date"><i class="fas fa-calendar"></i> 2025</div>
-</div>
-<div class="cert-card animate-on-scroll" onclick="openCertModal('Certificado_DeepLearning.jpg','Deep Learning Specialization')">
-<div class="cert-header">
-<div class="cert-logo"><img alt="DeepLearning.AI" src="DeepLearning.png"/></div>
-<div class="cert-title-group"><h4>Deep Learning Specialization</h4><div class="cert-subtitle">Neural Networks & AI</div></div>
-</div>
-<p>Neural network architectures, CNNs, RNNs, Transformers, and production deployment strategies.</p>
-<div class="ai-application"><strong>AI Application:</strong> Computer vision for quality control, NLP for contract analysis, time-series forecasting.</div>
-<div class="cert-date"><i class="fas fa-calendar"></i> 2025</div>
-</div>
-<div class="cert-card animate-on-scroll" onclick="openCertModal('Certificado_MachineLearning.jpg','Machine Learning Specialization')">
-<div class="cert-header">
-<div class="cert-logo"><img alt="Stanford Online" src="Stanford_Online.png"/></div>
-<div class="cert-title-group"><h4>Machine Learning Specialization</h4><div class="cert-subtitle">Stanford Online & DeepLearning.AI</div></div>
-</div>
-<p>Supervised & unsupervised learning, model evaluation, and production deployment best practices.</p>
-<div class="ai-application"><strong>AI Application:</strong> Predictive maintenance, demand forecasting, customer segmentation, price optimization.</div>
-<div class="cert-date"><i class="fas fa-calendar"></i> 2025</div>
 </div>
 </div>
 </section>
 
-<!-- 10. TESTIMONIALS -->
-<section aria-label="Testimonials" class="testimonials" id="testimonials">
+<!-- 10. TESTIMONIALS - RESTAURADO -->
+<section aria-label="Recommendations" class="testimonials" id="testimonials">
 <div class="section-header animate-on-scroll">
-<h2>What Leaders Say</h2>
-<p>Feedback from colleagues and stakeholders</p>
+<h2>What People Say</h2>
+<p>Professional recommendations from colleagues and partners</p>
 </div>
 <div class="testimonials-grid">
+
 <div class="testimonial-card animate-on-scroll">
 <div class="testimonial-header">
-<div class="testimonial-avatar"><i class="fas fa-user"></i></div>
+<div class="testimonial-avatar">
+<i class="fas fa-user-circle"></i>
+</div>
 <div class="testimonial-author">
-<h4>Executive Leadership</h4>
-<span>Hospitality Industry</span>
+<h4>Luana Almada</h4>
+<span>Analista de Suprimentos Pleno</span>
 </div>
 </div>
 <div class="testimonial-content">
-<p>Luciano transformed our procurement function from a transactional department into a strategic partner. His ability to combine technical rigor with stakeholder management delivered measurable ROI within the first quarter.</p>
+<p>"Luciano é dinâmico, muito competente, prestativo, um profissional excelente e um grande colega de trabalho."</p>
 </div>
-<div class="testimonial-date">2025</div>
+<div class="testimonial-date">December 2012</div>
 </div>
+
 <div class="testimonial-card animate-on-scroll">
 <div class="testimonial-header">
-<div class="testimonial-avatar"><i class="fas fa-user"></i></div>
+<div class="testimonial-avatar">
+<i class="fas fa-user-circle"></i>
+</div>
 <div class="testimonial-author">
-<h4>Operations Director</h4>
-<span>Details Hospitality</span>
+<h4>Miguel Chaves</h4>
+<span>Coordenador Mercado Internacional | International Sales Manager</span>
 </div>
 </div>
 <div class="testimonial-content">
-<p>His BidMap methodology and Power BI dashboards gave us visibility we never had before. We can now make data-driven decisions in hours instead of weeks.</p>
+<p>"Além de ótimo amigo de trabalho é um excelente profissional, sempre muito dedicado. Sempre buscando os melhores resultados para os clientes e parceiros de trabalho. Ótimo para se trabalhar em equipe."</p>
 </div>
-<div class="testimonial-date">2025</div>
+<div class="testimonial-date">December 2012</div>
 </div>
+
+<div class="testimonial-card animate-on-scroll">
+<div class="testimonial-header">
+<div class="testimonial-avatar">
+<i class="fas fa-user-circle"></i>
+</div>
+<div class="testimonial-author">
+<h4>Flavio Borges</h4>
+<span>CFO | Administrative and Financial Director</span>
+</div>
+</div>
+<div class="testimonial-content">
+<p>"Luciano is very talented, charismatic and hard-working. He really knows how to captivate people, making the work environment enjoyable and highly productive."</p>
+</div>
+<div class="testimonial-date">December 2011</div>
+</div>
+
+<div class="testimonial-card animate-on-scroll">
+<div class="testimonial-header">
+<div class="testimonial-avatar">
+<i class="fas fa-user-circle"></i>
+</div>
+<div class="testimonial-author">
+<h4>Pearl Yung</h4>
+<span>Owner, Jewel International Import & Export</span>
+</div>
+</div>
+<div class="testimonial-content">
+<p>"Mr. Luciano Souza is experienced and so friendly. He is experienced in import/export and doing network business. I am glad that I can build a consolidate partnership for business corporation."</p>
+</div>
+<div class="testimonial-date">January 2013</div>
+</div>
+
 </div>
 </section>
 
-<!-- 11. GITHUB/BLOG -->
-<section aria-label="GitHub & Blog" class="github" id="github">
+<!-- 11. VOLUNTEERING -->
+<section aria-label="Volunteering" class="volunteer-section" id="volunteering">
 <div class="section-header animate-on-scroll">
-<h2>GitHub & Insights</h2>
-<p>Code repositories and thought leadership</p>
+<h2>Volunteering & Community Impact</h2>
+<p>Giving back through education and mentorship</p>
+</div>
+<div class="volunteer-hero-image animate-on-scroll visible">
+<img alt="Gadsden State Community College" src="gadsdenstatecommunitycollege.jpg"/>
+</div>
+<div class="volunteer-card animate-on-scroll delay-1">
+<div class="volunteer-logo">
+  <img src="gadsdenstatecommunitycollege_logo.jpg" alt="Gadsden State Community College" onerror="this.src='gadsdenstatecommunitycollege.jpg'">
+</div>
+<h3>Mathematics & English Instructor</h3>
+<div class="school">Gadsden State Community College</div>
+<div class="period">1999–2000</div>
+<div class="description">
+        Mathematics and English tutoring for students in need of academic support. Developed personalized learning plans, 
+        mentored diverse student populations, and contributed to community education initiatives. This experience strengthened 
+        my communication skills, patience, and ability to explain complex concepts — skills I now apply in procurement training 
+        and cross-functional team leadership.
+      </div>
+</div>
+</section>
+
+<!-- 12. GITHUB/BLOG -->
+<section aria-label="GitHub & Data Science Projects" class="github" id="github">
+<div class="section-header animate-on-scroll">
+<h2>AI & Data Science in Action</h2>
+<p>Real projects transforming procurement through machine learning</p>
 </div>
 
-<!-- GitHub Interactive -->
+<div class="github-showcase">
+
+<div class="project-showcase-card animate-on-scroll">
+<div class="showcase-header">
+<i class="fas fa-chart-line"></i>
+<h3>Demand Forecasting Engine</h3>
+</div>
+<div class="showcase-content">
+<p>Python-based forecasting system using XGBoost and Prophet to predict procurement needs across hospitality assets. Reduced stockouts by 85% and excess inventory by 40%.</p>
+<div class="tech-stack">
+<span class="tech-tag">Python</span>
+<span class="tech-tag">XGBoost</span>
+<span class="tech-tag">Prophet</span>
+<span class="tech-tag">Pandas</span>
+</div>
+</div>
+<div class="showcase-metrics">
+<div class="showcase-metric">
+<span class="metric-number">95%</span>
+<span class="metric-desc">Prediction Accuracy</span>
+</div>
+<div class="showcase-metric">
+<span class="metric-number">85%</span>
+<span class="metric-desc">Stockout Reduction</span>
+</div>
+</div>
+</div>
+
+<div class="project-showcase-card animate-on-scroll">
+<div class="showcase-header">
+<i class="fas fa-file-invoice-dollar"></i>
+<h3>Smart Contract Parser</h3>
+</div>
+<div class="showcase-content">
+<p>NLP solution using LLMs to extract key clauses, identify risks, and summarize contractual terms. Cuts legal review time from days to hours.</p>
+<div class="tech-stack">
+<span class="tech-tag">OpenAI API</span>
+<span class="tech-tag">LangChain</span>
+<span class="tech-tag">Python</span>
+<span class="tech-tag">Streamlit</span>
+</div>
+</div>
+<div class="showcase-metrics">
+<div class="showcase-metric">
+<span class="metric-number">-80%</span>
+<span class="metric-desc">Review Time</span>
+</div>
+<div class="showcase-metric">
+<span class="metric-number">100%</span>
+<span class="metric-desc">Risk Detection</span>
+</div>
+</div>
+</div>
+
+<div class="project-showcase-card animate-on-scroll">
+<div class="showcase-header">
+<i class="fas fa-shopping-cart"></i>
+<h3>Price Elasticity Analyzer</h3>
+</div>
+<div class="showcase-content">
+<p>Statistical modeling to understand price sensitivity across product categories. Enables data-driven negotiation strategies and margin optimization.</p>
+<div class="tech-stack">
+<span class="tech-tag">scikit-learn</span>
+<span class="tech-tag">Statsmodels</span>
+<span class="tech-tag">Plotly</span>
+<span class="tech-tag">SQL</span>
+</div>
+</div>
+<div class="showcase-metrics">
+<div class="showcase-metric">
+<span class="metric-number">22%</span>
+<span class="metric-desc">Average Savings</span>
+</div>
+<div class="showcase-metric">
+<span class="metric-number">€30K+</span>
+<span class="metric-desc">Generated Value</span>
+</div>
+</div>
+</div>
+
+</div>
+
 <div class="github-interactive animate-on-scroll">
-<i class="fab fa-github"></i>
-<h3>Explore My Code</h3>
-<p>Machine learning projects, data analytics tools, and procurement automation scripts.</p>
-<div class="github-stats-row">
-<div class="github-stat">
-<span class="stat-number">15+</span>
-<span class="stat-label">Repositories</span>
-</div>
-<div class="github-stat">
-<span class="stat-number">Python</span>
-<span class="stat-label">Primary Language</span>
-</div>
-<div class="github-stat">
-<span class="stat-number">ML/AI</span>
-<span class="stat-label">Focus Area</span>
-</div>
-</div>
-<a class="btn btn-primary" href="https://github.com/LucianoRSouza" target="_blank" style="margin-top:1rem;">
-<i class="fab fa-github"></i> View GitHub Profile
-</a>
+  <i class="fab fa-github"></i>
+  <h3>Explore the Code</h3>
+  <p>All AI & Data Science projects available on GitHub with full documentation, reproducible examples, and real-world procurement applications.</p>
+  <div class="github-stats-row">
+    <div class="github-stat">
+      <span class="github-stat-value">15+</span>
+      <span class="github-stat-label">Repositories</span>
+    </div>
+    <div class="github-stat">
+      <span class="github-stat-value">ML</span>
+      <span class="github-stat-label">Models</span>
+    </div>
+    <div class="github-stat">
+      <span class="github-stat-value">Python</span>
+      <span class="github-stat-label">Primary</span>
+    </div>
+  </div>
+  <div class="github-btn-container">
+    <a class="btn btn-primary github-btn-main" href="https://github.com/LucianoRSouza" rel="noopener noreferrer" target="_blank" onclick="showToast('Opening GitHub profile...')">
+      <i class="fab fa-github"></i>
+      <span>See My Projects</span>
+    </a>
+  </div>
 </div>
 
-<!-- Blog Grid -->
-<div class="blog-grid animate-on-scroll">
-<div class="blog-card" onclick="openArticleModal('ai-contracts')">
-<div class="blog-image"><i class="fas fa-robot"></i></div>
+</section>
+
+<!-- 13. BLOG -->
+<section aria-label="Insights & Articles" class="blog" id="blog">
+<div class="section-header animate-on-scroll">
+<h2>Insights & Articles</h2>
+<p>Thought leadership on AI, procurement innovation and operational excellence</p>
+</div>
+<div class="blog-grid">
+
+<div class="blog-card animate-on-scroll" onclick="openArticleModal('ai-contracts')">
+<div class="blog-image">
+<i class="fas fa-file-contract"></i>
+</div>
 <div class="blog-content">
 <span class="blog-category">AI in Procurement</span>
 <h3>How LLMs Are Revolutionizing Contract Analysis</h3>
-<p>Using GPT-4 to reduce contract review time by 80% while improving risk detection accuracy.</p>
+<p>Using large language models to extract clauses, identify risks, and accelerate legal review processes in procurement workflows.</p>
 <div class="blog-meta">
 <span><i class="fas fa-calendar"></i> Jan 2026</span>
-<span><i class="fas fa-clock"></i> 5 min</span>
+<span><i class="fas fa-clock"></i> 5 min read</span>
 </div>
 </div>
 </div>
-<div class="blog-card" onclick="openArticleModal('smart-rfp')">
-<div class="blog-image"><i class="fas fa-file-alt"></i></div>
+
+<div class="blog-card animate-on-scroll" onclick="openArticleModal('smart-rfp')">
+<div class="blog-image">
+<i class="fas fa-robot"></i>
+</div>
 <div class="blog-content">
-<span class="blog-category">Process Innovation</span>
+<span class="blog-category">Process Automation</span>
 <h3>Building Smart RFPs: From Days to Hours</h3>
-<p>AI-powered RFP generation that cuts preparation time by 60% and improves proposal quality.</p>
+<p>How AI-powered templates and automated scoring matrices are transforming tender processes and reducing cycle time by 60%.</p>
 <div class="blog-meta">
 <span><i class="fas fa-calendar"></i> Dec 2025</span>
-<span><i class="fas fa-clock"></i> 4 min</span>
+<span><i class="fas fa-clock"></i> 4 min read</span>
 </div>
 </div>
 </div>
-<div class="blog-card" onclick="openArticleModal('make-or-buy')">
-<div class="blog-image"><i class="fas fa-balance-scale"></i></div>
+
+<div class="blog-card animate-on-scroll" onclick="openArticleModal('make-or-buy')">
+<div class="blog-image">
+<i class="fas fa-balance-scale"></i>
+</div>
 <div class="blog-content">
-<span class="blog-category">Strategic Sourcing</span>
+<span class="blog-category">Strategic Analysis</span>
 <h3>The Make-or-Buy Decision Framework</h3>
-<p>A multi-dimensional approach to outsourcing decisions beyond simple cost comparison.</p>
+<p>A data-driven approach to outsourcing decisions: combining cost modeling, risk assessment, and strategic alignment.</p>
 <div class="blog-meta">
 <span><i class="fas fa-calendar"></i> Nov 2025</span>
-<span><i class="fas fa-clock"></i> 6 min</span>
+<span><i class="fas fa-clock"></i> 6 min read</span>
 </div>
 </div>
 </div>
+
 </div>
 </section>
 
-<!-- 12. CONTACT -->
-<section aria-label="Contact" class="contact" id="contact">
+<!-- 14. CONTACT -->
+<section aria-label="Contact" class="contact always-navy" id="contact">
 <div class="section-header animate-on-scroll">
-<h2>Let's Connect</h2>
-<p>Ready to transform your procurement operations?</p>
+<h2>Let's Work Together</h2>
+<p>How can I help transform your procurement operations?</p>
 </div>
-<div class="contact-container">
-<div class="contact-cta-grid">
-<div class="contact-cta-card animate-on-scroll">
-<div class="cta-icon"><i class="fas fa-envelope"></i></div>
-<h3>Email</h3>
-<p>Direct communication for business inquiries and collaboration opportunities.</p>
-<a href="mailto:luciano.vlap@gmail.com" class="btn btn-primary" style="display:inline-flex;"><i class="fas fa-paper-plane"></i> Send Email</a>
+
+<div class="contact-intro animate-on-scroll" style="text-align:center; max-width:700px; margin:0 auto 3rem;">
+<h3 style="font-family:'Playfair Display',serif; color:var(--navy); font-size:1.8rem; margin-bottom:1rem;">Let's build something together</h3>
+<p style="color:var(--text-light); font-size:1.1rem; line-height:1.7;">
+  Whether you're looking to transform procurement operations, implement AI-driven solutions, 
+  or optimize your supply chain — I'm here to help turn challenges into measurable results.
+</p>
 </div>
-<div class="contact-cta-card animate-on-scroll">
-<div class="cta-icon"><i class="fab fa-linkedin"></i></div>
-<h3>LinkedIn</h3>
-<p>Connect professionally and explore my network and recommendations.</p>
-<a href="https://www.linkedin.com/in/luciano-rodrigues-541a2544/" class="btn btn-primary" style="display:inline-flex;" target="_blank"><i class="fab fa-linkedin"></i> Connect</a>
-</div>
-<div class="contact-cta-card animate-on-scroll">
-<div class="cta-icon"><i class="fab fa-github"></i></div>
-<h3>GitHub</h3>
-<p>Explore my code repositories and technical projects.</p>
-<a href="https://github.com/LucianoRSouza" class="btn btn-primary" style="display:inline-flex;" target="_blank"><i class="fab fa-github"></i> View Profile</a>
-</div>
-</div>
-<div class="contact-info">
-<div class="contact-info-item"><i class="fas fa-map-marker-alt"></i><span>Lisbon, Portugal</span></div>
-<div class="contact-info-item"><i class="fas fa-briefcase"></i><span>Details Hospitality</span></div>
-<div class="contact-info-item"><i class="fas fa-globe"></i><span>Europe · LATAM · Asia</span></div>
-</div>
+
+<div class="contact-cta-grid" style="max-width:500px; margin:0 auto;">
+  <div class="contact-cta-card animate-on-scroll" style="grid-column:1 / -1;">
+    <div class="cta-icon">
+      <i class="fas fa-rocket"></i>
+    </div>
+    <h3>Start a Conversation</h3>
+    <p>Ready to discuss how AI-driven procurement can transform your operations? Let's connect and explore the possibilities.</p>
+    <div class="contact-links" style="justify-content:center;">
+      <a class="contact-link" href="mailto:luciano.vlap@gmail.com" style="background:var(--gold);color:var(--navy);">
+        <i class="fas fa-envelope"></i>
+        <span>Email Me</span>
+      </a>
+      <a class="contact-link" href="https://www.linkedin.com/in/luciano-rodrigues-541a2544/" target="_blank">
+        <i class="fab fa-linkedin"></i>
+        <span>LinkedIn</span>
+      </a>
+    </div>
+  </div>
 </div>
 </section>
 
@@ -1261,9 +1507,9 @@ function googleTranslateElementInit() {
 </div>
 
 <!-- Article Modal -->
-<div class="article-modal-overlay" id="articleModalOverlay">
+<div class="article-modal-overlay" id="articleModalOverlay" onclick="if(event.target===this)closeArticleModal()">
 <div class="article-modal">
-<button class="article-modal-close" onclick="closeArticleModal()"><i class="fas fa-times"></i></button>
+<button class="article-modal-close" onclick="closeArticleModal()">&times;</button>
 <div class="article-modal-content" id="articleModalContent"></div>
 </div>
 </div>
