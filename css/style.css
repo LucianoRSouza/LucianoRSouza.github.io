@@ -1451,13 +1451,13 @@ body.dark-mode .impact-label{
   font-size:.95rem;
 }
 
-.sustainability-highlight-value{
-  font-size:3rem;
+.sustainability-value{
+  font-size:2.2rem;
   font-weight:800;
   color:var(--gold);
   font-family:'Playfair Display',serif;
-  margin:1rem 0;
-  text-shadow:0 4px 20px rgba(212,175,55,.3);
+  margin:.5rem 0;
+  display:block;
 }
 
 .sustainability-divider{
@@ -1499,3 +1499,175 @@ body.dark-mode .impact-label{
 /* ============================================
    END NEW SECTIONS
    ============================================ */
+
+/* ============================================
+   DARK MODE FIXES - CORREÇÕES MODO ESCURO
+   ============================================ */
+
+/* Fix para textos nos modais no modo dark */
+body.dark-mode .article-modal-content,
+body.dark-mode .article-modal-content p,
+body.dark-mode .article-modal-content h2,
+body.dark-mode .article-modal-content h3,
+body.dark-mode .article-modal-content li {
+  color: var(--dark-text) !important;
+}
+
+body.dark-mode .article-modal-content h2,
+body.dark-mode .article-modal-content h3 {
+  color: var(--gold) !important;
+}
+
+/* Fix para textos nos cards de blog no modo dark */
+body.dark-mode .blog-card .blog-content p {
+  color: var(--dark-text) !important;
+}
+
+body.dark-mode .blog-card .blog-content h3 {
+  color: var(--gold) !important;
+}
+
+/* Fix para textos nos project cards no modo dark */
+body.dark-mode .project-card .project-content p {
+  color: var(--dark-text) !important;
+}
+
+body.dark-mode .project-card .project-highlights {
+  color: var(--dark-text-secondary) !important;
+}
+
+/* Fix para textos na seção de contact no modo dark */
+body.dark-mode .contact-intro h3 {
+  color: var(--gold) !important;
+}
+
+body.dark-mode .contact-intro p {
+  color: var(--dark-text) !important;
+}
+
+/* Fix para textos nos cert cards no modo dark */
+body.dark-mode .cert-card p {
+  color: var(--dark-text) !important;
+}
+
+body.dark-mode .cert-card .ai-application ul li {
+  color: var(--dark-text) !important;
+}
+
+/* Fix para textos nos testimonials no modo dark */
+body.dark-mode .testimonial-content p {
+  color: var(--dark-text) !important;
+}
+
+body.dark-mode .testimonial-author span {
+  color: var(--dark-text-secondary) !important;
+}
+
+/* Fix para textos no volunteering no modo dark */
+body.dark-mode .volunteer-card .description {
+  color: var(--dark-text) !important;
+}
+
+/* Fix para textos nos operation cards no modo dark */
+body.dark-mode .operation-card .operation-content p {
+  color: var(--dark-text) !important;
+}
+
+body.dark-mode .operation-card .operation-list li {
+  color: var(--dark-text) !important;
+}
+
+body.dark-mode .operation-card .operation-highlight small {
+  color: var(--dark-text-secondary) !important;
+}
+
+/* Fix para textos nos strategy cards no modo dark */
+body.dark-mode .strategy-card-modern > p {
+  color: var(--dark-text) !important;
+}
+
+body.dark-mode .strategy-features li {
+  color: var(--dark-text) !important;
+}
+
+/* Fix para textos na seção about no modo dark */
+body.dark-mode .about-content p {
+  color: var(--dark-text) !important;
+}
+
+body.dark-mode .about-bullets li {
+  color: var(--dark-text) !important;
+}
+
+/* Fix para textos na timeline no modo dark */
+body.dark-mode .timeline-description {
+  color: var(--dark-text) !important;
+}
+
+body.dark-mode .achievement-box ul li {
+  color: var(--dark-text) !important;
+}
+
+/* Fix para textos no trade shows no modo dark */
+body.dark-mode .trade-show-strategy p {
+  color: var(--dark-text) !important;
+}
+
+/* ============================================
+   NAV CONTROLS - AJUSTE POSICIONAMENTO
+   ============================================ */
+
+/* Botões lado a lado - dark mode e tradutor */
+.nav-controls{
+  position:fixed;
+  top:90px;
+  right:20px;
+  z-index:1500;
+  display:flex;
+  gap:8px;
+  flex-direction:row;
+}
+
+.dark-mode-toggle{
+  order:1;
+}
+
+.translator-btn{
+  order:2;
+}
+
+@media(max-width:768px){
+  .nav-controls{
+    top:6px;
+    right:6px;
+  }
+}
+
+/* ============================================
+   GITHUB BUTTON - CENTRALIZAR
+   ============================================ */
+
+.github-btn-container{
+  display:flex;
+  justify-content:center;
+  margin-top:1.5rem;
+}
+
+.github-btn-main{
+  display:inline-flex !important;
+  align-items:center;
+  justify-content:center;
+  gap:0.7rem;
+}
+
+.github-btn-main i{
+  font-size:1.3rem;
+}
+
+/* ============================================
+   COUNTER ANIMATION
+   ============================================ */
+
+.counter, .impact-value, .strategy-stat-value, .sustainability-value, .sustainability-highlight-value{
+  font-variant-numeric:tabular-nums;
+}
