@@ -30,108 +30,23 @@ button{border:0;background:none;cursor:pointer}
 .loading-progress{height:100%;background:var(--gold);animation:loading 1.8s ease forwards}
 @keyframes loading{to{width:100%}}
 
-/* GOOGLE TRANSLATE — VERSÃO ORIGINAL RESTAURADA */
+/* Google Translate Widget - VERSÃO MINIMALISTA TRANSPARENTE */
+#google_translate_element{display:inline-block}
+.goog-te-gadget{margin:0!important}
 
-/* Container do dropdown */
-#google_translate_element {
-    position: absolute !important;
-    top: 48px !important;       /* 👉 aparece logo abaixo do botão globinho */
-    right: 0 !important;
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: all .25s ease;
-    background: white;
-    border: 2px solid var(--gold);
-    border-radius: 10px;
-    padding: 6px;
-    box-shadow: 0 8px 20px rgba(0,0,0,.25);
-}
+/* Esconder elementos do Google Translate que não queremos */
+.goog-te-banner-frame.skiptranslate{display:none!important}
+.goog-logo-link{display:none!important}
+.goog-te-gadget span{display:none!important}
+.goog-te-gadget{height:auto!important;overflow:visible!important}
 
-/* Quando aberto */
-#google_translate_element.visible {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-}
+/* Estilo do select do Google Translate - MINIMALISTA */
+.goog-te-gadget .goog-te-combo{margin:0!important;padding:4px 8px!important;border-radius:10px!important;border:1px solid rgba(212,175,55,.4)!important;background:rgba(255,255,255,.9)!important;color:var(--navy)!important;font-family:'Inter',sans-serif!important;font-weight:600!important;font-size:11px!important;cursor:pointer!important;outline:none!important;width:auto!important;min-width:80px!important;height:auto!important}
+.goog-te-gadget .goog-te-combo:hover{border-color:var(--gold)!important;box-shadow:0 2px 8px rgba(212,175,55,.2)!important}
 
-/* Ocultar elementos que o Google injeta sem necessidade */
-.goog-te-banner-frame.skiptranslate,
-.goog-logo-link,
-.goog-te-gadget span {
-    display: none !important;
-}
+/* Remove o banner do topo */
+body{top:0!important}
 
-/* Select do tradutor */
-#google_translate_element .goog-te-combo {
-    width: auto !important;
-    min-width: 110px;
-    padding: 6px 10px !important;
-    border-radius: 6px !important;
-    border: 1px solid var(--gold) !important;
-    background: white !important;
-    font-size: 12px !important;
-    font-weight: 600 !important;
-    color: var(--navy) !important;
-    cursor: pointer !important;
-}
-/* Botão do quadradinho “G” do Google Translate */
-.google-g-ball {
-    width: 32px;
-    height: 32px;
-    border: 2px solid var(--gold);
-    border-radius: 8px;
-    background: white;
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    font-size: 1.2rem;
-    background: linear-gradient(135deg,#4285F4 0%,#EA4335 33%,#FBBC05 66%,#34A853 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    pointer-events: none; /* não interfere no click */
-}
-/* Ajuste dos botões de tradução + dark mode */
-.nav-controls {
-    position: fixed;
-    top: 90px;
-    right: 14px;
-    z-index: 1501;
-    display: flex;
-    align-items: center;
-    gap: 6px; /* 👉 aproxima os botões */
-    background: transparent;
-    padding: 0;
-}
-
-/* Botão padrão da nav-controls */
-.nav-btn {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: rgba(255,255,255,.95);
-    border: 2px solid var(--gold);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all .25s ease;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-}
-
-.nav-btn:hover {
-    background: var(--gold);
-    transform: scale(1.07);
-    box-shadow: 0 6px 20px rgba(212,175,55,0.4);
-}
-
-.nav-btn i {
-    font-size: 1.2rem;
-    color: var(--navy);
-}
 /* Navbar */
 nav.navbar{position:fixed;inset:0 0 auto 0;background:rgba(15,21,56,.95);backdrop-filter:blur(18px);z-index:1000;padding:1rem var(--container-pad);display:flex;align-items:center;justify-content:space-between;transition:padding .25s ease,box-shadow .25s ease;box-shadow:0 6px 26px rgba(0,0,0,.28)}
 nav.navbar.scrolled{padding:.7rem var(--container-pad)}
@@ -1064,16 +979,13 @@ body.dark-mode .impact-label{
 }
 
 /* Nav Controls */
-.nav-controls {
-    position: fixed;
-    top: 90px;
-    right: 20px; /* mantém o alinhamento na direita */
-    z-index: 1501;
-    display: flex;
-    align-items: center;
-    gap: 6px;  /* 👉 aproxima os botões */
-    background: transparent;
-    padding: 0;
+.nav-controls{
+  position:fixed;
+  top:90px;
+  right:20px;
+  z-index:1500;
+  display:flex;
+  gap:10px;
 }
 
 .nav-btn{
@@ -1758,22 +1670,4 @@ body.dark-mode .trade-show-strategy p {
 
 .counter, .impact-value, .strategy-stat-value, .sustainability-value, .sustainability-highlight-value{
   font-variant-numeric:tabular-nums;
-}
-.google-g-ball {
-    width: 32px;
-    height: 32px;
-    border: 2px solid var(--gold);
-    border-radius: 8px;
-    background: white;
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    font-size: 1.2rem;
-    color: transparent;
-    background: linear-gradient(135deg,#4285F4 0%,#EA4335 33%,#FBBC05 66%,#34A853 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    pointer-events: none;
 }
