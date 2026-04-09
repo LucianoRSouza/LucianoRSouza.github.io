@@ -98,11 +98,11 @@ button{border:0;background:none;cursor:pointer}
 .nav-controls {
     position: fixed;
     top: 90px;
-    right: 20px;
+    right: 14px;
     z-index: 1501;
     display: flex;
     align-items: center;
-    gap: 6px; /* 👉 aproxima os botões */
+    gap: 10px; /* 👉 aproxima os botões */
     background: transparent;
     padding: 0;
 }
