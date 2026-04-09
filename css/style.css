@@ -102,7 +102,7 @@ button{border:0;background:none;cursor:pointer}
     z-index: 1501;
     display: flex;
     align-items: center;
-    gap: 10px; /* 👉 aproxima os botões */
+    gap: 6px; /* 👉 aproxima os botões */
     background: transparent;
     padding: 0;
 }
