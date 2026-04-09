@@ -887,49 +887,50 @@ function initTranslator() {
 
   if (!translatorBtn || !translateElement) return;
 
-  /* ✅ Criar quadradinho G */
-  function createGBall() {
-    const select = translateElement.querySelector('.goog-te-combo');
+/* ✅ Criar quadradinho G */
+function createGBall() {
+  const select = translateElement.querySelector('.goog-te-combo');
 
-    if (!select) {
-      setTimeout(createGBall, 400);
-      return;
-    }
-
-    if (translateElement.querySelector('.google-g-ball')) return;
-
-    const gBall = document.createElement('div');
-    gBall.className = 'google-g-ball';
-    gBall.textContent = 'G';
-
-    translateElement.insertBefore(gBall, select);
+  if (!select) {
+    setTimeout(createGBall, 400);
+    return;
   }
 
-  /* ✅ Executar várias vezes, para garantir */
-  setTimeout(createGBall, 300);
-  setTimeout(createGBall, 800);
-  setTimeout(createGBall, 1500);
+  if (translateElement.querySelector('.google-g-ball')) return;
 
-  /* ✅ Toggle do dropdown */
-  translatorBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    translateElement.classList.toggle('visible');
-  });
+  const gBall = document.createElement('div');
+  gBall.className = 'google-g-ball';
+  gBall.textContent = 'G';
 
-  /* ✅ Fechar ao clicar fora */
-  document.addEventListener('click', (e) => {
-    if (!translateElement.contains(e.target) && !translatorBtn.contains(e.target)) {
-      translateElement.classList.remove('visible');
-    }
-  });
-
-  /* ✅ Fechar no ESC */
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      translateElement.classList.remove('visible');
-    }
-  });
+  translateElement.insertBefore(gBall, select);
 }
+
+/* ✅ Executar várias vezes, para garantir */
+setTimeout(createGBall, 300);
+setTimeout(createGBall, 800);
+setTimeout(createGBall, 1500);
+
+/* ✅ Toggle do dropdown */
+translatorBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  translateElement.classList.toggle('visible');
+});
+
+/* ✅ Fechar ao clicar fora */
+document.addEventListener('click', (e) => {
+  if (!translateElement.contains(e.target) && !translatorBtn.contains(e.target)) {
+    translateElement.classList.remove('visible');
+  }
+});
+
+/* ✅ Fechar no ESC */
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    translateElement.classList.remove('visible');
+  }
+});
+}
+
 // Initialize Everything
 document.addEventListener('DOMContentLoaded', () => {
   initLoading();
