@@ -879,60 +879,18 @@ function initDarkMode() {
     localStorage.setItem('darkMode', isDark);
   });
 }
-/* Translator Toggle – versão corrigida */
+
+/* Translator Toggle */
 function initTranslator() {
   const translatorBtn = document.getElementById('translatorBtn');
   const translateElement = document.getElementById('google_translate_element');
-
+  
   if (!translatorBtn || !translateElement) return;
-
-  /* ✅ Criar quadradinho G — versão compatível com Google Translate real */
-  function createGBall() {
-
-    // 1. Procura o select EM TODA A PÁGINA
-    const select = document.querySelector('.goog-te-combo');
-
-    // 2. Se não existir ainda → tenta de novo
-    if (!select) {
-      setTimeout(createGBall, 500);
-      return;
-    }
-
-    // 3. Se o G já existe → não cria outro
-    if (document.querySelector('.google-g-ball')) return;
-
-    // 4. Cria o quadradinho G
-    const gBall = document.createElement('div');
-    gBall.className = 'google-g-ball';
-    gBall.textContent = 'G';
-
-    // 5. Insere o G ANTES do select
-    select.parentNode.insertBefore(gBall, select);
-  }
-
-  // ✅ Chama algumas vezes para garantir
-  setTimeout(createGBall, 300);
-  setTimeout(createGBall, 800);
-  setTimeout(createGBall, 1500);
-
-  /* ✅ Toggle do dropdown */
-  translatorBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    translateElement.classList.toggle('visible');
-  });
-
-  /* ✅ Fechar ao clicar fora */
-  document.addEventListener('click', (e) => {
-    if (!translateElement.contains(e.target) && !translatorBtn.contains(e.target)) {
-      translateElement.classList.remove('visible');
-    }
-  });
-
-  /* ✅ Fechar no ESC */
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      translateElement.classList.remove('visible');
-    }
+  
+  translatorBtn.addEventListener('click', () => {
+    const isVisible = translateElement.style.opacity === '1';
+    translateElement.style.opacity = isVisible ? '0' : '1';
+    translateElement.style.pointerEvents = isVisible ? 'none' : 'auto';
   });
 }
 
