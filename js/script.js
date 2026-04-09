@@ -880,20 +880,48 @@ function initDarkMode() {
   });
 }
 
-/* Translator Toggle */
+/* Translator Toggle – versão corrigida */
 function initTranslator() {
   const translatorBtn = document.getElementById('translatorBtn');
   const translateElement = document.getElementById('google_translate_element');
-  
+
   if (!translatorBtn || !translateElement) return;
-  
-  translatorBtn.addEventListener('click', () => {
-    const isVisible = translateElement.style.opacity === '1';
-    translateElement.style.opacity = isVisible ? '0' : '1';
-    translateElement.style.pointerEvents = isVisible ? 'none' : 'auto';
+
+  /* ✅ Criar quadradinho G */
+  function createGBall() {
+    if (!translateElement.querySelector('.google-g-ball')) {
+      const gBall = document.createElement('div');
+      gBall.className = 'google-g-ball';
+      gBall.textContent = 'G';
+      translateElement.appendChild(gBall);
+    }
+  }
+
+  // O Google Translate demora pra carregar → chamamos duas vezes
+  setTimeout(createGBall, 800);
+  setTimeout(createGBall, 1600);
+
+  /* ✅ Toggle do dropdown */
+  translatorBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    translateElement.classList.toggle('visible');
+  });
+
+  /* ✅ Fechar ao clicar fora */
+  document.addEventListener('click', (e) => {
+    if (!translateElement.contains(e.target) && !translatorBtn.contains(e.target)) {
+      translateElement.classList.remove('visible');
+    }
+  });
+
+  /* ✅ Fechar no ESC */
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      translateElement.classList.remove('visible');
+    }
   });
 }
-
+``
 // Initialize Everything
 document.addEventListener('DOMContentLoaded', () => {
   initLoading();
