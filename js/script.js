@@ -889,17 +889,26 @@ function initTranslator() {
 
   /* ✅ Criar quadradinho G */
   function createGBall() {
-    if (!translateElement.querySelector('.google-g-ball')) {
-      const gBall = document.createElement('div');
-      gBall.className = 'google-g-ball';
-      gBall.textContent = 'G';
-      translateElement.appendChild(gBall);
+    const select = translateElement.querySelector('.goog-te-combo');
+
+    if (!select) {
+      setTimeout(createGBall, 400);
+      return;
     }
+
+    if (translateElement.querySelector('.google-g-ball')) return;
+
+    const gBall = document.createElement('div');
+    gBall.className = 'google-g-ball';
+    gBall.textContent = 'G';
+
+    translateElement.insertBefore(gBall, select);
   }
 
-  // O Google Translate demora pra carregar → chamamos duas vezes
+  /* ✅ Executar várias vezes, para garantir */
+  setTimeout(createGBall, 300);
   setTimeout(createGBall, 800);
-  setTimeout(createGBall, 1600);
+  setTimeout(createGBall, 1500);
 
   /* ✅ Toggle do dropdown */
   translatorBtn.addEventListener('click', (e) => {
@@ -921,7 +930,6 @@ function initTranslator() {
     }
   });
 }
-``
 // Initialize Everything
 document.addEventListener('DOMContentLoaded', () => {
   initLoading();
