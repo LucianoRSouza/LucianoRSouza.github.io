@@ -879,7 +879,6 @@ function initDarkMode() {
     localStorage.setItem('darkMode', isDark);
   });
 }
-
 /* Translator Toggle – versão corrigida */
 function initTranslator() {
   const translatorBtn = document.getElementById('translatorBtn');
@@ -887,48 +886,54 @@ function initTranslator() {
 
   if (!translatorBtn || !translateElement) return;
 
-/* ✅ Criar quadradinho G */
-function createGBall() {
-  const select = translateElement.querySelector('.goog-te-combo');
+  /* ✅ Criar quadradinho G — versão compatível com Google Translate real */
+  function createGBall() {
 
-  if (!select) {
-    setTimeout(createGBall, 400);
-    return;
+    // 1. Procura o select EM TODA A PÁGINA
+    const select = document.querySelector('.goog-te-combo');
+
+    // 2. Se não existir ainda → tenta de novo
+    if (!select) {
+      setTimeout(createGBall, 500);
+      return;
+    }
+
+    // 3. Se o G já existe → não cria outro
+    if (document.querySelector('.google-g-ball')) return;
+
+    // 4. Cria o quadradinho G
+    const gBall = document.createElement('div');
+    gBall.className = 'google-g-ball';
+    gBall.textContent = 'G';
+
+    // 5. Insere o G ANTES do select
+    select.parentNode.insertBefore(gBall, select);
   }
 
-  if (translateElement.querySelector('.google-g-ball')) return;
+  // ✅ Chama algumas vezes para garantir
+  setTimeout(createGBall, 300);
+  setTimeout(createGBall, 800);
+  setTimeout(createGBall, 1500);
 
-  const gBall = document.createElement('div');
-  gBall.className = 'google-g-ball';
-  gBall.textContent = 'G';
+  /* ✅ Toggle do dropdown */
+  translatorBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    translateElement.classList.toggle('visible');
+  });
 
-  translateElement.insertBefore(gBall, select);
-}
+  /* ✅ Fechar ao clicar fora */
+  document.addEventListener('click', (e) => {
+    if (!translateElement.contains(e.target) && !translatorBtn.contains(e.target)) {
+      translateElement.classList.remove('visible');
+    }
+  });
 
-/* ✅ Executar várias vezes, para garantir */
-setTimeout(createGBall, 300);
-setTimeout(createGBall, 800);
-setTimeout(createGBall, 1500);
-
-/* ✅ Toggle do dropdown */
-translatorBtn.addEventListener('click', (e) => {
-  e.stopPropagation();
-  translateElement.classList.toggle('visible');
-});
-
-/* ✅ Fechar ao clicar fora */
-document.addEventListener('click', (e) => {
-  if (!translateElement.contains(e.target) && !translatorBtn.contains(e.target)) {
-    translateElement.classList.remove('visible');
-  }
-});
-
-/* ✅ Fechar no ESC */
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') {
-    translateElement.classList.remove('visible');
-  }
-});
+  /* ✅ Fechar no ESC */
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      translateElement.classList.remove('visible');
+    }
+  });
 }
 
 // Initialize Everything
