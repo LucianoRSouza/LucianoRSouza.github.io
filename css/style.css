@@ -30,8 +30,63 @@ button{border:0;background:none;cursor:pointer}
 .loading-progress{height:100%;background:var(--gold);animation:loading 1.8s ease forwards}
 @keyframes loading{to{width:100%}}
 
-/* Google Translate Widget - VERSÃO MINIMALISTA TRANSPARENTE */
-#google_translate_element{display:inline-block}
+/* ============================================
+   NAV CONTROLS - TRANSLATOR + DARK MODE
+   ============================================ */
+
+.nav-controls{
+  position:fixed;
+  top:90px;
+  right:20px;
+  z-index:1500;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+/* Translator Box - com frame */
+.translator-box{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  background:rgba(255,255,255,.9);
+  padding:8px 12px;
+  border-radius:14px;
+  box-shadow:0 4px 15px rgba(0,0,0,.15);
+  border:1px solid rgba(212,175,55,.3);
+}
+
+.translator-btn{
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  background:transparent;
+  border:2px solid var(--gold);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  transition:all .3s ease;
+  margin-bottom:8px;
+}
+
+.translator-btn:hover{
+  background:var(--gold);
+  transform:scale(1.1);
+}
+
+.translator-btn i{
+  font-size:1.2rem;
+  color:var(--navy);
+}
+
+/* Google Translate Element - dentro do frame */
+#google_translate_element{
+  display:block;
+  width:100%;
+}
+
 .goog-te-gadget{margin:0!important}
 
 /* Esconder elementos do Google Translate que não queremos */
@@ -40,9 +95,89 @@ button{border:0;background:none;cursor:pointer}
 .goog-te-gadget span{display:none!important}
 .goog-te-gadget{height:auto!important;overflow:visible!important}
 
-/* Estilo do select do Google Translate - MINIMALISTA */
-.goog-te-gadget .goog-te-combo{margin:0!important;padding:4px 8px!important;border-radius:10px!important;border:1px solid rgba(212,175,55,.4)!important;background:rgba(255,255,255,.9)!important;color:var(--navy)!important;font-family:'Inter',sans-serif!important;font-weight:600!important;font-size:11px!important;cursor:pointer!important;outline:none!important;width:auto!important;min-width:80px!important;height:auto!important}
-.goog-te-gadget .goog-te-combo:hover{border-color:var(--gold)!important;box-shadow:0 2px 8px rgba(212,175,55,.2)!important}
+/* Estilo do select do Google Translate */
+.goog-te-gadget .goog-te-combo{
+  margin:0!important;
+  padding:4px 8px!important;
+  border-radius:10px!important;
+  border:1px solid rgba(212,175,55,.4)!important;
+  background:rgba(255,255,255,.9)!important;
+  color:var(--navy)!important;
+  font-family:'Inter',sans-serif!important;
+  font-weight:600!important;
+  font-size:11px!important;
+  cursor:pointer!important;
+  outline:none!important;
+  width:auto!important;
+  min-width:80px!important;
+  height:auto!important;
+}
+
+.goog-te-gadget .goog-te-combo:hover{
+  border-color:var(--gold)!important;
+  box-shadow:0 2px 8px rgba(212,175,55,.2)!important;
+}
+
+/* Dark Mode Toggle */
+.dark-mode-toggle{
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  background:rgba(255,255,255,.9);
+  border:2px solid var(--gold);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  transition:all .3s ease;
+  box-shadow:0 4px 15px rgba(0,0,0,.15);
+}
+
+.dark-mode-toggle:hover{
+  background:var(--gold);
+  transform:scale(1.1) rotate(15deg);
+}
+
+.dark-mode-toggle i{
+  font-size:1.2rem;
+  color:var(--navy);
+}
+
+body.dark-mode .dark-mode-toggle{
+  background:var(--dark-elevated);
+}
+
+body.dark-mode .dark-mode-toggle i{
+  color:var(--gold);
+}
+
+body.dark-mode .translator-box{
+  background:var(--dark-elevated);
+  border-color:rgba(212,175,55,.3);
+}
+
+body.dark-mode .translator-btn i{
+  color:var(--gold);
+}
+
+@media(max-width:768px){
+  .nav-controls{
+    top:6px;
+    right:6px;
+  }
+  .translator-box{
+    padding:6px 8px;
+  }
+  .translator-btn,
+  .dark-mode-toggle{
+    width:38px;
+    height:38px;
+  }
+  .translator-btn i,
+  .dark-mode-toggle i{
+    font-size:1rem;
+  }
+}
 
 /* Remove o banner do topo */
 body{top:0!important}
@@ -1497,6 +1632,162 @@ body.dark-mode .impact-label{
 }
 
 /* ============================================
+   PROMOTION BANNER
+   ============================================ */
+
+.promotion-banner{
+  background:linear-gradient(135deg,rgba(212,175,55,.15),rgba(212,175,55,.05));
+  border:2px solid var(--gold);
+  border-radius:20px;
+  padding:1.5rem 2rem;
+  margin:2rem 0;
+  display:flex;
+  align-items:center;
+  gap:1.5rem;
+  flex-wrap:wrap;
+  position:relative;
+  overflow:hidden;
+}
+
+.promotion-banner::before{
+  content:'';
+  position:absolute;
+  top:-50%;
+  left:-50%;
+  width:200%;
+  height:200%;
+  background:radial-gradient(circle,rgba(212,175,55,.1)0%,transparent 70%);
+  animation:rotate-slow 40s linear infinite;
+}
+
+.promotion-badge{
+  background:var(--gold);
+  color:var(--navy);
+  padding:.5rem 1rem;
+  border-radius:999px;
+  font-weight:700;
+  font-size:.85rem;
+  display:flex;
+  align-items:center;
+  gap:.5rem;
+  position:relative;
+  z-index:1;
+  animation:pulse-glow 2s infinite;
+}
+
+.promotion-content{
+  flex:1;
+  position:relative;
+  z-index:1;
+}
+
+.promotion-content h3{
+  font-family:'Playfair Display',serif;
+  color:var(--gold);
+  font-size:1.3rem;
+  margin-bottom:.3rem;
+}
+
+.promotion-content p{
+  color:rgba(255,255,255,.85);
+  font-size:.95rem;
+}
+
+.promotion-actions{
+  margin-top:1rem;
+}
+
+.promotion-actions .btn-secondary{
+  background:transparent;
+  color:var(--gold);
+  border-color:var(--gold);
+}
+
+.promotion-actions .btn-secondary:hover{
+  background:var(--gold);
+  color:var(--navy);
+}
+
+@media(max-width:768px){
+  .promotion-banner{
+    flex-direction:column;
+    text-align:center;
+    padding:1.2rem;
+  }
+}
+
+/* ============================================
+   SUSTAINABILITY - HOVER ANIMATION FIX
+   ============================================ */
+
+.sustainability-item{
+  flex:1;
+  min-width:200px;
+  max-width:280px;
+  text-align:center;
+  padding:1.5rem;
+  position:relative;
+  z-index:1;
+  border-radius:20px;
+  transition:all .3s ease;
+  border:2px solid transparent;
+}
+
+.sustainability-item:hover{
+  background:rgba(212,175,55,.1);
+  border-color:var(--gold);
+  transform:translateY(-5px);
+}
+
+.sustainability-item.highlight{
+  background:transparent;
+  border:2px solid transparent;
+}
+
+.sustainability-item.highlight:hover{
+  background:rgba(212,175,55,.15);
+  border-color:var(--gold);
+}
+
+.sustainability-icon{
+  width:80px;
+  height:80px;
+  background:linear-gradient(135deg,rgba(255,255,255,.1),rgba(255,255,255,.05));
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:0 auto 1.5rem;
+  border:2px solid rgba(212,175,55,.3);
+  transition:all .3s ease;
+}
+
+.sustainability-item:hover .sustainability-icon{
+  background:var(--gold);
+  border-color:var(--gold);
+  box-shadow:0 0 30px rgba(212,175,55,.4);
+}
+
+.sustainability-icon i{
+  font-size:2.2rem;
+  color:var(--gold);
+  transition:all .3s ease;
+}
+
+.sustainability-item:hover .sustainability-icon i{
+  color:var(--navy);
+}
+
+.sustainability-highlight-value{
+  font-size:3rem;
+  font-weight:800;
+  color:var(--gold);
+  font-family:'Playfair Display',serif;
+  margin:1rem 0;
+  text-shadow:0 4px 20px rgba(212,175,55,.3);
+}
+
+/* ============================================
    END NEW SECTIONS
    ============================================ */
 
@@ -1670,4 +1961,318 @@ body.dark-mode .trade-show-strategy p {
 
 .counter, .impact-value, .strategy-stat-value, .sustainability-value, .sustainability-highlight-value{
   font-variant-numeric:tabular-nums;
+}
+
+/* ============================================
+   ADDITIONAL DARK MODE FIXES
+   ============================================ */
+
+/* Fix para operation cards no modo dark */
+body.dark-mode .operation-card{
+  background:var(--dark-elevated);
+  border-color:var(--dark-border);
+}
+
+body.dark-mode .operation-card .operation-content h3{
+  color:var(--gold) !important;
+}
+
+body.dark-mode .operation-card .operation-content p{
+  color:var(--dark-text) !important;
+}
+
+body.dark-mode .operation-card .operation-list li{
+  color:var(--dark-text) !important;
+}
+
+body.dark-mode .operation-card .operation-highlight small{
+  color:var(--dark-text-secondary) !important;
+}
+
+/* Fix para strategy cards no modo dark */
+body.dark-mode .strategy-card-modern{
+  background:var(--dark-elevated);
+  border-color:var(--dark-border);
+}
+
+body.dark-mode .strategy-card-modern .strategy-card-header h3{
+  color:var(--gold) !important;
+}
+
+body.dark-mode .strategy-card-modern > p{
+  color:var(--dark-text) !important;
+}
+
+body.dark-mode .strategy-features li{
+  color:var(--dark-text) !important;
+}
+
+/* Fix para sustainability no modo dark */
+body.dark-mode .sustainability-section{
+  background:var(--dark-bg);
+}
+
+body.dark-mode .sustainability-item h3{
+  color:var(--gold) !important;
+}
+
+body.dark-mode .sustainability-item > p{
+  color:var(--dark-text) !important;
+}
+
+/* Fix para promotion banner no modo dark */
+body.dark-mode .promotion-banner{
+  background:linear-gradient(135deg,rgba(212,175,55,.1),rgba(212,175,55,.05));
+}
+
+body.dark-mode .promotion-content p{
+  color:var(--dark-text) !important;
+}
+
+/* Fix para about section no modo dark */
+body.dark-mode .about{
+  background:var(--dark-surface);
+}
+
+body.dark-mode .about-content h3{
+  color:var(--gold) !important;
+}
+
+body.dark-mode .about-content p{
+  color:var(--dark-text) !important;
+}
+
+body.dark-mode .about-bullets li{
+  color:var(--dark-text) !important;
+}
+
+body.dark-mode .leadership-philosophy{
+  color:var(--gold) !important;
+  background:linear-gradient(135deg,rgba(212,175,55,.1),rgba(212,175,55,.05));
+}
+
+/* Fix para timeline no modo dark */
+body.dark-mode .timeline{
+  background:linear-gradient(180deg,var(--dark-bg) 0%,var(--dark-surface) 100%);
+}
+
+body.dark-mode .timeline-content{
+  background:var(--dark-elevated);
+  border-color:var(--dark-border);
+}
+
+body.dark-mode .timeline-title{
+  color:var(--gold) !important;
+}
+
+body.dark-mode .timeline-description{
+  color:var(--dark-text) !important;
+}
+
+body.dark-mode .achievement-box ul li{
+  color:var(--dark-text) !important;
+}
+
+/* Fix para cert cards no modo dark */
+body.dark-mode .cert-card{
+  background:var(--dark-elevated);
+  border-color:var(--dark-border);
+}
+
+body.dark-mode .cert-card h4{
+  color:var(--gold) !important;
+}
+
+body.dark-mode .cert-card .cert-subtitle{
+  color:var(--dark-text-secondary) !important;
+}
+
+body.dark-mode .cert-card > p{
+  color:var(--dark-text) !important;
+}
+
+body.dark-mode .ai-application strong{
+  color:var(--gold) !important;
+}
+
+body.dark-mode .ai-application li{
+  color:var(--dark-text) !important;
+}
+
+/* Fix para testimonials no modo dark */
+body.dark-mode .testimonials{
+  background:linear-gradient(180deg,var(--dark-bg) 0%,var(--dark-surface) 100%);
+}
+
+body.dark-mode .testimonial-card{
+  background:var(--dark-elevated);
+  border-color:var(--dark-border);
+}
+
+body.dark-mode .testimonial-author h4{
+  color:var(--gold) !important;
+}
+
+body.dark-mode .testimonial-author span{
+  color:var(--dark-text-secondary) !important;
+}
+
+body.dark-mode .testimonial-content p{
+  color:var(--dark-text) !important;
+}
+
+body.dark-mode .testimonial-date{
+  color:var(--dark-text-secondary) !important;
+}
+
+/* Fix para volunteering no modo dark */
+body.dark-mode .volunteer-section{
+  background:var(--dark-bg);
+}
+
+body.dark-mode .volunteer-card{
+  background:var(--dark-elevated);
+  border-color:var(--dark-border);
+}
+
+body.dark-mode .volunteer-card h3{
+  color:var(--gold) !important;
+}
+
+body.dark-mode .volunteer-card .school{
+  color:var(--gold) !important;
+}
+
+body.dark-mode .volunteer-card .description{
+  color:var(--dark-text) !important;
+}
+
+/* Fix para github section no modo dark */
+body.dark-mode .github{
+  background:var(--dark-bg);
+}
+
+body.dark-mode .project-showcase-card{
+  background:var(--dark-elevated);
+  border-color:var(--dark-border);
+}
+
+body.dark-mode .project-showcase-card .showcase-header h3{
+  color:var(--gold) !important;
+}
+
+body.dark-mode .project-showcase-card .showcase-content p{
+  color:var(--dark-text) !important;
+}
+
+body.dark-mode .github-interactive{
+  background:linear-gradient(135deg,var(--navy),var(--navy-light));
+}
+
+body.dark-mode .github-interactive h3{
+  color:var(--gold) !important;
+}
+
+body.dark-mode .github-interactive > p{
+  color:rgba(255,255,255,.85) !important;
+}
+
+/* Fix para blog section no modo dark */
+body.dark-mode .blog{
+  background:var(--dark-surface);
+}
+
+body.dark-mode .blog-card{
+  background:var(--dark-elevated);
+  border-color:var(--dark-border);
+}
+
+body.dark-mode .blog-card .blog-category{
+  color:var(--gold) !important;
+  background:rgba(212,175,55,.15);
+}
+
+body.dark-mode .blog-card h3{
+  color:var(--gold) !important;
+}
+
+body.dark-mode .blog-card .blog-content > p{
+  color:var(--dark-text) !important;
+}
+
+body.dark-mode .blog-card .blog-meta{
+  color:var(--dark-text-secondary) !important;
+}
+
+/* Fix para newsletter no modo dark */
+body.dark-mode .newsletter{
+  background:linear-gradient(135deg,var(--navy),var(--navy-light));
+}
+
+body.dark-mode .newsletter h2{
+  color:var(--gold) !important;
+}
+
+body.dark-mode .newsletter > p{
+  color:rgba(255,255,255,.85) !important;
+}
+
+body.dark-mode .newsletter-features span{
+  color:rgba(255,255,255,.7) !important;
+}
+
+/* Fix para contact section no modo dark */
+body.dark-mode .contact{
+  background:var(--dark-bg);
+}
+
+body.dark-mode .contact-intro h3{
+  color:var(--gold) !important;
+}
+
+body.dark-mode .contact-intro p{
+  color:var(--dark-text) !important;
+}
+
+body.dark-mode .contact-cta-card{
+  background:var(--dark-elevated);
+  border-color:var(--dark-border);
+}
+
+body.dark-mode .contact-cta-card h3{
+  color:var(--gold) !important;
+}
+
+body.dark-mode .contact-cta-card > p{
+  color:var(--dark-text) !important;
+}
+
+/* Fix para modais no modo dark */
+body.dark-mode .article-modal{
+  background:var(--dark-elevated);
+  border-color:var(--gold);
+}
+
+body.dark-mode .article-modal-content{
+  color:var(--dark-text) !important;
+}
+
+body.dark-mode .article-modal-content h2{
+  color:var(--gold) !important;
+}
+
+body.dark-mode .article-modal-content h3{
+  color:var(--gold) !important;
+}
+
+body.dark-mode .article-modal-content p{
+  color:var(--dark-text) !important;
+}
+
+body.dark-mode .article-modal-content li{
+  color:var(--dark-text) !important;
+}
+
+body.dark-mode .article-modal-content strong{
+  color:var(--gold) !important;
 }
