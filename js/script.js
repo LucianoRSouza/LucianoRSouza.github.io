@@ -1023,12 +1023,23 @@ function openArticleModal(articleId) {
 
 function closeArticleModal() {
   const overlay = document.getElementById('articleModalOverlay');
+  const content = document.getElementById('articleModalContent');
   if (!overlay) return;
   overlay.classList.remove('active');
   document.body.style.overflow = 'auto';
   document.removeEventListener('keydown', handleArticleEsc);
+  // Reset scroll
+  if (content) content.scrollTop = 0;
 }
 
 function handleArticleEsc(e) {
   if (e.key === 'Escape') closeArticleModal();
+}
+
+/* Newsletter Submit Handler */
+function handleNewsletterSubmit(e) {
+  e.preventDefault();
+  const email = e.target.querySelector('input[type="email"]').value;
+  showToast('Thank you for subscribing! Check your email for confirmation.');
+  e.target.reset();
 }
