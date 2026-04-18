@@ -31,7 +31,6 @@ button{border:0;background:none;cursor:pointer}
 @keyframes loading{to{width:100%}}
 
 /* Google Translate Widget - VERSÃO MINIMALISTA TRANSPARENTE */
-/* O container agora está no HTML com label "Tradutor" */
 #google_translate_element{display:inline-block}
 .goog-te-gadget{margin:0!important}
 
@@ -224,7 +223,7 @@ section{padding:6rem var(--container-pad);position:relative}
 .certs .section-header h2{color:#fff}
 .certs .section-header p{color:rgba(255,255,255,.82)}
 .certs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:1.8rem;max-width:1400px;margin:0 auto;position:relative;z-index:1}
-.cert-card{background:rgba(255,255,255,.06);padding:1.6rem;border-radius:18px;border:1px solid rgba(212,175,55,.22);backdrop-filter:blur(10px);transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease;display:flex;flex-direction:column}
+.cert-card{background:rgba(255,255,255,.06);padding:1.6rem;border-radius:18px;border:1px solid rgba(212,175,55,.22);backdrop-filter:blur(10px);transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease;display:flex;flex-direction:column;cursor:pointer}
 .cert-card:hover{transform:translateY(-8px);border-color:var(--gold);box-shadow:0 18px 36px rgba(212,175,55,.18);background:rgba(255,255,255,.08)}
 .cert-header{display:flex;align-items:flex-start;gap:1rem;margin-bottom:1rem}
 .cert-logo{width:78px;height:78px;background:#fff;border-radius:14px;padding:10px;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(0,0,0,.22);flex-shrink:0;overflow:hidden}
@@ -241,7 +240,6 @@ section{padding:6rem var(--container-pad);position:relative}
 .ai-application li{color:rgba(255,255,255,.9);margin:.45rem 0;line-height:1.5}
 
 /* Framework Highlight - CENTRALIZADO E MENOR */
-/* Framework Highlight - FORMATO ORIGINAL HORIZONTAL */
 .framework-highlight{grid-column:1 / -1;background:linear-gradient(135deg,rgba(212,175,55,.16),rgba(212,175,55,.06));border:2px solid var(--gold);display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center;padding:2.5rem;max-width:1000px;margin:0 auto 1.8rem;border-radius:18px}
 .framework-content{width:100%}
 .framework-content h3{font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--gold);margin-bottom:.6rem}
@@ -249,7 +247,6 @@ section{padding:6rem var(--container-pad);position:relative}
 .framework-content h3{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--gold);margin-bottom:.6rem}
 .framework-content p{color:rgba(255,255,255,.92);line-height:1.7;margin-bottom:.8rem;font-size:.95rem}
 .framework-image{position:relative;height:300px;background:var(--navy-light);border-radius:14px;overflow:hidden;display:flex;align-items:center;justify-content:center}
-.framework-image img{max-width:100%;max-height:100%;object-fit:contain;padding:1rem}
 .framework-image img{max-width:100%;max-height:100%;object-fit:contain;padding:1rem}
 .cert-badge{display:inline-flex;align-items:center;gap:.5rem;padding:.45rem .9rem;background:rgba(212,175,55,.22);border-radius:999px;font-size:.86rem;margin-top:.5rem}
 
@@ -364,7 +361,6 @@ footer{background:var(--navy);color:#fff;text-align:center;padding:2.4rem var(--
 .timeline-item::before,.timeline-content::before{display:none}
 .timeline-content{margin-left:0}
 .about-grid{grid-template-columns:1fr}
-
 }
 
 @media(max-width:980px){
@@ -392,8 +388,6 @@ nav.navbar{box-shadow:0 6px 22px rgba(0,0,0,.26)}
 .projects-grid{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
 .ml-metrics{grid-template-columns:1fr}
 .contact-grid{grid-template-columns:1fr}
-
-
 }
 
 @media(max-width:540px){
@@ -481,7 +475,6 @@ section{padding:1.2cm .8cm}
   .timeline-item[data-logo] .timeline-content{padding-top:5.3rem!important;position:relative;}
 }
 
-
 /* Cert Modal */
 .cert-modal-overlay{position:fixed;inset:0;background:rgba(15,21,56,.96);backdrop-filter:blur(10px);z-index:6000;display:none;align-items:center;justify-content:center;padding:2rem;opacity:0;transition:opacity .3s ease}
 .cert-modal-overlay.active{display:flex;opacity:1}
@@ -501,11 +494,7 @@ section{padding:1.2cm .8cm}
 .cert-modal-close{top:12px;right:12px;width:40px;height:40px}
 }
 
-
-/* ============================================
-   TESTIMONIALS SECTION
-   ============================================ */
-
+/* Testimonials */
 .testimonials{background:linear-gradient(180deg,var(--cream) 0%,var(--white) 100%);padding:6rem var(--container-pad)}
 .testimonials-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:2rem}
 .testimonial-card{background:var(--white);padding:2rem;border-radius:20px;box-shadow:var(--shadow-1);border:2px solid transparent;transition:all .25s ease;position:relative}
@@ -519,10 +508,7 @@ section{padding:1.2cm .8cm}
 .testimonial-date{margin-top:1rem;color:var(--text-light);font-size:.85rem;text-align:right}
 @media(max-width:768px){.testimonials-grid{grid-template-columns:1fr}}
 
-/* ============================================
-   BLOG SECTION
-   ============================================ */
-
+/* Blog */
 .blog{background:var(--white);padding:6rem var(--container-pad)}
 .blog-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
 .blog-card{background:var(--white);border-radius:20px;overflow:hidden;box-shadow:var(--shadow-1);border:1px solid rgba(0,0,0,.05);transition:all .28s ease;cursor:pointer}
@@ -552,10 +538,7 @@ section{padding:1.2cm .8cm}
 .article-modal-content li{margin:.5rem 0}
 @media(max-width:768px){.article-modal-overlay{padding:1rem;align-items:center}.article-modal{width:calc(100vw - 2rem);border-radius:20px}.article-modal-content{padding:1.5rem}}
 
-/* ============================================
-   GITHUB SHOWCASE SECTION
-   ============================================ */
-
+/* GitHub Showcase */
 .github-showcase{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-bottom:3rem}
 .project-showcase-card{background:var(--white);border-radius:20px;padding:2rem;box-shadow:var(--shadow-1);border:2px solid transparent;transition:all .25s ease;display:flex;flex-direction:column}
 .project-showcase-card:hover{border-color:var(--gold);transform:translateY(-6px);box-shadow:var(--shadow-2)}
@@ -576,10 +559,7 @@ section{padding:1.2cm .8cm}
 .github-cta p{color:rgba(255,255,255,.8);margin-bottom:1.5rem}
 @media(max-width:980px){.github-showcase{grid-template-columns:1fr}}
 
-/* ============================================
-   CONTACT CTA SECTION
-   ============================================ */
-
+/* Contact CTA */
 .contact-cta-grid{max-width:1100px;margin:0 auto 3rem;display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
 .contact-cta-card{background:var(--white);padding:2.5rem 2rem;border-radius:20px;text-align:center;box-shadow:var(--shadow-1);border:2px solid transparent;transition:all .25s ease}
 .contact-cta-card:hover{border-color:var(--gold);transform:translateY(-8px);box-shadow:var(--shadow-2)}
@@ -593,11 +573,7 @@ section{padding:1.2cm .8cm}
 .contact-info-item a:hover{color:var(--gold)}
 @media(max-width:900px){.contact-cta-grid{grid-template-columns:1fr;max-width:500px}}
 
-
-/* ============================================
-   DARK MODE - 2026
-   ============================================ */
-
+/* Dark Mode */
 :root{
   --dark-bg:#0a0e27;
   --dark-surface:#12183a;
@@ -711,10 +687,7 @@ body.dark-mode .dark-mode-toggle i{
   }
 }
 
-/* ============================================
-   ANIMATED COUNTERS - 2026
-   ============================================ */
-
+/* Animated Counters */
 .counter-value, .impact-value{
   font-variant-numeric:tabular-nums;
 }
@@ -765,10 +738,7 @@ body.dark-mode .impact-label{
   }
 }
 
-/* ============================================
-   BUILD BADGE - 2026
-   ============================================ */
-
+/* Build Badge */
 .build-badge{
   position:fixed;
   bottom:100px;
@@ -809,10 +779,7 @@ body.dark-mode .impact-label{
   }
 }
 
-/* ============================================
-   NEWSLETTER - 2026
-   ============================================ */
-
+/* Newsletter */
 .newsletter{
   background:linear-gradient(135deg,var(--navy),var(--navy-light));
   padding:4rem var(--container-pad);
@@ -931,10 +898,7 @@ body.dark-mode .impact-label{
   }
 }
 
-/* ============================================
-   GITHUB INTERACTIVE - 2026
-   ============================================ */
-
+/* GitHub Interactive */
 .github-interactive{
   background:linear-gradient(135deg,var(--navy),var(--navy-light));
   border-radius:24px;
@@ -1000,169 +964,728 @@ body.dark-mode .impact-label{
   text-align:center;
 }
 
-.github-stat-value{
+.github-stat .stat-number{
   display:block;
   font-size:2rem;
   font-weight:800;
   color:var(--gold);
 }
 
-.github-stat-label{
-  font-size:0.9rem;
+.github-stat .stat-label{
+  font-size:0.85rem;
   color:rgba(255,255,255,0.7);
+  text-transform:uppercase;
+  letter-spacing:0.5px;
 }
 
-.github-interactive .btn{
+/* Nav Controls */
+.nav-controls{
+  position:fixed;
+  top:90px;
+  right:20px;
+  z-index:1500;
+  display:flex;
+  gap:10px;
+}
+
+.nav-btn{
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.9);
+  border:2px solid var(--gold);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  transition:all 0.3s ease;
+  box-shadow:0 4px 15px rgba(0,0,0,0.15);
+}
+
+.nav-btn:hover{
+  transform:scale(1.1);
   background:var(--gold);
-  color:var(--navy);
-  padding:1rem 2.5rem;
-  font-size:1.1rem;
-  box-shadow:0 10px 30px rgba(212,175,55,0.3);
 }
 
-.github-interactive .btn:hover{
-  transform:translateY(-3px);
-  box-shadow:0 15px 40px rgba(212,175,55,0.4);
+.nav-btn i{
+  font-size:1.2rem;
+  color:var(--navy);
 }
 
 @media(max-width:768px){
-  .github-interactive{
-    padding:2rem 1.5rem;
+  .nav-controls{
+    top:6px;
+    right:6px;
   }
-  .github-interactive h3{
-    font-size:1.5rem;
-  }
-  .github-stats-row{
-    gap:2rem;
-  }
-  .github-stat-value{
-    font-size:1.5rem;
+  .nav-btn{
+    width:38px;
+    height:38px;
   }
 }
 
 /* ============================================
-   MOBILE GALLERY ONE-TAP FIX - 2026
+   NEW SECTIONS - OPERATIONS EXCELLENCE
    ============================================ */
 
-.project-card,
-.gallery-item,
-.trade-shows .gold-frame,
-.project-gallery,
-.gallery-main{
-  touch-action:manipulation !important;
-  -webkit-tap-highlight-color:transparent;
+/* Operations Grid - 6 Cards */
+.operations-grid{
+  max-width:1400px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:2rem;
 }
 
-.project-card .gallery-main,
-.gallery-item,
-.trade-shows .gallery-main{
+.operation-card{
+  background:var(--white);
+  border-radius:22px;
+  overflow:hidden;
+  box-shadow:var(--shadow-1);
+  border:1px solid rgba(0,0,0,.05);
+  transition:all .28s ease;
   cursor:pointer;
-  -webkit-touch-callout:none;
-  user-select:none;
 }
 
-@media(hover:none) and (pointer:coarse){
-  .project-card,
-  .gallery-item,
-  .trade-shows .gold-frame{
-    touch-action:manipulation;
+.operation-card:hover{
+  transform:translateY(-10px);
+  box-shadow:var(--shadow-2);
+  border-color:var(--gold);
+}
+
+.operation-image{
+  position:relative;
+  height:200px;
+  overflow:hidden;
+}
+
+.operation-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform .6s ease;
+}
+
+.operation-card:hover .operation-image img{
+  transform:scale(1.05);
+}
+
+.operation-overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(15,21,56,.6);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  opacity:0;
+  transition:opacity .28s ease;
+}
+
+.operation-card:hover .operation-overlay{
+  opacity:1;
+}
+
+.operation-overlay i{
+  font-size:3rem;
+  color:var(--gold);
+}
+
+.operation-content{
+  padding:1.6rem;
+}
+
+.operation-content h3{
+  font-family:'Playfair Display',serif;
+  color:var(--navy);
+  margin-bottom:.8rem;
+  font-size:1.2rem;
+  display:flex;
+  align-items:center;
+  gap:.6rem;
+}
+
+.operation-content h3 i{
+  color:var(--gold);
+  font-size:1.1rem;
+}
+
+.operation-content > p{
+  color:var(--text-light);
+  line-height:1.65;
+  font-size:.95rem;
+  margin-bottom:1rem;
+}
+
+.operation-highlight{
+  margin:1rem 0;
+  padding:1rem;
+  background:linear-gradient(135deg,rgba(212,175,55,.08),rgba(212,175,55,.03));
+  border-radius:12px;
+  border-left:3px solid var(--gold);
+}
+
+.highlight-badge{
+  display:inline-block;
+  padding:.4rem 1rem;
+  background:var(--gold);
+  color:var(--navy);
+  border-radius:999px;
+  font-size:.8rem;
+  font-weight:700;
+  margin-bottom:.5rem;
+}
+
+.highlight-badge.gold{
+  background:linear-gradient(135deg,var(--gold),var(--gold-light));
+  box-shadow:0 4px 12px rgba(212,175,55,.3);
+}
+
+.operation-highlight small{
+  display:block;
+  color:var(--text-light);
+  font-size:.85rem;
+}
+
+.operation-list{
+  margin-top:1rem;
+  padding:0;
+  list-style:none;
+}
+
+.operation-list li{
+  padding:.4rem 0;
+  padding-left:1.5rem;
+  position:relative;
+  color:var(--text);
+  font-size:.9rem;
+  border-bottom:1px solid rgba(0,0,0,.05);
+}
+
+.operation-list li:last-child{
+  border-bottom:none;
+}
+
+.operation-list li::before{
+  content:'\f00c';
+  font-family:'Font Awesome 6 Free';
+  font-weight:900;
+  position:absolute;
+  left:0;
+  color:var(--gold);
+  font-size:.8rem;
+}
+
+.operation-locations{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.5rem;
+  margin:1rem 0;
+}
+
+.location-tag{
+  padding:.4rem .9rem;
+  background:rgba(212,175,55,.12);
+  color:var(--navy);
+  border-radius:999px;
+  font-size:.8rem;
+  font-weight:600;
+  transition:all .2s ease;
+}
+
+.location-tag:hover{
+  background:var(--gold);
+  transform:translateY(-2px);
+}
+
+@media(max-width:1200px){
+  .operations-grid{
+    grid-template-columns:repeat(2,1fr);
   }
 }
 
-/* DARK MODE EXTRA FIXES - Contraste */
+@media(max-width:768px){
+  .operations-grid{
+    grid-template-columns:1fr;
+  }
+}
 
-body.dark-mode .volunteer-card,
-body.dark-mode .volunteer-card h3,
-body.dark-mode .volunteer-card .school,
-body.dark-mode .volunteer-card .period,
+/* ============================================
+   STRATEGY IN ACTION SECTION
+   ============================================ */
+
+/* Strategy Stats Banner */
+.strategy-stats-banner{
+  max-width:1000px;
+  margin:0 auto 3rem;
+  padding:2rem;
+  background:linear-gradient(135deg,var(--navy),var(--navy-light));
+  border-radius:20px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:2rem;
+  flex-wrap:wrap;
+  border:2px solid var(--gold);
+  box-shadow:0 20px 40px rgba(15,21,56,.2);
+}
+
+.strategy-stat-item{
+  text-align:center;
+  padding:0 1rem;
+}
+
+.strategy-stat-value{
+  display:block;
+  font-size:2.5rem;
+  font-weight:800;
+  color:var(--gold);
+  font-family:'Playfair Display',serif;
+}
+
+.strategy-stat-label{
+  display:block;
+  font-size:.9rem;
+  color:rgba(255,255,255,.8);
+  text-transform:uppercase;
+  letter-spacing:1px;
+  margin-top:.3rem;
+}
+
+.strategy-stat-divider{
+  width:1px;
+  height:60px;
+  background:rgba(212,175,55,.3);
+}
+
+@media(max-width:768px){
+  .strategy-stats-banner{
+    gap:1.5rem;
+    padding:1.5rem;
+  }
+  .strategy-stat-value{
+    font-size:2rem;
+  }
+  .strategy-stat-divider{
+    display:none;
+  }
+}
+
+/* Strategy Grid Modern */
+.strategy-grid-modern{
+  max-width:1200px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:2rem;
+}
+
+.strategy-card-modern{
+  background:var(--white);
+  border-radius:22px;
+  padding:2rem;
+  box-shadow:var(--shadow-1);
+  border:2px solid transparent;
+  transition:all .28s ease;
+}
+
+.strategy-card-modern:hover{
+  transform:translateY(-8px);
+  box-shadow:var(--shadow-2);
+  border-color:var(--gold);
+}
+
+.strategy-card-header{
+  display:flex;
+  align-items:center;
+  gap:1rem;
+  margin-bottom:1.2rem;
+}
+
+.strategy-icon{
+  width:60px;
+  height:60px;
+  background:linear-gradient(135deg,var(--gold),var(--gold-light));
+  border-radius:16px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+}
+
+.strategy-icon i{
+  font-size:1.6rem;
+  color:var(--navy);
+}
+
+.strategy-card-header h3{
+  font-family:'Playfair Display',serif;
+  color:var(--navy);
+  font-size:1.3rem;
+}
+
+.strategy-card-modern > p{
+  color:var(--text-light);
+  line-height:1.7;
+  margin-bottom:1.2rem;
+}
+
+.strategy-features{
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+
+.strategy-features li{
+  padding:.5rem 0;
+  padding-left:1.8rem;
+  position:relative;
+  color:var(--text);
+  font-size:.95rem;
+}
+
+.strategy-features li i{
+  position:absolute;
+  left:0;
+  top:50%;
+  transform:translateY(-50%);
+  color:var(--gold);
+  font-size:.9rem;
+}
+
+@media(max-width:768px){
+  .strategy-grid-modern{
+    grid-template-columns:1fr;
+  }
+}
+
+/* ============================================
+   SUSTAINABILITY SECTION
+   ============================================ */
+
+.sustainability-section{
+  background:var(--white);
+  padding:6rem var(--container-pad);
+}
+
+/* Sustainability Banner */
+.sustainability-banner{
+  max-width:1200px;
+  margin:0 auto 4rem;
+  padding:3rem 2rem;
+  background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 100%);
+  border-radius:30px;
+  display:flex;
+  justify-content:center;
+  align-items:stretch;
+  gap:2rem;
+  flex-wrap:wrap;
+  border:3px solid var(--gold);
+  box-shadow:0 30px 60px rgba(15,21,56,.25);
+  position:relative;
+  overflow:hidden;
+}
+
+.sustainability-banner::before{
+  content:'';
+  position:absolute;
+  top:-50%;
+  left:-50%;
+  width:200%;
+  height:200%;
+  background:radial-gradient(circle,rgba(212,175,55,.08)0%,transparent 70%);
+  animation:rotate-slow 40s linear infinite;
+}
+
+.sustainability-item{
+  flex:1;
+  min-width:200px;
+  max-width:280px;
+  text-align:center;
+  padding:1.5rem;
+  position:relative;
+  z-index:1;
+}
+
+.sustainability-item.highlight{
+  background:rgba(212,175,55,.1);
+  border-radius:20px;
+  border:2px solid var(--gold);
+}
+
+.sustainability-icon{
+  width:80px;
+  height:80px;
+  background:linear-gradient(135deg,rgba(255,255,255,.1),rgba(255,255,255,.05));
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:0 auto 1.5rem;
+  border:2px solid rgba(212,175,55,.3);
+  transition:all .3s ease;
+}
+
+.sustainability-icon i{
+  font-size:2.2rem;
+  color:var(--gold);
+}
+
+.sustainability-icon.gold-pulse{
+  background:linear-gradient(135deg,var(--gold),var(--gold-light));
+  animation:pulse-glow 2s infinite;
+}
+
+.sustainability-icon.gold-pulse i{
+  color:var(--navy);
+}
+
+.sustainability-item h3{
+  font-family:'Playfair Display',serif;
+  color:var(--gold);
+  font-size:1.3rem;
+  margin-bottom:1rem;
+}
+
+.sustainability-item > p{
+  color:rgba(255,255,255,.85);
+  line-height:1.7;
+  font-size:.95rem;
+}
+
+.sustainability-value{
+  font-size:2.2rem;
+  font-weight:800;
+  color:var(--gold);
+  font-family:'Playfair Display',serif;
+  margin:.5rem 0;
+  display:block;
+}
+
+.sustainability-divider{
+  width:1px;
+  background:rgba(212,175,55,.2);
+  align-self:stretch;
+}
+
+@media(max-width:900px){
+  .sustainability-divider{
+    display:none;
+  }
+  .sustainability-banner{
+    flex-direction:column;
+    align-items:center;
+  }
+  .sustainability-item{
+    max-width:100%;
+  }
+}
+
+/* Sustainability Image Wrapper */
+.sustainability-image-wrapper{
+  max-width:800px;
+  margin:0 auto;
+}
+
+.sustainability-image-wrapper .gold-frame{
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.sustainability-image-wrapper img{
+  width:100%;
+  height:auto;
+  display:block;
+}
+
+/* ============================================
+   END NEW SECTIONS
+   ============================================ */
+
+/* ============================================
+   DARK MODE FIXES - CORREÇÕES MODO ESCURO
+   ============================================ */
+
+/* Fix para textos nos modais no modo dark */
+body.dark-mode .article-modal-content,
+body.dark-mode .article-modal-content p,
+body.dark-mode .article-modal-content h2,
+body.dark-mode .article-modal-content h3,
+body.dark-mode .article-modal-content li {
+  color: var(--dark-text) !important;
+}
+
+body.dark-mode .article-modal-content h2,
+body.dark-mode .article-modal-content h3 {
+  color: var(--gold) !important;
+}
+
+/* Fix para textos nos cards de blog no modo dark */
+body.dark-mode .blog-card .blog-content p {
+  color: var(--dark-text) !important;
+}
+
+body.dark-mode .blog-card .blog-content h3 {
+  color: var(--gold) !important;
+}
+
+/* Fix para textos nos project cards no modo dark */
+body.dark-mode .project-card .project-content p {
+  color: var(--dark-text) !important;
+}
+
+body.dark-mode .project-card .project-highlights {
+  color: var(--dark-text-secondary) !important;
+}
+
+/* Fix para textos na seção de contact no modo dark */
+body.dark-mode .contact-intro h3 {
+  color: var(--gold) !important;
+}
+
+body.dark-mode .contact-intro p {
+  color: var(--dark-text) !important;
+}
+
+/* Fix para textos nos cert cards no modo dark */
+body.dark-mode .cert-card p {
+  color: var(--dark-text) !important;
+}
+
+body.dark-mode .cert-card .ai-application ul li {
+  color: var(--dark-text) !important;
+}
+
+/* Fix para textos nos testimonials no modo dark */
+body.dark-mode .testimonial-content p {
+  color: var(--dark-text) !important;
+}
+
+body.dark-mode .testimonial-author span {
+  color: var(--dark-text-secondary) !important;
+}
+
+/* Fix para textos no volunteering no modo dark */
 body.dark-mode .volunteer-card .description {
   color: var(--dark-text) !important;
 }
 
-body.dark-mode .volunteer-card .school {
-  color: var(--gold) !important;
+/* Fix para textos nos operation cards no modo dark */
+body.dark-mode .operation-card .operation-content p {
+  color: var(--dark-text) !important;
 }
 
-body.dark-mode .volunteer-card .description {
+body.dark-mode .operation-card .operation-list li {
+  color: var(--dark-text) !important;
+}
+
+body.dark-mode .operation-card .operation-highlight small {
   color: var(--dark-text-secondary) !important;
 }
 
-body.dark-mode .section-header h2 {
-  color: var(--gold) !important;
+/* Fix para textos nos strategy cards no modo dark */
+body.dark-mode .strategy-card-modern > p {
+  color: var(--dark-text) !important;
 }
 
-body.dark-mode .about-content h3,
-body.dark-mode .about-content p,
-body.dark-mode .leadership-philosophy {
+body.dark-mode .strategy-features li {
+  color: var(--dark-text) !important;
+}
+
+/* Fix para textos na seção about no modo dark */
+body.dark-mode .about-content p {
   color: var(--dark-text) !important;
 }
 
 body.dark-mode .about-bullets li {
-  color: var(--dark-text-secondary) !important;
+  color: var(--dark-text) !important;
 }
 
-body.dark-mode .stat-box .stat-label,
-body.dark-mode .stat-box .stat-note {
-  color: rgba(255,255,255,0.8) !important;
+/* Fix para textos na timeline no modo dark */
+body.dark-mode .timeline-description {
+  color: var(--dark-text) !important;
 }
 
-body.dark-mode .floating-badge {
-  background: rgba(255,255,255,0.1);
-  color: var(--dark-text);
+body.dark-mode .achievement-box ul li {
+  color: var(--dark-text) !important;
 }
 
-body.dark-mode .hero-description {
-  color: rgba(255,255,255,0.9) !important;
+/* Fix para textos no trade shows no modo dark */
+body.dark-mode .trade-show-strategy p {
+  color: var(--dark-text) !important;
 }
 
-body.dark-mode .subtitle {
-  color: var(--gold-light) !important;
+/* ============================================
+   NAV CONTROLS - AJUSTE POSICIONAMENTO
+   ============================================ */
+
+/* Botões lado a lado - dark mode e tradutor */
+.nav-controls{
+  position:fixed;
+  top:90px;
+  right:20px;
+  z-index:1500;
+  display:flex;
+  gap:8px;
+  flex-direction:row;
 }
 
-body.dark-mode .skill-tag {
-  background: rgba(212,175,55,0.2);
-  color: var(--gold-light);
+.dark-mode-toggle{
+  order:1;
 }
 
-body.dark-mode .project-tag:hover,
-body.dark-mode .skill-tag:hover {
-  background: var(--gold);
-  color: var(--navy);
+.translator-btn{
+  order:2;
 }
 
-/* GITHUB BUTTON CENTER FIX */
-.github-interactive .btn {
-  display: inline-flex !important;
-  margin: 0 auto !important;
-}
-
-
-
-
-
-@media (max-width: 768px) {
-  
-
-  .github-interactive .btn {
-    width: 100% !important;
-    max-width: 280px !important;
-    justify-content: center !important;
+@media(max-width:768px){
+  .nav-controls{
+    top:6px;
+    right:6px;
   }
 }
 
 /* ============================================
-   DARK MODE GLOBAL FIX - Todos os textos
+   GITHUB BUTTON - CENTRALIZAR
    ============================================ */
 
-/* Forçar cor clara em TODOS os parágrafos e textos no dark mode */
+.github-btn-container{
+  display:flex;
+  justify-content:center;
+  margin-top:1.5rem;
+}
+
+.github-btn-main{
+  display:inline-flex !important;
+  align-items:center;
+  justify-content:center;
+  gap:0.7rem;
+}
+
+.github-btn-main i{
+  font-size:1.3rem;
+}
+
+/* ============================================
+   COUNTER ANIMATION
+   ============================================ */
+
+.counter, .impact-value, .strategy-stat-value, .sustainability-value, .sustainability-highlight-value{
+  font-variant-numeric:tabular-nums;
+}
+
+/* ============================================
+   DARK MODE GLOBAL FIX - Todos os textos
+   (Importado da versao OG - correcao textos fracos)
+   ============================================ */
+
+/* Forcar cor clara em TODOS os paragrafos e textos no dark mode */
 body.dark-mode p,
 body.dark-mode li,
-body.dark-mode span:not(.stat-number):not(.impact-value):not(.github-stat-value):not(.metric-number),
+body.dark-mode span:not(.stat-number):not(.impact-value):not(.github-stat-value):not(.metric-number):not(.strategy-stat-value):not(.sustainability-value),
 body.dark-mode div:not(.gallery-overlay):not(.loading):not(.loading-bar):not(.loading-progress) {
   color: #e8e6e1;
 }
 
-/* Títulos em dourado */
+/* Titulos em dourado */
 body.dark-mode h1,
 body.dark-mode h2,
 body.dark-mode h3,
@@ -1172,7 +1695,7 @@ body.dark-mode h6 {
   color: var(--gold);
 }
 
-/* Cards e boxes específicos */
+/* Cards e boxes especificos */
 body.dark-mode .lang-item,
 body.dark-mode .skill-tag,
 body.dark-mode .project-tag {
@@ -1204,1119 +1727,172 @@ body.dark-mode .about-bullets li {
   color: #e8e6e1 !important;
 }
 
-body.dark-mode .about-bullets li strong {
-  color: var(--gold-light) !important;
+/* Volunteer card fixes */
+body.dark-mode .volunteer-card,
+body.dark-mode .volunteer-card h3,
+body.dark-mode .volunteer-card .school,
+body.dark-mode .volunteer-card .period,
+body.dark-mode .volunteer-card .description {
+  color: var(--dark-text) !important;
 }
 
-/* Achievement boxes */
-body.dark-mode .achievement-box {
-  background: rgba(212, 175, 55, 0.1);
-  border-left-color: var(--gold);
+body.dark-mode .volunteer-card .school {
+  color: var(--gold) !important;
 }
 
-body.dark-mode .achievement-box strong {
-  color: var(--gold-light) !important;
+/* Section headers */
+body.dark-mode .section-header h2 {
+  color: var(--gold) !important;
 }
 
-body.dark-mode .achievement-box li {
-  color: #e8e6e1 !important;
-}
-
-/* AI Application boxes */
-body.dark-mode .ai-application {
-  background: rgba(212, 175, 55, 0.08);
-  border-color: rgba(212, 175, 55, 0.3);
-}
-
-body.dark-mode .ai-application strong {
-  color: var(--gold-light) !important;
-}
-
-body.dark-mode .ai-application li {
-  color: #e8e6e1 !important;
-}
-
-/* Strategy detail sections */
-body.dark-mode .strategy-detail-section {
-  background: rgba(212, 175, 55, 0.08);
-  border-color: rgba(212, 175, 55, 0.3);
-}
-
-body.dark-mode .strategy-detail-section h4 {
-  color: var(--gold-light) !important;
-}
-
-body.dark-mode .strategy-detail-section li {
-  color: #e8e6e1 !important;
-}
-
-/* Timeline */
-body.dark-mode .timeline-company {
-  color: var(--gold-light) !important;
-}
-
-body.dark-mode .date-level {
-  background: rgba(212, 175, 55, 0.15);
-  border-color: rgba(212, 175, 55, 0.3);
-  color: var(--gold-light) !important;
-}
-
-/* Showcase */
-body.dark-mode .showcase-content p {
-  color: #e8e6e1 !important;
-}
-
-body.dark-mode .tech-tag {
-  background: rgba(212, 175, 55, 0.15);
-  border-color: rgba(212, 175, 55, 0.3);
-  color: var(--gold-light) !important;
-}
-
-body.dark-mode .metric-desc {
-  color: #a0a8b8 !important;
-}
-
-/* Blog */
-body.dark-mode .blog-category {
-  background: rgba(212, 175, 55, 0.15);
-  color: var(--gold-light) !important;
-}
-
-body.dark-mode .blog-meta {
-  color: #a0a8b8 !important;
-}
-
-/* Contact */
-body.dark-mode .contact-intro p {
-  color: #a0a8b8 !important;
-}
-
-body.dark-mode .contact-info-item {
-  color: #e8e6e1 !important;
-}
-
-body.dark-mode .contact-info-item a {
-  color: var(--gold-light) !important;
-}
-
-/* Footer */
-body.dark-mode footer p {
-  color: rgba(255, 255, 255, 0.8) !important;
-}
-
-/* Newsletter */
-body.dark-mode .newsletter-input::placeholder {
-  color: rgba(255, 255, 255, 0.6);
-}
-
-/* Modais */
-body.dark-mode .stat-modal-details li {
-  color: #e8e6e1 !important;
-}
-
-body.dark-mode .stat-modal-details li::before {
-  color: var(--gold);
-}
-
-/* Project highlights */
-body.dark-mode .project-highlights {
-  color: #a0a8b8 !important;
-}
-
-/* Gallery overlay */
-body.dark-mode .gallery-overlay {
-  background: rgba(15, 21, 56, 0.85);
-}
-
-body.dark-mode .gallery-overlay span {
-  color: #fff !important;
-}
-
-/* Hero */
-body.dark-mode .hero-description {
-  color: rgba(255, 255, 255, 0.9) !important;
+body.dark-mode .about-content h3,
+body.dark-mode .about-content p,
+body.dark-mode .leadership-philosophy {
+  color: var(--dark-text) !important;
 }
 
 body.dark-mode .stat-box .stat-label,
 body.dark-mode .stat-box .stat-note {
-  color: rgba(255, 255, 255, 0.85) !important;
+  color: rgba(255,255,255,0.8) !important;
 }
 
-/* Floating badges */
 body.dark-mode .floating-badge {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(212, 175, 55, 0.4);
+  background: rgba(255,255,255,0.1);
+  color: var(--dark-text);
 }
 
-body.dark-mode .floating-badge span {
-  color: #fff !important;
+body.dark-mode .hero-description {
+  color: rgba(255,255,255,0.9) !important;
 }
 
-body.dark-mode .floating-badge i {
-  color: var(--gold);
-}
-
-/* ============================================
-   GITHUB SECTION - BOTÃO CENTRALIZADO
-   ============================================ */
-
-.github-interactive {
-  background: linear-gradient(135deg, var(--navy), var(--navy-light));
-  border-radius: 24px;
-  padding: 3rem 2rem;
-  text-align: center;
-  color: #fff;
-  max-width: 800px;
-  margin: 0 auto 2rem;
-  position: relative;
-  overflow: hidden;
-  border: 2px solid var(--gold);
-}
-
-.github-interactive::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(212,175,55,0.1) 0%, transparent 70%);
-  animation: rotate-slow 40s linear infinite;
-}
-
-.github-interactive > * {
-  position: relative;
-  z-index: 1;
-}
-
-.github-interactive > i {
-  font-size: 4rem;
-  color: var(--gold);
-  margin-bottom: 1.5rem;
-  display: inline-block;
-  transition: transform 0.5s ease;
-}
-
-.github-interactive:hover > i {
-  transform: rotate(360deg) scale(1.1);
-}
-
-.github-interactive h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  color: #fff;
-}
-
-.github-interactive > p {
-  color: rgba(255,255,255,0.85) !important;
-  margin-bottom: 2rem;
-  font-size: 1.1rem;
-}
-
-.github-stats-row {
-  display: flex;
-  justify-content: center;
-  gap: 3rem;
-  margin: 2rem 0;
-  flex-wrap: wrap;
-}
-
-.github-stat {
-  text-align: center;
-}
-
-.github-stat-value {
-  display: block;
-  font-size: 2rem;
-  font-weight: 800;
-  color: var(--gold);
-}
-
-.github-stat-label {
-  font-size: 0.9rem;
-  color: rgba(255,255,255,0.7);
-}
-
-/* CONTAINER DO BOTÃO - CENTRALIZADO */
-.github-btn-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 2rem;
-  width: 100%;
-}
-
-/* BOTÃO PRINCIPAL */
-.github-btn-main {
-  background: var(--gold) !important;
-  color: var(--navy) !important;
-  padding: 1rem 2.5rem !important;
-  font-size: 1.1rem !important;
-  font-weight: 700 !important;
-  border-radius: 50px !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 0.7rem !important;
-  box-shadow: 0 10px 30px rgba(212,175,55,0.3) !important;
-  transition: all 0.3s ease !important;
-  text-decoration: none !important;
-  border: none !important;
-  cursor: pointer !important;
-}
-
-.github-btn-main:hover {
-  transform: translateY(-3px) scale(1.02) !important;
-  box-shadow: 0 15px 40px rgba(212,175,55,0.5) !important;
-  background: var(--gold-light) !important;
-}
-
-.github-btn-main i {
-  font-size: 1.2rem;
-}
-
-.github-btn-main span {
-  color: var(--navy) !important;
-  font-weight: 700 !important;
-}
-
-/* MOBILE */
-@media (max-width: 768px) {
-  .github-interactive {
-    padding: 2rem 1rem !important;
-    margin: 0 1rem 2rem !important;
-  }
-
-  .github-interactive h3 {
-    font-size: 1.5rem;
-  }
-
-  .github-stats-row {
-    gap: 2rem;
-  }
-
-  .github-stat-value {
-    font-size: 1.5rem;
-  }
-
-  .github-btn-container {
-    padding: 0 1rem;
-  }
-
-  .github-btn-main {
-    width: 100% !important;
-    max-width: 300px !important;
-    justify-content: center !important;
-    padding: 1rem 2rem !important;
-  }
-}
-
-/* NAV CONTROLS */
-.nav-controls{position:fixed;top:90px;right:14px;z-index:1501;display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.9);padding:8px 12px;border-radius:14px;box-shadow:0 4px 15px rgba(0,0,0,.15);border:1px solid rgba(212,175,55,.3)}
-.nav-controls .dark-mode-toggle{position:static!important;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.9);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s ease}
-.nav-controls .dark-mode-toggle:hover{transform:scale(1.1) rotate(15deg);background:var(--gold)}
-.nav-controls .dark-mode-toggle i{font-size:1.2rem;color:var(--navy)}
-.nav-controls .translator-box{position:static!important;background:transparent!important;padding:0!important;border:none!important;box-shadow:none!important;display:flex;flex-direction:column;align-items:flex-start}
-@media(max-width:768px){.nav-controls{top:6px!important;right:6px!important;padding:6px 8px;gap:8px}.nav-controls .dark-mode-toggle{width:38px;height:38px}.nav-controls .dark-mode-toggle i{font-size:1rem}.nav-controls .translator-box{max-width:90px}.nav-controls .translator-box span{font-size:9px!important}.nav-controls .goog-te-gadget .goog-te-combo{padding:3px 6px!important;font-size:10px!important;min-width:70px!important}}
-.dark-mode-toggle:not(.nav-controls .dark-mode-toggle),.translator-box:not(.nav-controls .translator-box){display:none!important}
-
-/* DARK MODE FIXES */
-body.dark-mode,body.dark-mode p,body.dark-mode li,body.dark-mode span:not(.stat-number):not(.impact-value):not(.github-stat-value):not(.metric-number){color:#e8e6e1}
-body.dark-mode h1,body.dark-mode h2,body.dark-mode h3,body.dark-mode h4,body.dark-mode h5,body.dark-mode h6{color:var(--gold)}
-body.dark-mode .section-header p,body.dark-mode .timeline-description,body.dark-mode .cert-card>p,body.dark-mode .project-content p,body.dark-mode .testimonial-content p,body.dark-mode .blog-content>p,body.dark-mode .contact-cta-card p,body.dark-mode .volunteer-card .description,body.dark-mode .about-content p,body.dark-mode .hero-description{color:#e8e6e1!important}
-body.dark-mode .subtitle,body.dark-mode .testimonial-author span,body.dark-mode .blog-meta,body.dark-mode .project-highlights,body.dark-mode .cert-subtitle,body.dark-mode .cert-date,body.dark-mode .date-level,body.dark-mode .metric-desc,body.dark-mode .impact-label{color:#a0a8b8!important}
-body.dark-mode .project-card,body.dark-mode .testimonial-card,body.dark-mode .blog-card,body.dark-mode .contact-cta-card,body.dark-mode .volunteer-card,body.dark-mode .timeline-content,body.dark-mode .cert-card,body.dark-mode .stat-modal,body.dark-mode .strategy-detail-card{background:var(--dark-elevated);border-color:var(--dark-border)}
-body.dark-mode .skill-tag,body.dark-mode .project-tag,body.dark-mode .tech-tag,body.dark-mode .lang-item,body.dark-mode .blog-category{background:rgba(212,175,55,.15);border-color:rgba(212,175,55,.3);color:var(--gold-light)!important}
-body.dark-mode .skill-tag:hover,body.dark-mode .project-tag:hover,body.dark-mode .lang-item:hover{background:var(--gold);color:var(--navy)!important}
-body.dark-mode .achievement-box,body.dark-mode .ai-application,body.dark-mode .strategy-detail-section{background:rgba(212,175,55,.08);border-color:rgba(212,175,55,.3)}
-body.dark-mode .achievement-box strong,body.dark-mode .ai-application strong,body.dark-mode .strategy-detail-section h4{color:var(--gold-light)!important}
-body.dark-mode .achievement-box li,body.dark-mode .ai-application li,body.dark-mode .strategy-detail-section li{color:#e8e6e1!important}
-.contact.always-navy{background:var(--navy)!important}
-.contact.always-navy .section-header h2{color:#fff!important}
-.contact.always-navy .section-header p{color:rgba(255,255,255,.8)!important}
-.contact.always-navy .contact-intro h3{color:var(--gold)!important}
-.contact.always-navy .contact-intro p{color:#e8e6e1!important}
-.contact.always-navy .contact-cta-card{background:rgba(255,255,255,.06);border-color:rgba(212,175,55,.3)}
-.contact.always-navy .contact-cta-card h3{color:var(--gold)!important}
-.contact.always-navy .contact-cta-card p{color:#e8e6e1!important}
-.contact.always-navy .cta-icon{background:var(--gold);color:var(--navy)}
-.contact.always-navy .contact-info-item{color:#e8e6e1!important}
-.contact.always-navy .contact-info-item a{color:var(--gold-light)!important}
-body.dark-mode .contact.always-navy{background:var(--navy)!important}
-body.dark-mode .contact.always-navy .section-header h2{color:var(--gold)!important}
-
-/* BUTTON POSITIONS */
-.scroll-top{right:20px;bottom:20px;width:56px;height:56px;z-index:980}
-.build-badge{right:20px;bottom:85px;z-index:997}
-@media(max-width:768px){.scroll-top{right:15px;bottom:15px;width:50px;height:50px}.build-badge{right:15px;bottom:75px;padding:10px 16px;font-size:.8rem}}
-
-/* ============================================
-   NAV CONTROLS - ESTILO PRINT (sem box)
-   ============================================ */
-
-.nav-controls {
-  position: fixed;
-  top: 90px;
-  right: 20px;
-  z-index: 1501;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-  padding: 0 !important;
-}
-
-.nav-btn {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.95);
-  border: 2px solid var(--gold);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-}
-
-.nav-btn:hover {
-  transform: scale(1.05);
-  background: var(--gold);
-  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
-}
-
-.nav-btn i {
-  font-size: 1.3rem;
-  color: var(--navy);
-  transition: color 0.3s ease;
-}
-
-.nav-btn:hover i {
-  color: var(--navy);
-}
-
-/* Translator dropdown */
-#google_translate_element {
-  position: absolute;
-  top: 60px;
-  right: 0;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-  background: white;
-  padding: 8px;
-  border-radius: 12px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(212, 175, 55, 0.3);
-}
-
-#google_translate_element.visible {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-/* Esconder elementos do Google Translate */
-.goog-te-banner-frame.skiptranslate,
-.goog-logo-link,
-.goog-te-gadget span,
-.goog-te-menu-value span:first-child,
-.goog-te-menu-value span:nth-child(3) {
-  display: none !important;
-}
-
-.goog-te-gadget {
-  height: auto !important;
-  overflow: visible !important;
-  margin: 0 !important;
-}
-
-.goog-te-gadget .goog-te-combo {
-  margin: 0 !important;
-  padding: 8px 12px !important;
-  border-radius: 8px !important;
-  border: 1px solid var(--gold) !important;
-  background: white !important;
-  color: var(--navy) !important;
-  font-family: 'Inter', sans-serif !important;
-  font-weight: 600 !important;
-  font-size: 13px !important;
-  cursor: pointer !important;
-  outline: none !important;
-  min-width: 120px !important;
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-  .nav-controls {
-    top: 10px;
-    right: 10px;
-    gap: 10px;
-  }
-
-  .nav-btn {
-    width: 42px;
-    height: 42px;
-  }
-
-  .nav-btn i {
-    font-size: 1.1rem;
-  }
-}
-
-/* Esconder elementos antigos */
-.dark-mode-toggle:not(.nav-btn),
-.translator-box:not(.nav-controls .translator-box) {
-  display: none !important;
+body.dark-mode .subtitle {
+  color: var(--gold-light) !important;
 }
 
 /* ============================================
-   MODAL INSIGHTS - DARK MODE FIX
+   DARK MODE - NEW SECTIONS (Operations, Strategy, Sustainability)
    ============================================ */
 
-body.dark-mode .article-modal-content {
-  color: #2c3e50 !important;
-}
-
-body.dark-mode .article-modal-content h2,
-body.dark-mode .article-modal-content h3 {
-  color: #0f1538 !important;
-}
-
-body.dark-mode .article-modal-content p,
-body.dark-mode .article-modal-content li {
-  color: #2c3e50 !important;
-}
-
-body.dark-mode .article-modal-content ul {
-  color: #2c3e50 !important;
-}
-
-/* Forçar texto escuro no modal independente do modo */
-.article-modal-content,
-.article-modal-content p,
-.article-modal-content li,
-.article-modal-content span {
-  color: #2c3e50 !important;
-}
-
-.article-modal-content h2,
-.article-modal-content h3,
-.article-modal-content h4 {
-  color: #0f1538 !important;
-}
-
-/* ============================================
-   FRASE FINAL - VISÍVEL EM AMBOS OS MODOS
-   ============================================ */
-
-.newsletter-container > p {
-  color: rgba(255, 255, 255, 0.9) !important;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-}
-
-body.dark-mode .newsletter-container > p {
-  color: rgba(255, 255, 255, 0.9) !important;
-}
-
-/* Garantir contraste no modo claro também */
-.newsletter {
-  background: linear-gradient(135deg, var(--navy), var(--navy-light)) !important;
-}
-
-.newsletter h2 {
-  color: var(--gold) !important;
-}
-
-.newsletter-container > p {
-  color: rgba(255, 255, 255, 0.95) !important;
-  font-weight: 500;
-}
-
-/* ============================================
-   TRADE SHOW - DARK MODE FIX
-   ============================================ */
-
-body.dark-mode .trade-show-strategy {
+body.dark-mode .operation-card {
   background: var(--dark-elevated);
-  border-color: rgba(212, 175, 55, 0.3);
+  border-color: var(--dark-border);
 }
 
-body.dark-mode .trade-show-strategy h3 {
+body.dark-mode .operation-content h3 {
   color: var(--gold) !important;
 }
 
-body.dark-mode .trade-show-strategy > p {
-  color: #e8e6e1 !important;
+body.dark-mode .operation-content > p {
+  color: var(--dark-text) !important;
 }
 
-body.dark-mode .strategy-item {
-  background: rgba(212, 175, 55, 0.08);
-  border-color: rgba(212, 175, 55, 0.2);
+body.dark-mode .operation-list li {
+  color: var(--dark-text) !important;
+  border-bottom-color: rgba(255,255,255,0.05);
 }
 
-body.dark-mode .strategy-item p {
-  color: #e8e6e1 !important;
+body.dark-mode .operation-list li::before {
+  color: var(--gold);
 }
 
-body.dark-mode .strategy-item:hover {
-  background: rgba(212, 175, 55, 0.15);
+body.dark-mode .operation-highlight {
+  background: linear-gradient(135deg, rgba(212,175,55,.12), rgba(212,175,55,.05));
+  border-left-color: var(--gold);
+}
+
+body.dark-mode .operation-highlight small {
+  color: var(--dark-text-secondary) !important;
+}
+
+body.dark-mode .location-tag {
+  background: rgba(212,175,55,.15);
+  color: var(--gold-light);
+}
+
+body.dark-mode .location-tag:hover {
+  background: var(--gold);
+  color: var(--navy);
+}
+
+/* Strategy Cards */
+body.dark-mode .strategy-card-modern {
+  background: var(--dark-elevated);
+  border-color: var(--dark-border);
+}
+
+body.dark-mode .strategy-card-modern:hover {
   border-color: var(--gold);
 }
 
-/* ============================================
-   TRANSLATOR DROPDOWN - FUNCIONAL
-   ============================================ */
-
-#google_translate_element {
-  position: absolute !important;
-  top: 55px !important;
-  right: 0 !important;
-  opacity: 0 !important;
-  visibility: hidden !important;
-  transition: all 0.3s ease !important;
-  background: white !important;
-  padding: 10px !important;
-  border-radius: 12px !important;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3) !important;
-  border: 2px solid var(--gold) !important;
-  z-index: 9999 !important;
-  min-width: 140px !important;
+body.dark-mode .strategy-card-header h3 {
+  color: var(--gold) !important;
 }
 
-#google_translate_element.visible {
-  opacity: 1 !important;
-  visibility: visible !important;
-  pointer-events: auto !important;
+body.dark-mode .strategy-card-modern > p {
+  color: var(--dark-text) !important;
 }
 
-/* Esconder todos os elementos do Google exceto o select */
-.goog-te-banner-frame,
-.goog-logo-link,
-.goog-te-gadget span,
-.goog-te-menu-value span:first-child,
-.goog-te-menu-value span:nth-child(3),
-.goog-te-menu-value span:last-child {
-  display: none !important;
+body.dark-mode .strategy-features li {
+  color: var(--dark-text) !important;
 }
 
-.goog-te-gadget {
-  height: auto !important;
-  overflow: visible !important;
-  margin: 0 !important;
-  font-size: 0 !important;
+body.dark-mode .strategy-features li i {
+  color: var(--gold);
 }
 
-.goog-te-gadget .goog-te-combo {
-  margin: 0 !important;
-  padding: 8px 12px !important;
-  border-radius: 8px !important;
-  border: 1px solid var(--gold) !important;
-  background: white !important;
-  color: var(--navy) !important;
-  font-family: 'Inter', sans-serif !important;
-  font-weight: 600 !important;
-  font-size: 13px !important;
-  cursor: pointer !important;
-  outline: none !important;
-  min-width: 120px !important;
-  display: block !important;
+body.dark-mode .strategy-icon {
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
 }
 
-/* ============================================
-   PROJECT CARDS - DARK MODE FIX
-   ============================================ */
+/* Sustainability */
+body.dark-mode .sustainability-section {
+  background: var(--dark-bg);
+}
 
+body.dark-mode .sustainability-banner {
+  border-color: var(--gold);
+}
+
+body.dark-mode .sustainability-item > p {
+  color: rgba(255,255,255,0.85) !important;
+}
+
+body.dark-mode .sustainability-item h3 {
+  color: var(--gold) !important;
+}
+
+body.dark-mode .sustainability-value {
+  color: var(--gold);
+}
+
+body.dark-mode .sustainability-divider {
+  background: rgba(212,175,55,.2);
+}
+
+/* Showcase cards */
 body.dark-mode .project-showcase-card {
   background: var(--dark-elevated);
   border-color: var(--dark-border);
 }
 
-body.dark-mode .project-showcase-card h3 {
+body.dark-mode .showcase-header h3 {
   color: var(--gold) !important;
 }
 
 body.dark-mode .showcase-content p {
-  color: #e8e6e1 !important;
+  color: var(--dark-text) !important;
 }
 
-body.dark-mode .tech-tag {
-  background: rgba(212, 175, 55, 0.15);
-  border-color: rgba(212, 175, 55, 0.3);
-  color: var(--gold-light) !important;
+body.dark-mode .showcase-metrics {
+  border-top-color: var(--dark-border);
 }
 
 body.dark-mode .metric-desc {
-  color: #a0a8b8 !important;
+  color: var(--dark-text-secondary) !important;
 }
 
-/* Forçar texto escuro nos cards de projetos no modo claro */
-.project-showcase-card .showcase-content p,
-.project-showcase-card .tech-tag {
-  color: var(--text) !important;
-}
-
-.project-showcase-card h3 {
-  color: var(--navy) !important;
-}
-
-
-/* ============================================
-   CORREÇÕES FINAIS - DROPDOWN LIMPO + MOBILE
-   ============================================ */
-
-/* 1. DROPDOWN SÓ O QUADRADINHO DO G - SEM ESPAÇO */
-.google-g-ball {
-  display: none !important;
-}
-
-/* Container SUPER COMPACTO - ABAIXO DO BOTÃO GLOBO */
-#google_translate_element {
-  position: absolute !important;
-  top: 50px !important;
-  left: 50% !important;
-  transform: translateX(-50%) translateY(-10px) !important;
-  opacity: 0 !important;
-  visibility: hidden !important;
-  transition: all 0.3s ease !important;
-  z-index: 9999 !important;
-  transform: translateY(-10px) !important;
-  background: white !important;
-  border: 2px solid #d4af37 !important;
-  border-radius: 8px !important;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
-  padding: 4px !important;
-  min-width: auto !important;
-  width: auto !important;
-  display: inline-block !important;
-}
-
-#google_translate_element.visible {
-  opacity: 1 !important;
-  visibility: visible !important;
-  pointer-events: auto !important;
-  transform: translateY(0) !important;
-}
-
-/* SEM LABEL - REMOVIDO */
-
-/* Select bem compacto */
-#google_translate_element .goog-te-combo {
-  width: auto !important;
-  min-width: 80px !important;
-  padding: 4px 8px !important;
-  border-radius: 6px !important;
-  border: 1px solid #d4af37 !important;
-  background: white !important;
-  color: #0f1538 !important;
-  font-family: 'Inter', sans-serif !important;
-  font-weight: 600 !important;
-  font-size: 12px !important;
-  cursor: pointer !important;
-  outline: none !important;
-  margin: 0 !important;
-  height: auto !important;
-  line-height: 1.2 !important;
-}
-
-/* Esconder TUDO que não é necessário */
-#google_translate_element .goog-te-gadget span,
-#google_translate_element .goog-logo-link,
-#google_translate_element .goog-te-banner-frame,
-#google_translate_element .goog-te-gadget > span,
-#google_translate_element .goog-te-menu-value span {
-  display: none !important;
-}
-
-/* Gadget limpo */
-#google_translate_element .goog-te-gadget {
-  margin: 0 !important;
-  padding: 0 !important;
-  display: block !important;
-}
-
-/* 2. MOBILE - DESCIDO MAIS UM POUCO */
-@media(max-width:768px){
-  .nav-controls {
-    top: 18px !important;
-    right: 12px !important;
-  }
-
-  #google_translate_element {
-    top: 42px !important;
-    left: -70px !important; /* Movido mais para esquerda, debaixo do globo */
-    transform: translateY(-10px) !important;
-    padding: 3px !important;
-    border-radius: 6px !important;
-  }
-
-  #google_translate_element.visible {
-    transform: translateY(0) !important;
-  }
-
-  #google_translate_element .goog-te-combo {
-    font-size: 11px !important;
-    padding: 3px 6px !important;
-    min-width: 70px !important;
-  }
-}
-
-
-
-
-
-
-
-
-/* ============================================
-   CORREÇÃO DEFINITIVA - FRAME EXATO DO TAMANHO DO G
-   ============================================ */
-
-/* Frame EXATO - do tamanho do quadrado do G */
-#google_translate_element {
-  width: 28px !important;
-  min-width: 28px !important;
-  max-width: 28px !important;
-  height: 28px !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  left: 12px !important;
-  top: 58px !important;
-  overflow: hidden !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-}
-
-#google_translate_element .goog-te-combo {
-  width: 100% !important;
-  height: 100% !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  border: none !important;
-  background: transparent !important;
-  font-size: 0 !important;
-  color: transparent !important;
-  cursor: pointer !important;
-}
-
-/* Mobile */
-@media(max-width:768px){
-  #google_translate_element {
-    width: 26px !important;
-    min-width: 26px !important;
-    max-width: 26px !important;
-    height: 26px !important;
-    left: 10px !important;
-    top: 50px !important;
-    padding: 0 !important;
-  }
-}
-
-/* ============================================
-   PROMOTION BANNER
-   ============================================ */
-
-.promotion-banner{
-  background:linear-gradient(135deg,rgba(212,175,55,.15),rgba(212,175,55,.05));
-  border:2px solid var(--gold);
-  border-radius:20px;
-  padding:1.5rem 2rem;
-  margin:2rem 0;
-  display:flex;
-  align-items:center;
-  gap:1.5rem;
-  flex-wrap:wrap;
-  position:relative;
-  overflow:hidden;
-}
-
-.promotion-banner::before{
-  content:'';
-  position:absolute;
-  top:-50%;
-  left:-50%;
-  width:200%;
-  height:200%;
-  background:radial-gradient(circle,rgba(212,175,55,.1)0%,transparent 70%);
-  animation:rotate-slow 40s linear infinite;
-}
-
-.promotion-badge{
-  background:var(--gold);
-  color:var(--navy);
-  padding:.5rem 1rem;
-  border-radius:999px;
-  font-weight:700;
-  font-size:.85rem;
-  display:flex;
-  align-items:center;
-  gap:.5rem;
-  position:relative;
-  z-index:1;
-  animation:pulse-glow 2s infinite;
-}
-
-.promotion-content{
-  flex:1;
-  position:relative;
-  z-index:1;
-}
-
-.promotion-content h3{
-  font-family:'Playfair Display',serif;
-  color:var(--gold);
-  font-size:1.3rem;
-  margin-bottom:.3rem;
-}
-
-.promotion-content p{
-  color:rgba(255,255,255,.85);
-  font-size:.95rem;
-}
-
-.promotion-actions{
-  margin-top:1rem;
-}
-
-.promotion-actions .btn-secondary{
-  background:transparent;
-  color:var(--gold);
-  border-color:var(--gold);
-}
-
-.promotion-actions .btn-secondary:hover{
-  background:var(--gold);
-  color:var(--navy);
-}
-
-@media(max-width:768px){
-  .promotion-banner{
-    flex-direction:column;
-    text-align:center;
-    padding:1.2rem;
-  }
-}
-
-/* ============================================
-   NEWSLETTER SECTION
-   ============================================ */
-
-.newsletter{
-  background:linear-gradient(135deg,var(--navy),var(--navy-light));
-  padding:4rem var(--container-pad);
-  position:relative;
-  overflow:hidden;
-}
-
-.newsletter::before{
-  content:'';
-  position:absolute;
-  top:-50%;
-  left:-50%;
-  width:200%;
-  height:200%;
-  background:radial-gradient(circle,rgba(212,175,55,.08)0%,transparent 70%);
-  animation:rotate-slow 40s linear infinite;
-}
-
-.newsletter-container{
-  max-width:800px;
-  margin:0 auto;
-  text-align:center;
-  position:relative;
-  z-index:1;
-}
-
-.newsletter h2{
-  font-family:'Playfair Display',serif;
-  color:var(--gold);
-  font-size:2rem;
-  margin-bottom:0.5rem;
-}
-
-.newsletter>p{
-  color:rgba(255,255,255,.85);
-  margin-bottom:2rem;
-  font-size:1.1rem;
-}
-
-.newsletter-form{
-  display:flex;
-  gap:1rem;
-  justify-content:center;
-  flex-wrap:wrap;
-}
-
-.newsletter-input{
-  flex:1;
-  min-width:280px;
-  max-width:400px;
-  padding:14px 20px;
-  border-radius:50px;
-  border:2px solid rgba(212,175,55,.3);
-  background:rgba(255,255,255,.1);
-  color:#fff;
-  font-size:1rem;
-  transition:all 0.3s ease;
-}
-
-.newsletter-input::placeholder{
-  color:rgba(255,255,255,.6);
-}
-
-.newsletter-input:focus{
-  outline:none;
-  border-color:var(--gold);
-  background:rgba(255,255,255,.15);
-}
-
-.newsletter-btn{
-  padding:14px 28px;
-  border-radius:50px;
-  background:var(--gold);
-  color:var(--navy);
-  font-weight:700;
-  border:none;
-  cursor:pointer;
-  display:flex;
-  align-items:center;
-  gap:8px;
-  transition:all 0.3s ease;
-}
-
-.newsletter-btn:hover{
-  transform:translateY(-2px);
-  box-shadow:0 8px 20px rgba(212,175,55,.3);
-}
-
-.newsletter-features{
-  display:flex;
-  justify-content:center;
-  gap:2rem;
-  margin-top:1.5rem;
-  flex-wrap:wrap;
-}
-
-.newsletter-features span{
-  color:rgba(255,255,255,.7);
-  font-size:0.85rem;
-  display:flex;
-  align-items:center;
-  gap:6px;
-}
-
-.newsletter-features i{
-  color:var(--gold);
-}
-
-@media(max-width:600px){
-  .newsletter-form{
-    flex-direction:column;
-    align-items:center;
-  }
-  .newsletter-input{
-    min-width:100%;
-  }
-}
-
-/* ============================================
-   DARK MODE FIXES - COMPREHENSIVE
-   ============================================ */
-
-/* Fix para todos os textos no modo dark */
-body.dark-mode,
-body.dark-mode p,
-body.dark-mode li,
-body.dark-mode span:not(.stat-number):not(.impact-value):not(.metric-number):not(.github-stat-value){
-  color:var(--dark-text);
-}
-
-body.dark-mode h1,
-body.dark-mode h2,
-body.dark-mode h3,
-body.dark-mode h4{
-  color:var(--gold);
-}
-
-/* Fix para seções */
-body.dark-mode section.about,
-body.dark-mode section.timeline,
-body.dark-mode section.projects,
-body.dark-mode section.certs,
-body.dark-mode section.testimonials,
-body.dark-mode section.volunteer-section,
-body.dark-mode section.github,
-body.dark-mode section.blog{
-  background:var(--dark-bg);
-}
-
-body.dark-mode section.contact{
-  background:var(--dark-surface);
-}
-
-/* Fix para cards */
-body.dark-mode .project-card,
-body.dark-mode .testimonial-card,
-body.dark-mode .blog-card,
-body.dark-mode .cert-card,
-body.dark-mode .timeline-content{
-  background:var(--dark-elevated);
-  border-color:var(--dark-border);
-}
-
-/* Fix para textos em cards */
-body.dark-mode .project-content p,
-body.dark-mode .testimonial-content p,
-body.dark-mode .blog-card .blog-content > p,
-body.dark-mode .cert-card > p,
-body.dark-mode .timeline-description,
-body.dark-mode .about-content p,
-body.dark-mode .volunteer-card .description,
-body.dark-mode .trade-show-strategy p{
-  color:var(--dark-text) !important;
-}
-
-/* Fix para subtitles e meta */
-body.dark-mode .project-highlights,
-body.dark-mode .blog-meta,
-body.dark-mode .cert-subtitle,
-body.dark-mode .testimonial-author span,
-body.dark-mode .impact-label{
-  color:var(--dark-text-secondary) !important;
-}
-
-/* Fix para modais */
-body.dark-mode .article-modal{
-  background:var(--dark-elevated);
-}
-
-body.dark-mode .article-modal-content,
-body.dark-mode .article-modal-content p,
-body.dark-mode .article-modal-content li{
-  color:var(--dark-text) !important;
-}
-
-body.dark-mode .article-modal-content h2,
-body.dark-mode .article-modal-content h3{
-  color:var(--gold) !important;
-}
-
-/* Fix para newsletter no modo dark */
-body.dark-mode .newsletter{
-  background:linear-gradient(135deg,var(--navy),var(--navy-light));
-}
-
-body.dark-mode .newsletter h2{
-  color:var(--gold) !important;
-}
-
-body.dark-mode .newsletter > p{
-  color:rgba(255,255,255,.85) !important;
-}
-
-body.dark-mode .newsletter-features span{
-  color:rgba(255,255,255,.7) !important;
+body.dark-mode .tech-tag {
+  background: rgba(212,175,55,.15);
+  color: var(--gold-light);
+  border-color: rgba(212,175,55,.3);
 }
