@@ -54,46 +54,41 @@ function googleTranslateElementInit() {
 }
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async defer></script>
-
-
-
-
-
 <base target="_blank">
 </head>
 <body>
 <div class="cursor" id="cursor"></div>
 <div class="cursor-follower" id="cursorFollower"></div>
 
-<!-- Loading Screen com Fallback -->
+<!-- Loading Screen -->
 <div class="loading" id="loading">
 <div class="loading-logo">LR.</div>
 <div class="loading-bar"><div class="loading-progress"></div></div>
 </div>
 
 <div class="nav-controls">
-  <button class="nav-btn translator-btn" id="translatorBtn" aria-label="Translate" title="Translate">
-    <i class="fas fa-globe"></i>
-  </button>
   <button class="nav-btn dark-mode-toggle" id="darkModeToggle" aria-label="Toggle dark mode">
     <i class="fas fa-moon" id="darkModeIcon"></i>
   </button>
+  <button class="nav-btn translator-btn" id="translatorBtn" aria-label="Translate" title="Translate">
+    <i class="fas fa-globe"></i>
+  </button>
   <div id="google_translate_element" style="position:absolute;top:60px;right:0;opacity:0;pointer-events:none;transition:opacity .3s;"></div>
 </div>
-
 
 <nav aria-label="Primary" class="navbar" id="navbar">
 <a class="logo" href="#"><i class="fas fa-crown"></i> LR.</a>
 <ul class="nav-links">
 <li><a href="#about">About</a></li>
 <li><a href="#timeline">Experience</a></li>
+<li><a href="#operations">Operations</a></li>
+<li><a href="#strategy">Strategy</a></li>
 <li><a href="#projects">Projects</a></li>
-<li><a href="#trade-shows">Trade Shows</a></li>
-<li><a href="#certs">Certifications</a></li>
 <li><a href="#contact">Contact</a></li>
 </ul>
 </nav>
 
+<!-- 1. HERO -->
 <section aria-label="Hero" class="hero" id="home">
 <div class="hero-particles" id="particles"></div>
 <div class="hero-container">
@@ -103,25 +98,6 @@ function googleTranslateElementInit() {
 <p class="hero-description">
           I connect governance, technical rigor, and AI to deliver measurable outcomes: transparent tenders, reliable partners, and resilient operations across Europe, LATAM, and Asia.
         </p>
-
-<!-- Promotion Banner -->
-<div class="promotion-banner animate-on-scroll">
-  <div class="promotion-badge">
-    <i class="fas fa-star"></i>
-    <span>New Role</span>
-  </div>
-  <div class="promotion-content">
-    <h3>Category Manager — Strategic Procurement & Operations</h3>
-    <p>Details Hospitality, Sports & Leisure · Apr 2026</p>
-    <div class="promotion-actions">
-      <a href="CV_EN.pdf" class="btn btn-secondary" download>
-        <i class="fas fa-download"></i>
-        <span>Download CV</span>
-      </a>
-    </div>
-  </div>
-</div>
-
 <div aria-label="Key metrics" class="hero-stats">
 <div aria-label="Cumulative savings delivered" class="stat-box" data-stat="savings" tabindex="0">
 <i aria-hidden="true" class="fas fa-piggy-bank stat-icon"></i>
@@ -194,6 +170,7 @@ function googleTranslateElementInit() {
 </div>
 </section>
 
+<!-- 2. ABOUT -->
 <section aria-label="About" class="about" id="about">
 <div class="section-header animate-on-scroll">
 <h2>Leadership Philosophy</h2>
@@ -232,6 +209,7 @@ function googleTranslateElementInit() {
 </div>
 </section>
 
+<!-- 3. TIMELINE -->
 <section aria-label="Professional Journey" class="timeline" id="timeline">
 <div class="section-header animate-on-scroll">
 <h2>Professional Journey</h2>
@@ -246,11 +224,46 @@ function googleTranslateElementInit() {
 <span class="indicator-dot" data-index="1"></span>
 <span class="indicator-dot" data-index="2"></span>
 <span class="indicator-dot" data-index="3"></span>
+<span class="indicator-dot" data-index="4"></span>
 </div>
 </div>
 </div>
 <div class="timeline-items" id="timelineItems">
-<div class="timeline-item active" data-company="details" data-index="0" data-logo="Details_Symbol.jpg">
+<!-- Category Manager - Details -->
+<div class="timeline-item active" data-company="details-cm" data-index="0" data-logo="Details_Symbol.jpg">
+<div class="timeline-date">
+<span class="date-range">Apr 2026 – Present</span>
+<span class="date-level">Management</span>
+</div>
+<div class="timeline-content">
+<h3 class="timeline-title">Category Manager – Strategic Procurement &amp; Operations</h3>
+<div class="timeline-company">
+<i aria-hidden="true" class="fas fa-building"></i>
+<span>Details — Hospitality, Sports &amp; Leisure</span>
+</div>
+<p class="timeline-description">
+              Leading category strategy and procurement operations across hospitality, sports and leisure assets. Driving cross-functional alignment, supplier governance and AI-enabled sourcing decisions for multi-property portfolios in Portugal.
+            </p>
+<div class="achievement-box">
+<strong><i aria-hidden="true" class="fas fa-trophy"></i>
+<span>Key Achievements</span>:</strong>
+<ul>
+<li>Promoted to Category Manager after 11 months as Senior Buyer, recognized for procurement transformation impact.</li>
+<li>Oversaw strategic sourcing for €10M+ spend across HVAC, SCIE, energy, F&amp;B, laundry and marketing categories.</li>
+<li>Built category playbooks with RFI/RFP/RFQ frameworks, weighted scoring and audit-ready award trails.</li>
+<li>Delivered measurable cost reductions while maintaining luxury service standards across 24+ assets.</li>
+</ul>
+</div>
+<div class="skills-tags">
+<span class="skill-tag">Category Strategy</span>
+<span class="skill-tag">Procurement Operations</span>
+<span class="skill-tag">Supplier Governance</span>
+<span class="skill-tag">AI-Enabled Sourcing</span>
+</div>
+</div>
+</div>
+
+<div class="timeline-item" data-company="details" data-index="1" data-logo="Details_Symbol.jpg">
 <div class="timeline-date">
 <span class="date-range">2025–Present</span>
 <span class="date-level">Senior Level</span>
@@ -283,7 +296,7 @@ function googleTranslateElementInit() {
 </div>
 </div>
 </div>
-<div class="timeline-item" data-company="skn-global" data-index="1" data-logo="SKN_Global.png">
+<div class="timeline-item" data-company="skn-global" data-index="2" data-logo="SKN_Global.png">
 <div class="timeline-date">
 <span class="date-range">2022–2025</span>
 <span class="date-level">Director Level</span>
@@ -311,7 +324,7 @@ function googleTranslateElementInit() {
 </div>
 </div>
 </div>
-<div class="timeline-item" data-company="skn-europe" data-index="2" data-logo="SKN_Global.png">
+<div class="timeline-item" data-company="skn-europe" data-index="3" data-logo="SKN_Global.png">
 <div class="timeline-date">
 <span class="date-range">2018–2022</span>
 <span class="date-level">Manager Level</span>
@@ -339,7 +352,7 @@ function googleTranslateElementInit() {
 </div>
 </div>
 </div>
-<div class="timeline-item" data-company="skn-brasil" data-index="3" data-logo="SKN_Brasil.png">
+<div class="timeline-item" data-company="skn-brasil" data-index="4" data-logo="SKN_Brasil.png">
 <div class="timeline-date">
 <span class="date-range">2011–2018</span>
 <span class="date-level">Growth Phase</span>
@@ -371,415 +384,340 @@ function googleTranslateElementInit() {
 </div>
 </section>
 
-
-<!-- NEW SECTION: Golf Infrastructure & Technical Operations Excellence -->
-<section aria-label="Golf Infrastructure Operations" class="projects" id="operations">
+<!-- 4. OPERATIONS EXCELLENCE - Grid 6 Cards -->
+<section aria-label="Operations Excellence" class="projects" id="operations" style="background:var(--cream)">
 <div class="section-header animate-on-scroll">
-<h2>Golf Infrastructure & Technical Operations Excellence</h2>
-<p>Leading technical infrastructure across Portugal's most prestigious golf destinations</p>
+<h2>Operations Excellence</h2>
+<p>Multi-cluster infrastructure management across Portugal's premium assets</p>
 </div>
-<div class="projects-grid" id="projectsGrid">
-<div class="project-card animate-on-scroll" data-gallery="golf-infra">
-<div class="project-gallery">
-<div class="gallery-main">
-<img alt="Golf Infrastructure Excellence" src="img/golf_infrastructure_excellence.jpg"/>
-<div class="gallery-overlay">
-<i aria-hidden="true" class="fas fa-images"></i>
-<span>View Gallery</span>
-</div>
-</div>
-</div>
-<div class="project-content">
-<h3>Elite Golf Portfolio Management</h3>
-<p>I lead and manage technical infrastructure projects across some of Portugal's most prestigious golf destinations, including San Lorenzo, Palmares, Old Course, Millennium, and Vale do Pisão.</p>
-<div class="project-highlights">
-<strong>Scope:</strong> Technical assessments, modernization, multi-cluster maintenance, tender leadership
-          </div>
-<div class="project-tags">
-<span class="project-tag">Golf Operations</span>
-<span class="project-tag">Infrastructure</span>
-<span class="project-tag">Technical Leadership</span>
-</div>
-</div>
-</div>
-<div class="project-card animate-on-scroll" data-gallery="pga-els">
-<div class="project-gallery">
-<div class="gallery-main">
-<img alt="PGA Europe Els Club Infrastructure" src="img/pga_europe_elsclub_infrastructure.jpg"/>
-<div class="gallery-overlay">
-<i aria-hidden="true" class="fas fa-images"></i>
-<span>View Gallery</span>
-</div>
-</div>
-</div>
-<div class="project-content">
-<h3>PGA Europe — Els Club Infrastructure</h3>
-<p>Technical preparation and procurement operations for the PGA Europe event hosted at the Els Club — a long-term, high-impact, 5-year contractual project within the group.</p>
-<div class="project-highlights">
-<strong>Event:</strong> Portugal Invitational 2026 · <strong>Value:</strong> $3M purse
-          </div>
-<div class="project-tags">
-<span class="project-tag">PGA Tour</span>
-<span class="project-tag">Event Infrastructure</span>
-<span class="project-tag">Premium Venues</span>
-</div>
-</div>
-</div>
-</div>
-<div class="trade-show-strategy" style="max-width:1200px;margin:4rem auto 0;padding:3rem;background:var(--white);border-radius:22px;box-shadow:var(--shadow-1);border:2px solid rgba(212,175,55,.2)">
-<h3><i class="fas fa-golf-ball" style="color: var(--gold); margin-right: 10px;"></i>Technical Infrastructure Responsibilities</h3>
-<p>My work covers lighting systems, HVAC, DHW, SCIE, energy systems, elevator modernization, structural rehabilitation, and multi-asset coordination across premium golf and hospitality assets.</p>
-<div class="strategy-grid">
- <div class="strategy-item"><i class="fas fa-lightbulb"></i><p>Lighting Systems</p></div>
- <div class="strategy-item"><i class="fas fa-wind"></i><p>HVAC & Climate Control</p></div>
- <div class="strategy-item"><i class="fas fa-fire"></i><p>DHW & Heating Systems</p></div>
- <div class="strategy-item"><i class="fas fa-shield-alt"></i><p>SCIE & Fire Safety</p></div>
- <div class="strategy-item"><i class="fas fa-bolt"></i><p>Energy Systems</p></div>
- <div class="strategy-item"><i class="fas fa-arrow-up"></i><p>Elevator Modernization</p></div>
-</div>
+
+<!-- Operations Grid - 6 Cards -->
+<div class="operations-grid">
+  <!-- Golf -->
+  <div class="operation-card animate-on-scroll" data-gallery="golf">
+    <div class="operation-image">
+      <img alt="Golf Infrastructure" src="golf_infrastructure_excellence.jpg"/>
+      <div class="operation-overlay">
+        <i class="fas fa-golf-ball"></i>
+      </div>
+    </div>
+    <div class="operation-content">
+      <h3><i class="fas fa-golf-ball"></i> Golf Infrastructure</h3>
+      <p>Technical leadership across 12 premier golf courses: San Lorenzo, Palmares, Old Course, Millennium, Vale do Pisão.</p>
+      <div class="operation-highlight">
+        <span class="highlight-badge gold">PGA Portugal 2026</span>
+        <small>Els Club · $3M purse · 78 players · 5-year contract</small>
+      </div>
+      <ul class="operation-list">
+        <li>HVAC & Climate Control Systems</li>
+        <li>DHW & Heating Infrastructure</li>
+        <li>SCIE & Fire Safety Compliance</li>
+        <li>Energy Systems Optimization</li>
+        <li>Elevator Modernization</li>
+        <li>Lighting & Illumination</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Padel -->
+  <div class="operation-card animate-on-scroll" data-gallery="padel">
+    <div class="operation-image">
+      <img alt="Padel Facilities" src="hyatt_padel_premium_courts.jpg"/>
+      <div class="operation-overlay">
+        <i class="fas fa-table-tennis"></i>
+      </div>
+    </div>
+    <div class="operation-content">
+      <h3><i class="fas fa-table-tennis"></i> Padel & Sports</h3>
+      <p>Hyatt Padel Club — full technical and procurement operations for premium sporting facilities.</p>
+      <div class="operation-highlight">
+        <span class="highlight-badge">Professional Courts</span>
+        <small>KYS Compliance · Premium Surfaces</small>
+      </div>
+      <ul class="operation-list">
+        <li>Supplier Negotiations: AlgarveTennis</li>
+        <li>Verditrapor & Varandas da Natureza</li>
+        <li>Professional Court Specifications</li>
+        <li>Synthetic Surface Evaluation</li>
+        <li>Complete Scope Review</li>
+        <li>Quality Assurance Protocols</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Hospitality -->
+  <div class="operation-card animate-on-scroll" data-gallery="hospitality">
+    <div class="operation-image">
+      <img alt="Luxury Hospitality" src="hospitality_technical_modernization.jpg"/>
+      <div class="operation-overlay">
+        <i class="fas fa-hotel"></i>
+      </div>
+    </div>
+    <div class="operation-content">
+      <h3><i class="fas fa-hotel"></i> Luxury Hospitality</h3>
+      <p>High-complexity technical interventions for 24 premium hospitality assets across Portugal.</p>
+      <div class="operation-highlight">
+        <span class="highlight-badge">24 Hotels</span>
+        <small>Hilton · Hyatt · Dom Pedro · Topázio Vibes · Velamar · Portobelo</small>
+      </div>
+      <ul class="operation-list">
+        <li>SCIE Modernization & Compliance</li>
+        <li>HVAC/DHW System Upgrades</li>
+        <li>UPS Systems & Power Backup</li>
+        <li>Waterproofing Solutions</li>
+        <li>Kitchen Equipment Integration</li>
+        <li>Energy Optimization</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Equestrian -->
+  <div class="operation-card animate-on-scroll" data-gallery="equestrian">
+    <div class="operation-image">
+      <img alt="Equestrian Facilities" src="equestrian_facilities_elite.jpg"/>
+      <div class="operation-overlay">
+        <i class="fas fa-horse-head"></i>
+      </div>
+    </div>
+    <div class="operation-content">
+      <h3><i class="fas fa-horse-head"></i> Equestrian Facilities</h3>
+      <p>Premium equestrian infrastructure development with professional systems integration.</p>
+      <div class="operation-highlight">
+        <span class="highlight-badge">Event Infrastructure</span>
+        <small>World-class sporting venues</small>
+      </div>
+      <ul class="operation-list">
+        <li>Lightvolution / GrandPrix Lighting</li>
+        <li>ISOCOP Structural Panels</li>
+        <li>Catering Assiste Support Kitchens</li>
+        <li>Temporary Logistics Systems</li>
+        <li>Event Infrastructure Planning</li>
+        <li>Multi-supplier Coordination</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Garden -->
+  <div class="operation-card animate-on-scroll" data-gallery="garden">
+    <div class="operation-image">
+      <img alt="Garden Maintenance" src="garden_maintenance_luxury_operations.jpg"/>
+      <div class="operation-overlay">
+        <i class="fas fa-leaf"></i>
+      </div>
+    </div>
+    <div class="operation-content">
+      <h3><i class="fas fa-leaf"></i> Garden Maintenance</h3>
+      <p>Specialized landscape management across multi-cluster hospitality assets.</p>
+      <div class="operation-highlight">
+        <span class="highlight-badge">Multi-Cluster</span>
+        <small>12 Golf Courses + 24 Hotels</small>
+      </div>
+      <ul class="operation-list">
+        <li>Premium Supplier Coordination</li>
+        <li>Aesthetic Standards Management</li>
+        <li>Sustainability Protocols</li>
+        <li>Seasonal Planning & Execution</li>
+        <li>Water Management Systems</li>
+        <li>Multi-site Operational Excellence</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Asset Map -->
+  <div class="operation-card animate-on-scroll" data-gallery="assetmap">
+    <div class="operation-image">
+      <img alt="Asset Map" src="cluster_map_portugal_luxury.jpg"/>
+      <div class="operation-overlay">
+        <i class="fas fa-map-marked-alt"></i>
+      </div>
+    </div>
+    <div class="operation-content">
+      <h3><i class="fas fa-map-marked-alt"></i> Asset Map</h3>
+      <p>National coverage across Portugal's premium golf, hospitality, and leisure destinations.</p>
+      <div class="operation-locations">
+        <span class="location-tag">Troia</span>
+        <span class="location-tag">Vale do Pisão</span>
+        <span class="location-tag">Vilamoura</span>
+        <span class="location-tag">Palmares</span>
+        <span class="location-tag">Madeira</span>
+        <span class="location-tag">Garajau</span>
+      </div>
+      <ul class="operation-list">
+        <li>Centralized Procurement Governance</li>
+        <li>Multi-cluster Resource Optimization</li>
+        <li>Regional Supplier Networks</li>
+        <li>Asset Standardization</li>
+        <li>Compliance Across Regions</li>
+        <li>Strategic Coverage Planning</li>
+      </ul>
+    </div>
+  </div>
 </div>
 </section>
 
-<!-- NEW SECTION: Padel & Sports Facilities -->
-<section aria-label="Padel & Sports Facilities" class="about" style="background:var(--cream)">
+<!-- 5. STRATEGY IN ACTION - Metodologia -->
+<section aria-label="Strategy in Action" class="certs" id="strategy">
 <div class="section-header animate-on-scroll">
-<h2>Padel & Sports Facilities Development</h2>
-<p>Premium court specifications and supplier management</p>
+<h2>Strategy in Action</h2>
+<p>Procurement governance framework delivering measurable results</p>
 </div>
-<div class="about-grid" style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1.5fr;gap:4.2rem;align-items:center">
-<div class="about-image animate-on-scroll delay-1 gold-frame">
-<img alt="Hyatt Padel Premium Courts" src="img/hyatt_padel_premium_courts.jpg"/>
+
+<!-- Strategy Stats Banner -->
+<div class="strategy-stats-banner animate-on-scroll">
+  <div class="strategy-stat-item">
+    <span class="strategy-stat-value counter" data-target="327" data-prefix="€" data-suffix="K">€0</span>
+    <span class="strategy-stat-label">2025 Savings</span>
+  </div>
+  <div class="strategy-stat-divider"></div>
+  <div class="strategy-stat-item">
+    <span class="strategy-stat-value counter" data-target="148" data-prefix="€" data-suffix="K">€0</span>
+    <span class="strategy-stat-label">2026 Savings</span>
+  </div>
+  <div class="strategy-stat-divider"></div>
+  <div class="strategy-stat-item">
+    <span class="strategy-stat-value counter" data-target="475" data-prefix="€" data-suffix="K+">€0</span>
+    <span class="strategy-stat-label">Total Verified</span>
+  </div>
+  <div class="strategy-stat-divider"></div>
+  <div class="strategy-stat-item">
+    <span class="strategy-stat-value counter" data-target="27" data-prefix="" data-suffix="%">0</span>
+    <span class="strategy-stat-label">Avg Reduction</span>
+  </div>
 </div>
-<div class="about-content animate-on-scroll delay-2">
-<h3>Hyatt Padel Club — Technical & Procurement Operations</h3>
-<p>I oversee the full technical and procurement operations of the Hyatt Padel Club, delivering premium sporting facilities with professional specifications and compliance standards.</p>
-<div class="leadership-philosophy">
-          "From court specifications to supplier negotiations, every detail is engineered for excellence and player experience."
-        </div>
-<ul class="about-bullets">
-<li><strong>Supplier Negotiations:</strong> AlgarveTennis, Verditrapor, Varandas da Natureza</li>
-<li><strong>Professional Court Specifications:</strong> Surface evaluation and KYS compliance</li>
-<li><strong>Synthetic Surface Evaluation:</strong> Premium materials and performance testing</li>
-<li><strong>Complete Scope Review:</strong> End-to-end project management and quality assurance</li>
-</ul>
-<div class="languages-grid">
-<div class="lang-item"><i aria-hidden="true" class="fas fa-check-circle"></i><span>KYS Compliance</span></div>
-<div class="lang-item"><i aria-hidden="true" class="fas fa-check-circle"></i><span>Premium Surfaces</span></div>
-<div class="lang-item"><i aria-hidden="true" class="fas fa-check-circle"></i><span>Multi-Supplier Coordination</span></div>
-</div>
-</div>
+
+<!-- Strategy Cards -->
+<div class="strategy-grid-modern">
+  <!-- BidMap -->
+  <div class="strategy-card-modern animate-on-scroll">
+    <div class="strategy-card-header">
+      <div class="strategy-icon">
+        <i class="fas fa-sitemap"></i>
+      </div>
+      <h3>Universal BidMap</h3>
+    </div>
+    <p>Standardized methodology ensuring transparent, auditable procurement processes across all clusters with full traceability.</p>
+    <ul class="strategy-features">
+      <li><i class="fas fa-check"></i> RFP/RFQ Standardization</li>
+      <li><i class="fas fa-check"></i> Technical Annex Templates (A1/A2)</li>
+      <li><i class="fas fa-check"></i> Weighted Scoring Matrices</li>
+      <li><i class="fas fa-check"></i> Audit-Ready Documentation</li>
+    </ul>
+  </div>
+
+  <!-- ERP Primavera -->
+  <div class="strategy-card-modern animate-on-scroll">
+    <div class="strategy-card-header">
+      <div class="strategy-icon">
+        <i class="fas fa-database"></i>
+      </div>
+      <h3>ERP Primavera</h3>
+    </div>
+    <p>Full ERP integration delivering real-time financial transparency and procurement traceability across operations.</p>
+    <ul class="strategy-features">
+      <li><i class="fas fa-check"></i> E-Procurement Integration</li>
+      <li><i class="fas fa-check"></i> Full Audit Trails</li>
+      <li><i class="fas fa-check"></i> Standardized Templates</li>
+      <li><i class="fas fa-check"></i> Contracting Packs</li>
+    </ul>
+  </div>
+
+  <!-- Power BI -->
+  <div class="strategy-card-modern animate-on-scroll">
+    <div class="strategy-card-header">
+      <div class="strategy-icon">
+        <i class="fas fa-chart-line"></i>
+      </div>
+      <h3>Power BI Dashboards</h3>
+    </div>
+    <p>Real-time KPIs and financial dashboards enabling data-driven decisions and stakeholder transparency.</p>
+    <ul class="strategy-features">
+      <li><i class="fas fa-check"></i> Real-Time Spend Analytics</li>
+      <li><i class="fas fa-check"></i> Supplier Performance Tracking</li>
+      <li><i class="fas fa-check"></i> Budget vs. Actual Reporting</li>
+      <li><i class="fas fa-check"></i> Predictive Forecasting</li>
+    </ul>
+  </div>
+
+  <!-- Contract Auditing -->
+  <div class="strategy-card-modern animate-on-scroll">
+    <div class="strategy-card-header">
+      <div class="strategy-icon">
+        <i class="fas fa-file-contract"></i>
+      </div>
+      <h3>Contract Auditing</h3>
+    </div>
+    <p>Comprehensive supplier compliance programs ensuring adherence to technical specifications and SLAs.</p>
+    <ul class="strategy-features">
+      <li><i class="fas fa-check"></i> Technical Compliance Checks</li>
+      <li><i class="fas fa-check"></i> SLA Performance Monitoring</li>
+      <li><i class="fas fa-check"></i> Regulatory Adherence</li>
+      <li><i class="fas fa-check"></i> Risk Mitigation Protocols</li>
+    </ul>
+  </div>
 </div>
 </section>
 
-<!-- NEW SECTION: Luxury Hospitality Technical Projects -->
-<section aria-label="Luxury Hospitality Projects" class="projects">
+<!-- 6. SUSTAINABILITY - Banner 4 Icons -->
+<section aria-label="Sustainability" class="sustainability-section" id="sustainability">
 <div class="section-header animate-on-scroll">
-<h2>Luxury Hospitality Technical Projects</h2>
-<p>High-complexity technical interventions for premium hospitality assets</p>
+<h2>Sustainability & Environmental Excellence</h2>
+<p>Integrated management of energy, water, and environmental systems</p>
 </div>
-<div class="projects-grid" id="projectsGrid">
-<div class="project-card animate-on-scroll" data-gallery="hospitality-tech">
-<div class="project-gallery">
-<div class="gallery-main">
-<img alt="Hospitality Technical Modernization" src="img/hospitality_technical_modernization.jpg"/>
-<div class="gallery-overlay">
-<i aria-hidden="true" class="fas fa-images"></i>
-<span>View Gallery</span>
+
+<!-- Sustainability Banner -->
+<div class="sustainability-banner animate-on-scroll">
+  <div class="sustainability-item">
+    <div class="sustainability-icon">
+      <i class="fas fa-solar-panel"></i>
+    </div>
+    <h3>Solar Energy</h3>
+    <div class="sustainability-value counter" data-target="850" data-prefix="" data-suffix=" MWh">0</div>
+    <p>Photovoltaic systems integration and optimization across hospitality assets for renewable energy generation.</p>
+  </div>
+
+  <div class="sustainability-divider"></div>
+
+  <div class="sustainability-item">
+    <div class="sustainability-icon">
+      <i class="fas fa-tint"></i>
+    </div>
+    <h3>Water Treatment</h3>
+    <div class="sustainability-value counter" data-target="45" data-prefix="" data-suffix="%">0</div>
+    <p>Advanced dosing systems and quality management with ALS, Biogerm, Aquateste partnerships.</p>
+  </div>
+
+  <div class="sustainability-divider"></div>
+
+  <div class="sustainability-item highlight">
+    <div class="sustainability-icon gold-pulse">
+      <i class="fas fa-gas-pump"></i>
+    </div>
+    <h3>GPL Optimization</h3>
+    <div class="sustainability-highlight-value counter" data-target="150" data-prefix="€" data-suffix="K+">€0</div>
+    <p>Last negotiation savings through strategic fuel contract management and cost optimization.</p>
+  </div>
+
+  <div class="sustainability-divider"></div>
+
+  <div class="sustainability-item">
+    <div class="sustainability-icon">
+      <i class="fas fa-bolt"></i>
+    </div>
+    <h3>Energy Efficiency</h3>
+    <div class="sustainability-value counter" data-target="32" data-prefix="" data-suffix="%">0</div>
+    <p>E-Cost initiatives and consumption reduction programs across all managed assets.</p>
+  </div>
 </div>
-</div>
-</div>
-<div class="project-content">
-<h3>Premium Hospitality Portfolio</h3>
-<p>I deliver high-complexity technical projects for luxury hospitality assets such as Hilton Vilamoura, Hyatt, Dom Pedro, Topázio Vibes, Velamar, and Portobelo.</p>
-<div class="project-highlights">
-<strong>Assets:</strong> 23 hotels · <strong>Coverage:</strong> SCIE, HVAC, DHW, UPS, Waterproofing
-          </div>
-<div class="project-tags">
-<span class="project-tag">SCIE Modernization</span>
-<span class="project-tag">HVAC/DHW Upgrades</span>
-<span class="project-tag">UPS Systems</span>
-</div>
-</div>
-</div>
-<div class="project-card animate-on-scroll" data-gallery="hospitality-systems">
-<div class="project-image" style="background: linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%); display:flex;align-items:center;justify-content:center;height:250px;">
-<div style="text-align:center;color:#d4af37;">
-<i class="fas fa-hotel" style="font-size:3rem;margin-bottom:1rem;"></i>
-<div style="font-size:0.9rem;opacity:0.85;">Technical Systems Integration</div>
-<div style="width:120px;height:2px;background:#d4af37;margin:10px auto;"></div>
-<div style="font-size:0.8rem;opacity:0.65;">Waterproofing · Energy · Kitchen Equipment</div>
-</div>
-</div>
-<div class="project-content">
-<h3>Critical Technical Interventions</h3>
-<p>Projects include water analytical plans, structural replacements, kitchen equipment upgrades, energy systems optimization, and critical technical interventions — always aligned with compliance, engineering standards, and multi-cluster governance.</p>
-<div class="project-highlights">
-<strong>Focus:</strong> Compliance · Engineering Standards · Multi-Cluster Governance
-          </div>
-<div class="project-tags">
-<span class="project-tag">Water Systems</span>
-<span class="project-tag">Structural Engineering</span>
-<span class="project-tag">Energy Optimization</span>
-</div>
-</div>
-</div>
+
+<!-- Sustainability Image -->
+<div class="sustainability-image-wrapper animate-on-scroll">
+  <div class="gold-frame">
+    <img alt="Sustainability Water Energy Management" src="sustainability_water_energy_management.jpg"/>
+  </div>
 </div>
 </section>
 
-<!-- NEW SECTION: Equestrian Facilities -->
-<section aria-label="Equestrian Facilities" class="about" style="background:var(--white)">
-<div class="section-header animate-on-scroll">
-<h2>Equestrian Facilities & Premium Event Infrastructure</h2>
-<p>Supporting world-class equestrian infrastructure development</p>
-</div>
-<div class="about-grid" style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr;gap:4.2rem;align-items:center">
-<div class="about-content animate-on-scroll delay-1">
-<h3>Premium Equestrian Infrastructure</h3>
-<p>I support premium equestrian infrastructure development, integrating professional systems and technical upgrades for high-performance sporting events.</p>
-<div class="leadership-philosophy">
-          "World-class equestrian facilities demand precision engineering and seamless integration of lighting, structures, and logistics."
-        </div>
-<ul class="about-bullets">
-<li><strong>Professional Lighting:</strong> Lightvolution / GrandPrix systems integration</li>
-<li><strong>Structural Panels:</strong> ISOCOP professional-grade construction</li>
-<li><strong>Support Kitchens:</strong> Catering Assiste operational facilities</li>
-<li><strong>Temporary Logistics:</strong> Modular systems for event flexibility</li>
-</ul>
-<div class="languages-grid">
-<div class="lang-item"><i aria-hidden="true" class="fas fa-check-circle"></i><span>Event Lighting</span></div>
-<div class="lang-item"><i aria-hidden="true" class="fas fa-check-circle"></i><span>Structural Engineering</span></div>
-<div class="lang-item"><i aria-hidden="true" class="fas fa-check-circle"></i><span>Catering Infrastructure</span></div>
-</div>
-</div>
-<div class="about-image animate-on-scroll delay-2 gold-frame">
-<img alt="Equestrian Facilities Elite" src="img/equestrian_facilities_elite.jpg"/>
-</div>
-</div>
-</section>
-
-<!-- NEW SECTION: Strategic Procurement Leadership -->
-<section aria-label="Strategic Procurement" class="certs" id="procurement">
-<div class="section-header animate-on-scroll">
-<h2>Strategic Procurement Leadership & Governance</h2>
-<p>Multi-cluster procurement governance with measurable results</p>
-</div>
-<div class="certs-grid">
-<div class="cert-card framework-highlight animate-on-scroll" style="grid-column:1 / -1;max-width:1000px;margin:0 auto 1.8rem">
-<div class="framework-content">
-<div class="cert-icon" style="width:60px;height:60px;background:rgba(212,175,55,0.2);border-radius:15px;display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem;">
-<i aria-hidden="true" class="fas fa-chart-line" style="font-size:1.8rem;color:var(--gold);"></i>
-</div>
-<h3>Verified Savings & Performance</h3>
-<p>I lead multi-cluster procurement governance, ensuring full technical, operational, and compliance alignment through structured SOPs, Universal BidMap methodology, ERP Primavera integration, Power BI dashboards, and contract auditing.</p>
-<div style="display:flex;gap:2rem;margin-top:1.5rem;flex-wrap:wrap">
-<div style="text-align:center;padding:1.5rem;background:rgba(212,175,55,0.1);border-radius:14px;flex:1;min-width:150px">
-<div style="font-size:2.5rem;font-weight:800;color:var(--gold)">€327K</div>
-<div style="font-size:0.9rem;color:var(--text-light)">2025 Savings</div>
-</div>
-<div style="text-align:center;padding:1.5rem;background:rgba(212,175,55,0.1);border-radius:14px;flex:1;min-width:150px">
-<div style="font-size:2.5rem;font-weight:800;color:var(--gold)">€148K</div>
-<div style="font-size:0.9rem;color:var(--text-light)">2026 Savings</div>
-</div>
-</div>
-</div>
-<div class="framework-image">
-<img alt="Procurement Governance Global" src="img/procurement_governance_global.jpg"/>
-</div>
-</div>
-<div class="cert-card animate-on-scroll">
-<div class="cert-header">
-<div class="cert-logo" style="background:linear-gradient(135deg,var(--gold),var(--gold-light))"><i class="fas fa-sitemap" style="font-size:1.8rem;color:var(--navy)"></i></div>
-<div class="cert-title-group"><h4>Governance Framework</h4><div class="cert-subtitle">Structured SOPs & BidMap</div></div>
-</div>
-<p>Standardized operating procedures and Universal BidMap methodology ensuring transparent, auditable procurement processes across all clusters.</p>
-<div class="ai-application"><strong>Key Components:</strong><ul>
-<li>RFP/RFQ Standardization</li>
-<li>Technical Annex Templates</li>
-<li>Weighted Scoring Matrices</li>
-<li>Audit-Ready Documentation</li>
-</ul></div>
-</div>
-<div class="cert-card animate-on-scroll">
-<div class="cert-header">
-<div class="cert-logo" style="background:linear-gradient(135deg,var(--gold),var(--gold-light))"><i class="fas fa-database" style="font-size:1.8rem;color:var(--navy)"></i></div>
-<div class="cert-title-group"><h4>ERP Integration</h4><div class="cert-subtitle">Primavera & Power BI</div></div>
-</div>
-<p>Full ERP Primavera integration with Power BI dashboards delivering real-time KPIs and financial transparency across procurement operations.</p>
-<div class="ai-application"><strong>Capabilities:</strong><ul>
-<li>Real-Time Spend Analytics</li>
-<li>Supplier Performance Tracking</li>
-<li>Budget vs. Actual Reporting</li>
-<li>Predictive Forecasting</li>
-</ul></div>
-</div>
-<div class="cert-card animate-on-scroll">
-<div class="cert-header">
-<div class="cert-logo" style="background:linear-gradient(135deg,var(--gold),var(--gold-light))"><i class="fas fa-file-contract" style="font-size:1.8rem;color:var(--navy)"></i></div>
-<div class="cert-title-group"><h4>Contract Auditing</h4><div class="cert-subtitle">Supplier Compliance</div></div>
-</div>
-<p>Comprehensive contract auditing and supplier compliance programs ensuring adherence to technical specifications, SLAs, and regulatory requirements.</p>
-<div class="ai-application"><strong>Focus Areas:</strong><ul>
-<li>Technical Compliance Checks</li>
-<li>SLA Performance Monitoring</li>
-<li>Regulatory Adherence</li>
-<li>Risk Mitigation Protocols</li>
-</ul></div>
-</div>
-</div>
-</section>
-
-<!-- NEW SECTION: Highlighted Projects & Case Studies -->
-<section aria-label="Case Studies" class="projects" style="background:var(--cream)">
-<div class="section-header animate-on-scroll">
-<h2>Highlighted Projects & Case Studies</h2>
-<p>Selected high-impact projects delivered across multiple clusters</p>
-</div>
-<div class="projects-grid" id="projectsGrid">
-<div class="project-card animate-on-scroll" data-gallery="case-studies">
-<div class="project-gallery">
-<div class="gallery-main">
-<img alt="Case Studies Luxury Infrastructure" src="img/case_studies_luxury_infrastructure.jpg"/>
-<div class="gallery-overlay">
-<i aria-hidden="true" class="fas fa-images"></i>
-<span>View Gallery</span>
-</div>
-</div>
-</div>
-<div class="project-content">
-<h3>Portfolio Case Studies</h3>
-<p>Selected high-impact projects delivered across multiple clusters, demonstrating technical excellence and procurement innovation.</p>
-<div class="project-highlights">
-<strong>Highlights:</strong> PGA Europe, Hyatt Padel, Palmares, San Lorenzo
-          </div>
-<div class="project-tags">
-<span class="project-tag">Case Studies</span>
-<span class="project-tag">Portfolio</span>
-<span class="project-tag">Results</span>
-</div>
-</div>
-</div>
-<div class="project-card animate-on-scroll">
-<div class="project-image" style="background: linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%); display:flex;align-items:center;justify-content:center;height:250px;">
-<div style="text-align:center;color:#d4af37;">
-<i class="fas fa-trophy" style="font-size:3rem;margin-bottom:1rem;"></i>
-<div style="font-size:0.9rem;opacity:0.85;">Project Highlights</div>
-<div style="width:120px;height:2px;background:#d4af37;margin:10px auto;"></div>
-<div style="font-size:0.8rem;opacity:0.65;">Multi-Cluster Excellence</div>
-</div>
-</div>
-<div class="project-content">
-<h3>Key Project Achievements</h3>
-<p>• PGA Europe — Technical preparation and procurement operations at the Els Club<br>
-• Hyatt Padel Club — Premium courts, synthetic surfaces, supplier management<br>
-• Palmares — HVAC/DHW modernization, fire rated door upgrades<br>
-• San Lorenzo — Containerized clubhouse infrastructure<br>
-• Hilton / Hyatt — SCIE, ASA, HVAC, and critical technical systems<br>
-• Garden Maintenance Tender — Strategic negotiations and multi-cluster optimization</p>
-<div class="project-tags">
-<span class="project-tag">Golf</span>
-<span class="project-tag">Hospitality</span>
-<span class="project-tag">Sports</span>
-</div>
-</div>
-</div>
-</div>
-</section>
-
-<!-- NEW SECTION: Sustainability, Water & Energy -->
-<section aria-label="Sustainability" class="about" style="background:var(--white)">
-<div class="section-header animate-on-scroll">
-<h2>Sustainability, Water & Energy Management</h2>
-<p>Integrated management of energy, water, and sustainability systems</p>
-</div>
-<div class="about-grid" style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1.5fr;gap:4.2rem;align-items:center">
-<div class="about-image animate-on-scroll delay-1 gold-frame">
-<img alt="Sustainability Water Energy Management" src="img/sustainability_water_energy_management.jpg"/>
-</div>
-<div class="about-content animate-on-scroll delay-2">
-<h3>Environmental Excellence</h3>
-<p>Integrated management of energy, water, and sustainability systems across hospitality and golf assets, ensuring operational efficiency and environmental responsibility.</p>
-<div class="leadership-philosophy">
-          "Sustainability is not just compliance — it's operational excellence and long-term value creation."
-        </div>
-<ul class="about-bullets">
-<li><strong>Photovoltaic Energy:</strong> Solar power integration and optimization</li>
-<li><strong>Water Treatment:</strong> Advanced dosing systems and quality management</li>
-<li><strong>GPL/Diesel Contracts:</strong> Fuel optimization and cost management</li>
-<li><strong>Analytical Water Plans:</strong> ALS, Biogerm, Aquateste partnerships</li>
-<li><strong>Energy Efficiency:</strong> E Cost initiatives and consumption reduction</li>
-</ul>
-<div class="languages-grid">
-<div class="lang-item"><i aria-hidden="true" class="fas fa-check-circle"></i><span>Solar Energy</span></div>
-<div class="lang-item"><i aria-hidden="true" class="fas fa-check-circle"></i><span>Water Treatment</span></div>
-<div class="lang-item"><i aria-hidden="true" class="fas fa-check-circle"></i><span>Energy Efficiency</span></div>
-</div>
-</div>
-</div>
-</section>
-
-<!-- NEW SECTION: Garden Maintenance -->
-<section aria-label="Garden Maintenance" class="projects" style="background:var(--cream)">
-<div class="section-header animate-on-scroll">
-<h2>Garden Maintenance & Landscaping</h2>
-<p>Specialized garden and landscape maintenance management</p>
-</div>
-<div class="projects-grid" id="projectsGrid" style="max-width:800px;margin:0 auto">
-<div class="project-card animate-on-scroll" data-gallery="garden">
-<div class="project-gallery">
-<div class="gallery-main">
-<img alt="Garden Maintenance Luxury Operations" src="img/garden_maintenance_luxury_operations.jpg"/>
-<div class="gallery-overlay">
-<i aria-hidden="true" class="fas fa-images"></i>
-<span>View Gallery</span>
-</div>
-</div>
-</div>
-<div class="project-content">
-<h3>Multi-Cluster Landscape Excellence</h3>
-<p>Specialized garden and landscape maintenance management across multi-cluster hospitality assets, coordinating premium suppliers and ensuring operational excellence, aesthetics, and sustainability.</p>
-<div class="project-highlights">
-<strong>Scope:</strong> 12 golf courses · 23 hotels · Premium aesthetics
-          </div>
-<div class="project-tags">
-<span class="project-tag">Landscaping</span>
-<span class="project-tag">Maintenance</span>
-<span class="project-tag">Sustainability</span>
-</div>
-</div>
-</div>
-</div>
-</section>
-
-<!-- NEW SECTION: Asset Map & National Coverage -->
-<section aria-label="Asset Map" class="certs" style="background:var(--navy)">
-<div class="section-header animate-on-scroll">
-<h2 style="color:#fff">Asset Map & National Coverage</h2>
-<p style="color:rgba(255,255,255,0.8)">Operational coverage across multiple premium Portuguese regions</p>
-</div>
-<div class="certs-grid" style="max-width:1000px;margin:0 auto">
-<div class="cert-card framework-highlight animate-on-scroll" style="grid-column:1 / -1;max-width:900px;margin:0 auto">
-<div class="framework-content" style="width:100%">
-<div class="cert-icon" style="width:60px;height:60px;background:rgba(212,175,55,0.2);border-radius:15px;display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem;">
-<i aria-hidden="true" class="fas fa-map-marked-alt" style="font-size:1.8rem;color:var(--gold);"></i>
-</div>
-<h3 style="color:var(--gold)">National Coverage</h3>
-<p style="color:rgba(255,255,255,0.9)">Operational coverage across multiple premium Portuguese regions, managing technical infrastructure and procurement for world-class golf, hospitality, and leisure assets.</p>
-<div style="display:flex;gap:1rem;margin-top:1.5rem;flex-wrap:wrap;justify-content:center">
-<span style="padding:.6rem 1.2rem;background:rgba(212,175,55,0.2);border-radius:20px;color:var(--gold);font-weight:600">Troia</span>
-<span style="padding:.6rem 1.2rem;background:rgba(212,175,55,0.2);border-radius:20px;color:var(--gold);font-weight:600">Vale do Pisão</span>
-<span style="padding:.6rem 1.2rem;background:rgba(212,175,55,0.2);border-radius:20px;color:var(--gold);font-weight:600">Vilamoura</span>
-<span style="padding:.6rem 1.2rem;background:rgba(212,175,55,0.2);border-radius:20px;color:var(--gold);font-weight:600">Palmares</span>
-<span style="padding:.6rem 1.2rem;background:rgba(212,175,55,0.2);border-radius:20px;color:var(--gold);font-weight:600">Madeira</span>
-<span style="padding:.6rem 1.2rem;background:rgba(212,175,55,0.2);border-radius:20px;color:var(--gold);font-weight:600">Garajau</span>
-</div>
-</div>
-<div class="framework-image">
-<img alt="Cluster Map Portugal Luxury" src="img/cluster_map_portugal_luxury.jpg"/>
-</div>
-</div>
-</div>
-</section>
-
+<!-- 7. FEATURED PROJECTS -->
 <section aria-label="Featured Projects" class="projects" id="projects">
 <div class="section-header animate-on-scroll">
 <h2>Featured Projects</h2>
@@ -995,6 +933,7 @@ function googleTranslateElementInit() {
 </div>
 </section>
 
+<!-- 8. TRADE SHOWS -->
 <section aria-label="Trade Shows & Exhibitions" class="trade-shows" id="trade-shows">
 <div class="section-header animate-on-scroll"><h2>Trade Shows & Global Exhibitions</h2><p>Exhibitor and strategic buyer across worldwide markets</p></div>
 <h3 class="trade-title" style="text-align:center; margin-bottom: 2rem;">Blaupunkt</h3>
@@ -1018,18 +957,20 @@ function googleTranslateElementInit() {
  <div class="strategy-item" data-strategy="3"><i class="fas fa-handshake-angle"></i><p>Negotiations & Partnering</p></div>
  <div class="strategy-item" data-strategy="4"><i class="fas fa-microchip"></i><p>Tech Discovery & Benchmark</p></div>
  <div class="strategy-item" data-strategy="5"><i class="fas fa-industry"></i><p>Factory Audits & Capability Mapping</p></div>
- <div class="strategy-item" data-strategy="6"><i class="fas fa-chart-line"></i><p>Post‑Fair Pipeline, ROI & Governance</p></div>
+ <div class="strategy-item" data-strategy="6"><i class="fas fa-chart-line"></i><p>Post-Fair Pipeline, ROI & Governance</p></div>
 </div>
 </div>
 </section>
 
+<!-- 9. CERTIFICATIONS - RESTAURADO -->
 <section aria-label="Certifications & Education" class="certs" id="certs">
 <div class="section-header animate-on-scroll">
 <h2>Certifications & Education</h2>
 <p>Continuous learning in AI, Data Science, and Strategic Procurement</p>
 </div>
 
-<div class="certs-grid"><div class="cert-card framework-highlight animate-on-scroll" onclick="openCertModal('AI_Driven_Strategic_Procurement_Framework.png', 'AI-Driven Strategic Procurement Framework')" style="cursor:pointer;">
+<div class="certs-grid">
+<div class="cert-card framework-highlight animate-on-scroll" onclick="openCertModal('AI_Driven_Strategic_Procurement_Framework.png', 'AI-Driven Strategic Procurement Framework')" style="cursor:pointer;">
 <div class="framework-content">
 <div class="cert-icon" style="width:60px;height:60px;background:rgba(212,175,55,0.2);border-radius:15px;display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem;">
 <i aria-hidden="true" class="fas fa-star" style="font-size:1.8rem;color:var(--gold);"></i>
@@ -1045,9 +986,10 @@ function googleTranslateElementInit() {
 <img alt="AI Framework" onerror="this.parentElement.style.display='none'" src="AI_Driven_Strategic_Procurement_Framework.png"/>
 </div>
 </div>
+
 <div class="cert-card animate-on-scroll" onclick="openCertModal('Ethic_Gen_AI_Cert.jpg', 'Ethical Considerations for Generative AI')" style="cursor:pointer;">
  <div class="cert-header">
-  <div class="cert-logo"><img src="Digital sticker_Ethical Considerations for Generative AI.png"></div>
+  <div class="cert-logo"><img src="Digital%20sticker_Ethical%20Considerations%20for%20Generative%20AI.png"></div>
   <div class="cert-title-group"><h4>IBM SkillsBuild</h4><div class="cert-subtitle">Ethical Considerations for Generative AI</div><span class="cert-date">2026</span></div>
  </div>
  <p>Governance principles, fairness frameworks and responsible AI deployment; ethical guidance for real‑world decision making.</p>
@@ -1058,11 +1000,9 @@ function googleTranslateElementInit() {
   <li>Responsible Automation</li>
   <li>Ethical Supplier Checks</li>
  </ul></div>
- <a onclick="openCertificate('Ethic_Gen_AI_Cert.jpg')">View Certificate</a>
 </div>
 
-<!-- NEW 2: Getting Started with GenAI -->
-<div class="cert-card animate-on-scroll" onclick="openCertModal('Gen AI Certificate.jpg', 'Getting Started with Generative AI')" style="cursor:pointer;">
+<div class="cert-card animate-on-scroll" onclick="openCertModal('Gen%20AI%20Certificate.jpg', 'Getting Started with Generative AI')" style="cursor:pointer;">
  <div class="cert-header">
   <div class="cert-logo"><img src="getting-started-with-generative-ai.png"></div>
   <div class="cert-title-group"><h4>IBM SkillsBuild</h4><div class="cert-subtitle">Getting Started with Generative AI</div><span class="cert-date">2026</span></div>
@@ -1075,10 +1015,7 @@ function googleTranslateElementInit() {
   <li>Template Generation</li>
   <li>Market Research</li>
  </ul></div>
- <a onclick="openCertificate('Gen AI Certificate.pdf')">View Certificate</a>
 </div>
-
-<!-- ORIGINAL CARDS FROM V37 BELOW THIS LINE -->
 
 <div class="cert-card animate-on-scroll" onclick="openCertModal('Foundations_in_Gen_AI_Certificate.jpg', 'Foundations in Generative AI')" style="cursor:pointer;">
 <div class="cert-header">
@@ -1102,6 +1039,7 @@ function googleTranslateElementInit() {
 </ul>
 </div>
 </div>
+
 <div class="cert-card animate-on-scroll" onclick="openCertModal('AI_LLM_Certificate.jpg', 'Introduction to Large Language Models')" style="cursor:pointer;">
 <div class="cert-header">
 <div class="cert-logo">
@@ -1124,6 +1062,7 @@ function googleTranslateElementInit() {
 </ul>
 </div>
 </div>
+
 <div class="cert-card animate-on-scroll">
 <div class="cert-header">
 <div class="cert-logo">
@@ -1146,6 +1085,7 @@ function googleTranslateElementInit() {
 </ul>
 </div>
 </div>
+
 <div class="cert-card animate-on-scroll">
 <div class="cert-header">
 <div class="cert-logo">
@@ -1168,6 +1108,7 @@ function googleTranslateElementInit() {
 </ul>
 </div>
 </div>
+
 <div class="cert-card animate-on-scroll">
 <div class="cert-header">
 <div class="cert-logo">
@@ -1190,6 +1131,7 @@ function googleTranslateElementInit() {
 </ul>
 </div>
 </div>
+
 <div class="cert-card animate-on-scroll">
 <div class="cert-header">
 <div class="cert-logo">
@@ -1215,6 +1157,7 @@ function googleTranslateElementInit() {
 </div>
 </section>
 
+<!-- 10. TESTIMONIALS - RESTAURADO -->
 <section aria-label="Recommendations" class="testimonials" id="testimonials">
 <div class="section-header animate-on-scroll">
 <h2>What People Say</h2>
@@ -1289,7 +1232,7 @@ function googleTranslateElementInit() {
 </div>
 </section>
 
-
+<!-- 11. VOLUNTEERING -->
 <section aria-label="Volunteering" class="volunteer-section" id="volunteering">
 <div class="section-header animate-on-scroll">
 <h2>Volunteering & Community Impact</h2>
@@ -1314,6 +1257,7 @@ function googleTranslateElementInit() {
 </div>
 </section>
 
+<!-- 12. GITHUB/BLOG -->
 <section aria-label="GitHub & Data Science Projects" class="github" id="github">
 <div class="section-header animate-on-scroll">
 <h2>AI & Data Science in Action</h2>
@@ -1430,6 +1374,7 @@ function googleTranslateElementInit() {
 
 </section>
 
+<!-- 13. BLOG -->
 <section aria-label="Insights & Articles" class="blog" id="blog">
 <div class="section-header animate-on-scroll">
 <h2>Insights & Articles</h2>
@@ -1485,17 +1430,7 @@ function googleTranslateElementInit() {
 </div>
 </section>
 
-<!-- Article Modal -->
-<div class="article-modal-overlay" id="articleModalOverlay" onclick="if(event.target===this)closeArticleModal()">
-<div class="article-modal">
-<button class="article-modal-close" onclick="closeArticleModal()">×</button>
-<div class="article-modal-content" id="articleModalContent">
-<!-- Content loaded dynamically -->
-</div>
-</div>
-</div>
-
-
+<!-- 14. CONTACT -->
 <section aria-label="Contact" class="contact always-navy" id="contact">
 <div class="section-header animate-on-scroll">
 <h2>Let's Work Together</h2>
@@ -1516,194 +1451,104 @@ function googleTranslateElementInit() {
       <i class="fas fa-rocket"></i>
     </div>
     <h3>Start a Conversation</h3>
-    <p>Ready to explore how we can work together? Drop me a message and let's discuss your challenges, ideas, or opportunities.</p>
-    <a class="btn btn-primary" href="mailto:luciano.vlap@gmail.com?subject=Let's%20Build%20Something%20Together">
-      <i class="fas fa-paper-plane"></i>
-      <span>Get in Touch</span>
-    </a>
-  </div>
-</div>
-
-<div class="contact-info animate-on-scroll">
-<div class="contact-info-item">
-<i class="fas fa-envelope"></i>
-<span>luciano.vlap@gmail.com</span>
-</div>
-<div class="contact-info-item">
-<i class="fas fa-map-marker-alt"></i>
-<span>Lisbon, Portugal</span>
-</div>
-<div class="contact-info-item">
-<i class="fab fa-linkedin"></i>
-<a href="https://www.linkedin.com/in/luciano-rodrigues-541a2544/" target="_blank">LinkedIn</a>
-</div>
-<div class="contact-info-item">
-<i class="fab fa-github"></i>
-<a href="https://github.com/LucianoRSouza" target="_blank">GitHub</a>
-</div>
-</div>
-
-</section>
-
-<!-- Newsletter Section -->
-<section class="newsletter" id="newsletter">
-  <div class="newsletter-container">
-    <h2>Procurement, Data & Operations</h2>
-    <p>Insights on AI-powered procurement, strategic sourcing, and operational excellence. No spam, just value.</p>
-    <form class="newsletter-form" onsubmit="handleNewsletterSubmit(event)">
-      <input type="email" class="newsletter-input" placeholder="Enter your email" required aria-label="Email for newsletter">
-      <button type="submit" class="newsletter-btn">
-        <i class="fas fa-paper-plane"></i>
-        <span>Subscribe</span>
-      </button>
-    </form>
-    <div class="newsletter-features">
-      <span><i class="fas fa-brain"></i> AI in Procurement</span>
-      <span><i class="fas fa-chart-line"></i> Data-Driven Strategies</span>
-      <span><i class="fas fa-cogs"></i> Operational Excellence</span>
+    <p>Ready to discuss how AI-driven procurement can transform your operations? Let's connect and explore the possibilities.</p>
+    <div class="contact-links" style="justify-content:center;">
+      <a class="contact-link" href="mailto:luciano.vlap@gmail.com" style="background:var(--gold);color:var(--navy);">
+        <i class="fas fa-envelope"></i>
+        <span>Email Me</span>
+      </a>
+      <a class="contact-link" href="https://www.linkedin.com/in/luciano-rodrigues-541a2544/" target="_blank">
+        <i class="fab fa-linkedin"></i>
+        <span>LinkedIn</span>
+      </a>
     </div>
   </div>
+</div>
 </section>
 
+<!-- Footer -->
 <footer>
 <div class="footer-content">
 <p>Luciano Rodrigues de Souza</p>
-<p>AI-Driven Procurement Leader · Strategic Operations · Data Science</p>
+<p>AI-Driven Procurement & Operations Leader</p>
 <div class="social-links">
-<a aria-label="LinkedIn" class="social-link" href="https://www.linkedin.com/in/luciano-rodrigues-541a2544/" rel="noopener noreferrer" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-<a aria-label="GitHub" class="social-link" href="https://github.com/LucianoRSouza" rel="noopener noreferrer" target="_blank"><i class="fab fa-github"></i></a>
-<a aria-label="Email" class="social-link" href="mailto:luciano.vlap@gmail.com"><i class="fas fa-envelope"></i></a>
+<a class="social-link" href="https://www.linkedin.com/in/luciano-rodrigues-541a2544/" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+<a class="social-link" href="https://github.com/LucianoRSouza" aria-label="GitHub"><i class="fab fa-github"></i></a>
+<a class="social-link" href="mailto:luciano.vlap@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
 </div>
-<p style="opacity: 0.6; font-size: 0.9rem;">© 2026 Luciano Rodrigues. All rights reserved.</p>
+<p style="font-size:0.85rem;opacity:0.6;margin-top:1rem;">© 2026 Luciano Rodrigues. All rights reserved.</p>
 </div>
 </footer>
 
-<div class="stat-modal-overlay" id="statModalOverlay">
-<div class="stat-modal">
-<button class="stat-modal-close" onclick="closeStatModal()">×</button>
-<div class="stat-modal-icon"><i class="fas" id="statModalIcon"></i></div>
-<h3 id="statModalTitle"></h3>
-<span class="stat-modal-value" id="statModalValue"></span>
-<div class="stat-modal-details">
-<ul id="statModalDetails"></ul>
+<!-- Scroll to Top -->
+<button class="scroll-top" id="scrollTop" onclick="scrollToTop()" aria-label="Scroll to top">
+<i class="fas fa-arrow-up"></i>
+</button>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+<span class="lightbox-close">&times;</span>
+<img alt="Lightbox image" id="lightbox-img" src=""/>
+</div>
+
+<!-- Project Gallery Modal -->
+<div class="project-gallery-modal" id="projectGalleryModal">
+<div class="gallery-modal-content">
+<div class="gallery-close" onclick="closeProjectGallery()"><i class="fas fa-times"></i></div>
+<div class="gallery-slider" id="gallerySlider"></div>
+<div class="gallery-controls">
+<button class="gallery-btn" onclick="changeProjectSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+<div class="gallery-dots" id="galleryDots"></div>
+<button class="gallery-btn" onclick="changeProjectSlide(1)"><i class="fas fa-chevron-right"></i></button>
 </div>
 </div>
 </div>
 
+<!-- Stat Modal -->
+<div class="stat-modal-overlay" id="statModalOverlay">
+<div class="stat-modal">
+<button class="stat-modal-close" onclick="closeStatModal()"><i class="fas fa-times"></i></button>
+<div class="stat-modal-icon"><i class="fas" id="statModalIcon"></i></div>
+<h3 id="statModalTitle"></h3>
+<span class="stat-modal-value" id="statModalValue"></span>
+<div class="stat-modal-details"><ul id="statModalDetails"></ul></div>
+</div>
+</div>
+
+<!-- Strategy Detail Modal -->
 <div class="strategy-detail-overlay" id="strategyDetailOverlay">
 <div class="strategy-detail-card">
 <div class="strategy-detail-header">
-<button class="strategy-detail-close" onclick="closeStrategyModal()">×</button>
-<i class="fas fa-2x" id="strategyDetailIcon" style="color: var(--gold); margin-bottom: 1rem;"></i>
-<h3 id="strategyDetailTitle"></h3>
+<button class="strategy-detail-close" onclick="closeStrategyModal()"><i class="fas fa-times"></i></button>
+<h3><i class="fas" id="strategyDetailIcon"></i> <span id="strategyDetailTitle"></span></h3>
 <p id="strategyDetailSubtitle"></p>
 </div>
 <div class="strategy-detail-body" id="strategyDetailBody"></div>
 </div>
 </div>
 
-<div aria-label="Image preview" aria-modal="true" class="lightbox" id="lightbox" role="dialog">
-<span aria-label="Close" class="lightbox-close" id="lightboxClose" onclick="closeLightbox()">×</span>
-<img alt="Gallery Image" id="lightbox-img" src=""/>
-</div>
-
-<div aria-label="Project gallery" aria-modal="true" class="project-gallery-modal" id="projectGalleryModal" role="dialog">
-<div class="gallery-modal-content">
-<span aria-label="Close" class="gallery-close" id="galleryClose" onclick="closeProjectGallery()">×</span>
-<div class="gallery-slider" id="gallerySlider"></div>
-<div class="gallery-controls">
-<button aria-label="Previous" class="gallery-btn prev" id="galleryPrev" onclick="changeProjectSlide(-1)"><i class="fas fa-chevron-left"></i></button>
-<div class="gallery-dots" id="galleryDots"></div>
-<button aria-label="Next" class="gallery-btn next" id="galleryNext" onclick="changeProjectSlide(1)"><i class="fas fa-chevron-right"></i></button>
-</div>
-</div>
-</div>
-
-<button aria-label="Scroll to top" class="scroll-top" id="scrollTop" onclick="scrollToTop()">
-<i class="fas fa-arrow-up"></i>
-</button>
-
-<div aria-live="polite" class="toast" id="toast" role="status"></div>
-
-<!-- Inline Loading Fix - Garante que o loading some mesmo com Google Translate -->
-<script>
-(function() {
-  // Remove loading screen após 2 segundos máximo
-  setTimeout(function() {
-    var loading = document.getElementById('loading');
-    if (loading) {
-      loading.classList.add('hidden');
-      setTimeout(function() {
-        if (loading.parentNode) loading.parentNode.removeChild(loading);
-      }, 400);
-    }
-  }, 2000);
-
-  // Backup: esconde imediatamente se página já carregou
-  if (document.readyState === 'complete') {
-    var loading = document.getElementById('loading');
-    if (loading) {
-      loading.classList.add('hidden');
-      setTimeout(function() {
-        if (loading.parentNode) loading.parentNode.removeChild(loading);
-      }, 400);
-    }
-  }
-})();
-</script>
-
-<script src="js/script.js"></script>
-<script>
-// FORCE LOADING HIDE - Fallback para garantir que o loading desapareça
-(function() {
-  var loading = document.getElementById('loading');
-  if (!loading) return;
-
-  // Método 1: Após 2 segundos
-  setTimeout(function() {
-    loading.classList.add('hidden');
-    setTimeout(function() { loading.remove(); }, 400);
-  }, 2000);
-
-  // Método 2: Quando DOM estiver pronto
-  if (document.readyState === 'complete' || document.readyState === 'interactive') {
-    setTimeout(function() {
-      loading.classList.add('hidden');
-      setTimeout(function() { loading.remove(); }, 400);
-    }, 500);
-  } else {
-    document.addEventListener('DOMContentLoaded', function() {
-      setTimeout(function() {
-        loading.classList.add('hidden');
-        setTimeout(function() { loading.remove(); }, 400);
-      }, 800);
-    });
-  }
-
-  // Método 3: Quando window load (backup)
-  window.addEventListener('load', function() {
-    setTimeout(function() {
-      loading.classList.add('hidden');
-      setTimeout(function() { loading.remove(); }, 400);
-    }, 300);
-  });
-})();
-</script>
-<!-- Certificate Modal -->
-<div class="cert-modal-overlay" id="certModalOverlay" onclick="if(event.target===this)closeCertModal()">
+<!-- Cert Modal -->
+<div class="cert-modal-overlay" id="certModalOverlay">
 <div class="cert-modal">
-<button class="cert-modal-close" onclick="closeCertModal()">×</button>
+<button class="cert-modal-close" onclick="closeCertModal()"><i class="fas fa-times"></i></button>
 <h3 id="certModalTitle"></h3>
 <div class="cert-modal-content">
-<img id="certModalImg" src="" alt="Certificate"/>
+<img alt="Certificate" id="certModalImg" src=""/>
 </div>
 </div>
 </div>
-<!-- Build Together Badge -->
-<a href="#contact" class="build-badge" aria-label="Let's build something together">
-  <i class="fas fa-handshake"></i>
-  <span>Let's build something together</span>
-</a>
 
+<!-- Article Modal -->
+<div class="article-modal-overlay" id="articleModalOverlay" onclick="if(event.target===this)closeArticleModal()">
+<div class="article-modal">
+<button class="article-modal-close" onclick="closeArticleModal()">&times;</button>
+<div class="article-modal-content" id="articleModalContent"></div>
+</div>
+</div>
+
+<script src="js/script.js"></script>
 </body>
 </html>
