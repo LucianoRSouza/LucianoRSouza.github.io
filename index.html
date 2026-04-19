@@ -52,8 +52,14 @@ function googleTranslateElementInit() {
     autoDisplay: false
   }, 'google_translate_element');
 }
+// Carregar Google Translate após 2s para não bloquear render
+setTimeout(function() {
+  var s = document.createElement('script');
+  s.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+  s.async = true;
+  document.head.appendChild(s);
+}, 2000);
 </script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async defer></script>
 <base target="_blank">
 </head>
 <body>
@@ -67,13 +73,13 @@ function googleTranslateElementInit() {
 </div>
 
 <div class="nav-controls">
-  <button class="nav-btn dark-mode-toggle" id="darkModeToggle" aria-label="Toggle dark mode">
-    <i class="fas fa-moon" id="darkModeIcon"></i>
-  </button>
   <button class="nav-btn translator-btn" id="translatorBtn" aria-label="Translate" title="Translate">
     <i class="fas fa-globe"></i>
   </button>
   <div id="google_translate_element" style="position:absolute;top:60px;right:0;opacity:0;pointer-events:none;transition:opacity .3s;"></div>
+  <button class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle dark mode">
+    <i class="fas fa-moon" id="darkModeIcon"></i>
+  </button>
 </div>
 
 <nav aria-label="Primary" class="navbar" id="navbar">
@@ -709,12 +715,7 @@ function googleTranslateElementInit() {
   </div>
 </div>
 
-<!-- Sustainability Image -->
-<div class="sustainability-image-wrapper animate-on-scroll">
-  <div class="gold-frame">
-    <img alt="Sustainability Water Energy Management" src="sustainability_water_energy_management.jpg"/>
-  </div>
-</div>
+
 </section>
 
 <!-- 7. FEATURED PROJECTS -->
@@ -1464,6 +1465,26 @@ function googleTranslateElementInit() {
     </div>
   </div>
 </div>
+</section>
+
+<!-- Newsletter Section -->
+<section class="newsletter" id="newsletter">
+  <div class="newsletter-container">
+    <h2>Procurement, Data & Operations</h2>
+    <p>Insights on AI-powered procurement, strategic sourcing, and operational excellence. No spam, just value.</p>
+    <form class="newsletter-form" onsubmit="handleNewsletterSubmit(event)">
+      <input type="email" class="newsletter-input" placeholder="Enter your email" required aria-label="Email for newsletter">
+      <button type="submit" class="newsletter-btn">
+        <i class="fas fa-paper-plane"></i>
+        <span>Subscribe</span>
+      </button>
+    </form>
+    <div class="newsletter-features">
+      <span><i class="fas fa-brain"></i> AI in Procurement</span>
+      <span><i class="fas fa-chart-line"></i> Data-Driven Strategies</span>
+      <span><i class="fas fa-cogs"></i> Operational Excellence</span>
+    </div>
+  </div>
 </section>
 
 <!-- Footer -->
