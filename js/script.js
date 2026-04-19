@@ -1019,6 +1019,11 @@ function openArticleModal(articleId) {
   overlay.classList.add('active');
   document.body.style.overflow = 'hidden';
   document.addEventListener('keydown', handleArticleEsc);
+
+  // RESET SCROLL
+  setTimeout(() => {
+    content.scrollTop = 0;
+  }, 50);
 }
 
 function closeArticleModal() {
@@ -1032,3 +1037,43 @@ function closeArticleModal() {
 function handleArticleEsc(e) {
   if (e.key === 'Escape') closeArticleModal();
 }
+
+/* ============================================
+   NEWSLETTER HANDLER
+   ============================================ */
+
+function handleNewsletterSubmit(event) {
+  event.preventDefault();
+  const form = event.target;
+  const email = form.querySelector('input[type="email"]').value;
+  const btn = form.querySelector('button');
+
+  // Validar email
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailPattern.test(email)) {
+    showToast('Please enter a valid email address');
+    return;
+  }
+
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i><span>Subscribing...</span>';
+  btn.disabled = true;
+
+  setTimeout(() => {
+    const successMsg = document.createElement('div');
+    successMsg.innerHTML = `
+      <div style="background:linear-gradient(135deg,rgba(40,167,69,0.9),rgba(40,167,69,0.7));color:white;padding:20px;border-radius:12px;margin-top:20px;text-align:center;animation:fadeInUp 0.5s ease;">
+        <i class="fas fa-check-circle" style="font-size:2rem;margin-bottom:10px;display:block;"></i>
+        <strong style="font-size:1.1rem;display:block;margin-bottom:8px;">Welcome aboard!</strong>
+        <span style="opacity:0.9;">You've joined <strong>Procurement, Data & Operations</strong>.<br>Check your inbox for a confirmation email.</span>
+      </div>
+    `;
+
+    form.parentNode.insertBefore(successMsg, form.nextSibling);
+    form.style.display = 'none';
+
+    showToast('Successfully subscribed!');
+    console.log('Newsletter subscription:', email);
+  }, 1500);
+}
+
+window.handleNewsletterSubmit = handleNewsletterSubmit;
