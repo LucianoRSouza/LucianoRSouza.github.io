@@ -1153,3 +1153,31 @@ function handleNewsletterSubmit(event) {
 }
 
 window.handleNewsletterSubmit = handleNewsletterSubmit;
+/* ===========================
+   LOADING SCREEN FIX
+   =========================== */
+(function initLoadingFix(){
+  const loading = document.getElementById('loading');
+  if (!loading) return;
+
+  function hideLoading() {
+    loading.classList.add('hidden');
+    setTimeout(() => {
+      if (loading && loading.parentNode) {
+        loading.parentNode.removeChild(loading);
+      }
+    }, 400);
+  }
+
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    setTimeout(hideLoading, 500);
+  } else {
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(hideLoading, 500);
+    });
+  }
+
+  window.addEventListener('load', () => {
+    setTimeout(hideLoading, 300);
+  });
+})();
