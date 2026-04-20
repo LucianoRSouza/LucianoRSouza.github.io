@@ -2185,3 +2185,8 @@ body.dark-mode .tech-tag {
   color: var(--gold-light);
   border-color: rgba(212,175,55,.3);
 }
+/* FORCE newsletter subtitle visibility (light mode fix) */
+body:not(.dark-mode) .newsletter p{
+  color: rgba(255,255,255,0.95) !important;
+  opacity: 1 !important;
+}
