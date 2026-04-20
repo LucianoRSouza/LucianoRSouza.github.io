@@ -41,7 +41,7 @@
 <meta content="AI-powered procurement, strategic operations, and product development leadership." property="og:description"/>
 <meta content="website" property="og:type"/>
 <meta content="Photo_Luciano_início.jpg" property="og:image"/>
-<link href="css/style.css" rel="stylesheet"/>
+<link href="style.css" rel="stylesheet"/>
 <!-- Google Translate Script -->
 <script type="text/javascript">
 function googleTranslateElementInit() {
@@ -52,15 +52,9 @@ function googleTranslateElementInit() {
     autoDisplay: false
   }, 'google_translate_element');
 }
-// Carregar Google Translate após 2s para não bloquear render
-setTimeout(function() {
-  var s = document.createElement('script');
-  s.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
-  s.async = true;
-  document.head.appendChild(s);
-}, 2000);
 </script>
-<base target="_blank">
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async defer></script>
+
 </head>
 <body>
 <div class="cursor" id="cursor"></div>
@@ -76,10 +70,10 @@ setTimeout(function() {
   <button class="nav-btn translator-btn" id="translatorBtn" aria-label="Translate" title="Translate">
     <i class="fas fa-globe"></i>
   </button>
-  <div id="google_translate_element" style="position:absolute;top:60px;right:0;opacity:0;pointer-events:none;transition:opacity .3s;"></div>
-  <button class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle dark mode">
+  <button class="nav-btn dark-mode-toggle" id="darkModeToggle" aria-label="Toggle dark mode">
     <i class="fas fa-moon" id="darkModeIcon"></i>
   </button>
+  <div id="google_translate_element" style="position:absolute;top:60px;right:0;opacity:0;pointer-events:none;transition:opacity .3s;"></div>
 </div>
 
 <nav aria-label="Primary" class="navbar" id="navbar">
@@ -1570,6 +1564,6 @@ setTimeout(function() {
 </div>
 </div>
 
-<script src="js/script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
