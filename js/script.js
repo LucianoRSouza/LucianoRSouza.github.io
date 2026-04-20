@@ -856,9 +856,8 @@ function initDarkMode() {
   if (!toggle || !icon) return;
 
   const savedMode = localStorage.getItem('darkMode');
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-  if (savedMode === 'true' || (savedMode === null && prefersDark)) {
+  if (savedMode === 'true') {
     body.classList.add('dark-mode');
     icon.classList.remove('fa-moon');
     icon.classList.add('fa-sun');
@@ -880,18 +879,151 @@ function initDarkMode() {
   });
 }
 
-/* Translator Toggle */
+/* Translator Toggle — Bolinha G da OG */
 function initTranslator() {
   const translatorBtn = document.getElementById('translatorBtn');
   const translateElement = document.getElementById('google_translate_element');
-  
-  if (!translatorBtn || !translateElement) return;
-  
-  translatorBtn.addEventListener('click', () => {
-    const isVisible = translateElement.style.opacity === '1';
-    translateElement.style.opacity = isVisible ? '0' : '1';
-    translateElement.style.pointerEvents = isVisible ? 'none' : 'auto';
-  });
+
+  /* Criar a bolinha G visualmente */
+  function createGoogleBall() {
+    if (!translateElement) return;
+    if (translateElement.querySelector('.google-g-ball')) return;
+
+    const gBall = document.createElement('div');
+    gBall.className = 'google-g-ball';
+    gBall.innerHTML = 'G';
+    gBall.style.cssText = `
+      position:absolute;
+      top:0;
+      left:50%;
+      transform:translateX(-50%);
+      width:44px;
+      height:44px;
+      background:#fff;
+      border:2px solid #d4af37;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-family:'Product Sans','Roboto',Arial,sans-serif;
+      font-weight:700;
+      font-size:1.4rem;
+      background:linear-gradient(135deg,#4285F4 0%,#EA4335 33%,#FBBC05 66%,#34A853 100%);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+      box-shadow:0 4px 15px rgba(0,0,0,0.15);
+      transition:all 0.3s ease;
+      cursor:pointer;
+      z-index:1;
+      pointer-events:none;
+    `;
+
+    translateElement.appendChild(gBall);
+
+    const select = translateElement.querySelector('.goog-te-combo');
+    if (select) {
+      select.style.cssText = `
+        position:absolute;
+        top:0;
+        left:50%;
+        transform:translateX(-50%);
+        width:44px;
+        height:44px;
+        opacity:0;
+        cursor:pointer;
+        z-index:2;
+      `;
+
+      select.addEventListener('focus', function() {
+        gBall.style.opacity = '0';
+        gBall.style.transform = 'translateX(-50%) scale(0.5)';
+        this.style.cssText = `
+          position:absolute;
+          top:50px;
+          left:50%;
+          transform:translateX(-50%);
+          width:160px;
+          height:auto;
+          opacity:1;
+          padding:8px 12px;
+          border-radius:10px;
+          border:2px solid #d4af37;
+          background:#fff;
+          color:#0f1538;
+          font-family:'Inter',sans-serif;
+          font-weight:600;
+          font-size:13px;
+          box-shadow:0 8px 25px rgba(0,0,0,0.15);
+          z-index:10;
+        `;
+      });
+
+      select.addEventListener('blur', function() {
+        setTimeout(() => {
+          gBall.style.opacity = '1';
+          gBall.style.transform = 'translateX(-50%) scale(1)';
+          this.style.cssText = `
+            position:absolute;
+            top:0;
+            left:50%;
+            transform:translateX(-50%);
+            width:44px;
+            height:44px;
+            opacity:0;
+            cursor:pointer;
+            z-index:2;
+          `;
+          translateElement.classList.remove('visible');
+        }, 200);
+      });
+
+      select.addEventListener('change', function() {
+        setTimeout(() => {
+          translateElement.classList.remove('visible');
+          gBall.style.opacity = '1';
+          gBall.style.transform = 'translateX(-50%) scale(1)';
+          this.style.cssText = `
+            position:absolute;
+            top:0;
+            left:50%;
+            transform:translateX(-50%);
+            width:44px;
+            height:44px;
+            opacity:0;
+            cursor:pointer;
+            z-index:2;
+          `;
+        }, 500);
+      });
+    }
+  }
+
+  setTimeout(createGoogleBall, 1000);
+  setTimeout(createGoogleBall, 2000);
+
+  if (translatorBtn && translateElement) {
+    translatorBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      translateElement.classList.toggle('visible');
+      if (translateElement.classList.contains('visible')) {
+        const select = translateElement.querySelector('.goog-te-combo');
+        if (select) select.focus();
+      }
+    });
+
+    document.addEventListener('click', function(e) {
+      if (!translatorBtn.contains(e.target) && !translateElement.contains(e.target)) {
+        translateElement.classList.remove('visible');
+      }
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && translateElement.classList.contains('visible')) {
+        translateElement.classList.remove('visible');
+      }
+    });
+  }
 }
 
 // Initialize Everything
