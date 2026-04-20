@@ -1209,4 +1209,3 @@ function handleNewsletterSubmit(event) {
 }
 
 window.handleNewsletterSubmit = handleNewsletterSubmit;
-
