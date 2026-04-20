@@ -467,9 +467,9 @@ section{padding:1.2cm .8cm}
     border-radius:10px;background-color:#fff;border:2px solid var(--gold);
     box-shadow:0 6px 16px rgba(0,0,0,0.15);
   }
-  .timeline-item[data-logo="Details_Symbol.jpg"] .timeline-content::after{background-image:url("../Details_Symbol.jpg");}
-  .timeline-item[data-logo="SKN_Global.png"] .timeline-content::after{background-image:url("../SKN_Global.png");}
-  .timeline-item[data-logo="SKN_Brasil.png"] .timeline-content::after{background-image:url("../SKN_Brasil.png");}
+  .timeline-item[data-logo="Details_Symbol.jpg"] .timeline-content::after{background-image:url("Details_Symbol.jpg");}
+  .timeline-item[data-logo="SKN_Global.png"] .timeline-content::after{background-image:url("SKN_Global.png");}
+  .timeline-item[data-logo="SKN_Brasil.png"] .timeline-content::after{background-image:url("SKN_Brasil.png");}
   .timeline-item[data-logo] .timeline-content{padding-top:5.3rem!important;position:relative;}
 }
 
@@ -985,15 +985,8 @@ body.dark-mode .impact-label{
   display:flex;
   align-items:center;
   gap:10px;
-  background:rgba(255,255,255,.9);
-  padding:8px 12px;
-  border-radius:14px;
-  box-shadow:0 4px 15px rgba(0,0,0,.15);
-  border:1px solid rgba(212,175,55,.3);
 }
-.nav-controls .translator-btn,
-.nav-controls .dark-mode-toggle{
-  position:static!important;
+.nav-btn{
   width:44px;
   height:44px;
   border-radius:50%;
@@ -1004,64 +997,36 @@ body.dark-mode .impact-label{
   justify-content:center;
   cursor:pointer;
   transition:all .3s ease;
+  box-shadow:0 4px 15px rgba(0,0,0,.15);
 }
-.nav-controls .translator-btn:hover{
+.nav-btn:hover{
   transform:scale(1.1);
   background:var(--gold);
 }
-.nav-controls .translator-btn i{
+.nav-btn i{
   font-size:1.2rem;
   color:var(--navy);
 }
-.nav-controls .dark-mode-toggle:hover{
-  transform:scale(1.1) rotate(15deg);
-  background:var(--gold);
-}
-.nav-controls .dark-mode-toggle i{
-  font-size:1.2rem;
-  color:var(--navy);
-}
-.nav-controls .translator-box{
-  position:static!important;
-  background:transparent!important;
-  padding:0!important;
-  border:none!important;
-  box-shadow:none!important;
-  display:flex;
-  flex-direction:column;
-  align-items:flex-start;
+.nav-controls #google_translate_element{
+  position:absolute;
+  top:55px;
+  right:50%;
+  transform:translateX(50%);
+  z-index:1502;
 }
 @media(max-width:768px){
   .nav-controls{
     top:6px!important;
     right:6px!important;
-    padding:6px 8px;
     gap:8px;
   }
-  .nav-controls .translator-btn,
-  .nav-controls .dark-mode-toggle{
+  .nav-btn{
     width:38px;
     height:38px;
   }
-  .nav-controls .translator-btn i,
-  .nav-controls .dark-mode-toggle i{
+  .nav-btn i{
     font-size:1rem;
   }
-  .nav-controls .translator-box{
-    max-width:90px;
-  }
-  .nav-controls .translator-box span{
-    font-size:9px!important;
-  }
-  .nav-controls .goog-te-gadget .goog-te-combo{
-    padding:3px 6px!important;
-    font-size:10px!important;
-    min-width:70px!important;
-  }
-}
-.dark-mode-toggle:not(.nav-controls .dark-mode-toggle),
-.translator-box:not(.nav-controls .translator-box){
-  display:none!important;
 }
 
 /* ============================================
@@ -1444,11 +1409,14 @@ body.dark-mode .impact-label{
   padding:1.5rem;
   position:relative;
   z-index:1;
+  border:2px solid rgba(212,175,55,.25);
+  border-radius:20px;
+  background:rgba(212,175,55,.05);
+  transition:all .35s ease;
 }
 
 .sustainability-item.highlight{
   background:rgba(212,175,55,.1);
-  border-radius:20px;
   border:2px solid var(--gold);
 }
 
@@ -1504,8 +1472,10 @@ body.dark-mode .impact-label{
 
 /* Sustainability highlight on hover for all items */
 .sustainability-item:hover{
-  background:rgba(212,175,55,.1);
-  border-radius:20px;
+  background:rgba(212,175,55,.15);
+  border-color:var(--gold);
+  box-shadow:0 8px 30px rgba(212,175,55,.15);
+  transform:translateY(-4px);
 }
 
 .sustainability-divider{
@@ -1552,18 +1522,31 @@ body.dark-mode .impact-label{
    DARK MODE FIXES - CORREÇÕES MODO ESCURO
    ============================================ */
 
-/* Fix para textos nos modais no modo dark */
+/* Fix para modais no modo dark — fundo escuro + textos claros */
+body.dark-mode .article-modal{
+  background:var(--dark-surface)!important;
+  border-color:var(--gold);
+}
 body.dark-mode .article-modal-content,
 body.dark-mode .article-modal-content p,
-body.dark-mode .article-modal-content h2,
-body.dark-mode .article-modal-content h3,
-body.dark-mode .article-modal-content li {
-  color: var(--dark-text) !important;
+body.dark-mode .article-modal-content li{
+  color:#e8e6e1!important;
 }
-
 body.dark-mode .article-modal-content h2,
-body.dark-mode .article-modal-content h3 {
-  color: var(--gold) !important;
+body.dark-mode .article-modal-content h3{
+  color:var(--gold)!important;
+}
+body.dark-mode .article-modal-content strong{
+  color:var(--gold-light)!important;
+}
+body.dark-mode .article-modal-close{
+  background:var(--dark-elevated);
+  border-color:var(--gold);
+  color:var(--dark-text);
+}
+body.dark-mode .article-modal-close:hover{
+  background:var(--gold);
+  color:var(--navy);
 }
 
 /* Fix para textos nos cards de blog no modo dark */
@@ -1864,9 +1847,10 @@ body.dark-mode .newsletter-input::placeholder {
 }
 
 .newsletter > p{
-  color:rgba(255,255,255,0.85);
+  color:rgba(255,255,255,0.95);
   margin-bottom:2rem;
   font-size:1.1rem;
+  text-shadow:0 1px 3px rgba(0,0,0,0.3);
 }
 
 .newsletter-form{
@@ -2147,6 +2131,16 @@ body.dark-mode .sustainability-item h3 {
 
 body.dark-mode .sustainability-value {
   color: var(--gold);
+}
+
+body.dark-mode .sustainability-item {
+  background: rgba(212,175,55,.08);
+  border-color: rgba(212,175,55,.3);
+}
+
+body.dark-mode .sustainability-item:hover {
+  background: rgba(212,175,55,.15);
+  border-color: var(--gold);
 }
 
 body.dark-mode .sustainability-divider {
