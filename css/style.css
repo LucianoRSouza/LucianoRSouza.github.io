@@ -1434,7 +1434,7 @@ body.dark-mode .impact-label{
 .strategy-icon{
   width:60px;
   height:60px;
-  background:linear-gradient(135deg,var(--gold),var(--gold-light));
+  background:rgba(255,255,255,0.08);
   border-radius:16px;
   display:flex;
   align-items:center;
