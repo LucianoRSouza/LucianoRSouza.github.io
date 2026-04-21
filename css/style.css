@@ -653,7 +653,11 @@ section{padding:1.2cm .8cm}
   margin:0 auto;
 }
 
-/* Dark Mode */
+/* ===============================
+   DARK MODE
+   =============================== */
+
+/* Dark variables */
 :root{
   --dark-bg:#0a0e27;
   --dark-surface:#12183a;
@@ -663,11 +667,13 @@ section{padding:1.2cm .8cm}
   --dark-text-secondary:#a0a8b8;
 }
 
+/* Base dark mode */
 body.dark-mode{
   background:var(--dark-bg);
   color:var(--dark-text);
 }
 
+/* Section backgrounds */
 body.dark-mode section.about,
 body.dark-mode section.timeline,
 body.dark-mode section.trade-shows,
@@ -684,6 +690,7 @@ body.dark-mode section.contact{
   background:var(--dark-surface);
 }
 
+/* Cards and surfaces */
 body.dark-mode .project-card,
 body.dark-mode .testimonial-card,
 body.dark-mode .blog-card,
@@ -695,30 +702,59 @@ body.dark-mode .cert-card{
   border-color:var(--dark-border);
 }
 
+/* Titles */
 body.dark-mode .project-content h3,
 body.dark-mode .testimonial-author h4,
 body.dark-mode .blog-card h3,
 body.dark-mode .contact-cta-card h3,
 body.dark-mode .timeline-title,
 body.dark-mode .cert-card h4{
-  color:var(--gold) !important;
+  color:var(--gold);
 }
 
+/* Body text */
 body.dark-mode .project-content p,
 body.dark-mode .testimonial-content p,
 body.dark-mode .blog-content > p,
 body.dark-mode .contact-cta-card p,
 body.dark-mode .timeline-description,
 body.dark-mode .cert-card > p{
-  color:#e8e6e1 !important;
+  color:var(--dark-text);
 }
 
+/* Secondary text */
 body.dark-mode .testimonial-author span,
 body.dark-mode .blog-meta,
 body.dark-mode .project-highlights,
 body.dark-mode .cert-subtitle,
 body.dark-mode .cert-date{
-  color:#a0a8b8 !important;
+  color:var(--dark-text-secondary);
+}
+
+/* ===============================
+   DARK MODE – CONTACT CTA BUTTONS
+   =============================== */
+
+/* Normal state (ALL equal) */
+body.dark-mode .contact-link{
+  background:rgba(255,255,255,0.14);
+  color:var(--dark-text);
+  border-color:rgba(255,255,255,0.28);
+}
+
+body.dark-mode .contact-link i{
+  color:var(--dark-text);
+}
+
+/* Hover (gold for ALL) */
+body.dark-mode .contact-link:hover{
+  background:var(--gold);
+  color:var(--navy);
+  border-color:var(--gold);
+}
+
+body.dark-mode .contact-link:hover i{
+  color:var(--navy);
 }
 
 /* Dark Mode Toggle */
