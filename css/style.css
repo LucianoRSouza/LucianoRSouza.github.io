@@ -570,6 +570,13 @@ section{padding:1.2cm .8cm}
 .github-cta p{color:rgba(255,255,255,.8);margin-bottom:1.5rem}
 @media(max-width:980px){.github-showcase{grid-template-columns:1fr}}
 
+/* Contact Intro (centralized text) */
+.contact-intro{
+  max-width:720px;
+  margin:0 auto 3rem;
+  text-align:center;
+}
+
 /* Contact CTA */
 .contact-cta-grid{
   max-width:480px;
