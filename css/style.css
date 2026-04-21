@@ -653,14 +653,24 @@ section{padding:1.2cm .8cm}
   margin:0 auto;
 }
 
-/* ==================================================
-   DARK MODE – BASE
-   ================================================== */
+/* ===============================
+   DARK MODE
+   =============================== */
+
+/* Dark variables */
+:root{
+  --dark-bg:#0a0e27;
+  --dark-surface:#12183a;
+  --dark-elevated:#1a2344;
+  --dark-border:rgba(212,175,55,0.15);
+  --dark-text:#e8e6e1;
+  --dark-text-secondary:#a0a8b8;
+}
 
 /* Base dark mode */
 body.dark-mode{
-  background: var(--dark-bg);
-  color: var(--dark-text);
+  background:var(--dark-bg);
+  color:var(--dark-text);
 }
 
 /* Section backgrounds */
@@ -671,16 +681,16 @@ body.dark-mode section.testimonials,
 body.dark-mode section.volunteer-section,
 body.dark-mode section.github,
 body.dark-mode section.blog{
-  background: var(--dark-bg);
+  background:var(--dark-bg);
 }
 
 body.dark-mode section.projects,
 body.dark-mode section.certs,
 body.dark-mode section.contact{
-  background: var(--dark-surface);
+  background:var(--dark-surface);
 }
 
-/* Cards / surfaces */
+/* Cards and surfaces */
 body.dark-mode .project-card,
 body.dark-mode .testimonial-card,
 body.dark-mode .blog-card,
@@ -688,8 +698,8 @@ body.dark-mode .contact-cta-card,
 body.dark-mode .volunteer-card,
 body.dark-mode .timeline-content,
 body.dark-mode .cert-card{
-  background: var(--dark-elevated);
-  border-color: var(--dark-border);
+  background:var(--dark-elevated);
+  border-color:var(--dark-border);
 }
 
 /* Titles */
@@ -699,7 +709,7 @@ body.dark-mode .blog-card h3,
 body.dark-mode .contact-cta-card h3,
 body.dark-mode .timeline-title,
 body.dark-mode .cert-card h4{
-  color: var(--gold);
+  color:var(--gold);
 }
 
 /* Body text */
@@ -709,7 +719,7 @@ body.dark-mode .blog-content > p,
 body.dark-mode .contact-cta-card p,
 body.dark-mode .timeline-description,
 body.dark-mode .cert-card > p{
-  color: var(--dark-text);
+  color:var(--dark-text);
 }
 
 /* Secondary text */
@@ -718,36 +728,168 @@ body.dark-mode .blog-meta,
 body.dark-mode .project-highlights,
 body.dark-mode .cert-subtitle,
 body.dark-mode .cert-date{
-  color: var(--dark-text-secondary);
+  color:var(--dark-text-secondary);
 }
 
-
-/* ==================================================
+/* ===============================
    DARK MODE – CONTACT CTA BUTTONS
-   (ALL IDENTICAL, NO BRAND EXCEPTIONS)
-   ================================================== */
+   =============================== */
 
 /* Normal state */
 body.dark-mode .contact-link{
-  background-color: transparent;
-  border: 2px solid rgba(255,255,255,0.28);
-  color: var(--dark-text);
+  background:rgba(255,255,255,0.14);
+  color:var(--dark-text);
+  border-color:rgba(255,255,255,0.28);
 }
 
-/* Icons follow text color */
 body.dark-mode .contact-link i{
-  color: inherit;
+  color:var(--dark-text);
 }
 
-/* Hover state */
+/* Hover – MUST COME AFTER normal state */
 body.dark-mode .contact-link:hover{
-  background-color: var(--gold) !important;
-  border-color: var(--gold) !important;
-  color: var(--navy) !important;
+  background:var(--gold) !important;
+  color:var(--navy) !important;
+  border-color:var(--gold) !important;
 }
 
 body.dark-mode .contact-link:hover i{
-  color: var(--navy) !important;
+  color:var(--navy) !important;
+}
+
+/* Dark Mode Toggle */
+.dark-mode-toggle{
+  order:2;
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.9);
+  border:2px solid var(--gold);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  transition:all 0.3s ease;
+  box-shadow:0 4px 15px rgba(0,0,0,0.15);
+}
+
+.dark-mode-toggle:hover{
+  transform:scale(1.1) rotate(15deg);
+  background:var(--gold);
+}
+
+.dark-mode-toggle i{
+  font-size:1.2rem;
+  color:var(--navy);
+}
+
+body.dark-mode .dark-mode-toggle{
+  background:var(--dark-elevated);
+}
+
+body.dark-mode .dark-mode-toggle i{
+  color:var(--gold);
+}
+
+@media(max-width:768px){
+  .dark-mode-toggle{
+    top:6px;
+    right:100px;
+    width:38px;
+    height:38px;
+  }
+}
+
+/* Animated Counters */
+.counter-value, .impact-value{
+  font-variant-numeric:tabular-nums;
+}
+
+/* Impact Widget */
+.impact-widget{
+  background:linear-gradient(135deg,rgba(212,175,55,0.15),rgba(212,175,55,0.05));
+  border:2px solid var(--gold);
+  border-radius:20px;
+  padding:1.5rem 2rem;
+  display:flex;
+  justify-content:center;
+  gap:3rem;
+  flex-wrap:wrap;
+  margin:2rem auto;
+  max-width:900px;
+}
+
+.impact-item{
+  text-align:center;
+}
+
+.impact-value{
+  display:block;
+  font-size:2rem;
+  font-weight:800;
+  color:var(--gold);
+}
+
+.impact-label{
+  font-size:0.85rem;
+  color:var(--text-light);
+  text-transform:uppercase;
+  letter-spacing:0.5px;
+}
+
+body.dark-mode .impact-label{
+  color:var(--dark-text-secondary);
+}
+
+@media(max-width:768px){
+  .impact-widget{
+    gap:1.5rem;
+    padding:1.2rem;
+  }
+  .impact-value{
+    font-size:1.6rem;
+  }
+}
+
+/* Build Badge */
+.build-badge{
+  position:fixed;
+  bottom:100px;
+  right:30px;
+  z-index:998;
+  background:linear-gradient(135deg,var(--gold),var(--gold-light));
+  color:var(--navy);
+  padding:12px 20px;
+  border-radius:50px;
+  font-weight:700;
+  font-size:0.9rem;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  box-shadow:0 8px 25px rgba(212,175,55,0.4);
+  animation:pulse-badge 2s infinite;
+  cursor:pointer;
+  transition:all 0.3s ease;
+  text-decoration:none;
+}
+
+.build-badge:hover{
+  transform:translateY(-3px) scale(1.05);
+  box-shadow:0 12px 35px rgba(212,175,55,0.5);
+}
+
+@keyframes pulse-badge{
+  0%,100%{box-shadow:0 8px 25px rgba(212,175,55,0.4)}
+  50%{box-shadow:0 8px 35px rgba(212,175,55,0.6)}
+}
+
+@media(max-width:768px){
+  .build-badge{
+    bottom:80px;
+    right:15px;
+    padding:10px 16px;
+    font-size:0.8rem;
+  }
 }
 
 /* Newsletter */
@@ -2164,27 +2306,4 @@ body.dark-mode .tech-tag {
 body:not(.dark-mode) .newsletter p{
   color: rgba(255,255,255,0.95) !important;
   opacity: 1 !important;
-}
-/* ==================================================
-   FIX FINAL – CONTACT CTA BUTTONS (DARK MODE ONLY)
-   ================================================== */
-
-body.dark-mode section.contact .contact-link{
-  background-color: transparent;
-  border: 2px solid rgba(255,255,255,0.28);
-  color: var(--dark-text);
-}
-
-body.dark-mode section.contact .contact-link i{
-  color: inherit;
-}
-
-body.dark-mode section.contact .contact-link:hover{
-  background-color: var(--gold) !important;
-  border-color: var(--gold) !important;
-  color: var(--navy) !important;
-}
-
-body.dark-mode section.contact .contact-link:hover i{
-  color: var(--navy) !important;
 }
