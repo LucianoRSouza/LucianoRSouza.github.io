@@ -304,7 +304,17 @@ section{padding:6rem var(--container-pad);position:relative}
 .contact-links{display:flex;justify-content:center;gap:1rem;margin-top:1.6rem;flex-wrap:wrap}
 .contact-link{display:flex;align-items:center;gap:.6rem;padding:.9rem 1.4rem;background:var(--cream);border-radius:999px;color:var(--text);font-weight:700;border:2px solid transparent;transition:all .22s ease}
 .contact-link:hover{background:var(--gold);color:var(--navy);transform:translateY(-4px)scale(1.04);border-color:var(--gold)}
+/* Contact primary CTA (Email) */
+.contact-link--primary{
+  background:var(--gold);
+  color:var(--navy);
+  border-color:var(--gold);
+}
 
+.contact-link--primary:hover{
+  background:var(--gold);
+  color:var(--navy);
+}
 /* Footer */
 footer{background:var(--navy);color:#fff;text-align:center;padding:2.4rem var(--container-pad)}
 .footer-content{max-width:800px;margin:0 auto}
