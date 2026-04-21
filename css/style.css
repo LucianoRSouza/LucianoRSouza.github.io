@@ -1411,13 +1411,20 @@ body.dark-mode .impact-label{
   gap:2rem;
 }
 
+/* Strategy cards hover — LIGHT MODE */
 .strategy-card-modern:hover{
-  transform:translateY(-8px);
-  border-color:var(--gold);
+  transform: translateY(-8px);
+  border-color: var(--gold);
+  box-shadow: 0 16px 36px rgba(212,175,55,0.22);
+  background: var(--white);
+}
+/* Strategy cards hover — DARK MODE */
+body.dark-mode .strategy-card-modern:hover{
+  border-color: var(--gold);
   box-shadow:
     0 0 0 1px var(--gold),
     0 12px 30px rgba(0,0,0,.35);
-  background:linear-gradient(
+  background: linear-gradient(
     180deg,
     rgba(212,175,55,0.12),
     rgba(15,21,56,0.9)
