@@ -746,14 +746,16 @@ body.dark-mode .contact-link i{
   color:var(--dark-text);
 }
 
-/* Hover – MUST COME AFTER normal state */
-body.dark-mode .contact-link:hover{
-  background:var(--gold) !important;
+/* Hover – force background for ALL, including LinkedIn */
+body.dark-mode .contact-link:hover,
+body.dark-mode .contact-link[href*="linkedin"]{
+  background-color:var(--gold) !important;
   color:var(--navy) !important;
   border-color:var(--gold) !important;
 }
 
-body.dark-mode .contact-link:hover i{
+body.dark-mode .contact-link:hover i,
+body.dark-mode .contact-link[href*="linkedin"] i{
   color:var(--navy) !important;
 }
 
