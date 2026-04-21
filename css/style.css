@@ -570,11 +570,26 @@ section{padding:1.2cm .8cm}
 .github-cta p{color:rgba(255,255,255,.8);margin-bottom:1.5rem}
 @media(max-width:980px){.github-showcase{grid-template-columns:1fr}}
 
-/* Contact Intro (centralized text) */
+/* Contact Intro (typography refined to match original design) */
 .contact-intro{
   max-width:720px;
-  margin:0 auto 3rem;
+  margin:0 auto 3.5rem;
   text-align:center;
+}
+
+.contact-intro h3{
+  font-family:'Playfair Display', serif;
+  font-size:2rem;
+  font-weight:600;
+  color:var(--navy);
+  margin-bottom:.75rem;
+}
+
+.contact-intro p{
+  font-family:'Inter', sans-serif;
+  font-size:1rem;
+  line-height:1.75;
+  color:rgba(15,21,56,.65);
 }
 
 /* Contact CTA */
