@@ -2165,3 +2165,26 @@ body:not(.dark-mode) .newsletter p{
   color: rgba(255,255,255,0.95) !important;
   opacity: 1 !important;
 }
+/* ==================================================
+   FIX FINAL – CONTACT CTA BUTTONS (DARK MODE ONLY)
+   ================================================== */
+
+body.dark-mode section.contact .contact-link{
+  background-color: transparent;
+  border: 2px solid rgba(255,255,255,0.28);
+  color: var(--dark-text);
+}
+
+body.dark-mode section.contact .contact-link i{
+  color: inherit;
+}
+
+body.dark-mode section.contact .contact-link:hover{
+  background-color: var(--gold) !important;
+  border-color: var(--gold) !important;
+  color: var(--navy) !important;
+}
+
+body.dark-mode section.contact .contact-link:hover i{
+  color: var(--navy) !important;
+}
