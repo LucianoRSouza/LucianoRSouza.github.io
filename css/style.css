@@ -756,7 +756,6 @@ body.dark-mode .contact-link:hover{
 body.dark-mode .contact-link:hover i{
   color:var(--navy);
 }
-
 /* Dark Mode Toggle */
 .dark-mode-toggle{
   order:2;
