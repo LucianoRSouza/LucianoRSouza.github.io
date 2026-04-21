@@ -879,29 +879,85 @@ function initDarkMode() {
   });
 }
 
-/* Translator Toggle — Simple (no G, no custom UI) */
+/* Translator Toggle — Bolinha G da OG */
 function initTranslator() {
   const translatorBtn = document.getElementById('translatorBtn');
   const translateElement = document.getElementById('google_translate_element');
-  if (!translatorBtn || !translateElement) return;
 
-  translatorBtn.addEventListener('click', function (e) {
-    e.stopPropagation();
-    translateElement.classList.toggle('visible');
-  });
+  /* Criar a bolinha G visualmente */
+  function createGoogleBall() {
+    if (!translateElement) return;
+    if (translateElement.querySelector('.google-g-ball')) return;
 
-  document.addEventListener('click', function (e) {
-    if (!translateElement.contains(e.target) && !translatorBtn.contains(e.target)) {
-      translateElement.classList.remove('visible');
-    }
-  });
+    const gBall = document.createElement('div');
+    gBall.className = 'google-g-ball';
+    gBall.innerHTML = 'G';
+    gBall.style.cssText = `
+      position:absolute;
+      top:0;
+      left:50%;
+      transform:translateX(-50%);
+      width:44px;
+      height:44px;
+      background:#fff;
+      border:2px solid #d4af37;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-family:'Product Sans','Roboto',Arial,sans-serif;
+      font-weight:700;
+      font-size:1.4rem;
+      background:linear-gradient(135deg,#4285F4 0%,#EA4335 33%,#FBBC05 66%,#34A853 100%);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+      box-shadow:0 4px 15px rgba(0,0,0,0.15);
+      transition:all 0.3s ease;
+      cursor:pointer;
+      z-index:1;
+      pointer-events:none;
+    `;
 
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') {
-      translateElement.classList.remove('visible');
-    }
-  });
-}
+    translateElement.appendChild(gBall);
+
+    const select = translateElement.querySelector('.goog-te-combo');
+    if (select) {
+      select.style.cssText = `
+        position:absolute;
+        top:0;
+        left:50%;
+        transform:translateX(-50%);
+        width:44px;
+        height:44px;
+        opacity:0;
+        cursor:pointer;
+        z-index:2;
+      `;
+
+      select.addEventListener('focus', function() {
+        gBall.style.opacity = '0';
+        gBall.style.transform = 'translateX(-50%) scale(0.5)';
+        this.style.cssText = `
+          position:absolute;
+          top:50px;
+          left:50%;
+          transform:translateX(-50%);
+          width:160px;
+          height:auto;
+          opacity:1;
+          padding:8px 12px;
+          border-radius:10px;
+          border:2px solid #d4af37;
+          background:#fff;
+          color:#0f1538;
+          font-family:'Inter',sans-serif;
+          font-weight:600;
+          font-size:13px;
+          box-shadow:0 8px 25px rgba(0,0,0,0.15);
+          z-index:10;
+        `;
+      });
 
       select.addEventListener('blur', function() {
         setTimeout(() => {
@@ -1153,31 +1209,3 @@ function handleNewsletterSubmit(event) {
 }
 
 window.handleNewsletterSubmit = handleNewsletterSubmit;
-/* ===========================
-   LOADING SCREEN FIX
-   =========================== */
-(function initLoadingFix(){
-  const loading = document.getElementById('loading');
-  if (!loading) return;
-
-  function hideLoading() {
-    loading.classList.add('hidden');
-    setTimeout(() => {
-      if (loading && loading.parentNode) {
-        loading.parentNode.removeChild(loading);
-      }
-    }, 400);
-  }
-
-  if (document.readyState === 'complete' || document.readyState === 'interactive') {
-    setTimeout(hideLoading, 500);
-  } else {
-    document.addEventListener('DOMContentLoaded', () => {
-      setTimeout(hideLoading, 500);
-    });
-  }
-
-  window.addEventListener('load', () => {
-    setTimeout(hideLoading, 300);
-  });
-})();
