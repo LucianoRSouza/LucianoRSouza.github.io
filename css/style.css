@@ -1345,7 +1345,10 @@ body.dark-mode .impact-label{
    STRATEGY IN ACTION SECTION
    ============================================ */
 
-/* Strategy Stats Banner */
+/* ============================================
+   Strategy Stats Banner
+   ============================================ */
+
 .strategy-stats-banner{
   max-width:1000px;
   margin:0 auto 3rem;
@@ -1402,7 +1405,10 @@ body.dark-mode .impact-label{
   }
 }
 
-/* Strategy Grid Modern */
+/* ============================================
+   Strategy Grid
+   ============================================ */
+
 .strategy-grid-modern{
   max-width:1200px;
   margin:0 auto;
@@ -1411,24 +1417,17 @@ body.dark-mode .impact-label{
   gap:2rem;
 }
 
-/* Strategy cards hover — LIGHT MODE */
-.strategy-card-modern:hover{
-  transform: translateY(-8px);
-  border-color: var(--gold);
-  box-shadow: 0 16px 36px rgba(212,175,55,0.22);
-  background: var(--white);
-}
-/* Strategy cards hover — DARK MODE */
-body.dark-mode .strategy-card-modern:hover{
-  border-color: var(--gold);
-  box-shadow:
-    0 0 0 1px var(--gold),
-    0 12px 30px rgba(0,0,0,.35);
-  background: linear-gradient(
-    180deg,
-    rgba(212,175,55,0.12),
-    rgba(15,21,56,0.9)
-  );
+/* ============================================
+   Strategy Cards — LIGHT MODE BASE
+   ============================================ */
+
+.strategy-card-modern{
+  background:var(--white);
+  border-radius:22px;
+  padding:2rem;
+  border:1px solid rgba(0,0,0,0.08);
+  box-shadow:0 10px 30px rgba(0,0,0,0.08);
+  transition:all .28s ease;
 }
 
 .strategy-card-header{
@@ -1460,13 +1459,8 @@ body.dark-mode .strategy-card-modern:hover{
   font-size:1.3rem;
 }
 
-.strategy-card-modern{
-  background:rgba(255,255,255,0.04); /* neutro, não destacado */
-  border-radius:22px;
-  padding:2rem;
-  border:1px solid rgba(255,255,255,0.15);
-  box-shadow:none;                  /* sem brilho inicial */
-  transition:all .28s ease;
+.strategy-card-modern > p{
+  color:var(--text);
 }
 
 .strategy-features{
@@ -1491,6 +1485,55 @@ body.dark-mode .strategy-card-modern:hover{
   color:var(--gold);
   font-size:.9rem;
 }
+
+/* ============================================
+   Strategy Cards — LIGHT MODE HOVER
+   ============================================ */
+
+.strategy-card-modern:hover{
+  transform:translateY(-8px);
+  border-color:var(--gold);
+  box-shadow:0 16px 36px rgba(212,175,55,.22);
+}
+
+/* ============================================
+   Strategy Cards — DARK MODE BASE
+   ============================================ */
+
+body.dark-mode .strategy-card-modern{
+  background:var(--dark-elevated);
+  border:1px solid var(--dark-border);
+  box-shadow:none;
+}
+
+body.dark-mode .strategy-card-header h3{
+  color:var(--gold);
+}
+
+body.dark-mode .strategy-card-modern > p,
+body.dark-mode .strategy-features li{
+  color:var(--dark-text);
+}
+
+/* ============================================
+   Strategy Cards — DARK MODE HOVER
+   ============================================ */
+
+body.dark-mode .strategy-card-modern:hover{
+  border-color:var(--gold);
+  box-shadow:
+    0 0 0 1px var(--gold),
+    0 12px 30px rgba(0,0,0,.35);
+  background:linear-gradient(
+    180deg,
+    rgba(212,175,55,0.12),
+    rgba(15,21,56,0.9)
+  );
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
 
 @media(max-width:768px){
   .strategy-grid-modern{
