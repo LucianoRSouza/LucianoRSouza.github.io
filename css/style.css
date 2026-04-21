@@ -580,7 +580,7 @@ section{padding:1.2cm .8cm}
 .contact-intro h3{
   font-family:'Playfair Display', serif;
   font-size:2rem;
-  font-weight:600;
+  font-weight:500;
   color:var(--navy);
   margin-bottom:.75rem;
 }
@@ -589,7 +589,7 @@ section{padding:1.2cm .8cm}
   font-family:'Inter', sans-serif;
   font-size:1rem;
   line-height:1.75;
-  color:rgba(15,21,56,.65);
+  color:rgba(15,21,56,.6);
 }
 
 /* Contact CTA */
