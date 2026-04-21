@@ -1791,16 +1791,6 @@ body.dark-mode .sustainability-section .section-header p {
   color: #a0a8b8 !important;
 }
 
-/* LinkedIn button no contact */
-body.dark-mode .contact-link[href*="linkedin"] {
-  background: rgba(255,255,255,0.1) !important;
-  color: #fff !important;
-  border: 2px solid rgba(255,255,255,0.3);
-}
-body.dark-mode .contact-link[href*="linkedin"] i {
-  color: #fff !important;
-}
-
 /* Article/Blog modais */
 body.dark-mode .article-modal-content,
 body.dark-mode .article-modal-content p,
