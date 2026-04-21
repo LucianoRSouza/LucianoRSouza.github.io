@@ -735,7 +735,7 @@ body.dark-mode .cert-date{
    DARK MODE – CONTACT CTA BUTTONS
    =============================== */
 
-/* Normal state (ALL equal) */
+/* Normal state */
 body.dark-mode .contact-link{
   background:rgba(255,255,255,0.14);
   color:var(--dark-text);
@@ -746,16 +746,17 @@ body.dark-mode .contact-link i{
   color:var(--dark-text);
 }
 
-/* Hover (gold for ALL) */
+/* Hover – MUST COME AFTER normal state */
 body.dark-mode .contact-link:hover{
-  background:var(--gold);
-  color:var(--navy);
-  border-color:var(--gold);
+  background:var(--gold) !important;
+  color:var(--navy) !important;
+  border-color:var(--gold) !important;
 }
 
 body.dark-mode .contact-link:hover i{
-  color:var(--navy);
+  color:var(--navy) !important;
 }
+
 /* Dark Mode Toggle */
 .dark-mode-toggle{
   order:2;
