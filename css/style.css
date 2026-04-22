@@ -454,38 +454,48 @@ section{padding:1.2cm .8cm}
 
 /* V23 fairs fix */
 .project-card[data-gallery]{cursor:pointer;}
-/* V23 timeline mobile logos */
-@media(max-width:1200px){.timeline-item[data-logo] .timeline-content{padding-top:4rem;}
-.timeline-item[data-logo] .timeline-content::after{content:"";position:absolute;top:-3rem;left:0;width:60px;height:60px;background-size:contain;background-repeat:no-repeat;background-image:attr(data-logo url);} }
 
 /* V25 overrides */
 
 /* V25 translator smaller */
 
-/* V25 timeline mobile logos */
-@media(max-width:1200px){.timeline-item[data-logo] .timeline-content{position:relative;padding-top:4rem!important;}
-.timeline-item[data-logo] .timeline-content::after{content:"";position:absolute;top:-3.1rem;left:0;width:52px;height:52px;background-size:contain;background-repeat:no-repeat;background-image:attr(data-logo url);} }
-/* V25 fix fairs spacing */
-.trade-shows .project-card{all:unset;display:block;width:100%;}
-.trade-shows .gold-frame{max-width:800px;margin:0 auto;border-radius:25px;border:3px solid var(--gold);overflow:hidden;cursor:pointer;}
-/* V25 gallery one click */
-.project-card{pointer-events:auto!important;}
-.project-card *{pointer-events:auto!important;}
-
-/* Mobile Timeline Logos — V36 (fine alignment) */
+/* Mobile Timeline Logos — final, clean, correct */
 @media (max-width: 1200px){
-  .timeline-item[data-logo] .timeline-content::after{
-    content:"";position:absolute;top:-5.2rem;left:0;width:58px;height:58px;
-    background-size:contain;background-repeat:no-repeat;background-position:center;
-    border-radius:10px;background-color:#fff;border:2px solid var(--gold);
-    box-shadow:0 6px 16px rgba(0,0,0,0.15);
-  }
-  .timeline-item[data-logo="Details_Symbol.jpg"] .timeline-content::after{background-image:url("Details_Symbol.jpg");}
-  .timeline-item[data-logo="SKN_Global.png"] .timeline-content::after{background-image:url("SKN_Global.png");}
-  .timeline-item[data-logo="SKN_Brasil.png"] .timeline-content::after{background-image:url("SKN_Brasil.png");}
-  .timeline-item[data-logo] .timeline-content{padding-top:5.3rem!important;position:relative;}
-}
 
+  .timeline-item[data-logo] .timeline-content{
+    position: relative;
+    padding-top: 5.3rem;
+  }
+
+  .timeline-item[data-logo] .timeline-content::after{
+    content: "";
+    position: absolute;
+    top: -5.2rem;
+    left: 0;
+    width: 58px;
+    height: 58px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    border-radius: 10px;
+    background-color: #fff;
+    border: 2px solid var(--gold);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+  }
+
+  .timeline-item[data-logo="Details_Symbol.jpg"] .timeline-content::after{
+    background-image: url("Details_Symbol.jpg");
+  }
+
+  .timeline-item[data-logo="SKN_Global.png"] .timeline-content::after{
+    background-image: url("SKN_Global.png");
+  }
+
+  .timeline-item[data-logo="SKN_Brasil.png"] .timeline-content::after{
+    background-image: url("SKN_Brasil.png");
+  }
+
+}
 /* Cert Modal */
 .cert-modal-overlay{position:fixed;inset:0;background:rgba(15,21,56,.96);backdrop-filter:blur(10px);z-index:6000;display:none;align-items:center;justify-content:center;padding:2rem;opacity:0;transition:opacity .3s ease}
 .cert-modal-overlay.active{display:flex;opacity:1}
