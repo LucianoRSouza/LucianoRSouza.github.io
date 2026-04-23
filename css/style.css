@@ -2455,3 +2455,23 @@ body:not(.dark-mode) .newsletter p{
     padding-left: 1rem;
   }
 }
+/* === Deep Dive Contract — Editorial Notice === */
+
+.deep-dive-contract {
+  padding: 56px 0;
+}
+
+.deep-dive-contract .container {
+  max-width: 900px;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.deep-dive-text {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  opacity: 0.75;
+  border-left: 3px solid var(--gold);
+  padding-left: 1.5rem;
+  max-width: 720px;
+}
