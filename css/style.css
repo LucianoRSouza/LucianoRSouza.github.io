@@ -2420,6 +2420,18 @@ body:not(.dark-mode) .newsletter p{
   font-size: 1.05rem;
   font-weight: 700;
   margin-bottom: 0.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.explore-card h3 i {
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
+.explore-card:hover h3 i {
+  opacity: 1;
 }
 
 .explore-card p {
