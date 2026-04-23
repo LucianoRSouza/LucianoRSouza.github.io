@@ -1088,3 +1088,30 @@ function handleNewsletterSubmit(event) {
 }
 
 window.handleNewsletterSubmit = handleNewsletterSubmit;
+// ===============================
+// HOW TO EXPLORE — MODE HANDLER
+// ===============================
+
+document.querySelectorAll('.explore-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const targetId = card.getAttribute('href');
+    if (!targetId || !targetId.startsWith('#')) return;
+
+    const targetSection = document.querySelector(targetId);
+    if (!targetSection || !targetSection.classList.contains('exploration-target')) return;
+
+    // Remove qualquer destaque anterior
+    document.querySelectorAll('.exploration-active')
+      .forEach(el => el.classList.remove('exploration-active'));
+
+    // Espera o scroll acontecer antes de destacar
+    setTimeout(() => {
+      targetSection.classList.add('exploration-active');
+
+      // Remove o destaque automaticamente
+      setTimeout(() => {
+        targetSection.classList.remove('exploration-active');
+      }, 2200);
+    }, 500);
+  });
+});
