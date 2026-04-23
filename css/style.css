@@ -2377,3 +2377,68 @@ body:not(.dark-mode) .newsletter p{
   color: rgba(255,255,255,0.95) !important;
   opacity: 1 !important;
 }
+/* === Explore Entry – Editorial Style === */
+
+.explore-entry {
+  padding: 64px 0;
+  background: var(--bg-soft);
+}
+
+.explore-entry .container {
+  max-width: 920px;
+}
+
+.explore-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.explore-intro {
+  max-width: 620px;
+  opacity: 0.85;
+  margin-bottom: 2.5rem;
+}
+
+.explore-options {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+  border-left: 3px solid var(--gold);
+  padding-left: 1.5rem;
+}
+
+.explore-card {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+
+.explore-card h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+
+.explore-card p {
+  margin: 0;
+  opacity: 0.8;
+  max-width: 560px;
+}
+
+.explore-card:hover {
+  transform: translateX(4px);
+  color: var(--gold);
+}
+
+/* Mobile tuning */
+@media (max-width: 768px) {
+  .explore-entry {
+    padding: 48px 0;
+  }
+
+  .explore-options {
+    padding-left: 1rem;
+  }
+}
