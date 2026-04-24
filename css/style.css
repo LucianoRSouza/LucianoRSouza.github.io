@@ -2466,3 +2466,6 @@ body:not(.dark-mode) .newsletter p{
   background-color: rgba(212, 175, 55, 0.06);
   box-shadow: inset 4px 0 0 var(--gold);
 }
+#pageTurnOverlay {
+  display: none !important;
+}
