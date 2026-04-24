@@ -1088,30 +1088,30 @@ function handleNewsletterSubmit(event) {
 }
 
 window.handleNewsletterSubmit = handleNewsletterSubmit;
+
 // ===============================
-// HOW TO EXPLORE — MODE HANDLER
+// HOW TO EXPLORE — PAGE TURN MODE
 // ===============================
+
+const overlay = document.getElementById('pageTurnOverlay');
 
 document.querySelectorAll('.explore-card').forEach(card => {
-  card.addEventListener('click', () => {
+  card.addEventListener('click', (e) => {
+    e.preventDefault();
+
     const targetId = card.getAttribute('href');
-    if (!targetId || !targetId.startsWith('#')) return;
-
     const targetSection = document.querySelector(targetId);
-    if (!targetSection || !targetSection.classList.contains('exploration-target')) return;
+    if (!targetSection) return;
 
-    // Remove qualquer destaque anterior
-    document.querySelectorAll('.exploration-active')
-      .forEach(el => el.classList.remove('exploration-active'));
+    // Ativa animação
+    overlay.classList.add('active');
 
-    // Espera o scroll acontecer antes de destacar
+    // Depois da "virada"
     setTimeout(() => {
-      targetSection.classList.add('exploration-active');
+      targetSection.scrollIntoView({ behavior: 'auto' });
 
-      // Remove o destaque automaticamente
-      setTimeout(() => {
-        targetSection.classList.remove('exploration-active');
-      }, 2200);
-    }, 500);
+      // Remove overlay
+      overlay.classList.remove('active');
+    }, 600);
   });
 });
