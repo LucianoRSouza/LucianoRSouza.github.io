@@ -503,18 +503,19 @@ section{padding:1.2cm .8cm}
     box-shadow: 0 6px 16px rgba(0,0,0,0.15);
   }
 
-.timeline-item[data-logo="Details_Symbol.jpg"] .timeline-content::after{
-  background-image: url("/Details_Symbol.jpg");
-}
+  .timeline-item[data-logo="Details_Symbol.jpg"] .timeline-content::after{
+    background-image: url("Details_Symbol.jpg");
+  }
 
-.timeline-item[data-logo="SKN_Global.png"] .timeline-content::after{
-  background-image: url("/SKN_Global.png");
-}
+  .timeline-item[data-logo="SKN_Global.png"] .timeline-content::after{
+    background-image: url("SKN_Global.png");
+  }
 
-.timeline-item[data-logo="SKN_Brasil.png"] .timeline-content::after{
-  background-image: url("/SKN_Brasil.png");
-}
+  .timeline-item[data-logo="SKN_Brasil.png"] .timeline-content::after{
+    background-image: url("SKN_Brasil.png");
+  }
 
+}
 /* Cert Modal */
 .cert-modal-overlay{position:fixed;inset:0;background:rgba(15,21,56,.96);backdrop-filter:blur(10px);z-index:6000;display:none;align-items:center;justify-content:center;padding:2rem;opacity:0;transition:opacity .3s ease}
 .cert-modal-overlay.active{display:flex;opacity:1}
