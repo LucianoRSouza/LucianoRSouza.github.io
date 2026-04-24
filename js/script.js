@@ -1115,7 +1115,6 @@ const pageTurnOverlay = document.getElementById('pageTurnOverlay');
 document.querySelectorAll('.explore-card').forEach(card => {
   card.addEventListener('click', (e) => {
     e.preventDefault();
-
     if (!pageTurnOverlay) return;
 
     const targetId = card.getAttribute('href');
@@ -1125,7 +1124,7 @@ document.querySelectorAll('.explore-card').forEach(card => {
     // Lock scroll
     document.body.classList.add('page-turning');
 
-    // Reset animation
+    // Reset animation state
     pageTurnOverlay.classList.remove('active');
     void pageTurnOverlay.offsetWidth;
 
@@ -1137,11 +1136,16 @@ document.querySelectorAll('.explore-card').forEach(card => {
       targetSection.scrollIntoView({ behavior: 'auto' });
     }, 420);
 
-    // End turn
-    setTimeout(() => {
+    // Cleanup when animation ACTUALLY ends
+    const onPageTurnEnd = (e) => {
+      if (e.target !== pageTurnOverlay) return;
+
       pageTurnOverlay.classList.remove('active');
       document.body.classList.remove('page-turning');
-    }, 900);
+
+      pageTurnOverlay.removeEventListener('transitionend', onPageTurnEnd);
+    };
+
+    pageTurnOverlay.addEventListener('transitionend', onPageTurnEnd);
   });
 });
-
