@@ -621,7 +621,6 @@ function updateTimelineSpy() {
   let minDistance = Infinity;
   const windowCenter = window.innerHeight / 2;
 
-  // Detecta o item ativo
   items.forEach((item, idx) => {
     const rect = item.getBoundingClientRect();
     const itemCenter = rect.top + rect.height / 2;
@@ -640,15 +639,12 @@ function updateTimelineSpy() {
 
   activeItem.classList.add('active');
 
-  // Atualiza indicadores
   indicators.forEach((dot, idx) => {
     dot.classList.toggle('active', idx === activeIndex);
   });
 
-  // Atualiza logo
   const newLogo = activeItem.getAttribute('data-logo');
   const currentSrc = logoImg.getAttribute('src');
-
   if (!newLogo) return;
 
   const resolvedNewSrc = '/' + newLogo;
