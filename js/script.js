@@ -621,6 +621,7 @@ function updateTimelineSpy() {
   let minDistance = Infinity;
   const windowCenter = window.innerHeight / 2;
 
+  // Determina qual item está mais próximo do centro do ecrã
   items.forEach((item, idx) => {
     const rect = item.getBoundingClientRect();
     const itemCenter = rect.top + rect.height / 2;
@@ -639,16 +640,21 @@ function updateTimelineSpy() {
 
   activeItem.classList.add('active');
 
+  // Atualiza indicadores (se existirem)
   indicators.forEach((dot, idx) => {
     dot.classList.toggle('active', idx === activeIndex);
   });
 
+  // === ATUALIZAÇÃO DO LOGO ===
   const newLogo = activeItem.getAttribute('data-logo');
   const currentSrc = logoImg.getAttribute('src');
+
   if (!newLogo) return;
 
-  const resolvedNewSrc = '/' + newLogo;
+  // Força raiz do site (teu caso)
+  const resolvedNewSrc = `/${newLogo}`;
 
+  // Só troca se o ficheiro for realmente diferente
   if (!currentSrc || !currentSrc.endsWith(newLogo)) {
     logoImg.style.opacity = '0';
 
