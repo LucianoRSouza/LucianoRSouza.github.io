@@ -1090,24 +1090,37 @@ function handleNewsletterSubmit(event) {
 window.handleNewsletterSubmit = handleNewsletterSubmit;
 
 // ===============================
-// HOW TO EXPLORE — MODE SWITCH
+// HOW TO EXPLORE — MODE + URL (NO SCROLL)
 // ===============================
 
 document.querySelectorAll('.explore-card').forEach(card => {
   card.addEventListener('click', () => {
     const mode = card.dataset.mode;
 
+    // 1. Explode todos os modos
     document.body.classList.remove(
       'mode-impact',
       'mode-method',
       'mode-deep'
     );
 
+    // 2. Ativa o modo
     if (mode) {
       document.body.classList.add(`mode-${mode}`);
     }
 
-    // estado ativo visual
+    // 3. Atualiza o URL SEM scroll
+    const hashMap = {
+      impact: '#operations',
+      method: '#strategy',
+      deep: '#timeline'
+    };
+
+    if (hashMap[mode]) {
+      history.pushState(null, '', hashMap[mode]);
+    }
+
+    // 4. Estado visual
     document.querySelectorAll('.explore-card')
       .forEach(c => c.classList.remove('active'));
     card.classList.add('active');
