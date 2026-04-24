@@ -1088,3 +1088,10 @@ function handleNewsletterSubmit(event) {
 }
 
 window.handleNewsletterSubmit = handleNewsletterSubmit;
+
+// HOW TO EXPLORE — disable scroll navigation
+document.querySelectorAll('.explore-card').forEach(card => {
+  card.addEventListener('click', e => {
+    e.preventDefault(); // 👈 mata o scroll
+  });
+});
