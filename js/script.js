@@ -1090,28 +1090,43 @@ function handleNewsletterSubmit(event) {
 window.handleNewsletterSubmit = handleNewsletterSubmit;
 
 // ===============================
-// HOW TO EXPLORE — PAGE TURN MODE
+// HOW TO EXPLORE — LUXURY PAGE TURN
 // ===============================
 
-const overlay = document.getElementById('pageTurnOverlay');
+const pageTurnOverlay = document.getElementById('pageTurnOverlay');
 
 document.querySelectorAll('.explore-card').forEach(card => {
   card.addEventListener('click', (e) => {
     e.preventDefault();
 
+    if (!pageTurnOverlay) {
+      console.warn('pageTurnOverlay not found');
+      return;
+    }
+
     const targetId = card.getAttribute('href');
     const targetSection = document.querySelector(targetId);
     if (!targetSection) return;
 
-    // Ativa animação
-    overlay.classList.add('active');
+    // Bloqueia scroll durante a virada
+    document.body.classList.add('page-turning');
 
-    // Depois da "virada"
+    // Reset para garantir animação
+    pageTurnOverlay.classList.remove('active');
+    void pageTurnOverlay.offsetWidth; // força reflow
+
+    // Inicia virada de página 3D
+    pageTurnOverlay.classList.add('active');
+
+    // Meio da animação → troca de conteúdo
     setTimeout(() => {
       targetSection.scrollIntoView({ behavior: 'auto' });
+    }, 350);
 
-      // Remove overlay
-      overlay.classList.remove('active');
-    }, 600);
+    // Final da animação → libera página
+    setTimeout(() => {
+      pageTurnOverlay.classList.remove('active');
+      document.body.classList.remove('page-turning');
+    }, 750);
   });
 });
