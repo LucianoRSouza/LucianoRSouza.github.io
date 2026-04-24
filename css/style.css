@@ -2467,7 +2467,7 @@ body:not(.dark-mode) .newsletter p{
   box-shadow: inset 4px 0 0 var(--gold);
 }
 
-/* === Page Turn — Bottom Right Corner Illusion === */
+/* === Page Turn — Editorial Book Transition (Correct) === */
 
 #pageTurnOverlay {
   position: fixed;
@@ -2476,19 +2476,15 @@ body:not(.dark-mode) .newsletter p{
   z-index: 999999;
   pointer-events: none;
 
-  transform-origin: 100% 100%;
-  transform: perspective(2000px) rotateY(85deg) rotateX(-10deg);
-  transition: transform 0.85s cubic-bezier(0.77, 0, 0.175, 1);
+  transform-origin: left center;
+  transform: perspective(1600px) rotateY(-100deg);
+  transition: transform 0.75s cubic-bezier(0.77, 0, 0.175, 1);
 
-  box-shadow:
-    inset -120px -80px 160px rgba(0,0,0,0.55),
-    inset -40px -30px 60px rgba(255,255,255,0.08);
-
-  clip-path: ellipse(180% 160% at 100% 100%);
+  box-shadow: inset -60px 0 120px rgba(0,0,0,0.45);
 }
 
 #pageTurnOverlay.active {
-  transform: perspective(2000px) rotateY(0deg) rotateX(0deg);
+  transform: perspective(1600px) rotateY(0deg);
 }
 
 body.page-turning {
