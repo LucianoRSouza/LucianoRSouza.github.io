@@ -504,15 +504,15 @@ section{padding:1.2cm .8cm}
   }
 
   .timeline-item[data-logo="Details_Symbol.jpg"] .timeline-content::after{
-    background-image: url("Details_Symbol.jpg");
+    background-image: url("/Details_Symbol.jpg");
   }
 
   .timeline-item[data-logo="SKN_Global.png"] .timeline-content::after{
-    background-image: url("SKN_Global.png");
+    background-image: url("/SKN_Global.png");
   }
 
   .timeline-item[data-logo="SKN_Brasil.png"] .timeline-content::after{
-    background-image: url("SKN_Brasil.png");
+    background-image: url("/SKN_Brasil.png");
   }
 
 }
