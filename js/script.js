@@ -1106,46 +1106,49 @@ function handleNewsletterSubmit(event) {
 
 window.handleNewsletterSubmit = handleNewsletterSubmit;
 
-// ===============================
-// HOW TO EXPLORE — TRUE BOOK TURN
-// ===============================
+/*
+ // ===============================
+ // HOW TO EXPLORE — TRUE BOOK TURN
+ // ===============================
 
-const pageTurnOverlay = document.getElementById('pageTurnOverlay');
+ const pageTurnOverlay = document.getElementById('pageTurnOverlay');
 
-document.querySelectorAll('.explore-card').forEach(card => {
-  card.addEventListener('click', (e) => {
-    e.preventDefault();
-    if (!pageTurnOverlay) return;
+ document.querySelectorAll('.explore-card').forEach(card => {
+   card.addEventListener('click', (e) => {
+     e.preventDefault();
+     if (!pageTurnOverlay) return;
 
-    const targetId = card.getAttribute('href');
-    const targetSection = document.querySelector(targetId);
-    if (!targetSection) return;
+     const targetId = card.getAttribute('href');
+     const targetSection = document.querySelector(targetId);
+     if (!targetSection) return;
 
-    // Lock scroll
-    document.body.classList.add('page-turning');
+     // Lock scroll
+     document.body.classList.add('page-turning');
 
-    // Reset animation state
-    pageTurnOverlay.classList.remove('active');
-    void pageTurnOverlay.offsetWidth;
+     // Reset animation state
+     pageTurnOverlay.classList.remove('active');
+     void pageTurnOverlay.offsetWidth;
 
-    // Start page turn
-    pageTurnOverlay.classList.add('active');
+     // Start page turn
+     pageTurnOverlay.classList.add('active');
 
-    // Swap content mid-turn
-    setTimeout(() => {
-      targetSection.scrollIntoView({ behavior: 'auto' });
-    }, 420);
+     // Swap content mid-turn
+     setTimeout(() => {
+       targetSection.scrollIntoView({ behavior: 'auto' });
+     }, 420);
 
-    // Cleanup when animation ACTUALLY ends
-    const onPageTurnEnd = (e) => {
-      if (e.target !== pageTurnOverlay) return;
+     // Cleanup when animation ACTUALLY ends
+     const onPageTurnEnd = (e) => {
+       if (e.target !== pageTurnOverlay) return;
 
-      pageTurnOverlay.classList.remove('active');
-      document.body.classList.remove('page-turning');
+       pageTurnOverlay.classList.remove('active');
+       document.body.classList.remove('page-turning');
 
-      pageTurnOverlay.removeEventListener('transitionend', onPageTurnEnd);
-    };
+       pageTurnOverlay.removeEventListener('transitionend', onPageTurnEnd);
+     };
 
-    pageTurnOverlay.addEventListener('transitionend', onPageTurnEnd);
-  });
-});
+     pageTurnOverlay.addEventListener('transitionend', onPageTurnEnd);
+   });
+ });
+*/
+
