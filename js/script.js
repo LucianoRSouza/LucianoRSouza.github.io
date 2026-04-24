@@ -1,5 +1,19 @@
 /* Luciano Rodrigues Portfolio - Google Translate Optimized */
 
+let scrollLockCount = 0;
+
+function lockScroll() {
+  scrollLockCount++;
+  lockScroll();
+}
+
+function unlockScroll() {
+  scrollLockCount = Math.max(0, scrollLockCount - 1);
+  if (scrollLockCount === 0) {
+    document.body.style.overflow = 'auto';
+  }
+}
+
 const PG_state = { images: [], index: 0 };
 const CardSlides = new Map();
 let savedScrollPosition = 0;
@@ -234,7 +248,7 @@ function openStatModal(key) {
   $('#statModalValue').textContent = data.value;
   $('#statModalDetails').innerHTML = data.details.map(it => `<li>${it}</li>`).join('');
   $('#statModalOverlay').classList.add('active');
-  document.body.style.overflow = 'hidden';
+  unlockScroll();
 }
 
 function closeStatModal() {
@@ -1123,7 +1137,7 @@ window.handleNewsletterSubmit = handleNewsletterSubmit;
      if (!targetSection) return;
 
      // Lock scroll
-     document.body.classList.add('page-turning');
+     lockScroll();
 
      // Reset animation state
      pageTurnOverlay.classList.remove('active');
@@ -1142,7 +1156,7 @@ window.handleNewsletterSubmit = handleNewsletterSubmit;
        if (e.target !== pageTurnOverlay) return;
 
        pageTurnOverlay.classList.remove('active');
-       document.body.classList.remove('page-turning');
+       unlockScroll();
 
        pageTurnOverlay.removeEventListener('transitionend', onPageTurnEnd);
      };
