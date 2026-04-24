@@ -667,6 +667,9 @@ function updateTimelineSpy() {
   }
 }
 
+  indicators.forEach((dot, idx) => dot.classList.toggle('active', idx === activeIndex));
+}
+
 function initParticles() {
   const container = $('#particles');
   if (!container) return;
