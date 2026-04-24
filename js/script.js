@@ -641,7 +641,7 @@ function updateTimelineSpy() {
     if (newLogo && newLogo !== currentSrc) {
       logoImg.style.opacity = '0';
       setTimeout(() => {
-        logoImg.src = newLogo;
+        logoImg.src = `img/${newLogo}`;
         logoImg.onload = () => { logoImg.style.opacity = '1'; };
       }, 160);
     }
