@@ -2466,3 +2466,22 @@ body:not(.dark-mode) .newsletter p{
   background-color: rgba(212, 175, 55, 0.06);
   box-shadow: inset 4px 0 0 var(--gold);
 }
+/* === Page Turn Transition === */
+
+#pageTurnOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: var(--navy);
+  z-index: 9999;
+  transform-origin: left center;
+  transform: scaleX(0);
+  transition: transform 0.6s ease-in-out;
+  pointer-events: none;
+}
+
+#pageTurnOverlay.active {
+  transform: scaleX(1);
+}
