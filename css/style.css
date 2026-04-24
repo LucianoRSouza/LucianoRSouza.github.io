@@ -2410,12 +2410,12 @@ body:not(.dark-mode) .newsletter p{
 }
 
 .explore-card {
-  text-decoration: none;
-  color: inherit;
+  all: unset;                 /* remove comportamento nativo do button */
+  cursor: pointer;
   display: block;
+  color: inherit;
   transition: transform 0.25s ease, color 0.25s ease;
 }
-
 .explore-card h3 {
   font-size: 1.05rem;
   font-weight: 700;
@@ -2468,4 +2468,12 @@ body:not(.dark-mode) .newsletter p{
 }
 #pageTurnOverlay {
   display: none !important;
+}
+
+/* FORCE SCROLL BACK */
+html, body {
+  height: auto !important;
+  min-height: 100% !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
 }
