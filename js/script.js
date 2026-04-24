@@ -1090,7 +1090,7 @@ function handleNewsletterSubmit(event) {
 window.handleNewsletterSubmit = handleNewsletterSubmit;
 
 // ===============================
-// HOW TO EXPLORE — LUXURY PAGE TURN
+// HOW TO EXPLORE — TRUE BOOK TURN
 // ===============================
 
 const pageTurnOverlay = document.getElementById('pageTurnOverlay');
@@ -1099,34 +1099,32 @@ document.querySelectorAll('.explore-card').forEach(card => {
   card.addEventListener('click', (e) => {
     e.preventDefault();
 
-    if (!pageTurnOverlay) {
-      console.warn('pageTurnOverlay not found');
-      return;
-    }
+    if (!pageTurnOverlay) return;
 
     const targetId = card.getAttribute('href');
     const targetSection = document.querySelector(targetId);
     if (!targetSection) return;
 
-    // Bloqueia scroll durante a virada
+    // Lock scroll
     document.body.classList.add('page-turning');
 
-    // Reset para garantir animação
+    // Reset animation
     pageTurnOverlay.classList.remove('active');
-    void pageTurnOverlay.offsetWidth; // força reflow
+    void pageTurnOverlay.offsetWidth;
 
-    // Inicia virada de página 3D
+    // Start page turn
     pageTurnOverlay.classList.add('active');
 
-    // Meio da animação → troca de conteúdo
+    // Swap content mid-turn
     setTimeout(() => {
       targetSection.scrollIntoView({ behavior: 'auto' });
-    }, 350);
+    }, 420);
 
-    // Final da animação → libera página
+    // End turn
     setTimeout(() => {
       pageTurnOverlay.classList.remove('active');
       document.body.classList.remove('page-turning');
-    }, 750);
+    }, 900);
   });
 });
+
