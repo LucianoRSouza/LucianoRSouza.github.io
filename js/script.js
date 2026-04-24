@@ -611,20 +611,17 @@ function showToast(message = '') {
 function updateTimelineSpy() {
   const items = $$('.timeline-item');
   if (!items.length) return;
-
   const logoImg = $('#logo-img');
-  if (!logoImg) return;
-
   const indicators = $$('.indicator-dot');
+  if (!logoImg) return;
 
   let activeIndex = 0;
   let minDistance = Infinity;
   const windowCenter = window.innerHeight / 2;
 
-  // Determina qual item está mais próximo do centro do ecrã
   items.forEach((item, idx) => {
-    const rect = item.getBoundingClientRect();
-    const itemCenter = rect.top + rect.height / 2;
+    const r = item.getBoundingClientRect();
+    const itemCenter = r.top + r.height / 2;
     const distance = Math.abs(itemCenter - windowCenter);
 
     if (distance < minDistance) {
@@ -635,43 +632,20 @@ function updateTimelineSpy() {
     item.classList.remove('active');
   });
 
+  items[activeIndex].classList.add('active');
+
   const activeItem = items[activeIndex];
-  if (!activeItem) return;
-
-  activeItem.classList.add('active');
-
-  // Atualiza indicadores (se existirem)
-  indicators.forEach((dot, idx) => {
-    dot.classList.toggle('active', idx === activeIndex);
-  });
-
-  // === ATUALIZAÇÃO DO LOGO ===
-  const newLogo = activeItem.getAttribute('data-logo');
-  const currentSrc = logoImg.getAttribute('src');
-
-  if (!newLogo) return;
-
-  // Força raiz do site (teu caso)
-  const resolvedNewSrc = `/${newLogo}`;
-
-  // Só troca se o ficheiro for realmente diferente
-  if (!currentSrc || !currentSrc.endsWith(newLogo)) {
-    logoImg.style.opacity = '0';
-
-    setTimeout(() => {
-      logoImg.src = resolvedNewSrc;
-
-      logoImg.onload = () => {
-        logoImg.style.opacity = '1';
-      };
-
-      logoImg.onerror = () => {
-        console.error('Logo not found:', resolvedNewSrc);
-        logoImg.style.opacity = '1';
-      };
-    }, 160);
+  if (activeItem) {
+    const newLogo = activeItem.getAttribute('data-logo');
+    const currentSrc = logoImg.getAttribute('src');
+    if (newLogo && newLogo !== currentSrc) {
+      logoImg.style.opacity = '0';
+      setTimeout(() => {
+        logoImg.src = `img/${newLogo}`;
+        logoImg.onload = () => { logoImg.style.opacity = '1'; };
+      }, 160);
+    }
   }
-}
 
   indicators.forEach((dot, idx) => dot.classList.toggle('active', idx === activeIndex));
 }
