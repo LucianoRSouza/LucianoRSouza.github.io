@@ -611,17 +611,19 @@ function showToast(message = '') {
 function updateTimelineSpy() {
   const items = $$('.timeline-item');
   if (!items.length) return;
+
   const logoImg = $('#logo-img');
-  const indicators = $$('.indicator-dot');
   if (!logoImg) return;
+
+  const indicators = $$('.indicator-dot');
 
   let activeIndex = 0;
   let minDistance = Infinity;
   const windowCenter = window.innerHeight / 2;
 
   items.forEach((item, idx) => {
-    const r = item.getBoundingClientRect();
-    const itemCenter = r.top + r.height / 2;
+    const rect = item.getBoundingClientRect();
+    const itemCenter = rect.top + rect.height / 2;
     const distance = Math.abs(itemCenter - windowCenter);
 
     if (distance < minDistance) {
@@ -632,20 +634,38 @@ function updateTimelineSpy() {
     item.classList.remove('active');
   });
 
-  items[activeIndex].classList.add('active');
-
   const activeItem = items[activeIndex];
-  if (activeItem) {
-    const newLogo = activeItem.getAttribute('data-logo');
-    const currentSrc = logoImg.getAttribute('src');
-    if (newLogo && newLogo !== currentSrc) {
-      logoImg.style.opacity = '0';
-      setTimeout(() => {
-        logoImg.src = newLogo;
-        logoImg.onload = () => { logoImg.style.opacity = '1'; };
-      }, 160);
-    }
+  if (!activeItem) return;
+
+  activeItem.classList.add('active');
+
+  indicators.forEach((dot, idx) => {
+    dot.classList.toggle('active', idx === activeIndex);
+  });
+
+  const newLogo = activeItem.getAttribute('data-logo');
+  const currentSrc = logoImg.getAttribute('src');
+  if (!newLogo) return;
+
+  const resolvedNewSrc = '/' + newLogo;
+
+  if (!currentSrc || !currentSrc.endsWith(newLogo)) {
+    logoImg.style.opacity = '0';
+
+    setTimeout(() => {
+      logoImg.src = resolvedNewSrc;
+
+      logoImg.onload = () => {
+        logoImg.style.opacity = '1';
+      };
+
+      logoImg.onerror = () => {
+        console.error('Logo not found:', resolvedNewSrc);
+        logoImg.style.opacity = '1';
+      };
+    }, 160);
   }
+}
 
   indicators.forEach((dot, idx) => dot.classList.toggle('active', idx === activeIndex));
 }
@@ -1090,28 +1110,40 @@ function handleNewsletterSubmit(event) {
 window.handleNewsletterSubmit = handleNewsletterSubmit;
 
 // ===============================
-// HOW TO EXPLORE — PAGE TURN MODE
+// HOW TO EXPLORE — TRUE BOOK TURN
 // ===============================
 
-const overlay = document.getElementById('pageTurnOverlay');
+const pageTurnOverlay = document.getElementById('pageTurnOverlay');
 
 document.querySelectorAll('.explore-card').forEach(card => {
   card.addEventListener('click', (e) => {
     e.preventDefault();
 
+    if (!pageTurnOverlay) return;
+
     const targetId = card.getAttribute('href');
     const targetSection = document.querySelector(targetId);
     if (!targetSection) return;
 
-    // Ativa animação
-    overlay.classList.add('active');
+    // Lock scroll
+    document.body.classList.add('page-turning');
 
-    // Depois da "virada"
+    // Reset animation
+    pageTurnOverlay.classList.remove('active');
+    void pageTurnOverlay.offsetWidth;
+
+    // Start page turn
+    pageTurnOverlay.classList.add('active');
+
+    // Swap content mid-turn
     setTimeout(() => {
       targetSection.scrollIntoView({ behavior: 'auto' });
+    }, 420);
 
-      // Remove overlay
-      overlay.classList.remove('active');
-    }, 600);
+    // End turn
+    setTimeout(() => {
+      pageTurnOverlay.classList.remove('active');
+      document.body.classList.remove('page-turning');
+    }, 900);
   });
 });
