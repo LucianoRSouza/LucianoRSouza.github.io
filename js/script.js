@@ -1,19 +1,5 @@
 /* Luciano Rodrigues Portfolio - Google Translate Optimized */
 
-let scrollLockCount = 0;
-
-function lockScroll() {
-  scrollLockCount++;
-  lockScroll();
-}
-
-function unlockScroll() {
-  scrollLockCount = Math.max(0, scrollLockCount - 1);
-  if (scrollLockCount === 0) {
-    document.body.style.overflow = 'auto';
-  }
-}
-
 const PG_state = { images: [], index: 0 };
 const CardSlides = new Map();
 let savedScrollPosition = 0;
@@ -248,7 +234,7 @@ function openStatModal(key) {
   $('#statModalValue').textContent = data.value;
   $('#statModalDetails').innerHTML = data.details.map(it => `<li>${it}</li>`).join('');
   $('#statModalOverlay').classList.add('active');
-  unlockScroll();
+  document.body.style.overflow = 'hidden';
 }
 
 function closeStatModal() {
@@ -625,19 +611,17 @@ function showToast(message = '') {
 function updateTimelineSpy() {
   const items = $$('.timeline-item');
   if (!items.length) return;
-
   const logoImg = $('#logo-img');
-  if (!logoImg) return;
-
   const indicators = $$('.indicator-dot');
+  if (!logoImg) return;
 
   let activeIndex = 0;
   let minDistance = Infinity;
   const windowCenter = window.innerHeight / 2;
 
   items.forEach((item, idx) => {
-    const rect = item.getBoundingClientRect();
-    const itemCenter = rect.top + rect.height / 2;
+    const r = item.getBoundingClientRect();
+    const itemCenter = r.top + r.height / 2;
     const distance = Math.abs(itemCenter - windowCenter);
 
     if (distance < minDistance) {
@@ -648,37 +632,22 @@ function updateTimelineSpy() {
     item.classList.remove('active');
   });
 
+  items[activeIndex].classList.add('active');
+
   const activeItem = items[activeIndex];
-  if (!activeItem) return;
-
-  activeItem.classList.add('active');
-
-  indicators.forEach((dot, idx) => {
-    dot.classList.toggle('active', idx === activeIndex);
-  });
-
-  const newLogo = activeItem.getAttribute('data-logo');
-  const currentSrc = logoImg.getAttribute('src');
-  if (!newLogo) return;
-
-  const resolvedNewSrc = '/' + newLogo;
-
-  if (!currentSrc || !currentSrc.endsWith(newLogo)) {
-    logoImg.style.opacity = '0';
-
-    setTimeout(() => {
-      logoImg.src = resolvedNewSrc;
-
-      logoImg.onload = () => {
-        logoImg.style.opacity = '1';
-      };
-
-      logoImg.onerror = () => {
-        console.error('Logo not found:', resolvedNewSrc);
-        logoImg.style.opacity = '1';
-      };
-    }, 160);
+  if (activeItem) {
+    const newLogo = activeItem.getAttribute('data-logo');
+    const currentSrc = logoImg.getAttribute('src');
+    if (newLogo && newLogo !== currentSrc) {
+      logoImg.style.opacity = '0';
+      setTimeout(() => {
+        logoImg.src = newLogo;
+        logoImg.onload = () => { logoImg.style.opacity = '1'; };
+      }, 160);
+    }
   }
+
+  indicators.forEach((dot, idx) => dot.classList.toggle('active', idx === activeIndex));
 }
 
 function initParticles() {
@@ -1119,49 +1088,3 @@ function handleNewsletterSubmit(event) {
 }
 
 window.handleNewsletterSubmit = handleNewsletterSubmit;
-
-/*
- // ===============================
- // HOW TO EXPLORE — TRUE BOOK TURN
- // ===============================
-
- const pageTurnOverlay = document.getElementById('pageTurnOverlay');
-
- document.querySelectorAll('.explore-card').forEach(card => {
-   card.addEventListener('click', (e) => {
-     e.preventDefault();
-     if (!pageTurnOverlay) return;
-
-     const targetId = card.getAttribute('href');
-     const targetSection = document.querySelector(targetId);
-     if (!targetSection) return;
-
-     // Lock scroll
-     lockScroll();
-
-     // Reset animation state
-     pageTurnOverlay.classList.remove('active');
-     void pageTurnOverlay.offsetWidth;
-
-     // Start page turn
-     pageTurnOverlay.classList.add('active');
-
-     // Swap content mid-turn
-     setTimeout(() => {
-       targetSection.scrollIntoView({ behavior: 'auto' });
-     }, 420);
-
-     // Cleanup when animation ACTUALLY ends
-     const onPageTurnEnd = (e) => {
-       if (e.target !== pageTurnOverlay) return;
-
-       pageTurnOverlay.classList.remove('active');
-       unlockScroll();
-
-       pageTurnOverlay.removeEventListener('transitionend', onPageTurnEnd);
-     };
-
-     pageTurnOverlay.addEventListener('transitionend', onPageTurnEnd);
-   });
- });
-*/
