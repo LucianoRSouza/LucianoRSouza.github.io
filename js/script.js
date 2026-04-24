@@ -1095,3 +1095,4 @@ document.querySelectorAll('.explore-card').forEach(card => {
     e.preventDefault(); // 👈 mata o scroll
   });
 });
+/*
