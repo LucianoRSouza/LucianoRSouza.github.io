@@ -2466,22 +2466,30 @@ body:not(.dark-mode) .newsletter p{
   background-color: rgba(212, 175, 55, 0.06);
   box-shadow: inset 4px 0 0 var(--gold);
 }
-/* === Page Turn Transition === */
+
+/* === Page Turn (Luxury Book Effect) === */
 
 #pageTurnOverlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  inset: 0;
   background: var(--navy);
-  z-index: 9999;
-  transform-origin: left center;
-  transform: scaleX(0);
-  transition: transform 0.6s ease-in-out;
+  z-index: 999999;
   pointer-events: none;
+
+  /* Real 3D book setup */
+  transform-origin: left center;
+  transform: perspective(1600px) rotateY(-92deg);
+  transition: transform 0.75s cubic-bezier(0.77, 0, 0.175, 1);
+
+  /* Fold shadow for paper realism */
+  box-shadow: inset -50px 0 80px rgba(0, 0, 0, 0.45);
 }
 
 #pageTurnOverlay.active {
-  transform: scaleX(1);
+  transform: perspective(1600px) rotateY(0deg);
+}
+
+/* Lock scroll during page turn */
+body.page-turning {
+  overflow: hidden;
 }
