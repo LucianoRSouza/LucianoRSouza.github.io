@@ -1089,10 +1089,28 @@ function handleNewsletterSubmit(event) {
 
 window.handleNewsletterSubmit = handleNewsletterSubmit;
 
-// HOW TO EXPLORE — disable scroll navigation
+// ===============================
+// HOW TO EXPLORE — MODE SWITCH
+// ===============================
+
 document.querySelectorAll('.explore-card').forEach(card => {
-  card.addEventListener('click', e => {
-    e.preventDefault(); // 👈 mata o scroll
+  card.addEventListener('click', () => {
+    const mode = card.dataset.mode;
+
+    document.body.classList.remove(
+      'mode-impact',
+      'mode-method',
+      'mode-deep'
+    );
+
+    if (mode) {
+      document.body.classList.add(`mode-${mode}`);
+    }
+
+    // estado ativo visual
+    document.querySelectorAll('.explore-card')
+      .forEach(c => c.classList.remove('active'));
+    card.classList.add('active');
   });
 });
-/*
+
