@@ -1090,40 +1090,27 @@ function handleNewsletterSubmit(event) {
 window.handleNewsletterSubmit = handleNewsletterSubmit;
 
 // ===============================
-// HOW TO EXPLORE — MODE + URL (NO SCROLL)
+// HOW TO EXPLORE — MODE + HASH
 // ===============================
 
-document.querySelectorAll('.explore-card').forEach(card => {
-  card.addEventListener('click', () => {
-    const mode = card.dataset.mode;
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.explore-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const mode = card.dataset.mode;
 
-    // 1. Explode todos os modos
-    document.body.classList.remove(
-      'mode-impact',
-      'mode-method',
-      'mode-deep'
-    );
+      // 1) Atualiza o hash COMO ERA ANTES
+      if (mode === 'impact') location.hash = '#operations';
+      if (mode === 'method') location.hash = '#strategy';
+      if (mode === 'deep') location.hash = '#timeline';
 
-    // 2. Ativa o modo
-    if (mode) {
-      document.body.classList.add(`mode-${mode}`);
-    }
+      // 2) Modo editorial (vai ser usado depois)
+      document.body.classList.remove('mode-impact', 'mode-method', 'mode-deep');
+      if (mode) document.body.classList.add(`mode-${mode}`);
 
-    // 3. Atualiza o URL SEM scroll
-    const hashMap = {
-      impact: '#operations',
-      method: '#strategy',
-      deep: '#timeline'
-    };
-
-    if (hashMap[mode]) {
-      history.pushState(null, '', hashMap[mode]);
-    }
-
-    // 4. Estado visual
-    document.querySelectorAll('.explore-card')
-      .forEach(c => c.classList.remove('active'));
-    card.classList.add('active');
+      // 3) estado visual
+      document.querySelectorAll('.explore-card')
+        .forEach(c => c.classList.remove('active'));
+      card.classList.add('active');
+    });
   });
 });
-
