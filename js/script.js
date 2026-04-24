@@ -1098,16 +1098,27 @@ document.addEventListener('DOMContentLoaded', () => {
     card.addEventListener('click', () => {
       const mode = card.dataset.mode;
 
-      // 1) Atualiza o hash COMO ERA ANTES
-      if (mode === 'impact') location.hash = '#operations';
-      if (mode === 'method') location.hash = '#strategy';
-      if (mode === 'deep') location.hash = '#timeline';
+      // DEBUG VISUAL IMEDIATO
+      console.log('Explore mode:', mode);
 
-      // 2) Modo editorial (vai ser usado depois)
-      document.body.classList.remove('mode-impact', 'mode-method', 'mode-deep');
-      if (mode) document.body.classList.add(`mode-${mode}`);
+      // 1) Limpa modos anteriores
+      document.body.classList.remove(
+        'mode-impact',
+        'mode-method',
+        'mode-deep'
+      );
 
-      // 3) estado visual
+      // 2) Aplica o modo
+      if (mode) {
+        document.body.classList.add(`mode-${mode}`);
+      }
+
+      // 3) Atualiza o hash (sem scroll)
+      if (mode === 'impact')  location.hash = '#operations';
+      if (mode === 'method')  location.hash = '#strategy';
+      if (mode === 'deep')    location.hash = '#timeline';
+
+      // 4) Estado ativo
       document.querySelectorAll('.explore-card')
         .forEach(c => c.classList.remove('active'));
       card.classList.add('active');
