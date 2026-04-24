@@ -2466,26 +2466,30 @@ body:not(.dark-mode) .newsletter p{
   box-shadow: inset 4px 0 0 var(--gold);
 }
 
-/* === Page Turn — Editorial Book Transition (Correct) === */
-
 #pageTurnOverlay {
   position: fixed;
   inset: 0;
   background: var(--navy);
   z-index: 999999;
+
   pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
 
   transform-origin: left center;
   transform: perspective(1600px) rotateY(-100deg);
-  transition: transform 0.75s cubic-bezier(0.77, 0, 0.175, 1);
-
-  box-shadow: inset -60px 0 120px rgba(0,0,0,0.45);
+  transition:
+    transform 0.75s cubic-bezier(0.77, 0, 0.175, 1),
+    opacity 0.2s ease;
 }
 
 #pageTurnOverlay.active {
+  opacity: 1;
+  visibility: visible;
   transform: perspective(1600px) rotateY(0deg);
 }
 
 body.page-turning {
   overflow: hidden;
 }
+
