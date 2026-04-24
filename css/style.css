@@ -2467,7 +2467,7 @@ body:not(.dark-mode) .newsletter p{
   box-shadow: inset 4px 0 0 var(--gold);
 }
 
-/* === Page Turn (Luxury Book Effect) === */
+/* === Page Turn (True Book Page Effect) === */
 
 #pageTurnOverlay {
   position: fixed;
@@ -2476,20 +2476,34 @@ body:not(.dark-mode) .newsletter p{
   z-index: 999999;
   pointer-events: none;
 
-  /* Real 3D book setup */
   transform-origin: left center;
-  transform: perspective(1600px) rotateY(-92deg);
-  transition: transform 0.75s cubic-bezier(0.77, 0, 0.175, 1);
-
-  /* Fold shadow for paper realism */
-  box-shadow: inset -50px 0 80px rgba(0, 0, 0, 0.45);
+  transform: perspective(1800px) rotateY(-95deg);
+  transition: transform 0.85s cubic-bezier(0.77, 0, 0.175, 1);
 }
 
+/* Curved paper edge + fold shadow */
+#pageTurnOverlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0,0,0,0.45),
+    rgba(0,0,0,0.15) 20%,
+    rgba(255,255,255,0.06) 60%,
+    rgba(255,255,255,0.12)
+  );
+
+  clip-path: ellipse(140% 100% at 100% 50%);
+  opacity: 0.9;
+}
+
+/* Active state (page fully turned) */
 #pageTurnOverlay.active {
-  transform: perspective(1600px) rotateY(0deg);
+  transform: perspective(1800px) rotateY(0deg);
 }
 
-/* Lock scroll during page turn */
 body.page-turning {
   overflow: hidden;
 }
+
