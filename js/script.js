@@ -1,5 +1,7 @@
 /* Luciano Rodrigues Portfolio - Google Translate Optimized */
 
+document.addEventListener('DOMContentLoaded', () => {
+
 const PG_state = { images: [], index: 0 };
 const CardSlides = new Map();
 let savedScrollPosition = 0;
@@ -1094,34 +1096,64 @@ window.handleNewsletterSubmit = handleNewsletterSubmit;
 // ===============================
 
 document.addEventListener('DOMContentLoaded', () => {
+
+  // ===============================
+  // HOW TO EXPLORE — MODE + HASH
+  // (explore-card antigo — pode até remover depois)
+  // ===============================
   document.querySelectorAll('.explore-card').forEach(card => {
     card.addEventListener('click', () => {
       const mode = card.dataset.mode;
 
-      // DEBUG VISUAL IMEDIATO
       console.log('Explore mode:', mode);
 
-      // 1) Limpa modos anteriores
       document.body.classList.remove(
         'mode-impact',
         'mode-method',
         'mode-deep'
       );
 
-      // 2) Aplica o modo
       if (mode) {
         document.body.classList.add(`mode-${mode}`);
       }
 
-      // 3) Atualiza o hash (sem scroll)
       if (mode === 'impact')  location.hash = '#operations';
       if (mode === 'method')  location.hash = '#strategy';
       if (mode === 'deep')    location.hash = '#timeline';
 
-      // 4) Estado ativo
       document.querySelectorAll('.explore-card')
         .forEach(c => c.classList.remove('active'));
       card.classList.add('active');
     });
   });
+
+
+  // ===============================
+  // EXPLORE CUBE — MANUAL ROTATION
+  // ===============================
+  const cube = document.querySelector('.cube');
+  const cubeFaces = document.querySelectorAll('.cube-face');
+
+  if (cube && cubeFaces.length) {
+    cubeFaces.forEach(face => {
+      face.addEventListener('click', () => {
+        const side = face.dataset.face;
+
+        console.log('Cube clicked:', side);
+
+        if (side === 'front') {
+          cube.style.transform = 'rotateY(0deg)';
+        }
+
+        if (side === 'right') {
+          cube.style.transform = 'rotateY(-90deg)';
+        }
+
+        if (side === 'back') {
+          cube.style.transform = 'rotateY(-180deg)';
+        }
+      });
+    });
+  }
+
 });
