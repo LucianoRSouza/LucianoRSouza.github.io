@@ -2476,116 +2476,83 @@ body {
 }
 
 /* ===============================
-   EXPLORE CUBE — ARTEFACT FINAL
+   EXPLORE BLOCKS — NEW SCHEME
 ================================ */
 
-.explore-cube-section {
-  position: relative;
-  min-height: 90vh;
+.explore-blocks-section {
+  padding: 140px 32px;
+  background:
+    radial-gradient(circle at center, rgba(212,175,55,0.08), transparent 60%),
+    linear-gradient(180deg, #050c14, #0b1c2d);
+}
+
+.explore-blocks-container {
+  max-width: 1100px;
   margin: 0 auto;
 
   display: grid;
-  place-items: center;
-
-  background:
-    radial-gradient(ellipse at center, rgba(212,175,55,0.08), transparent 60%),
-    radial-gradient(ellipse at center, rgba(30,60,100,0.6), rgba(7,15,24,1) 70%),
-    linear-gradient(180deg, #050c14, #0b1c2d);
-
-  overflow: hidden;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
 }
 
-/* Container óptico */
-.cube-scene {
-  width: 520px;
-  height: 520px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  perspective: 1800px;
-}
-
-/* Cubo */
-.cube {
-  width: 320px;
-  height: 320px;
-
+.explore-block {
   position: relative;
-  transform-style: preserve-3d;
-  transform: rotateX(-30deg) rotateY(0deg);
-}
+  padding: 48px 36px;
 
-/* Sombra de chão */
-.cube::before {
-  content: '';
-  position: absolute;
-  width: 460px;
-  height: 120px;
-
-  background: radial-gradient(
-    ellipse at center,
-    rgba(0,0,0,0.75),
-    transparent 70%
-  );
-
-  bottom: -170px;
-  left: 50%;
-  transform: translateX(-50%);
-  filter: blur(45px);
-  z-index: -1;
-}
-
-/* Faces */
-.cube-face {
-  position: absolute;
-  width: 320px;
-  height: 320px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-
+  border: 1px solid rgba(212,175,55,0.7);
   background:
-    radial-gradient(circle at 30% 30%, rgba(212,175,55,0.5), transparent 55%),
-    radial-gradient(circle at 70% 70%, rgba(40,100,180,0.65), transparent 60%),
-    linear-gradient(135deg, #081522, #102d53);
+    linear-gradient(135deg, rgba(255,255,255,0.03), transparent),
+    radial-gradient(circle at top left, rgba(212,175,55,0.12), transparent 60%),
+    #071426;
 
-  border: 2px solid rgba(212,175,55,0.95);
-
-  box-shadow:
-    inset 0 0 120px rgba(212,175,55,0.6),
-    inset 0 0 220px rgba(40,90,160,0.75),
-    0 80px 220px rgba(212,175,55,0.7);
-
-  color: #f6e9b8;
-  letter-spacing: 0.38em;
-  text-transform: uppercase;
-
-  backface-visibility: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
-/* Posicionamento real */
-.cube-face.front  { transform: translateZ(160px); }
-.cube-face.back   { transform: rotateY(180deg) translateZ(160px); }
-.cube-face.right  { transform: rotateY(90deg) translateZ(160px); }
-.cube-face.left   { transform: rotateY(-90deg) translateZ(160px); }
-.cube-face.top    { transform: rotateX(90deg) translateZ(160px); }
-.cube-face.bottom { transform: rotateX(-90deg) translateZ(160px); }
+.explore-block:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 40px 120px rgba(212,175,55,0.25);
+}
 
-/* Tipografia */
-.cube-label {
-  font-size: 1.4rem;
+.explore-block h3 {
+  font-size: 1.6rem;
   font-weight: 800;
-  letter-spacing: 0.42em;
-  text-shadow: 0 0 22px rgba(212,175,55,0.9);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #f6e9b8;
+  margin-bottom: 24px;
 }
 
-.cube-micro {
-  font-size: 0.8rem;
-  letter-spacing: 0.45em;
-  opacity: 0.85;
-  color: #d4af37;
+.explore-block p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.75);
+  margin-bottom: 36px;
+}
+
+.explore-block button {
+  background: transparent;
+  border: none;
+  color: var(--gold);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 0;
+}
+
+.explore-block button::after {
+  content: ' →';
+  transition: transform 0.3s ease;
+}
+
+.explore-block button:hover::after {
+  transform: translateX(6px);
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+  .explore-blocks-container {
+    grid-template-columns: 1fr;
+  }
 }
