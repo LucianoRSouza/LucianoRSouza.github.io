@@ -1124,65 +1124,56 @@ window.handleNewsletterSubmit = handleNewsletterSubmit;
 })();
 
 // ===============================
-// STEP 7 — CUBE FINAL CONTROLLER
+// CUBE — AUTO ROTATION + INTERACTION
 // ===============================
 
 (() => {
   const cube = document.querySelector('.cube');
   const faces = document.querySelectorAll('.cube-face[data-face]');
-
   if (!cube || !faces.length) return;
 
-  const sectionMap = {
-    front: '#operations',
-    right: '#strategy',
-    back: '#timeline'
-  };
+  let angle = 0;
+  let isInteracting = false;
+  let rafId;
 
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  function setActiveFace(active) {
-    cube.classList.remove('active-front', 'active-right', 'active-back');
-    cube.classList.add(`active-${active}`);
+  function autoRotate() {
+    if (!isInteracting) {
+      angle += 0.15; // velocidade suave
+      cube.style.transform = `rotateX(-18deg) rotateY(${angle}deg)`;
+    }
+    rafId = requestAnimationFrame(autoRotate);
   }
 
-  function scrollToSection(selector) {
-    const target = document.querySelector(selector);
-    if (!target) return;
+  function stopAutoRotate() {
+    isInteracting = true;
+    if (rafId) cancelAnimationFrame(rafId);
+  }
 
-    const offset = 120; // ajuste fino p/ header fixo
-    const y = target.getBoundingClientRect().top + window.scrollY - offset;
-
-    window.scrollTo({
-      top: y,
-      behavior: prefersReducedMotion ? 'auto' : 'smooth'
-    });
+  function resumeAutoRotate(delay = 2000) {
+    setTimeout(() => {
+      isInteracting = false;
+      autoRotate();
+    }, delay);
   }
 
   faces.forEach(face => {
+    face.addEventListener('mouseenter', stopAutoRotate);
+
     face.addEventListener('click', () => {
+      stopAutoRotate();
+
       const side = face.dataset.face;
+      let targetAngle = angle;
 
-      switch (side) {
-        case 'front':
-          cube.style.transform = 'rotateX(-18deg) rotateY(0deg)';
-          setActiveFace('front');
-          scrollToSection(sectionMap.front);
-          break;
+      if (side === 'front') targetAngle = 0;
+      if (side === 'right') targetAngle = -90;
+      if (side === 'back')  targetAngle = -180;
 
-        case 'right':
-          cube.style.transform = 'rotateX(-18deg) rotateY(-90deg)';
-          setActiveFace('right');
-          scrollToSection(sectionMap.right);
-          break;
+      cube.style.transform = `rotateX(-18deg) rotateY(${targetAngle}deg)`;
 
-        case 'back':
-          cube.style.transform = 'rotateX(-18deg) rotateY(-180deg)';
-          setActiveFace('back');
-          scrollToSection(sectionMap.back);
-          break;
-      }
+      resumeAutoRotate();
     });
   });
+
+  autoRotate();
 })();
-console.log('SCRIPT END REACHED');
