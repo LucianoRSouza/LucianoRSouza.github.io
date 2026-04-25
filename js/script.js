@@ -1123,31 +1123,31 @@ window.handleNewsletterSubmit = handleNewsletterSubmit;
   }
 })();
 
-
 // ===============================
-// EXPLORE CUBE — MANUAL ROTATION (SAFE)
+// STEP 4 — CUBE ROTATION (CLEAN)
 // ===============================
 
 (() => {
   const cube = document.querySelector('.cube');
-  const cubeFaces = document.querySelectorAll('.cube-face');
+  const faces = document.querySelectorAll('.cube-face[data-face]');
 
-  if (!cube || !cubeFaces.length) return;
+  if (!cube || !faces.length) return;
 
-  cubeFaces.forEach(face => {
+  faces.forEach(face => {
     face.addEventListener('click', () => {
       const side = face.dataset.face;
-      console.log('Cube clicked:', side);
 
       switch (side) {
         case 'front':
-          cube.style.transform = 'rotateY(0deg)';
+          cube.style.transform = 'rotateX(-18deg) rotateY(0deg)';
           break;
+
         case 'right':
-          cube.style.transform = 'rotateY(-90deg)';
+          cube.style.transform = 'rotateX(-18deg) rotateY(-90deg)';
           break;
+
         case 'back':
-          cube.style.transform = 'rotateY(-180deg)';
+          cube.style.transform = 'rotateX(-18deg) rotateY(-180deg)';
           break;
       }
     });
