@@ -2501,26 +2501,64 @@ html, body {
   margin: 0 auto 64px;
 }
 
-/* Scene placeholder */
+/* ================================
+   EXPLORE CUBE – 3D STRUCTURE
+================================ */
+
 .cube-scene {
+  width: 320px;
+  height: 320px;
+  margin: 0 auto;
+  perspective: 1200px;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 260px;
 }
 
-/* Temporary cube style (flat for now) */
 .cube {
-  display: grid;
-  gap: 16px;
+  position: relative;
+  width: 240px;
+  height: 240px;
+  transform-style: preserve-3d;
+  transform: rotateY(-20deg) rotateX(10deg);
+  transition: transform 0.8s ease;
 }
 
 .cube-face {
+  position: absolute;
+  width: 240px;
+  height: 240px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   border: 1px solid rgba(212, 175, 55, 0.35);
-  padding: 32px 48px;
+  background: linear-gradient(
+    180deg,
+    rgba(212, 175, 55, 0.08),
+    rgba(212, 175, 55, 0.02)
+  );
+
   color: #d4af37;
-  font-size: 1.1rem;
-  letter-spacing: 0.05em;
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  background: rgba(212, 175, 55, 0.05);
+
+  box-shadow:
+    inset 0 0 30px rgba(212, 175, 55, 0.05),
+    0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Cube faces positioning */
+.cube-front {
+  transform: translateZ(120px);
+}
+
+.cube-right {
+  transform: rotateY(90deg) translateZ(120px);
+}
+
+.cube-back {
+  transform: rotateY(180deg) translateZ(120px);
 }
