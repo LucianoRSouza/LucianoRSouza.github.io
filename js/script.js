@@ -1138,7 +1138,7 @@ window.handleNewsletterSubmit = handleNewsletterSubmit;
 
   function autoRotate() {
     if (!isInteracting) {
-      angle += 0.15; // velocidade suave
+      angle += 0.35; // velocidade suave
       cube.style.transform = `rotateX(-18deg) rotateY(${angle}deg)`;
     }
     rafId = requestAnimationFrame(autoRotate);
