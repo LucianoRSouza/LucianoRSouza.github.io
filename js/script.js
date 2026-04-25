@@ -1124,7 +1124,7 @@ window.handleNewsletterSubmit = handleNewsletterSubmit;
 })();
 
 // ===============================
-// STEP 4 — CUBE ROTATION (CLEAN)
+// STEP 7 — CUBE FINAL CONTROLLER
 // ===============================
 
 (() => {
@@ -1133,6 +1133,32 @@ window.handleNewsletterSubmit = handleNewsletterSubmit;
 
   if (!cube || !faces.length) return;
 
+  const sectionMap = {
+    front: '#operations',
+    right: '#strategy',
+    back: '#timeline'
+  };
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function setActiveFace(active) {
+    cube.classList.remove('active-front', 'active-right', 'active-back');
+    cube.classList.add(`active-${active}`);
+  }
+
+  function scrollToSection(selector) {
+    const target = document.querySelector(selector);
+    if (!target) return;
+
+    const offset = 120; // ajuste fino p/ header fixo
+    const y = target.getBoundingClientRect().top + window.scrollY - offset;
+
+    window.scrollTo({
+      top: y,
+      behavior: prefersReducedMotion ? 'auto' : 'smooth'
+    });
+  }
+
   faces.forEach(face => {
     face.addEventListener('click', () => {
       const side = face.dataset.face;
@@ -1140,14 +1166,20 @@ window.handleNewsletterSubmit = handleNewsletterSubmit;
       switch (side) {
         case 'front':
           cube.style.transform = 'rotateX(-18deg) rotateY(0deg)';
+          setActiveFace('front');
+          scrollToSection(sectionMap.front);
           break;
 
         case 'right':
           cube.style.transform = 'rotateX(-18deg) rotateY(-90deg)';
+          setActiveFace('right');
+          scrollToSection(sectionMap.right);
           break;
 
         case 'back':
           cube.style.transform = 'rotateX(-18deg) rotateY(-180deg)';
+          setActiveFace('back');
+          scrollToSection(sectionMap.back);
           break;
       }
     });
