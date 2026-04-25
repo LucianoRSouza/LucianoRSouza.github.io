@@ -2500,28 +2500,33 @@ body {
 
 
 /* =====================================
-   STEP 3 — REAL 3D CUBE (6 FACES)
+   CUBE SCENE — FINAL (CENTRAL + CINEMATIC)
 ===================================== */
 
 .cube-scene {
-  width: 320px;
-  height: 320px;
-  margin: 0 auto;
-  perspective: 1200px;
-  perspective-origin: center;
+  position: relative;
+  width: 100%;
+  min-height: 440px;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
+  perspective: 1400px;
+  perspective-origin: center center;
 }
 
 .cube {
   position: relative;
-  width: 220px;
-  height: 220px;
+  width: 260px;
+  height: 260px;
+
   transform-style: preserve-3d;
-  transform: rotateX(-18deg) rotateY(28deg);
-  transition: transform 0.9s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transform: rotateX(-22deg) rotateY(0deg);
+
+  transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
 }
+
 
 /* ===============================
    CUBE FACE — FINAL (VIVO + PREMIUM)
