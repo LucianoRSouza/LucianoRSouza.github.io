@@ -1092,68 +1092,67 @@ function handleNewsletterSubmit(event) {
 window.handleNewsletterSubmit = handleNewsletterSubmit;
 
 // ===============================
-// HOW TO EXPLORE — MODE + HASH
+// HOW TO EXPLORE — MODE + HASH (SAFE)
 // ===============================
 
-document.addEventListener('DOMContentLoaded', () => {
+(() => {
+  const exploreCards = document.querySelectorAll('.explore-card');
 
-  // ===============================
-  // HOW TO EXPLORE — MODE + HASH
-  // (explore-card antigo — pode até remover depois)
-  // ===============================
-  document.querySelectorAll('.explore-card').forEach(card => {
-    card.addEventListener('click', () => {
-      const mode = card.dataset.mode;
+  if (exploreCards.length) {
+    exploreCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const mode = card.dataset.mode;
+        console.log('Explore mode:', mode);
 
-      console.log('Explore mode:', mode);
+        document.body.classList.remove(
+          'mode-impact',
+          'mode-method',
+          'mode-deep'
+        );
 
-      document.body.classList.remove(
-        'mode-impact',
-        'mode-method',
-        'mode-deep'
-      );
-
-      if (mode) {
-        document.body.classList.add(`mode-${mode}`);
-      }
-
-      if (mode === 'impact')  location.hash = '#operations';
-      if (mode === 'method')  location.hash = '#strategy';
-      if (mode === 'deep')    location.hash = '#timeline';
-
-      document.querySelectorAll('.explore-card')
-        .forEach(c => c.classList.remove('active'));
-      card.classList.add('active');
-    });
-  });
-
-
-  // ===============================
-  // EXPLORE CUBE — MANUAL ROTATION
-  // ===============================
-  const cube = document.querySelector('.cube');
-  const cubeFaces = document.querySelectorAll('.cube-face');
-
-  if (cube && cubeFaces.length) {
-    cubeFaces.forEach(face => {
-      face.addEventListener('click', () => {
-        const side = face.dataset.face;
-
-        console.log('Cube clicked:', side);
-
-        if (side === 'front') {
-          cube.style.transform = 'rotateY(0deg)';
+        if (mode) {
+          document.body.classList.add(`mode-${mode}`);
         }
 
-        if (side === 'right') {
-          cube.style.transform = 'rotateY(-90deg)';
-        }
+        if (mode === 'impact') location.hash = '#operations';
+        if (mode === 'method') location.hash = '#strategy';
+        if (mode === 'deep')   location.hash = '#timeline';
 
-        if (side === 'back') {
-          cube.style.transform = 'rotateY(-180deg)';
-        }
+        exploreCards.forEach(c => c.classList.remove('active'));
+        card.classList.add('active');
       });
     });
   }
+})();
 
+
+// ===============================
+// EXPLORE CUBE — MANUAL ROTATION (SAFE)
+// ===============================
+
+(() => {
+  const cube = document.querySelector('.cube');
+  const cubeFaces = document.querySelectorAll('.cube-face');
+
+  if (!cube || !cubeFaces.length) return;
+
+  cubeFaces.forEach(face => {
+    face.addEventListener('click', () => {
+      const side = face.dataset.face;
+      console.log('Cube clicked:', side);
+
+      switch (side) {
+        case 'front':
+          cube.style.transform = 'rotateY(0deg)';
+          break;
+        case 'right':
+          cube.style.transform = 'rotateY(-90deg)';
+          break;
+        case 'back':
+          cube.style.transform = 'rotateY(-180deg)';
+          break;
+      }
+    });
+  });
+})();
 
