@@ -2628,3 +2628,36 @@ body {
 .cube-face[data-face] {
   pointer-events: auto;
 }
+
+/* =====================================
+   STEP 2 — LIVING LIGHT (WOW EFFECT)
+===================================== */
+
+.cube-face::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    120deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.10),
+    rgba(212, 175, 55, 0.18),
+    rgba(40, 90, 160, 0.15),
+    transparent 70%
+  );
+
+  opacity: 0.35;
+  pointer-events: none;
+
+  animation: cubeLightSweep 7s linear infinite;
+}
+
+@keyframes cubeLightSweep {
+  from {
+    transform: translateX(-120%) translateY(-60%);
+  }
+  to {
+    transform: translateX(120%) translateY(60%);
+  }
+}
