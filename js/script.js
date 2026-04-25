@@ -1124,56 +1124,21 @@ window.handleNewsletterSubmit = handleNewsletterSubmit;
 })();
 
 // ===============================
-// CUBE — AUTO ROTATION + INTERACTION
+// EXPLORE BLOCKS — SCROLL NAV
 // ===============================
 
-(() => {
-  const cube = document.querySelector('.cube');
-  const faces = document.querySelectorAll('.cube-face[data-face]');
-  if (!cube || !faces.length) return;
+document.querySelectorAll('.explore-block button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const target = document.querySelector(btn.dataset.target);
+    if (!target) return;
 
-  let angle = 0;
-  let isInteracting = false;
-  let rafId;
+    const offset = 120;
+    const y = target.getBoundingClientRect().top + window.scrollY - offset;
 
-  function autoRotate() {
-    if (!isInteracting) {
-      angle += 0.35; // velocidade suave
-      cube.style.transform = `rotateX(-18deg) rotateY(${angle}deg)`;
-    }
-    rafId = requestAnimationFrame(autoRotate);
-  }
-
-  function stopAutoRotate() {
-    isInteracting = true;
-    if (rafId) cancelAnimationFrame(rafId);
-  }
-
-  function resumeAutoRotate(delay = 2000) {
-    setTimeout(() => {
-      isInteracting = false;
-      autoRotate();
-    }, delay);
-  }
-
-  faces.forEach(face => {
-    face.addEventListener('mouseenter', stopAutoRotate);
-
-    face.addEventListener('click', () => {
-      stopAutoRotate();
-
-      const side = face.dataset.face;
-      let targetAngle = angle;
-
-      if (side === 'front') targetAngle = 0;
-      if (side === 'right') targetAngle = -90;
-      if (side === 'back')  targetAngle = -180;
-
-      cube.style.transform = `rotateX(-18deg) rotateY(${targetAngle}deg)`;
-
-      resumeAutoRotate();
+    window.scrollTo({
+      top: y,
+      behavior: 'smooth'
     });
   });
-
-  autoRotate();
-})();
+});
+``
