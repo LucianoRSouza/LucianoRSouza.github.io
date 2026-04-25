@@ -2477,3 +2477,50 @@ html, body {
   overflow-y: auto !important;
   overflow-x: hidden !important;
 }
+/* ================================
+   EXPLORE CUBE – BASE LAYOUT
+================================ */
+
+.explore-cube-section {
+  padding: 120px 32px;
+  background: linear-gradient(180deg, #0b1c2d 0%, #081522 100%);
+  text-align: center;
+}
+
+.explore-cube-header h2 {
+  font-size: clamp(2rem, 3vw, 2.6rem);
+  color: #f5f0e6;
+  margin-bottom: 12px;
+  letter-spacing: 0.02em;
+}
+
+.explore-cube-header p {
+  font-size: 1.1rem;
+  color: rgba(245, 240, 230, 0.75);
+  max-width: 480px;
+  margin: 0 auto 64px;
+}
+
+/* Scene placeholder */
+.cube-scene {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 260px;
+}
+
+/* Temporary cube style (flat for now) */
+.cube {
+  display: grid;
+  gap: 16px;
+}
+
+.cube-face {
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  padding: 32px 48px;
+  color: #d4af37;
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background: rgba(212, 175, 55, 0.05);
+}
