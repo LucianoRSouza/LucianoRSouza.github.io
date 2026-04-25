@@ -1,7 +1,5 @@
 /* Luciano Rodrigues Portfolio - Google Translate Optimized */
 
-document.addEventListener('DOMContentLoaded', () => {
-
 const PG_state = { images: [], index: 0 };
 const CardSlides = new Map();
 let savedScrollPosition = 0;
@@ -1155,4 +1153,4 @@ window.handleNewsletterSubmit = handleNewsletterSubmit;
     });
   });
 })();
-
+console.log('SCRIPT END REACHED');
