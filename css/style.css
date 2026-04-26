@@ -2637,9 +2637,25 @@ body {
   color: rgba(255,255,255,0.75) !important;
 }
 
-/* Garante contraste mesmo em light mode */
+/* =================================================
+   FORCE DARK APPEARANCE FOR "HOW TO EXPLORE" SECTION
+   (fix light mode contrast once and for all)
+================================================= */
+
 body:not(.dark-mode) .explore-blocks-section {
-  background: #0b1c2d !important;
+  background-color: #0b1c2d !important;
 }
-   FORCE DARK STYLE FOR EXPLORE SECTION
-   (same appearance in light & dark mode)
+
+body:not(.dark-mode) .explore-blocks-header .section-title {
+  color: #ffffff !important;
+}
+
+body:not(.dark-mode) .explore-blocks-header .section-subtitle {
+  color: rgba(255,255,255,0.75) !important;
+}
+
+/* garante que nenhum reset do light mode esconda texto */
+body:not(.dark-mode) .explore-blocks-header * {
+  opacity: 1 !important;
+}
+
