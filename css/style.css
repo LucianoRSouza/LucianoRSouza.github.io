@@ -830,6 +830,21 @@ body.dark-mode .dark-mode-toggle i{
   }
 }
 /* ===============================
+   LIGHT MODE BASE TEXT FIX
+================================ */
+
+body:not(.dark-mode){
+  background:#f8f6f1;
+  color:#0b1c2d; /* texto escuro padrão */
+}
+
+/* Garante que títulos sejam legíveis */
+body:not(.dark-mode) .section-title,
+body:not(.dark-mode) .section-subtitle {
+  color:#0b1c2d;
+}
+
+/* ===============================
    FORCE DARK TOKENS IN LIGHT MODE
    for Explore section only
 ================================ */
