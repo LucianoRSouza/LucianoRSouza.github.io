@@ -2523,7 +2523,7 @@ body {
   font-weight: 700;
   line-height: 1.15;
 
-  color: #0b1c2d; /* azul escuro do header */
+  color: #ffffff;
 
   margin-bottom: 22px;
 }
@@ -2534,7 +2534,7 @@ body {
   font-size: 1.05rem;
   line-height: 1.7;
 
-  color: rgba(11, 28, 45, 0.75);
+  color: rgba(255,255,255,0.75);
 }
 
 
@@ -2586,4 +2586,18 @@ body {
   0%   { box-shadow: 0 0 0 0 rgba(212,175,55,0.45); }
   70%  { box-shadow: 0 0 0 14px rgba(212,175,55,0); }
   100% { box-shadow: 0 0 0 0 rgba(212,175,55,0); }
+}
+
+/* ===============================
+   Explore — Section integration
+================================ */
+
+.explore-blocks-section {
+  background: linear-gradient(
+    180deg,
+    #0b1c2d 0%,
+    #0b1c2d 50%,
+    #0f2237 100%
+  );
+  padding: 120px 32px;
 }
