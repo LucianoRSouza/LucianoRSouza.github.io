@@ -2556,3 +2556,7 @@ body {
     grid-template-columns: 1fr;
   }
 }
+.explore-block:first-child {
+  transform: translateY(-10px);
+  box-shadow: 0 40px 140px rgba(212, 175, 55, 0.35);
+}
