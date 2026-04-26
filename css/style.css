@@ -844,28 +844,25 @@ body:not(.dark-mode) .section-subtitle {
   color:#0b1c2d;
 }
 
-/* ===============================
-   FORCE DARK TOKENS IN LIGHT MODE
-   for Explore section only
-================================ */
+/* ======================================
+   EXPLORE SECTION — FIX LIGHT MODE CARDS
+   (explicit, no inheritance issues)
+====================================== */
 
-body:not(.dark-mode) .explore-blocks-section {
-  --text-primary: var(--dark-text);
-  --text-secondary: var(--dark-text-secondary);
-  background: var(--dark-bg);
+body:not(.dark-mode) .explore-block {
+  color: #e8e6e1;
 }
 
-/* Aplicação direta nas classes */
-.explore-blocks-section .section-title {
-  color: var(--dark-text);
+body:not(.dark-mode) .explore-block h3 {
+  color: #d4af37; /* gold */
 }
 
-.explore-blocks-section .section-subtitle {
-  color: var(--dark-text-secondary);
+body:not(.dark-mode) .explore-block p {
+  color: #a0a8b8;
 }
-/* Animated Counters */
-.counter-value, .impact-value{
-  font-variant-numeric:tabular-nums;
+
+body:not(.dark-mode) .explore-block .explore-link {
+  color: #d4af37;
 }
 
 /* Impact Widget */
@@ -2536,160 +2533,53 @@ body {
     0 45px 140px rgba(212,175,55,0.35);
 }
 
-/* ===============================
-   HOW TO EXPLORE — highlight by background glow
-   Same language as Leadership Philosophy
-================================ */
+/* =================================================
+   EXPLORE SECTION — FINAL CANONICAL STYLES
+   Always dark appearance (light & dark mode)
+================================================= */
 
 .explore-blocks-section {
-  background: #0b1c2d;
-  padding: 140px 32px 110px;
+  background: var(--dark-bg);
+  padding: 120px 32px 100px;
 }
 
+/* Header (same structure as Leadership Philosophy) */
 .explore-blocks-header {
-  position: relative;
   max-width: 900px;
-  margin: 0 auto 90px;
+  margin: 0 auto 80px;
   text-align: center;
 }
 
-/* BRILHO NO FUNDO (não na letra) */
-.explore-blocks-header::before {
-  content: "";
-  position: absolute;
-  inset: -40px;
-  background: radial-gradient(
-    circle at center,
-    rgba(212,175,55,0.35),
-    rgba(212,175,55,0.12),
-    transparent 70%
-  );
-  z-index: 0;
-  border-radius: 50%;
-}
-
-/* TÍTULO — MESMA FONTE DO LEADERSHIP */
+/* Title */
 .explore-blocks-header .section-title {
-  position: relative;
-  z-index: 1;
-
-  font-family: 'Playfair Display', serif;
-  font-size: 3.2rem;
+  font-family: inherit;
+  font-size: 3rem;
   font-weight: 700;
   line-height: 1.2;
-
-  color: #ffffff;
-  margin-bottom: 22px;
+  color: var(--dark-text);
+  margin-bottom: 20px;
 }
 
-/* TEXTO — MESMA COR DO "From LATAM..." */
+/* Subtitle */
 .explore-blocks-header .section-subtitle {
-  position: relative;
-  z-index: 1;
-
   font-size: 1.05rem;
   line-height: 1.7;
-  color: rgba(255,255,255,0.75);
+  color: var(--dark-text-secondary);
 }
 
-/* ===============================
-   EXPLORE BLOCK — DUAL CTA
-================================ */
+/* Cards */
+.explore-block {
+  color: var(--dark-text);
+}
 
-/* Explore → (editorial, leve) */
-.explore-link {
-  display: inline-block;
-  margin-top: 20px;
-
+.explore-block h3 {
   color: var(--gold);
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  font-size: 0.85rem;
-  text-decoration: none;
-
-  transition: opacity 0.3s ease;
 }
 
-.explore-link:hover {
-  opacity: 0.75;
+.explore-block p {
+  color: var(--dark-text-secondary);
 }
 
-/* LET’S GO — CTA principal */
-.portal-cta {
-  display: inline-block;
-  margin-top: 18px;
-
-  padding: 14px 40px;
-  border-radius: 999px;
-
-  border: 1px solid rgba(212,175,55,0.95);
-  background: transparent;
-
+.explore-block .explore-link {
   color: var(--gold);
-  font-weight: 800;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  cursor: pointer;
-
-  animation: portalPulse 2.8s infinite;
-}
-
-/* pulsação suave */
-@keyframes portalPulse {
-  0%   { box-shadow: 0 0 0 0 rgba(212,175,55,0.45); }
-  70%  { box-shadow: 0 0 0 14px rgba(212,175,55,0); }
-  100% { box-shadow: 0 0 0 0 rgba(212,175,55,0); }
-}
-
-/* ===============================
-   Explore — Section integration
-================================ */
-
-.explore-blocks-section {
-  background: linear-gradient(
-    180deg,
-    #0b1c2d 0%,
-    #0b1c2d 50%,
-    #0f2237 100%
-  );
-  padding: 120px 32px;
-}
-
-/* =========================================/*========================================= */
-
-.explore-blocks-section {
-  background: #0b1c2d !important;
-}
-
-.explore-blocks-header .section-title {
-  color: #ffffff !important;
-}
-
-.explore-blocks-header .section-subtitle {
-  color: rgba(255,255,255,0.75) !important;
-}
-
-/* ======================================
-   HARD ISOLATION FROM LIGHT MODE
-   (root fix – no more inheritance issues)
-====================================== */
-
-.explore-blocks-section,
-.explore-blocks-section * {
-  opacity: 1 !important;
-  filter: none !important;
-}
-
-.explore-blocks-section {
-  background-color: #0b1c2d;
-}
-
-/* força tokens do dark mode */
-.explore-blocks-header .section-title {
-  color: #ffffff;
-}
-
-.explore-blocks-header .section-subtitle {
-  color: rgba(255,255,255,0.75);
 }
