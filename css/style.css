@@ -2622,3 +2622,24 @@ body {
   );
   padding: 120px 32px;
 }
+
+/* =========================================/*========================================= */
+
+.explore-blocks-section {
+  background: #0b1c2d !important;
+}
+
+.explore-blocks-header .section-title {
+  color: #ffffff !important;
+}
+
+.explore-blocks-header .section-subtitle {
+  color: rgba(255,255,255,0.75) !important;
+}
+
+/* Garante contraste mesmo em light mode */
+body:not(.dark-mode) .explore-blocks-section {
+  background: #0b1c2d !important;
+}
+   FORCE DARK STYLE FOR EXPLORE SECTION
+   (same appearance in light & dark mode)
