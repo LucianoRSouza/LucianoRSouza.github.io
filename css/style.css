@@ -2504,33 +2504,43 @@ body {
 }
 
 /* ===============================
-   SECTION HEADER — SAME AS LEADERSHIP
+   Explore section — same as Leadership Philosophy
 ================================ */
 
 .explore-blocks-section {
-  background: #0b1c2d; /* mesmo fundo navy */
-  padding: 120px 32px 100px;
+  background: #f8f6f1;            /* mesmo fundo */
+  padding: 140px 32px 120px;
 }
 
 .explore-blocks-header {
   max-width: 900px;
-  margin: 0 auto 80px auto;
+  margin: 0 auto 90px;
   text-align: center;
 }
 
 .explore-blocks-header .section-title {
-  font-size: 3rem;
+  font-family: 'Playfair Display', serif; /* MESMA fonte */
+  font-size: 3.2rem;
   font-weight: 700;
-  line-height: 1.2;
+  color: #0b1c2d;
+  margin-bottom: 18px;
+}
 
-  color: #ffffff;
-  margin-bottom: 20px;
+/* Linha dourada igual à do Leadership */
+.explore-blocks-header .section-title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: var(--gold);
+  margin: 18px auto 0;
 }
 
 .explore-blocks-header .section-subtitle {
+  margin-top: 22px;
   font-size: 1.05rem;
-  line-height: 1.7;
-  color: rgba(255,255,255,0.75);
+  line-height: 1.8;
+  color: rgba(11, 28, 45, 0.75);
 }
 
 /* ===============================
