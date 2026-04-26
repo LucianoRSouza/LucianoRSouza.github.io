@@ -2504,31 +2504,47 @@ body {
 }
 
 /* ===============================
-   EXPLORE PORTALS — HERO TITLE
+   HOW TO EXPLORE — MONUMENTAL TITLE
+   Oscar Niemeyer mode
 ================================ */
 
 .explore-blocks-header {
   max-width: 1200px;
-  margin: 0 auto 90px auto;
-  text-align: left;
+  margin: 0 auto 110px auto;
+  padding: 0 8px;
 }
 
-.explore-blocks-header h2 {
-  font-family: 'Playfair Display', 'Montserrat', 'Inter', serif;
-  font-size: clamp(3.2rem, 6vw, 5.6rem);
+/* TÍTULO MONUMENTAL */
+.explore-monument-title {
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  font-size: clamp(3.5rem, 7vw, 6.5rem);
   font-weight: 900;
-  line-height: 0.95;
+  line-height: 0.92;
 
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 
-  color: #f6e9b8;
+  /* Branco perolado */
+  color: #f7f8f9;
 
-  /* peso visual + drama */
+  /* Contorno (stroke) azul Brasília */
+  -webkit-text-stroke: 2px #0b3c5d;
+
+  /* Sombras profundas (arquitetura, não glow barato) */
   text-shadow:
-    0 6px 18px rgba(0,0,0,0.45),
-    0 0 40px rgba(212,175,55,0.35),
-    0 0 120px rgba(212,175,55,0.25);
+    0 12px 30px rgba(0,0,0,0.35),
+    0 40px 120px rgba(11,60,93,0.35);
+}
+
+/* TEXTO EXPLICATIVO */
+.explore-monument-text {
+  margin-top: 32px;
+  max-width: 680px;
+
+  font-size: 1.05rem;
+  line-height: 1.9;
+
+  color: rgba(255,255,255,0.85);
 }
 
 /* ===============================
