@@ -829,7 +829,25 @@ body.dark-mode .dark-mode-toggle i{
     height:38px;
   }
 }
+/* ===============================
+   FORCE DARK TOKENS IN LIGHT MODE
+   for Explore section only
+================================ */
 
+body:not(.dark-mode) .explore-blocks-section {
+  --text-primary: var(--dark-text);
+  --text-secondary: var(--dark-text-secondary);
+  background: var(--dark-bg);
+}
+
+/* Aplicação direta nas classes */
+.explore-blocks-section .section-title {
+  color: var(--dark-text);
+}
+
+.explore-blocks-section .section-subtitle {
+  color: var(--dark-text-secondary);
+}
 /* Animated Counters */
 .counter-value, .impact-value{
   font-variant-numeric:tabular-nums;
