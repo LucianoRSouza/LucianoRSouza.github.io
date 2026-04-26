@@ -2502,43 +2502,7 @@ body {
   box-shadow:
     0 45px 140px rgba(212,175,55,0.35);
 }
-/* ===============================
-   EXPLORE PORTAL — CTA BUTTON
-================================ */
 
-.explore-block button {
-  margin-top: 32px;
-
-  background: transparent;
-  border: 1px solid rgba(212,175,55,0.9);
-  border-radius: 999px;
-
-  padding: 14px 34px;
-
-  color: var(--gold);
-  font-weight: 700;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-
-  transition:
-    background 0.4s ease,
-    box-shadow 0.4s ease,
-    transform 0.3s ease;
-}
-
-.explore-block button::before {
-  content: "LET’S GO";
-}
-
-.explore-block button:hover {
-  background: rgba(212,175,55,0.12);
-  box-shadow: 0 0 28px rgba(212,175,55,0.35);
-  transform: translateX(6px);
-}
 /* ===============================
    EXPLORE BLOCKS — HEADER EDITORIAL
 ================================ */
@@ -2555,4 +2519,54 @@ body {
 
   color: rgba(212,175,55,0.9);
   font-weight: 600;
+}
+
+/* ===============================
+   EXPLORE BLOCK — DUAL CTA
+================================ */
+
+/* Explore → (editorial, leve) */
+.explore-link {
+  display: inline-block;
+  margin-top: 20px;
+
+  color: var(--gold);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  text-decoration: none;
+
+  transition: opacity 0.3s ease;
+}
+
+.explore-link:hover {
+  opacity: 0.75;
+}
+
+/* LET’S GO — CTA principal */
+.portal-cta {
+  display: inline-block;
+  margin-top: 18px;
+
+  padding: 14px 40px;
+  border-radius: 999px;
+
+  border: 1px solid rgba(212,175,55,0.95);
+  background: transparent;
+
+  color: var(--gold);
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  cursor: pointer;
+
+  animation: portalPulse 2.8s infinite;
+}
+
+/* pulsação suave */
+@keyframes portalPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(212,175,55,0.45); }
+  70%  { box-shadow: 0 0 0 14px rgba(212,175,55,0); }
+  100% { box-shadow: 0 0 0 0 rgba(212,175,55,0); }
 }
