@@ -2504,21 +2504,31 @@ body {
 }
 
 /* ===============================
-   EXPLORE BLOCKS — HEADER EDITORIAL
+   EXPLORE PORTALS — HERO TITLE
 ================================ */
 
 .explore-blocks-header {
-  max-width: 1100px;
-  margin: 0 auto 56px auto;
+  max-width: 1200px;
+  margin: 0 auto 90px auto;
+  text-align: left;
 }
 
-.explore-blocks-header p {
-  font-size: 0.85rem;
-  letter-spacing: 0.4em;
+.explore-blocks-header h2 {
+  font-family: 'Playfair Display', 'Montserrat', 'Inter', serif;
+  font-size: clamp(3.2rem, 6vw, 5.6rem);
+  font-weight: 900;
+  line-height: 0.95;
+
+  letter-spacing: 0.06em;
   text-transform: uppercase;
 
-  color: rgba(212,175,55,0.9);
-  font-weight: 600;
+  color: #f6e9b8;
+
+  /* peso visual + drama */
+  text-shadow:
+    0 6px 18px rgba(0,0,0,0.45),
+    0 0 40px rgba(212,175,55,0.35),
+    0 0 120px rgba(212,175,55,0.25);
 }
 
 /* ===============================
