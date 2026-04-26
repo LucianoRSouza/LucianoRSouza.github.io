@@ -2475,88 +2475,67 @@ body {
   overflow-x: hidden;
 }
 
-/* ===============================
-   EXPLORE BLOCKS — NEW SCHEME
-================================ */
-
-.explore-blocks-section {
-  padding: 140px 32px;
-  background:
-    radial-gradient(circle at center, rgba(212,175,55,0.08), transparent 60%),
-    linear-gradient(180deg, #050c14, #0b1c2d);
-}
-
-.explore-blocks-container {
-  max-width: 1100px;
-  margin: 0 auto;
-
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
-}
-
 .explore-block {
   position: relative;
-  padding: 48px 36px;
+  padding: 56px 44px;
 
-  border: 1px solid rgba(212,175,55,0.7);
+  border: 1px solid rgba(212, 175, 55, 0.65);
+  border-radius: 22px;
+
   background:
-    linear-gradient(135deg, rgba(255,255,255,0.03), transparent),
-    radial-gradient(circle at top left, rgba(212,175,55,0.12), transparent 60%),
+    linear-gradient(135deg, rgba(255,255,255,0.035), transparent),
+    radial-gradient(circle at top left, rgba(212,175,55,0.14), transparent 60%),
     #071426;
 
-  box-shadow: 0 30px 80px rgba(0,0,0,0.6);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  box-shadow:
+    0 30px 90px rgba(0,0,0,0.55);
+
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease,
+    border-color 0.4s ease;
 }
 
 .explore-block:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 40px 120px rgba(212,175,55,0.25);
+  transform: translateY(-6px);
+  border-color: rgba(212,175,55,0.95);
+  box-shadow:
+    0 45px 140px rgba(212,175,55,0.35);
 }
-
-.explore-block h3 {
-  font-size: 1.6rem;
-  font-weight: 800;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: #f6e9b8;
-  margin-bottom: 24px;
-}
-
-.explore-block p {
-  font-size: 1rem;
-  line-height: 1.6;
-  color: rgba(255,255,255,0.75);
-  margin-bottom: 36px;
-}
+/* ===============================
+   EXPLORE PORTAL — CTA BUTTON
+================================ */
 
 .explore-block button {
+  margin-top: 32px;
+
   background: transparent;
-  border: none;
+  border: 1px solid rgba(212,175,55,0.9);
+  border-radius: 999px;
+
+  padding: 14px 34px;
+
   color: var(--gold);
-  font-weight: 600;
-  letter-spacing: 0.18em;
+  font-weight: 700;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
+
   cursor: pointer;
-  padding: 0;
+  position: relative;
+  overflow: hidden;
+
+  transition:
+    background 0.4s ease,
+    box-shadow 0.4s ease,
+    transform 0.3s ease;
 }
 
-.explore-block button::after {
-  content: ' →';
-  transition: transform 0.3s ease;
+.explore-block button::before {
+  content: "LET’S GO";
 }
 
-.explore-block button:hover::after {
+.explore-block button:hover {
+  background: rgba(212,175,55,0.12);
+  box-shadow: 0 0 28px rgba(212,175,55,0.35);
   transform: translateX(6px);
-}
-
-/* Mobile */
-@media (max-width: 900px) {
-  .explore-blocks-container {
-    grid-template-columns: 1fr;
-  }
-}
-.explore-block:first-child {
-  transform: translateY(-10px);
-  box-shadow: 0 40px 140px rgba(212, 175, 55, 0.35);
 }
