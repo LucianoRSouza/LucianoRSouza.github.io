@@ -2539,3 +2539,20 @@ body {
   box-shadow: 0 0 28px rgba(212,175,55,0.35);
   transform: translateX(6px);
 }
+/* ===============================
+   EXPLORE BLOCKS — HEADER EDITORIAL
+================================ */
+
+.explore-blocks-header {
+  max-width: 1100px;
+  margin: 0 auto 56px auto;
+}
+
+.explore-blocks-header p {
+  font-size: 0.85rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+
+  color: rgba(212,175,55,0.9);
+  font-weight: 600;
+}
