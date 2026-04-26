@@ -2637,3 +2637,26 @@ body {
   color: rgba(255,255,255,0.75) !important;
 }
 
+/* ======================================
+   HARD ISOLATION FROM LIGHT MODE
+   (root fix – no more inheritance issues)
+====================================== */
+
+.explore-blocks-section,
+.explore-blocks-section * {
+  opacity: 1 !important;
+  filter: none !important;
+}
+
+.explore-blocks-section {
+  background-color: #0b1c2d;
+}
+
+/* força tokens do dark mode */
+.explore-blocks-header .section-title {
+  color: #ffffff;
+}
+
+.explore-blocks-header .section-subtitle {
+  color: rgba(255,255,255,0.75);
+}
