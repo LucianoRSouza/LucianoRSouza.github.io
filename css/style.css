@@ -2504,43 +2504,59 @@ body {
 }
 
 /* ===============================
-   Explore section — same as Leadership Philosophy
+   HOW TO EXPLORE — highlight by background glow
+   Same language as Leadership Philosophy
 ================================ */
 
 .explore-blocks-section {
-  background: #f8f6f1;            /* mesmo fundo */
-  padding: 140px 32px 120px;
+  background: #0b1c2d;
+  padding: 140px 32px 110px;
 }
 
 .explore-blocks-header {
+  position: relative;
   max-width: 900px;
   margin: 0 auto 90px;
   text-align: center;
 }
 
+/* BRILHO NO FUNDO (não na letra) */
+.explore-blocks-header::before {
+  content: "";
+  position: absolute;
+  inset: -40px;
+  background: radial-gradient(
+    circle at center,
+    rgba(212,175,55,0.35),
+    rgba(212,175,55,0.12),
+    transparent 70%
+  );
+  z-index: 0;
+  border-radius: 50%;
+}
+
+/* TÍTULO — MESMA FONTE DO LEADERSHIP */
 .explore-blocks-header .section-title {
-  font-family: 'Playfair Display', serif; /* MESMA fonte */
+  position: relative;
+  z-index: 1;
+
+  font-family: 'Playfair Display', serif;
   font-size: 3.2rem;
   font-weight: 700;
-  color: #0b1c2d;
-  margin-bottom: 18px;
+  line-height: 1.2;
+
+  color: #ffffff;
+  margin-bottom: 22px;
 }
 
-/* Linha dourada igual à do Leadership */
-.explore-blocks-header .section-title::after {
-  content: "";
-  display: block;
-  width: 60px;
-  height: 3px;
-  background: var(--gold);
-  margin: 18px auto 0;
-}
-
+/* TEXTO — MESMA COR DO "From LATAM..." */
 .explore-blocks-header .section-subtitle {
-  margin-top: 22px;
+  position: relative;
+  z-index: 1;
+
   font-size: 1.05rem;
-  line-height: 1.8;
-  color: rgba(11, 28, 45, 0.75);
+  line-height: 1.7;
+  color: rgba(255,255,255,0.75);
 }
 
 /* ===============================
