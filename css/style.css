@@ -2184,8 +2184,7 @@ body.dark-mode .newsletter-input::placeholder {
   padding: 140px 32px 110px;
 }
 
-/* =================================================
-   HEADER
+/* =================================================/* =================================================TAMANHO ORIGINAL + NAVY BACKLIGHT)
 ================================================= */
 
 .explore-blocks-header {
@@ -2195,7 +2194,7 @@ body.dark-mode .newsletter-input::placeholder {
   text-align: center;
 }
 
-/* BACKLIGHT AZUL — MAIS FORTE E FECHADO */
+/* BACKLIGHT NAVY — COLADO AO TEXTO (NÃO AO FUNDO) */
 .explore-blocks-header::before {
   content: "";
   position: absolute;
@@ -2203,15 +2202,15 @@ body.dark-mode .newsletter-input::placeholder {
   left: 50%;
   transform: translate(-50%, -50%);
 
-  width: 760px;      /* mais fechado */
-  height: 200px;     /* mais compacto */
+  width: 760px;
+  height: 220px;
   border-radius: 50%;
 
   background: radial-gradient(
     ellipse at center,
-    rgba(34, 84, 150, 0.90),   /* azul forte no centro */
-    rgba(34, 84, 150, 0.55),
-    rgba(34, 84, 150, 0.25),
+    rgba(11, 28, 45, 0.85),   /* 🔵 NAVY DA PÁGINA */
+    rgba(11, 28, 45, 0.55),
+    rgba(11, 28, 45, 0.25),
     transparent 75%
   );
 
@@ -2220,13 +2219,35 @@ body.dark-mode .newsletter-input::placeholder {
   pointer-events: none;
 }
 
-/* 🔒 TEXTO SEMPRE BRANCO (SEM EXCEÇÃO) */
-.explore-blocks-header .section-title,
+/* TÍTULO — TAMANHO ORIGINAL, SEM MUDANÇA */
+.explore-blocks-header .section-title {
+  position: relative;
+  z-index: 1;
+
+  font-size: 3.8rem;      /* ✅ tamanho original */
+  font-weight: 800;
+  line-height: 1.15;
+
+  color: #ffffff;         /* ✅ branco puro */
+  margin-bottom: 24px;
+
+  text-shadow: 0 2px 4px rgba(0,0,0,0.35);
+}
+
+/* TEXTO — TAMANHO ORIGINAL, SEM MUDANÇA */
 .explore-blocks-header .section-subtitle {
   position: relative;
   z-index: 1;
-  color: #ffffff !important;
+
+  max-width: 720px;
+  margin: 0 auto;
+
+  font-size: 1.1rem;      /* ✅ tamanho original */
+  line-height: 1.7;
+
+  color: rgba(255,255,255,0.9);  /* ✅ branco */
 }
+
 
 /* ===============================
    CARDS
