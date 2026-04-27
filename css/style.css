@@ -2338,14 +2338,14 @@ Cards
 
   .explore-block {
     position: relative;
-    padding: 28px 28px;
+    padding: 28px 24px;
   }
 
-  /* Seal anchored to the right, vertically centered */
+  /* Seal fixed on the right, vertically centered */
   .explore-seal {
     position: absolute;
     top: 50%;
-    right: 16px;
+    right: 12px;
 
     width: 110px;
     height: 110px;
@@ -2357,18 +2357,24 @@ Cards
     z-index: 2;
   }
 
-  /* Text avoids seal area */
+  /* Text keeps clear space from the seal */
   .explore-block h3,
   .explore-block p,
   .explore-link,
   .portal-cta {
-    padding-right: 140px;
+    padding-right: 130px;
   }
 
+  /* Marker above title with proper spacing */
   .explore-marker {
     position: static;
     display: block;
-    margin-bottom: 6px;
+    margin-bottom: 10px;
+  }
+
+  /* Ensure title does not collide with marker */
+  .explore-block h3 {
+    margin-top: 0;
   }
 
 }
