@@ -2167,382 +2167,20 @@ body.dark-mode .newsletter-input::placeholder {
 .counter, .impact-value, .strategy-stat-value, .sustainability-value, .sustainability-highlight-value{
   font-variant-numeric:tabular-nums;
 }
-
-/* ============================================
-   DARK MODE GLOBAL FIX - Todos os textos
-   (Importado da versao OG - correcao textos fracos)
-   ============================================ */
-
-/* Forcar cor clara em TODOS os paragrafos e textos no dark mode */
-body.dark-mode p,
-body.dark-mode li,
-body.dark-mode span:not(.stat-number):not(.impact-value):not(.github-stat-value):not(.metric-number):not(.strategy-stat-value):not(.sustainability-value),
-body.dark-mode div:not(.gallery-overlay):not(.loading):not(.loading-bar):not(.loading-progress) {
-  color: #e8e6e1;
-}
-
-/* Titulos em dourado */
-body.dark-mode h1,
-body.dark-mode h2,
-body.dark-mode h3,
-body.dark-mode h4,
-body.dark-mode h5,
-body.dark-mode h6 {
-  color: var(--gold);
-}
-
-/* Cards e boxes especificos */
-body.dark-mode .lang-item,
-body.dark-mode .skill-tag,
-body.dark-mode .project-tag {
-  background: rgba(212, 175, 55, 0.15);
-  border: 1px solid rgba(212, 175, 55, 0.3);
-}
-
-body.dark-mode .lang-item span,
-body.dark-mode .skill-tag,
-body.dark-mode .project-tag {
-  color: var(--gold-light) !important;
-}
-
-body.dark-mode .lang-item:hover,
-body.dark-mode .skill-tag:hover,
-body.dark-mode .project-tag:hover {
-  background: var(--gold);
-  color: var(--navy) !important;
-}
-
-body.dark-mode .lang-item:hover span,
-body.dark-mode .skill-tag:hover,
-body.dark-mode .project-tag:hover {
-  color: var(--navy) !important;
-}
-
-/* About bullets */
-body.dark-mode .about-bullets li {
-  color: #e8e6e1 !important;
-}
-
-/* Volunteer card fixes */
-body.dark-mode .volunteer-card,
-body.dark-mode .volunteer-card h3,
-body.dark-mode .volunteer-card .school,
-body.dark-mode .volunteer-card .period,
-body.dark-mode .volunteer-card .description {
-  color: var(--dark-text) !important;
-}
-
-body.dark-mode .volunteer-card .school {
-  color: var(--gold) !important;
-}
-
-/* Section headers */
-body.dark-mode .section-header h2 {
-  color: var(--gold) !important;
-}
-
-body.dark-mode .about-content h3,
-body.dark-mode .about-content p,
-body.dark-mode .leadership-philosophy {
-  color: var(--dark-text) !important;
-}
-
-body.dark-mode .stat-box .stat-label,
-body.dark-mode .stat-box .stat-note {
-  color: rgba(255,255,255,0.8) !important;
-}
-
-body.dark-mode .floating-badge {
-  background: rgba(255,255,255,0.1);
-  color: var(--dark-text);
-}
-
-body.dark-mode .hero-description {
-  color: rgba(255,255,255,0.9) !important;
-}
-
-body.dark-mode .subtitle {
-  color: var(--gold-light) !important;
-}
-
-/* ============================================
-   DARK MODE - NEW SECTIONS (Operations, Strategy, Sustainability)
-   ============================================ */
-
-body.dark-mode .operation-card {
-  background: var(--dark-elevated);
-  border-color: var(--dark-border);
-}
-
-body.dark-mode .operation-content h3 {
-  color: var(--gold) !important;
-}
-
-body.dark-mode .operation-content > p {
-  color: var(--dark-text) !important;
-}
-
-body.dark-mode .operation-list li {
-  color: var(--dark-text) !important;
-  border-bottom-color: rgba(255,255,255,0.05);
-}
-
-body.dark-mode .operation-list li::before {
-  color: var(--gold);
-}
-
-body.dark-mode .operation-highlight {
-  background: linear-gradient(135deg, rgba(212,175,55,.12), rgba(212,175,55,.05));
-  border-left-color: var(--gold);
-}
-
-body.dark-mode .operation-highlight small {
-  color: var(--dark-text-secondary) !important;
-}
-
-body.dark-mode .location-tag {
-  background: rgba(212,175,55,.15);
-  color: var(--gold-light);
-}
-
-body.dark-mode .location-tag:hover {
-  background: var(--gold);
-  color: var(--navy);
-}
-
-/* Strategy Cards */
-body.dark-mode .strategy-card-modern {
-  background: var(--dark-elevated);
-  border-color: var(--dark-border);
-}
-
-body.dark-mode .strategy-card-modern:hover {
-  border-color: var(--gold);
-}
-
-body.dark-mode .strategy-card-header h3 {
-  color: var(--gold) !important;
-}
-
-body.dark-mode .strategy-card-modern > p {
-  color: var(--dark-text) !important;
-}
-
-body.dark-mode .strategy-features li {
-  color: var(--dark-text) !important;
-}
-
-body.dark-mode .strategy-features li i {
-  color: var(--gold);
-}
-
-body.dark-mode .strategy-icon {
-  background: linear-gradient(135deg, var(--gold), var(--gold-light));
-}
-
-/* Sustainability */
-body.dark-mode .sustainability-section {
-  background: var(--dark-bg);
-}
-
-body.dark-mode .sustainability-banner {
-  border-color: var(--gold);
-}
-
-body.dark-mode .sustainability-item > p {
-  color: rgba(255,255,255,0.85) !important;
-}
-
-body.dark-mode .sustainability-item h3 {
-  color: var(--gold) !important;
-}
-
-body.dark-mode .sustainability-value {
-  color: var(--gold);
-}
-
-body.dark-mode .sustainability-item {
-  background: rgba(212,175,55,.08);
-  border-color: rgba(212,175,55,.3);
-}
-
-body.dark-mode .sustainability-item:hover {
-  background: rgba(212,175,55,.15);
-  border-color: var(--gold);
-}
-
-body.dark-mode .sustainability-divider {
-  background: rgba(212,175,55,.2);
-}
-
-/* Showcase cards */
-body.dark-mode .project-showcase-card {
-  background: var(--dark-elevated);
-  border-color: var(--dark-border);
-}
-
-body.dark-mode .showcase-header h3 {
-  color: var(--gold) !important;
-}
-
-body.dark-mode .showcase-content p {
-  color: var(--dark-text) !important;
-}
-
-body.dark-mode .showcase-metrics {
-  border-top-color: var(--dark-border);
-}
-
-body.dark-mode .metric-desc {
-  color: var(--dark-text-secondary) !important;
-}
-
-body.dark-mode .tech-tag {
-  background: rgba(212,175,55,.15);
-  color: var(--gold-light);
-  border-color: rgba(212,175,55,.3);
-}
-/* FORCE newsletter subtitle visibility (light mode fix) */
-body:not(.dark-mode) .newsletter p{
-  color: rgba(255,255,255,0.95) !important;
-  opacity: 1 !important;
-}
-/* === Explore Entry – Editorial Style === */
-
-.explore-entry {
-  padding: 64px 0;
-  background: var(--bg-soft);
-}
-
-.explore-entry .container {
-  max-width: 920px;padding-left: 1.5rem;padding-right: 1.5rem
-}
-
-.explore-title {
-  font-size: 1.6rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-}
-
-.explore-intro {
-  max-width: 620px;
-  opacity: 0.85;
-  margin-bottom: 2.5rem;
-}
-
-.explore-options {
-  display: flex;
-  flex-direction: column;
-  gap: 1.8rem;
-  border-left: 3px solid var(--gold);
-  padding-left: 2.2rem;
-  margin-left: 0.5rem;
-}
-
-.explore-card {
-  all: unset;                 /* remove comportamento nativo do button */
-  cursor: pointer;
-  display: block;
-  color: inherit;
-  transition: transform 0.25s ease, color 0.25s ease;
-}
-.explore-card h3 {
-  font-size: 1.05rem;
-  font-weight: 700;
-  margin-bottom: 0.2rem;
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-}
-
-.explore-card h3 i {
-  font-size: 0.85rem;
-  opacity: 0.7;
-}
-
-.explore-card:hover h3 i {
-  opacity: 1;
-}
-
-.explore-card p {
-  margin: 0;
-  opacity: 0.8;
-  max-width: 560px;
-}
-
-.explore-card:hover {
-  transform: translateX(4px);
-  color: var(--gold);
-}
-
-/* Mobile tuning */
-@media (max-width: 768px) {
-  .explore-entry {
-    padding: 48px 0;
-  }
-
-  .explore-options {
-    padding-left: 1rem;
-  }
-}
-/* === Exploration Mode Highlight === */
-
-.exploration-target {
-  position: relative;
-  transition: background-color 0.4s ease, box-shadow 0.4s ease;
-}
-
-.exploration-active {
-  background-color: rgba(212, 175, 55, 0.06);
-  box-shadow: inset 4px 0 0 var(--gold);
-}
-#pageTurnOverlay {
-  display: none !important;
-}
-
-/* FORCE SCROLL BACK */
-body {
-  overflow-x: hidden;
-}
-
-/* ===============================
-   EXPLORE BLOCK (CARDS)
-================================ */
-
-.explore-block {
-  position: relative;
-  padding: 56px 44px;
-
-  border: 1px solid rgba(212, 175, 55, 0.65);
-  border-radius: 22px;
-
-  background:
-    linear-gradient(135deg, rgba(255,255,255,0.035), transparent),
-    radial-gradient(circle at top left, rgba(212,175,55,0.14), transparent 60%),
-    var(--dark-elevated);
-
-  box-shadow: 0 30px 90px rgba(0,0,0,0.55);
-
-  transition:
-    transform 0.4s ease,
-    box-shadow 0.4s ease,
-    border-color 0.4s ease;
-}
-
-.explore-block:hover {
-  transform: translateY(-6px);
-  border-color: rgba(212, 175, 55, 0.95);
-  box-shadow: 0 45px 140px rgba(212,175,55,0.35);
-}
-
-/* ===============================
-   EXPLORE HEADER — FINAL + GLOW
-================================ */
-
+/* =================================================
+   EXPLORE SECTION — FINAL, CLEAN & STABLE
+   (dark appearance in all modes)
+================================================= */
+
+/* Section background */
 .explore-blocks-section {
   background: var(--dark-bg);
   padding: 140px 32px 110px;
 }
+
+/* ===============================
+   HEADER
+================================ */
 
 .explore-blocks-header {
   position: relative;
@@ -2551,7 +2189,7 @@ body {
   text-align: center;
 }
 
-/* Glow de fundo */
+/* Glow */
 .explore-blocks-header::before {
   content: "";
   position: absolute;
@@ -2566,7 +2204,7 @@ body {
   pointer-events: none;
 }
 
-/* Título */
+/* Title */
 .explore-blocks-header .section-title {
   position: relative;
   z-index: 1;
@@ -2580,7 +2218,7 @@ body {
   text-shadow: 0 1px 0 rgba(0,0,0,0.25);
 }
 
-/* Subtítulo */
+/* Subtitle */
 .explore-blocks-header .section-subtitle {
   position: relative;
   z-index: 1;
@@ -2591,5 +2229,75 @@ body {
   font-size: 1.05rem;
   line-height: 1.7;
 
-  color: rgba(255,255,255,0.78);
+  color: rgba(255,255,255,0.8);
 }
+
+/* ===============================
+   CARDS
+================================ */
+
+.explore-block {
+  position: relative;
+  padding: 56px 44px;
+
+  border: 1px solid rgba(212,175,55,0.65);
+  border-radius: 22px;
+
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.035), transparent),
+    radial-gradient(circle at top left, rgba(212,175,55,0.14), transparent 60%),
+    var(--dark-elevated);
+
+  color: var(--dark-text);
+
+  box-shadow: 0 30px 90px rgba(0,0,0,0.55);
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+.explore-block:hover {
+  transform: translateY(-6px);
+  border-color: var(--gold);
+  box-shadow: 0 45px 140px rgba(212,175,55,0.35);
+}
+
+.explore-block h3 {
+  color: var(--gold);
+}
+
+.explore-block p {
+  color: var(--dark-text-secondary);
+}
+
+/* ===============================
+   CTA — LET'S GO
+================================ */
+
+.portal-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 12px;
+  padding: 12px 28px;
+
+  border-radius: 999px;
+  border: 2px solid var(--gold);
+  background: transparent;
+
+  color: var(--gold);
+
+  font-weight: 800;
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+
+  box-shadow: 0 0 18px rgba(212,175,55,0.35);
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.portal-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(212,175,55,0.55);
+}
+
