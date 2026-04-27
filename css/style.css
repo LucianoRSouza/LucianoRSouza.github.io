@@ -2515,7 +2515,7 @@ body {
   background:
     linear-gradient(135deg, rgba(255,255,255,0.035), transparent),
     radial-gradient(circle at top left, rgba(212,175,55,0.14), transparent 60%),
-    #071426;
+    var(--dark-elevated);
 
   box-shadow:
     0 30px 90px rgba(0,0,0,0.55);
@@ -2533,53 +2533,56 @@ body {
     0 45px 140px rgba(212,175,55,0.35);
 }
 
-/* =================================================
-   EXPLORE SECTION — FINAL CANONICAL STYLES
-   Always dark appearance (light & dark mode)
+/* ================================================= EXPLORE HEADER — RESTORED GLOW + DARK LOOK ALWAYS
 ================================================= */
 
 .explore-blocks-section {
   background: var(--dark-bg);
-  padding: 120px 32px 100px;
+  padding: 140px 32px 110px;
 }
 
-/* Header (same structure as Leadership Philosophy) */
 .explore-blocks-header {
+  position: relative;
   max-width: 900px;
-  margin: 0 auto 80px;
+  margin: 0 auto 90px;
   text-align: center;
 }
 
-/* Title */
+/* halo / brilho no fundo */
+.explore-blocks-header::before {
+  content: "";
+  position: absolute;
+  inset: -60px;
+  background: radial-gradient(
+    circle at center,
+    rgba(212,175,55,0.35),
+    rgba(212,175,55,0.15),
+    transparent 70%
+  );
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* título */
 .explore-blocks-header .section-title {
-  font-family: inherit;
+  position: relative;
+  z-index: 1;
+
   font-size: 3rem;
   font-weight: 700;
   line-height: 1.2;
+
   color: var(--dark-text);
-  margin-bottom: 20px;
+  margin-bottom: 22px;
 }
 
-/* Subtitle */
+/* subtítulo */
 .explore-blocks-header .section-subtitle {
+  position: relative;
+  z-index: 1;
+
   font-size: 1.05rem;
   line-height: 1.7;
+
   color: var(--dark-text-secondary);
-}
-
-/* Cards */
-.explore-block {
-  color: var(--dark-text);
-}
-
-.explore-block h3 {
-  color: var(--gold);
-}
-
-.explore-block p {
-  color: var(--dark-text-secondary);
-}
-
-.explore-block .explore-link {
-  color: var(--gold);
 }
