@@ -2302,12 +2302,14 @@ Cards
 
 .explore-seal {
   position: absolute;
+  top: 32px;
+  right: 170px;
 
-  top: 32px;        /* alinhado com topo do conteúdo */
-  right: 140px;     /* centro visual do espaço vazio */
+  width: 168px;
+  height: 168px;
 
-  width: 140px;
-  height: auto;
+  display: block;
+  object-fit: contain;
 
   opacity: 0.9;
   transform: rotate(-6deg);
@@ -2317,8 +2319,6 @@ Cards
 
   filter: drop-shadow(0 14px 36px rgba(0,0,0,0.45));
 }
-
-
 
 /* =================================================
    MARCADOR EDITORIAL
