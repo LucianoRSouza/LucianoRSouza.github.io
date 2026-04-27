@@ -2168,22 +2168,23 @@ body.dark-mode .newsletter-input::placeholder {
   font-variant-numeric:tabular-nums;
 }
 
-/* =================================================/* ================================================= — HEADER (FINAL)
+/* =================================================
+   EXPLORE SECTION
 ================================================= */
 
 .explore-blocks-section {
-  position: relative;
   background: linear-gradient(
     180deg,
-    #f5efdb 0%,      /* topo claro */
+    #f5efdb 0%,
     #efe6c9 30%,
     #cfc7a3 45%,
-    #0b1c2d 100%     /* navy base */
+    #0b1c2d 100%
   );
   padding: 140px 32px 110px;
 }
 
-/* ================================================= — EDITORIAL (SEM BACKLIGHT)
+/* =================================================
+   HEADER
 ================================================= */
 
 .explore-blocks-header {
@@ -2194,13 +2195,15 @@ body.dark-mode .newsletter-input::placeholder {
 
 /* TÍTULO */
 .explore-blocks-header .section-title {
-  font-family: 'Playfair Display', serif; /* ou a fonte base do site */
-  font-size: 3.6rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 3.8rem;
   font-weight: 600;
   line-height: 1.15;
 
-  color: #0b1c2d;   /* navy da página */
+  color: #0b1c2d; /* azul‑marinho */
   margin-bottom: 20px;
+
+  text-shadow: 0 1px 0 rgba(255,255,255,0.45);
 }
 
 /* SUBTÍTULO */
@@ -2212,37 +2215,6 @@ body.dark-mode .newsletter-input::placeholder {
   line-height: 1.7;
 
   color: rgba(11, 28, 45, 0.75); /* navy suavizado */
-}
-
-/* =================================================
-   TEXTO (FORÇADO BRANCO)
-================================================= */
-
-.explore-blocks-header .section-title {
-  position: relative;
-  z-index: 1;
-
-  font-size: 3.8rem;          /* 🔒 tamanho original */
-  font-weight: 800;
-  line-height: 1.15;
-
-  color: #ffffff !important;
-  margin-bottom: 24px;
-
-  text-shadow: 0 2px 6px rgba(0,0,0,0.35);
-}
-
-.explore-blocks-header .section-subtitle {
-  position: relative;
-  z-index: 1;
-
-  max-width: 720px;
-  margin: 0 auto;
-
-  font-size: 1.1rem;          /* 🔒 tamanho original */
-  line-height: 1.7;
-
-  color: rgba(255,255,255,0.92) !important;
 }
 
 /* ===============================
