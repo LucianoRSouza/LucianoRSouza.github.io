@@ -2167,20 +2167,26 @@ body.dark-mode .newsletter-input::placeholder {
 .counter, .impact-value, .strategy-stat-value, .sustainability-value, .sustainability-highlight-value{
   font-variant-numeric:tabular-nums;
 }
-/* =================================================
-   EXPLORE SECTION — FINAL, CLEAN & STABLE
-   (dark appearance in all modes)
+/* =================================================/* =================================================   EXPLORE SECTION — FINAL (GRADIENT + BLUE BACKLIGHT)
+   - Mantém o degradê aprovado
+   - Adiciona backlight azul suave atrás do texto
 ================================================= */
 
-/* Section background */
 .explore-blocks-section {
-  background: var(--dark-bg);
+  position: relative;
+  background: linear-gradient(
+    180deg,
+    #f5efdb 0%,      /* topo claro */
+    #efe6c9 30%,
+    #cfc7a3 45%,
+    #0b1c2d 100%     /* navy base */
+  );
   padding: 140px 32px 110px;
 }
 
-/* ===============================
+/* =================================================
    HEADER
-================================ */
+================================================= */
 
 .explore-blocks-header {
   position: relative;
@@ -2189,19 +2195,30 @@ body.dark-mode .newsletter-input::placeholder {
   text-align: center;
 }
 
-/* HALO NO FORMATO CORRETO (igual ao print bom) */
-/* EXPLORE SECTION — ORIGINAL HALO (FROM HISTORY) */
-.explore-blocks-section {
-  background: linear-gradient(
-    180deg,
-    #f5efdb 0%,      /* topo claro (halo) */
-    #efe6c9 30%,
-    #cfc7a3 45%,
-    #0b1c2d 100%     /* navy base */
+/* BACKLIGHT AZUL OVAL — SUAVE, SÓ ATRÁS DO TEXTO */
+.explore-blocks-header::before {
+  content: "";
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 900px;
+  height: 240px;
+  border-radius: 50%;
+
+  background: radial-gradient(
+    ellipse at center,
+    rgba(23, 54, 94, 0.22),   /* azul navy suave */
+    rgba(23, 54, 94, 0.12),
+    transparent 72%
   );
-  padding: 140px 32px 110px;
+
+  z-index: 0;
+  pointer-events: none;
 }
-/* ✅ Título SEMPRE branco (light + dark) */
+
+/* TÍTULO */
 .explore-blocks-header .section-title {
   position: relative;
   z-index: 1;
@@ -2210,13 +2227,12 @@ body.dark-mode .newsletter-input::placeholder {
   font-weight: 800;
   line-height: 1.2;
 
-  color: #ffffff !important;
+  color: #ffffff;
   margin-bottom: 24px;
-
   text-shadow: 0 1px 0 rgba(0,0,0,0.3);
 }
 
-/* ✅ Frase SEMPRE branca */
+/* SUBTÍTULO */
 .explore-blocks-header .section-subtitle {
   position: relative;
   z-index: 1;
@@ -2227,8 +2243,9 @@ body.dark-mode .newsletter-input::placeholder {
   font-size: 1.05rem;
   line-height: 1.7;
 
-  color: rgba(255,255,255,0.85) !important;
+  color: rgba(255,255,255,0.9);
 }
+
 /* ===============================
    CARDS
 ================================ */
