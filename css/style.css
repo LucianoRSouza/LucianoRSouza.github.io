@@ -2339,6 +2339,7 @@ Cards
   .explore-block {
     position: relative;
     padding: 32px 24px;
+    padding-top: 56px; /* espaço real para o marcador */
   }
 
   /* Seal fixed on the right, centered vertically */
@@ -2354,31 +2355,31 @@ Cards
     opacity: 0.85;
 
     pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Marker clearly above the title */
+  .explore-marker {
+    position: relative;
+    display: block;
+    margin-bottom: 14px; /* separa do título */
     z-index: 2;
   }
 
-  /* Give the text real space away from the seal */
+  /* Title always below marker */
+  .explore-block h3 {
+    margin-top: 0;
+    margin-bottom: 12px;
+  }
+
+  /* Text and CTA keep clear space from seal */
   .explore-block h3,
   .explore-block p,
   .explore-link,
   .portal-cta {
-    padding-right: 150px;   /* MAIS espaço horizontal */
+    padding-right: 140px;
   }
 
-  /* Marker clearly separated from title */
-  .explore-marker {
-    position: static;
-    display: block;
-    margin-bottom: 14px;   /* MAIS espaço abaixo do número */
-  }
-
-  /* Title clearly separated from paragraph */
-  .explore-block h3 {
-    margin-top: 0;
-    margin-bottom: 12px;   /* espaço entre título e texto */
-  }
-
-  /* Paragraph breathes before CTA */
   .explore-block p {
     margin-bottom: 16px;
   }
