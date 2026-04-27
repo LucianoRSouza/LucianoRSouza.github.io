@@ -2168,99 +2168,59 @@ body.dark-mode .newsletter-input::placeholder {
   font-variant-numeric:tabular-nums;
 }
 
-
 /* ===============================
-   HEADER
+   EXPLORE SECTION — HALO CORRETO (IGUAL NEWSLETTER OG)
 ================================ */
 
 .explore-blocks-section {
-  position: relative;          /* ✅ cria contexto */
+  position: relative;
   background: var(--dark-bg);
-  padding: 140px 32px 110px;   /* ✅ respiro essencial */
+  padding: 140px 32px 110px;
+  overflow: hidden;
 }
 
+/* HALO AMBIENTAL (campo de luz, não halo local) */
+.explore-blocks-section::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle,
+    rgba(212,175,55,0.08) 0%,
+    transparent 70%
+  );
+  animation: rotate-slow 40s linear infinite;
+  pointer-events: none;
+}
+
+/* HEADER SEM HALO */
 .explore-blocks-header {
   position: relative;
   max-width: 900px;
   margin: 0 auto 90px;
   text-align: center;
-  overflow: visible;           /* ✅ permite halo sair */
-}
-
-/* ✅ HALO PRINCIPAL (corpo de luz) */
-.explore-blocks-header::before {
-  content: "";
-  position: absolute;
-  top: -120px;
-  left: 50%;
-  transform: translateX(-50%);
-
-  width: 700px;
-  height: 340px;
-  border-radius: 50%;
-
-  background: radial-gradient(
-    ellipse at center,
-    rgba(212,175,55,0.55),
-    rgba(212,175,55,0.28),
-    rgba(212,175,55,0.12),
-    transparent 74%
-  );
-
-  filter: blur(6px);
-  z-index: 0;
-  pointer-events: none;
-}
-
-/* ✅ HALO SECUNDÁRIO (profundidade) */
-.explore-blocks-header::after {
-  content: "";
-  position: absolute;
-  top: -170px;
-  left: 50%;
-  transform: translateX(-50%);
-
-  width: 520px;
-  height: 240px;
-  border-radius: 50%;
-
-  background: radial-gradient(
-    ellipse at center,
-    rgba(212,175,55,0.35),
-    rgba(212,175,55,0.18),
-    transparent 70%
-  );
-
-  filter: blur(18px);
-  z-index: 0;
-  pointer-events: none;
-}
-
-/* ✅ TÍTULO — BRANCO REAL */
-.explore-blocks-header .section-title {
-  position: relative;
   z-index: 1;
+}
 
+/* TÍTULO */
+.explore-blocks-header .section-title {
   font-size: 3.1rem;
   font-weight: 800;
   line-height: 1.2;
-
-  color: #ffffff !important;
+  color: #ffffff;
   margin-bottom: 24px;
-
   text-shadow: 0 1px 0 rgba(0,0,0,0.35);
 }
 
-/* ✅ SUBTÍTULO — BRANCO LEGÍVEL */
+/* SUBTÍTULO */
 .explore-blocks-header .section-subtitle {
-  position: relative;
-  z-index: 1;
-
   max-width: 700px;
   margin: 0 auto;
-
   font-size: 1.05rem;
   line-height: 1.7;
-
-  color: rgba(255,255,255,0.85) !important;
+  color: rgba(255,255,255,0.85);
 }
+
