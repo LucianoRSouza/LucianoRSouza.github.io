@@ -2190,26 +2190,16 @@ body.dark-mode .newsletter-input::placeholder {
 }
 
 /* HALO NO FORMATO CORRETO (igual ao print bom) */
-.explore-blocks-header::before {
-  content: "";
-  position: absolute;
-  top: -70px;
-  left: 50%;
-  transform: translateX(-50%);
-
-  width: 900px;      /* MAIS LARGO */
-  height: 180px;     /* MAIS BAIXO */
-  border-radius: 50%;
-
-  background: radial-gradient(
-    ellipse at center,
-    rgba(212,175,55,0.28),
-    rgba(212,175,55,0.12),
-    transparent 75%
-  );
-
-  z-index: 0;
-  pointer-events: none;
+.explore-blocks-section {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(212,175,55,0.18) 0%,
+      rgba(212,175,55,0.12) 35%,
+      rgba(212,175,55,0.04) 55%,
+      rgba(10,14,39,1) 100%
+    );
+  padding: 140px 32px 110px;
 }
 /* ✅ Título SEMPRE branco (light + dark) */
 .explore-blocks-header .section-title {
