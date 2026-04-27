@@ -2183,40 +2183,35 @@ body.dark-mode .newsletter-input::placeholder {
   padding: 140px 32px 110px;
 }
 
-/* =================================================
-   HEADER
+/* ================================================= — EDITORIAL (SEM BACKLIGHT)
 ================================================= */
 
 .explore-blocks-header {
-  position: relative;
   max-width: 900px;
   margin: 0 auto 90px;
   text-align: center;
 }
 
-/* BACKLIGHT NAVY — ATRÁS DO TEXTO */
-.explore-blocks-header::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+/* TÍTULO */
+.explore-blocks-header .section-title {
+  font-family: 'Playfair Display', serif; /* ou a fonte base do site */
+  font-size: 3.6rem;
+  font-weight: 600;
+  line-height: 1.15;
 
-  width: 900px;     /* largo o suficiente */
-  height: 280px;    /* um pouco mais alto */
-  border-radius: 50%;
+  color: #0b1c2d;   /* navy da página */
+  margin-bottom: 20px;
+}
 
-  background: radial-gradient(
-    ellipse at center,
-    rgba(11, 28, 45, 0.85),   /* NAVY da página */
-    rgba(11, 28, 45, 0.55),
-    rgba(11, 28, 45, 0.25),
-    transparent 78%
-  );
+/* SUBTÍTULO */
+.explore-blocks-header .section-subtitle {
+  max-width: 720px;
+  margin: 0 auto;
 
-  filter: blur(42px);        /* blur mais aberto */
-  z-index: 0;
-  pointer-events: none;
+  font-size: 1.1rem;
+  line-height: 1.7;
+
+  color: rgba(11, 28, 45, 0.75); /* navy suavizado */
 }
 
 /* =================================================
