@@ -2167,9 +2167,8 @@ body.dark-mode .newsletter-input::placeholder {
 .counter, .impact-value, .strategy-stat-value, .sustainability-value, .sustainability-highlight-value{
   font-variant-numeric:tabular-nums;
 }
-/* =================================================/* =================================================   EXPLORE SECTION — FINAL (GRADIENT + BLUE BACKLIGHT)
-   - Mantém o degradê aprovado
-   - Adiciona backlight azul suave atrás do texto
+
+/* =================================================/* ================================================= — HEADER (FINAL)
 ================================================= */
 
 .explore-blocks-section {
@@ -2184,7 +2183,8 @@ body.dark-mode .newsletter-input::placeholder {
   padding: 140px 32px 110px;
 }
 
-/* =================================================/* =================================================TAMANHO ORIGINAL + NAVY BACKLIGHT)
+/* =================================================
+   HEADER
 ================================================= */
 
 .explore-blocks-header {
@@ -2194,7 +2194,7 @@ body.dark-mode .newsletter-input::placeholder {
   text-align: center;
 }
 
-/* BACKLIGHT NAVY — COLADO AO TEXTO (NÃO AO FUNDO) */
+/* BACKLIGHT NAVY — ATRÁS DO TEXTO */
 .explore-blocks-header::before {
   content: "";
   position: absolute;
@@ -2202,39 +2202,41 @@ body.dark-mode .newsletter-input::placeholder {
   left: 50%;
   transform: translate(-50%, -50%);
 
-  width: 760px;
-  height: 220px;
+  width: 900px;     /* largo o suficiente */
+  height: 280px;    /* um pouco mais alto */
   border-radius: 50%;
 
   background: radial-gradient(
     ellipse at center,
-    rgba(11, 28, 45, 0.85),   /* 🔵 NAVY DA PÁGINA */
+    rgba(11, 28, 45, 0.85),   /* NAVY da página */
     rgba(11, 28, 45, 0.55),
     rgba(11, 28, 45, 0.25),
-    transparent 75%
+    transparent 78%
   );
 
-  filter: blur(28px);
+  filter: blur(42px);        /* blur mais aberto */
   z-index: 0;
   pointer-events: none;
 }
 
-/* TÍTULO — TAMANHO ORIGINAL, SEM MUDANÇA */
+/* =================================================
+   TEXTO (FORÇADO BRANCO)
+================================================= */
+
 .explore-blocks-header .section-title {
   position: relative;
   z-index: 1;
 
-  font-size: 3.8rem;      /* ✅ tamanho original */
+  font-size: 3.8rem;          /* 🔒 tamanho original */
   font-weight: 800;
   line-height: 1.15;
 
-  color: #ffffff;         /* ✅ branco puro */
+  color: #ffffff !important;
   margin-bottom: 24px;
 
-  text-shadow: 0 2px 4px rgba(0,0,0,0.35);
+  text-shadow: 0 2px 6px rgba(0,0,0,0.35);
 }
 
-/* TEXTO — TAMANHO ORIGINAL, SEM MUDANÇA */
 .explore-blocks-header .section-subtitle {
   position: relative;
   z-index: 1;
@@ -2242,12 +2244,11 @@ body.dark-mode .newsletter-input::placeholder {
   max-width: 720px;
   margin: 0 auto;
 
-  font-size: 1.1rem;      /* ✅ tamanho original */
+  font-size: 1.1rem;          /* 🔒 tamanho original */
   line-height: 1.7;
 
-  color: rgba(255,255,255,0.9);  /* ✅ branco */
+  color: rgba(255,255,255,0.92) !important;
 }
-
 
 /* ===============================
    CARDS
