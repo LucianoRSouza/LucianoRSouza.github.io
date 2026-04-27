@@ -2189,30 +2189,28 @@ body.dark-mode .newsletter-input::placeholder {
   text-align: center;
 }
 
-/* ✅ Halo CURVO como antes */
+/* HALO NO FORMATO CORRETO (igual ao print bom) */
 .explore-blocks-header::before {
   content: "";
   position: absolute;
-
-  top: -80px;
+  top: -70px;
   left: 50%;
   transform: translateX(-50%);
 
-  width: 520px;
-  height: 220px;
+  width: 900px;      /* MAIS LARGO */
+  height: 180px;     /* MAIS BAIXO */
   border-radius: 50%;
 
   background: radial-gradient(
     ellipse at center,
-    rgba(212,175,55,0.45),
-    rgba(212,175,55,0.18),
-    transparent 70%
+    rgba(212,175,55,0.28),
+    rgba(212,175,55,0.12),
+    transparent 75%
   );
 
   z-index: 0;
   pointer-events: none;
 }
-
 /* ✅ Título SEMPRE branco (light + dark) */
 .explore-blocks-header .section-title {
   position: relative;
