@@ -2190,15 +2190,15 @@ body.dark-mode .newsletter-input::placeholder {
 }
 
 /* HALO NO FORMATO CORRETO (igual ao print bom) */
+/* EXPLORE SECTION — ORIGINAL HALO (FROM HISTORY) */
 .explore-blocks-section {
-  background:
-    linear-gradient(
-      180deg,
-      rgba(212,175,55,0.18) 0%,
-      rgba(212,175,55,0.12) 35%,
-      rgba(212,175,55,0.04) 55%,
-      rgba(10,14,39,1) 100%
-    );
+  background: linear-gradient(
+    180deg,
+    #f5efdb 0%,      /* topo claro (halo) */
+    #efe6c9 30%,
+    #cfc7a3 45%,
+    #0b1c2d 100%     /* navy base */
+  );
   padding: 140px 32px 110px;
 }
 /* ✅ Título SEMPRE branco (light + dark) */
