@@ -2189,22 +2189,31 @@ body.dark-mode .newsletter-input::placeholder {
   text-align: center;
 }
 
-/* Glow */
+/* ✅ Halo CURVO como antes */
 .explore-blocks-header::before {
   content: "";
   position: absolute;
-  inset: -60px;
+
+  top: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 520px;
+  height: 220px;
+  border-radius: 50%;
+
   background: radial-gradient(
-    circle at center,
-    rgba(212,175,55,0.35),
-    rgba(212,175,55,0.15),
+    ellipse at center,
+    rgba(212,175,55,0.45),
+    rgba(212,175,55,0.18),
     transparent 70%
   );
+
   z-index: 0;
   pointer-events: none;
 }
 
-/* Title */
+/* ✅ Título SEMPRE branco (light + dark) */
 .explore-blocks-header .section-title {
   position: relative;
   z-index: 1;
@@ -2213,12 +2222,13 @@ body.dark-mode .newsletter-input::placeholder {
   font-weight: 800;
   line-height: 1.2;
 
-  color: #ffffff;
+  color: #ffffff !important;
   margin-bottom: 24px;
-  text-shadow: 0 1px 0 rgba(0,0,0,0.25);
+
+  text-shadow: 0 1px 0 rgba(0,0,0,0.3);
 }
 
-/* Subtitle */
+/* ✅ Frase SEMPRE branca */
 .explore-blocks-header .section-subtitle {
   position: relative;
   z-index: 1;
@@ -2229,9 +2239,8 @@ body.dark-mode .newsletter-input::placeholder {
   font-size: 1.05rem;
   line-height: 1.7;
 
-  color: rgba(255,255,255,0.8);
+  color: rgba(255,255,255,0.85) !important;
 }
-
 /* ===============================
    CARDS
 ================================ */
