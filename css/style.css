@@ -2160,11 +2160,11 @@ body.dark-mode .newsletter-input::placeholder {
   }
 }
 
-/* ============================================
-   EXPLORE SECTION
-================================================= */
+/* ============================================   EXPLORE SECTION
+============================================ */
 
 .explore-blocks-section {
+  position: relative;
   background: linear-gradient(
     180deg,
     #f5efdb 0%,
@@ -2173,6 +2173,33 @@ body.dark-mode .newsletter-input::placeholder {
     #0b1c2d 100%
   );
   padding: 140px 32px 110px;
+  overflow: hidden;
+}
+
+/* SELO EDITORIAL — WATERMARK */
+.explore-blocks-section::before {
+  content: "";
+  position: absolute;
+  top: 90px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 420px;
+  height: 420px;
+
+  background-image: url("/seal.svg"); /* SVG monocromático */
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  opacity: 0.035;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* todo o conteúdo acima do selo */
+.explore-blocks-section > * {
+  position: relative;
+  z-index: 1;
 }
 
 /* =================================================
@@ -2185,7 +2212,6 @@ body.dark-mode .newsletter-input::placeholder {
   text-align: center;
 }
 
-/* TÍTULO */
 .explore-blocks-header .section-title {
   font-family: 'Playfair Display', serif;
   font-size: 3.8rem;
@@ -2198,7 +2224,6 @@ body.dark-mode .newsletter-input::placeholder {
     0 3px 6px rgba(11,28,45,0.35);
 }
 
-/* SUBTÍTULO */
 .explore-blocks-header .section-subtitle {
   max-width: 720px;
   margin: 0 auto;
@@ -2227,25 +2252,19 @@ body.dark-mode .newsletter-input::placeholder {
 
   color: var(--dark-text);
   box-shadow: 0 30px 90px rgba(0,0,0,0.55);
-  transition:
-    transform 0.4s ease,
-    box-shadow 0.4s ease,
-    border-color 0.4s ease;
+  transition: transform .4s ease, box-shadow .4s ease, border-color .4s ease;
 }
 
-/* Hover */
 .explore-block:hover {
   transform: translateY(-6px);
   border-color: var(--gold);
   box-shadow: 0 45px 140px rgba(212,175,55,0.35);
 }
 
-/* Título do card */
 .explore-block h3 {
   color: var(--gold);
 }
 
-/* Texto do card */
 .explore-block p {
   color: var(--dark-text-secondary);
 }
@@ -2265,48 +2284,4 @@ body.dark-mode .newsletter-input::placeholder {
   opacity: 0.9;
 }
 
-/* =================================================
-   CTA — LET'S GO
-================================================= */
-
-.portal-cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  margin-top: 12px;
-  padding: 12px 28px;
-
-  border-radius: 999px;
-  border: 2px solid var(--gold);
-  background: transparent;
-
-  color: var(--gold);
-
-  font-weight: 800;
-  font-size: 0.8rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-
-  box-shadow: 0 0 18px rgba(212,175,55,0.35);
-  cursor: pointer;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.portal-cta:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 28px rgba(212,175,55,0.55);
-}
-
- /* ============================================
-   COUNTER ANIMATION
-============================================ */
-
-.counter,
-.impact-value,
-.strategy-stat-value,
-.sustainability-value,
-.sustainability-highlight-value {
-  font-variant-numeric: tabular-nums;
-}
 
