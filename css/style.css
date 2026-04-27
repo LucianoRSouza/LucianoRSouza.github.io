@@ -2235,9 +2235,8 @@ body.dark-mode .newsletter-input::placeholder {
   line-height: 1.7;
   color: rgba(11,28,45,0.75);
 }
-
 /* =================================================
-   CARDS
+Cards
 ================================================= */
 
 .explore-block {
@@ -2256,7 +2255,7 @@ body.dark-mode .newsletter-input::placeholder {
 
   color: var(--dark-text);
   box-shadow: 0 30px 90px rgba(0,0,0,0.55);
-  transition: transform .4s ease, box-shadow .4s ease, border-color .4s ease;
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
 }
 
 .explore-block:hover {
@@ -2273,6 +2272,29 @@ body.dark-mode .newsletter-input::placeholder {
   color: var(--dark-text-secondary);
 }
 
+
+/* =================================================
+   EXPLORE SEALS (WAX STAMPS)
+================================================= */
+
+.explore-seal {
+  position: absolute;
+  top: 24px;
+  right: 32px;
+
+  width: 64px;
+  height: auto;
+
+  opacity: 0.85;
+  transform: rotate(-8deg);
+
+  pointer-events: none;
+  z-index: 3;
+
+  filter: drop-shadow(0 6px 14px rgba(0,0,0,0.45));
+}
+
+
 /* =================================================
    MARCADOR EDITORIAL
 ================================================= */
@@ -2281,11 +2303,14 @@ body.dark-mode .newsletter-input::placeholder {
   position: absolute;
   left: 36px;
   top: 36px;
+
   font-family: 'Playfair Display', serif;
   font-size: 1.25rem;
   font-weight: 600;
+
   color: var(--gold);
   opacity: 0.9;
 }
 
+  
 
