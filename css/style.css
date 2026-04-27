@@ -2202,6 +2202,10 @@ body.dark-mode .newsletter-input::placeholder {
   z-index: 2;
 }
 
+.portal-cta {
+  background: rgba(10,14,39,0.2);
+}
+
 /* =================================================
    HEADER
 ================================================= */
