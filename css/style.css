@@ -2306,11 +2306,13 @@ Cards
   top: 50%;
   right: 170px;
 
-  width: 140px;
-  height: auto;
+  width: 160px;
+  height: 160px;
+
+  display: block;
+  object-fit: contain;
 
   transform: translateY(-50%) rotate(-6deg);
-
   opacity: 0.9;
 
   pointer-events: none;
@@ -2319,6 +2321,28 @@ Cards
   filter: drop-shadow(0 14px 36px rgba(0,0,0,0.45));
 }
 
+/* ============================================
+   MOBILE ADJUSTMENT
+============================================ */
+
+@media (max-width: 768px) {
+
+  .explore-block {
+    padding: 32px 24px;
+  }
+
+  .explore-seal {
+    top: 24px;
+    right: 24px;
+
+    width: 120px;
+    height: 120px;
+
+    transform: rotate(-6deg);
+    opacity: 0.85;
+  }
+
+}
 /* =================================================
    MARCADOR EDITORIAL
 ================================================= */
