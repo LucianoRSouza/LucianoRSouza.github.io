@@ -2505,6 +2505,10 @@ body {
   overflow-x: hidden;
 }
 
+/* ===============================
+   EXPLORE BLOCK (CARDS)
+================================ */
+
 .explore-block {
   position: relative;
   padding: 56px 44px;
@@ -2517,8 +2521,7 @@ body {
     radial-gradient(circle at top left, rgba(212,175,55,0.14), transparent 60%),
     var(--dark-elevated);
 
-  box-shadow:
-    0 30px 90px rgba(0,0,0,0.55);
+  box-shadow: 0 30px 90px rgba(0,0,0,0.55);
 
   transition:
     transform 0.4s ease,
@@ -2528,13 +2531,13 @@ body {
 
 .explore-block:hover {
   transform: translateY(-6px);
-  border-color: rgba(212,175,55,0.95);
-  box-shadow:
-    0 45px 140px rgba(212,175,55,0.35);
+  border-color: rgba(212, 175, 55, 0.95);
+  box-shadow: 0 45px 140px rgba(212,175,55,0.35);
 }
 
-/* ================================================= EXPLORE HEADER — RESTORED GLOW + DARK LOOK ALWAYS
-================================================= */
+/* ===============================
+   EXPLORE HEADER — FINAL + GLOW
+================================ */
 
 .explore-blocks-section {
   background: var(--dark-bg);
@@ -2548,7 +2551,7 @@ body {
   text-align: center;
 }
 
-/* halo / brilho no fundo */
+/* Glow de fundo */
 .explore-blocks-header::before {
   content: "";
   position: absolute;
@@ -2563,26 +2566,30 @@ body {
   pointer-events: none;
 }
 
-/* título */
+/* Título */
 .explore-blocks-header .section-title {
   position: relative;
   z-index: 1;
 
-  font-size: 3rem;
-  font-weight: 700;
+  font-size: 3.1rem;
+  font-weight: 800;
   line-height: 1.2;
 
-  color: var(--dark-text);
-  margin-bottom: 22px;
+  color: #ffffff;
+  margin-bottom: 24px;
+  text-shadow: 0 1px 0 rgba(0,0,0,0.25);
 }
 
-/* subtítulo */
+/* Subtítulo */
 .explore-blocks-header .section-subtitle {
   position: relative;
   z-index: 1;
 
+  max-width: 700px;
+  margin: 0 auto;
+
   font-size: 1.05rem;
   line-height: 1.7;
 
-  color: var(--dark-text-secondary);
+  color: rgba(255,255,255,0.78);
 }
