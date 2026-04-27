@@ -2184,9 +2184,7 @@ body.dark-mode .newsletter-input::placeholder {
   padding: 140px 32px 110px;
 }
 
-/* =================================================
-   HEADER
-================================================= */
+/* =================================================/* Header */
 
 .explore-blocks-header {
   position: relative;
@@ -2195,27 +2193,37 @@ body.dark-mode .newsletter-input::placeholder {
   text-align: center;
 }
 
-/* BACKLIGHT AZUL OVAL — SUAVE, SÓ ATRÁS DO TEXTO */
+/* BACKLIGHT AZUL REAL — COLADO AO TEXTO */
 .explore-blocks-header::before {
   content: "";
   position: absolute;
-  top: -40px;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
 
-  width: 900px;
-  height: 240px;
+  width: 840px;
+  height: 220px;
   border-radius: 50%;
 
   background: radial-gradient(
     ellipse at center,
-    rgba(23, 54, 94, 0.22),   /* azul navy suave */
-    rgba(23, 54, 94, 0.12),
-    transparent 72%
+    rgba(46, 92, 160, 0.45),
+    rgba(46, 92, 160, 0.25),
+    transparent 70%
   );
+
+  filter: blur(32px);
+  mix-blend-mode: screen;
 
   z-index: 0;
   pointer-events: none;
+}
+
+/* TEXTO SEMPRE ACIMA DO BACKLIGHT */
+.explore-blocks-header .section-title,
+.explore-blocks-header .section-subtitle {
+  position: relative;
+  z-index: 1;
 }
 
 /* TÍTULO */
