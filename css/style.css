@@ -2300,23 +2300,24 @@ Cards
    EXPLORE SEALS (WAX STAMPS)
 ================================================= */
 
-.explore-seal {.explore-se rotate(-6deg);
-
-  pointer-events: none;
-  z-index: 2;
-
-  filter: drop-shadow(0 14px 36px rgba(0,0,0,0.45));
-}
-``
+.explore-seal {
   position: absolute;
 
-  top: 32px;       /* alinhado ao topo do conteúdo */
-  right: 140px;    /* puxa bem para dentro do card */
+  top: 32px;        /* alinhado com topo do conteúdo */
+  right: 140px;     /* centro visual do espaço vazio */
 
   width: 140px;
   height: auto;
 
   opacity: 0.9;
+  transform: rotate(-6deg);
+
+  pointer-events: none;
+  z-index: 3;
+
+  filter: drop-shadow(0 14px 36px rgba(0,0,0,0.45));
+}
+
 
 
 /* =================================================
