@@ -2160,7 +2160,8 @@ body.dark-mode .newsletter-input::placeholder {
   }
 }
 
-/* ============================================   EXPLORE SECTION
+/* ============================================
+   EXPLORE SECTION
 ============================================ */
 
 .explore-blocks-section {
@@ -2183,23 +2184,22 @@ body.dark-mode .newsletter-input::placeholder {
   top: 90px;
   left: 50%;
   transform: translateX(-50%);
-
   width: 420px;
   height: 420px;
-
-  background-image: url("/seal.svg"); /* SVG monocromático */
+  background-image: url("/seal.svg");
   background-repeat: no-repeat;
   background-size: contain;
-
   opacity: 0.035;
   pointer-events: none;
   z-index: 0;
 }
 
-/* todo o conteúdo acima do selo */
-.explore-blocks-section > * {
+/* GARANTE CONTEÚDO ACIMA DO SELO */
+.explore-blocks-header,
+.explore-block,
+.portal-cta {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 /* =================================================
