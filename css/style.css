@@ -2362,7 +2362,7 @@ Cards
   .explore-marker {
     position: relative;
     display: block;
-    margin-bottom: 14px; /* separa do título */
+    margin-bottom: 18px; /* separa do título */
     z-index: 2;
   }
 
