@@ -2354,14 +2354,24 @@ Cards
 
   .explore-block {
     position: relative;
-    padding: 32px 24px;
-    padding-top: 56px; /* reserva espaço para o número */
+    padding: 36px 24px 32px 24px;
+    padding-top: 72px; /* espaço reservado para o romano */
+  }
+
+  /* Roman numeral anchored top-left */
+  .explore-marker {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+
+    font-size: 1.1rem;
+    z-index: 2;
   }
 
   /* Seal on the right, vertically centered */
   .explore-seal {
     position: absolute;
-    top: 48%;
+    top: 50%;
     right: 12px;
 
     width: 110px;
@@ -2380,18 +2390,7 @@ Cards
     height: 124px;
   }
 
-  /* Roman numeral separation */
-  
-  .explore-marker {
-    position: relative;
-    display: block;
-    top: -12px;           /* sobe o romano */
-    margin-bottom: 28px;  /* respiro equilibrado */
-    z-index: 2;
-  }
-
-
-  /* Text flow */
+  /* Text flow starts cleanly below the roman numeral */
   .explore-block h3 {
     margin-top: 0;
     margin-bottom: 20px;
@@ -2410,7 +2409,6 @@ Cards
   }
 
 }
-
 
 /* =================================================
    MARCADOR EDITORIAL
