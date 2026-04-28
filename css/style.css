@@ -92,6 +92,8 @@ nav .logo{display:flex;align-items:center;gap:10px;font-family:'Playfair Display
 .btn.secondary:hover{background:var(--white);color:var(--navy)}
 .hero-image-wrapper{position:relative;animation:fadeInScale .9s ease .28s both}
 
+
+
 /* Gold Frames */
 .hero-image{
   width:100%;
@@ -131,6 +133,26 @@ section{padding:6rem var(--container-pad);position:relative}
 .section-header p{color:var(--text-light)}
 .animate-on-scroll{opacity:0;transform:translateY(32px);transition:opacity .6s ease,transform .6s ease}
 .animate-on-scroll.visible{opacity:1;transform:translateY(0)}
+
+/* =================================================
+   POSITIONING STATEMENT
+================================================= */
+
+.positioning-statement {
+  max-width: 860px;
+  margin: 56px auto 72px;
+  padding: 0 24px;
+}
+
+.positioning-statement p {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  text-align: center;
+
+  color: rgba(11, 28, 45, 0.72);
+
+  letter-spacing: 0.01em;
+}
 
 /* About */
 .about{background:var(--white)}
