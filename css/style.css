@@ -2327,7 +2327,23 @@ Cards
     height: 178px;
   }
 }
+/* ============================================
+   EXPLORE ACTION SPACING — WEB ONLY
+============================================ */
 
+@media (min-width: 769px) {
+
+  /* Afasta um pouco a seta Explore → */
+  .explore-link {
+    margin-right: 22px;
+  }
+
+  /* Afasta o botão Let's Go da seta */
+  .portal-cta {
+    margin-left: 12px;
+  }
+
+}
 /* =================================================
    EXPLORE SEALS — MOBILE
 ================================================= */
@@ -2360,7 +2376,7 @@ Cards
   .explore-marker {
     position: relative;
     display: block;
-    margin-bottom: 18px;
+    margin-bottom: 24px;
     z-index: 2;
   }
 
