@@ -2359,7 +2359,7 @@ Cards
   /* Seal on the right, vertically centered */
   .explore-seal {
     position: absolute;
-    top: 50%;
+    top: 48%;
     right: 12px;
 
     width: 110px;
@@ -2376,14 +2376,14 @@ Cards
   .explore-marker {
     position: relative;
     display: block;
-    margin-bottom: 24px;
+    margin-bottom: 32px;
     z-index: 2;
   }
 
   /* Text flow: nothing overlaps */
   .explore-block h3 {
     margin-top: 0;
-    margin-bottom: 12px;
+    margin-bottom: 20px;
   }
 
   .explore-block p {
