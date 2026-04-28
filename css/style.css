@@ -2302,7 +2302,7 @@ Cards
 
 .explore-seal {
   position: absolute;
-  top: 50%;
+  top: 48%;               /* leve ajuste editorial */
   right: 170px;
 
   width: 160px;
@@ -2325,8 +2325,10 @@ Cards
   .explore-block:nth-of-type(2) .explore-seal {
     width: 178px;
     height: 178px;
+    right: 166px;         /* micro-ajuste para a direita */
   }
 }
+
 /* ============================================
    EXPLORE ACTION SPACING — WEB ONLY
 ============================================ */
@@ -2353,7 +2355,7 @@ Cards
   .explore-block {
     position: relative;
     padding: 32px 24px;
-    padding-top: 56px; /* espaço real para o marcador */
+    padding-top: 56px; /* reserva espaço para o número */
   }
 
   /* Seal on the right, vertically centered */
@@ -2372,15 +2374,21 @@ Cards
     z-index: 1;
   }
 
-  /* Roman numeral: separated and clear */
+  /* Make How I Work slightly larger on mobile */
+  .explore-block:nth-of-type(2) .explore-seal {
+    width: 124px;
+    height: 124px;
+  }
+
+  /* Roman numeral separation */
   .explore-marker {
     position: relative;
     display: block;
-    margin-bottom: 32px;
+    margin-bottom: 40px; /* MAIS espaço entre romano e título */
     z-index: 2;
   }
 
-  /* Text flow: nothing overlaps */
+  /* Text flow */
   .explore-block h3 {
     margin-top: 0;
     margin-bottom: 20px;
@@ -2399,6 +2407,7 @@ Cards
   }
 
 }
+
 
 /* =================================================
    MARCADOR EDITORIAL
