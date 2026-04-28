@@ -2381,12 +2381,15 @@ Cards
   }
 
   /* Roman numeral separation */
+  
   .explore-marker {
     position: relative;
     display: block;
-    margin-bottom: 40px; /* MAIS espaço entre romano e título */
+    top: -12px;           /* sobe o romano */
+    margin-bottom: 28px;  /* respiro equilibrado */
     z-index: 2;
   }
+
 
   /* Text flow */
   .explore-block h3 {
