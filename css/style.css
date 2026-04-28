@@ -2297,10 +2297,8 @@ Cards
 
 
 /* =================================================
-   EXPLORE SEALS (WAX STAMPS)
+   EXPLORE SEALS — DESKTOP (WEB)
 ================================================= */
-
-/* -------- DESKTOP BASE -------- */
 
 .explore-seal {
   position: absolute;
@@ -2330,9 +2328,9 @@ Cards
   }
 }
 
-/* ============================================
-   MOBILE ADJUSTMENT
-============================================ */
+/* =================================================
+   EXPLORE SEALS — MOBILE
+================================================= */
 
 @media (max-width: 768px) {
 
@@ -2342,7 +2340,7 @@ Cards
     padding-top: 56px; /* espaço real para o marcador */
   }
 
-  /* Seal fixed on the right, centered vertically */
+  /* Seal on the right, vertically centered */
   .explore-seal {
     position: absolute;
     top: 50%;
@@ -2358,21 +2356,25 @@ Cards
     z-index: 1;
   }
 
-  /* Marker clearly above the title */
+  /* Roman numeral: separated and clear */
   .explore-marker {
     position: relative;
     display: block;
-    margin-bottom: 18px; /* separa do título */
+    margin-bottom: 18px;
     z-index: 2;
   }
 
-  /* Title always below marker */
+  /* Text flow: nothing overlaps */
   .explore-block h3 {
     margin-top: 0;
     margin-bottom: 12px;
   }
 
-  /* Text and CTA keep clear space from seal */
+  .explore-block p {
+    margin-bottom: 16px;
+  }
+
+  /* Reserve horizontal space for seal */
   .explore-block h3,
   .explore-block p,
   .explore-link,
@@ -2380,11 +2382,8 @@ Cards
     padding-right: 140px;
   }
 
-  .explore-block p {
-    margin-bottom: 16px;
-  }
-
 }
+
 /* =================================================
    MARCADOR EDITORIAL
 ================================================= */
