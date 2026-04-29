@@ -135,7 +135,7 @@ section{padding:6rem var(--container-pad);position:relative}
 .animate-on-scroll.visible{opacity:1;transform:translateY(0)}
 
 /* =================================================
-   POSITIONING STATEMENT — EXECUTIVE PLAQUE FINAL
+   POSITIONING STATEMENT — EXECUTIVE SIGNATURE PANEL
 ================================================= */
 
 .positioning-statement {
@@ -143,55 +143,56 @@ section{padding:6rem var(--container-pad);position:relative}
   justify-content: center;
   align-items: center;
 
-  padding: 88px 24px;
+  padding: 100px 24px;
 
+  /* faixa única coerente com o fluxo */
   background: linear-gradient(
     180deg,
     #0b1c2d 0%,
+    #132c44 35%,
     #f7f3e6 100%
   );
 }
 
-/* MAIN FRAME */
 .positioning-statement p {
   position: relative;
 
-  max-width: 820px;
-  padding: 52px 56px;
+  max-width: 860px;
+  padding: 56px 64px;
 
-  /* glass parchment feel */
-  background: rgba(255, 255, 255, 0.78);
-  backdrop-filter: blur(12px);
+  /* base elegante tipo "documento" */
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.92),
+    rgba(255,255,255,0.75)
+  );
 
-  /* elegant frame */
-  border: 1px solid rgba(212, 175, 55, 0.45);
-  border-radius: 10px;
+  border-radius: 6px;
 
-  /* depth */
+  /* frame sofisticado */
+  border: 1px solid rgba(212,175,55,0.45);
+
   box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.18),
-    inset 0 1px 0 rgba(255,255,255,0.6);
+    0 22px 60px rgba(0,0,0,0.2);
 
-  /* typography */
   font-family: 'Playfair Display', serif;
-  font-size: 1.25rem;
-  line-height: 1.85;
+  font-size: 1.22rem;
+  line-height: 1.9;
   text-align: center;
 
   color: rgba(11, 28, 45, 0.9);
-  letter-spacing: 0.01em;
 }
 
-/* TOP GOLD ACCENT */
+/* assinatura dourada */
 .positioning-statement p::before {
   content: "";
   position: absolute;
 
-  top: -18px;
+  top: -20px;
   left: 50%;
   transform: translateX(-50%);
 
-  width: 90px;
+  width: 80px;
   height: 3px;
 
   background: linear-gradient(
@@ -200,8 +201,18 @@ section{padding:6rem var(--container-pad);position:relative}
     var(--gold),
     transparent
   );
+}
 
-  border-radius: 2px;
+/* moldura interna (o que dá o feeling "frame") */
+.positioning-statement p::after {
+  content: "";
+  position: absolute;
+  inset: 10px;
+
+  border: 1px solid rgba(212,175,55,0.15);
+  border-radius: 4px;
+
+  pointer-events: none;
 }
 
 /* SUBTLE INNER FRAME (gives "heritage" feeling) */
