@@ -135,7 +135,7 @@ section{padding:6rem var(--container-pad);position:relative}
 .animate-on-scroll.visible{opacity:1;transform:translateY(0)}
 
 /* =================================================
-   POSITIONING — SECTION + GOLD FADE (FIXED)
+   POSITIONING — SECTION + GOLD FADE (FINAL)
 ================================================= */
 
 .positioning-statement {
@@ -151,7 +151,7 @@ section{padding:6rem var(--container-pad);position:relative}
   overflow: hidden;
 }
 
-/* ✅ FADE DOURADO REAL 360° (CORRIGIDO) */
+/* ✅ FADE DOURADO 360° REAL */
 .positioning-statement::before {
   content: "";
   position: absolute;
@@ -169,30 +169,31 @@ section{padding:6rem var(--container-pad);position:relative}
 }
 
 /* =================================================
-   FRAME PRINCIPAL — ESTILO QUADRO
+   FRAME PRINCIPAL — QUADRO REFORÇADO
 ================================================= */
 
 .positioning-statement p {
   position: relative;
+  z-index: 2;
 
   max-width: 820px;
   padding: 44px 58px;
 
-  /* base do quadro */
+  /* BASE */
   background: #10283b;
 
   border-radius: 6px;
 
-  /* ✅ BORDA EXTERNA (mais forte) */
+  /* 🔥 BORDA MAIS BOLD (quadro real) */
   border: 5px solid #d4af37;
 
-  /* ✅ PROFUNDIDADE REAL DE QUADRO */
+  /* 🔥 CAMADAS DE PROFUNDIDADE (efeito moldura) */
   box-shadow:
-    0 30px 80px rgba(0,0,0,0.7),
-    inset 0 0 0 2px rgba(0,0,0,0.65),
-    inset 0 0 0 6px rgba(0,0,0,0.35);
+    0 30px 80px rgba(0,0,0,0.75),   /* sombra externa */
+    inset 0 0 0 2px rgba(0,0,0,0.7), /* primeira camada interna */
+    inset 0 0 0 6px rgba(0,0,0,0.4); /* segunda camada interna */
 
-  /* tipografia (mantemos por agora) */
+  /* TIPOGRAFIA (mantemos agora) */
   font-family: 'Playfair Display', serif;
   font-style: italic;
 
@@ -203,7 +204,7 @@ section{padding:6rem var(--container-pad);position:relative}
 
   color: #d4af37;
 
-  /* ✅ sombra forte nas letras */
+  /* 🔥 SOMBRA NAS LETRAS (mais visível) */
   text-shadow:
     0 1px 0 rgba(255,255,255,0.15),
     0 2px 6px rgba(0,0,0,0.6),
@@ -278,23 +279,27 @@ section{padding:6rem var(--container-pad);position:relative}
 
 
 /* ✅ ESQUERDA */
+
 .ornament.left {
   left: 4%;
   top: 50%;
-  transform: translateY(-50%) scaleX(-1);
+  transform: translateY(-50%);
 
-  background-image: url('../images/laurel.svg');
+  background-image: url('../laurel-left.svg');
 }
 
 
+
 /* ✅ DIREITA */
+
 .ornament.right {
   right: 4%;
   top: 50%;
   transform: translateY(-50%);
 
-  background-image: url('../images/laurel.svg');
+  background-image: url('../laurel-right.svg');
 }
+
 /* About */
 .about{background:var(--white)}
 .about-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1.5fr;gap:4.2rem;align-items:center}
