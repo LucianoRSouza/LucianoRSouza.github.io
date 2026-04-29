@@ -176,8 +176,8 @@ section{padding:6rem var(--container-pad);position:relative}
   position: relative;
   z-index: 2;
 
-  max-width: 820px;
-  padding: 44px 58px;
+  max-width: 8700px;
+  padding: 38px 42px;
 
   /* BASE */
   background: #10283b;
@@ -258,46 +258,47 @@ section{padding:6rem var(--container-pad);position:relative}
 }
 
 /* =================================================
-   ORNAMENTS — LAUREL (FINAL REFINED)
+   ORNAMENTS — FINAL (GRANDE + PROFUNDO)
 ================================================= */
 
 .ornament {
   position: absolute;
 
-  width: 120px;
-  height: 160px;
+  width: 180px;
+  height: 240px;
 
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
 
-  opacity: 0.25;
+  /* ✅ MAIS VISÍVEL */
+  opacity: 0.45;
+
+  /* ✅ EFEITO FLOUTANTE */
+  filter:
+    drop-shadow(0 0 12px rgba(212,175,55,0.35))
+    drop-shadow(0 10px 30px rgba(0,0,0,0.6));
 
   pointer-events: none;
   z-index: 1;
 }
 
-
-/* ✅ ESQUERDA */
-
+/* esquerda */
 .ornament.left {
-  left: 4%;
+  left: 6%;
   top: 50%;
   transform: translateY(-50%);
 
-  background-image: url('../laurel-left.png');
+  background-image: url('/laurel-left.png');
 }
 
-
-
-/* ✅ DIREITA */
-
+/* direita */
 .ornament.right {
-  right: 4%;
+  right: 6%;
   top: 50%;
   transform: translateY(-50%);
 
-  background-image: url('../laurel-right.png');
+  background-image: url('/laurel-right.png');
 }
 
 /* About */
