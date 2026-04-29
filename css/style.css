@@ -135,36 +135,85 @@ section{padding:6rem var(--container-pad);position:relative}
 .animate-on-scroll.visible{opacity:1;transform:translateY(0)}
 
 /* =================================================
-   POSITIONING STATEMENT
+   POSITIONING STATEMENT — EXECUTIVE PLAQUE FINAL
 ================================================= */
 
 .positioning-statement {
-  max-width: 860px;
-  margin: 56px auto 72px;
-  padding: 0 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 88px 24px;
+
+  background: linear-gradient(
+    180deg,
+    #0b1c2d 0%,
+    #f7f3e6 100%
+  );
 }
 
+/* MAIN FRAME */
 .positioning-statement p {
-  font-size: 1.05rem;
-  line-height: 1.75;
+  position: relative;
+
+  max-width: 820px;
+  padding: 52px 56px;
+
+  /* glass parchment feel */
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(12px);
+
+  /* elegant frame */
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  border-radius: 10px;
+
+  /* depth */
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(255,255,255,0.6);
+
+  /* typography */
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  line-height: 1.85;
   text-align: center;
 
-  color: rgba(11, 28, 45, 0.72);
+  color: rgba(11, 28, 45, 0.9);
   letter-spacing: 0.01em;
 }
 
-/* ✅ UPGRADE — detalhezinho premium */
+/* TOP GOLD ACCENT */
 .positioning-statement p::before {
   content: "";
   position: absolute;
-  top: -16px;
+
+  top: -18px;
   left: 50%;
   transform: translateX(-50%);
 
-  width: 60px;
+  width: 90px;
   height: 3px;
-  background: var(--gold);
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--gold),
+    transparent
+  );
+
   border-radius: 2px;
+}
+
+/* SUBTLE INNER FRAME (gives "heritage" feeling) */
+.positioning-statement p::after {
+  content: "";
+  position: absolute;
+  inset: 8px;
+
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  border-radius: 6px;
+
+  pointer-events: none;
 }
 
 /* About */
