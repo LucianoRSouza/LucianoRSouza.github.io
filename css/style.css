@@ -135,11 +135,11 @@ section{padding:6rem var(--container-pad);position:relative}
 .animate-on-scroll.visible{opacity:1;transform:translateY(0)}
 
 /* =================================================
-   POSITIONING STATEMENT — EXECUTIVE FRAME REFINED
+   POSITIONING STATEMENT — ROYAL FRAME FINAL
 ================================================= */
 
 .positioning-statement {
-  padding: 60px 24px;   /* ✅ bem mais fino */
+  padding: 60px 24px;  /* ✅ bem mais fino */
 
   display: flex;
   justify-content: center;
@@ -148,74 +148,79 @@ section{padding:6rem var(--container-pad);position:relative}
   background: #0b1c2d;
 }
 
-/* FRAME ESTILO QUADRO */
+/* QUADRO PRINCIPAL */
 .positioning-statement p {
   position: relative;
 
   max-width: 820px;
-  padding: 40px 52px;
+  padding: 42px 52px;
 
   background: #10283b;
 
-  /* ✅ BORDA PRINCIPAL (quadro) */
-  border: 2px solid #d4af37;
-
-  /* ✅ PROFUNDIDADE DE QUADRO REAL */
-  box-shadow:
-    0 25px 65px rgba(0,0,0,0.65),
-    inset 0 0 0 1px rgba(255,255,255,0.06);
-
   border-radius: 4px;
 
-  /* ✅ TIPOGRAFIA CHIQUE (troca aqui) */
+  /* ✅ BORDA MAIS FORTE */
+  border: 3px solid transparent;
+
+  /* ✅ DEGRADÊ DOURADO SUAVE NA BORDA */
+  background-clip: padding-box;
+  box-shadow:
+    0 28px 70px rgba(0,0,0,0.65),
+    inset 0 0 0 1px rgba(255,255,255,0.05);
+
+}
+
+/* 🔥 FRAME EXTERNO COM DEGRADÊ (efeito quadro real) */
+.positioning-statement p::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+
+  border-radius: 6px;
+
+  background: linear-gradient(
+    135deg,
+    rgba(212,175,55,0.9),
+    rgba(212,175,55,0.3),
+    rgba(212,175,55,0.9)
+  );
+
+  z-index: -1;
+}
+
+/* 🔥 FRAME INTERNO — dá profundidade de quadro */
+.positioning-statement p::after {
+  content: "";
+  position: absolute;
+  inset: 10px;
+
+  border: 1px solid rgba(212,175,55,0.35);
+
+  border-radius: 3px;
+
+  pointer-events: none;
+}
+
+/* TEXTO */
+.positioning-statement p {
   font-family: 'Playfair Display', serif;
   font-style: italic;
 
-  font-size: 1.65rem;  /* menor → mais elegante */
-  line-height: 1.9;
+  font-size: 1.6rem;
+  line-height: 1.85;
 
   text-align: center;
 
   color: #d4af37;
 
-  /* ✅ SOMBRA DE TEXTO MAIS ELEGANTE */
-  text-shadow:
-    0 1px 0 rgba(255,255,255,0.15),
-    0 2px 6px rgba(0,0,0,0.4);
-
   letter-spacing: 0.015em;
+
+  /* ✅ SOMBRA MAIS FORTE */
+  text-shadow:
+    0 1px 0 rgba(255,255,255,0.2),
+    0 3px 10px rgba(212,175,55,0.35);
 }
 
-/* ✅ MOLDURA INTERNA (efeito quadro de verdade) */
-.positioning-statement p::after {
-  content: "";
-  position: absolute;
-  inset: 8px;
-
-  border: 1px solid rgba(212,175,55,0.35);
-
-  pointer-events: none;
-}
-
-/* ✅ DETALHE BASE */
-.positioning-statement p::before {
-  content: "";
-  position: absolute;
-
-  bottom: -16px;
-  left: 50%;
-  transform: translateX(-50%);
-
-  width: 110px;
-  height: 2px;
-
-  background: linear-gradient(
-    90deg,
-    transparent,
-    #d4af37,
-    transparent
-  );
-}
 
 /* About */
 .about{background:var(--white)}
