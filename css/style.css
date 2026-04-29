@@ -285,7 +285,7 @@ section{padding:6rem var(--container-pad);position:relative}
   top: 50%;
   transform: translateY(-50%);
 
-  background-image: url('../laurel-left.svg');
+  background-image: url('../laurel-left.png');
 }
 
 
@@ -297,7 +297,7 @@ section{padding:6rem var(--container-pad);position:relative}
   top: 50%;
   transform: translateY(-50%);
 
-  background-image: url('../laurel-right.svg');
+  background-image: url('../laurel-right.png');
 }
 
 /* About */
