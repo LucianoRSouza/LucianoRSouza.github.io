@@ -284,8 +284,9 @@ section{padding:6rem var(--container-pad);position:relative}
 
   background-image: url('/laurel-right.png');
 }
+
 /* =================================================
-   STARS — WORKING VERSION
+   STARS — ORGANIC EFFECT FINAL
 ================================================= */
 
 .positioning-statement::after {
@@ -297,15 +298,24 @@ section{padding:6rem var(--container-pad);position:relative}
   z-index: 0;
 
   background-image:
-    radial-gradient(rgba(212,175,55,1) 1.2px, transparent 1.2px),
-    radial-gradient(rgba(212,175,55,0.7) 1px, transparent 1px);
+    radial-gradient(rgba(212,175,55,1) 1.3px, transparent 1.3px),
+    radial-gradient(rgba(212,175,55,0.7) 1px, transparent 1px),
+    radial-gradient(rgba(212,175,55,0.5) 0.8px, transparent 0.8px);
 
-  background-size: 120px 120px, 180px 180px;
-  background-position: 0 0, 60px 80px;
+  background-size:
+    180px 180px,
+    260px 260px,
+    120px 120px;
 
-  opacity: 0.35;
+  background-position:
+    0 0,
+    120px 80px,
+    60px 200px;
 
-  animation: stars-blink 6s infinite alternate;
+  opacity: 0.18;
+
+  animation: stars-move 20s linear infinite,
+             stars-blink 4s ease-in-out infinite alternate;
 }
 
 /* About */
