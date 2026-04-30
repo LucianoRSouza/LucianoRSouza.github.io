@@ -286,7 +286,7 @@ section{padding:6rem var(--container-pad);position:relative}
 }
 
 /* =================================================
-   STARS — NO GRID VERSION (FINAL)
+   STARS — FINAL WORKING (VISIBLE + NO GRID)
 ================================================= */
 
 .positioning-statement::after {
@@ -295,29 +295,33 @@ section{padding:6rem var(--container-pad);position:relative}
   inset: 0;
 
   pointer-events: none;
-  z-index: 0;
+
+  /* ✅ FICA ACIMA DO FADE */
+  z-index: 1;
 
   background-image:
-    radial-gradient(circle at 10% 20%, rgba(212,175,55,0.9) 1.2px, transparent 1.2px),
-    radial-gradient(circle at 30% 80%, rgba(212,175,55,0.7) 1px, transparent 1px),
-    radial-gradient(circle at 70% 30%, rgba(212,175,55,0.6) 1px, transparent 1px),
-    radial-gradient(circle at 85% 70%, rgba(212,175,55,0.8) 1.2px, transparent 1.2px),
-    radial-gradient(circle at 55% 50%, rgba(212,175,55,0.5) 0.8px, transparent 0.8px),
-    radial-gradient(circle at 15% 65%, rgba(212,175,55,0.6) 1px, transparent 1px),
-    radial-gradient(circle at 45% 15%, rgba(212,175,55,0.9) 1.2px, transparent 1.2px),
-    radial-gradient(circle at 75% 90%, rgba(212,175,55,0.4) 0.8px, transparent 0.8px);
+    radial-gradient(circle at 12% 25%, rgba(212,175,55,1) 1.4px, transparent 1.4px),
+    radial-gradient(circle at 28% 75%, rgba(212,175,55,0.8) 1.2px, transparent 1.2px),
+    radial-gradient(circle at 68% 20%, rgba(212,175,55,0.7) 1px, transparent 1px),
+    radial-gradient(circle at 82% 65%, rgba(212,175,55,0.9) 1.4px, transparent 1.4px),
+    radial-gradient(circle at 55% 50%, rgba(212,175,55,0.6) 1px, transparent 1px),
+    radial-gradient(circle at 14% 60%, rgba(212,175,55,0.7) 1.2px, transparent 1.2px),
+    radial-gradient(circle at 45% 15%, rgba(212,175,55,0.9) 1.4px, transparent 1.4px),
+    radial-gradient(circle at 75% 90%, rgba(212,175,55,0.5) 1px, transparent 1px);
 
   background-repeat: no-repeat;
 
-  opacity: 0.22;
+  /* ✅ MAIS VISÍVEL */
+  opacity: 0.4;
 
-  animation: stars-pulse 6s ease-in-out infinite alternate;
+  /* ✅ PULSE REAL */
+  animation: stars-pulse 3.5s ease-in-out infinite alternate;
 }
 
-/* ANIMAÇÃO DE PULSO REAL */
+/* ✅ ANIMAÇÃO VISÍVEL (AGORA SIM FUNCIONA) */
 @keyframes stars-pulse {
-  0%   { opacity: 0.18; }
-  100% { opacity: 0.35; }
+  0%   { opacity: 0.25; }
+  100% { opacity: 0.6; }
 }
 
 
@@ -2603,34 +2607,15 @@ Cards
 }
 
   
-/* ===============================
-   STARS EFFECT
-=============================== */
 
-@keyframes starPulse {
-  0% {
-    transform: scale(1);
-    opacity: 0.4;
-  }
-  50% {
-    transform: scale(1.8);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 0.4;
-  }
+/* =================================================
+   FINAL SECTION TEXT FIX (REAL FIX)
+================================================= */
+
+section:last-of-type {
+  background: #ffffff;
 }
 
-.star.pulse {
-  animation: starPulse infinite ease-in-out;
+section:last-of-type p {
+  color: #1a2f44;
 }
-
-.star {
-  position: absolute;
-  border-radius: 50%;
-  background: radial-gradient(circle, #d4af37, rgba(212, 175, 55, 0.2));
-  box-shadow: 0 0 6px rgba(212, 175, 55, 0.8);
-  filter: blur(0.3px);
-}
-
