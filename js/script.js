@@ -910,7 +910,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initLoading();
   initNavbarScroll();
   initScrollAnimations();
-  initParticles();
   initSmoothAnchors();
   initTradeTabs();
   initLightbox();
