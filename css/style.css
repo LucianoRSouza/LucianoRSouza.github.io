@@ -286,7 +286,7 @@ section{padding:6rem var(--container-pad);position:relative}
 }
 
 /* =================================================
-   STARS — ORGANIC EFFECT FINAL
+   STARS — NO GRID VERSION (FINAL)
 ================================================= */
 
 .positioning-statement::after {
@@ -298,25 +298,28 @@ section{padding:6rem var(--container-pad);position:relative}
   z-index: 0;
 
   background-image:
-    radial-gradient(rgba(212,175,55,1) 1.3px, transparent 1.3px),
-    radial-gradient(rgba(212,175,55,0.7) 1px, transparent 1px),
-    radial-gradient(rgba(212,175,55,0.5) 0.8px, transparent 0.8px);
+    radial-gradient(circle at 10% 20%, rgba(212,175,55,0.9) 1.2px, transparent 1.2px),
+    radial-gradient(circle at 30% 80%, rgba(212,175,55,0.7) 1px, transparent 1px),
+    radial-gradient(circle at 70% 30%, rgba(212,175,55,0.6) 1px, transparent 1px),
+    radial-gradient(circle at 85% 70%, rgba(212,175,55,0.8) 1.2px, transparent 1.2px),
+    radial-gradient(circle at 55% 50%, rgba(212,175,55,0.5) 0.8px, transparent 0.8px),
+    radial-gradient(circle at 15% 65%, rgba(212,175,55,0.6) 1px, transparent 1px),
+    radial-gradient(circle at 45% 15%, rgba(212,175,55,0.9) 1.2px, transparent 1.2px),
+    radial-gradient(circle at 75% 90%, rgba(212,175,55,0.4) 0.8px, transparent 0.8px);
 
-  background-size:
-    180px 180px,
-    260px 260px,
-    120px 120px;
+  background-repeat: no-repeat;
 
-  background-position:
-    0 0,
-    120px 80px,
-    60px 200px;
+  opacity: 0.22;
 
-  opacity: 0.18;
-
-  animation: stars-move 20s linear infinite,
-             stars-blink 4s ease-in-out infinite alternate;
+  animation: stars-pulse 6s ease-in-out infinite alternate;
 }
+
+/* ANIMAÇÃO DE PULSO REAL */
+@keyframes stars-pulse {
+  0%   { opacity: 0.18; }
+  100% { opacity: 0.35; }
+}
+
 
 /* About */
 .about{background:var(--white)}
