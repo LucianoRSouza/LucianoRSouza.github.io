@@ -2608,4 +2608,34 @@ Cards
 }
 
   
+/* ===============================
+   STARS EFFECT
+=============================== */
+
+@keyframes starPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scale(1.8);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+}
+
+.star.pulse {
+  animation: starPulse infinite ease-in-out;
+}
+
+.star {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, #d4af37, rgba(212, 175, 55, 0.2));
+  box-shadow: 0 0 6px rgba(212, 175, 55, 0.8);
+  filter: blur(0.3px);
+}
 
