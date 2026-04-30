@@ -284,9 +284,8 @@ section{padding:6rem var(--container-pad);position:relative}
 
   background-image: url('/laurel-right.png');
 }
-
 /* =================================================
-   STARS — FINAL CLEAN VERSION (SAFE)
+   STARS — WORKING VERSION
 ================================================= */
 
 .positioning-statement::after {
@@ -298,33 +297,16 @@ section{padding:6rem var(--container-pad);position:relative}
   z-index: 0;
 
   background-image:
-    radial-gradient(rgba(212,175,55,1) 1.4px, transparent 1.4px),
-    radial-gradient(rgba(212,175,55,0.8) 1px, transparent 1px),
-    radial-gradient(rgba(212,175,55,0.6) 0.8px, transparent 0.8px),
-    radial-gradient(rgba(212,175,55,0.9) 1.2px, transparent 1.2px);
+    radial-gradient(rgba(212,175,55,1) 1.2px, transparent 1.2px),
+    radial-gradient(rgba(212,175,55,0.7) 1px, transparent 1px);
 
-  background-size:
-    140px 140px,
-    210px 210px,
-    95px 95px,
-    260px 260px;
+  background-size: 120px 120px, 180px 180px;
+  background-position: 0 0, 60px 80px;
 
-  background-position:
-    0px 0px,
-    80px 120px,
-    35px 190px,
-    160px 60px;
+  opacity: 0.35;
 
-  opacity: 0.25;
-
-  animation: stars-blink 6s infinite alternate ease-in-out;
+  animation: stars-blink 6s infinite alternate;
 }
-
-@keyframes stars-blink {
-  0% { opacity: 0.15; }
-  100% { opacity: 0.35; }
-}
-
 
 /* About */
 .about{background:var(--white)}
