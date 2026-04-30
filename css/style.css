@@ -2354,23 +2354,6 @@ body.dark-mode .newsletter-input::placeholder {
   overflow: hidden;
 }
 
-/* SELO EDITORIAL — WATERMARK */
-.explore-blocks-section::before {
-  content: "";
-  position: absolute;
-  top: 90px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 420px;
-  height: 420px;
-  background-image: url("/seal.svg");
-  background-repeat: no-repeat;
-  background-size: contain;
-  opacity: 0.035;
-  pointer-events: none;
-  z-index: 0;
-}
-
 /* GARANTE CONTEÚDO ACIMA DO SELO */
 .explore-blocks-header,
 .explore-block,
