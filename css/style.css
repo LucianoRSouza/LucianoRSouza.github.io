@@ -234,65 +234,79 @@ section{padding:6rem var(--container-pad);position:relative}
     linear-gradient(#d4af37,#d4af37) right 12px bottom 12px / 2px 26px no-repeat;
 }
 
-/* PLANTAS */
+/* =================================================
+   ORNAMENTS — FINAL POWER VERSION
+================================================= */
+
 .ornament {
   position: absolute;
 
-  width: 180px;
-  height: 240px;
+  width: 200px;
+  height: 260px;
 
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
 
-  opacity: 0.45;
+  /* ✅ MAIS VISÍVEL */
+  opacity: 0.65;
 
+  /* ✅ MAIS BRILHO + PROFUNDIDADE */
   filter:
-    drop-shadow(0 0 12px rgba(212,175,55,0.35))
-    drop-shadow(0 10px 30px rgba(0,0,0,0.6));
+    brightness(1.2)
+    saturate(1.2)
+    drop-shadow(0 0 16px rgba(212,175,55,0.6))
+    drop-shadow(0 12px 40px rgba(0,0,0,0.7));
 
   pointer-events: none;
   z-index: 1;
 }
 
+/* ✅ ESQUERDA — 20% MAIOR */
 .ornament.left {
-  left: 6%;
+  width: 240px;
+  height: 310px;
+
+  left: 5%;
   top: 50%;
   transform: translateY(-50%);
+
   background-image: url('/laurel-left.png');
 }
 
+/* ✅ DIREITA — NORMAL */
 .ornament.right {
-  right: 6%;
+  width: 200px;
+  height: 260px;
+
+  right: 5%;
   top: 50%;
   transform: translateY(-50%);
+
   background-image: url('/laurel-right.png');
 }
+/* =================================================
+   STARS — WORKING VERSION
+================================================= */
 
-/* STARS */
 .positioning-statement::after {
   content: "";
   position: absolute;
   inset: 0;
 
-  background-image:
-    radial-gradient(rgba(212,175,55,0.6) 1px, transparent 1px),
-    radial-gradient(rgba(212,175,55,0.4) 1px, transparent 1px);
-
-  background-size: 90px 90px, 140px 140px;
-  background-position: 0 0, 50px 60px;
-
-  opacity: 0.12; /* ✅ mais elegante */
-
-  animation: stars-blink 8s infinite alternate;
-
   pointer-events: none;
-}
+  z-index: 0;
 
-/* ANIMAÇÃO CORRIGIDA */
-@keyframes stars-blink {
-  0% { opacity: 0.10; }
-  100% { opacity: 0.18; }
+  background-image:
+    radial-gradient(rgba(212,175,55,1) 1.2px, transparent 1.2px),
+    radial-gradient(rgba(212,175,55,0.7) 1px, transparent 1px);
+
+  background-size: 120px 120px, 180px 180px;
+  background-position: 0 0, 60px 80px;
+
+  opacity: 0.35;
+
+  animation: stars-blink 6s infinite alternate;
 }
 
 /* About */
