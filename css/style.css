@@ -289,6 +289,35 @@ section{padding:6rem var(--container-pad);position:relative}
    STARS — WORKING VERSION
 ================================================= */
 
+/* =================================================/*:
+    radial-gradient(rgba(212,175,55,1) 1.4px, transparent 1.4px),
+    radial-gradient(rgba(212,175,55,0.8) 1px, transparent 1px),
+    radial-gradient(rgba(212,175,55,0.6) 0.8px, transparent 0.8px),
+    radial-gradient(rgba(212,175,55,0.9) 1.2px, transparent 1.2px);
+
+  /* ✅ TAMANHOS DIFERENTES (quebra o grid) */
+  background-size:
+    140px 140px,
+    210px 210px,
+    95px 95px,
+    260px 260px;
+
+  /* ✅ POSIÇÕES COMPLETAMENTE DESALINHADAS */
+  background-position:
+    0px 0px,
+    80px 120px,
+    35px 190px,
+    160px 60px;
+
+  /* ✅ MAIS VISÍVEL MAS CONTROLADO */
+  opacity: 0.28;
+
+  animation: stars-blink 5s infinite alternate ease-in-out;
+}
+
+   STARS — NATURAL DISTRIBUTION (FINAL)
+================================================= */
+
 .positioning-statement::after {
   content: "";
   position: absolute;
@@ -297,17 +326,7 @@ section{padding:6rem var(--container-pad);position:relative}
   pointer-events: none;
   z-index: 0;
 
-  background-image:
-    radial-gradient(rgba(212,175,55,1) 1.2px, transparent 1.2px),
-    radial-gradient(rgba(212,175,55,0.7) 1px, transparent 1px);
-
-  background-size: 120px 120px, 180px 180px;
-  background-position: 0 0, 60px 80px;
-
-  opacity: 0.35;
-
-  animation: stars-blink 6s infinite alternate;
-}
+  /* ✅ MAIS CAMADAS = MENOS PADRÃO */
 
 /* About */
 .about{background:var(--white)}
