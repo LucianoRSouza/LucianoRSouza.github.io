@@ -284,9 +284,8 @@ section{padding:6rem var(--container-pad);position:relative}
 
   background-image: url('/laurel-right.png');
 }
-
 /* =================================================
-   STARS — FINAL WORKING (VISIBLE + NO GRID)
+   STARS — WORKING VERSION
 ================================================= */
 
 .positioning-statement::after {
@@ -295,35 +294,19 @@ section{padding:6rem var(--container-pad);position:relative}
   inset: 0;
 
   pointer-events: none;
-
-  /* ✅ FICA ACIMA DO FADE */
-  z-index: 1;
+  z-index: 0;
 
   background-image:
-    radial-gradient(circle at 12% 25%, rgba(212,175,55,1) 1.4px, transparent 1.4px),
-    radial-gradient(circle at 28% 75%, rgba(212,175,55,0.8) 1.2px, transparent 1.2px),
-    radial-gradient(circle at 68% 20%, rgba(212,175,55,0.7) 1px, transparent 1px),
-    radial-gradient(circle at 82% 65%, rgba(212,175,55,0.9) 1.4px, transparent 1.4px),
-    radial-gradient(circle at 55% 50%, rgba(212,175,55,0.6) 1px, transparent 1px),
-    radial-gradient(circle at 14% 60%, rgba(212,175,55,0.7) 1.2px, transparent 1.2px),
-    radial-gradient(circle at 45% 15%, rgba(212,175,55,0.9) 1.4px, transparent 1.4px),
-    radial-gradient(circle at 75% 90%, rgba(212,175,55,0.5) 1px, transparent 1px);
+    radial-gradient(rgba(212,175,55,1) 1.2px, transparent 1.2px),
+    radial-gradient(rgba(212,175,55,0.7) 1px, transparent 1px);
 
-  background-repeat: no-repeat;
+  background-size: 120px 120px, 180px 180px;
+  background-position: 0 0, 60px 80px;
 
-  /* ✅ MAIS VISÍVEL */
-  opacity: 0.4;
+  opacity: 0.35;
 
-  /* ✅ PULSE REAL */
-  animation: stars-pulse 3.5s ease-in-out infinite alternate;
+  animation: stars-blink 6s infinite alternate;
 }
-
-/* ✅ ANIMAÇÃO VISÍVEL (AGORA SIM FUNCIONA) */
-@keyframes stars-pulse {
-  0%   { opacity: 0.25; }
-  100% { opacity: 0.6; }
-}
-
 
 /* About */
 .about{background:var(--white)}
@@ -2607,15 +2590,34 @@ Cards
 }
 
   
+/* ===============================
+   STARS EFFECT
+=============================== */
 
-/* =================================================
-   FINAL SECTION TEXT FIX (REAL FIX)
-================================================= */
-
-section:last-of-type {
-  background: #ffffff;
+@keyframes starPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scale(1.8);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
 }
 
-section:last-of-type p {
-  color: #1a2f44;
+.star.pulse {
+  animation: starPulse infinite ease-in-out;
 }
+
+.star {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, #d4af37, rgba(212, 175, 55, 0.2));
+  box-shadow: 0 0 6px rgba(212, 175, 55, 0.8);
+  filter: blur(0.3px);
+}
+
