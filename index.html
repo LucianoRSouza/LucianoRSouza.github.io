@@ -1643,20 +1643,48 @@ function googleTranslateElementInit() {
 <!-- Newsletter Section -->
 <section class="newsletter" id="newsletter">
   <div class="newsletter-container">
+
     <h2>Procurement, Data & Operations</h2>
-    <p>Insights on AI-powered procurement, strategic sourcing, and operational excellence. No spam, just value.</p>
-    <form class="newsletter-form" onsubmit="handleNewsletterSubmit(event)">
-      <input type="email" class="newsletter-input" placeholder="Enter your email" required aria-label="Email for newsletter">
+
+    <p>
+      I share real procurement and operational decisions — the kind you rarely see documented.
+      No noise. Just thinking that scales.
+    </p>
+
+    <!-- ✅ FORM CORRETO -->
+    <form 
+      class="newsletter-form" 
+      action="https://formspree.io/f/SEU_ID" 
+      method="POST"
+    >
+
+      <input 
+        type="email" 
+        name="email"
+        class="newsletter-input"
+        placeholder="Enter your email"
+        required
+        aria-label="Email for newsletter"
+      >
+
       <button type="submit" class="newsletter-btn">
         <i class="fas fa-paper-plane"></i>
         <span>Subscribe</span>
       </button>
+
     </form>
+
+    <!-- ✅ confiança -->
+    <small style="display:block;margin-top:10px;opacity:0.7;">
+      No spam. Unsubscribe anytime.
+    </small>
+
     <div class="newsletter-features">
       <span><i class="fas fa-brain"></i> AI in Procurement</span>
       <span><i class="fas fa-chart-line"></i> Data-Driven Strategies</span>
       <span><i class="fas fa-cogs"></i> Operational Excellence</span>
     </div>
+
   </div>
 </section>
 
