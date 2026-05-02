@@ -1165,7 +1165,7 @@ body.dark-mode .impact-label{
 }
 
 /* ✅ TEXTO — FORÇADO IGUAL AO DARK MODE */
-.newsletter > p{
+.newsletter .newsletter-container p
   color:#ffffff;
   margin-bottom: 2rem;
   font-size: 1.1rem;
