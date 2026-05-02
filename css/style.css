@@ -1250,6 +1250,11 @@ body.dark-mode .impact-label{
   }
 }
 
+.newsletter {
+  --navy: #0f1538;
+  --navy-light: #1a2344;
+}
+
 /* GitHub Interactive */
 .github-interactive{
   background:linear-gradient(135deg,var(--navy),var(--navy-light));
