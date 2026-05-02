@@ -1136,7 +1136,6 @@ body.dark-mode .impact-label{
   overflow:hidden;
 }
 
-/* efeito leve */
 .newsletter::before{
   content:'';
   position:absolute;
@@ -1156,7 +1155,6 @@ body.dark-mode .impact-label{
   z-index:1;
 }
 
-/* título */
 .newsletter h2{
   font-family:'Playfair Display',serif;
   color:#d4af37;
@@ -1164,15 +1162,14 @@ body.dark-mode .impact-label{
   margin-bottom:0.5rem;
 }
 
-/* ✅ TEXTO — FORÇADO IGUAL AO DARK MODE */
-.newsletter .newsletter-container p
+/* ✅ CORRIGIDO (ERRO ERA AQUI) */
+.newsletter .newsletter-container p{
   color:#ffffff;
-  margin-bottom: 2rem;
-  font-size: 1.1rem;
-  line-height: 1.7;
+  margin-bottom:2rem;
+  font-size:1.1rem;
+  line-height:1.7;
 }
 
-/* form */
 .newsletter-form{
   display:flex;
   gap:1rem;
@@ -1180,21 +1177,16 @@ body.dark-mode .impact-label{
   flex-wrap:wrap;
 }
 
-/* ✅ INPUT — ESTÁVEL EM QUALQUER FUNDO */
 .newsletter-input{
   flex:1;
   min-width:280px;
   max-width:400px;
   padding:14px 20px;
-
   border-radius:50px;
   border:2px solid rgba(212,175,55,0.35);
-
   background:#162044;
-
   color:#ffffff;
   font-size:1rem;
-
   transition:all 0.3s ease;
 }
 
@@ -1208,7 +1200,6 @@ body.dark-mode .impact-label{
   background:#1c2a55;
 }
 
-/* botão */
 .newsletter-btn{
   padding:14px 28px;
   border-radius:50px;
@@ -1228,7 +1219,6 @@ body.dark-mode .impact-label{
   box-shadow:0 8px 20px rgba(212,175,55,0.3);
 }
 
-/* features */
 .newsletter-features{
   display:flex;
   justify-content:center;
@@ -1237,7 +1227,6 @@ body.dark-mode .impact-label{
   flex-wrap:wrap;
 }
 
-/* ✅ TEXTO — FORÇADO IGUAL AO DARK MODE */
 .newsletter-features span{
   color:#ffffff;
   font-size:0.85rem;
@@ -1250,7 +1239,6 @@ body.dark-mode .impact-label{
   color:#d4af37;
 }
 
-/* mobile */
 @media(max-width:600px){
   .newsletter-form{
     flex-direction:column;
