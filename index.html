@@ -1646,16 +1646,17 @@ function googleTranslateElementInit() {
 
     <h2>Procurement, Data & Operations</h2>
 
-    <p>
+    <p class="newsletter-description">
       I share real procurement and operational decisions — the kind you rarely see documented.
       No noise. Just thinking that scales.
     </p>
 
-    <!-- ✅ FORM LIMPO E CORRETO -->
+    <!-- ✅ FORM FINAL FUNCIONAL -->
     <form 
-      class="newsletter-form"
-      action="https://formspree.io/f/mlgzdndp"
+      class="newsletter-form" 
+      action="https://formspree.io/f/mlgzdndp" 
       method="POST"
+      id="newsletter-form"
     >
 
       <input 
@@ -1671,6 +1672,9 @@ function googleTranslateElementInit() {
         <span>Subscribe</span>
       </button>
 
+      <!-- ✅ mensagem feedback (vamos usar no JS depois) -->
+      <p id="newsletter-message"></p>
+
     </form>
 
     <!-- ✅ confiança -->
@@ -1678,6 +1682,7 @@ function googleTranslateElementInit() {
       No spam. Unsubscribe anytime.
     </small>
 
+    <!-- ✅ highlights -->
     <div class="newsletter-features">
       <span><i class="fas fa-brain"></i> AI in Procurement</span>
       <span><i class="fas fa-chart-line"></i> Data-Driven Strategies</span>
