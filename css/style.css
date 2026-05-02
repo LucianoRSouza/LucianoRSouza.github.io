@@ -1182,11 +1182,16 @@ body.dark-mode .impact-label{
   min-width:280px;
   max-width:400px;
   padding:14px 20px;
+
   border-radius:50px;
-  border:2px solid rgba(212,175,55,0.3);
-  background:rgba(255,255,255,0.1);
-  color:#fff;
+  border:2px solid rgba(212,175,55,0.35);
+
+  /* ✅ FUNDO CORRETO (resolve o problema real) */
+  background:rgba(0,0,0,0.35);
+
+  color:#ffffff;
   font-size:1rem;
+
   transition:all 0.3s ease;
 }
 
@@ -1197,7 +1202,9 @@ body.dark-mode .impact-label{
 .newsletter-input:focus{
   outline:none;
   border-color:var(--gold);
-  background:rgba(255,255,255,0.15);
+
+  /* ✅ MAIS CONTRASTE AO FOCAR */
+  background:rgba(0,0,0,0.5);
 }
 
 .newsletter-btn{
