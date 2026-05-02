@@ -1130,12 +1130,13 @@ body.dark-mode .impact-label{
 
 /* Newsletter */
 .newsletter{
-  background: linear-gradient(135deg, #0f1538, #1a2344); /* FIX */
+  background: linear-gradient(135deg, #0f1538, #1a2344);
   padding:4rem var(--container-pad);
   position:relative;
   overflow:hidden;
 }
 
+/* efeito leve */
 .newsletter::before{
   content:'';
   position:absolute;
@@ -1143,7 +1144,7 @@ body.dark-mode .impact-label{
   left:-50%;
   width:200%;
   height:200%;
-  background:radial-gradient(circle,rgba(212,175,55,0.08)0%,transparent 70%);
+  background:radial-gradient(circle,rgba(212,175,55,0.08) 0%, transparent 70%);
   animation:rotate-slow 40s linear infinite;
 }
 
@@ -1155,21 +1156,23 @@ body.dark-mode .impact-label{
   z-index:1;
 }
 
+/* título */
 .newsletter h2{
   font-family:'Playfair Display',serif;
-  color:var(--gold);
+  color:#d4af37;
   font-size:2rem;
   margin-bottom:0.5rem;
 }
 
-/* ✅ CORREÇÃO REAL AQUI */
+/* ✅ TEXTO — FORÇADO IGUAL AO DARK MODE */
 .newsletter > p{
-  color: rgba(255,255,255,0.9);
+  color:#ffffff;
   margin-bottom: 2rem;
   font-size: 1.1rem;
   line-height: 1.7;
 }
 
+/* form */
 .newsletter-form{
   display:flex;
   gap:1rem;
@@ -1177,6 +1180,7 @@ body.dark-mode .impact-label{
   flex-wrap:wrap;
 }
 
+/* ✅ INPUT — ESTÁVEL EM QUALQUER FUNDO */
 .newsletter-input{
   flex:1;
   min-width:280px;
@@ -1186,8 +1190,7 @@ body.dark-mode .impact-label{
   border-radius:50px;
   border:2px solid rgba(212,175,55,0.35);
 
-  /* ✅ FUNDO CORRETO (resolve o problema real) */
-  background:rgba(0,0,0,0.35);
+  background:#162044;
 
   color:#ffffff;
   font-size:1rem;
@@ -1201,17 +1204,16 @@ body.dark-mode .impact-label{
 
 .newsletter-input:focus{
   outline:none;
-  border-color:var(--gold);
-
-  /* ✅ MAIS CONTRASTE AO FOCAR */
-  background:rgba(0,0,0,0.5);
+  border-color:#d4af37;
+  background:#1c2a55;
 }
 
+/* botão */
 .newsletter-btn{
   padding:14px 28px;
   border-radius:50px;
-  background:var(--gold);
-  color:var(--navy);
+  background:#d4af37;
+  color:#0f1538;
   font-weight:700;
   border:none;
   cursor:pointer;
@@ -1226,6 +1228,7 @@ body.dark-mode .impact-label{
   box-shadow:0 8px 20px rgba(212,175,55,0.3);
 }
 
+/* features */
 .newsletter-features{
   display:flex;
   justify-content:center;
@@ -1234,9 +1237,9 @@ body.dark-mode .impact-label{
   flex-wrap:wrap;
 }
 
-/* ✅ CORREÇÃO REAL AQUI */
+/* ✅ TEXTO — FORÇADO IGUAL AO DARK MODE */
 .newsletter-features span{
-  color:rgba(255,255,255,0.75);
+  color:#ffffff;
   font-size:0.85rem;
   display:flex;
   align-items:center;
@@ -1244,7 +1247,18 @@ body.dark-mode .impact-label{
 }
 
 .newsletter-features i{
-  color:var(--gold);
+  color:#d4af37;
+}
+
+/* mobile */
+@media(max-width:600px){
+  .newsletter-form{
+    flex-direction:column;
+    align-items:center;
+  }
+  .newsletter-input{
+    min-width:100%;
+  }
 }
 
 /* GitHub Interactive */
