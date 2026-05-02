@@ -1130,7 +1130,7 @@ body.dark-mode .impact-label{
 
 /* Newsletter */
 .newsletter{
-  background:linear-gradient(135deg,var(--navy),var(--navy-light));
+  background: linear-gradient(135deg, #0f1538, #1a2344); /* FIX */
   padding:4rem var(--container-pad);
   position:relative;
   overflow:hidden;
@@ -1162,10 +1162,9 @@ body.dark-mode .impact-label{
   margin-bottom:0.5rem;
 }
 
-/* Newsletter subtitle (fix light mode readability) */
+/* ✅ CORREÇÃO REAL AQUI */
 .newsletter > p{
-  color: rgba(255,255,255,0.9) !important;
-  opacity: 1 !important;
+  color: rgba(255,255,255,0.9);
   margin-bottom: 2rem;
   font-size: 1.1rem;
   line-height: 1.7;
@@ -1228,8 +1227,9 @@ body.dark-mode .impact-label{
   flex-wrap:wrap;
 }
 
+/* ✅ CORREÇÃO REAL AQUI */
 .newsletter-features span{
-  color:rgba(255,255,255,0.7);
+  color:rgba(255,255,255,0.75);
   font-size:0.85rem;
   display:flex;
   align-items:center;
@@ -1238,21 +1238,6 @@ body.dark-mode .impact-label{
 
 .newsletter-features i{
   color:var(--gold);
-}
-
-@media(max-width:600px){
-  .newsletter-form{
-    flex-direction:column;
-    align-items:center;
-  }
-  .newsletter-input{
-    min-width:100%;
-  }
-}
-
-.newsletter {
-  --navy: #0f1538;
-  --navy-light: #1a2344;
 }
 
 /* GitHub Interactive */
