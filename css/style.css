@@ -1239,6 +1239,10 @@ body.dark-mode .impact-label{
   color:#d4af37;
 }
 
+.newsletter .newsletter-note{
+  color:#ffffff;
+}
+
 @media(max-width:600px){
   .newsletter-form{
     flex-direction:column;
