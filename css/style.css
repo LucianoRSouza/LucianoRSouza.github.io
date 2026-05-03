@@ -2280,7 +2280,7 @@ body.dark-mode .newsletter-input::placeholder {
 }
 
 /* =================================================
-   HEADER — EXPLORE (FINAL PREMIUM)
+   HEADER — EXPLORE (FINAL PREMIUM WITH GLOW)
 ================================================= */
 
 .explore-blocks-header {
@@ -2289,35 +2289,38 @@ body.dark-mode .newsletter-input::placeholder {
   text-align: center;
 }
 
-/* ✅ TÍTULO — DOURADO COM CONTRASTE REAL */
+/* ✅ TÍTULO — DOURADO COM PROFUNDIDADE + HALO */
 section.explore-blocks-section 
   .explore-blocks-header 
   .section-title {
+
   font-family: 'Playfair Display', serif;
   font-size: 3.8rem;
   font-weight: 600;
   line-height: 1.15;
 
-  color: #d4af37; /* ✅ dourado original */
+  color: #d4af37;
 
   margin-bottom: 20px;
 
   text-shadow:
-    0 1px 0 rgba(0,0,0,0.6),
-    0 4px 12px rgba(0,0,0,0.6),
-    0 0 12px rgba(212,175,55,0.2);
+    0 2px 4px rgba(0,0,0,0.6),         /* base sombra */
+    0 8px 20px rgba(0,0,0,0.5),        /* profundidade */
+    0 0 12px rgba(212,175,55,0.6),     /* glow dourado próximo */
+    0 0 28px rgba(212,175,55,0.25);    /* glow suave */
 }
 
-/* ✅ SUBTEXTO — CLARO MAS SUAVE */
+/* ✅ SUBTÍTULO — CLARO E EQUILIBRADO */
 section.explore-blocks-section 
   .explore-blocks-header 
   .section-subtitle {
+
   max-width: 720px;
   margin: 0 auto;
   font-size: 1.1rem;
   line-height: 1.7;
 
-  color: rgba(255,255,255,0.75);
+  color: rgba(255,255,255,0.8);
 }
 
 
