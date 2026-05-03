@@ -2304,10 +2304,12 @@ section.explore-blocks-section
   margin-bottom: 20px;
 
   text-shadow:
-    0 2px 4px rgba(0,0,0,0.6),         /* base sombra */
-    0 8px 20px rgba(0,0,0,0.5),        /* profundidade */
-    0 0 12px rgba(212,175,55,0.6),     /* glow dourado próximo */
-    0 0 28px rgba(212,175,55,0.25);    /* glow suave */
+  0 2px 4px rgba(0,0,0,0.7),         /* base mais marcada */
+  0 10px 30px rgba(0,0,0,0.6),       /* mais profundidade */
+  0 0 10px rgba(212,175,55,0.8),     /* glow forte próximo */
+  0 0 22px rgba(212,175,55,0.5),     /* glow médio */
+  0 0 40px rgba(212,175,55,0.25);    /* aura suave */
+
 }
 
 /* ✅ SUBTÍTULO — CLARO E EQUILIBRADO */
