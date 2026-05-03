@@ -1019,6 +1019,21 @@ body:not(.dark-mode) .section-title,
 body:not(.dark-mode) .section-subtitle {
   color:#0b1c2d;
 }
+/* ======================================
+   DARK MODE FIX — SECTION TITLES
+====================================== */
+
+body.dark-mode .section-title {
+  color: #d4af37;
+
+  text-shadow:
+    0 2px 6px rgba(0,0,0,0.8),
+    0 0 10px rgba(212,175,55,0.4);
+}
+
+body.dark-mode .section-subtitle {
+  color: rgba(255,255,255,0.75);
+}
 
 /* ======================================
    EXPLORE SECTION — FIX LIGHT MODE CARDS
