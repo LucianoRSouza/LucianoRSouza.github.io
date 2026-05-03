@@ -1153,5 +1153,7 @@ document.addEventListener('DOMContentLoaded', () => {
   createStars(80);
 });
 
+// expose to global (FIX)
 window.openCertModal = openCertModal;
 window.closeCertModal = closeCertModal;
+
