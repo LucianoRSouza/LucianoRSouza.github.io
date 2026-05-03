@@ -1005,20 +1005,39 @@ body.dark-mode .dark-mode-toggle i{
     height:38px;
   }
 }
-/* ===============================
-   LIGHT MODE BASE TEXT FIX
-================================ */
+/* ======================================
+   TEXT SYSTEM — BASE LIMPO
+====================================== */
 
-
-body:not(.dark-mode){
+/* base light */
+body{
   background:#f8f6f1;
+  color:#2c3e50;
+}
+
+/* títulos */
+.section-title{
   color:#0b1c2d;
 }
 
-body:not(.dark-mode) .section-title,
-body:not(.dark-mode) .section-subtitle {
-  color:#0b1c2d;
+.section-subtitle{
+  color:#5a6c7d;
 }
+
+/* dark */
+body.dark-mode{
+  background:#0b1c2d;
+  color:rgba(255,255,255,0.85);
+}
+
+body.dark-mode .section-title{
+  color:#d4af37;
+}
+
+body.dark-mode .section-subtitle{
+  color:rgba(255,255,255,0.75);
+}
+
 /* ======================================
    DARK MODE FIX — SECTION TITLES
 ====================================== */
