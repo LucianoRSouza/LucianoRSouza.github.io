@@ -1152,3 +1152,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   createStars(80);
 });
+
+window.openCertModal = openCertModal;
+window.closeCertModal = closeCertModal;
