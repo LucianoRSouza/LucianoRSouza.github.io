@@ -2545,3 +2545,34 @@ Cards
   filter: blur(0.3px);
 }
 
+/* ======================================
+   INSIGHTS SECTION — CLEAN FIX
+====================================== */
+
+.explore-blocks-section .section-title {
+  color: #0b1c2d;
+}
+
+.explore-blocks-section .section-subtitle {
+  color: #5a6c7d;
+}
+
+/* DARK MODE (só para essa section) */
+body.dark-mode .explore-blocks-section .section-title {
+  color: #d4af37;
+
+  text-shadow:
+    0 2px 6px rgba(0,0,0,0.8),
+    0 0 12px rgba(212,175,55,0.35);
+}
+
+body.dark-mode .explore-blocks-section .section-subtitle {
+  color: rgba(255,255,255,0.75);
+}
+
+/* ✅ BADGES (AS 3 FRASES) */
+body.dark-mode .explore-blocks-section .explore-tag {
+  background: rgba(212,175,55,0.15);
+  color: #d4af37;
+  border: 1px solid rgba(212,175,55,0.35);
+}
