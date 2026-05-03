@@ -944,41 +944,11 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// Cert Modal
-function openCertModal(imgSrc, title) {
-  const o = document.getElementById('certModalOverlay');
-  const i = document.getElementById('certModalImg');
-  const t = document.getElementById('certModalTitle');
-  if (!o || !i || !t) return;
-
-  i.src = imgSrc;
-  t.textContent = title;
-  o.classList.add('active');
-  document.body.style.overflow = 'hidden';
-  document.addEventListener('keydown', certEsc);
-}
-
-function closeCertModal() {
-  const o = document.getElementById('certModalOverlay');
-  if (!o) return;
-
-  o.classList.remove('active');
-  document.body.style.overflow = 'auto';
-  document.removeEventListener('keydown', certEsc);
-
-  setTimeout(() => {
-    const i = document.getElementById('certModalImg');
-    if (i) i.src = '';
-  }, 300);
-}
-
-function certEsc(e) {
-  if (e.key === 'Escape') closeCertModal();
-}
-
+// ============================================
+// ARTICLE MODAL — FIXED BLOCK
+// ============================================
 
 const articleContent = {
-
   'ai-contracts': `
     <h2>How LLMs Are Revolutionizing Contract Analysis</h2>
     <p><strong>Published:</strong> January 2026 | <strong>Reading time:</strong> 5 minutes</p>
@@ -1021,6 +991,39 @@ const articleContent = {
     <p>This enabled more balanced decisions and avoided long-term inefficiencies caused by purely cost-driven strategies.</p>
   `
 };
+
+
+// ✅ FUNÇÃO QUE ESTAVA FALTANDO / QUEBROU
+function openArticleModal(articleId) {
+  const overlay = document.getElementById('articleModalOverlay');
+  const content = document.getElementById('articleModalContent');
+
+  if (!overlay || !content) return;
+
+  content.innerHTML = articleContent[articleId] || '<p>Article not found</p>';
+
+  overlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
+
+  document.addEventListener('keydown', handleArticleEsc);
+}
+
+function closeArticleModal() {
+  const overlay = document.getElementById('articleModalOverlay');
+  if (!overlay) return;
+
+  overlay.classList.remove('active');
+  document.body.style.overflow = 'auto';
+
+  document.removeEventListener('keydown', handleArticleEsc);
+}
+
+function handleArticleEsc(e) {
+  if (e.key === 'Escape') closeArticleModal();
+}
+
+// ✅ ESSA LINHA É O QUE RESOLVE O ERRO DO CONSOLE
+window.openArticleModal = openArticleModal;
 
 /* ============================================
    NEWSLETTER HANDLER
