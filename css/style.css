@@ -2280,7 +2280,7 @@ body.dark-mode .newsletter-input::placeholder {
 }
 
 /* =================================================
-   HEADER
+   HEADER — EXPLORE BLOCKS FIXED (FINAL)
 ================================================= */
 
 .explore-blocks-header {
@@ -2289,28 +2289,33 @@ body.dark-mode .newsletter-input::placeholder {
   text-align: center;
 }
 
-.explore-blocks-header .section-title {
+/* ✅ FORÇADO — ganha de qualquer regra global */
+section.explore-blocks-section 
+  .explore-blocks-header 
+  .section-title {
   font-family: 'Playfair Display', serif;
   font-size: 3.8rem;
   font-weight: 600;
   line-height: 1.15;
 
-  color: #ffffff; /* ✅ FIX REAL */
+  color: #ffffff;
 
   margin-bottom: 20px;
 
   text-shadow:
-    0 1px 0 rgba(0,0,0,0.5),
-    0 3px 6px rgba(0,0,0,0.5);
+    0 2px 6px rgba(0,0,0,0.8);
 }
 
-.explore-blocks-header .section-subtitle {
+/* ✅ FORÇADO — contraste correto sempre */
+section.explore-blocks-section 
+  .explore-blocks-header 
+  .section-subtitle {
   max-width: 720px;
   margin: 0 auto;
   font-size: 1.1rem;
   line-height: 1.7;
 
-  color: rgba(255,255,255,0.85); /* ✅ FIX REAL */
+  color: rgba(255,255,255,0.85);
 }
 
 /* =================================================
