@@ -2280,7 +2280,7 @@ body.dark-mode .newsletter-input::placeholder {
 }
 
 /* =================================================
-   HEADER — EXPLORE BLOCKS FIXED (FINAL)
+   HEADER — EXPLORE (FINAL PREMIUM)
 ================================================= */
 
 .explore-blocks-header {
@@ -2289,7 +2289,7 @@ body.dark-mode .newsletter-input::placeholder {
   text-align: center;
 }
 
-/* ✅ FORÇADO — ganha de qualquer regra global */
+/* ✅ TÍTULO — DOURADO COM CONTRASTE REAL */
 section.explore-blocks-section 
   .explore-blocks-header 
   .section-title {
@@ -2298,15 +2298,17 @@ section.explore-blocks-section
   font-weight: 600;
   line-height: 1.15;
 
-  color: #ffffff;
+  color: #d4af37; /* ✅ dourado original */
 
   margin-bottom: 20px;
 
   text-shadow:
-    0 2px 6px rgba(0,0,0,0.8);
+    0 1px 0 rgba(0,0,0,0.6),
+    0 4px 12px rgba(0,0,0,0.6),
+    0 0 12px rgba(212,175,55,0.2);
 }
 
-/* ✅ FORÇADO — contraste correto sempre */
+/* ✅ SUBTEXTO — CLARO MAS SUAVE */
 section.explore-blocks-section 
   .explore-blocks-header 
   .section-subtitle {
@@ -2315,8 +2317,9 @@ section.explore-blocks-section
   font-size: 1.1rem;
   line-height: 1.7;
 
-  color: rgba(255,255,255,0.85);
+  color: rgba(255,255,255,0.75);
 }
+
 
 /* =================================================
 Cards
