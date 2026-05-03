@@ -2573,8 +2573,12 @@ Cards
 }
 
 /* ✅ TÍTULO */
-.explore-blocks-section .section-title {
+.section-title {
   color: #0b1c2d;
+}
+
+body.dark-mode .section-title {
+  color: #d4af37;
 }
 
 /* ✅ SUBTEXTO */
