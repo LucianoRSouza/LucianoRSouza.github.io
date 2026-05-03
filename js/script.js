@@ -977,51 +977,50 @@ function certEsc(e) {
 }
 
 
-// Article Modal
 const articleContent = {
-  'ai-contracts': `<h2>How LLMs Are Revolutionizing Contract Analysis</h2>
+
+  'ai-contracts': `
+    <h2>How LLMs Are Revolutionizing Contract Analysis</h2>
     <p><strong>Published:</strong> January 2026 | <strong>Reading time:</strong> 5 minutes</p>
+
     <h3>The Challenge</h3>
-    <p>Legal review of procurement contracts traditionally takes days or even weeks.</p>`,
+    <p>Legal review of procurement contracts traditionally takes days or even weeks.</p>
 
-  'smart-rfp': `<h2>Building Smart RFPs: From Days to Hours</h2>
-    <p><strong>Published:</strong> December 2025 | <strong>Reading time:</strong> 4 minutes</p>`,
+    <h3>How I Applied It</h3>
+    <p>I implemented LLM-based clause extraction into procurement workflows, enabling rapid identification of risks and contractual anomalies during supplier onboarding.</p>
 
-  'make-or-buy': `<h2>The Make-or-Buy Decision Framework</h2>
-    <p><strong>Published:</strong> November 2025 | <strong>Reading time:</strong> 6 minutes</p>`
+    <h3>Impact in Procurement</h3>
+    <p>This reduced contract review cycles, improved risk visibility, and accelerated negotiation timelines.</p>
+  `,
+
+  'smart-rfp': `
+    <h2>Building Smart RFPs: From Days to Hours</h2>
+    <p><strong>Published:</strong> December 2025 | <strong>Reading time:</strong> 4 minutes</p>
+
+    <h3>The Challenge</h3>
+    <p>Traditional RFP creation is time-consuming and lacks consistency across sourcing events.</p>
+
+    <h3>How I Applied It</h3>
+    <p>I introduced AI-generated templates and scoring models aligned with category strategies, reducing manual effort and improving evaluation consistency.</p>
+
+    <h3>Impact in Procurement</h3>
+    <p>Cycle times dropped significantly while improving supplier comparison quality and decision speed.</p>
+  `,
+
+  'make-or-buy': `
+    <h2>The Make-or-Buy Decision Framework</h2>
+    <p><strong>Published:</strong> November 2025 | <strong>Reading time:</strong> 6 minutes</p>
+
+    <h3>The Challenge</h3>
+    <p>Organizations often base outsourcing decisions purely on cost, ignoring operational risks.</p>
+
+    <h3>How I Applied It</h3>
+    <p>I developed a structured framework combining cost modelling, dependency risk analysis, and operational impact scenarios.</p>
+
+    <h3>Impact in Procurement</h3>
+    <p>This enabled more balanced decisions and avoided long-term inefficiencies caused by purely cost-driven strategies.</p>
+  `
 };
-
-
-function openArticleModal(articleId) {
-  const overlay = document.getElementById('articleModalOverlay');
-  const content = document.getElementById('articleModalContent');
-
-  if (!overlay || !content) return;
-
-  content.innerHTML = articleContent[articleId] || '<p>Article content loading...</p>';
-
-  overlay.classList.add('active');
-  document.body.style.overflow = 'hidden';
-  document.addEventListener('keydown', handleArticleEsc);
-
-  setTimeout(() => {
-    content.scrollTop = 0;
-  }, 50);
-}
-
-function closeArticleModal() {
-  const overlay = document.getElementById('articleModalOverlay');
-  if (!overlay) return;
-
-  overlay.classList.remove('active');
-  document.body.style.overflow = 'auto';
-  document.removeEventListener('keydown', handleArticleEsc);
-}
-
-function handleArticleEsc(e) {
-  if (e.key === 'Escape') closeArticleModal();
-}
-
 
 /* ============================================
    NEWSLETTER HANDLER
