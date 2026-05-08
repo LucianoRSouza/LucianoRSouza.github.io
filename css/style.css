@@ -2609,3 +2609,30 @@ body.dark-mode .explore-blocks-section .explore-tag {
   color: #d4af37;
   border: 1px solid rgba(212,175,55,0.35);
 }
+
+/* ============================================
+   ARTICLE MODAL CONTENT
+============================================ */
+
+#articleModalContent h2 {
+  margin-bottom: 10px;
+}
+
+#articleModalContent h3 {
+  margin-top: 20px;
+  color: #333;
+}
+
+#articleModalContent ul {
+  padding-left: 20px;
+  margin-top: 10px;
+}
+
+#articleModalContent li {
+  margin-bottom: 6px;
+}
+
+#articleModalContent p {
+  margin: 10px 0;
+  line-height: 1.5;
+}
