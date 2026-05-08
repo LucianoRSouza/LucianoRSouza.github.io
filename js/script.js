@@ -979,17 +979,133 @@ function certEsc(e) {
 
 // Article Modal
 const articleContent = {
-  'ai-contracts': `<h2>How LLMs Are Revolutionizing Contract Analysis</h2>
-    <p><strong>Published:</strong> January 2026 | <strong>Reading time:</strong> 5 minutes</p>
-    <h3>The Challenge</h3>
-    <p>Legal review of procurement contracts traditionally takes days or even weeks.</p>`,
 
-  'smart-rfp': `<h2>Building Smart RFPs: From Days to Hours</h2>
-    <p><strong>Published:</strong> December 2025 | <strong>Reading time:</strong> 4 minutes</p>`,
+ 'ai-contracts': `
+ <h2>How I Use LLMs to Transform Contract Analysis</h2>
 
-  'make-or-buy': `<h2>The Make-or-Buy Decision Framework</h2>
-    <p><strong>Published:</strong> November 2025 | <strong>Reading time:</strong> 6 minutes</p>`
+ <p><strong>Published:</strong> January 2026 | <strong>Reading time:</strong> 5 minutes</p>
+
+ <h3>Context</h3>
+ <p>
+ In procurement operations, contract analysis is a bottleneck. Legal review cycles can delay decisions, 
+ slow negotiations and reduce deal velocity — especially in multi-asset environments like hospitality.
+ </p>
+
+ <h3>How I Apply This in Practice</h3>
+ <ul>
+   <li><strong>Clause extraction:</strong> I use LLMs to identify key clauses (termination, SLA, penalties)</li>
+   <li><strong>Risk flagging:</strong> automatic detection of non-standard or risky terms</li>
+   <li><strong>Comparison:</strong> benchmarking clauses across multiple supplier proposals</li>
+   <li><strong>Summaries:</strong> executive-level contract briefs for fast stakeholder review</li>
+ </ul>
+
+ <h3>My Working Model</h3>
+ <ul>
+   <li>Input: supplier contracts / proposals</li>
+   <li>LLM parsing: structure + highlight risks</li>
+   <li>Output: standardized contract evaluation layer</li>
+   <li>Decision: integrated into BidMap scoring</li>
+ </ul>
+
+ <h3>Impact</h3>
+ <ul>
+   <li>–80% reduction in contract review time</li>
+   <li>Faster alignment between Legal, Finance and Operations</li>
+   <li>Better negotiation leverage (visibility on clauses)</li>
+ </ul>
+
+ <h3>Bottom Line</h3>
+ <p>
+ I don’t use AI to replace legal — I use it to accelerate clarity and improve decision quality.
+ </p>
+ `,
+
+
+ 'smart-rfp': `
+ <h2>How I Build Smart RFPs That Scale</h2>
+
+ <p><strong>Published:</strong> December 2025 | <strong>Reading time:</strong> 4 minutes</p>
+
+ <h3>Problem</h3>
+ <p>
+ Traditional RFPs are slow, inconsistent and heavily dependent on manual effort — leading to poor comparability 
+ and weak supplier responses.
+ </p>
+
+ <h3>How I Use AI in RFPs</h3>
+ <ul>
+   <li><strong>Automated specifications:</strong> LLM-driven draft of Scope of Work and technical annexes</li>
+   <li><strong>Template standardization:</strong> reusable RFP frameworks across categories</li>
+   <li><strong>Scoring matrix generation:</strong> pre-defined weighting aligned with business strategy</li>
+   <li><strong>Supplier alignment:</strong> structured responses improving comparability</li>
+ </ul>
+
+ <h3>Operational Integration</h3>
+ <ul>
+   <li>Connected to BidMap methodology</li>
+   <li>Integrated with Primavera + e-procurement tools</li>
+   <li>Used across HVAC, energy, services and CAPEX projects</li>
+ </ul>
+
+ <h3>Impact</h3>
+ <ul>
+   <li>Cycle time reduced from ~45 days to ~28 days</li>
+   <li>Higher quality supplier responses</li>
+   <li>Audit-ready documentation from day 1</li>
+ </ul>
+
+ <h3>Bottom Line</h3>
+ <p>
+ The value is not automation — it's creating structured decision systems.
+ </p>
+ `,
+
+
+ 'make-or-buy': `
+ <h2>Make-or-Buy: The Framework I Actually Use</h2>
+
+ <p><strong>Published:</strong> November 2025 | <strong>Reading time:</strong> 6 minutes</p>
+
+ <h3>Context</h3>
+ <p>
+ Make-or-buy decisions are rarely just about cost. They involve risk, capability, speed and strategic control.
+ </p>
+
+ <h3>My Evaluation Model</h3>
+ <ul>
+   <li><strong>Cost layer:</strong> total cost of ownership (not just unit price)</li>
+   <li><strong>Capability:</strong> do we have internal expertise or dependency risk?</li>
+   <li><strong>Speed:</strong> internal vs supplier execution timelines</li>
+   <li><strong>Scalability:</strong> ability to replicate across assets</li>
+   <li><strong>Risk:</strong> operational, financial and supply chain exposure</li>
+ </ul>
+
+ <h3>How I Apply This Today</h3>
+ <ul>
+   <li>Used for technical services outsourcing (HVAC, energy, maintenance)</li>
+   <li>Applied in supplier consolidation vs multi-vendor strategies</li>
+   <li>Supports CAPEX vs OPEX decisions in hospitality assets</li>
+ </ul>
+
+ <h3>Decision Layer</h3>
+ <p>
+ The output feeds directly into procurement governance — not just a theoretical analysis.
+ </p>
+
+ <h3>Impact</h3>
+ <ul>
+   <li>Better risk-balanced sourcing decisions</li>
+   <li>Improved cost visibility beyond negotiations</li>
+   <li>Stronger alignment with operations and finance</li>
+ </ul>
+
+ <h3>Bottom Line</h3>
+ <p>
+ Make-or-buy is not a calculation — it's a strategic positioning decision.
+ </p>
+ `
 };
+
 
 
 function openArticleModal(articleId) {
