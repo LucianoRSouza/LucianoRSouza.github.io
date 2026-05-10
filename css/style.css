@@ -2638,173 +2638,226 @@ body.dark-mode .explore-blocks-section .explore-tag {
 }
 
 /* ==================================================
-   PRECISION PATCH — ONLY REQUESTED FIXES
-   (Non-destructive — based on your exact file)
+   FINAL THEME SYSTEM — CONSOLIDATED (PRODUCTION)
+   Clean, non-destructive, contrast-safe
 ================================================== */
 
+/* ================= VARIABLES ================= */
+:root{
+  --bg-main:#f4f6f9;
+  --bg-surface:#ffffff;
+  --bg-elevated:#ffffff;
 
-/* =========================================
-   HERO (LIGHT MODE) — GOLD TEXT
-========================================= */
+  --text-main:#1e293b;
+  --text-soft:#475569;
+
+  --accent:#d4af37;
+
+  --border-subtle:rgba(0,0,0,0.06);
+
+  --shadow-soft:0 10px 30px rgba(0,0,0,0.05);
+  --shadow-medium:0 25px 60px rgba(0,0,0,0.08);
+
+  --title-bg:linear-gradient(180deg, rgba(0,0,0,0.04), transparent);
+}
+
+body.dark-mode{
+  --bg-main:#0b0f1f;
+  --bg-surface:#121833;
+  --bg-elevated:#1a2244;
+
+  --text-main:#e2e8f0;
+  --text-soft:#cbd5e1;
+
+  --border-subtle:rgba(255,255,255,0.08);
+
+  --shadow-soft:0 25px 60px rgba(0,0,0,0.6);
+  --shadow-medium:0 40px 90px rgba(0,0,0,0.75);
+
+  --title-bg:linear-gradient(180deg, rgba(212,175,55,0.10), transparent);
+}
+
+/* ================= GLOBAL ================= */
+body{
+  background:var(--bg-main) !important;
+  color:var(--text-main) !important;
+}
+
+section{
+  background:transparent !important;
+}
+
+/* ================= TEXT ================= */
+h1,h2,h3,h4{
+  color:var(--text-main) !important;
+}
+
+p,li,span{
+  color:var(--text-soft) !important;
+}
+
+/* ================= HERO TEXT ================= */
+.hero h1,
+.subtitle{
+  text-shadow:0 2px 6px rgba(15,21,56,0.45);
+}
+
+/* ✅ HERO LIGHT → dourado (ADICIONADO) */
 body:not(.dark-mode) .hero h1,
-body:not(.dark-mode) .hero p,
-body:not(.dark-mode) .hero .highlight{
+body:not(.dark-mode) .hero p{
   color:var(--accent) !important;
-
   text-shadow:
-    0 0 8px rgba(212,175,55,0.35),
+    0 0 8px rgba(212,175,55,0.3),
     0 6px 20px rgba(15,21,56,0.4);
 }
 
+/* ================= HIGHLIGHTS ================= */
+.stat-number,
+.highlight{
+  text-shadow:0 2px 6px rgba(0,0,0,0.3);
+}
 
-/* =========================================
-   QUOTE SECTION ("I operate at the...")
-========================================= */
-body:not(.dark-mode) blockquote,
-body:not(.dark-mode) .quote{
+/* ================= NAV ================= */
+nav.navbar{
+  background:rgba(255,255,255,0.75) !important;
+  backdrop-filter:blur(12px);
+}
+
+body.dark-mode nav.navbar{
+  background:rgba(10,14,40,0.85) !important;
+}
+
+/* ================= TITLES ================= */
+.section-header h2,
+.section-title{
+  background:var(--title-bg) !important;
+  border-radius:10px;
+  padding:12px 28px;
+  box-shadow:var(--shadow-soft);
+
+  text-shadow:0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* ✅ DARK títulos dourados */
+body.dark-mode .section-header h2,
+body.dark-mode .section-title{
   color:var(--accent) !important;
 
   text-shadow:
-    0 0 8px rgba(212,175,55,0.35),
-    0 10px 30px rgba(15,21,56,0.45);
+    0 2px 8px rgba(0,0,0,0.9),
+    0 0 12px rgba(212,175,55,0.35);
 }
 
-/* reforço de profundidade no fundo */
-.quote-section{
-  box-shadow:inset 0 0 120px rgba(15,21,56,0.25);
-}
-
-
-/* =========================================
-   CHOOSE YOUR PERSPECTIVE (LIGHT)
-========================================= */
-
-/* título NAVY (não preto) */
+/* ✅ LIGHT “choose perspective” título navy */
 body:not(.dark-mode) .section-header h2{
   color:#0f1538 !important;
 }
 
-/* blocos com fundo escuro → texto dourado */
-body:not(.dark-mode) .strategy-card-modern h3{
-  color:var(--accent) !important;
+/* ================= CARDS ================= */
+[class*="card"],
+.project-card,
+.operation-card,
+.blog-card,
+.testimonial-card{
+  background:var(--bg-elevated) !important;
+  border:1px solid var(--border-subtle) !important;
+  box-shadow:var(--shadow-soft);
 }
 
-/* números romanos mais visíveis */
-.strategy-card-modern .roman,
-.strategy-card-modern .step-number{
+/* ✅ STRATEGY (light) — números dourados */
+body:not(.dark-mode) .stat-number{
   color:var(--accent) !important;
-  opacity:0.8;
+  text-shadow:
+    0 0 10px rgba(212,175,55,0.4),
+    0 6px 20px rgba(0,0,0,0.3);
 }
 
-
-/* =========================================
-   CHOOSE YOUR PERSPECTIVE (DARK)
-   (apenas remover preto)
-========================================= */
+/* ✅ STRATEGY (dark) — tirar preto */
 body.dark-mode .strategy-section{
   background:#0f1538 !important;
 }
 
-
-/* =========================================
-   ABOUT (DARK)
-========================================= */
-body.dark-mode .about-section p{
-  color:#e2e8f0 !important;
-}
-
-body.dark-mode .about-section strong,
-body.dark-mode .about-section .highlight{
-  color:var(--accent) !important;
-}
-
-
-/* =========================================
-   STRATEGY IN ACTION
-========================================= */
-
-/* LIGHT → valores dourados */
-body:not(.dark-mode) .stat-number{
-  color:var(--accent) !important;
-
-  text-shadow:
-    0 0 10px rgba(212,175,55,0.4),
-    0 6px 20px rgba(0,0,0,0.25);
-}
-
-/* DARK → fundo navy (sem preto) */
-body.dark-mode .strategy-in-action{
-  background:#0f1538 !important;
-}
-
-/* reforço de contraste em caixas */
-body.dark-mode .strategy-card{
-  border:1px solid rgba(212,175,55,0.25);
-}
-
-
-/* =========================================
-   SUSTAINABILITY
-========================================= */
-
-/* LIGHT → títulos dourados */
+/* ✅ SUSTAINABILITY */
 body:not(.dark-mode) .sustainability-card h3{
   color:var(--accent) !important;
-
-  text-shadow:0 0 8px rgba(212,175,55,0.35);
 }
 
-/* LIGHT → texto mais forte */
 body:not(.dark-mode) .sustainability-card p{
   color:#334155 !important;
 }
 
-/* DARK → remover preto */
 body.dark-mode .sustainability-section{
   background:#0f1538 !important;
 }
 
-
-/* =========================================
-   FEATURED PROJECTS (DARK)
-========================================= */
-body.dark-mode .tag,
-body.dark-mode .badge{
-  color:#f1f5f9 !important;
-  background:rgba(212,175,55,0.15) !important;
+/* ✅ ABOUT (dark) */
+body.dark-mode .about-section p{
+  color:#e2e8f0 !important;
 }
 
-
-/* =========================================
-   TRADE SHOWS (DARK)
-========================================= */
-body.dark-mode .trade-section{
-  background:#0f1538 !important;
+body.dark-mode .about-section strong{
+  color:var(--accent) !important;
 }
 
+/* ================= OVERLAYS ================= */
+.overlay,
+.gallery-overlay,
+.operation-overlay{
+  background:rgba(0,0,0,0.05) !important;
+}
 
-/* =========================================
-   AI & DATA — GITHUB BLOCK
-========================================= */
+body.dark-mode .overlay,
+body.dark-mode .gallery-overlay,
+body.dark-mode .operation-overlay{
+  background:rgba(0,0,0,0.45) !important;
+}
 
-/* LIGHT → título visível */
+/* ================= BUTTONS ================= */
+.btn,
+button{
+  background:var(--accent) !important;
+  color:#0b1c2d !important;
+  font-weight:600;
+  box-shadow:0 10px 25px rgba(212,175,55,0.3);
+}
+
+/* ================= ICON VISIBILITY FIX ================= */
+.theme-toggle,
+.dark-mode-toggle{
+  background:var(--accent) !important;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.theme-toggle i,
+.dark-mode-toggle i{
+  color:#0b1c2d !important;
+}
+
+/* ================= MODALS ================= */
+body.dark-mode .stat-modal,
+body.dark-mode .strategy-detail-card,
+body.dark-mode .cert-modal,
+body.dark-mode .article-modal{
+  background:var(--bg-elevated) !important;
+}
+
+/* ================= GITHUB BLOCK (LIGHT FIX) ================= */
 body:not(.dark-mode) .github-card h2{
   color:var(--accent) !important;
-
-  text-shadow:
-    0 0 8px rgba(212,175,55,0.35),
-    0 6px 20px rgba(15,21,56,0.4);
 }
 
-/* texto mais forte */
 body:not(.dark-mode) .github-card p{
   color:#334155 !important;
 }
 
+/* ================= TRADE / BLACK FIX ================= */
+body.dark-mode .trade-section{
+  background:#0f1538 !important;
+}
 
-/* =========================================
-   FOOTER — SAME AS DARK MODE ALWAYS
-========================================= */
+/* ================= FOOTER (IGUAL NOS DOIS) ================= */
 footer{
   background:#0f1538 !important;
 }
@@ -2818,6 +2871,8 @@ footer span{
   color:#cbd5e1 !important;
 }
 
-footer .social-icons i{
-  color:#f1f5f9 !important;
+/* ================= SCROLLBAR ================= */
+::-webkit-scrollbar-thumb{
+  background:var(--accent);
 }
+
