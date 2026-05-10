@@ -2702,10 +2702,21 @@ p,li,span{
   text-shadow:0 2px 6px rgba(15,21,56,0.45);
 }
 
+/* ✅ HERO (LIGHT MODE → TEXTO DOURADO) */
+body:not(.dark-mode) .hero h1,
+body:not(.dark-mode) .hero p{
+  color:var(--accent) !important;
+}
+
 /* ================= HIGHLIGHTS ================= */
 .stat-number,
 .highlight{
   text-shadow:0 2px 6px rgba(0,0,0,0.3);
+}
+
+/* ✅ STRATEGY NUMBERS (LIGHT → DOURADO) */
+body:not(.dark-mode) .stat-number{
+  color:var(--accent) !important;
 }
 
 /* ================= NAV ================= */
@@ -2729,6 +2740,8 @@ body.dark-mode nav.navbar{
   text-shadow:0 4px 12px rgba(0,0,0,0.15);
 }
 
+/* ✅ DARK → TÍTULOS DOURADOS (já existia) */
+
 body.dark-mode .section-header h2,
 body.dark-mode .section-title{
   color:var(--accent) !important;
@@ -2736,6 +2749,23 @@ body.dark-mode .section-title{
   text-shadow:
     0 2px 8px rgba(0,0,0,0.9),
     0 0 12px rgba(212,175,55,0.35);
+}
+
+/* ✅ LIGHT → "CHOOSE YOUR PERSPECTIVE" TÍTULO NAVY */
+body:not(.dark-mode) .section-header h2{
+  color:#0f1538 !important;
+}
+
+/* ✅ STRATEGY BLOCKS (quando fundo escuro → texto dourado) */
+body:not(.dark-mode) .strategy-card-modern h3{
+  color:var(--accent) !important;
+}
+
+/* ✅ NÚMEROS ROMANOS */
+.strategy-card-modern .roman,
+.strategy-card-modern .step-number{
+  color:var(--accent) !important;
+  opacity:0.8;
 }
 
 /* ================= CARDS ================= */
@@ -2747,6 +2777,26 @@ body.dark-mode .section-title{
   background:var(--bg-elevated) !important;
   border:1px solid var(--border-subtle) !important;
   box-shadow:var(--shadow-soft);
+}
+
+/* ================= ABOUT (DARK FIX) ================= */
+body.dark-mode .about-section p{
+  color:#e2e8f0 !important;
+}
+
+body.dark-mode .about-section strong{
+  color:var(--accent) !important;
+}
+
+/* ================= SUSTAINABILITY ================= */
+
+/* LIGHT */
+body:not(.dark-mode) .sustainability-card h3{
+  color:var(--accent) !important;
+}
+
+body:not(.dark-mode) .sustainability-card p{
+  color:#334155 !important;
 }
 
 /* ================= OVERLAYS ================= */
@@ -2766,7 +2816,7 @@ body.dark-mode .operation-overlay{
 .btn,
 button{
   background:var(--accent) !important;
-  color:#0b1c2d !important; /* sempre escuro para contraste sobre dourado */
+  color:#0b1c2d !important;
   font-weight:600;
   box-shadow:0 10px 25px rgba(212,175,55,0.3);
 }
@@ -2782,7 +2832,7 @@ button{
 
 .theme-toggle i,
 .dark-mode-toggle i{
-  color:#0b1c2d !important; /* garante visibilidade de lua e sol */
+  color:#0b1c2d !important;
 }
 
 /* ================= MODALS ================= */
@@ -2791,12 +2841,6 @@ body.dark-mode .strategy-detail-card,
 body.dark-mode .cert-modal,
 body.dark-mode .article-modal{
   background:var(--bg-elevated) !important;
-}
-
-/* Fix modal text */
-body.dark-mode .article-modal-content,
-body.dark-mode .article-modal-content p{
-  color:var(--text-soft) !important;
 }
 
 /* ================= GALLERY CLOSE ================= */
@@ -2818,6 +2862,39 @@ body.dark-mode .gallery-close{
 /* ================= LIGHT MODE FIX ================= */
 body:not(.dark-mode) .section-dark{
   background:var(--bg-surface) !important;
+}
+
+/* ================= GLOBAL BLACK → NAVY (ONLY WHERE BLACK EXISTS) ================= */
+body.dark-mode .strategy-section,
+body.dark-mode .strategy-in-action,
+body.dark-mode .sustainability-section,
+body.dark-mode .trade-section,
+body.dark-mode .certifications-section,
+body.dark-mode footer{
+  background:#0f1538 !important;
+}
+
+/* ================= GITHUB (LIGHT FIX) ================= */
+body:not(.dark-mode) .github-card h2{
+  color:var(--accent) !important;
+}
+
+body:not(.dark-mode) .github-card p{
+  color:#334155 !important;
+}
+
+/* ================= FOOTER (MESMO DARK) ================= */
+footer{
+  background:#0f1538 !important;
+}
+
+footer h3{
+  color:var(--accent) !important;
+}
+
+footer p,
+footer span{
+  color:#cbd5e1 !important;
 }
 
 /* ================= SCROLLBAR ================= */
