@@ -2638,65 +2638,19 @@ body.dark-mode .explore-blocks-section .explore-tag {
 }
 
 
-/* ======================================
-   FINAL CONTRAST SYSTEM (CLEAN INTEGRATION)
-====================================== */
-
-:root{
-  --text-main:#1e293b;
-  --text-soft:#475569;
-}
-
-body.dark-mode{
-  --text-main:#e2e8f0;
-  --text-soft:#cbd5e1;
-}
-
-h1,h2,h3{color:var(--text-main);}
-p,li{color:var(--text-soft);}
-
-/* White with depth */
-.hero h1,
-.subtitle{
-  text-shadow:0 2px 6px rgba(15,21,56,0.45);
-}
-
-/* Gold depth */
-.stat-number,
-.highlight{
-  text-shadow:0 2px 6px rgba(0,0,0,0.3);
-}
-
-/* Modal critical fix */
-body.dark-mode .article-modal-content,
-body.dark-mode .article-modal-content p{
-  color:#cbd5e1;
-}
-
-/* Gallery close visibility */
-.gallery-close{
-  background:rgba(255,255,255,0.95);
-  color:#0f1538;
-}
-
-body.dark-mode .gallery-close{
-  background:rgba(0,0,0,0.7);
-  color:#fff;
-}
-
 /* ==================================================
-   FINAL ENTERPRISE THEME OVERRIDE
-   Safe non-destructive visual refactor
-   ================================================== */
+   FINAL THEME SYSTEM — CONSOLIDATED (PRODUCTION)
+   Clean, non-destructive, contrast-safe
+================================================== */
 
-/* ================= SYSTEM ================= */
+/* ================= VARIABLES ================= */
 :root{
   --bg-main:#f4f6f9;
   --bg-surface:#ffffff;
   --bg-elevated:#ffffff;
 
-  --text-primary:#0b1c2d;
-  --text-secondary:#6b7a8c;
+  --text-main:#1e293b;
+  --text-soft:#475569;
 
   --accent:#d4af37;
 
@@ -2713,8 +2667,8 @@ body.dark-mode{
   --bg-surface:#121833;
   --bg-elevated:#1a2244;
 
-  --text-primary:#e8ecf1;
-  --text-secondary:#aab2c3;
+  --text-main:#e2e8f0;
+  --text-soft:#cbd5e1;
 
   --border-subtle:rgba(255,255,255,0.08);
 
@@ -2724,10 +2678,10 @@ body.dark-mode{
   --title-bg:linear-gradient(180deg, rgba(212,175,55,0.10), transparent);
 }
 
-/* ================= GLOBAL FIX ================= */
+/* ================= GLOBAL ================= */
 body{
   background:var(--bg-main) !important;
-  color:var(--text-primary) !important;
+  color:var(--text-main) !important;
 }
 
 section{
@@ -2735,12 +2689,24 @@ section{
 }
 
 /* ================= TEXT ================= */
-p{
-  color:var(--text-secondary) !important;
+h1,h2,h3,h4{
+  color:var(--text-main) !important;
 }
 
-h1,h2,h3,h4{
-  color:var(--text-primary) !important;
+p,li,span{
+  color:var(--text-soft) !important;
+}
+
+/* ================= HERO TEXT ================= */
+.hero h1,
+.subtitle{
+  text-shadow:0 2px 6px rgba(15,21,56,0.45);
+}
+
+/* ================= HIGHLIGHTS ================= */
+.stat-number,
+.highlight{
+  text-shadow:0 2px 6px rgba(0,0,0,0.3);
 }
 
 /* ================= NAV ================= */
@@ -2753,7 +2719,7 @@ body.dark-mode nav.navbar{
   background:rgba(10,14,40,0.85) !important;
 }
 
-/* ================= TITLES (CORE FIX) ================= */
+/* ================= TITLES ================= */
 .section-header h2,
 .section-title{
   background:var(--title-bg) !important;
@@ -2773,7 +2739,7 @@ body.dark-mode .section-title{
     0 0 12px rgba(212,175,55,0.35);
 }
 
-/* ================= CARDS FIX ================= */
+/* ================= CARDS ================= */
 [class*="card"],
 .project-card,
 .operation-card,
@@ -2784,7 +2750,7 @@ body.dark-mode .section-title{
   box-shadow:var(--shadow-soft);
 }
 
-/* ================= OVERLAY FIX (VERY IMPORTANT) ================= */
+/* ================= OVERLAYS ================= */
 .overlay,
 .gallery-overlay,
 .operation-overlay{
@@ -2801,8 +2767,23 @@ body.dark-mode .operation-overlay{
 .btn,
 button{
   background:var(--accent) !important;
-  color:#0b1c2d !important;
+  color:#0b1c2d !important; /* sempre escuro para contraste sobre dourado */
+  font-weight:600;
   box-shadow:0 10px 25px rgba(212,175,55,0.3);
+}
+
+/* ================= ICON VISIBILITY FIX ================= */
+.theme-toggle,
+.dark-mode-toggle{
+  background:var(--accent) !important;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.theme-toggle i,
+.dark-mode-toggle i{
+  color:#0b1c2d !important; /* garante visibilidade de lua e sol */
 }
 
 /* ================= MODALS ================= */
@@ -2813,12 +2794,29 @@ body.dark-mode .article-modal{
   background:var(--bg-elevated) !important;
 }
 
+/* Fix modal text */
+body.dark-mode .article-modal-content,
+body.dark-mode .article-modal-content p{
+  color:var(--text-soft) !important;
+}
+
+/* ================= GALLERY CLOSE ================= */
+.gallery-close{
+  background:rgba(255,255,255,0.95);
+  color:#0f1538;
+}
+
+body.dark-mode .gallery-close{
+  background:rgba(0,0,0,0.7);
+  color:#ffffff;
+}
+
 /* ================= HERO SAFETY ================= */
 .hero{
   background:linear-gradient(135deg,#0f1538,#1a2344) !important;
 }
 
-/* ================= LIGHT MODE CLEANUP ================= */
+/* ================= LIGHT MODE FIX ================= */
 body:not(.dark-mode) .section-dark{
   background:var(--bg-surface) !important;
 }
