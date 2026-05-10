@@ -2638,8 +2638,8 @@ body.dark-mode .explore-blocks-section .explore-tag {
 }
 
 /* ==================================================
-   FINAL THEME SYSTEM — MASTER FIX (PRODUCTION FINAL)
-   Fully corrected contrast + premium dark/light system
+   FINAL MASTER SYSTEM — FULL CONSISTENT CONTRAST FIX
+   Absolute enforcement of contrast + navy dark mode
 ================================================== */
 
 /* ================= VARIABLES ================= */
@@ -2653,29 +2653,25 @@ body.dark-mode .explore-blocks-section .explore-tag {
 
   --accent:#d4af37;
 
+  --navy:#0f1538;
+  --navy-2:#141c3f;
+
   --border-subtle:rgba(0,0,0,0.06);
 
   --shadow-soft:0 10px 30px rgba(0,0,0,0.05);
   --shadow-medium:0 25px 60px rgba(0,0,0,0.08);
-
-  --title-bg:linear-gradient(180deg, rgba(0,0,0,0.04), transparent);
 }
 
-/* ================= DARK MODE (NAVY — NO BLACK) ================= */
+/* ================= DARK MODE (STRICT NAVY) ================= */
 body.dark-mode{
-  --bg-main:#0b0f1f;
-  --bg-surface:#0f1538;
-  --bg-elevated:#141c3f;
+  --bg-main:#0f1538;
+  --bg-surface:#141c3f;
+  --bg-elevated:#1a2244;
 
   --text-main:#f1f5f9;
   --text-soft:#cbd5e1;
 
   --border-subtle:rgba(255,255,255,0.08);
-
-  --shadow-soft:0 25px 60px rgba(0,0,0,0.6);
-  --shadow-medium:0 40px 90px rgba(0,0,0,0.75);
-
-  --title-bg:linear-gradient(180deg, rgba(212,175,55,0.15), transparent);
 }
 
 /* ================= GLOBAL ================= */
@@ -2684,13 +2680,12 @@ body{
   color:var(--text-main) !important;
 }
 
-/* FORÇA NAVY EM QUALQUER FUNDO ESCURO */
-body.dark-mode section{
+/* REMOVE TODOS OS PRETOS */
+body.dark-mode,
+body.dark-mode section,
+body.dark-mode footer,
+body.dark-mode .section-dark{
   background:var(--bg-main) !important;
-}
-
-section{
-  background:transparent !important;
 }
 
 /* ================= TEXT ================= */
@@ -2702,11 +2697,39 @@ p,li,span{
   color:var(--text-soft) !important;
 }
 
-/* DARK MODE TEXT FIX (CRÍTICO) */
+/* FORCE READABILITY */
 body.dark-mode p,
 body.dark-mode li,
 body.dark-mode span{
   color:#e2e8f0 !important;
+}
+
+/* ================= TITLES ================= */
+.section-header h2,
+.section-title{
+  border-radius:10px;
+  padding:12px 28px;
+  box-shadow:var(--shadow-soft);
+}
+
+/* DARK MODE = GOLD ALWAYS */
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode .section-title,
+body.dark-mode .section-header h2{
+  color:var(--accent) !important;
+
+  text-shadow:
+    0 0 10px rgba(212,175,55,0.3),
+    0 10px 30px rgba(0,0,0,0.8);
+}
+
+/* LIGHT MODE = NAVY */
+body:not(.dark-mode) h1,
+body:not(.dark-mode) h2,
+body:not(.dark-mode) h3{
+  color:var(--navy) !important;
 }
 
 /* ================= HERO ================= */
@@ -2716,38 +2739,10 @@ body.dark-mode span{
 
 .hero h1{
   color:var(--accent) !important;
-  text-shadow:
-    0 0 10px rgba(212,175,55,0.3),
-    0 10px 30px rgba(0,0,0,0.6);
 }
 
 .subtitle{
   color:#cbd5e1 !important;
-}
-
-/* ================= TITLES ================= */
-.section-header h2,
-.section-title{
-  background:var(--title-bg) !important;
-  border-radius:10px;
-  padding:12px 28px;
-  box-shadow:var(--shadow-soft);
-}
-
-/* DARK MODE GOLD TITLES */
-body.dark-mode .section-header h2,
-body.dark-mode .section-title{
-  color:var(--accent) !important;
-
-  text-shadow:
-    0 2px 8px rgba(0,0,0,0.9),
-    0 0 12px rgba(212,175,55,0.5);
-}
-
-/* LIGHT MODE TITLES */
-body:not(.dark-mode) .section-header h2,
-body:not(.dark-mode) .section-title{
-  color:#0f1538 !important;
 }
 
 /* ================= CARDS ================= */
@@ -2756,23 +2751,12 @@ body:not(.dark-mode) .section-title{
 .operation-card,
 .blog-card,
 .testimonial-card{
-
   background:var(--bg-elevated) !important;
   border:1px solid var(--border-subtle) !important;
   box-shadow:var(--shadow-soft);
-
-  transition:.3s;
 }
 
-/* HOVER BACKLIGHT */
-[class*="card"]:hover{
-  transform:translateY(-6px);
-  box-shadow:
-    var(--shadow-medium),
-    0 0 20px rgba(212,175,55,0.15);
-}
-
-/* ================= STRONG DARK CONTRAST FIX ================= */
+/* TEXT INSIDE CARDS */
 body.dark-mode [class*="card"] h3,
 body.dark-mode [class*="card"] h4{
   color:var(--accent) !important;
@@ -2782,25 +2766,20 @@ body.dark-mode [class*="card"] p{
   color:#e2e8f0 !important;
 }
 
-/* ================= STATS (NUMBERS) ================= */
-.stat-number{
+/* HOVER PREMIUM */
+[class*="card"]:hover{
+  transform:translateY(-6px);
+  box-shadow:
+    var(--shadow-medium),
+    0 0 25px rgba(212,175,55,0.2);
+}
+
+/* ================= STATS ================= */
+.stat-number,
+[class*="stat"] strong{
   color:var(--accent) !important;
   text-shadow:
-    0 2px 8px rgba(0,0,0,0.6),
     0 0 10px rgba(212,175,55,0.4);
-}
-
-/* ================= OVERLAYS ================= */
-.overlay,
-.gallery-overlay,
-.operation-overlay{
-  background:rgba(0,0,0,0.05) !important;
-}
-
-body.dark-mode .overlay,
-body.dark-mode .gallery-overlay,
-body.dark-mode .operation-overlay{
-  background:rgba(10,14,40,0.5) !important;
 }
 
 /* ================= BUTTONS ================= */
@@ -2811,16 +2790,11 @@ button{
   font-weight:600;
 
   box-shadow:
-    0 10px 25px rgba(212,175,55,0.3),
-    0 0 10px rgba(212,175,55,0.2);
+    0 0 10px rgba(212,175,55,0.2),
+    0 10px 25px rgba(212,175,55,0.3);
 }
 
 /* ================= ICONS ================= */
-.theme-toggle,
-.dark-mode-toggle{
-  background:var(--accent) !important;
-}
-
 .theme-toggle i,
 .dark-mode-toggle i{
   color:#0b1c2d !important;
@@ -2831,15 +2805,10 @@ body.dark-mode .stat-modal,
 body.dark-mode .strategy-detail-card,
 body.dark-mode .cert-modal,
 body.dark-mode .article-modal{
-  background:var(--bg-elevated) !important;
+  background:var(--navy-2) !important;
 }
 
-body.dark-mode .article-modal-content,
-body.dark-mode .article-modal-content p{
-  color:#e2e8f0 !important;
-}
-
-/* ================= FOOTER FIX ================= */
+/* ================= FOOTER ================= */
 footer{
   background:#0f1538 !important;
 }
@@ -2852,8 +2821,14 @@ footer p{
   color:#cbd5e1 !important;
 }
 
+/* ================= FORCE CONTRAST BLOCKS ================= */
+body.dark-mode .stat-card,
+body.dark-mode .timeline-item,
+body.dark-mode .content-block{
+  color:#e2e8f0 !important;
+}
+
 /* ================= SCROLLBAR ================= */
 ::-webkit-scrollbar-thumb{
   background:var(--accent);
 }
-
