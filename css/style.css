@@ -2638,27 +2638,81 @@ body.dark-mode .explore-blocks-section .explore-tag {
 }
 
 /* ==================================================
-   FINAL THEME FIX — CONTROLLED ADJUSTMENTS ONLY
-   Based on previous stable version (non-destructive)
+   FINAL MASTER SYSTEM — FULL CONSISTENT CONTRAST FIX
+   Absolute enforcement of contrast + navy dark mode
 ================================================== */
 
-/* ================= DARK MODE BACKGROUND FIX ================= */
-/* Remove apenas preto absoluto */
-body.dark-mode,
-body.dark-mode section,
-body.dark-mode footer{
-  background:#0f1538 !important;
+/* ================= VARIABLES ================= */
+:root{
+  --bg-main:#f4f6f9;
+  --bg-surface:#ffffff;
+  --bg-elevated:#ffffff;
+
+  --text-main:#1e293b;
+  --text-soft:#475569;
+
+  --accent:#d4af37;
+
+  --navy:#0f1538;
+  --navy-2:#141c3f;
+
+  --border-subtle:rgba(0,0,0,0.06);
+
+  --shadow-soft:0 10px 30px rgba(0,0,0,0.05);
+  --shadow-medium:0 25px 60px rgba(0,0,0,0.08);
 }
 
-/* ================= DARK TEXT VISIBILITY ================= */
-/* Só corrige onde estava ilegível */
+/* ================= DARK MODE (STRICT NAVY) ================= */
+body.dark-mode{
+  --bg-main:#0f1538;
+  --bg-surface:#141c3f;
+  --bg-elevated:#1a2244;
+
+  --text-main:#f1f5f9;
+  --text-soft:#cbd5e1;
+
+  --border-subtle:rgba(255,255,255,0.08);
+}
+
+/* ================= GLOBAL ================= */
+body{
+  background:var(--bg-main) !important;
+  color:var(--text-main) !important;
+}
+
+/* REMOVE TODOS OS PRETOS */
+body.dark-mode,
+body.dark-mode section,
+body.dark-mode footer,
+body.dark-mode .section-dark{
+  background:var(--bg-main) !important;
+}
+
+/* ================= TEXT ================= */
+h1,h2,h3,h4{
+  color:var(--text-main) !important;
+}
+
+p,li,span{
+  color:var(--text-soft) !important;
+}
+
+/* FORCE READABILITY */
 body.dark-mode p,
-body.dark-mode li{
+body.dark-mode li,
+body.dark-mode span{
   color:#e2e8f0 !important;
 }
 
-/* ================= TITLES IN DARK MODE ================= */
-/* Garantir consistência nos títulos */
+/* ================= TITLES ================= */
+.section-header h2,
+.section-title{
+  border-radius:10px;
+  padding:12px 28px;
+  box-shadow:var(--shadow-soft);
+}
+
+/* DARK MODE = GOLD ALWAYS */
 body.dark-mode h1,
 body.dark-mode h2,
 body.dark-mode h3,
@@ -2667,79 +2721,114 @@ body.dark-mode .section-header h2{
   color:var(--accent) !important;
 
   text-shadow:
-    0 0 8px rgba(212,175,55,0.35),
-    0 8px 25px rgba(0,0,0,0.7);
+    0 0 10px rgba(212,175,55,0.3),
+    0 10px 30px rgba(0,0,0,0.8);
 }
 
-/* ================= SUSTAINABILITY FIX ================= */
-body.dark-mode .sustainability-card h3,
-body.dark-mode .sustainability-card h4{
+/* LIGHT MODE = NAVY */
+body:not(.dark-mode) h1,
+body:not(.dark-mode) h2,
+body:not(.dark-mode) h3{
+  color:var(--navy) !important;
+}
+
+/* ================= HERO ================= */
+.hero{
+  background:linear-gradient(135deg,#0f1538,#1a2344) !important;
+}
+
+.hero h1{
   color:var(--accent) !important;
 }
 
-body.dark-mode .sustainability-card p{
-  color:#e2e8f0 !important;
+.subtitle{
+  color:#cbd5e1 !important;
 }
 
-/* ================= STRATEGY BLOCKS (ROMAN NUMBERS ETC) ================= */
-body.dark-mode .strategy-card-modern,
-body.dark-mode .timeline-item{
-  color:#e2e8f0 !important;
+/* ================= CARDS ================= */
+[class*="card"],
+.project-card,
+.operation-card,
+.blog-card,
+.testimonial-card{
+  background:var(--bg-elevated) !important;
+  border:1px solid var(--border-subtle) !important;
+  box-shadow:var(--shadow-soft);
 }
 
-body.dark-mode .strategy-card-modern h3{
+/* TEXT INSIDE CARDS */
+body.dark-mode [class*="card"] h3,
+body.dark-mode [class*="card"] h4{
   color:var(--accent) !important;
 }
 
-/* ================= CERTIFICATIONS (REMOVE PRETO) ================= */
-body.dark-mode .certifications-section{
-  background:#0f1538 !important;
-}
-
-/* ================= EXPLORE THE CODE FIX ================= */
-body.dark-mode .github-card h2,
-body.dark-mode .github-card h3{
-  color:var(--accent) !important;
-  text-shadow:0 0 10px rgba(212,175,55,0.4);
-}
-
-body.dark-mode .github-card p{
-  color:#e2e8f0 !important;
-}
-
-/* ================= ARTICLE CARDS ================= */
-body.dark-mode .blog-card h3{
-  color:var(--accent) !important;
-}
-
-body.dark-mode .blog-card p{
-  color:#e2e8f0 !important;
-}
-
-/* ================= CARDS CONTRAST FIX ================= */
 body.dark-mode [class*="card"] p{
   color:#e2e8f0 !important;
 }
 
-/* ================= QUOTE BLOCK ================= */
-body.dark-mode .quote,
-body.dark-mode blockquote{
-  color:#f1f5f9 !important;
+/* HOVER PREMIUM */
+[class*="card"]:hover{
+  transform:translateY(-6px);
+  box-shadow:
+    var(--shadow-medium),
+    0 0 25px rgba(212,175,55,0.2);
 }
 
-/* ================= FOOTER FIX ================= */
-footer h3{
+/* ================= STATS ================= */
+.stat-number,
+[class*="stat"] strong{
   color:var(--accent) !important;
+  text-shadow:
+    0 0 10px rgba(212,175,55,0.4);
 }
 
-footer p,
-footer span{
-  color:#cbd5e1 !important;
-}
-
-/* ================= KEEP BUTTON CONSISTENT ================= */
+/* ================= BUTTONS ================= */
 .btn,
 button{
   background:var(--accent) !important;
   color:#0b1c2d !important;
+  font-weight:600;
+
+  box-shadow:
+    0 0 10px rgba(212,175,55,0.2),
+    0 10px 25px rgba(212,175,55,0.3);
+}
+
+/* ================= ICONS ================= */
+.theme-toggle i,
+.dark-mode-toggle i{
+  color:#0b1c2d !important;
+}
+
+/* ================= MODALS ================= */
+body.dark-mode .stat-modal,
+body.dark-mode .strategy-detail-card,
+body.dark-mode .cert-modal,
+body.dark-mode .article-modal{
+  background:var(--navy-2) !important;
+}
+
+/* ================= FOOTER ================= */
+footer{
+  background:#0f1538 !important;
+}
+
+footer h3{
+  color:var(--accent) !important;
+}
+
+footer p{
+  color:#cbd5e1 !important;
+}
+
+/* ================= FORCE CONTRAST BLOCKS ================= */
+body.dark-mode .stat-card,
+body.dark-mode .timeline-item,
+body.dark-mode .content-block{
+  color:#e2e8f0 !important;
+}
+
+/* ================= SCROLLBAR ================= */
+::-webkit-scrollbar-thumb{
+  background:var(--accent);
 }
