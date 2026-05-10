@@ -2684,3 +2684,146 @@ body.dark-mode .gallery-close{
   color:#fff;
 }
 
+/* ==================================================
+   FINAL ENTERPRISE THEME OVERRIDE
+   Safe non-destructive visual refactor
+   ================================================== */
+
+/* ================= SYSTEM ================= */
+:root{
+  --bg-main:#f4f6f9;
+  --bg-surface:#ffffff;
+  --bg-elevated:#ffffff;
+
+  --text-primary:#0b1c2d;
+  --text-secondary:#6b7a8c;
+
+  --accent:#d4af37;
+
+  --border-subtle:rgba(0,0,0,0.06);
+
+  --shadow-soft:0 10px 30px rgba(0,0,0,0.05);
+  --shadow-medium:0 25px 60px rgba(0,0,0,0.08);
+
+  --title-bg:linear-gradient(180deg, rgba(0,0,0,0.04), transparent);
+}
+
+body.dark-mode{
+  --bg-main:#0b0f1f;
+  --bg-surface:#121833;
+  --bg-elevated:#1a2244;
+
+  --text-primary:#e8ecf1;
+  --text-secondary:#aab2c3;
+
+  --border-subtle:rgba(255,255,255,0.08);
+
+  --shadow-soft:0 25px 60px rgba(0,0,0,0.6);
+  --shadow-medium:0 40px 90px rgba(0,0,0,0.75);
+
+  --title-bg:linear-gradient(180deg, rgba(212,175,55,0.10), transparent);
+}
+
+/* ================= GLOBAL FIX ================= */
+body{
+  background:var(--bg-main) !important;
+  color:var(--text-primary) !important;
+}
+
+section{
+  background:transparent !important;
+}
+
+/* ================= TEXT ================= */
+p{
+  color:var(--text-secondary) !important;
+}
+
+h1,h2,h3,h4{
+  color:var(--text-primary) !important;
+}
+
+/* ================= NAV ================= */
+nav.navbar{
+  background:rgba(255,255,255,0.75) !important;
+  backdrop-filter:blur(12px);
+}
+
+body.dark-mode nav.navbar{
+  background:rgba(10,14,40,0.85) !important;
+}
+
+/* ================= TITLES (CORE FIX) ================= */
+.section-header h2,
+.section-title{
+  background:var(--title-bg) !important;
+  border-radius:10px;
+  padding:12px 28px;
+  box-shadow:var(--shadow-soft);
+
+  text-shadow:0 4px 12px rgba(0,0,0,0.15);
+}
+
+body.dark-mode .section-header h2,
+body.dark-mode .section-title{
+  color:var(--accent) !important;
+
+  text-shadow:
+    0 2px 8px rgba(0,0,0,0.9),
+    0 0 12px rgba(212,175,55,0.35);
+}
+
+/* ================= CARDS FIX ================= */
+[class*="card"],
+.project-card,
+.operation-card,
+.blog-card,
+.testimonial-card{
+  background:var(--bg-elevated) !important;
+  border:1px solid var(--border-subtle) !important;
+  box-shadow:var(--shadow-soft);
+}
+
+/* ================= OVERLAY FIX (VERY IMPORTANT) ================= */
+.overlay,
+.gallery-overlay,
+.operation-overlay{
+  background:rgba(0,0,0,0.05) !important;
+}
+
+body.dark-mode .overlay,
+body.dark-mode .gallery-overlay,
+body.dark-mode .operation-overlay{
+  background:rgba(0,0,0,0.45) !important;
+}
+
+/* ================= BUTTONS ================= */
+.btn,
+button{
+  background:var(--accent) !important;
+  color:#0b1c2d !important;
+  box-shadow:0 10px 25px rgba(212,175,55,0.3);
+}
+
+/* ================= MODALS ================= */
+body.dark-mode .stat-modal,
+body.dark-mode .strategy-detail-card,
+body.dark-mode .cert-modal,
+body.dark-mode .article-modal{
+  background:var(--bg-elevated) !important;
+}
+
+/* ================= HERO SAFETY ================= */
+.hero{
+  background:linear-gradient(135deg,#0f1538,#1a2344) !important;
+}
+
+/* ================= LIGHT MODE CLEANUP ================= */
+body:not(.dark-mode) .section-dark{
+  background:var(--bg-surface) !important;
+}
+
+/* ================= SCROLLBAR ================= */
+::-webkit-scrollbar-thumb{
+  background:var(--accent);
+}
