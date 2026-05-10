@@ -2638,197 +2638,120 @@ body.dark-mode .explore-blocks-section .explore-tag {
 }
 
 /* ==================================================
-   FINAL MASTER SYSTEM — FULL CONSISTENT CONTRAST FIX
-   Absolute enforcement of contrast + navy dark mode
-================================================== */
+   CONTRAST ENFORCEMENT SYSTEM
+   Guarantees readability in all modes
+   ================================================== */
 
-/* ================= VARIABLES ================= */
-:root{
-  --bg-main:#f4f6f9;
-  --bg-surface:#ffffff;
-  --bg-elevated:#ffffff;
-
-  --text-main:#1e293b;
-  --text-soft:#475569;
-
-  --accent:#d4af37;
-
-  --navy:#0f1538;
-  --navy-2:#141c3f;
-
-  --border-subtle:rgba(0,0,0,0.06);
-
-  --shadow-soft:0 10px 30px rgba(0,0,0,0.05);
-  --shadow-medium:0 25px 60px rgba(0,0,0,0.08);
+/* ================= UNIVERSAL TEXT SAFETY ================= */
+body:not(.dark-mode) *{
+  color:inherit;
 }
 
-/* ================= DARK MODE (STRICT NAVY) ================= */
+body:not(.dark-mode){
+  --safe-text:#0b1c2d;
+  --safe-inverse:#ffffff;
+}
+
 body.dark-mode{
-  --bg-main:#0f1538;
-  --bg-surface:#141c3f;
-  --bg-elevated:#1a2244;
-
-  --text-main:#f1f5f9;
-  --text-soft:#cbd5e1;
-
-  --border-subtle:rgba(255,255,255,0.08);
+  --safe-text:#e8ecf1;
+  --safe-inverse:#0b0f1f;
 }
 
-/* ================= GLOBAL ================= */
-body{
-  background:var(--bg-main) !important;
-  color:var(--text-main) !important;
+/* Force readable text everywhere */
+body:not(.dark-mode) p,
+body:not(.dark-mode) span,
+body:not(.dark-mode) li{
+  color:var(--safe-text) !important;
 }
 
-/* REMOVE TODOS OS PRETOS */
-body.dark-mode,
-body.dark-mode section,
-body.dark-mode footer,
-body.dark-mode .section-dark{
-  background:var(--bg-main) !important;
-}
-
-/* ================= TEXT ================= */
-h1,h2,h3,h4{
-  color:var(--text-main) !important;
-}
-
-p,li,span{
-  color:var(--text-soft) !important;
-}
-
-/* FORCE READABILITY */
 body.dark-mode p,
-body.dark-mode li,
-body.dark-mode span{
-  color:#e2e8f0 !important;
+body.dark-mode span,
+body.dark-mode li{
+  color:var(--safe-text) !important;
 }
 
-/* ================= TITLES ================= */
-.section-header h2,
-.section-title{
-  border-radius:10px;
-  padding:12px 28px;
-  box-shadow:var(--shadow-soft);
-}
-
-/* DARK MODE = GOLD ALWAYS */
-body.dark-mode h1,
-body.dark-mode h2,
-body.dark-mode h3,
-body.dark-mode .section-title,
-body.dark-mode .section-header h2{
-  color:var(--accent) !important;
-
-  text-shadow:
-    0 0 10px rgba(212,175,55,0.3),
-    0 10px 30px rgba(0,0,0,0.8);
-}
-
-/* LIGHT MODE = NAVY */
-body:not(.dark-mode) h1,
-body:not(.dark-mode) h2,
-body:not(.dark-mode) h3{
-  color:var(--navy) !important;
-}
-
-/* ================= HERO ================= */
-.hero{
-  background:linear-gradient(135deg,#0f1538,#1a2344) !important;
-}
-
-.hero h1{
-  color:var(--accent) !important;
-}
-
-.subtitle{
-  color:#cbd5e1 !important;
-}
-
-/* ================= CARDS ================= */
+/* ================= CARD / FRAME CONTRAST ================= */
 [class*="card"],
-.project-card,
-.operation-card,
-.blog-card,
-.testimonial-card{
-  background:var(--bg-elevated) !important;
+[class*="box"],
+[class*="frame"]{
+
   border:1px solid var(--border-subtle) !important;
-  box-shadow:var(--shadow-soft);
 }
 
-/* TEXT INSIDE CARDS */
-body.dark-mode [class*="card"] h3,
-body.dark-mode [class*="card"] h4{
-  color:var(--accent) !important;
+/* force contrast inside cards */
+body:not(.dark-mode) [class*="card"] p{
+  color:#44556b !important;
 }
 
 body.dark-mode [class*="card"] p{
-  color:#e2e8f0 !important;
+  color:#cfd6e3 !important;
 }
 
-/* HOVER PREMIUM */
-[class*="card"]:hover{
-  transform:translateY(-6px);
-  box-shadow:
-    var(--shadow-medium),
-    0 0 25px rgba(212,175,55,0.2);
-}
-
-/* ================= STATS ================= */
-.stat-number,
-[class*="stat"] strong{
-  color:var(--accent) !important;
-  text-shadow:
-    0 0 10px rgba(212,175,55,0.4);
-}
-
-/* ================= BUTTONS ================= */
-.btn,
-button{
-  background:var(--accent) !important;
+/* ================= BUTTON TEXT VISIBILITY ================= */
+button,
+.btn{
   color:#0b1c2d !important;
   font-weight:600;
-
-  box-shadow:
-    0 0 10px rgba(212,175,55,0.2),
-    0 10px 25px rgba(212,175,55,0.3);
 }
 
-/* ================= ICONS ================= */
+body.dark-mode button,
+body.dark-mode .btn{
+  color:#0b1c2d !important; /* KEEP DARK for gold bg */
+}
+
+/* ================= ICON VISIBILITY FIX ================= */
+i, svg{
+  color:var(--text-primary);
+}
+
+/* ================= DARK MODE TOGGLE FIX ================= */
+
+/* botão */
+.theme-toggle,
+.dark-mode-toggle{
+  background:var(--accent) !important;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* ÍCONES — sempre visíveis */
 .theme-toggle i,
 .dark-mode-toggle i{
+  font-size:16px;
+  color:#0b1c2d !important; /* SEMPRE ESCURO → visível no dourado */
+}
+
+/* hover optional */
+.theme-toggle:hover,
+.dark-mode-toggle:hover{
+  transform:scale(1.05);
+}
+
+/* ================= LIGHT BACKGROUND CLEAN ================= */
+
+/* remove text fade em light */
+body:not(.dark-mode) .overlay{
+  background:rgba(255,255,255,0.6) !important;
+}
+
+/* ================= DARK STRONG CONTRAST ================= */
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3{
+  color:#ffffff !important;
+}
+
+/* ================= LINKS ================= */
+a{
+  font-weight:500;
+}
+
+body:not(.dark-mode) a{
   color:#0b1c2d !important;
 }
 
-/* ================= MODALS ================= */
-body.dark-mode .stat-modal,
-body.dark-mode .strategy-detail-card,
-body.dark-mode .cert-modal,
-body.dark-mode .article-modal{
-  background:var(--navy-2) !important;
-}
-
-/* ================= FOOTER ================= */
-footer{
-  background:#0f1538 !important;
-}
-
-footer h3{
-  color:var(--accent) !important;
-}
-
-footer p{
-  color:#cbd5e1 !important;
-}
-
-/* ================= FORCE CONTRAST BLOCKS ================= */
-body.dark-mode .stat-card,
-body.dark-mode .timeline-item,
-body.dark-mode .content-block{
-  color:#e2e8f0 !important;
-}
-
-/* ================= SCROLLBAR ================= */
-::-webkit-scrollbar-thumb{
-  background:var(--accent);
+body.dark-mode a{
+  color:#f0d375 !important;
 }
