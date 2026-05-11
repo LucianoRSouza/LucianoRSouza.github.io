@@ -2638,7 +2638,8 @@ body.dark-mode .explore-blocks-section .explore-tag {
 }
 
 /* ==================================================
-   FINAL THEME SYSTEM — CLEAN VERSION (CORRECTED)
+   FINAL THEME SYSTEM — CONSOLIDATED (PRODUCTION)
+   Clean, non-destructive, contrast-safe
 ================================================== */
 
 /* ================= VARIABLES ================= */
@@ -2695,43 +2696,37 @@ p,li,span{
   color:var(--text-soft) !important;
 }
 
-/* ================= STATS (CORRIGIDO DE VERDADE) ================= */
-
-/* números */
-.stat-number{
-  color:var(--accent) !important;
-  font-weight:700;
-
-  text-shadow:
-    0 0 12px rgba(212,175,55,0.5),
-    0 6px 20px rgba(0,0,0,0.35);
-}
-
-/* labels (CUMULATIVE / PROJECT / ETC) */
-.stat-card p,
-.stat-card span{
-  color:#e2e8f0 !important;
-  font-weight:600;
-  letter-spacing:0.6px;
-}
-
-/* textos pequenos (Savings 2026 etc) */
-.stat-card small{
-  color:#cbd5e1 !important;
-}
-
-/* ================= HERO ================= */
-.hero{
-  background:linear-gradient(135deg,#0f1538,#1a2344) !important;
-}
-
+/* ================= HERO TEXT ================= */
 .hero h1,
-.hero p{
-  color:var(--accent) !important;
+.subtitle{
+  text-shadow:0 2px 6px rgba(15,21,56,0.45);
+}
 
-  text-shadow:
-    0 0 10px rgba(212,175,55,0.4),
-    0 6px 20px rgba(15,21,56,0.5);
+/* ✅ HERO (LIGHT MODE → TEXTO DOURADO) */
+body:not(.dark-mode) .hero h1,
+body:not(.dark-mode) .hero p{
+  color:var(--accent) !important;
+}
+
+/* ================= HIGHLIGHTS ================= */
+.stat-number,
+.highlight{
+  text-shadow:0 2px 6px rgba(0,0,0,0.3);
+}
+
+/* ✅ STRATEGY NUMBERS (LIGHT → DOURADO) */
+body:not(.dark-mode) .stat-number{
+  color:var(--accent) !important;
+}
+
+/* ================= NAV ================= */
+nav.navbar{
+  background:rgba(255,255,255,0.75) !important;
+  backdrop-filter:blur(12px);
+}
+
+body.dark-mode nav.navbar{
+  background:rgba(10,14,40,0.85) !important;
 }
 
 /* ================= TITLES ================= */
@@ -2741,15 +2736,36 @@ p,li,span{
   border-radius:10px;
   padding:12px 28px;
   box-shadow:var(--shadow-soft);
+
+  text-shadow:0 4px 12px rgba(0,0,0,0.15);
 }
+
+/* ✅ DARK → TÍTULOS DOURADOS (já existia) */
 
 body.dark-mode .section-header h2,
 body.dark-mode .section-title{
   color:var(--accent) !important;
+
+  text-shadow:
+    0 2px 8px rgba(0,0,0,0.9),
+    0 0 12px rgba(212,175,55,0.35);
 }
 
+/* ✅ LIGHT → "CHOOSE YOUR PERSPECTIVE" TÍTULO NAVY */
 body:not(.dark-mode) .section-header h2{
   color:#0f1538 !important;
+}
+
+/* ✅ STRATEGY BLOCKS (quando fundo escuro → texto dourado) */
+body:not(.dark-mode) .strategy-card-modern h3{
+  color:var(--accent) !important;
+}
+
+/* ✅ NÚMEROS ROMANOS */
+.strategy-card-modern .roman,
+.strategy-card-modern .step-number{
+  color:var(--accent) !important;
+  opacity:0.8;
 }
 
 /* ================= CARDS ================= */
@@ -2763,81 +2779,60 @@ body:not(.dark-mode) .section-header h2{
   box-shadow:var(--shadow-soft);
 }
 
-.card h3,
-.card h4{
-  color:#f1f5f9;
-}
-
-/* hover leve */
-.card:hover{
-  box-shadow:
-    0 20px 50px rgba(0,0,0,0.4),
-    0 0 12px rgba(212,175,55,0.15);
-}
-
-/* ================= BADGES (CORRIGIDO — VISÍVEL) ================= */
-.badge,
-.tag{
-  color:#ffffff !important;
-
-  background:rgba(15,21,56,0.55) !important;
-
-  border:1px solid rgba(212,175,55,0.4);
-
-  box-shadow:
-    0 0 10px rgba(212,175,55,0.15);
-}
-
-/* ================= ABOUT ================= */
+/* ================= ABOUT (DARK FIX) ================= */
 body.dark-mode .about-section p{
   color:#e2e8f0 !important;
 }
 
 body.dark-mode .about-section strong{
-  color:var(--accent);
+  color:var(--accent) !important;
 }
 
 /* ================= SUSTAINABILITY ================= */
+
+/* LIGHT */
 body:not(.dark-mode) .sustainability-card h3{
-  color:var(--accent);
+  color:var(--accent) !important;
 }
 
 body:not(.dark-mode) .sustainability-card p{
-  color:#334155;
+  color:#334155 !important;
 }
 
 /* ================= OVERLAYS ================= */
 .overlay,
 .gallery-overlay,
 .operation-overlay{
-  background:rgba(0,0,0,0.05);
+  background:rgba(0,0,0,0.05) !important;
 }
 
 body.dark-mode .overlay,
 body.dark-mode .gallery-overlay,
 body.dark-mode .operation-overlay{
-  background:rgba(0,0,0,0.45);
+  background:rgba(0,0,0,0.45) !important;
 }
 
 /* ================= BUTTONS ================= */
 .btn,
 button{
-  background:var(--accent);
-  color:#0b1c2d;
+  background:var(--accent) !important;
+  color:#0b1c2d !important;
   font-weight:600;
-
   box-shadow:0 10px 25px rgba(212,175,55,0.3);
 }
 
-/* ================= ICONS ================= */
+/* ================= ICON VISIBILITY FIX ================= */
 .theme-toggle,
 .dark-mode-toggle{
-  background:var(--accent);
+  background:var(--accent) !important;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
 .theme-toggle i,
 .dark-mode-toggle i{
-  color:#0b1c2d;
+  color:#0b1c2d !important;
 }
 
 /* ================= MODALS ================= */
@@ -2845,41 +2840,64 @@ body.dark-mode .stat-modal,
 body.dark-mode .strategy-detail-card,
 body.dark-mode .cert-modal,
 body.dark-mode .article-modal{
-  background:var(--bg-elevated);
+  background:var(--bg-elevated) !important;
 }
 
-/* ================= PRETO → NAVY (SÓ ONDE PRECISA) ================= */
+/* ================= GALLERY CLOSE ================= */
+.gallery-close{
+  background:rgba(255,255,255,0.95);
+  color:#0f1538;
+}
+
+body.dark-mode .gallery-close{
+  background:rgba(0,0,0,0.7);
+  color:#ffffff;
+}
+
+/* ================= HERO SAFETY ================= */
+.hero{
+  background:linear-gradient(135deg,#0f1538,#1a2344) !important;
+}
+
+/* ================= LIGHT MODE FIX ================= */
+body:not(.dark-mode) .section-dark{
+  background:var(--bg-surface) !important;
+}
+
+/* ================= GLOBAL BLACK → NAVY (ONLY WHERE BLACK EXISTS) ================= */
 body.dark-mode .strategy-section,
+body.dark-mode .strategy-in-action,
 body.dark-mode .sustainability-section,
 body.dark-mode .trade-section,
+body.dark-mode .certifications-section,
 body.dark-mode footer{
   background:#0f1538 !important;
 }
 
-/* ================= GITHUB ================= */
+/* ================= GITHUB (LIGHT FIX) ================= */
 body:not(.dark-mode) .github-card h2{
-  color:var(--accent);
+  color:var(--accent) !important;
 }
 
 body:not(.dark-mode) .github-card p{
-  color:#334155;
+  color:#334155 !important;
 }
 
-/* ================= FOOTER ================= */
+/* ================= FOOTER (MESMO DARK) ================= */
 footer{
-  background:#0f1538;
+  background:#0f1538 !important;
 }
 
 footer h3{
-  color:var(--accent);
+  color:var(--accent) !important;
 }
 
 footer p,
 footer span{
-  color:#cbd5e1;
+  color:#cbd5e1 !important;
 }
 
-/* ================= SCROLL ================= */
+/* ================= SCROLLBAR ================= */
 ::-webkit-scrollbar-thumb{
   background:var(--accent);
 }
