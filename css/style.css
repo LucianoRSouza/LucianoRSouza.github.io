@@ -2638,7 +2638,7 @@ body.dark-mode .explore-blocks-section .explore-tag {
 }
 
 /* ==================================================
-   FINAL THEME SYSTEM — CLEAN ARCHITECTURE (NO PATCHES)
+   FINAL THEME SYSTEM — CLEAN VERSION (CORRECTED)
 ================================================== */
 
 /* ================= VARIABLES ================= */
@@ -2648,165 +2648,156 @@ body.dark-mode .explore-blocks-section .explore-tag {
   --bg-elevated:#ffffff;
 
   --text-main:#1e293b;
-  --text-soft:#5f6f81;
+  --text-soft:#475569;
 
   --accent:#d4af37;
 
-  --navy:#0f1538;
-  --navy-light:#1a2344;
-
   --border-subtle:rgba(0,0,0,0.06);
 
-  --shadow-soft:0 10px 30px rgba(0,0,0,.05);
-  --shadow-medium:0 25px 60px rgba(0,0,0,.08);
+  --shadow-soft:0 10px 30px rgba(0,0,0,0.05);
+  --shadow-medium:0 25px 60px rgba(0,0,0,0.08);
+
+  --title-bg:linear-gradient(180deg, rgba(0,0,0,0.04), transparent);
 }
 
-/* ================= DARK MODE ================= */
 body.dark-mode{
   --bg-main:#0b0f1f;
   --bg-surface:#121833;
   --bg-elevated:#1a2244;
 
-  --text-main:#e8ecf1;
+  --text-main:#e2e8f0;
   --text-soft:#cbd5e1;
+
+  --border-subtle:rgba(255,255,255,0.08);
+
+  --shadow-soft:0 25px 60px rgba(0,0,0,0.6);
+  --shadow-medium:0 40px 90px rgba(0,0,0,0.75);
+
+  --title-bg:linear-gradient(180deg, rgba(212,175,55,0.10), transparent);
 }
 
-/* ================= BASE ================= */
+/* ================= GLOBAL ================= */
 body{
-  background:var(--bg-main);
-  color:var(--text-main);
+  background:var(--bg-main) !important;
+  color:var(--text-main) !important;
 }
 
 section{
-  background:transparent;
+  background:transparent !important;
 }
 
 /* ================= TEXT ================= */
 h1,h2,h3,h4{
-  color:var(--text-main);
+  color:var(--text-main) !important;
 }
 
-p,span,li{
-  color:var(--text-soft);
+p,li,span{
+  color:var(--text-soft) !important;
 }
 
-/* ==================================================
-   HERO (CORRETO SEM PATCH)
-================================================== */
+/* ================= STATS (CORRIGIDO DE VERDADE) ================= */
 
-.hero{
-  background:linear-gradient(135deg,var(--navy),var(--navy-light));
-}
-
-/* texto principal */
-.hero h1{
-  color:var(--accent);
-  text-shadow:0 0 12px rgba(212,175,55,.4);
-}
-
-/* subtítulo */
-.hero p{
-  color:#e2e8f0;
-}
-
-/* ==================================================
-   STATS (FINAL CORRETO)
-================================================== */
-
-/* valores grandes (€150K etc) */
-.stat-number,
-.hero .stat-value,
-.hero strong{
-  color:var(--accent);
+/* números */
+.stat-number{
+  color:var(--accent) !important;
   font-weight:700;
 
   text-shadow:
-    0 0 14px rgba(212,175,55,.5),
-    0 6px 20px rgba(0,0,0,.35);
+    0 0 12px rgba(212,175,55,0.5),
+    0 6px 20px rgba(0,0,0,0.35);
 }
 
-/* labels (CUMULATIVE etc) */
-.stat-card h4,
+/* labels (CUMULATIVE / PROJECT / ETC) */
+.stat-card p,
 .stat-card span{
-  color:#e2e8f0;
+  color:#e2e8f0 !important;
   font-weight:600;
-  letter-spacing:.6px;
+  letter-spacing:0.6px;
 }
 
-/* sublabels (Savings 2026 etc) */
+/* textos pequenos (Savings 2026 etc) */
 .stat-card small{
-  color:#cbd5e1;
+  color:#cbd5e1 !important;
 }
 
-/* ==================================================
-   BADGES (FINAL VISÍVEL)
-================================================== */
-
-.badge,
-.tag,
-[class*="badge"]{
-  color:#ffffff;
-
-  background:rgba(15,21,56,.65);
-
-  border:1px solid rgba(212,175,55,.4);
-
-  box-shadow:0 0 12px rgba(212,175,55,.2);
+/* ================= HERO ================= */
+.hero{
+  background:linear-gradient(135deg,#0f1538,#1a2344) !important;
 }
 
-/* ==================================================
-   TITLES
-================================================== */
+.hero h1,
+.hero p{
+  color:var(--accent) !important;
 
+  text-shadow:
+    0 0 10px rgba(212,175,55,0.4),
+    0 6px 20px rgba(15,21,56,0.5);
+}
+
+/* ================= TITLES ================= */
 .section-header h2,
 .section-title{
+  background:var(--title-bg) !important;
   border-radius:10px;
   padding:12px 28px;
   box-shadow:var(--shadow-soft);
 }
 
-/* dark */
-body.dark-mode .section-header h2{
-  color:var(--accent);
+body.dark-mode .section-header h2,
+body.dark-mode .section-title{
+  color:var(--accent) !important;
 }
 
-/* light */
 body:not(.dark-mode) .section-header h2{
-  color:var(--navy);
+  color:#0f1538 !important;
 }
 
-/* ==================================================
-   CARDS
-================================================== */
-
-[class*="card"]{
-  background:var(--bg-elevated);
-  border:1px solid var(--border-subtle);
+/* ================= CARDS ================= */
+[class*="card"],
+.project-card,
+.operation-card,
+.blog-card,
+.testimonial-card{
+  background:var(--bg-elevated) !important;
+  border:1px solid var(--border-subtle) !important;
   box-shadow:var(--shadow-soft);
 }
 
-.card:hover{
-  box-shadow:
-    0 20px 50px rgba(0,0,0,.4),
-    0 0 12px rgba(212,175,55,.15);
+.card h3,
+.card h4{
+  color:#f1f5f9;
 }
 
-/* ==================================================
-   ABOUT (DARK)
-================================================== */
+/* hover leve */
+.card:hover{
+  box-shadow:
+    0 20px 50px rgba(0,0,0,0.4),
+    0 0 12px rgba(212,175,55,0.15);
+}
 
+/* ================= BADGES (CORRIGIDO — VISÍVEL) ================= */
+.badge,
+.tag{
+  color:#ffffff !important;
+
+  background:rgba(15,21,56,0.55) !important;
+
+  border:1px solid rgba(212,175,55,0.4);
+
+  box-shadow:
+    0 0 10px rgba(212,175,55,0.15);
+}
+
+/* ================= ABOUT ================= */
 body.dark-mode .about-section p{
-  color:#e2e8f0;
+  color:#e2e8f0 !important;
 }
 
 body.dark-mode .about-section strong{
   color:var(--accent);
 }
 
-/* ==================================================
-   SUSTAINABILITY
-================================================== */
-
+/* ================= SUSTAINABILITY ================= */
 body:not(.dark-mode) .sustainability-card h3{
   color:var(--accent);
 }
@@ -2815,47 +2806,80 @@ body:not(.dark-mode) .sustainability-card p{
   color:#334155;
 }
 
-/* ==================================================
-   BLACK → NAVY (CONTROLADO)
-================================================== */
+/* ================= OVERLAYS ================= */
+.overlay,
+.gallery-overlay,
+.operation-overlay{
+  background:rgba(0,0,0,0.05);
+}
 
+body.dark-mode .overlay,
+body.dark-mode .gallery-overlay,
+body.dark-mode .operation-overlay{
+  background:rgba(0,0,0,0.45);
+}
+
+/* ================= BUTTONS ================= */
+.btn,
+button{
+  background:var(--accent);
+  color:#0b1c2d;
+  font-weight:600;
+
+  box-shadow:0 10px 25px rgba(212,175,55,0.3);
+}
+
+/* ================= ICONS ================= */
+.theme-toggle,
+.dark-mode-toggle{
+  background:var(--accent);
+}
+
+.theme-toggle i,
+.dark-mode-toggle i{
+  color:#0b1c2d;
+}
+
+/* ================= MODALS ================= */
+body.dark-mode .stat-modal,
+body.dark-mode .strategy-detail-card,
+body.dark-mode .cert-modal,
+body.dark-mode .article-modal{
+  background:var(--bg-elevated);
+}
+
+/* ================= PRETO → NAVY (SÓ ONDE PRECISA) ================= */
 body.dark-mode .strategy-section,
 body.dark-mode .sustainability-section,
 body.dark-mode .trade-section,
 body.dark-mode footer{
-  background:var(--navy);
+  background:#0f1538 !important;
 }
 
-/* ==================================================
-   FOOTER
-================================================== */
+/* ================= GITHUB ================= */
+body:not(.dark-mode) .github-card h2{
+  color:var(--accent);
+}
 
+body:not(.dark-mode) .github-card p{
+  color:#334155;
+}
+
+/* ================= FOOTER ================= */
 footer{
-  background:var(--navy);
+  background:#0f1538;
 }
 
 footer h3{
   color:var(--accent);
 }
 
-footer p{
+footer p,
+footer span{
   color:#cbd5e1;
 }
 
-/* ==================================================
-   BUTTONS
-================================================== */
-
-button,.btn{
-  background:var(--accent);
-  color:#0b1c2d;
-  box-shadow:0 10px 25px rgba(212,175,55,.3);
-}
-
-/* ==================================================
-   SCROLL
-================================================== */
-
+/* ================= SCROLL ================= */
 ::-webkit-scrollbar-thumb{
   background:var(--accent);
 }
