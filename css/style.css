@@ -96,7 +96,18 @@ nav .logo{display:flex;align-items:center;gap:10px;font-family:'Playfair Display
     0 0 18px rgba(212,175,55,0.45),
     0 0 30px rgba(212,175,55,0.25);
 }
-.stat-label{font-size:.82rem;opacity:.85;text-transform:uppercase;letter-spacing:.8px}
+.stat-label{
+  font-size:0.8rem;
+  font-weight:600;
+
+  color:rgba(255,255,255,0.9);
+
+  letter-spacing:0.6px;
+
+  text-shadow:
+    0 1px 3px rgba(0,0,0,0.7);
+}
+
 .stat-note{display:block;margin-top:.3rem;font-size:.72rem;opacity:.7}
 .hero-buttons{display:flex;gap:.9rem;flex-wrap:nowrap;animation:fadeInUp .9s ease .42s both}
 .btn{padding:.95rem 2.2rem;border-radius:999px;font-weight:700;display:inline-flex;align-items:center;gap:.7rem;transition:transform .22s ease,box-shadow .22s ease,background .22s ease,color .22s ease;border:2px solid transparent;color:var(--navy);background:var(--gold);box-shadow:0 10px 28px rgba(212,175,55,.28);cursor:pointer;text-decoration:none;white-space: nowrap;}
@@ -133,7 +144,19 @@ nav .logo{display:flex;align-items:center;gap:10px;font-family:'Playfair Display
 .about-image::before{content:'';position:absolute;inset:0;border-radius:20px;padding:1px;background:linear-gradient(135deg,rgba(255,255,255,.4)0%,transparent 50%,rgba(255,255,255,.2)100%);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;opacity:.6;z-index:2}
 .about-image img{width:100%;height:auto;display:block;border-radius:17px;position:relative;z-index:1}
 
-.floating-badge{position:absolute;background:rgba(255,255,255,.10);backdrop-filter:blur(10px);padding:.9rem 1.2rem;border-radius:14px;border:1px solid rgba(212,175,55,.26);display:flex;align-items:center;gap:.6rem;animation:float 4s ease-in-out infinite;font-size:.9rem;opacity:.95;z-index:2}
+.floating-badge{
+  background:rgba(255,215,0,0.12); /* leve dourado */
+
+  border:1px solid rgba(255,215,0,0.35);
+
+  color:#FFD700;
+
+  text-shadow:
+    0 1px 3px rgba(0,0,0,0.8),
+    0 0 6px rgba(255,215,0,0.6);
+
+  backdrop-filter:blur(6px);
+}
 .floating-badge i{color:var(--gold);font-size:1.1rem}
 .badge-top{top:8%;right:5%}
 .badge-middle{top:44%;right:2%}
@@ -1112,20 +1135,26 @@ body:not(.dark-mode) .explore-block .explore-link {
   display:block;
   font-size:2rem;
   font-weight:800;
-  color:var(--gold);
+
+  color:#FFD700; /* GOLD forte */
 
   text-shadow:
-    0 2px 4px rgba(0,0,0,0.6),
-    0 0 8px rgba(212,175,55,0.6),
-    0 0 18px rgba(212,175,55,0.45),
-    0 0 30px rgba(212,175,55,0.25);
+    0 2px 6px rgba(0,0,0,0.7),
+    0 0 8px rgba(255,215,0,0.8),
+    0 0 18px rgba(255,215,0,0.6),
+    0 0 32px rgba(255,215,0,0.4);
 }
 
 .impact-label{
-  font-size:0.85rem;
-  color:var(--text-light);
-  text-transform:uppercase;
+  font-size:0.75rem;
+  font-weight:600;
+
+  color:rgba(255,255,255,0.85);
+
   letter-spacing:0.5px;
+
+  text-shadow:
+    0 1px 2px rgba(0,0,0,0.6);
 }
 
 body.dark-mode .impact-label{
@@ -2921,4 +2950,15 @@ footer span{
 /* ================= SCROLLBAR ================= */
 ::-webkit-scrollbar-thumb{
   background:var(--accent);
+}
+
+.stat-card *{
+  opacity:1 !important;
+}
+
+.stat-card p{
+  color:rgba(255,255,255,0.85) !important;
+
+  text-shadow:
+    0 1px 3px rgba(0,0,0,0.8);
 }
